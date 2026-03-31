@@ -6,7 +6,11 @@
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc"
+    "typecheck": "react-router typegen && tsc",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:seed": "bun run db/seed.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.3.0",

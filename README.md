@@ -1,87 +1,73 @@
-# Welcome to React Router!
+# Income Globe
 
-A modern, production-ready template for building full-stack React applications using React Router.
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+A clean, beautiful website showing what the bottom 90% of earners make in each country. Real income distribution data for 31 countries, sourced from WID.world, OECD, and ILO.
 
 ## Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- **Country income cards** — P10, P25, median, P75, P90 monthly income for each country (USD + local currency)
+- **Search & filter** — by country name, region, sort by median income
+- **Compare mode** — side-by-side comparison of 2-3 countries
+- **"Where do you fit?"** — enter your income to see your percentile in any country
+- **Dark mode** — default dark theme with Geist font
 
-## Getting Started
+## Stack
 
-### Installation
+- [React Router v7](https://reactrouter.com/) (framework mode, SSR)
+- [Hono](https://hono.dev/) (API server)
+- [Neon](https://neon.tech/) (Postgres) + [Drizzle ORM](https://orm.drizzle.team/)
+- [shadcn/ui](https://ui.shadcn.com/) + [Tailwind CSS v4](https://tailwindcss.com/)
+- [Bun](https://bun.sh/) runtime
 
-Install the dependencies:
-
-```bash
-npm install
-```
-
-### Development
-
-Start the development server with HMR:
+## Setup
 
 ```bash
-npm run dev
+# Install dependencies
+pnpm install
+
+# Copy env file and set your Neon DATABASE_URL
+cp .env.example .env
+
+# Push schema to database
+pnpm run db:push
+
+# Seed the database with income data for 31 countries
+pnpm run db:seed
+
+# Start dev server
+pnpm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+The app works without a database — it uses static JSON data as a fallback. The database is only needed if you want to use the Hono API endpoints.
 
-## Building for Production
+## Data Sources
 
-Create a production build:
+Income distribution data (monthly, USD PPP-adjusted) from:
 
-```bash
-npm run build
-```
+- **WID.world** — World Inequality Database
+- **OECD** — Organisation for Economic Co-operation and Development
+- **ILO** — International Labour Organization
+
+Data years: 2022-2024. Percentiles shown: P10, P25, P50 (median), P75, P90.
+
+## Countries Covered
+
+Nigeria, South Africa, Kenya, Ghana, Egypt, Morocco, India, Philippines, Indonesia, Vietnam, Bangladesh, Pakistan, Thailand, Malaysia, Germany, Netherlands, United Kingdom, France, Spain, Italy, Poland, Romania, Ukraine, Brazil, Mexico, Colombia, Peru, Ecuador, Argentina, Chile, United States.
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Start dev server |
+| `pnpm build` | Production build |
+| `pnpm start` | Start production server |
+| `pnpm typecheck` | Type checking |
+| `pnpm db:push` | Push schema to database |
+| `pnpm db:seed` | Seed database with country data |
 
 ## Deployment
 
-### Docker Deployment
-
-To build and run using Docker:
+Deploy to Vercel:
 
 ```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+vercel
 ```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.

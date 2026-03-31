@@ -5,35 +5,66 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  NavLink,
 } from "react-router";
-
+import { Globe, Search, BarChart3, Calculator } from "lucide-react";
 import type { Route } from "./+types/root";
 import "./app.css";
 
-export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-  },
+export const links: Route.LinksFunction = () => [];
+
+const navLinks = [
+  { to: "/", label: "Explore", icon: Search, end: true },
+  { to: "/compare", label: "Compare", icon: BarChart3 },
+  { to: "/calculator", label: "Where Do I Fit?", icon: Calculator },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Income Globe — What the bottom 90% earn worldwide</title>
+        <meta
+          name="description"
+          content="See what people actually earn in every country. Real income distribution data from WID.world, OECD, and ILO."
+        />
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body className="min-h-screen bg-background text-foreground antialiased">
+        <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
+          <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
+            <NavLink
+              to="/"
+              className="flex items-center gap-2.5 text-lg font-semibold tracking-tight"
+            >
+              <Globe className="h-5 w-5 text-primary" />
+              <span>Income Globe</span>
+            </NavLink>
+            <nav className="flex items-center gap-1">
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.to}
+                  to={link.to}
+                  end={link.end}
+                  className={({ isActive }) =>
+                    `flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                      isActive
+                        ? "bg-secondary text-foreground"
+                        : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
+                    }`
+                  }
+                >
+                  <link.icon className="h-4 w-4" />
+                  <span className="hidden sm:inline">{link.label}</span>
+                </NavLink>
+              ))}
+            </nav>
+          </div>
+        </header>
+        <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -62,11 +93,11 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
+    <main className="flex min-h-[60vh] flex-col items-center justify-center p-4 text-center">
+      <h1 className="text-4xl font-bold">{message}</h1>
+      <p className="mt-2 text-muted-foreground">{details}</p>
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
+        <pre className="mt-4 max-w-full overflow-x-auto rounded-lg bg-muted p-4 text-left text-sm">
           <code>{stack}</code>
         </pre>
       )}
