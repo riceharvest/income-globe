@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   isRouteErrorResponse,
   Links,
@@ -9,9 +10,34 @@ import {
 } from "react-router";
 import { Globe, Search, BarChart3, Calculator } from "lucide-react";
 import type { Route } from "./+types/root";
+import { initPostHog } from "~/lib/posthog";
 import "./app.css";
 
-export const links: Route.LinksFunction = () => [];
+export const meta: Route.MetaFunction = () => [
+  { title: "Income Globe — What the bottom 90% earn worldwide" },
+  {
+    name: "description",
+    content:
+      "See what people actually earn in every country. Real income distribution data from WID.world, OECD, and ILO.",
+  },
+  { property: "og:title", content: "Income Globe — What the bottom 90% earn worldwide" },
+  {
+    property: "og:description",
+    content: "Real income distribution data for 31 countries. See where you fit.",
+  },
+  { property: "og:type", content: "website" },
+  { property: "og:url", content: "https://income-globe.vercel.app" },
+  { name: "twitter:card", content: "summary_large_image" },
+  { name: "twitter:title", content: "Income Globe — What the bottom 90% earn worldwide" },
+  {
+    name: "twitter:description",
+    content: "Real income distribution data for 31 countries. See where you fit.",
+  },
+];
+
+export const links: Route.LinksFunction = () => [
+  { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+];
 
 const navLinks = [
   { to: "/", label: "Explore", icon: Search, end: true },
@@ -20,16 +46,15 @@ const navLinks = [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    initPostHog();
+  }, []);
+
   return (
     <html lang="en" className="dark">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Income Globe — What the bottom 90% earn worldwide</title>
-        <meta
-          name="description"
-          content="See what people actually earn in every country. Real income distribution data from WID.world, OECD, and ILO."
-        />
         <Meta />
         <Links />
       </head>

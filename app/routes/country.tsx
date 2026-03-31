@@ -14,6 +14,16 @@ import {
   type IndicatorType,
 } from "~/data/countries";
 import { ArrowLeft, Database, TrendingUp } from "lucide-react";
+import type { Route } from "./+types/country";
+
+export const meta = ({ params }: Route.MetaArgs) => {
+  const country = getCountryByCode(params.code?.toUpperCase() || "");
+  const name = country?.name || "Country";
+  return [
+    { title: `${name} — Income Globe` },
+    { name: "description", content: `Income distribution data for ${name}. See median income, percentile breakdown, and inequality metrics.` },
+  ];
+};
 
 const percentileDescriptions: Record<string, string> = {
   p10: "Bottom 10% earn less than this",
@@ -30,6 +40,20 @@ const indicatorTabs: { value: IndicatorType; label: string }[] = [
   { value: "labor_income", label: "Wages" },
   { value: "wealth", label: "Wealth" },
 ];
+
+export function ErrorBoundary() {
+  return (
+    <div className="flex items-center justify-center min-h-[50vh]">
+      <div className="text-center space-y-4">
+        <h2 className="text-2xl font-bold text-gray-200">Something went wrong</h2>
+        <p className="text-gray-400">We couldn't load this country's data.</p>
+        <a href="/" className="inline-block px-4 py-2 bg-emerald-600 hover:bg-emerald-700 rounded-lg text-white transition-colors">
+          Go home
+        </a>
+      </div>
+    </div>
+  );
+}
 
 export default function CountryDetail() {
   const { code } = useParams();

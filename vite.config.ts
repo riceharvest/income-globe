@@ -5,4 +5,16 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
+  css: {
+    devSourcemap: true,
+  },
+  build: {
+    sourcemap: false,
+    rollupOptions: {
+      onwarn(warning, defaultHandler) {
+        if (warning.message.includes("sourcemap")) return;
+        defaultHandler(warning);
+      },
+    },
+  },
 });

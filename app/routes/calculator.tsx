@@ -1,5 +1,10 @@
 import { useState, useMemo } from "react";
 import { useSearchParams } from "react-router";
+
+export const meta = () => [
+  { title: "Where Do You Fit? — Income Globe" },
+  { name: "description", content: "Enter your income and see where you rank in any country's income distribution." },
+];
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Separator } from "~/components/ui/separator";
@@ -21,6 +26,20 @@ const indicatorTabs: { value: IndicatorType; label: string }[] = [
   { value: "consumption", label: "Consumption" },
   { value: "labor_income", label: "Wages" },
 ];
+
+export function ErrorBoundary() {
+  return (
+    <div className="flex items-center justify-center min-h-[50vh]">
+      <div className="text-center space-y-4">
+        <h2 className="text-2xl font-bold text-gray-200">Something went wrong</h2>
+        <p className="text-gray-400">Please try refreshing the page.</p>
+        <a href="/" className="inline-block px-4 py-2 bg-emerald-600 hover:bg-emerald-700 rounded-lg text-white transition-colors">
+          Go home
+        </a>
+      </div>
+    </div>
+  );
+}
 
 export default function CalculatorPage() {
   const [searchParams] = useSearchParams();

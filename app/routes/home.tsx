@@ -13,6 +13,11 @@ import {
 } from "~/data/countries";
 import { Search, ArrowUpDown, Globe, LayoutGrid, Table2 } from "lucide-react";
 
+export const meta = () => [
+  { title: "Explore — Income Globe" },
+  { name: "description", content: "Browse income distribution data for 31 countries worldwide." },
+];
+
 type SortOption = "name" | "median_asc" | "median_desc";
 type ViewMode = "cards" | "table";
 
@@ -21,6 +26,20 @@ const sortLabels: Record<SortOption, string> = {
   median_asc: "Lowest",
   median_desc: "Highest",
 };
+
+export function ErrorBoundary() {
+  return (
+    <div className="flex items-center justify-center min-h-[50vh]">
+      <div className="text-center space-y-4">
+        <h2 className="text-2xl font-bold text-gray-200">Something went wrong</h2>
+        <p className="text-gray-400">Please try refreshing the page.</p>
+        <a href="/" className="inline-block px-4 py-2 bg-emerald-600 hover:bg-emerald-700 rounded-lg text-white transition-colors">
+          Go home
+        </a>
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   const [search, setSearch] = useState("");
