@@ -8,4 +8,4 @@
 # React Router
 /.react-router/
 /build/
-test.db
+*.db
