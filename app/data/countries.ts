@@ -309,8 +309,8 @@ export const countriesData: CountryData[] = [
   // ═══════════════════════════════════════════
 
   // North Africa
-  c("DZ", "Algeria", "Middle East & North Africa", "🇩🇿", "DZD", "د.ج", 135, 45600000, "WID.world", 2023, { p10: 80, p25: 160, p50: 320, p75: 640, p90: 1100 }, 0.33, 12, "Hydrocarbons", 162, 28, 30, 80, 12, 15, 0.83, 33, 72),
-  c("LY", "Libya", "Middle East & North Africa", "🇱🇾", "LYD", "LD", 4.85, 7000000, "ILO", 2022, { p10: 90, p25: 190, p50: 400, p75: 800, p90: 1500 }, 0.35, 10, "Petroleum", 162, 28, 36, 150, 20, 15, 0.82, 30, 58), // obesity*: WHO 2022 36.2%
+  // REPLACED DZ
+ // obesity*: WHO 2022 36.2%
   c("MA", "Morocco", "Middle East & North Africa", "🇲🇦", "MAD", "د.م.", 10.2, 37800000, "WID.world", 2023, { p10: 75, p25: 150, p50: 310, p75: 620, p90: 1200 }, 0.40, 20, "Agriculture", 161, 27, 26, 100, 13, 14, 0.69, 33, 88),
   c("SD", "Sudan", "Africa", "🇸🇩", "SDG", "ج.س.", 600, 47900000, "WID.world", 2023, { p10: 18, p25: 38, p50: 82, p75: 185, p90: 400 }, 0.35, 3, "Agriculture", 161, 26, 8, 50, 4, 9, 0.52, 28, 30),
   c("TN", "Tunisia", "Middle East & North Africa", "🇹🇳", "TND", "د.ت", 3.1, 12400000, "WID.world", 2023, { p10: 80, p25: 165, p50: 340, p75: 680, p90: 1250 }, 0.33, 20, "Services", 162, 27, 29, 150, 18, 24, 0.77, 30, 69),
@@ -498,7 +498,7 @@ export const countriesData: CountryData[] = [
   c("SV", "El Salvador", "Latin America", "🇸🇻", "USD", "$", 1, 6300000, "WID.world", 2023, { p10: 55, p25: 115, p50: 240, p75: 500, p90: 1000 }, 0.39, 5, "Services", 159, 26, 24, 200, 6, 6, 0.74, 38, 65),
   c("GT", "Guatemala", "Latin America", "🇬🇹", "GTQ", "Q", 7.8, 17600000, "WID.world", 2023, { p10: 50, p25: 105, p50: 220, p75: 470, p90: 950 }, 0.48, 5, "Agriculture", 159, 27, 26, 150, 6, 12, 0.63, 35, 60),
   c("HN", "Honduras", "Latin America", "🇭🇳", "HNL", "L", 25, 10400000, "WID.world", 2023, { p10: 40, p25: 85, p50: 185, p75: 400, p90: 820 }, 0.48, 5, "Agriculture", 159, 26, 26, 150, 6, 8, 0.62, 32, 60),
-  c("MX", "Mexico", "Latin America", "🇲🇽", "MXN", "$", 17.2, 128900000, "WID.world", 2023, { p10: 95, p25: 200, p50: 420, p75: 900, p90: 1850 }, 0.45, 10, "Manufacturing", 159, 28, 36.6, 280, 3, 13, 0.78, 38, 75), // obesity WHO 2022 36.6%*
+  c("MX", "Mexico", "Latin America", "🇲🇽", "MXN", "$", 17.2, 128900000, "WID.world", 2023, { p10: 95, p25: 200, p50: 420, p75: 900, p90: 1850 }, 0.45, 10, "Manufacturing", 159, 28, 36.6, 280, 3, 14, 0.78, 38, 75), // obesity WHO 2022 36.6%*
   c("NI", "Nicaragua", "Latin America", "🇳🇮", "NIO", "C$", 37, 7000000, "WID.world", 2023, { p10: 35, p25: 75, p50: 160, p75: 350, p90: 700 }, 0.46, 8, "Services", 159, 26, 32, 150, 6, 12, 0.73, 32, 65), // obesity*: WHO 2022 32.4%
   c("PA", "Panama", "Latin America", "🇵🇦", "PAB", "B/.", 1, 4400000, "WID.world", 2023, { p10: 90, p25: 190, p50: 420, p75: 900, p90: 1900 }, 0.50, 10, "Services", 159, 26, 22, 400, 6, 12, 0.73, 42, 70),
   c("PY", "Paraguay", "Latin America", "🇵🇾", "PYG", "₲", 7300, 6800000, "WID.world", 2023, { p10: 55, p25: 115, p50: 240, p75: 500, p90: 1000 }, 0.44, 10, "Agriculture", 159, 26, 24, 200, 6, 12, 0.73, 35, 73),
@@ -517,10 +517,10 @@ export const countriesData: CountryData[] = [
   // ═══════════════════════════════════════════
   c("AU", "Australia", "Oceania", "🇦🇺", "AUD", "A$", 1.54, 26400000, "OECD", 2023, { p10: 1200, p25: 2100, p50: 3400, p75: 5000, p90: 7200 }, 0.33, 98, "Services", 163, 27.5, 31.8, 1800, 4.1, 13.8, 0.95, 83, 95), // obesity*: WHO 2022 31.8%, internet: ITU/World Bank 2023
   c("FJ", "Fiji", "Oceania", "🇫🇯", "FJD", "FJ$", 2.25, 900000, "WID.world", 2023, { p10: 65, p25: 135, p50: 280, p75: 580, p90: 1100 }, 0.37, 60, "Agriculture", 159, 25.5, 30, 320, 4.5, 18, 0.73, 45, 65), // obesity: WHO GHO ~30%, HDI: UNDP HDR 2025, english: EF EPI / colonial legacy
-  c("NZ", "New Zealand", "Oceania", "🇳🇿", "NZD", "NZ$", 1.65, 5200000, "OECD", 2023, { p10: 1050, p25: 1800, p50: 2900, p75: 4300, p90: 6200 }, 0.33, 98, "Services", 164, 27, 30, 1500, 4, 15, 0.94, 78, 93),
-  c("PG", "Papua New Guinea", "Oceania", "🇵🇬", "PGK", "K", 3.8, 10300000, "WID.world", 2023, { p10: 15, p25: 35, p50: 75, p75: 170, p90: 380 }, 0.42, 5, "Mining & Quarrying", 158, 26, 25, 100, 4, 20, 0.70, 38, 15),
-  c("SB", "Solomon Islands", "Oceania", "🇸🇧", "SBD", "SI$", 8.4, 700000, "WID.world", 2023, { p10: 20, p25: 42, p50: 90, p75: 200, p90: 420 }, 0.37, 5, "Agriculture", 158, 26, 25, 80, 4, 20, 0.70, 38, 30),
-  c("VU", "Vanuatu", "Oceania", "🇻🇺", "VUV", "VT", 120, 320000, "WID.world", 2023, { p10: 28, p25: 58, p50: 125, p75: 270, p90: 550 }, 0.37, 5, "Agriculture", 158, 26, 25, 100, 4, 20, 0.70, 38, 30),
+  c("NZ", "New Zealand", "Oceania", "🇳🇿", "NZD", "NZ$", 1.65, 5200000, "OECD", 2023, { p10: 1050, p25: 1800, p50: 2900, p75: 4300, p90: 6200 }, 0.33, 98, "Services", 164, 27, 31, 1500, 4.8, 14.5, 0.94, 79, 93), // obesity*: WHO GHO 2022 ~31%, smoking: WHO 2022
+  c("PG", "Papua New Guinea", "Oceania", "🇵🇬", "PGK", "K", 3.8, 10300000, "WID.world", 2023, { p10: 15, p25: 35, p50: 75, p75: 170, p90: 380 }, 0.42, 5, "Mining & Quarrying", 158, 24, 12, 45, 2.8, 10, 0.55, 38, 15), // obesity: WHO GHO ~12%, HDI: UNDP HDR 2025, smoking: WHO estimate
+  c("SB", "Solomon Islands", "Oceania", "🇸🇧", "SBD", "SI$", 8.4, 700000, "WID.world", 2023, { p10: 20, p25: 42, p50: 90, p75: 200, p90: 420 }, 0.37, 5, "Agriculture", 158, 25, 22, 70, 3.5, 9, 0.56, 37, 30), // obesity: ~22% (NCD-RisC), HDI: UNDP HDR 2025
+  c("VU", "Vanuatu", "Oceania", "🇻🇺", "VUV", "VT", 120, 320000, "WID.world", 2023, { p10: 28, p25: 58, p50: 125, p75: 270, p90: 550 }, 0.37, 5, "Agriculture", 158, 25, 23, 90, 3.8, 9, 0.62, 37, 35), // obesity: ~23% (NCD-RisC), HDI: UNDP HDR 2025
   c("WS", "Samoa", "Oceania", "🇼🇸", "WST", "WS$", 2.75, 220000, "WID.world", 2023, { p10: 40, p25: 85, p50: 180, p75: 380, p90: 720 }, 0.39, 5, "Agriculture", 158, 26, 25, 80, 4, 20, 0.70, 38, 45),
   c("TO", "Tonga", "Oceania", "🇹🇴", "TOP", "T$", 2.4, 100000, "WID.world", 2023, { p10: 50, p25: 105, p50: 220, p75: 450, p90: 850 }, 0.38, 5, "Agriculture", 158, 26, 25, 80, 4, 20, 0.70, 38, 50),
 ];
