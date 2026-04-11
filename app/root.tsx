@@ -60,7 +60,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className="min-h-screen bg-background text-foreground antialiased">
         <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
-          <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
+          <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-4">
             <NavLink
               to="/"
               className="flex items-center gap-2.5 text-lg font-semibold tracking-tight"
@@ -89,7 +89,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </nav>
           </div>
         </header>
-        <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
+        <main className="mx-auto max-w-[1400px] px-4 py-6">{children}</main>
         <ScrollRestoration />
         <Scripts />
       </body>

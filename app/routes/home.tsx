@@ -209,7 +209,7 @@ export default function Home() {
       {/* Content: Table or Cards */}
       {filtered.length > 0 ? (
         viewMode === "table" ? (
-          <div className="relative -mx-4 min-w-[1200px]">
+          <div className="relative -mx-4">
             <div className="overflow-x-auto">
               <DataTable countries={filtered} indicators={indicators} />
             </div>
