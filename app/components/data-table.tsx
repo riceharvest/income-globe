@@ -64,6 +64,12 @@ export function DataTable({
         cmp = (a.obesityRate ?? -1) - (b.obesityRate ?? -1);
       } else if (sortCol === "smokingRate") {
         cmp = (a.smokingRate ?? -1) - (b.smokingRate ?? -1);
+      } else if (sortCol === "englishSpeakingPercent") {
+        cmp = (a.englishSpeakingPercent ?? -1) - (b.englishSpeakingPercent ?? -1);
+      } else if (sortCol === "femaleHeightCm") {
+        cmp = (a.femaleHeightCm ?? -1) - (b.femaleHeightCm ?? -1);
+      } else if (sortCol === "femaleBmi") {
+        cmp = (a.femaleBmi ?? -1) - (b.femaleBmi ?? -1);
       } else if (sortCol.startsWith("indicator_")) {
         const idx = parseInt(sortCol.split("_")[1]);
         const ind = indicators[idx];
@@ -222,6 +228,30 @@ export function DataTable({
                 Smoking % <SortIcon col="smokingRate" />
               </button>
             </th>
+            <th className="hidden p-3 text-right xl:table-cell">
+              <button
+                onClick={() => toggleSort("englishSpeakingPercent")}
+                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+              >
+                English % <SortIcon col="englishSpeakingPercent" />
+              </button>
+            </th>
+            <th className="hidden p-3 text-right xl:table-cell">
+              <button
+                onClick={() => toggleSort("femaleHeightCm")}
+                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+              >
+                Avg Height <SortIcon col="femaleHeightCm" />
+              </button>
+            </th>
+            <th className="hidden p-3 text-right xl:table-cell">
+              <button
+                onClick={() => toggleSort("femaleBmi")}
+                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+              >
+                Avg BMI <SortIcon col="femaleBmi" />
+              </button>
+            </th>
             {indicators.map((ind, i) => (
               <th key={ind.id} className="p-3 text-right">
                 <button
@@ -287,6 +317,15 @@ export function DataTable({
                 </td>
                 <td className="hidden p-3 text-right tabular-nums xl:table-cell">
                   {country.smokingRate != null ? `${country.smokingRate}%` : "—"}
+                </td>
+                <td className="hidden p-3 text-right tabular-nums xl:table-cell">
+                  {country.englishSpeakingPercent != null ? `${country.englishSpeakingPercent}%` : "—"}
+                </td>
+                <td className="hidden p-3 text-right tabular-nums xl:table-cell">
+                  {country.femaleHeightCm != null ? `${country.femaleHeightCm}cm` : "—"}
+                </td>
+                <td className="hidden p-3 text-right tabular-nums xl:table-cell">
+                  {country.femaleBmi != null ? country.femaleBmi : "—"}
                 </td>
                 {indicators.map((ind) => {
                   const val = getIndicatorValue(country, ind);
