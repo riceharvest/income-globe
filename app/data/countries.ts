@@ -499,11 +499,11 @@ export const countriesData: CountryData[] = [
   c("GT", "Guatemala", "Latin America", "🇬🇹", "GTQ", "Q", 7.8, 17600000, "WID.world", 2023, { p10: 50, p25: 105, p50: 220, p75: 470, p90: 950 }, 0.48, 5, "Agriculture", 159, 27, 26, 150, 6, 12, 0.63, 35, 60),
   c("HN", "Honduras", "Latin America", "🇭🇳", "HNL", "L", 25, 10400000, "WID.world", 2023, { p10: 40, p25: 85, p50: 185, p75: 400, p90: 820 }, 0.48, 5, "Agriculture", 159, 26, 26, 150, 6, 8, 0.62, 32, 60),
   c("MX", "Mexico", "Latin America", "🇲🇽", "MXN", "$", 17.2, 128900000, "WID.world", 2023, { p10: 95, p25: 200, p50: 420, p75: 900, p90: 1850 }, 0.45, 10, "Manufacturing", 159, 28, 36.6, 280, 3, 14, 0.78, 38, 75), // obesity WHO 2022 36.6%*
-  c("NI", "Nicaragua", "Latin America", "🇳🇮", "NIO", "C$", 37, 7000000, "WID.world", 2023, { p10: 35, p25: 75, p50: 160, p75: 350, p90: 700 }, 0.46, 8, "Services", 159, 26, 32, 150, 6, 12, 0.73, 32, 65), // obesity*: WHO 2022 32.4%
-  c("PA", "Panama", "Latin America", "🇵🇦", "PAB", "B/.", 1, 4400000, "WID.world", 2023, { p10: 90, p25: 190, p50: 420, p75: 900, p90: 1900 }, 0.50, 10, "Services", 159, 26, 22, 400, 6, 12, 0.73, 42, 70),
-  c("PY", "Paraguay", "Latin America", "🇵🇾", "PYG", "₲", 7300, 6800000, "WID.world", 2023, { p10: 55, p25: 115, p50: 240, p75: 500, p90: 1000 }, 0.44, 10, "Agriculture", 159, 26, 24, 200, 6, 12, 0.73, 35, 73),
-  c("PE", "Peru", "Latin America", "🇵🇪", "PEN", "S/", 3.75, 34000000, "WID.world", 2023, { p10: 70, p25: 150, p50: 320, p75: 680, p90: 1400 }, 0.44, 8, "Services", 158, 26, 23, 180, 5, 8, 0.76, 36, 71),
-  c("UY", "Uruguay", "Latin America", "🇺🇾", "UYU", "$U", 39, 3400000, "WID.world", 2023, { p10: 200, p25: 400, p50: 780, p75: 1450, p90: 2600 }, 0.40, 8, "Services", 160, 26, 27, 350, 6, 12, 0.73, 42, 82),
+  c("NI", "Nicaragua", "Latin America", "🇳🇮", "NIO", "C$", 37, 7000000, "WID.world", 2023, { p10: 35, p25: 75, p50: 160, p75: 350, p90: 700 }, 0.46, 5, "Agriculture", 159, 27, 32, 150, 6, 12, 0.65, 32, 65), // obesity*: WHO 2022 32.4%
+  c("PA", "Panama", "Latin America", "🇵🇦", "PAB", "B/.", 1, 4400000, "WID.world", 2023, { p10: 90, p25: 190, p50: 420, p75: 900, p90: 1900 }, 0.50, 10, "Services", 159, 26, 22, 400, 6, 12, 0.82, 42, 70),
+  c("PY", "Paraguay", "Latin America", "🇵🇾", "PYG", "₲", 7300, 6800000, "WID.world", 2023, { p10: 55, p25: 115, p50: 240, p75: 500, p90: 1000 }, 0.44, 5, "Agriculture", 158, 25, 24, 200, 6, 12, 0.73, 35, 73),
+  c("PE", "Peru", "Latin America", "🇵🇪", "PEN", "S/", 3.75, 34000000, "WID.world", 2023, { p10: 70, p25: 150, p50: 320, p75: 680, p90: 1400 }, 0.44, 8, "Mining", 158, 25, 22, 180, 5, 8, 0.76, 36, 71),
+  c("UY", "Uruguay", "Latin America", "🇺🇾", "UYU", "$U", 39, 3400000, "WID.world", 2023, { p10: 200, p25: 400, p50: 780, p75: 1450, p90: 2600 }, 0.40, 8, "Services", 160, 27, 30, 350, 6, 12, 0.82, 42, 82),
   c("VE", "Venezuela", "Latin America", "🇻🇪", "VES", "Bs.S", 36, 28400000, "ILO", 2022, { p10: 20, p25: 42, p50: 90, p75: 200, p90: 450 }, 0.45, 8, "Petroleum", 159, 26, 25, 60, 6, 12, 0.73, 28, 70),
 
   // ═══════════════════════════════════════════
@@ -521,8 +521,8 @@ export const countriesData: CountryData[] = [
   c("PG", "Papua New Guinea", "Oceania", "🇵🇬", "PGK", "K", 3.8, 10300000, "WID.world", 2023, { p10: 15, p25: 35, p50: 75, p75: 170, p90: 380 }, 0.42, 5, "Mining & Quarrying", 158, 24, 12, 45, 2.8, 10, 0.55, 38, 15), // obesity: WHO GHO ~12%, HDI: UNDP HDR 2025, smoking: WHO estimate
   c("SB", "Solomon Islands", "Oceania", "🇸🇧", "SBD", "SI$", 8.4, 700000, "WID.world", 2023, { p10: 20, p25: 42, p50: 90, p75: 200, p90: 420 }, 0.37, 5, "Agriculture", 158, 25, 22, 70, 3.5, 9, 0.56, 37, 30), // obesity: ~22% (NCD-RisC), HDI: UNDP HDR 2025
   c("VU", "Vanuatu", "Oceania", "🇻🇺", "VUV", "VT", 120, 320000, "WID.world", 2023, { p10: 28, p25: 58, p50: 125, p75: 270, p90: 550 }, 0.37, 5, "Agriculture", 158, 25, 23, 90, 3.8, 9, 0.62, 37, 35), // obesity: ~23% (NCD-RisC), HDI: UNDP HDR 2025
-  c("WS", "Samoa", "Oceania", "🇼🇸", "WST", "WS$", 2.75, 220000, "WID.world", 2023, { p10: 40, p25: 85, p50: 180, p75: 380, p90: 720 }, 0.39, 5, "Agriculture", 158, 26, 25, 80, 4, 20, 0.70, 38, 45),
-  c("TO", "Tonga", "Oceania", "🇹🇴", "TOP", "T$", 2.4, 100000, "WID.world", 2023, { p10: 50, p25: 105, p50: 220, p75: 450, p90: 850 }, 0.38, 5, "Agriculture", 158, 26, 25, 80, 4, 20, 0.70, 38, 50),
+  c("WS", "Samoa", "Oceania", "🇼🇸", "WST", "WS$", 2.75, 220000, "WID.world", 2023, { p10: 40, p25: 85, p50: 180, p75: 380, p90: 720 }, 0.39, 5, "Agriculture", 159, 26, 25, 70, 6, 11, 0.71, 39, 53), // obesity: WHO GHO ~25%, HDI: UNDP HDR 2025, smoking: WHO estimate
+  c("TO", "Tonga", "Oceania", "🇹🇴", "TOP", "T$", 2.4, 100000, "WID.world", 2023, { p10: 50, p25: 105, p50: 220, p75: 450, p90: 850 }, 0.38, 5, "Agriculture", 159, 26, 25, 70, 3.2, 11, 0.74, 38, 54), // obesity: WHO GHO ~25%, HDI: UNDP HDR 2025, smoking: WHO estimate
 ];
 
 // Remove the MX2 duplicate — Mexico is in Latin America only
