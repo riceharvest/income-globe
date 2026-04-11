@@ -30,12 +30,10 @@ export function DataTable({
 
   function toggleSort(col: string) {
     if (sortCol === col) {
-      setSortDir(sortDir === "asc" ? "desc" : sortDir === "desc" ? null : "asc");
-      if (sortDir === "desc") {
-        setSortCol("name");
-        setSortDir("asc");
-      }
+      // Toggle between asc and desc
+      setSortDir(sortDir === "asc" ? "desc" : "asc");
     } else {
+      // New column: name defaults to asc, everything else desc
       setSortCol(col);
       setSortDir(col === "name" ? "asc" : "desc");
     }
@@ -81,7 +79,7 @@ export function DataTable({
   }, [countries, sortCol, sortDir, indicators]);
 
   function SortIcon({ col }: { col: string }) {
-    if (sortCol !== col || !sortDir)
+    if (sortCol !== col)
       return <ArrowUpDown className="h-3 w-3 text-muted-foreground/50" />;
     return sortDir === "asc" ? (
       <ArrowUp className="h-3 w-3" />
