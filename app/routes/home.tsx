@@ -3,6 +3,8 @@ import { Input } from "~/components/ui/input";
 import { CountryCard } from "~/components/country-card";
 import { DataTable } from "~/components/data-table";
 import { IndicatorsPanel } from "~/components/indicators-panel";
+import { StatsOverview } from "~/components/stats-overview";
+import { RankingsSection } from "~/components/rankings-section";
 import {
   uniqueCountriesData,
   regions,
@@ -107,6 +109,12 @@ export default function Home() {
           <span className="text-foreground">ILO</span>.
         </p>
       </div>
+
+      {/* Stats Overview Strip */}
+      <StatsOverview />
+
+      {/* Rankings Section */}
+      <RankingsSection />
 
       {/* Indicator selector panel */}
       <IndicatorsPanel indicators={indicators} onChange={setIndicators} />

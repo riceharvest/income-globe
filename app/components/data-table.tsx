@@ -52,6 +52,20 @@ export function DataTable({
         cmp = a.region.localeCompare(b.region);
       } else if (sortCol === "population") {
         cmp = a.population - b.population;
+      } else if (sortCol === "hdi") {
+        cmp = (a.hdi ?? -1) - (b.hdi ?? -1);
+      } else if (sortCol === "minimumWageEur") {
+        cmp = (a.minimumWageEur ?? -1) - (b.minimumWageEur ?? -1);
+      } else if (sortCol === "costOfLivingIndex") {
+        cmp = (a.costOfLivingIndex ?? -1) - (b.costOfLivingIndex ?? -1);
+      } else if (sortCol === "internetPenetration") {
+        cmp = (a.internetPenetration ?? -1) - (b.internetPenetration ?? -1);
+      } else if (sortCol === "unemploymentRate") {
+        cmp = (a.unemploymentRate ?? -1) - (b.unemploymentRate ?? -1);
+      } else if (sortCol === "obesityRate") {
+        cmp = (a.obesityRate ?? -1) - (b.obesityRate ?? -1);
+      } else if (sortCol === "smokingRate") {
+        cmp = (a.smokingRate ?? -1) - (b.smokingRate ?? -1);
       } else if (sortCol.startsWith("indicator_")) {
         const idx = parseInt(sortCol.split("_")[1]);
         const ind = indicators[idx];
@@ -154,6 +168,62 @@ export function DataTable({
                 Population <SortIcon col="population" />
               </button>
             </th>
+            <th className="hidden p-3 text-right lg:table-cell">
+              <button
+                onClick={() => toggleSort("hdi")}
+                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+              >
+                HDI <SortIcon col="hdi" />
+              </button>
+            </th>
+            <th className="hidden p-3 text-right xl:table-cell">
+              <button
+                onClick={() => toggleSort("minimumWageEur")}
+                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+              >
+                Min Wage <SortIcon col="minimumWageEur" />
+              </button>
+            </th>
+            <th className="hidden p-3 text-right xl:table-cell">
+              <button
+                onClick={() => toggleSort("costOfLivingIndex")}
+                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+              >
+                Cost of Living <SortIcon col="costOfLivingIndex" />
+              </button>
+            </th>
+            <th className="hidden p-3 text-right xl:table-cell">
+              <button
+                onClick={() => toggleSort("internetPenetration")}
+                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+              >
+                Internet % <SortIcon col="internetPenetration" />
+              </button>
+            </th>
+            <th className="hidden p-3 text-right xl:table-cell">
+              <button
+                onClick={() => toggleSort("unemploymentRate")}
+                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+              >
+                Unemploy. % <SortIcon col="unemploymentRate" />
+              </button>
+            </th>
+            <th className="hidden p-3 text-right xl:table-cell">
+              <button
+                onClick={() => toggleSort("obesityRate")}
+                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+              >
+                Obesity % <SortIcon col="obesityRate" />
+              </button>
+            </th>
+            <th className="hidden p-3 text-right xl:table-cell">
+              <button
+                onClick={() => toggleSort("smokingRate")}
+                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+              >
+                Smoking % <SortIcon col="smokingRate" />
+              </button>
+            </th>
             {indicators.map((ind, i) => (
               <th key={ind.id} className="p-3 text-right">
                 <button
@@ -198,6 +268,27 @@ export function DataTable({
                       ? `${(country.population / 1_000_000).toFixed(1)}M`
                       : `${(country.population / 1_000).toFixed(0)}k`
                     : "—"}
+                </td>
+                <td className="hidden p-3 text-right tabular-nums lg:table-cell">
+                  {country.hdi != null ? country.hdi.toFixed(2) : "—"}
+                </td>
+                <td className="hidden p-3 text-right tabular-nums xl:table-cell">
+                  {country.minimumWageEur != null ? `€${country.minimumWageEur.toLocaleString()}` : "—"}
+                </td>
+                <td className="hidden p-3 text-right tabular-nums xl:table-cell">
+                  {country.costOfLivingIndex != null ? country.costOfLivingIndex : "—"}
+                </td>
+                <td className="hidden p-3 text-right tabular-nums xl:table-cell">
+                  {country.internetPenetration != null ? `${country.internetPenetration}%` : "—"}
+                </td>
+                <td className="hidden p-3 text-right tabular-nums xl:table-cell">
+                  {country.unemploymentRate != null ? `${country.unemploymentRate}%` : "—"}
+                </td>
+                <td className="hidden p-3 text-right tabular-nums xl:table-cell">
+                  {country.obesityRate != null ? `${country.obesityRate}%` : "—"}
+                </td>
+                <td className="hidden p-3 text-right tabular-nums xl:table-cell">
+                  {country.smokingRate != null ? `${country.smokingRate}%` : "—"}
                 </td>
                 {indicators.map((ind) => {
                   const val = getIndicatorValue(country, ind);
