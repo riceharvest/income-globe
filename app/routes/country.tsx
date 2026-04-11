@@ -7,7 +7,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "~/components/ui/tabs";
 import { IncomeBar } from "~/components/income-bar";
 import {
   getCountryByCode,
-  formatUsd,
+  formatEur,
   formatLocalCurrency,
   uniqueCountriesData,
   indicatorLabels,
@@ -112,6 +112,15 @@ export default function CountryDetail() {
               <Database className="mr-1 h-3 w-3" />
               {country.dataSource} · {country.dataYear}
             </Badge>
+            {country.englishSpeakingPercent != null && (
+              <Badge variant="secondary">{country.englishSpeakingPercent}% English</Badge>
+            )}
+            {country.mainIndustry && (
+              <Badge variant="secondary">{country.mainIndustry}</Badge>
+            )}
+            {country.femaleHeightCm != null && (
+              <Badge variant="secondary">{country.femaleHeightCm}cm avg ♀</Badge>
+            )}
           </div>
         </div>
       </div>
@@ -120,7 +129,7 @@ export default function CountryDetail() {
       <div className="grid gap-4 sm:grid-cols-3">
         <Card>
           <CardContent className="p-4 text-center">
-            <p className="text-3xl font-bold">{formatUsd(currentData.p50)}</p>
+            <p className="text-3xl font-bold">{formatEur(currentData.p50)}</p>
             <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
               Median monthly income
             </p>
@@ -143,6 +152,126 @@ export default function CountryDetail() {
             </p>
             <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
               Population
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Demographics & culture */}
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <Card>
+          <CardContent className="p-4 text-center">
+            <p className="text-3xl font-bold">
+              {country.englishSpeakingPercent != null ? `${country.englishSpeakingPercent}%` : "—"}
+            </p>
+            <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
+              English speakers
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4 text-center">
+            <p className="text-3xl font-bold">{country.mainIndustry ?? "—"}</p>
+            <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
+              Main industry
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4 text-center">
+            <p className="text-3xl font-bold">
+              {country.femaleHeightCm != null ? `${country.femaleHeightCm}cm` : "—"}
+            </p>
+            <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
+              Avg female height
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4 text-center">
+            <p className="text-3xl font-bold">
+              {country.femaleBmi != null ? country.femaleBmi : "—"}
+            </p>
+            <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
+              Avg female BMI
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Quality of Life */}
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <Card>
+          <CardContent className="p-4 text-center">
+            <p className="text-3xl font-bold">
+              {country.obesityRate != null ? `${country.obesityRate}%` : "—"}
+            </p>
+            <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
+              Obesity rate
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4 text-center">
+            <p className="text-3xl font-bold">
+              {country.minimumWageEur != null ? `€${country.minimumWageEur}` : "—"}
+            </p>
+            <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
+              Min. wage / month
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4 text-center">
+            <p className="text-3xl font-bold">
+              {country.unemploymentRate != null ? `${country.unemploymentRate}%` : "—"}
+            </p>
+            <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
+              Unemployment
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4 text-center">
+            <p className="text-3xl font-bold">
+              {country.smokingRate != null ? `${country.smokingRate}%` : "—"}
+            </p>
+            <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
+              Smoking rate
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Quality of Life — row 2 */}
+      <div className="grid gap-4 sm:grid-cols-3">
+        <Card>
+          <CardContent className="p-4 text-center">
+            <p className="text-3xl font-bold">
+              {country.hdi != null ? country.hdi.toFixed(2) : "—"}
+            </p>
+            <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
+              Human Dev. Index
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4 text-center">
+            <p className="text-3xl font-bold">
+              {country.costOfLivingIndex != null ? country.costOfLivingIndex : "—"}
+            </p>
+            <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
+              Cost of living (NYC=100)
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4 text-center">
+            <p className="text-3xl font-bold">
+              {country.internetPenetration != null ? `${country.internetPenetration}%` : "—"}
+            </p>
+            <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
+              Internet access
             </p>
           </CardContent>
         </Card>
@@ -214,7 +343,7 @@ export default function CountryDetail() {
                           isMedian ? "text-2xl font-bold" : "text-lg font-semibold"
                         }`}
                       >
-                        ${entry.value.toLocaleString()}
+                        €{entry.value.toLocaleString()}
                         <span className="text-sm text-muted-foreground">/mo</span>
                       </p>
                       <p className="text-xs text-muted-foreground tabular-nums">
