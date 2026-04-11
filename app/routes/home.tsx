@@ -209,8 +209,10 @@ export default function Home() {
       {/* Content: Table or Cards */}
       {filtered.length > 0 ? (
         viewMode === "table" ? (
-          <div className="-mx-4 overflow-x-auto px-4">
-            <DataTable countries={filtered} indicators={indicators} />
+          <div className="relative -mx-4 min-w-[1200px]">
+            <div className="overflow-x-auto">
+              <DataTable countries={filtered} indicators={indicators} />
+            </div>
           </div>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
