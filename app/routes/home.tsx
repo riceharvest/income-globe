@@ -13,6 +13,7 @@ import {
   uniqueCountriesData,
   regions,
   type Region,
+  type CountryData,
   type IndicatorSelection,
   createDefaultIndicator,
   getIndicatorValue,
@@ -29,13 +30,44 @@ export const meta = () => [
 ];
 
 type ViewMode = "grid" | "table";
-type SortOption = "name" | "median_asc" | "median_desc";
 type GroupId = "country" | "economic" | "health" | "gender" | "income";
+type SortKey =
+  | "name"
+  | "region"
+  | "population"
+  | "minimumWageEur"
+  | "costOfLivingIndex"
+  | "internetPenetration"
+  | "unemploymentRate"
+  | "englishSpeakingPercent"
+  | "obesityRate"
+  | "smokingRate"
+  | "femaleHeightCm"
+  | "femaleBmi"
+  | "adolescentBirthRate"
+  | "childMarriagePercent"
+  | "laborForceGap"
+  | "contraceptiveUse"
+  | "income";
 
-const SORT_LABELS: Record<SortOption, string> = {
+const SORT_LABELS: Record<string, string> = {
   name: "A-Z",
-  median_asc: "Lowest",
-  median_desc: "Highest",
+  region: "Region",
+  population: "Population",
+  minimumWageEur: "Min Wage",
+  costOfLivingIndex: "Cost of Living",
+  internetPenetration: "Internet %",
+  unemploymentRate: "Unemploy. %",
+  englishSpeakingPercent: "English %",
+  obesityRate: "Obesity %",
+  smokingRate: "Smoking %",
+  femaleHeightCm: "Height",
+  femaleBmi: "BMI",
+  adolescentBirthRate: "Adolescent Birth",
+  childMarriagePercent: "Child Marriage",
+  laborForceGap: "Labor Gap",
+  contraceptiveUse: "Contraceptive %",
+  income: "Income",
 };
 
 // All columns by group
@@ -44,7 +76,7 @@ const GROUP_COLUMNS: Record<GroupId, string[]> = {
   economic: ["population", "minimumWageEur", "costOfLivingIndex", "internetPenetration", "unemploymentRate", "englishSpeakingPercent"],
   health: ["obesityRate", "smokingRate", "femaleHeightCm", "femaleBmi"],
   gender: ["adolescentBirthRate", "childMarriagePercent", "laborForceGap", "contraceptiveUse"],
-  income: [], // income is handled by indicators panel
+  income: [],
 };
 
 export function ErrorBoundary() {
@@ -68,7 +100,7 @@ export default function Home() {
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState<Region>("All Regions");
-  const [sort, setSort] = useState<SortOption>("median_desc");
+  const [sort, setSort] = useState<SortKey>("income");
   const [activeGroups, setActiveGroups] = useState<Set<GroupId>>(
     new Set(["country", "economic", "health", "gender", "income"])
   );
@@ -114,21 +146,25 @@ export default function Home() {
     }
 
     const primaryIndicator = indicators[0];
-    if (sort === "median_asc") {
-      data.sort(
-        (a, b) =>
-          getIndicatorValue(a, primaryIndicator) -
-          getIndicatorValue(b, primaryIndicator)
-      );
-    } else if (sort === "median_desc") {
-      data.sort(
-        (a, b) =>
-          getIndicatorValue(b, primaryIndicator) -
-          getIndicatorValue(a, primaryIndicator)
-      );
-    } else {
-      data.sort((a, b) => a.name.localeCompare(b.name));
+
+    function getSortVal(c: CountryData): string | number {
+      if (sort === "name") return c.name;
+      if (sort === "region") return c.region;
+      if (sort === "income") return getIndicatorValue(c, primaryIndicator);
+      const val = (c as any)[sort];
+      return val == null ? -Infinity : val;
     }
+
+    data.sort((a, b) => {
+      const va = getSortVal(a);
+      const vb = getSortVal(b);
+      if (typeof va === "string" && typeof vb === "string") {
+        return sort === "name" || sort === "region"
+          ? va.localeCompare(vb)
+          : vb.localeCompare(va);
+      }
+      return (vb as number) - (va as number);
+    });
 
     return data;
   }, [search, region, sort, indicators]);
@@ -148,17 +184,17 @@ export default function Home() {
 
   function handleQuickAction(action: string) {
     if (action === "top10") {
-      setSort("median_desc");
+      setSort("income");
       setRegion("All Regions");
       setSearch("");
     } else if (action === "bottom10") {
-      setSort("median_asc");
+      setSort("income");
       setRegion("All Regions");
       setSearch("");
     } else if (action === "reset") {
       setSearch("");
       setRegion("All Regions");
-      setSort("median_desc");
+      setSort("income");
       setActiveGroups(new Set(["country", "economic", "health", "gender", "income"]));
     }
     setShowCommandPalette(false);
@@ -264,7 +300,7 @@ export default function Home() {
           {viewMode === "grid" && (
             <div className="flex items-center gap-2">
               <span className="text-sm text-muted-foreground">Sort:</span>
-              {(Object.keys(SORT_LABELS) as SortOption[]).map((s) => (
+              {(Object.keys(SORT_LABELS) as SortKey[]).map((s) => (
                 <button
                   key={s}
                   onClick={() => setSort(s)}
