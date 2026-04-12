@@ -100,11 +100,11 @@ export function DataTable({
   const [visibility, setVisibility] = useState<Record<string, boolean>>(() => {
     const initial: Record<string, boolean> = {};
     for (const col of STATIC_COLUMNS) {
-      initial[col.id] = false; // always start hidden for static columns
+      initial[col.id] = false;
     }
-    for (const col of indicators) {
-      initial[`indicator_${indicators.indexOf(col)}`] = true; // indicator cols visible by default
-    }
+    indicators.forEach((_, i) => {
+      initial[`indicator_${i}`] = true;
+    });
     return initial;
   });
 
