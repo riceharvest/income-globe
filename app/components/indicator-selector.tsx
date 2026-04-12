@@ -2,6 +2,9 @@ import { useState } from "react";
 import {
   type IndicatorSelection,
   type IndicatorType,
+  type IncomeIndicatorType,
+  type GenderIndicatorType,
+  type IndicatorDomain,
   type PercentileGroup,
   type AgeGroup,
   type UnitType,
@@ -9,6 +12,9 @@ import {
   type PriceMode,
   type TimePeriod,
   indicatorLabels,
+  domainLabels,
+  incomeIndicatorTypes,
+  genderIndicatorTypes,
   percentileGroupLabels,
   ageGroupLabels,
   unitLabels,
@@ -77,6 +83,38 @@ export function IndicatorSelector({
     onChange({ ...selection, ...partial });
   }
 
+  function switchDomain(domain: IndicatorDomain) {
+    if (domain === selection.domain) return;
+    if (domain === "income") {
+      update({
+        domain: "income",
+        indicator: "posttax_national",
+        percentileGroup: "threshold",
+        threshold: 50,
+        unit: "adult",
+        timePeriod: "monthly",
+      });
+    } else {
+      update({
+        domain: "gender",
+        indicator: "adolescentBirthRate",
+        percentileGroup: "bottom50",
+        unit: "individual",
+        timePeriod: "annual",
+      });
+    }
+  }
+
+  const isIncome = selection.domain === "income";
+
+  // Build the summary shown in the collapsed header for gender indicators
+  const genderSummary = (() => {
+    if (selection.ageGroup === "all") return "All ages";
+    if (selection.ageGroup === "working") return "Working age";
+    if (selection.ageGroup === "prime") return "Prime age";
+    return null;
+  })();
+
   return (
     <div className="rounded-xl border border-border bg-card">
       {/* Header */}
@@ -95,9 +133,12 @@ export function IndicatorSelector({
           </span>
           {!expanded && (
             <span className="text-xs text-muted-foreground">
-              {selection.percentileGroup === "threshold" && selection.threshold
-                ? `P${selection.threshold}`
-                : percentileGroupLabels[selection.percentileGroup]}
+              {isIncome
+                ? selection.percentileGroup === "threshold" &&
+                  selection.threshold
+                  ? `P${selection.threshold}`
+                  : percentileGroupLabels[selection.percentileGroup]
+                : genderSummary}
             </span>
           )}
         </button>
@@ -113,93 +154,105 @@ export function IndicatorSelector({
 
       {expanded && (
         <div className="space-y-4 border-t border-border p-3">
-          {/* Indicator type */}
+          {/* Domain selector */}
           <RadioGroup
-            label="Indicator"
-            options={
-              [
-                "pretax_national",
-                "posttax_national",
-                "consumption",
-                "wealth",
-                "labor_income",
-              ] as IndicatorType[]
-            }
-            value={selection.indicator}
-            onChange={(v) => update({ indicator: v })}
-            labels={indicatorLabels}
+            label="Domain"
+            options={["income", "gender"] as IndicatorDomain[]}
+            value={selection.domain}
+            onChange={switchDomain}
+            labels={domainLabels}
           />
 
           <Separator />
 
-          {/* Percentile group */}
+          {/* Indicator type — filtered by domain */}
           <RadioGroup
-            label="Percentile group"
+            label="Indicator"
             options={
-              [
-                "bottom50",
-                "middle40",
-                "top10",
-                "top1",
-                "threshold",
-                "custom",
-              ] as PercentileGroup[]
+              isIncome
+                ? incomeIndicatorTypes
+                : (genderIndicatorTypes as IndicatorType[])
             }
-            value={selection.percentileGroup}
-            onChange={(v) => update({ percentileGroup: v })}
-            labels={percentileGroupLabels}
+            value={selection.indicator}
+            onChange={(v) => update({ indicator: v as IndicatorType })}
+            labels={indicatorLabels}
           />
 
-          {/* Threshold selector */}
-          {selection.percentileGroup === "threshold" && (
-            <div className="space-y-1.5">
-              <p className="text-xs text-muted-foreground">
-                Percentile threshold
-              </p>
-              <div className="flex gap-1.5">
-                {[10, 25, 50, 75, 90].map((p) => (
-                  <button
-                    key={p}
-                    onClick={() => update({ threshold: p })}
-                    className={`flex-1 rounded-md py-1.5 text-xs font-medium transition-colors ${
-                      selection.threshold === p
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                    }`}
-                  >
-                    P{p}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Custom range slider */}
-          {selection.percentileGroup === "custom" && (
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <p className="text-xs text-muted-foreground">Custom range</p>
-                <Badge variant="secondary" className="text-xs">
-                  P{selection.customRange?.[0] ?? 0} – P
-                  {selection.customRange?.[1] ?? 100}
-                </Badge>
-              </div>
-              <Slider
-                value={selection.customRange ?? [0, 100]}
-                onValueChange={(v) => {
-                  const arr = Array.isArray(v) ? v : [v];
-                  update({
-                    customRange: [arr[0] ?? 0, arr[1] ?? 100] as [
-                      number,
-                      number,
-                    ],
-                  });
-                }}
-                min={0}
-                max={100}
-                step={5}
+          {/* Percentile group — income only */}
+          {isIncome && (
+            <>
+              <Separator />
+              <RadioGroup
+                label="Percentile group"
+                options={
+                  [
+                    "bottom50",
+                    "middle40",
+                    "top10",
+                    "top1",
+                    "threshold",
+                    "custom",
+                  ] as PercentileGroup[]
+                }
+                value={selection.percentileGroup}
+                onChange={(v) => update({ percentileGroup: v })}
+                labels={percentileGroupLabels}
               />
-            </div>
+
+              {/* Threshold selector */}
+              {selection.percentileGroup === "threshold" && (
+                <div className="space-y-1.5">
+                  <p className="text-xs text-muted-foreground">
+                    Percentile threshold
+                  </p>
+                  <div className="flex gap-1.5">
+                    {[10, 25, 50, 75, 90].map((p) => (
+                      <button
+                        key={p}
+                        onClick={() => update({ threshold: p })}
+                        className={`flex-1 rounded-md py-1.5 text-xs font-medium transition-colors ${
+                          selection.threshold === p
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                        }`}
+                      >
+                        P{p}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Custom range slider */}
+              {selection.percentileGroup === "custom" && (
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs text-muted-foreground">
+                      Custom range
+                    </p>
+                    <Badge variant="secondary" className="text-xs">
+                      P{selection.customRange?.[0] ?? 0} – P
+                      {selection.customRange?.[1] ?? 100}
+                    </Badge>
+                  </div>
+                  <Slider
+                    value={selection.customRange ?? [0, 100]}
+                    onValueChange={(v) => {
+                      const arr = Array.isArray(v) ? v : [v];
+                      update({
+                        customRange: [arr[0] ?? 0, arr[1] ?? 100] as [
+                          number,
+                          number,
+                        ],
+                      });
+                    }}
+                    min={0}
+                    max={100}
+                    step={5}
+                  />
+                </div>
+              )}
+            </>
           )}
 
           <Separator />
@@ -214,38 +267,52 @@ export function IndicatorSelector({
               labels={ageGroupLabels}
             />
 
-            <RadioGroup
-              label="Unit"
-              options={["individual", "adult", "household"] as UnitType[]}
-              value={selection.unit}
-              onChange={(v) => update({ unit: v })}
-              labels={unitLabels}
-            />
+            {/* Unit — income only */}
+            {isIncome && (
+              <RadioGroup
+                label="Unit"
+                options={["individual", "adult", "household"] as UnitType[]}
+                value={selection.unit}
+                onChange={(v) => update({ unit: v })}
+                labels={unitLabels}
+              />
+            )}
 
-            <RadioGroup
-              label="Currency"
-              options={["usd_ppp", "usd_market", "local"] as CurrencyMode[]}
-              value={selection.currency}
-              onChange={(v) => update({ currency: v })}
-              labels={currencyModeLabels}
-            />
+            {/* Currency — income only */}
+            {isIncome && (
+              <RadioGroup
+                label="Currency"
+                options={
+                  ["usd_ppp", "usd_market", "local"] as CurrencyMode[]
+                }
+                value={selection.currency}
+                onChange={(v) => update({ currency: v })}
+                labels={currencyModeLabels}
+              />
+            )}
 
-            <RadioGroup
-              label="Prices"
-              options={["constant_2024", "current"] as PriceMode[]}
-              value={selection.prices}
-              onChange={(v) => update({ prices: v })}
-              labels={priceModeLabels}
-            />
+            {/* Prices — income only */}
+            {isIncome && (
+              <RadioGroup
+                label="Prices"
+                options={["constant_2024", "current"] as PriceMode[]}
+                value={selection.prices}
+                onChange={(v) => update({ prices: v })}
+                labels={priceModeLabels}
+              />
+            )}
           </div>
 
-          <RadioGroup
-            label="Time period"
-            options={["monthly", "annual"] as TimePeriod[]}
-            value={selection.timePeriod}
-            onChange={(v) => update({ timePeriod: v })}
-            labels={timePeriodLabels}
-          />
+          {/* Time period — income only */}
+          {isIncome && (
+            <RadioGroup
+              label="Time period"
+              options={["monthly", "annual"] as TimePeriod[]}
+              value={selection.timePeriod}
+              onChange={(v) => update({ timePeriod: v })}
+              labels={timePeriodLabels}
+            />
+          )}
         </div>
       )}
     </div>

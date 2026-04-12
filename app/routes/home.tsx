@@ -16,8 +16,8 @@ import {
 import { Search, ArrowUpDown, Globe, LayoutGrid, Table2 } from "lucide-react";
 
 export const meta = () => [
-  { title: "Explore — Income Globe" },
-  { name: "description", content: "Browse income distribution data for 31 countries worldwide." },
+  { title: "Explore — Women Global" },
+  { name: "description", content: "Explore gender-specific indicators and income distribution data for 31 countries worldwide." },
 ];
 
 type SortOption = "name" | "median_asc" | "median_desc";
@@ -99,11 +99,10 @@ export default function Home() {
       {/* Hero */}
       <div className="space-y-2">
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Global Income Distribution
+          Global Gender & Income Data
         </h1>
         <p className="max-w-2xl text-muted-foreground">
-          Income distribution data for {uniqueCountriesData.length} countries.
-          Select indicators, percentile groups, and dimensions — sourced from{" "}
+          Explore income distribution and gender-specific indicators for {uniqueCountriesData.length} countries worldwide. Compare outcomes across health metrics, wages, and economic inclusion — sourced from{" "}
           <span className="text-foreground">WID.world</span>,{" "}
           <span className="text-foreground">OECD</span>, and{" "}
           <span className="text-foreground">ILO</span>.

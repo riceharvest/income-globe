@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { Link } from "react-router";
 import {
   type CountryData,
@@ -8,7 +8,9 @@ import {
   formatUsd,
 } from "~/data/countries";
 import { Skeleton } from "~/components/ui/skeleton";
-import { ArrowUp, ArrowDown, ArrowUpDown } from "lucide-react";
+import { ArrowUp, ArrowDown, ArrowUpDown, Columns3 } from "lucide-react";
+import { Button } from "~/components/ui/button";
+import { cn } from "~/lib/utils";
 
 type SortDir = "asc" | "desc" | null;
 
@@ -19,6 +21,55 @@ interface DataTableProps {
   loading?: boolean;
 }
 
+interface ColumnDef {
+  id: string;
+  label: string;
+  defaultVisible: boolean;
+}
+
+const STATIC_COLUMNS: ColumnDef[] = [
+  { id: "row", label: "#", defaultVisible: true },
+  { id: "name", label: "Country", defaultVisible: true },
+  { id: "region", label: "Region", defaultVisible: false },
+  { id: "population", label: "Population", defaultVisible: false },
+  { id: "hdi", label: "HDI", defaultVisible: false },
+  { id: "minimumWageEur", label: "Min Wage", defaultVisible: false },
+  { id: "costOfLivingIndex", label: "Cost of Living", defaultVisible: false },
+  { id: "internetPenetration", label: "Internet %", defaultVisible: false },
+  { id: "unemploymentRate", label: "Unemploy. %", defaultVisible: false },
+  { id: "obesityRate", label: "Obesity %", defaultVisible: false },
+  { id: "smokingRate", label: "Smoking %", defaultVisible: false },
+  { id: "englishSpeakingPercent", label: "English %", defaultVisible: false },
+  { id: "femaleHeightCm", label: "Avg Height", defaultVisible: false },
+  { id: "femaleBmi", label: "Avg BMI", defaultVisible: false },
+];
+
+const STORAGE_KEY = "income-globe-column-visibility";
+
+function loadVisibility(indicatorCount: number): Record<string, boolean> {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      // Validate it's a plain object
+      if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+        return parsed as Record<string, boolean>;
+      }
+    }
+  } catch {
+    // ignore
+  }
+  return {};
+}
+
+function saveVisibility(visibility: Record<string, boolean>) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(visibility));
+  } catch {
+    // ignore
+  }
+}
+
 export function DataTable({
   countries,
   indicators,
@@ -27,13 +78,73 @@ export function DataTable({
 }: DataTableProps) {
   const [sortCol, setSortCol] = useState<string>("name");
   const [sortDir, setSortDir] = useState<SortDir>("asc");
+  const [showColMenu, setShowColMenu] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // Build full column list including dynamic indicator columns
+  const allColumns = useMemo<ColumnDef[]>(() => {
+    return [
+      ...STATIC_COLUMNS,
+      ...indicators.map((ind, i) => ({
+        id: `indicator_${i}`,
+        label: getIndicatorColumnLabel(ind),
+        defaultVisible: true,
+      })),
+    ];
+  }, [indicators]);
+
+  // Visibility state: starts from defaults, merges persisted overrides
+  const [visibility, setVisibility] = useState<Record<string, boolean>>(() => {
+    const persisted = loadVisibility(indicators.length);
+    const initial: Record<string, boolean> = {};
+    for (const col of allColumns) {
+      initial[col.id] = col.id in persisted ? persisted[col.id] : col.defaultVisible;
+    }
+    return initial;
+  });
+
+  // When indicator count changes (different selection), reconcile visibility
+  useEffect(() => {
+    setVisibility((prev) => {
+      const next: Record<string, boolean> = {};
+      for (const col of allColumns) {
+        if (col.id in prev) {
+          next[col.id] = prev[col.id];
+        } else {
+          next[col.id] = col.id in persisted ? persisted[col.id] : col.defaultVisible;
+        }
+      }
+      return next;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [indicators.length]);
+
+  const persisted = useMemo(() => loadVisibility(indicators.length), [indicators.length]);
+
+  function toggleCol(colId: string) {
+    setVisibility((prev) => {
+      const next = { ...prev, [colId]: !prev[colId] };
+      saveVisibility(next);
+      return next;
+    });
+  }
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    if (!showColMenu) return;
+    function handleClick(e: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setShowColMenu(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [showColMenu]);
 
   function toggleSort(col: string) {
     if (sortCol === col) {
-      // Toggle between asc and desc
       setSortDir(sortDir === "asc" ? "desc" : "asc");
     } else {
-      // New column: name defaults to asc, everything else desc
       setSortCol(col);
       setSortDir(col === "name" ? "asc" : "desc");
     }
@@ -132,6 +243,11 @@ export function DataTable({
     return parts.join(" · ");
   }
 
+  // Columns that show a sort button (all except row index)
+  const sortableCols = new Set(
+    STATIC_COLUMNS.filter((c) => c.id !== "row").map((c) => c.id)
+  );
+
   if (loading) {
     return (
       <div className="space-y-2">
@@ -143,214 +259,478 @@ export function DataTable({
   }
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-border">
-      <table className="w-full text-sm">
-        <thead className="sticky top-0 z-10 bg-card">
-          <tr className="border-b border-border">
-            <th className="w-8 p-3 text-left">#</th>
-            <th className="p-3 text-left">
-              <button
-                onClick={() => toggleSort("name")}
-                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+    <div className="space-y-2">
+      {/* Table header row with column visibility control */}
+      <div className="flex items-center justify-end">
+        <div className="relative" ref={menuRef}>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setShowColMenu((v) => !v)}
+            aria-expanded={showColMenu}
+            className="gap-1.5"
+          >
+            <Columns3 className="h-3.5 w-3.5" />
+            Columns
+          </Button>
+
+          {showColMenu && (
+            <div className="absolute right-0 top-full z-50 mt-1.5 min-w-[11rem] rounded-lg border border-border bg-popover p-2 text-sm text-popover-foreground shadow-md ring-1 ring-foreground/10">
+              <div className="mb-1.5 px-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                Toggle Columns
+              </div>
+              <div className="flex flex-col gap-0.5">
+                {allColumns.map((col) => (
+                  <label
+                    key={col.id}
+                    className="flex cursor-pointer items-center gap-2 rounded px-1 py-1 hover:bg-muted"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={visibility[col.id] ?? col.defaultVisible}
+                      onChange={() => toggleCol(col.id)}
+                      className="accent-primary"
+                    />
+                    <span className="text-sm">{col.label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="overflow-x-auto rounded-xl border border-border">
+        <table className="w-full text-sm">
+          <thead className="sticky top-0 z-10 bg-card">
+            <tr className="border-b border-border">
+              {/* # column */}
+              <th
+                className={cn(
+                  "w-8 p-3 text-left align-middle",
+                  !visibility["row"] && "hidden"
+                )}
               >
-                Country <SortIcon col="name" />
-              </button>
-            </th>
-            <th className="hidden p-3 text-left sm:table-cell">
-              <button
-                onClick={() => toggleSort("region")}
-                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+                <span className="font-semibold">#</span>
+              </th>
+
+              {/* Country column */}
+              <th
+                className={cn(
+                  "p-3 text-left align-middle",
+                  !visibility["name"] && "hidden"
+                )}
               >
-                Region <SortIcon col="region" />
-              </button>
-            </th>
-            <th className="hidden p-3 text-right md:table-cell">
-              <button
-                onClick={() => toggleSort("population")}
-                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
-              >
-                Population <SortIcon col="population" />
-              </button>
-            </th>
-            <th className="hidden p-3 text-right lg:table-cell">
-              <button
-                onClick={() => toggleSort("hdi")}
-                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
-              >
-                HDI <SortIcon col="hdi" />
-              </button>
-            </th>
-            <th className="hidden p-3 text-right xl:table-cell">
-              <button
-                onClick={() => toggleSort("minimumWageEur")}
-                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
-              >
-                Min Wage <SortIcon col="minimumWageEur" />
-              </button>
-            </th>
-            <th className="hidden p-3 text-right xl:table-cell">
-              <button
-                onClick={() => toggleSort("costOfLivingIndex")}
-                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
-              >
-                Cost of Living <SortIcon col="costOfLivingIndex" />
-              </button>
-            </th>
-            <th className="hidden p-3 text-right xl:table-cell">
-              <button
-                onClick={() => toggleSort("internetPenetration")}
-                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
-              >
-                Internet % <SortIcon col="internetPenetration" />
-              </button>
-            </th>
-            <th className="hidden p-3 text-right xl:table-cell">
-              <button
-                onClick={() => toggleSort("unemploymentRate")}
-                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
-              >
-                Unemploy. % <SortIcon col="unemploymentRate" />
-              </button>
-            </th>
-            <th className="hidden p-3 text-right xl:table-cell">
-              <button
-                onClick={() => toggleSort("obesityRate")}
-                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
-              >
-                Obesity % <SortIcon col="obesityRate" />
-              </button>
-            </th>
-            <th className="hidden p-3 text-right xl:table-cell">
-              <button
-                onClick={() => toggleSort("smokingRate")}
-                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
-              >
-                Smoking % <SortIcon col="smokingRate" />
-              </button>
-            </th>
-            <th className="hidden p-3 text-right xl:table-cell">
-              <button
-                onClick={() => toggleSort("englishSpeakingPercent")}
-                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
-              >
-                English % <SortIcon col="englishSpeakingPercent" />
-              </button>
-            </th>
-            <th className="hidden p-3 text-right xl:table-cell">
-              <button
-                onClick={() => toggleSort("femaleHeightCm")}
-                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
-              >
-                Avg Height <SortIcon col="femaleHeightCm" />
-              </button>
-            </th>
-            <th className="hidden p-3 text-right xl:table-cell">
-              <button
-                onClick={() => toggleSort("femaleBmi")}
-                className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
-              >
-                Avg BMI <SortIcon col="femaleBmi" />
-              </button>
-            </th>
-            {indicators.map((ind, i) => (
-              <th key={ind.id} className="p-3 text-right">
                 <button
-                  onClick={() => toggleSort(`indicator_${i}`)}
+                  onClick={() => toggleSort("name")}
                   className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
                 >
-                  {getIndicatorColumnLabel(ind)}
-                  <SortIcon col={`indicator_${i}`} />
+                  Country <SortIcon col="name" />
                 </button>
               </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {sorted.map((country, idx) => {
-            const isHighlighted = highlightedCodes?.has(country.code);
-            return (
-              <tr
-                key={country.code}
-                className={`border-b border-border/50 transition-colors hover:bg-secondary/50 ${
-                  isHighlighted ? "bg-primary/5" : idx % 2 === 1 ? "bg-muted/20" : ""
-                }`}
+
+              {/* Region */}
+              <th
+                className={cn(
+                  "hidden p-3 text-left align-middle sm:table-cell",
+                  !visibility["region"] && "hidden"
+                )}
               >
-                <td className="p-3 text-muted-foreground tabular-nums">
-                  {idx + 1}
-                </td>
-                <td className="p-3">
-                  <Link
-                    to={`/country/${country.code}`}
-                    className="inline-flex items-center gap-2 font-medium hover:text-primary hover:underline"
+                <button
+                  onClick={() => toggleSort("region")}
+                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+                >
+                  Region <SortIcon col="region" />
+                </button>
+              </th>
+
+              {/* Population */}
+              <th
+                className={cn(
+                  "hidden p-3 text-right align-middle md:table-cell",
+                  !visibility["population"] && "hidden"
+                )}
+              >
+                <button
+                  onClick={() => toggleSort("population")}
+                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+                >
+                  Population <SortIcon col="population" />
+                </button>
+              </th>
+
+              {/* HDI */}
+              <th
+                className={cn(
+                  "hidden p-3 text-right align-middle lg:table-cell",
+                  !visibility["hdi"] && "hidden"
+                )}
+              >
+                <button
+                  onClick={() => toggleSort("hdi")}
+                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+                >
+                  HDI <SortIcon col="hdi" />
+                </button>
+              </th>
+
+              {/* Min Wage */}
+              <th
+                className={cn(
+                  "hidden p-3 text-right align-middle xl:table-cell",
+                  !visibility["minimumWageEur"] && "hidden"
+                )}
+              >
+                <button
+                  onClick={() => toggleSort("minimumWageEur")}
+                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+                >
+                  Min Wage <SortIcon col="minimumWageEur" />
+                </button>
+              </th>
+
+              {/* Cost of Living */}
+              <th
+                className={cn(
+                  "hidden p-3 text-right align-middle xl:table-cell",
+                  !visibility["costOfLivingIndex"] && "hidden"
+                )}
+              >
+                <button
+                  onClick={() => toggleSort("costOfLivingIndex")}
+                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+                >
+                  Cost of Living <SortIcon col="costOfLivingIndex" />
+                </button>
+              </th>
+
+              {/* Internet % */}
+              <th
+                className={cn(
+                  "hidden p-3 text-right align-middle xl:table-cell",
+                  !visibility["internetPenetration"] && "hidden"
+                )}
+              >
+                <button
+                  onClick={() => toggleSort("internetPenetration")}
+                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+                >
+                  Internet % <SortIcon col="internetPenetration" />
+                </button>
+              </th>
+
+              {/* Unemployment % */}
+              <th
+                className={cn(
+                  "hidden p-3 text-right align-middle xl:table-cell",
+                  !visibility["unemploymentRate"] && "hidden"
+                )}
+              >
+                <button
+                  onClick={() => toggleSort("unemploymentRate")}
+                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+                >
+                  Unemploy. % <SortIcon col="unemploymentRate" />
+                </button>
+              </th>
+
+              {/* Obesity % */}
+              <th
+                className={cn(
+                  "hidden p-3 text-right align-middle xl:table-cell",
+                  !visibility["obesityRate"] && "hidden"
+                )}
+              >
+                <button
+                  onClick={() => toggleSort("obesityRate")}
+                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+                >
+                  Obesity % <SortIcon col="obesityRate" />
+                </button>
+              </th>
+
+              {/* Smoking % */}
+              <th
+                className={cn(
+                  "hidden p-3 text-right align-middle xl:table-cell",
+                  !visibility["smokingRate"] && "hidden"
+                )}
+              >
+                <button
+                  onClick={() => toggleSort("smokingRate")}
+                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+                >
+                  Smoking % <SortIcon col="smokingRate" />
+                </button>
+              </th>
+
+              {/* English % */}
+              <th
+                className={cn(
+                  "hidden p-3 text-right align-middle xl:table-cell",
+                  !visibility["englishSpeakingPercent"] && "hidden"
+                )}
+              >
+                <button
+                  onClick={() => toggleSort("englishSpeakingPercent")}
+                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+                >
+                  English % <SortIcon col="englishSpeakingPercent" />
+                </button>
+              </th>
+
+              {/* Avg Height */}
+              <th
+                className={cn(
+                  "hidden p-3 text-right align-middle xl:table-cell",
+                  !visibility["femaleHeightCm"] && "hidden"
+                )}
+              >
+                <button
+                  onClick={() => toggleSort("femaleHeightCm")}
+                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+                >
+                  Avg Height <SortIcon col="femaleHeightCm" />
+                </button>
+              </th>
+
+              {/* Avg BMI */}
+              <th
+                className={cn(
+                  "hidden p-3 text-right align-middle xl:table-cell",
+                  !visibility["femaleBmi"] && "hidden"
+                )}
+              >
+                <button
+                  onClick={() => toggleSort("femaleBmi")}
+                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+                >
+                  Avg BMI <SortIcon col="femaleBmi" />
+                </button>
+              </th>
+
+              {/* Indicator columns */}
+              {indicators.map((ind, i) => {
+                const colId = `indicator_${i}`;
+                return (
+                  <th
+                    key={ind.id}
+                    className={cn(
+                      "p-3 text-right align-middle",
+                      !visibility[colId] && "hidden"
+                    )}
                   >
-                    <span className="text-base">{country.flag}</span>
-                    <span>{country.name}</span>
-                  </Link>
-                </td>
-                <td className="hidden p-3 text-muted-foreground sm:table-cell">
-                  {country.region}
-                </td>
-                <td className="hidden p-3 text-right tabular-nums text-muted-foreground md:table-cell">
-                  {country.population
-                    ? country.population >= 1_000_000
-                      ? `${(country.population / 1_000_000).toFixed(1)}M`
-                      : `${(country.population / 1_000).toFixed(0)}k`
-                    : "—"}
-                </td>
-                <td className="hidden p-3 text-right tabular-nums lg:table-cell">
-                  {country.hdi != null ? country.hdi.toFixed(2) : "—"}
-                </td>
-                <td className="hidden p-3 text-right tabular-nums xl:table-cell">
-                  {country.minimumWageEur != null ? `€${country.minimumWageEur.toLocaleString()}` : "—"}
-                </td>
-                <td className="hidden p-3 text-right tabular-nums xl:table-cell">
-                  {country.costOfLivingIndex != null ? country.costOfLivingIndex : "—"}
-                </td>
-                <td className="hidden p-3 text-right tabular-nums xl:table-cell">
-                  {country.internetPenetration != null ? `${country.internetPenetration}%` : "—"}
-                </td>
-                <td className="hidden p-3 text-right tabular-nums xl:table-cell">
-                  {country.unemploymentRate != null ? `${country.unemploymentRate}%` : "—"}
-                </td>
-                <td className="hidden p-3 text-right tabular-nums xl:table-cell">
-                  {country.obesityRate != null ? `${country.obesityRate}%` : "—"}
-                </td>
-                <td className="hidden p-3 text-right tabular-nums xl:table-cell">
-                  {country.smokingRate != null ? `${country.smokingRate}%` : "—"}
-                </td>
-                <td className="hidden p-3 text-right tabular-nums xl:table-cell">
-                  {country.englishSpeakingPercent != null ? `${country.englishSpeakingPercent}%` : "—"}
-                </td>
-                <td className="hidden p-3 text-right tabular-nums xl:table-cell">
-                  {country.femaleHeightCm != null ? `${country.femaleHeightCm}cm` : "—"}
-                </td>
-                <td className="hidden p-3 text-right tabular-nums xl:table-cell">
-                  {country.femaleBmi != null ? country.femaleBmi : "—"}
-                </td>
-                {indicators.map((ind) => {
-                  const val = getIndicatorValue(country, ind);
-                  return (
-                    <td
-                      key={ind.id}
-                      className="p-3 text-right font-medium tabular-nums"
+                    <button
+                      onClick={() => toggleSort(colId)}
+                      className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
                     >
-                      {formatValue(val, ind)}
-                      <span className="text-xs text-muted-foreground">
-                        /{ind.timePeriod === "annual" ? "yr" : "mo"}
-                      </span>
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      {sorted.length === 0 && (
-        <div className="p-8 text-center text-muted-foreground">
-          No countries match your filters
-        </div>
-      )}
+                      {getIndicatorColumnLabel(ind)}
+                      <SortIcon col={colId} />
+                    </button>
+                  </th>
+                );
+              })}
+            </tr>
+          </thead>
+
+          <tbody>
+            {sorted.map((country, idx) => {
+              const isHighlighted = highlightedCodes?.has(country.code);
+              return (
+                <tr
+                  key={country.code}
+                  className={`border-b border-border/50 transition-colors hover:bg-secondary/50 ${
+                    isHighlighted ? "bg-primary/5" : idx % 2 === 1 ? "bg-muted/20" : ""
+                  }`}
+                >
+                  {/* # */}
+                  <td
+                    className={cn(
+                      "p-3 text-muted-foreground tabular-nums align-middle",
+                      !visibility["row"] && "hidden"
+                    )}
+                  >
+                    {idx + 1}
+                  </td>
+
+                  {/* Country */}
+                  <td
+                    className={cn(
+                      "p-3 align-middle",
+                      !visibility["name"] && "hidden"
+                    )}
+                  >
+                    <Link
+                      to={`/country/${country.code}`}
+                      className="inline-flex items-center gap-2 font-medium hover:text-primary hover:underline"
+                    >
+                      <span className="text-base">{country.flag}</span>
+                      <span>{country.name}</span>
+                    </Link>
+                  </td>
+
+                  {/* Region */}
+                  <td
+                    className={cn(
+                      "hidden p-3 text-muted-foreground sm:table-cell align-middle",
+                      !visibility["region"] && "hidden"
+                    )}
+                  >
+                    {country.region}
+                  </td>
+
+                  {/* Population */}
+                  <td
+                    className={cn(
+                      "hidden p-3 text-right tabular-nums text-muted-foreground md:table-cell align-middle",
+                      !visibility["population"] && "hidden"
+                    )}
+                  >
+                    {country.population
+                      ? country.population >= 1_000_000
+                        ? `${(country.population / 1_000_000).toFixed(1)}M`
+                        : `${(country.population / 1_000).toFixed(0)}k`
+                      : "—"}
+                  </td>
+
+                  {/* HDI */}
+                  <td
+                    className={cn(
+                      "hidden p-3 text-right tabular-nums lg:table-cell align-middle",
+                      !visibility["hdi"] && "hidden"
+                    )}
+                  >
+                    {country.hdi != null ? country.hdi.toFixed(2) : "—"}
+                  </td>
+
+                  {/* Min Wage */}
+                  <td
+                    className={cn(
+                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      !visibility["minimumWageEur"] && "hidden"
+                    )}
+                  >
+                    {country.minimumWageEur != null
+                      ? `€${country.minimumWageEur.toLocaleString()}`
+                      : "—"}
+                  </td>
+
+                  {/* Cost of Living */}
+                  <td
+                    className={cn(
+                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      !visibility["costOfLivingIndex"] && "hidden"
+                    )}
+                  >
+                    {country.costOfLivingIndex != null ? country.costOfLivingIndex : "—"}
+                  </td>
+
+                  {/* Internet % */}
+                  <td
+                    className={cn(
+                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      !visibility["internetPenetration"] && "hidden"
+                    )}
+                  >
+                    {country.internetPenetration != null
+                      ? `${country.internetPenetration}%`
+                      : "—"}
+                  </td>
+
+                  {/* Unemployment % */}
+                  <td
+                    className={cn(
+                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      !visibility["unemploymentRate"] && "hidden"
+                    )}
+                  >
+                    {country.unemploymentRate != null
+                      ? `${country.unemploymentRate}%`
+                      : "—"}
+                  </td>
+
+                  {/* Obesity % */}
+                  <td
+                    className={cn(
+                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      !visibility["obesityRate"] && "hidden"
+                    )}
+                  >
+                    {country.obesityRate != null ? `${country.obesityRate}%` : "—"}
+                  </td>
+
+                  {/* Smoking % */}
+                  <td
+                    className={cn(
+                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      !visibility["smokingRate"] && "hidden"
+                    )}
+                  >
+                    {country.smokingRate != null ? `${country.smokingRate}%` : "—"}
+                  </td>
+
+                  {/* English % */}
+                  <td
+                    className={cn(
+                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      !visibility["englishSpeakingPercent"] && "hidden"
+                    )}
+                  >
+                    {country.englishSpeakingPercent != null
+                      ? `${country.englishSpeakingPercent}%`
+                      : "—"}
+                  </td>
+
+                  {/* Avg Height */}
+                  <td
+                    className={cn(
+                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      !visibility["femaleHeightCm"] && "hidden"
+                    )}
+                  >
+                    {country.femaleHeightCm != null ? `${country.femaleHeightCm}cm` : "—"}
+                  </td>
+
+                  {/* Avg BMI */}
+                  <td
+                    className={cn(
+                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      !visibility["femaleBmi"] && "hidden"
+                    )}
+                  >
+                    {country.femaleBmi != null ? country.femaleBmi : "—"}
+                  </td>
+
+                  {/* Indicator cells */}
+                  {indicators.map((ind, i) => {
+                    const colId = `indicator_${i}`;
+                    const val = getIndicatorValue(country, ind);
+                    return (
+                      <td
+                        key={ind.id}
+                        className={cn(
+                          "p-3 text-right font-medium tabular-nums align-middle",
+                          !visibility[colId] && "hidden"
+                        )}
+                      >
+                        {formatValue(val, ind)}
+                        <span className="text-xs text-muted-foreground">
+                          /{ind.timePeriod === "annual" ? "yr" : "mo"}
+                        </span>
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+        {sorted.length === 0 && (
+          <div className="p-8 text-center text-muted-foreground">
+            No countries match your filters
+          </div>
+        )}
+      </div>
     </div>
   );
 }

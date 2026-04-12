@@ -14,24 +14,24 @@ import { initPostHog } from "~/lib/posthog";
 import "./app.css";
 
 export const meta: Route.MetaFunction = () => [
-  { title: "Income Globe — What the bottom 90% earn worldwide" },
+  { title: "Women Global — Gender & Income Data Explorer" },
   {
     name: "description",
     content:
-      "See what people actually earn in every country. Real income distribution data from WID.world, OECD, and ILO.",
+      "Explore gender-specific indicators and income distribution data for 31 countries. Compare outcomes for women across health, wages, and economic inclusion.",
   },
-  { property: "og:title", content: "Income Globe — What the bottom 90% earn worldwide" },
+  { property: "og:title", content: "Women Global — Gender & Income Data Explorer" },
   {
     property: "og:description",
-    content: "Real income distribution data for 31 countries. See where you fit.",
+    content: "Gender-specific indicators and income distribution data for 31 countries. Powered by WID.world, OECD, and ILO.",
   },
   { property: "og:type", content: "website" },
   { property: "og:url", content: "https://income-globe.vercel.app" },
   { name: "twitter:card", content: "summary_large_image" },
-  { name: "twitter:title", content: "Income Globe — What the bottom 90% earn worldwide" },
+  { name: "twitter:title", content: "Women Global — Gender & Income Data Explorer" },
   {
     name: "twitter:description",
-    content: "Real income distribution data for 31 countries. See where you fit.",
+    content: "Gender-specific indicators and income distribution data for 31 countries.",
   },
 ];
 
@@ -66,7 +66,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               className="flex items-center gap-2.5 text-lg font-semibold tracking-tight"
             >
               <Globe className="h-5 w-5 text-primary" />
-              <span>Income Globe</span>
+              <span>Women Global</span>
             </NavLink>
             <nav className="flex items-center gap-1">
               {navLinks.map((link) => (

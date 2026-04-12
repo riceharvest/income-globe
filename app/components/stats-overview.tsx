@@ -36,12 +36,12 @@ function computeStat(
 const STAT_CARDS: (StatCard | null)[] = [
   computeStat("Highest HDI", "Human Development Index", (c) => c.hdi, (c, v) => v.toFixed(2)),
   computeStat("Highest Min Wage", "Monthly in EUR", (c) => c.minimumWageEur, (_, v) => `€${v.toLocaleString()}`),
-  computeStat("Most English", "% of population", (c) => c.englishSpeakingPercent, (_, v) => `${v}%`),
-  computeStat("Most Obese", "Adult obesity rate", (c) => c.obesityRate, (_, v) => `${v}%`),
+  computeStat("Highest Female BMI", "Mean adult women", (c) => c.femaleBmi, (_, v) => String(v)),
+  computeStat("Highest Obesity", "Adult obesity rate", (c) => c.obesityRate, (_, v) => `${v}%`),
   computeStat("Best Internet", "Penetration rate", (c) => c.internetPenetration, (_, v) => `${v}%`),
   computeStat("Lowest Cost of Living", "Index (NYC = 100)", (c) => c.costOfLivingIndex, (_, v) => String(v)),
   computeStat("Highest Unemployment", "Labor force %", (c) => c.unemploymentRate, (_, v) => `${v}%`),
-  computeStat("Most Smoking", "Adult smoking rate", (c) => c.smokingRate, (_, v) => `${v}%`),
+  computeStat("Highest Female Height", "Mean adult women (cm)", (c) => c.femaleHeightCm, (_, v) => `${v} cm`),
 ];
 
 const ACCENT_COLORS = [
