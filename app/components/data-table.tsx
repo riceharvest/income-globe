@@ -283,7 +283,7 @@ export function DataTable({
               {/* # */}
               <th
                 className={cn(
-                  "w-8 p-3 text-left align-middle",
+                  "w-10 min-w-10 p-2 text-left align-middle text-xs",
                   isVisible("row", true) ? "" : "hidden"
                 )}
               >
@@ -293,13 +293,13 @@ export function DataTable({
               {/* Country */}
               <th
                 className={cn(
-                  "p-3 text-left align-middle",
+                  "min-w-0 p-2 text-left align-middle",
                   isVisible("name", true) ? "" : "hidden"
                 )}
               >
                 <button
                   onClick={() => toggleSort("name")}
-                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground truncate text-sm"
                 >
                   Country <SortIcon col="name" />
                 </button>
@@ -308,7 +308,7 @@ export function DataTable({
               {/* Region */}
               <th
                 className={cn(
-                  "hidden p-3 text-left align-middle sm:table-cell",
+                  "hidden p-2 text-left align-middle sm:table-cell text-sm",
                   isVisible("region", true) ? "" : "hidden"
                 )}
               >
@@ -323,7 +323,7 @@ export function DataTable({
               {/* Population */}
               <th
                 className={cn(
-                  "hidden p-3 text-right align-middle md:table-cell",
+                  "hidden p-2 text-right align-middle md:table-cell text-sm",
                   isVisible("population", true) ? "" : "hidden"
                 )}
               >
@@ -338,7 +338,7 @@ export function DataTable({
               {/* HDI */}
               <th
                 className={cn(
-                  "hidden p-3 text-right align-middle lg:table-cell",
+                  "hidden p-2 text-right align-middle lg:table-cell text-xs",
                   isVisible("hdi", true) ? "" : "hidden"
                 )}
               >
@@ -353,7 +353,7 @@ export function DataTable({
               {/* Min Wage */}
               <th
                 className={cn(
-                  "hidden p-3 text-right align-middle xl:table-cell",
+                  "hidden p-2 text-right align-middle xl:table-cell text-xs",
                   isVisible("minimumWageEur", true) ? "" : "hidden"
                 )}
               >
@@ -368,7 +368,7 @@ export function DataTable({
               {/* Cost of Living */}
               <th
                 className={cn(
-                  "hidden p-3 text-right align-middle xl:table-cell",
+                  "hidden p-2 text-right align-middle xl:table-cell text-xs",
                   isVisible("costOfLivingIndex", true) ? "" : "hidden"
                 )}
               >
@@ -383,7 +383,7 @@ export function DataTable({
               {/* Internet % */}
               <th
                 className={cn(
-                  "hidden p-3 text-right align-middle xl:table-cell",
+                  "hidden p-2 text-right align-middle xl:table-cell text-xs",
                   isVisible("internetPenetration", true) ? "" : "hidden"
                 )}
               >
@@ -398,7 +398,7 @@ export function DataTable({
               {/* Unemployment % */}
               <th
                 className={cn(
-                  "hidden p-3 text-right align-middle xl:table-cell",
+                  "hidden p-2 text-right align-middle xl:table-cell text-xs",
                   isVisible("unemploymentRate", true) ? "" : "hidden"
                 )}
               >
@@ -413,7 +413,7 @@ export function DataTable({
               {/* Obesity % */}
               <th
                 className={cn(
-                  "hidden p-3 text-right align-middle xl:table-cell",
+                  "hidden p-2 text-right align-middle xl:table-cell text-xs",
                   isVisible("obesityRate", true) ? "" : "hidden"
                 )}
               >
@@ -428,7 +428,7 @@ export function DataTable({
               {/* Smoking % */}
               <th
                 className={cn(
-                  "hidden p-3 text-right align-middle xl:table-cell",
+                  "hidden p-2 text-right align-middle xl:table-cell text-xs",
                   isVisible("smokingRate", true) ? "" : "hidden"
                 )}
               >
@@ -443,7 +443,7 @@ export function DataTable({
               {/* English % */}
               <th
                 className={cn(
-                  "hidden p-3 text-right align-middle xl:table-cell",
+                  "hidden p-2 text-right align-middle xl:table-cell text-xs",
                   isVisible("englishSpeakingPercent", true) ? "" : "hidden"
                 )}
               >
@@ -458,7 +458,7 @@ export function DataTable({
               {/* Avg Height */}
               <th
                 className={cn(
-                  "hidden p-3 text-right align-middle xl:table-cell",
+                  "hidden p-2 text-right align-middle xl:table-cell text-xs",
                   isVisible("femaleHeightCm", true) ? "" : "hidden"
                 )}
               >
@@ -473,7 +473,7 @@ export function DataTable({
               {/* Avg BMI */}
               <th
                 className={cn(
-                  "hidden p-3 text-right align-middle xl:table-cell",
+                  "hidden p-2 text-right align-middle xl:table-cell text-xs",
                   isVisible("femaleBmi", true) ? "" : "hidden"
                 )}
               >
@@ -488,7 +488,7 @@ export function DataTable({
               {/* Adolescent Birth Rate */}
               <th
                 className={cn(
-                  "hidden p-3 text-right align-middle xl:table-cell",
+                  "hidden p-2 text-right align-middle xl:table-cell text-xs",
                   isVisible("adolescentBirthRate", true) ? "" : "hidden"
                 )}
               >
@@ -503,7 +503,7 @@ export function DataTable({
               {/* Child Marriage % */}
               <th
                 className={cn(
-                  "hidden p-3 text-right align-middle xl:table-cell",
+                  "hidden p-2 text-right align-middle xl:table-cell text-xs",
                   isVisible("childMarriagePercent", true) ? "" : "hidden"
                 )}
               >
@@ -518,7 +518,7 @@ export function DataTable({
               {/* Labor Force Gap */}
               <th
                 className={cn(
-                  "hidden p-3 text-right align-middle xl:table-cell",
+                  "hidden p-2 text-right align-middle xl:table-cell text-xs",
                   isVisible("laborForceGap", true) ? "" : "hidden"
                 )}
               >
@@ -533,7 +533,7 @@ export function DataTable({
               {/* Contraceptive Use */}
               <th
                 className={cn(
-                  "hidden p-3 text-right align-middle xl:table-cell",
+                  "hidden p-2 text-right align-middle xl:table-cell text-xs",
                   isVisible("contraceptiveUse", true) ? "" : "hidden"
                 )}
               >
@@ -552,7 +552,7 @@ export function DataTable({
                   <th
                     key={ind.id}
                     className={cn(
-                      "p-3 text-right align-middle",
+                      "p-2 text-right align-middle text-xs",
                       isVisible(colId, false) ? "" : "hidden"
                     )}
                   >
@@ -608,7 +608,7 @@ export function DataTable({
                   {/* Region */}
                   <td
                     className={cn(
-                      "hidden p-3 text-muted-foreground sm:table-cell align-middle",
+                      "hidden p-2 text-muted-foreground text-xs sm:table-cell align-middle",
                       isVisible("region", true) ? "" : "hidden"
                     )}
                   >
@@ -618,7 +618,7 @@ export function DataTable({
                   {/* Population */}
                   <td
                     className={cn(
-                      "hidden p-3 text-right tabular-nums text-muted-foreground md:table-cell align-middle",
+                      "hidden p-2 text-right tabular-nums text-xs text-muted-foreground md:table-cell align-middle",
                       isVisible("population", true) ? "" : "hidden"
                     )}
                   >
@@ -632,7 +632,7 @@ export function DataTable({
                   {/* HDI */}
                   <td
                     className={cn(
-                      "hidden p-3 text-right tabular-nums lg:table-cell align-middle",
+                      "hidden p-2 text-right tabular-nums text-xs lg:table-cell align-middle",
                       isVisible("hdi", true) ? "" : "hidden"
                     )}
                   >
@@ -642,7 +642,7 @@ export function DataTable({
                   {/* Min Wage */}
                   <td
                     className={cn(
-                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      "hidden p-2 text-right tabular-nums text-xs xl:table-cell align-middle",
                       isVisible("minimumWageEur", true) ? "" : "hidden"
                     )}
                   >
@@ -654,7 +654,7 @@ export function DataTable({
                   {/* Cost of Living */}
                   <td
                     className={cn(
-                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      "hidden p-2 text-right tabular-nums text-xs xl:table-cell align-middle",
                       isVisible("costOfLivingIndex", true) ? "" : "hidden"
                     )}
                   >
@@ -664,7 +664,7 @@ export function DataTable({
                   {/* Internet % */}
                   <td
                     className={cn(
-                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      "hidden p-2 text-right tabular-nums text-xs xl:table-cell align-middle",
                       isVisible("internetPenetration", true) ? "" : "hidden"
                     )}
                   >
@@ -676,7 +676,7 @@ export function DataTable({
                   {/* Unemployment % */}
                   <td
                     className={cn(
-                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      "hidden p-2 text-right tabular-nums text-xs xl:table-cell align-middle",
                       isVisible("unemploymentRate", true) ? "" : "hidden"
                     )}
                   >
@@ -688,7 +688,7 @@ export function DataTable({
                   {/* Obesity % */}
                   <td
                     className={cn(
-                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      "hidden p-2 text-right tabular-nums text-xs xl:table-cell align-middle",
                       isVisible("obesityRate", true) ? "" : "hidden"
                     )}
                   >
@@ -698,7 +698,7 @@ export function DataTable({
                   {/* Smoking % */}
                   <td
                     className={cn(
-                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      "hidden p-2 text-right tabular-nums text-xs xl:table-cell align-middle",
                       isVisible("smokingRate", true) ? "" : "hidden"
                     )}
                   >
@@ -708,7 +708,7 @@ export function DataTable({
                   {/* English % */}
                   <td
                     className={cn(
-                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      "hidden p-2 text-right tabular-nums text-xs xl:table-cell align-middle",
                       isVisible("englishSpeakingPercent", true) ? "" : "hidden"
                     )}
                   >
@@ -720,7 +720,7 @@ export function DataTable({
                   {/* Avg Height */}
                   <td
                     className={cn(
-                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      "hidden p-2 text-right tabular-nums text-xs xl:table-cell align-middle",
                       isVisible("femaleHeightCm", true) ? "" : "hidden"
                     )}
                   >
@@ -730,7 +730,7 @@ export function DataTable({
                   {/* Avg BMI */}
                   <td
                     className={cn(
-                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      "hidden p-2 text-right tabular-nums text-xs xl:table-cell align-middle",
                       isVisible("femaleBmi", true) ? "" : "hidden"
                     )}
                   >
@@ -740,7 +740,7 @@ export function DataTable({
                   {/* Adolescent Birth Rate */}
                   <td
                     className={cn(
-                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      "hidden p-2 text-right tabular-nums text-xs xl:table-cell align-middle",
                       isVisible("adolescentBirthRate", true) ? "" : "hidden"
                     )}
                   >
@@ -752,7 +752,7 @@ export function DataTable({
                   {/* Child Marriage % */}
                   <td
                     className={cn(
-                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      "hidden p-2 text-right tabular-nums text-xs xl:table-cell align-middle",
                       isVisible("childMarriagePercent", true) ? "" : "hidden"
                     )}
                   >
@@ -764,7 +764,7 @@ export function DataTable({
                   {/* Labor Force Gap */}
                   <td
                     className={cn(
-                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      "hidden p-2 text-right tabular-nums text-xs xl:table-cell align-middle",
                       isVisible("laborForceGap", true) ? "" : "hidden"
                     )}
                   >
@@ -776,7 +776,7 @@ export function DataTable({
                   {/* Contraceptive Use */}
                   <td
                     className={cn(
-                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      "hidden p-2 text-right tabular-nums text-xs xl:table-cell align-middle",
                       isVisible("contraceptiveUse", true) ? "" : "hidden"
                     )}
                   >
@@ -793,7 +793,7 @@ export function DataTable({
                       <td
                         key={ind.id}
                         className={cn(
-                          "p-3 text-right font-medium tabular-nums align-middle",
+                          "p-2 text-right font-medium tabular-nums align-middle text-xs",
                           isVisible(colId, false) ? "" : "hidden"
                         )}
                       >
