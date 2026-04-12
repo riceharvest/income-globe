@@ -40,8 +40,12 @@ const STATIC_COLUMNS: ColumnDef[] = [
   { id: "obesityRate", label: "Obesity %", defaultVisible: false },
   { id: "smokingRate", label: "Smoking %", defaultVisible: false },
   { id: "englishSpeakingPercent", label: "English %", defaultVisible: false },
-  { id: "femaleHeightCm", label: "Avg Height", defaultVisible: false },
-  { id: "femaleBmi", label: "Avg BMI", defaultVisible: false },
+  { id: "femaleHeightCm", label: "Avg Height (F)", defaultVisible: false },
+  { id: "femaleBmi", label: "Avg BMI (F)", defaultVisible: false },
+  { id: "adolescentBirthRate", label: "Adolescent Birth Rate", defaultVisible: false },
+  { id: "childMarriagePercent", label: "Child Marriage %", defaultVisible: false },
+  { id: "laborForceGap", label: "Labor Force Gap", defaultVisible: false },
+  { id: "contraceptiveUse", label: "Contraceptive Use %", defaultVisible: false },
 ];
 
 const STORAGE_KEY = "income-globe-column-visibility";
@@ -181,6 +185,14 @@ export function DataTable({
         cmp = (a.femaleHeightCm ?? -1) - (b.femaleHeightCm ?? -1);
       } else if (sortCol === "femaleBmi") {
         cmp = (a.femaleBmi ?? -1) - (b.femaleBmi ?? -1);
+      } else if (sortCol === "adolescentBirthRate") {
+        cmp = (a.gender.adolescentBirthRate ?? -1) - (b.gender.adolescentBirthRate ?? -1);
+      } else if (sortCol === "childMarriagePercent") {
+        cmp = (a.gender.childMarriagePercent ?? -1) - (b.gender.childMarriagePercent ?? -1);
+      } else if (sortCol === "laborForceGap") {
+        cmp = (a.gender.laborForceGap ?? -1) - (b.gender.laborForceGap ?? -1);
+      } else if (sortCol === "contraceptiveUse") {
+        cmp = (a.gender.contraceptiveUse ?? -1) - (b.gender.contraceptiveUse ?? -1);
       } else if (sortCol.startsWith("indicator_")) {
         const idx = parseInt(sortCol.split("_")[1]);
         const ind = indicators[idx];
@@ -275,7 +287,10 @@ export function DataTable({
           </Button>
 
           {showColMenu && (
-            <div className="absolute right-0 top-full z-50 mt-1.5 min-w-[11rem] rounded-lg border border-border bg-popover p-2 text-sm text-popover-foreground shadow-md ring-1 ring-foreground/10">
+            <div
+              ref={menuRef}
+              className="absolute right-0 top-full z-50 mt-1.5 min-w-[11rem] rounded-lg border border-border bg-popover p-2 text-sm text-popover-foreground shadow-md ring-1 ring-foreground/10"
+            >
               <div className="mb-1.5 px-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">
                 Toggle Columns
               </div>
@@ -509,6 +524,66 @@ export function DataTable({
                 </button>
               </th>
 
+              {/* Adolescent Birth Rate */}
+              <th
+                className={cn(
+                  "hidden p-3 text-right align-middle xl:table-cell",
+                  !visibility["adolescentBirthRate"] && "hidden"
+                )}
+              >
+                <button
+                  onClick={() => toggleSort("adolescentBirthRate")}
+                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+                >
+                  Birth Rate (15-19) <SortIcon col="adolescentBirthRate" />
+                </button>
+              </th>
+
+              {/* Child Marriage % */}
+              <th
+                className={cn(
+                  "hidden p-3 text-right align-middle xl:table-cell",
+                  !visibility["childMarriagePercent"] && "hidden"
+                )}
+              >
+                <button
+                  onClick={() => toggleSort("childMarriagePercent")}
+                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+                >
+                  Child Marriage % <SortIcon col="childMarriagePercent" />
+                </button>
+              </th>
+
+              {/* Labor Force Gap */}
+              <th
+                className={cn(
+                  "hidden p-3 text-right align-middle xl:table-cell",
+                  !visibility["laborForceGap"] && "hidden"
+                )}
+              >
+                <button
+                  onClick={() => toggleSort("laborForceGap")}
+                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+                >
+                  LFP Gap <SortIcon col="laborForceGap" />
+                </button>
+              </th>
+
+              {/* Contraceptive Use */}
+              <th
+                className={cn(
+                  "hidden p-3 text-right align-middle xl:table-cell",
+                  !visibility["contraceptiveUse"] && "hidden"
+                )}
+              >
+                <button
+                  onClick={() => toggleSort("contraceptiveUse")}
+                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground"
+                >
+                  Contraceptive % <SortIcon col="contraceptiveUse" />
+                </button>
+              </th>
+
               {/* Indicator columns */}
               {indicators.map((ind, i) => {
                 const colId = `indicator_${i}`;
@@ -699,6 +774,54 @@ export function DataTable({
                     )}
                   >
                     {country.femaleBmi != null ? country.femaleBmi : "—"}
+                  </td>
+
+                  {/* Adolescent Birth Rate */}
+                  <td
+                    className={cn(
+                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      !visibility["adolescentBirthRate"] && "hidden"
+                    )}
+                  >
+                    {country.gender.adolescentBirthRate != null
+                      ? `${country.gender.adolescentBirthRate}`
+                      : "—"}
+                  </td>
+
+                  {/* Child Marriage % */}
+                  <td
+                    className={cn(
+                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      !visibility["childMarriagePercent"] && "hidden"
+                    )}
+                  >
+                    {country.gender.childMarriagePercent != null
+                      ? `${country.gender.childMarriagePercent}%`
+                      : "—"}
+                  </td>
+
+                  {/* Labor Force Gap */}
+                  <td
+                    className={cn(
+                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      !visibility["laborForceGap"] && "hidden"
+                    )}
+                  >
+                    {country.gender.laborForceGap != null
+                      ? `${country.gender.laborForceGap}%`
+                      : "—"}
+                  </td>
+
+                  {/* Contraceptive Use */}
+                  <td
+                    className={cn(
+                      "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
+                      !visibility["contraceptiveUse"] && "hidden"
+                    )}
+                  >
+                    {country.gender.contraceptiveUse != null
+                      ? `${country.gender.contraceptiveUse}%`
+                      : "—"}
                   </td>
 
                   {/* Indicator cells */}

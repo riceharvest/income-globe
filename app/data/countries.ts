@@ -646,7 +646,13 @@ export function getIndicatorValue(
   country: CountryData,
   selection: IndicatorSelection
 ): number {
-  const data = country.indicators[selection.indicator];
+  // Gender indicators live in country.gender, not country.indicators
+  if (selection.domain === "gender") {
+    const val = country.gender[selection.indicator as keyof typeof country.gender];
+    return val ?? 0;
+  }
+
+  const data = country.indicators[selection.indicator as keyof typeof country.indicators];
 
   if (selection.percentileGroup === "threshold") {
     const key = `p${selection.threshold || 50}` as keyof typeof data;
