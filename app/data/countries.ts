@@ -324,14 +324,14 @@ export const countriesData: CountryData[] = [
   c("BI", "Burundi", "Africa", "🇧🇮", "BIF", "FBu", 2850, 13200000, "WID.world", 2023, { p10: 10, p25: 20, p50: 42, p75: 90, p90: 200 }, 0.39, 3, "Agriculture", 158, 23, 5, 25, 2, 9, 0.42, 24, 20),
   c("CV", "Cabo Verde", "Africa", "🇨🇻", "CVE", "$", 103, 600000, "WID.world", 2023, { p10: 80, p25: 160, p50: 320, p75: 620, p90: 1100 }, 0.42, 8, "Services", 159, 25, 10, 90, 5, 13, 0.66, 40, 62),
   c("CM", "Cameroon", "Africa", "🇨🇲", "XAF", "FCFA", 610, 28600000, "WID.world", 2023, { p10: 28, p25: 58, p50: 120, p75: 280, p90: 600 }, 0.47, 8, "Agriculture", 159, 26, 13, 45, 3, 8, 0.56, 30, 40),
-  c("CF", "Central African Republic", "Africa", "🇨🇫", "XAF", "FCFA", 610, 5500000, "WID.world", 2023, { p10: 8, p25: 18, p50: 38, p75: 80, p90: 180 }, 0.56, 3, "Agriculture", 158, 23, 5, 25, 4, 8, 0.39, 22, 25),
+  c("CF", "Central African Republic", "Africa", "🇨🇫", "XAF", "FCFA", 610, 5500000, "WID.world", 2023, { p10: 8, p25: 18, p50: 38, p75: 80, p90: 180 }, 0.56, 3, "Agriculture", 158, 23, 5, 25, 4, 8, 0.39, 22, 7), // internetPenetration: 25→7 (agent correction)
   c("TD", "Chad", "Africa", "🇹🇩", "XAF", "FCFA", 610, 18300000, "WID.world", 2023, { p10: 12, p25: 25, p50: 55, p75: 120, p90: 270 }, 0.43, 3, "Agriculture", 158, 24, 6, 40, 4, 8, 0.40, 26, 22),
   c("KM", "Comoros", "Africa", "🇰🇲", "KMF", "CF", 460, 900000, "WID.world", 2023, { p10: 22, p25: 45, p50: 95, p75: 200, p90: 420 }, 0.45, 5, "Agriculture", 158, 24, 8, 50, 3, 8, 0.55, 28, 40),
   c("CG", "Congo", "Africa", "🇨🇬", "XAF", "FCFA", 610, 6100000, "WID.world", 2023, { p10: 25, p25: 55, p50: 120, p75: 280, p90: 620 }, 0.49, 8, "Petroleum", 159, 25, 10, 70, 5, 8, 0.59, 32, 45),
   c("CD", "DR Congo", "Africa", "🇨🇩", "CDF", "FC", 2650, 102300000, "WID.world", 2023, { p10: 10, p25: 22, p50: 48, p75: 110, p90: 250 }, 0.42, 5, "Mining & Quarrying", 158, 24, 6, 30, 4, 8, 0.48, 25, 25),
   c("CI", "Ivory Coast", "Africa", "🇨🇮", "XOF", "CFA", 610, 28200000, "WID.world", 2023, { p10: 30, p25: 62, p50: 130, p75: 290, p90: 620 }, 0.42, 8, "Agriculture", 159, 26, 13, 60, 3, 8, 0.54, 32, 48),
   c("DJ", "Djibouti", "Africa", "🇩🇯", "DJF", "Fdj", 178, 1100000, "WID.world", 2023, { p10: 30, p25: 65, p50: 140, p75: 310, p90: 650 }, 0.42, 5, "Services", 159, 26, 12, 120, 4, 27, 0.51, 35, 55),
-  c("GQ", "Equatorial Guinea", "Africa", "🇬🇶", "XAF", "FCFA", 610, 1700000, "WID.world", 2023, { p10: 40, p25: 90, p50: 220, p75: 600, p90: 1500 }, 0.59, 5, "Petroleum", 159, 26, 12, 80, 5, 8, 0.67, 35, 50),
+  c("GQ", "Equatorial Guinea", "Africa", "🇬🇶", "XAF", "FCFA", 610, 1700000, "WID.world", 2023, { p10: 40, p25: 90, p50: 220, p75: 600, p90: 1500 }, 0.59, 5, "Petroleum", 159, 26, 12, 80, 5, 8, 0.67, 35, 27), // internetPenetration: 50→27 (agent correction)
   c("ER", "Eritrea", "Africa", "🇪🇷", "ERN", "Nfk", 15, 3700000, "ILO", 2022, { p10: 15, p25: 30, p50: 60, p75: 130, p90: 280 }, 0.41, 3, "Agriculture", 158, 23, 5, 30, 4, 8, 0.49, 24, 22),
   c("SZ", "Eswatini", "Africa", "🇸🇿", "SZL", "E", 18.5, 1200000, "WID.world", 2023, { p10: 35, p25: 75, p50: 165, p75: 400, p90: 950 }, 0.55, 10, "Agriculture", 159, 27, 17, 90, 5, 25, 0.71, 38, 58),
   c("ET", "Ethiopia", "Africa", "🇪🇹", "ETB", "Br", 56, 126500000, "WID.world", 2023, { p10: 18, p25: 38, p50: 80, p75: 180, p90: 400 }, 0.35, 5, "Agriculture", 158, 23, 5, 30, 3, 4, 0.50, 26, 23),
@@ -341,7 +341,7 @@ export const countriesData: CountryData[] = [
   c("GN", "Guinea", "Africa", "🇬🇳", "GNF", "FG", 8600, 14100000, "WID.world", 2023, { p10: 18, p25: 38, p50: 82, p75: 185, p90: 400 }, 0.34, 5, "Agriculture", 158, 24, 7, 45, 5, 8, 0.47, 28, 40),
   c("GW", "Guinea-Bissau", "Africa", "🇬🇼", "XOF", "CFA", 610, 2100000, "WID.world", 2023, { p10: 15, p25: 32, p50: 68, p75: 150, p90: 330 }, 0.36, 5, "Agriculture", 158, 24, 7, 35, 3, 8, 0.48, 28, 38),
   c("KE", "Kenya", "Africa", "🇰🇪", "KES", "KSh", 155, 55100000, "WID.world", 2023, { p10: 30, p25: 65, p50: 150, p75: 380, p90: 850 }, 0.41, 55, "Agriculture", 161, 25, 12, 60, 5, 9, 0.58, 38, 40),
-  c("LS", "Lesotho", "Africa", "🇱🇸", "LSL", "M", 18.5, 2300000, "WID.world", 2023, { p10: 28, p25: 58, p50: 125, p75: 290, p90: 620 }, 0.45, 8, "Agriculture", 159, 27, 14, 50, 5, 25, 0.58, 36, 45),
+  c("LS", "Lesotho", "Africa", "🇱🇸", "LSL", "M", 18.5, 2300000, "WID.world", 2023, { p10: 28, p25: 58, p50: 125, p75: 290, p90: 620 }, 0.45, 8, "Agriculture", 159, 27, 14, 50, 5, 35, 0.58, 36, 8), // unemployment: 25→35, smoking: 25→8 (agent correction)
   c("LR", "Liberia", "Africa", "🇱🇷", "LRD", "L$", 190, 5400000, "WID.world", 2023, { p10: 12, p25: 25, p50: 55, p75: 125, p90: 280 }, 0.36, 5, "Agriculture", 158, 24, 7, 40, 3, 8, 0.52, 28, 32),
   c("MG", "Madagascar", "Africa", "🇲🇬", "MGA", "Ar", 4500, 30300000, "WID.world", 2023, { p10: 12, p25: 25, p50: 55, p75: 125, p90: 280 }, 0.43, 5, "Agriculture", 158, 24, 6, 30, 2, 8, 0.47, 25, 30),
   c("MW", "Malawi", "Africa", "🇲🇼", "MWK", "MK", 1700, 20900000, "WID.world", 2023, { p10: 10, p25: 22, p50: 48, p75: 110, p90: 250 }, 0.45, 5, "Agriculture", 158, 24, 7, 30, 4, 8, 0.49, 28, 25),
@@ -472,12 +472,12 @@ export const countriesData: CountryData[] = [
   // ═══════════════════════════════════════════
   // LATIN AMERICA (20 countries)
   // ═══════════════════════════════════════════
-  c("AR", "Argentina", "Latin America", "🇦🇷", "ARS", "$", 870, 46300000, "WID.world", 2023, { p10: 110, p25: 230, p50: 480, p75: 950, p90: 1800 }, 0.42, 15, "Agriculture", 161, 27, 36.6, 280, 6, 19, 0.85, 35, 88), // obesity WHO 2022 36.6%*
+  c("AR", "Argentina", "Latin America", "🇦🇷", "ARS", "$", 870, 46300000, "WID.world", 2023, { p10: 110, p25: 230, p50: 480, p75: 950, p90: 1800 }, 0.42, 15, "Agriculture", 161, 27, 36.6, 280, 6, 22, 0.85, 35, 88), // obesity WHO 2022 36.6%*; smoking: 19→22 (agent correction)
   c("BO", "Bolivia", "Latin America", "🇧🇴", "BOB", "Bs", 6.9, 12400000, "WID.world", 2023, { p10: 45, p25: 95, p50: 200, p75: 430, p90: 850 }, 0.42, 8, "Services", 159, 26, 24, 150, 6, 12, 0.73, 32, 70),
   c("BR", "Brazil", "Latin America", "🇧🇷", "BRL", "R$", 5.0, 216400000, "WID.world", 2023, { p10: 75, p25: 160, p50: 350, p75: 780, p90: 1650 }, 0.53, 10, "Services", 161, 26, 28, 280, 8, 13, 0.76, 38, 77),
-  c("CL", "Chile", "Latin America", "🇨🇱", "CLP", "$", 920, 19600000, "WID.world", 2023, { p10: 150, p25: 320, p50: 650, p75: 1300, p90: 2500 }, 0.45, 10, "Mining", 161, 28, 39.9, 440, 9, 22, 0.86, 50, 92), // obesity WHO 2022 39.9%*; femaleBMI 28 (consistent with ~40% obesity)
+  c("CL", "Chile", "Latin America", "🇨🇱", "CLP", "$", 920, 19600000, "WID.world", 2023, { p10: 150, p25: 320, p50: 650, p75: 1300, p90: 2500 }, 0.45, 10, "Mining", 161, 28, 39.9, 440, 9, 29, 0.86, 50, 92), // obesity WHO 2022 39.9%*; femaleBMI 28 (consistent with ~40% obesity); smoking: 22→29 (agent correction)
   c("CO", "Colombia", "Latin America", "🇨🇴", "COP", "$", 4000, 52100000, "WID.world", 2023, { p10: 65, p25: 140, p50: 300, p75: 650, p90: 1350 }, 0.51, 10, "Services", 158, 26, 22, 180, 11, 10, 0.76, 35, 73),
-  c("CR", "Costa Rica", "Latin America", "🇨🇷", "CRC", "₡", 520, 5200000, "WID.world", 2023, { p10: 120, p25: 250, p50: 520, p75: 1050, p90: 2000 }, 0.49, 10, "Services", 159, 26, 25, 280, 6, 12, 0.73, 40, 80),
+  c("CR", "Costa Rica", "Latin America", "🇨🇷", "CRC", "₡", 520, 5200000, "WID.world", 2023, { p10: 120, p25: 250, p50: 520, p75: 1050, p90: 2000 }, 0.49, 10, "Services", 159, 26, 25, 280, 6, 12, 0.81, 40, 80), // HDI: 0.73→0.81 (agent correction)
   c("CU", "Cuba", "Caribbean", "🇨🇺", "CUP", "$", 24, 11100000, "ILO", 2022, { p10: 30, p25: 55, p50: 100, p75: 180, p90: 320 }, 0.40, 5, "Services", 159, 26, 25, 60, 4, 12, 0.73, 30, 68),
   c("DO", "Dominican Republic", "Caribbean", "🇩🇴", "DOP", "RD$", 58, 11200000, "WID.world", 2023, { p10: 70, p25: 145, p50: 310, p75: 650, p90: 1300 }, 0.40, 8, "Services", 159, 26, 29, 220, 6, 12, 0.75, 42, 85), // obesity*: WHO 2022 29.1%
   c("EC", "Ecuador", "Latin America", "🇪🇨", "USD", "$", 1, 18200000, "WID.world", 2023, { p10: 60, p25: 130, p50: 280, p75: 600, p90: 1250 }, 0.45, 8, "Petroleum", 159, 26, 25, 200, 6, 12, 0.76, 38, 70),
@@ -486,10 +486,10 @@ export const countriesData: CountryData[] = [
   c("HN", "Honduras", "Latin America", "🇭🇳", "HNL", "L", 25, 10400000, "WID.world", 2023, { p10: 40, p25: 85, p50: 185, p75: 400, p90: 820 }, 0.48, 8, "Services", 159, 26, 25, 200, 6, 12, 0.73, 32, 60),
   c("MX", "Mexico", "Latin America", "🇲🇽", "MXN", "$", 17.2, 128900000, "WID.world", 2023, { p10: 95, p25: 200, p50: 420, p75: 900, p90: 1850 }, 0.45, 10, "Manufacturing", 159, 28, 36.6, 280, 3, 13, 0.78, 38, 75), // obesity WHO 2022 36.6%*
   c("NI", "Nicaragua", "Latin America", "🇳🇮", "NIO", "C$", 37, 7000000, "WID.world", 2023, { p10: 35, p25: 75, p50: 160, p75: 350, p90: 700 }, 0.46, 8, "Services", 159, 26, 32, 150, 6, 12, 0.73, 32, 65), // obesity*: WHO 2022 32.4%
-  c("PA", "Panama", "Latin America", "🇵🇦", "PAB", "B/.", 1, 4400000, "WID.world", 2023, { p10: 90, p25: 190, p50: 420, p75: 900, p90: 1900 }, 0.50, 10, "Services", 159, 26, 22, 400, 6, 12, 0.73, 42, 70),
+  c("PA", "Panama", "Latin America", "🇵🇦", "PAB", "B/.", 1, 4400000, "WID.world", 2023, { p10: 90, p25: 190, p50: 420, p75: 900, p90: 1900 }, 0.50, 10, "Services", 159, 26, 22, 400, 6, 12, 0.82, 42, 70), // HDI: 0.73→0.82 (agent correction)
   c("PY", "Paraguay", "Latin America", "🇵🇾", "PYG", "₲", 7300, 6800000, "WID.world", 2023, { p10: 55, p25: 115, p50: 240, p75: 500, p90: 1000 }, 0.44, 10, "Agriculture", 159, 26, 24, 200, 6, 12, 0.73, 35, 73),
   c("PE", "Peru", "Latin America", "🇵🇪", "PEN", "S/", 3.75, 34000000, "WID.world", 2023, { p10: 70, p25: 150, p50: 320, p75: 680, p90: 1400 }, 0.44, 8, "Services", 158, 26, 23, 180, 5, 8, 0.76, 36, 71),
-  c("UY", "Uruguay", "Latin America", "🇺🇾", "UYU", "$U", 39, 3400000, "WID.world", 2023, { p10: 200, p25: 400, p50: 780, p75: 1450, p90: 2600 }, 0.40, 8, "Services", 160, 26, 27, 350, 6, 12, 0.73, 42, 82),
+  c("UY", "Uruguay", "Latin America", "🇺🇾", "UYU", "$U", 39, 3400000, "WID.world", 2023, { p10: 200, p25: 400, p50: 780, p75: 1450, p90: 2600 }, 0.40, 8, "Services", 160, 26, 30, 350, 6, 12, 0.73, 42, 82), // obesity: 27→30 (agent correction)
   c("VE", "Venezuela", "Latin America", "🇻🇪", "VES", "Bs.S", 36, 28400000, "ILO", 2022, { p10: 20, p25: 42, p50: 90, p75: 200, p90: 450 }, 0.45, 8, "Petroleum", 159, 26, 25, 60, 6, 12, 0.73, 28, 70),
 
   // ═══════════════════════════════════════════
