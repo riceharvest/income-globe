@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router";
-import { Search, LayoutGrid, Table2, Globe, Command } from "lucide-react";
+import { Search, LayoutGrid, Table2, Globe, Command, PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { CountryCard } from "~/components/country-card";
 import { CompactTable } from "~/components/compact-table";
@@ -73,6 +74,7 @@ export default function Home() {
   );
   const [selectedCountryCode, setSelectedCountryCode] = useState<string | null>(null);
   const [showCommandPalette, setShowCommandPalette] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [indicators, setIndicators] = useState<IndicatorSelection[]>([
     createDefaultIndicator(),
   ]);
@@ -160,12 +162,14 @@ export default function Home() {
   return (
     <div className="flex h-screen overflow-hidden">
       {/* ── Filter Sidebar ── */}
-      <FilterSidebar
-        groups={activeGroups}
-        onChange={setActiveGroups}
-        region={region}
-        onRegionChange={(r) => setRegion(r as Region)}
-      />
+      {!sidebarCollapsed && (
+        <FilterSidebar
+          groups={activeGroups}
+          onChange={setActiveGroups}
+          region={region}
+          onRegionChange={(r) => setRegion(r as Region)}
+        />
+      )}
 
       {/* ── Main Content ── */}
       <main className="flex-1 overflow-auto flex flex-col">
@@ -226,6 +230,19 @@ export default function Home() {
               <Table2 className="h-4 w-4" />
             </button>
           </div>
+
+          {/* Sidebar toggle */}
+          <button
+            onClick={() => setSidebarCollapsed((v) => !v)}
+            className="flex-shrink-0 p-1.5 rounded-md border border-border text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+            title={sidebarCollapsed ? "Show filters" : "Hide filters"}
+          >
+            {sidebarCollapsed ? (
+              <PanelLeftOpen className="h-4 w-4" />
+            ) : (
+              <PanelLeftClose className="h-4 w-4" />
+            )}
+          </button>
         </header>
 
         {/* Scrollable body */}
