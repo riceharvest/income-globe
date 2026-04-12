@@ -96,33 +96,25 @@ export function DataTable({
     ];
   }, [indicators]);
 
-  // Visibility state: starts from defaults, merges persisted overrides
+  // Visibility state — starts purely from defaults (ignore old localStorage on init)
   const [visibility, setVisibility] = useState<Record<string, boolean>>(() => {
-    const persisted = loadVisibility(indicators.length);
     const initial: Record<string, boolean> = {};
     for (const col of allColumns) {
-      initial[col.id] = col.id in persisted ? persisted[col.id] : col.defaultVisible;
+      initial[col.id] = col.defaultVisible;
     }
     return initial;
   });
 
-  // When indicator count changes (different selection), reconcile visibility
+  // When indicator columns change, add/remove accordingly
   useEffect(() => {
     setVisibility((prev) => {
       const next: Record<string, boolean> = {};
       for (const col of allColumns) {
-        if (col.id in prev) {
-          next[col.id] = prev[col.id];
-        } else {
-          next[col.id] = col.id in persisted ? persisted[col.id] : col.defaultVisible;
-        }
+        next[col.id] = prev[col.id] ?? col.defaultVisible;
       }
       return next;
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [indicators.length]);
-
-  const persisted = useMemo(() => loadVisibility(indicators.length), [indicators.length]);
+  }, [allColumns]);
 
   function toggleCol(colId: string) {
     setVisibility((prev) => {
