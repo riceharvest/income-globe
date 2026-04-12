@@ -96,25 +96,29 @@ export function DataTable({
     ];
   }, [indicators]);
 
-  // Visibility state — starts purely from defaults (ignore old localStorage on init)
+  // Visibility state — all static columns start hidden, indicator columns start visible
   const [visibility, setVisibility] = useState<Record<string, boolean>>(() => {
     const initial: Record<string, boolean> = {};
-    for (const col of allColumns) {
-      initial[col.id] = col.defaultVisible;
+    for (const col of STATIC_COLUMNS) {
+      initial[col.id] = false; // always start hidden for static columns
+    }
+    for (const col of indicators) {
+      initial[`indicator_${indicators.indexOf(col)}`] = true; // indicator cols visible by default
     }
     return initial;
   });
 
-  // When indicator columns change, add/remove accordingly
+  // When indicator columns change (different selection), reconcile visibility
   useEffect(() => {
     setVisibility((prev) => {
       const next: Record<string, boolean> = {};
       for (const col of allColumns) {
-        next[col.id] = prev[col.id] ?? col.defaultVisible;
+        // Keep user toggles, only fill in missing columns from defaults
+        next[col.id] = col.id in prev ? prev[col.id] : col.defaultVisible;
       }
       return next;
     });
-  }, [allColumns]);
+  }, [indicators]);
 
   function toggleCol(colId: string) {
     setVisibility((prev) => {
