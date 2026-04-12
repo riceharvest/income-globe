@@ -24,53 +24,47 @@ interface DataTableProps {
 interface ColumnDef {
   id: string;
   label: string;
-  defaultVisible: boolean;
+  defaultHidden?: boolean;
 }
 
 const STATIC_COLUMNS: ColumnDef[] = [
-  { id: "row", label: "#", defaultVisible: false },
-  { id: "name", label: "Country", defaultVisible: false },
-  { id: "region", label: "Region", defaultVisible: false },
-  { id: "population", label: "Population", defaultVisible: false },
-  { id: "hdi", label: "HDI", defaultVisible: false },
-  { id: "minimumWageEur", label: "Min Wage", defaultVisible: false },
-  { id: "costOfLivingIndex", label: "Cost of Living", defaultVisible: false },
-  { id: "internetPenetration", label: "Internet %", defaultVisible: false },
-  { id: "unemploymentRate", label: "Unemploy. %", defaultVisible: false },
-  { id: "obesityRate", label: "Obesity %", defaultVisible: false },
-  { id: "smokingRate", label: "Smoking %", defaultVisible: false },
-  { id: "englishSpeakingPercent", label: "English %", defaultVisible: false },
-  { id: "femaleHeightCm", label: "Avg Height (F)", defaultVisible: false },
-  { id: "femaleBmi", label: "Avg BMI (F)", defaultVisible: false },
-  { id: "adolescentBirthRate", label: "Adolescent Birth Rate", defaultVisible: false },
-  { id: "childMarriagePercent", label: "Child Marriage %", defaultVisible: false },
-  { id: "laborForceGap", label: "Labor Force Gap", defaultVisible: false },
-  { id: "contraceptiveUse", label: "Contraceptive Use %", defaultVisible: false },
+  { id: "row", label: "#", defaultHidden: true },
+  { id: "name", label: "Country", defaultHidden: true },
+  { id: "region", label: "Region", defaultHidden: true },
+  { id: "population", label: "Population", defaultHidden: true },
+  { id: "hdi", label: "HDI", defaultHidden: true },
+  { id: "minimumWageEur", label: "Min Wage", defaultHidden: true },
+  { id: "costOfLivingIndex", label: "Cost of Living", defaultHidden: true },
+  { id: "internetPenetration", label: "Internet %", defaultHidden: true },
+  { id: "unemploymentRate", label: "Unemploy. %", defaultHidden: true },
+  { id: "obesityRate", label: "Obesity %", defaultHidden: true },
+  { id: "smokingRate", label: "Smoking %", defaultHidden: true },
+  { id: "englishSpeakingPercent", label: "English %", defaultHidden: true },
+  { id: "femaleHeightCm", label: "Avg Height (F)", defaultHidden: true },
+  { id: "femaleBmi", label: "Avg BMI (F)", defaultHidden: true },
+  { id: "adolescentBirthRate", label: "Adolescent Birth Rate", defaultHidden: true },
+  { id: "childMarriagePercent", label: "Child Marriage %", defaultHidden: true },
+  { id: "laborForceGap", label: "Labor Force Gap", defaultHidden: true },
+  { id: "contraceptiveUse", label: "Contraceptive Use %", defaultHidden: true },
 ];
 
-const STORAGE_KEY = "income-globe-column-visibility-v2";
+const STORAGE_KEY = "income-globe-col-vis-v3";
 
-function loadVisibility(_indicatorCount: number): Record<string, boolean> {
+function readPersisted(): Record<string, boolean> {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
-      const parsed = JSON.parse(raw);
-      if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
-        return parsed as Record<string, boolean>;
-      }
+      const v = JSON.parse(raw);
+      if (v && typeof v === "object" && !Array.isArray(v)) return v as Record<string, boolean>;
     }
-  } catch {
-    // ignore
-  }
+  } catch { /* ignore */ }
   return {};
 }
 
-function saveVisibility(visibility: Record<string, boolean>) {
+function writePersisted(vis: Record<string, boolean>) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(visibility));
-  } catch {
-    // ignore
-  }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(vis));
+  } catch { /* ignore */ }
 }
 
 export function DataTable({
@@ -82,48 +76,19 @@ export function DataTable({
   const [sortCol, setSortCol] = useState<string>("name");
   const [sortDir, setSortDir] = useState<SortDir>("asc");
   const [showColMenu, setShowColMenu] = useState(false);
+  const [userHidden, setUserHidden] = useState<Record<string, boolean>>(() => readPersisted());
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Build full column list including dynamic indicator columns
-  const allColumns = useMemo<ColumnDef[]>(() => {
-    return [
-      ...STATIC_COLUMNS,
-      ...indicators.map((ind, i) => ({
-        id: `indicator_${i}`,
-        label: getIndicatorColumnLabel(ind),
-        defaultVisible: true,
-      })),
-    ];
-  }, [indicators]);
-
-  // Visibility state — all static columns start hidden, indicator columns start visible
-  const [visibility, setVisibility] = useState<Record<string, boolean>>(() => {
-    const initial: Record<string, boolean> = {};
-    for (const col of STATIC_COLUMNS) {
-      initial[col.id] = false;
-    }
-    indicators.forEach((_, i) => {
-      initial[`indicator_${i}`] = true;
-    });
-    return initial;
-  });
-
-  // When indicator columns change (different selection), reconcile visibility
-  useEffect(() => {
-    setVisibility((prev) => {
-      const next: Record<string, boolean> = {};
-      for (const col of allColumns) {
-        // Keep user toggles, only fill in missing columns from defaults
-        next[col.id] = col.id in prev ? prev[col.id] : col.defaultVisible;
-      }
-      return next;
-    });
-  }, [indicators]);
+  // Determine if a column is visible: user toggle wins, otherwise static cols are hidden, indicator cols visible
+  function isVisible(colId: string, isStatic: boolean): boolean {
+    if (colId in userHidden) return !userHidden[colId];
+    return !isStatic; // static cols start hidden, indicator cols start visible
+  }
 
   function toggleCol(colId: string) {
-    setVisibility((prev) => {
+    setUserHidden((prev) => {
       const next = { ...prev, [colId]: !prev[colId] };
-      saveVisibility(next);
+      writePersisted(next);
       return next;
     });
   }
@@ -140,14 +105,10 @@ export function DataTable({
     return () => document.removeEventListener("mousedown", handleClick);
   }, [showColMenu]);
 
-  function toggleSort(col: string) {
-    if (sortCol === col) {
-      setSortDir(sortDir === "asc" ? "desc" : "asc");
-    } else {
-      setSortCol(col);
-      setSortDir(col === "name" ? "asc" : "desc");
-    }
-  }
+  // Build the list of dynamic indicator column ids
+  const indicatorColIds = useMemo(() => {
+    return indicators.map((_, i) => `indicator_${i}`);
+  }, [indicators]);
 
   const sorted = useMemo(() => {
     if (!sortDir) return countries;
@@ -250,11 +211,6 @@ export function DataTable({
     return parts.join(" · ");
   }
 
-  // Columns that show a sort button (all except row index)
-  const sortableCols = new Set(
-    STATIC_COLUMNS.filter((c) => c.id !== "row").map((c) => c.id)
-  );
-
   if (loading) {
     return (
       <div className="space-y-2">
@@ -265,9 +221,17 @@ export function DataTable({
     );
   }
 
+  const allMenuColumns = [
+    ...STATIC_COLUMNS.map((c) => ({ id: c.id, label: c.label })),
+    ...indicators.map((ind, i) => ({
+      id: `indicator_${i}`,
+      label: getIndicatorColumnLabel(ind),
+    })),
+  ];
+
   return (
     <div className="space-y-2">
-      {/* Table header row with column visibility control */}
+      {/* Header with column toggle */}
       <div className="flex items-center justify-end">
         <div className="relative" ref={menuRef}>
           <Button
@@ -282,27 +246,30 @@ export function DataTable({
           </Button>
 
           {showColMenu && (
-            <div
-              className="absolute right-0 top-full z-50 mt-1.5 min-w-[11rem] rounded-lg border border-border bg-popover p-2 text-sm text-popover-foreground shadow-md ring-1 ring-foreground/10"
-            >
+            <div className="absolute right-0 top-full z-50 mt-1.5 min-w-[12rem] rounded-lg border border-border bg-popover p-2 text-sm text-popover-foreground shadow-md ring-1 ring-foreground/10">
               <div className="mb-1.5 px-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">
                 Toggle Columns
               </div>
               <div className="flex flex-col gap-0.5">
-                {allColumns.map((col) => (
-                  <label
-                    key={col.id}
-                    className="flex cursor-pointer items-center gap-2 rounded px-1 py-1 hover:bg-muted"
-                  >
-                    <input
-                      type="checkbox"
-                      checked={visibility[col.id] ?? col.defaultVisible}
-                      onChange={() => toggleCol(col.id)}
-                      className="accent-primary"
-                    />
-                    <span className="text-sm">{col.label}</span>
-                  </label>
-                ))}
+                {allMenuColumns.map((col) => {
+                  // Checkbox: checked if user has explicitly made it visible, or if no override and it should be visible
+                  const isStatic = col.id in STATIC_COLUMNS.reduce((acc, c) => ({ ...acc, [c.id]: true }), {});
+                  const isActuallyVisible = isVisible(col.id, isStatic);
+                  return (
+                    <label
+                      key={col.id}
+                      className="flex cursor-pointer items-center gap-2 rounded px-1 py-1 hover:bg-muted"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={isActuallyVisible}
+                        onChange={() => toggleCol(col.id)}
+                        className="accent-primary"
+                      />
+                      <span className="text-sm">{col.label}</span>
+                    </label>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -313,21 +280,21 @@ export function DataTable({
         <table className="w-full text-sm">
           <thead className="sticky top-0 z-10 bg-card">
             <tr className="border-b border-border">
-              {/* # column */}
+              {/* # */}
               <th
                 className={cn(
                   "w-8 p-3 text-left align-middle",
-                  !visibility["row"] && "hidden"
+                  isVisible("row", true) ? "" : "hidden"
                 )}
               >
                 <span className="font-semibold">#</span>
               </th>
 
-              {/* Country column */}
+              {/* Country */}
               <th
                 className={cn(
                   "p-3 text-left align-middle",
-                  !visibility["name"] && "hidden"
+                  isVisible("name", true) ? "" : "hidden"
                 )}
               >
                 <button
@@ -342,7 +309,7 @@ export function DataTable({
               <th
                 className={cn(
                   "hidden p-3 text-left align-middle sm:table-cell",
-                  !visibility["region"] && "hidden"
+                  isVisible("region", true) ? "" : "hidden"
                 )}
               >
                 <button
@@ -357,7 +324,7 @@ export function DataTable({
               <th
                 className={cn(
                   "hidden p-3 text-right align-middle md:table-cell",
-                  !visibility["population"] && "hidden"
+                  isVisible("population", true) ? "" : "hidden"
                 )}
               >
                 <button
@@ -372,7 +339,7 @@ export function DataTable({
               <th
                 className={cn(
                   "hidden p-3 text-right align-middle lg:table-cell",
-                  !visibility["hdi"] && "hidden"
+                  isVisible("hdi", true) ? "" : "hidden"
                 )}
               >
                 <button
@@ -387,7 +354,7 @@ export function DataTable({
               <th
                 className={cn(
                   "hidden p-3 text-right align-middle xl:table-cell",
-                  !visibility["minimumWageEur"] && "hidden"
+                  isVisible("minimumWageEur", true) ? "" : "hidden"
                 )}
               >
                 <button
@@ -402,7 +369,7 @@ export function DataTable({
               <th
                 className={cn(
                   "hidden p-3 text-right align-middle xl:table-cell",
-                  !visibility["costOfLivingIndex"] && "hidden"
+                  isVisible("costOfLivingIndex", true) ? "" : "hidden"
                 )}
               >
                 <button
@@ -417,7 +384,7 @@ export function DataTable({
               <th
                 className={cn(
                   "hidden p-3 text-right align-middle xl:table-cell",
-                  !visibility["internetPenetration"] && "hidden"
+                  isVisible("internetPenetration", true) ? "" : "hidden"
                 )}
               >
                 <button
@@ -432,7 +399,7 @@ export function DataTable({
               <th
                 className={cn(
                   "hidden p-3 text-right align-middle xl:table-cell",
-                  !visibility["unemploymentRate"] && "hidden"
+                  isVisible("unemploymentRate", true) ? "" : "hidden"
                 )}
               >
                 <button
@@ -447,7 +414,7 @@ export function DataTable({
               <th
                 className={cn(
                   "hidden p-3 text-right align-middle xl:table-cell",
-                  !visibility["obesityRate"] && "hidden"
+                  isVisible("obesityRate", true) ? "" : "hidden"
                 )}
               >
                 <button
@@ -462,7 +429,7 @@ export function DataTable({
               <th
                 className={cn(
                   "hidden p-3 text-right align-middle xl:table-cell",
-                  !visibility["smokingRate"] && "hidden"
+                  isVisible("smokingRate", true) ? "" : "hidden"
                 )}
               >
                 <button
@@ -477,7 +444,7 @@ export function DataTable({
               <th
                 className={cn(
                   "hidden p-3 text-right align-middle xl:table-cell",
-                  !visibility["englishSpeakingPercent"] && "hidden"
+                  isVisible("englishSpeakingPercent", true) ? "" : "hidden"
                 )}
               >
                 <button
@@ -492,7 +459,7 @@ export function DataTable({
               <th
                 className={cn(
                   "hidden p-3 text-right align-middle xl:table-cell",
-                  !visibility["femaleHeightCm"] && "hidden"
+                  isVisible("femaleHeightCm", true) ? "" : "hidden"
                 )}
               >
                 <button
@@ -507,7 +474,7 @@ export function DataTable({
               <th
                 className={cn(
                   "hidden p-3 text-right align-middle xl:table-cell",
-                  !visibility["femaleBmi"] && "hidden"
+                  isVisible("femaleBmi", true) ? "" : "hidden"
                 )}
               >
                 <button
@@ -522,7 +489,7 @@ export function DataTable({
               <th
                 className={cn(
                   "hidden p-3 text-right align-middle xl:table-cell",
-                  !visibility["adolescentBirthRate"] && "hidden"
+                  isVisible("adolescentBirthRate", true) ? "" : "hidden"
                 )}
               >
                 <button
@@ -537,7 +504,7 @@ export function DataTable({
               <th
                 className={cn(
                   "hidden p-3 text-right align-middle xl:table-cell",
-                  !visibility["childMarriagePercent"] && "hidden"
+                  isVisible("childMarriagePercent", true) ? "" : "hidden"
                 )}
               >
                 <button
@@ -552,7 +519,7 @@ export function DataTable({
               <th
                 className={cn(
                   "hidden p-3 text-right align-middle xl:table-cell",
-                  !visibility["laborForceGap"] && "hidden"
+                  isVisible("laborForceGap", true) ? "" : "hidden"
                 )}
               >
                 <button
@@ -567,7 +534,7 @@ export function DataTable({
               <th
                 className={cn(
                   "hidden p-3 text-right align-middle xl:table-cell",
-                  !visibility["contraceptiveUse"] && "hidden"
+                  isVisible("contraceptiveUse", true) ? "" : "hidden"
                 )}
               >
                 <button
@@ -586,7 +553,7 @@ export function DataTable({
                     key={ind.id}
                     className={cn(
                       "p-3 text-right align-middle",
-                      !visibility[colId] && "hidden"
+                      isVisible(colId, false) ? "" : "hidden"
                     )}
                   >
                     <button
@@ -616,7 +583,7 @@ export function DataTable({
                   <td
                     className={cn(
                       "p-3 text-muted-foreground tabular-nums align-middle",
-                      !visibility["row"] && "hidden"
+                      isVisible("row", true) ? "" : "hidden"
                     )}
                   >
                     {idx + 1}
@@ -626,7 +593,7 @@ export function DataTable({
                   <td
                     className={cn(
                       "p-3 align-middle",
-                      !visibility["name"] && "hidden"
+                      isVisible("name", true) ? "" : "hidden"
                     )}
                   >
                     <Link
@@ -642,7 +609,7 @@ export function DataTable({
                   <td
                     className={cn(
                       "hidden p-3 text-muted-foreground sm:table-cell align-middle",
-                      !visibility["region"] && "hidden"
+                      isVisible("region", true) ? "" : "hidden"
                     )}
                   >
                     {country.region}
@@ -652,7 +619,7 @@ export function DataTable({
                   <td
                     className={cn(
                       "hidden p-3 text-right tabular-nums text-muted-foreground md:table-cell align-middle",
-                      !visibility["population"] && "hidden"
+                      isVisible("population", true) ? "" : "hidden"
                     )}
                   >
                     {country.population
@@ -666,7 +633,7 @@ export function DataTable({
                   <td
                     className={cn(
                       "hidden p-3 text-right tabular-nums lg:table-cell align-middle",
-                      !visibility["hdi"] && "hidden"
+                      isVisible("hdi", true) ? "" : "hidden"
                     )}
                   >
                     {country.hdi != null ? country.hdi.toFixed(2) : "—"}
@@ -676,7 +643,7 @@ export function DataTable({
                   <td
                     className={cn(
                       "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
-                      !visibility["minimumWageEur"] && "hidden"
+                      isVisible("minimumWageEur", true) ? "" : "hidden"
                     )}
                   >
                     {country.minimumWageEur != null
@@ -688,7 +655,7 @@ export function DataTable({
                   <td
                     className={cn(
                       "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
-                      !visibility["costOfLivingIndex"] && "hidden"
+                      isVisible("costOfLivingIndex", true) ? "" : "hidden"
                     )}
                   >
                     {country.costOfLivingIndex != null ? country.costOfLivingIndex : "—"}
@@ -698,7 +665,7 @@ export function DataTable({
                   <td
                     className={cn(
                       "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
-                      !visibility["internetPenetration"] && "hidden"
+                      isVisible("internetPenetration", true) ? "" : "hidden"
                     )}
                   >
                     {country.internetPenetration != null
@@ -710,7 +677,7 @@ export function DataTable({
                   <td
                     className={cn(
                       "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
-                      !visibility["unemploymentRate"] && "hidden"
+                      isVisible("unemploymentRate", true) ? "" : "hidden"
                     )}
                   >
                     {country.unemploymentRate != null
@@ -722,7 +689,7 @@ export function DataTable({
                   <td
                     className={cn(
                       "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
-                      !visibility["obesityRate"] && "hidden"
+                      isVisible("obesityRate", true) ? "" : "hidden"
                     )}
                   >
                     {country.obesityRate != null ? `${country.obesityRate}%` : "—"}
@@ -732,7 +699,7 @@ export function DataTable({
                   <td
                     className={cn(
                       "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
-                      !visibility["smokingRate"] && "hidden"
+                      isVisible("smokingRate", true) ? "" : "hidden"
                     )}
                   >
                     {country.smokingRate != null ? `${country.smokingRate}%` : "—"}
@@ -742,7 +709,7 @@ export function DataTable({
                   <td
                     className={cn(
                       "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
-                      !visibility["englishSpeakingPercent"] && "hidden"
+                      isVisible("englishSpeakingPercent", true) ? "" : "hidden"
                     )}
                   >
                     {country.englishSpeakingPercent != null
@@ -754,7 +721,7 @@ export function DataTable({
                   <td
                     className={cn(
                       "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
-                      !visibility["femaleHeightCm"] && "hidden"
+                      isVisible("femaleHeightCm", true) ? "" : "hidden"
                     )}
                   >
                     {country.femaleHeightCm != null ? `${country.femaleHeightCm}cm` : "—"}
@@ -764,7 +731,7 @@ export function DataTable({
                   <td
                     className={cn(
                       "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
-                      !visibility["femaleBmi"] && "hidden"
+                      isVisible("femaleBmi", true) ? "" : "hidden"
                     )}
                   >
                     {country.femaleBmi != null ? country.femaleBmi : "—"}
@@ -774,7 +741,7 @@ export function DataTable({
                   <td
                     className={cn(
                       "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
-                      !visibility["adolescentBirthRate"] && "hidden"
+                      isVisible("adolescentBirthRate", true) ? "" : "hidden"
                     )}
                   >
                     {country.gender.adolescentBirthRate != null
@@ -786,7 +753,7 @@ export function DataTable({
                   <td
                     className={cn(
                       "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
-                      !visibility["childMarriagePercent"] && "hidden"
+                      isVisible("childMarriagePercent", true) ? "" : "hidden"
                     )}
                   >
                     {country.gender.childMarriagePercent != null
@@ -798,7 +765,7 @@ export function DataTable({
                   <td
                     className={cn(
                       "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
-                      !visibility["laborForceGap"] && "hidden"
+                      isVisible("laborForceGap", true) ? "" : "hidden"
                     )}
                   >
                     {country.gender.laborForceGap != null
@@ -810,7 +777,7 @@ export function DataTable({
                   <td
                     className={cn(
                       "hidden p-3 text-right tabular-nums xl:table-cell align-middle",
-                      !visibility["contraceptiveUse"] && "hidden"
+                      isVisible("contraceptiveUse", true) ? "" : "hidden"
                     )}
                   >
                     {country.gender.contraceptiveUse != null
@@ -827,11 +794,11 @@ export function DataTable({
                         key={ind.id}
                         className={cn(
                           "p-3 text-right font-medium tabular-nums align-middle",
-                          !visibility[colId] && "hidden"
+                          isVisible(colId, false) ? "" : "hidden"
                         )}
                       >
                         {formatValue(val, ind)}
-                        <span className="text-xs text-muted-foreground">
+                        <span className="ml-1 text-xs text-muted-foreground">
                           /{ind.timePeriod === "annual" ? "yr" : "mo"}
                         </span>
                       </td>
@@ -850,4 +817,13 @@ export function DataTable({
       </div>
     </div>
   );
+
+  function toggleSort(col: string) {
+    if (sortCol === col) {
+      setSortDir(sortDir === "asc" ? "desc" : "asc");
+    } else {
+      setSortCol(col);
+      setSortDir(col === "name" ? "asc" : "desc");
+    }
+  }
 }
