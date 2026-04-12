@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import { Card, CardContent } from "~/components/ui/card";
 import { Badge } from "~/components/ui/badge";
 import { IncomeBar } from "~/components/income-bar";
@@ -8,11 +7,15 @@ import { ChevronRight } from "lucide-react";
 interface CountryCardProps {
   country: CountryData;
   maxMedian?: number;
+  onSelect?: (code: string) => void;
 }
 
-export function CountryCard({ country, maxMedian = 9000 }: CountryCardProps) {
+export function CountryCard({ country, maxMedian = 9000, onSelect }: CountryCardProps) {
   return (
-    <Link to={`/country/${country.code}`} className="group block">
+    <div
+      onClick={() => onSelect?.(country.code)}
+      className="group block cursor-pointer"
+    >
       <Card className="overflow-hidden border-border/50 transition-all duration-200 hover:border-border hover:shadow-md">
         <CardContent className="p-4">
           <div className="mb-3 flex items-start justify-between">
@@ -50,6 +53,6 @@ export function CountryCard({ country, maxMedian = 9000 }: CountryCardProps) {
           </div>
         </CardContent>
       </Card>
-    </Link>
+    </div>
   );
 }
