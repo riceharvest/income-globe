@@ -290,16 +290,11 @@ export function DataTable({
                 <span className="font-semibold">#</span>
               </th>
 
-              {/* Country */}
-              <th
-                className={cn(
-                  "min-w-0 p-2 text-left align-middle",
-                  isVisible("name", true) ? "" : "hidden"
-                )}
-              >
+              {/* Country — always visible */}
+              <th className="min-w-[120px] max-w-[180px] p-2 text-left align-middle text-sm font-semibold sticky left-0 bg-card z-5">
                 <button
                   onClick={() => toggleSort("name")}
-                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground truncate text-sm"
+                  className="inline-flex items-center gap-1 font-semibold hover:text-foreground truncate w-full"
                 >
                   Country <SortIcon col="name" />
                 </button>
@@ -582,26 +577,21 @@ export function DataTable({
                   {/* # */}
                   <td
                     className={cn(
-                      "p-3 text-muted-foreground tabular-nums align-middle",
+                      "p-2 text-muted-foreground tabular-nums align-middle text-xs",
                       isVisible("row", true) ? "" : "hidden"
                     )}
                   >
                     {idx + 1}
                   </td>
 
-                  {/* Country */}
-                  <td
-                    className={cn(
-                      "p-3 align-middle",
-                      isVisible("name", true) ? "" : "hidden"
-                    )}
-                  >
+                  {/* Country — always visible, sticky left */}
+                  <td className="p-2 align-middle text-sm sticky left-0 bg-card min-w-[120px] max-w-[180px]">
                     <Link
                       to={`/country/${country.code}`}
-                      className="inline-flex items-center gap-2 font-medium hover:text-primary hover:underline"
+                      className="inline-flex items-center gap-1 font-medium hover:text-primary hover:underline truncate"
                     >
-                      <span className="text-base">{country.flag}</span>
-                      <span>{country.name}</span>
+                      <span>{country.flag}</span>
+                      <span className="truncate">{country.name}</span>
                     </Link>
                   </td>
 
