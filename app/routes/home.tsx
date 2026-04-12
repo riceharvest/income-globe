@@ -331,6 +331,7 @@ export default function Home() {
                     key={country.code}
                     country={country}
                     maxMedian={maxMedian}
+                    sortKey={sort}
                     onSelect={(code) => setSelectedCountryCode(code)}
                   />
                 ))}
