@@ -291,7 +291,7 @@ export function DataTable({
               </th>
 
               {/* Country — always visible */}
-              <th className="min-w-[120px] max-w-[180px] p-2 text-left align-middle text-sm font-semibold sticky left-0 bg-card z-5">
+              <th className="min-w-[120px] max-w-[180px] p-2 text-left align-middle text-sm font-semibold sticky left-0 bg-card z-10">
                 <button
                   onClick={() => toggleSort("name")}
                   className="inline-flex items-center gap-1 font-semibold hover:text-foreground truncate w-full"
