@@ -276,8 +276,8 @@ export function DataTable({
         </div>
       </div>
 
-      <div className="overflow-x-auto rounded-xl border border-border">
-        <table className="w-full text-sm">
+      <div className="overflow-x-auto rounded-xl border border-border w-full">
+        <table className="w-full min-w-max text-sm">
           <thead className="sticky top-0 z-10 bg-card">
             <tr className="border-b border-border">
               {/* # */}
