@@ -6,6 +6,7 @@ import {
   getIndicatorValue,
   adjustForTimePeriod,
   formatUsd,
+  formatShortLabel,
 } from "~/data/countries";
 import { cn } from "~/lib/utils";
 import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
@@ -298,15 +299,31 @@ export function CompactTable({
     }
   }
 
+  // Sort by indicator values
+  function sortByIndicator(indIdx: number, dir: SortDir) {
+    return [...countries].sort((a, b) => {
+      const va = getIndicatorValue(a, indicators[indIdx]);
+      const vb = getIndicatorValue(b, indicators[indIdx]);
+      return dir === "desc" ? vb - va : va - vb;
+    });
+  }
+
   const sorted = useMemo(() => {
     if (!sortDir || !sortCol) return countries;
+
+    // Indicator column sort
+    if (sortCol.startsWith("ind_")) {
+      const idx = parseInt(sortCol.replace("ind_", ""));
+      return sortByIndicator(idx, sortDir);
+    }
+
     const col = COLUMNS.find((c) => c.id === sortCol);
     if (!col?.sortFn) return countries;
     return [...countries].sort((a, b) => {
       const cmp = col.sortFn!(a, b);
       return sortDir === "desc" ? -cmp : cmp;
     });
-  }, [countries, sortCol, sortDir]);
+  }, [countries, sortCol, sortDir, indicators]);
 
   function SortIcon({ col }: { col: ColumnDef }) {
     if (sortCol !== col.id) return <ArrowUpDown className="h-3 w-3 text-muted-foreground/40 shrink-0" />;
@@ -355,6 +372,11 @@ export function CompactTable({
                     {col.label}
                   </th>
                 ))}
+                {indicators.slice(0, 3).map((_, i) => (
+                  <th key={i} className="px-3 py-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground sticky top-0 bg-card z-20">
+                    {i === 0 ? "P50" : i === 1 ? "Top 10%" : "Top 1%"}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
@@ -369,6 +391,11 @@ export function CompactTable({
                       )}
                     >
                       <span className="inline-block h-3 w-20 rounded bg-muted animate-pulse" />
+                    </td>
+                  ))}
+                  {indicators.slice(0, 3).map((_, i) => (
+                    <td key={i} className="px-3 py-2">
+                      <span className="inline-block h-3 w-16 rounded bg-muted animate-pulse" />
                     </td>
                   ))}
                 </tr>
@@ -387,6 +414,8 @@ export function CompactTable({
         {sorted.map((country, idx) => {
           const highlighted = highlightedCodes?.has(country.code);
           const activeCols = visibleCols.filter((col) => col.id !== "name" && col.id !== "flag");
+          const primaryInd = indicators[0];
+          const primaryVal = primaryInd ? adjustForTimePeriod(getIndicatorValue(country, primaryInd), primaryInd.timePeriod) : null;
           return (
             <div
               key={country.code}
@@ -411,19 +440,13 @@ export function CompactTable({
                     <p className="text-xs text-muted-foreground">{country.region}</p>
                   </div>
                 </Link>
-                {/* P50 — hero metric on mobile */}
-                {(() => {
-                  const p50col = indicators[0];
-                  if (!p50col) return null;
-                  const val = getIndicatorValue(country, p50col);
-                  const adj = adjustForTimePeriod(val, p50col.timePeriod);
-                  return (
-                    <div className="text-right">
-                      <p className="font-semibold text-sm tabular-nums">{formatUsd(adj)}</p>
-                      <p className="text-[10px] text-muted-foreground">/{p50col.timePeriod === "annual" ? "yr" : "mo"}</p>
-                    </div>
-                  );
-                })()}
+                {/* Primary indicator — hero metric on mobile */}
+                {primaryVal !== null && primaryInd && (
+                  <div className="text-right">
+                    <p className="font-semibold text-sm tabular-nums">{formatUsd(primaryVal)}</p>
+                    <p className="text-[10px] text-muted-foreground">/{primaryInd.timePeriod === "annual" ? "yr" : "mo"}</p>
+                  </div>
+                )}
               </div>
               {/* Quick metrics grid */}
               {activeCols.length > 0 && (
@@ -440,20 +463,17 @@ export function CompactTable({
                   })}
                 </div>
               )}
-              {/* More columns hint */}
-              {visibleCols.length > 7 && (
-                <p className="text-[10px] text-muted-foreground mt-2">+{visibleCols.length - 7} more columns → swipe or switch to table view</p>
-              )}
             </div>
           );
         })}
       </div>
 
-      {/* Desktop: horizontal table */}
+      {/* Desktop: horizontal table with static + indicator columns */}
       <div className="hidden md:block overflow-x-auto">
         <table className="w-full min-w-[640px] text-xs">
           <thead className="sticky top-0 z-10 bg-card">
             <tr className="border-b border-border">
+              {/* Static column headers */}
               {visibleCols.map((col) => (
                 <th
                   key={col.id}
@@ -483,6 +503,40 @@ export function CompactTable({
                   )}
                 </th>
               ))}
+              {/* Indicator column headers — up to 3, short labels, sortable */}
+              {indicators.slice(0, 3).map((ind, i) => {
+                const colId = `ind_${i}`;
+                const label = formatShortLabel(ind);
+                const isSorted = sortCol === colId;
+                return (
+                  <th
+                    key={colId}
+                    className="px-3 py-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground sticky top-0 bg-card z-20 min-w-[140px]"
+                  >
+                    <button
+                      onClick={() => {
+                        if (isSorted) {
+                          if (sortDir === "asc") setSortDir("desc");
+                          else { setSortCol(null); setSortDir(null); }
+                        } else {
+                          setSortCol(colId);
+                          setSortDir("asc");
+                        }
+                      }}
+                      className="inline-flex items-center gap-1 font-semibold uppercase tracking-wide hover:text-foreground w-full justify-end"
+                    >
+                      {label}
+                      {isSorted ? (
+                        sortDir === "asc"
+                          ? <ArrowUp className="h-3 w-3 shrink-0" />
+                          : <ArrowDown className="h-3 w-3 shrink-0" />
+                      ) : (
+                        <ArrowUpDown className="h-3 w-3 text-muted-foreground/40 shrink-0" />
+                      )}
+                    </button>
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody>
@@ -499,6 +553,7 @@ export function CompactTable({
                     onRowClick && "cursor-pointer"
                   )}
                 >
+                  {/* Static cells */}
                   {visibleCols.map((col) => {
                     const raw = col.format(country);
                     if (col.id === "name") {
@@ -538,6 +593,22 @@ export function CompactTable({
                         ) : (
                           raw
                         )}
+                      </td>
+                    );
+                  })}
+                  {/* Indicator cells — up to 3 */}
+                  {indicators.slice(0, 3).map((ind, i) => {
+                    const val = getIndicatorValue(country, ind);
+                    const adj = adjustForTimePeriod(val, ind.timePeriod);
+                    return (
+                      <td
+                        key={`ind_${i}`}
+                        className="px-3 py-2 text-right tabular-nums font-medium whitespace-nowrap"
+                      >
+                        {formatUsd(adj)}
+                        <span className="ml-1 text-[10px] text-muted-foreground">
+                          /{ind.timePeriod === "annual" ? "yr" : "mo"}
+                        </span>
                       </td>
                     );
                   })}

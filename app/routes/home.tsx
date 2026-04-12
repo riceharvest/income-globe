@@ -78,6 +78,11 @@ export default function Home() {
   const [indicators, setIndicators] = useState<IndicatorSelection[]>([
     createDefaultIndicator(),
   ]);
+  const [globalSettings, setGlobalSettings] = useState({
+    currency: "usd_ppp" as "usd_ppp" | "usd_market",
+    prices: "constant_2024" as "constant_2024" | "current",
+    timePeriod: "monthly" as "monthly" | "annual",
+  });
 
   // Global Cmd+K shortcut
   useEffect(() => {
@@ -248,7 +253,12 @@ export default function Home() {
         {/* Scrollable body */}
         <div className="flex-1 overflow-auto p-6 space-y-6">
           {/* Indicator selector */}
-          <IndicatorsPanel indicators={indicators} onChange={setIndicators} />
+          <IndicatorsPanel
+            indicators={indicators}
+            onChange={setIndicators}
+            globalSettings={globalSettings}
+            onGlobalSettingsChange={setGlobalSettings}
+          />
 
           {/* Sort controls (grid only) */}
           {viewMode === "grid" && (

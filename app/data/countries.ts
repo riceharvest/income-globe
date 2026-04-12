@@ -173,6 +173,37 @@ export function formatIndicatorLabel(sel: IndicatorSelection): string {
   return parts.join(" · ");
 }
 
+// Simplified short label — indicator name + percentile only (no unit/currency/price mode)
+export function formatShortLabel(sel: IndicatorSelection): string {
+  if (sel.domain === "gender") {
+    return indicatorLabels[sel.indicator];
+  }
+  // Income: indicator name + percentile group
+  const shortNames: Record<string, string> = {
+    pretax_national: "Pre-tax",
+    posttax_national: "Post-tax",
+    consumption: "Consumption",
+    wealth: "Wealth",
+    labor_income: "Wages",
+  };
+  const name = shortNames[sel.indicator] ?? sel.indicator;
+  if (sel.percentileGroup === "threshold" && sel.threshold !== undefined) {
+    return `${name} · P${sel.threshold}`;
+  }
+  if (sel.percentileGroup === "custom" && sel.customRange) {
+    return `${name} · P${sel.customRange[0]}-${sel.customRange[1]}`;
+  }
+  const pgLabels: Record<PercentileGroup, string> = {
+    bottom50: "Bottom 50%",
+    middle40: "Middle 40%",
+    top10: "Top 10%",
+    top1: "Top 1%",
+    custom: "Custom",
+    threshold: "Threshold",
+  };
+  return `${name} · ${pgLabels[sel.percentileGroup]}`;
+}
+
 // ── Country Data Types ──
 
 export interface IncomeByIndicator {
