@@ -28,8 +28,8 @@ interface ColumnDef {
 }
 
 const STATIC_COLUMNS: ColumnDef[] = [
-  { id: "row", label: "#", defaultVisible: true },
-  { id: "name", label: "Country", defaultVisible: true },
+  { id: "row", label: "#", defaultVisible: false },
+  { id: "name", label: "Country", defaultVisible: false },
   { id: "region", label: "Region", defaultVisible: false },
   { id: "population", label: "Population", defaultVisible: false },
   { id: "hdi", label: "HDI", defaultVisible: false },
@@ -48,14 +48,13 @@ const STATIC_COLUMNS: ColumnDef[] = [
   { id: "contraceptiveUse", label: "Contraceptive Use %", defaultVisible: false },
 ];
 
-const STORAGE_KEY = "income-globe-column-visibility";
+const STORAGE_KEY = "income-globe-column-visibility-v2";
 
-function loadVisibility(indicatorCount: number): Record<string, boolean> {
+function loadVisibility(_indicatorCount: number): Record<string, boolean> {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
-      // Validate it's a plain object
       if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
         return parsed as Record<string, boolean>;
       }
