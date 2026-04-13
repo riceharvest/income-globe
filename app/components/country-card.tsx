@@ -4,6 +4,7 @@ import { IncomeBar } from "~/components/income-bar";
 import { formatUsd, type CountryData } from "~/data/countries";
 import { getSkinColor } from "~/data/skin-color-map";
 import { getBreastSize, cupSizeToLetter } from "~/data/breast-size-map";
+import { getChildMarriage } from "~/data/child-marriage-map";
 import { ChevronRight } from "lucide-react";
 
 // Map von Luschan (1-36) to skin color hex
@@ -163,6 +164,15 @@ export function CountryCard({ country, maxMedian = 9000, sortKey = "income", onS
                   : `${(country.population / 1_000).toFixed(0)}K`}
               </Badge>
             )}
+            {(() => {
+              const cm = getChildMarriage(country.code);
+              if (!cm) return null;
+              return (
+                <Badge variant="secondary" className="text-[10px] font-normal" title="Child marriage %">
+                  {cm}%
+                </Badge>
+              );
+            })()}
           </div>
         </CardContent>
       </Card>
