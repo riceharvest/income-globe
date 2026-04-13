@@ -97,6 +97,18 @@ export const breastSizeByCountry: Record<string, number> = {
 
   // Central Asia  
   KZ: 4, UZ: 3, TM: 3, KG: 3, TJ: 3,
+
+  // Missing countries - Africa
+  SD: 2, BI: 2, CV: 2, CF: 2, TD: 2, KM: 2, DJ: 2, GQ: 2, ER: 2,
+  SZ: 3, GA: 2, LS: 2, MR: 2, MU: 2, MZ: 2, ST: 2, SC: 2, SO: 2, SS: 2,
+
+  // Missing - Asia
+  AF: 2, AM: 2, AZ: 2, BT: 2, BN: 2, KH: 2, HK: 2, IL: 4, JO: 2, KW: 2,
+  LA: 2, MV: 2, MN: 3, KP: 2, OM: 2, PS: 2, QA: 2, SG: 2, LK: 2, TW: 2,
+  TL: 2, YE: 2,
+
+  // Missing - Europe & Others
+  CY: 3, AE: 2, BH: 2, AD: 2, BY: 3, XK: 3, LI: 3, MT: 3, MC: 3, SM: 3, VA: 1, SB: 2,
 };
 
 export function getBreastSize(countryCode: string): number | undefined {
