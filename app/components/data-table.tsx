@@ -212,7 +212,7 @@ export function DataTable({
               <th className={cn("hidden p-2 text-left align-middle text-xs", !colVisible("region", true) && "hidden")}>
                 <button onClick={() => toggleSort("region")} className="inline-flex items-center gap-1 font-semibold hover:text-foreground">Region <SortIcon col="region" /></button>
               </th>
-              <th className={cn("hidden p-2 text-right align-middle text-xs", !colVisible("population", true) && "hidden")}>
+              <th className="p-2 text-right align-middle text-xs">
                 <button onClick={() => toggleSort("population")} className="inline-flex items-center gap-1 font-semibold hover:text-foreground">Population <SortIcon col="population" /></button>
               </th>
               <th className={cn("hidden p-2 text-right align-middle text-xs", !colVisible("hdi", true) && "hidden")}>
@@ -280,7 +280,7 @@ export function DataTable({
                     </Link>
                   </td>
                   <td className={cn("hidden p-2 text-muted-foreground align-middle text-xs", !colVisible("region", true) && "hidden")}>{country.region}</td>
-                  <td className={cn("hidden p-2 text-muted-foreground text-right tabular-nums align-middle text-xs", !colVisible("population", true) && "hidden")}>
+                  <td className="p-2 text-muted-foreground text-right tabular-nums align-middle text-xs">
                     {country.population ? country.population >= 1_000_000 ? `${(country.population / 1_000_000).toFixed(1)}M` : `${(country.population / 1_000).toFixed(0)}k` : "—"}
                   </td>
                   <td className={cn("hidden p-2 text-muted-foreground text-right tabular-nums align-middle text-xs", !colVisible("hdi", true) && "hidden")}>{country.hdi != null ? country.hdi.toFixed(2) : "—"}</td>

@@ -2,6 +2,7 @@ import { Card, CardContent } from "~/components/ui/card";
 import { Badge } from "~/components/ui/badge";
 import { IncomeBar } from "~/components/income-bar";
 import { formatUsd, type CountryData } from "~/data/countries";
+import { getSkinColor, vonLuschanToFitzpatrick } from "~/data/skin-color-map";
 import { ChevronRight } from "lucide-react";
 import { cn } from "~/lib/utils";
 
@@ -117,6 +118,17 @@ export function CountryCard({ country, maxMedian = 9000, sortKey = "income", onS
             <Badge variant="secondary" className="text-[10px] font-normal">
               {country.dataYear}
             </Badge>
+            {(() => {
+              const skin = getSkinColor(country.code);
+              if (!skin) return null;
+              const fitz = vonLuschanToFitzpatrick((skin.min + skin.max) / 2);
+              const fitzLabel = ["Very light", "Light", "Light intermediate", "Olive", "Brown", "Dark", "Very dark"][fitz - 1];
+              return (
+                <Badge variant="secondary" className="text-[10px] font-normal" title={`Skin color: von Luschan ${skin.min}-${skin.max}`}>
+                  {fitzLabel}
+                </Badge>
+              );
+            })()}
           </div>
         </CardContent>
       </Card>
