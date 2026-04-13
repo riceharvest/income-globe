@@ -45,10 +45,10 @@ export const breastSizeByCountry: Record<string, number> = {
   GE: 3, // Georgia B
 
   // Smaller: B
-  BR: 3, // Brazil B
+  BR: 2, // Brazil A-B
   MX: 3, // Mexico B
-  AR: 3, // Argentina B
-  CL: 3, // Chile B
+  AR: 3, // Argentina B-C
+  CL: 4, // Chile C
 
   // Small: A-B
   JP: 2, // Japan A-B
@@ -65,7 +65,7 @@ export const breastSizeByCountry: Record<string, number> = {
   MM: 1, // Myanmar AA
 
   // Small: A
-  EG: 2, // Egypt A
+  EG: 3, // Egypt B
   SA: 2, // Saudi A
   IQ: 2, // Iraq A
   IR: 2, // Iran A
@@ -87,9 +87,9 @@ export const breastSizeByCountry: Record<string, number> = {
   // Pacific  
   FJ: 2, PG: 2, WS: 1, TO: 1, VU: 1,
 
-  // Americas
-  CU: 2, DO: 2, JM: 2, HT: 2, GT: 2, HN: 2, SV: 2, NI: 2,
-  CR: 2, PA: 2, EC: 2, PE: 2, BO: 2, PY: 2, UY: 3,
+// Americas
+  CU: 2, DO: 2, JM: 2, HT: 2, GT: 2, HN: 2, SV: 2, NI: 2, CR: 2, PA: 2, EC: 1,
+  PE: 2, BO: 2, PY: 2, UY: 4,
 
   // Europe - more
   SK: 4, RO: 4, UA: 4, RS: 4, MD: 3, HR: 3, SI: 3,
