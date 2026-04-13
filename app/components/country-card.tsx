@@ -137,7 +137,7 @@ export function CountryCard({ country, maxMedian = 9000, sortKey = "income", onS
               return (
                 <div
                   className="flex h-8 w-8 items-center justify-center rounded-sm border border-black/50 text-[10px] font-mono font-bold"
-                  style={{ backgroundColor: getSkinColorHex(avg), color: avg > 20 ? '#fff' : '#000' }}
+                  style={{ backgroundColor: getSkinColorHex(avg), color: avg > 18 ? '#fff' : '#000', textShadow: '0 0 2px rgba(0,0,0,0.5)' }}
                   title={`Skin: ${skin.min}-${skin.max} (von Luschan)`}
                 >
                   {avg}
@@ -149,7 +149,7 @@ export function CountryCard({ country, maxMedian = 9000, sortKey = "income", onS
               if (!cup) return null;
               return (
                 <div
-                  className="flex h-8 w-8 items-center justify-center rounded-sm border border-black/50 text-[10px] font-bold bg-pink-100"
+                  className="flex h-8 w-8 items-center justify-center rounded-sm border border-black/50 text-[10px] font-bold bg-pink-500 text-white"
                   title={`Breast size: ${cupSizeToLetter(cup)}`}
                 >
                   {cupSizeToLetter(cup)}
