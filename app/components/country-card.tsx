@@ -135,7 +135,7 @@ export function CountryCard({ country, maxMedian = 9000, sortKey = "income", onS
               const avg = Math.round((skin.min + skin.max) / 2);
               return (
                 <div
-                  className="flex h-4 w-5 items-center justify-center rounded-sm border border-black/50 text-[8px] font-mono"
+                  className="flex h-8 w-8 items-center justify-center rounded-sm border border-black/50 text-[10px] font-mono font-bold"
                   style={{ backgroundColor: getSkinColorHex(avg), color: avg > 20 ? '#fff' : '#000' }}
                   title={`Skin: ${skin.min}-${skin.max} (von Luschan)`}
                 >
