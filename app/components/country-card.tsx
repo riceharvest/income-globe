@@ -12,6 +12,8 @@ import { getEnglishSpeaking } from "~/data/english-speaking-map";
 import { getReligion } from "~/data/religion-map";
 import { getEducation } from "~/data/education-map";
 import { getOutOfWedlock } from "~/data/outofwedlock-map";
+import { getFemaleObesity } from "~/data/female-obesity-map";
+import { getHiv } from "~/data/hiv-map";
 import { ChevronRight } from "lucide-react";
 
 // Map von Luschan (1-36) to skin color hex
@@ -46,6 +48,8 @@ export type SortKey =
   | "religion"
   | "education"
   | "outOfWedlock"
+  | "femaleObesity"
+  | "hiv"
   | "income";
 
 interface CountryCardProps {
@@ -101,6 +105,14 @@ const SORT_FIELD_META: Record<SortKey, { label: string; format: (c: CountryData)
     const o = getOutOfWedlock(c.code);
     return o ? `${o}%` : null;
   }, barValue: (c) => getOutOfWedlock(c.code) ?? 0, barMax: 100, unit: "%", color: "text-foreground" },
+  femaleObesity: { label: "Fem Obesity", format: (c) => {
+    const o = getFemaleObesity(c.code);
+    return o ? `${o}%` : null;
+  }, barValue: (c) => getFemaleObesity(c.code) ?? 0, barMax: 60, unit: "%", color: "text-foreground" },
+  hiv: { label: "HIV", format: (c) => {
+    const h = getHiv(c.code);
+    return h ? `${h}%` : null;
+  }, barValue: (c) => getHiv(c.code) ?? 0, barMax: 30, unit: "%", color: "text-foreground" },
 };
 
 function MiniBar({ value, max }: { value: number; max: number }) {
