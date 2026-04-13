@@ -7,12 +7,12 @@ import { ChevronRight } from "lucide-react";
 
 // Map von Luschan (1-36) to skin color hex
 function getSkinColorHex(vls: number): string {
-  // Interpolate from very light (pinkish) to very dark (deep brown)
-  const t = (vls - 1) / 35; // 0-1
-  // RGB values: very light skin (~255,224,189) to very dark (~40,20,15)
-  const r = Math.round(255 - t * 215);
-  const g = Math.round(224 - t * 204);
-  const b = Math.round(189 - t * 174);
+  // Non-linear curve for more dramatic difference
+  const t = ((vls - 1) / 35) ** 0.7;
+  // Real skin tones: very light (#ffdbac) to very dark (#2d1a0f)
+  const r = Math.round(255 - t * 207);
+  const g = Math.round(219 - t * 183);
+  const b = Math.round(172 - t * 139);
   return `rgb(${r},${g},${b})`;
 }
 import { cn } from "~/lib/utils";
@@ -132,14 +132,25 @@ export function CountryCard({ country, maxMedian = 9000, sortKey = "income", onS
             {(() => {
               const skin = getSkinColor(country.code);
               if (!skin) return null;
-              const avg = (skin.min + skin.max) / 2;
-              const colorHex = getSkinColorHex(avg);
+              // Show gradient from min to max (4 strips)
+              const steps = 4;
+              const strips = Array.from({ length: steps }, (_, i) => {
+                const vls = skin.min + ((skin.max - skin.min) * i) / (steps - 1);
+                return (
+                  <div
+                    key={i}
+                    className="flex-1 first:rounded-l-sm last:rounded-r-sm"
+                    style={{ backgroundColor: getSkinColorHex(vls) }}
+                  />
+                );
+              });
               return (
                 <div
-                  className="w-4 h-4 rounded-sm border border-border/30"
-                  style={{ backgroundColor: colorHex }}
+                  className="flex h-4 rounded-sm border border-border/30 overflow-hidden"
                   title={`Skin: ${skin.min}-${skin.max} (von Luschan)`}
-                />
+                >
+                  {strips}
+                </div>
               );
             })()}
           </div>
