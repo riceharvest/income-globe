@@ -61,7 +61,10 @@ const SORT_FIELD_META: Record<SortKey, { label: string; format: (c: CountryData)
   femaleHeightCm: { label: "Height (F)", format: (c) => c.femaleHeightCm ? `${c.femaleHeightCm}cm` : null, barValue: (c) => c.femaleHeightCm ?? 0, barMax: 170, unit: "cm", color: "text-foreground" },
   femaleBmi: { label: "BMI (F)", format: (c) => c.femaleBmi ? String(c.femaleBmi) : null, barValue: (c) => c.femaleBmi ?? 0, barMax: 35, unit: "", color: "text-foreground" },
   adolescentBirthRate: { label: "Adolescent Birth", format: (c) => c.gender.adolescentBirthRate != null ? String(c.gender.adolescentBirthRate) : null, barValue: (c) => c.gender.adolescentBirthRate ?? 0, barMax: 200, unit: "", color: "text-foreground" },
-  childMarriagePercent: { label: "Child Marriage", format: (c) => c.gender.childMarriagePercent != null ? `${c.gender.childMarriagePercent}%` : null, barValue: (c) => c.gender.childMarriagePercent ?? 0, barMax: 60, unit: "%", color: "text-foreground" },
+  childMarriagePercent: { label: "Child Marriage", format: (c) => {
+    const val = c.gender.childMarriagePercent ?? getChildMarriage(c.code);
+    return val != null ? `${val}%` : null;
+  }, barValue: (c) => c.gender.childMarriagePercent ?? getChildMarriage(c.code) ?? 0, barMax: 80, unit: "%", color: "text-foreground" },
   laborForceGap: { label: "Labor Gap", format: (c) => c.gender.laborForceGap != null ? `${c.gender.laborForceGap}%` : null, barValue: (c) => Math.abs(c.gender.laborForceGap ?? 0), barMax: 80, unit: "%", color: "text-foreground" },
   contraceptiveUse: { label: "Contraceptive", format: (c) => c.gender.contraceptiveUse != null ? `${c.gender.contraceptiveUse}%` : null, barValue: (c) => c.gender.contraceptiveUse ?? 0, barMax: 100, unit: "%", color: "text-foreground" },
 };
@@ -164,16 +167,7 @@ export function CountryCard({ country, maxMedian = 9000, sortKey = "income", onS
                   : `${(country.population / 1_000).toFixed(0)}K`}
               </Badge>
             )}
-            {(() => {
-              const cm = getChildMarriage(country.code);
-              if (!cm) return null;
-              return (
-                <Badge variant="secondary" className="text-[10px] font-normal" title="Child marriage %">
-                  {cm}%
-                </Badge>
-              );
-            })()}
-          </div>
+            </div>
         </CardContent>
       </Card>
     </div>
