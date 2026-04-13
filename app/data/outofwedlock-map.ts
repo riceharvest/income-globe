@@ -18,6 +18,18 @@ export const outOfWedlockByCountry: Record<string, number> = {
   IR: 5, LB: 10, SY: 15, JO: 30,
   // Eastern Europe
   RU: 35, UA: 30, BY: 25, MD: 25, RS: 30, BA: 30, AL: 25, MK: 20, XK: 30,
+
+  // Africa - Sub-Saharan
+  LY: 3, SD: 5, AO: 25, BJ: 15, BW: 30, BF: 12, BI: 15, CV: 20, CM: 25, CF: 10,
+  TD: 5, KM: 5, CG: 20, CD: 10, CI: 20, DJ: 5, GQ: 20, ER: 5, SZ: 15, GA: 18,
+  GM: 10, GN: 15, GW: 20, LS: 20, LR: 25, MG: 20, MW: 15, ML: 10, MR: 8,
+  MU: 25, MZ: 30, NA: 30, NE: 5, ST: 20, SN: 15, SC: 30, SL: 15, SO: 5,
+  SS: 5, TG: 15, ZM: 15, AF: 2, AM: 5, AZ: 5, BT: 5, BN: 8, KH: 15, GE: 15,
+  HK: 25, KZ: 10, KG: 5, LA: 15, MV: 10, MN: 5, MM: 15, NP: 10, KP: 2,
+  PS: 5, LK: 20, TJ: 5, TW: 25, TL: 15, TM: 5, UZ: 5, AD: 30, LI: 20, MC: 30,
+  ME: 20, NL: 50, SM: 30, VA: 5, AR: 65, BO: 65, BR: 65, CU: 40, DO: 60,
+  EC: 70, SV: 65, GT: 65, HN: 65, NI: 55, PA: 55, PY: 65, PE: 65, UY: 55,
+  VE: 55, FJ: 25, PG: 5, SB: 5, VU: 10, WS: 20, TO: 25,
 };
 
 export function getOutOfWedlock(countryCode: string): number | undefined {
