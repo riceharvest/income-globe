@@ -3,6 +3,7 @@ import { Badge } from "~/components/ui/badge";
 import { IncomeBar } from "~/components/income-bar";
 import { formatUsd, type CountryData } from "~/data/countries";
 import { getSkinColor } from "~/data/skin-color-map";
+import { getBreastSize, cupSizeToLetter } from "~/data/breast-size-map";
 import { ChevronRight } from "lucide-react";
 
 // Map von Luschan (1-36) to skin color hex
@@ -140,6 +141,18 @@ export function CountryCard({ country, maxMedian = 9000, sortKey = "income", onS
                   title={`Skin: ${skin.min}-${skin.max} (von Luschan)`}
                 >
                   {avg}
+                </div>
+              );
+            })()}
+            {(() => {
+              const cup = getBreastSize(country.code);
+              if (!cup) return null;
+              return (
+                <div
+                  className="flex h-8 w-8 items-center justify-center rounded-sm border border-black/50 text-[10px] font-bold bg-pink-100"
+                  title={`Breast size: ${cupSizeToLetter(cup)}`}
+                >
+                  {cupSizeToLetter(cup)}
                 </div>
               );
             })()}
