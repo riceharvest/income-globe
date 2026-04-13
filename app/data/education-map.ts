@@ -15,7 +15,7 @@ export const educationByCountry: Record<string, number> = {
   IN: 55, PK: 45, BD: 55, NP: 55, LK: 70, MV: 70, AF: 35, BT: 55,
 
   // Southeast Asia
-  PH: 75, TH: 65, VN: 70, ID: 60, MY: 75, KH: 55, LA: 50, MM: 55, SG: 90,
+  PH: 75, TH: 65, VN: 70, ID: 60, MY: 75, KH: 55, LA: 50, MM: 55,
 
   // Middle East
   IL: 90, TR: 70, IR: 70, SA: 65, AE: 80, KW: 75, QA: 80, BH: 80,

@@ -7,6 +7,11 @@ import {
   adjustForTimePeriod,
   formatUsd,
 } from "~/data/countries";
+import { getFemaleObesity } from "~/data/female-obesity-map";
+import { getHiv } from "~/data/hiv-map";
+import { getOutOfWedlock } from "~/data/outofwedlock-map";
+import { getReligion } from "~/data/religion-map";
+import { getEducation } from "~/data/education-map";
 import { Skeleton } from "~/components/ui/skeleton";
 import { ArrowUp, ArrowDown, ArrowUpDown, Columns3 } from "lucide-react";
 import { Button } from "~/components/ui/button";
@@ -129,6 +134,11 @@ export function DataTable({
       else if (sortCol === "childMarriagePercent") cmp = (a.gender.childMarriagePercent ?? -1) - (b.gender.childMarriagePercent ?? -1);
       else if (sortCol === "laborForceGap") cmp = (a.gender.laborForceGap ?? -1) - (b.gender.laborForceGap ?? -1);
       else if (sortCol === "contraceptiveUse") cmp = (a.gender.contraceptiveUse ?? -1) - (b.gender.contraceptiveUse ?? -1);
+      else if (sortCol === "femaleObesity") cmp = (getFemaleObesity(a.code) ?? -1) - (getFemaleObesity(b.code) ?? -1);
+      else if (sortCol === "hiv") cmp = (getHiv(a.code) ?? -1) - (getHiv(b.code) ?? -1);
+      else if (sortCol === "outOfWedlock") cmp = (getOutOfWedlock(a.code) ?? -1) - (getOutOfWedlock(b.code) ?? -1);
+      else if (sortCol === "religion") cmp = (getReligion(a.code)?.pct ?? -1) - (getReligion(b.code)?.pct ?? -1);
+      else if (sortCol === "education") cmp = (getEducation(a.code) ?? -1) - (getEducation(b.code) ?? -1);
       else if (sortCol.startsWith("ind_")) {
         const idx = parseInt(sortCol.split("_")[1]);
         const ind = indicators[idx];
@@ -262,6 +272,21 @@ export function DataTable({
               <th className={cn("hidden p-2 text-right align-middle text-xs", !colVisible("contraceptiveUse", true) && "hidden")}>
                 <button onClick={() => toggleSort("contraceptiveUse")} className="inline-flex items-center gap-1 font-semibold hover:text-foreground">Contraceptive % <SortIcon col="contraceptiveUse" /></button>
               </th>
+              <th className={cn("hidden p-2 text-right align-middle text-xs", !colVisible("femaleObesity", true) && "hidden")}>
+                <button onClick={() => toggleSort("femaleObesity")} className="inline-flex items-center gap-1 font-semibold hover:text-foreground">Fem. Obesity % <SortIcon col="femaleObesity" /></button>
+              </th>
+              <th className={cn("hidden p-2 text-right align-middle text-xs", !colVisible("hiv", true) && "hidden")}>
+                <button onClick={() => toggleSort("hiv")} className="inline-flex items-center gap-1 font-semibold hover:text-foreground">HIV % <SortIcon col="hiv" /></button>
+              </th>
+              <th className={cn("hidden p-2 text-right align-middle text-xs", !colVisible("outOfWedlock", true) && "hidden")}>
+                <button onClick={() => toggleSort("outOfWedlock")} className="inline-flex items-center gap-1 font-semibold hover:text-foreground">Out Wedlock % <SortIcon col="outOfWedlock" /></button>
+              </th>
+              <th className={cn("hidden p-2 text-right align-middle text-xs", !colVisible("religion", true) && "hidden")}>
+                <button onClick={() => toggleSort("religion")} className="inline-flex items-center gap-1 font-semibold hover:text-foreground">Religion <SortIcon col="religion" /></button>
+              </th>
+              <th className={cn("hidden p-2 text-right align-middle text-xs", !colVisible("education", true) && "hidden")}>
+                <button onClick={() => toggleSort("education")} className="inline-flex items-center gap-1 font-semibold hover:text-foreground">Education % <SortIcon col="education" /></button>
+              </th>
               {indicators.map((ind, i) => {
                 const colId = makeIndicatorColId(i);
                 return (
@@ -317,6 +342,21 @@ export function DataTable({
                   </td>
                   <td className={cn("hidden p-2 text-muted-foreground text-right tabular-nums align-middle text-xs", !colVisible("contraceptiveUse", true) && "hidden")}>
                     {country.gender.contraceptiveUse != null ? `${country.gender.contraceptiveUse}%` : "—"}
+                  </td>
+                  <td className={cn("hidden p-2 text-muted-foreground text-right tabular-nums align-middle text-xs", !colVisible("femaleObesity", true) && "hidden")}>
+                    {getFemaleObesity(country.code) != null ? `${getFemaleObesity(country.code)}%` : "—"}
+                  </td>
+                  <td className={cn("hidden p-2 text-muted-foreground text-right tabular-nums align-middle text-xs", !colVisible("hiv", true) && "hidden")}>
+                    {getHiv(country.code) != null ? `${getHiv(country.code)}%` : "—"}
+                  </td>
+                  <td className={cn("hidden p-2 text-muted-foreground text-right tabular-nums align-middle text-xs", !colVisible("outOfWedlock", true) && "hidden")}>
+                    {getOutOfWedlock(country.code) != null ? `${getOutOfWedlock(country.code)}%` : "—"}
+                  </td>
+                  <td className={cn("hidden p-2 text-muted-foreground text-right tabular-nums align-middle text-xs", !colVisible("religion", true) && "hidden")}>
+                    {(() => { const r = getReligion(country.code); return r ? `${r.main} ${r.pct}%` : "—"; })()}
+                  </td>
+                  <td className={cn("hidden p-2 text-muted-foreground text-right tabular-nums align-middle text-xs", !colVisible("education", true) && "hidden")}>
+                    {getEducation(country.code) != null ? `${getEducation(country.code)}%` : "—"}
                   </td>
                   {indicators.map((ind, i) => {
                     const colId = makeIndicatorColId(i);

@@ -7,7 +7,7 @@ export const urbanByCountry: Record<string, number> = {
   IN: 36, PK: 38, BD: 35, ID: 58, PH: 47, TH: 53, VN: 38, MY: 78,
   MX: 81, BR: 88, AR: 92, CO: 78, PE: 82, CL: 88, NG: 52, KE: 29,
   ET: 27, TZ: 38, UG: 20, ZA: 68, GH: 59, EG: 43, MA: 60, DZ: 75,
-  SA: 85, AE: 87, IL: 93, TR: 93, SA: 84,
+  SA: 85, AE: 87, IL: 93, TR: 93,
 };
 
 export function getUrban(countryCode: string): number | undefined {
