@@ -42,10 +42,15 @@ const STATIC_COLUMNS: ColumnDef[] = [
   { id: "englishSpeakingPercent", label: "English %" },
   { id: "femaleHeightCm", label: "Avg Height (F)" },
   { id: "femaleBmi", label: "Avg BMI (F)" },
-  { id: "adolescentBirthRate", label: "Adolescent Birth Rate" },
+  { id: "femaleObesity", label: "Fem. Obesity %" },
+  { id: "hiv", label: "HIV %" },
+  { id: "adolescentBirthRate", label: "Adolescent Birth" },
   { id: "childMarriagePercent", label: "Child Marriage %" },
-  { id: "laborForceGap", label: "Labor Force Gap" },
-  { id: "contraceptiveUse", label: "Contraceptive Use %" },
+  { id: "outOfWedlock", label: "Out Wedlock %" },
+  { id: "laborForceGap", label: "Labor Gap %" },
+  { id: "contraceptiveUse", label: "Contraceptive %" },
+  { id: "religion", label: "Religion" },
+  { id: "education", label: "Education %" },
 ];
 
 // Indicator columns — hidden unless user explicitly enabled them
