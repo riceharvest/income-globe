@@ -70,7 +70,6 @@ export const breastSizeByCountry: Record<string, number> = {
   IQ: 2, // Iraq A
   IR: 2, // Iran A
   PK: 2, // Pakistan A
-  ZA: 2, // South Africa A
   MA: 2, // Morocco A
   DZ: 2, // Algeria A
   TN: 2, // Tunisia A
@@ -78,11 +77,12 @@ export const breastSizeByCountry: Record<string, number> = {
   SY: 2, // Syria A
   LB: 2, // Lebanon A
 
-  // Africa - mostly A
-  ET: 2, NG: 2, GH: 2, KE: 2, TZ: 2, MG: 2, CM: 2,
+  // Africa - mixed, medical studies show higher volumes than surveys suggest
+  ET: 2, NG: 3, GH: 3, KE: 3, TZ: 2, MG: 2, CM: 2,  // NG/GH/KE: studies show B
   CI: 2, SN: 2, UG: 2, ZW: 2, ZM: 2, MW: 2, AO: 2,
   CD: 2, CG: 2, BW: 2, NA: 2, RW: 2, BJ: 2, TG: 2,
   ML: 2, BF: 2, NE: 2, LR: 2, SL: 2, GM: 2, GW: 2, GN: 2,
+  ZA: 3,  // South Africa B
   
   // Pacific  
   FJ: 2, PG: 2, WS: 1, TO: 1, VU: 1,
