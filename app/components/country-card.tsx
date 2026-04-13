@@ -132,24 +132,14 @@ export function CountryCard({ country, maxMedian = 9000, sortKey = "income", onS
             {(() => {
               const skin = getSkinColor(country.code);
               if (!skin) return null;
-              // Show gradient from min to max (4 strips)
-              const steps = 4;
-              const strips = Array.from({ length: steps }, (_, i) => {
-                const vls = skin.min + ((skin.max - skin.min) * i) / (steps - 1);
-                return (
-                  <div
-                    key={i}
-                    className="flex-1 first:rounded-l-sm last:rounded-r-sm"
-                    style={{ backgroundColor: getSkinColorHex(vls) }}
-                  />
-                );
-              });
+              const avg = Math.round((skin.min + skin.max) / 2);
               return (
                 <div
-                  className="flex h-4 rounded-sm border border-border/30 overflow-hidden"
+                  className="flex h-4 w-5 items-center justify-center rounded-sm border border-black/50 text-[8px] font-mono"
+                  style={{ backgroundColor: getSkinColorHex(avg), color: avg > 20 ? '#fff' : '#000' }}
                   title={`Skin: ${skin.min}-${skin.max} (von Luschan)`}
                 >
-                  {strips}
+                  {avg}
                 </div>
               );
             })()}
