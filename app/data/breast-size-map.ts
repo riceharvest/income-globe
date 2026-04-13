@@ -32,9 +32,9 @@ export const breastSizeByCountry: Record<string, number> = {
   // Medium: B-C
   AU: 3, // Australia B-C
   NZ: 3, // NZ B-C
-  FR: 3, // France B-C
-  ES: 3, // Spain B-C
-  IT: 3, // Italy B-C
+  FR: 4, // France C (averageheight)
+  ES: 4, // Spain C (gitnux)-C
+  IT: 2, // Italy A (geofactbook)-C
   GR: 3, // Greece B
   HU: 3, // Hungary B
 
