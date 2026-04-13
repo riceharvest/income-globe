@@ -5,6 +5,10 @@ import { formatUsd, type CountryData } from "~/data/countries";
 import { getSkinColor } from "~/data/skin-color-map";
 import { getBreastSize, cupSizeToLetter } from "~/data/breast-size-map";
 import { getChildMarriage } from "~/data/child-marriage-map";
+import { getAdolescentBirthRate } from "~/data/adolescent-birth-map";
+import { getContraceptiveUse } from "~/data/contraceptive-map";
+import { getLaborForceGap } from "~/data/labor-force-gap-map";
+import { getEnglishSpeaking } from "~/data/english-speaking-map";
 import { ChevronRight } from "lucide-react";
 
 // Map von Luschan (1-36) to skin color hex
@@ -55,18 +59,30 @@ const SORT_FIELD_META: Record<SortKey, { label: string; format: (c: CountryData)
   costOfLivingIndex: { label: "Cost of Living", format: (c) => c.costOfLivingIndex ? String(c.costOfLivingIndex) : null, barValue: (c) => c.costOfLivingIndex ?? 0, barMax: 150, unit: "", color: "text-foreground" },
   internetPenetration: { label: "Internet", format: (c) => c.internetPenetration != null ? `${c.internetPenetration}%` : null, barValue: (c) => c.internetPenetration ?? 0, barMax: 100, unit: "%", color: "text-foreground" },
   unemploymentRate: { label: "Unemployment", format: (c) => c.unemploymentRate != null ? `${c.unemploymentRate}%` : null, barValue: (c) => c.unemploymentRate ?? 0, barMax: 30, unit: "%", color: "text-foreground" },
-  englishSpeakingPercent: { label: "English", format: (c) => c.englishSpeakingPercent != null ? `${c.englishSpeakingPercent}%` : null, barValue: (c) => c.englishSpeakingPercent ?? 0, barMax: 100, unit: "%", color: "text-foreground" },
+  englishSpeakingPercent: { label: "English", format: (c) => {
+    const val = c.englishSpeakingPercent ?? getEnglishSpeaking(c.code);
+    return val != null ? `${val}%` : null;
+  }, barValue: (c) => c.englishSpeakingPercent ?? getEnglishSpeaking(c.code) ?? 0, barMax: 100, unit: "%", color: "text-foreground" },
   obesityRate: { label: "Obesity", format: (c) => c.obesityRate != null ? `${c.obesityRate}%` : null, barValue: (c) => c.obesityRate ?? 0, barMax: 60, unit: "%", color: "text-foreground" },
   smokingRate: { label: "Smoking", format: (c) => c.smokingRate != null ? `${c.smokingRate}%` : null, barValue: (c) => c.smokingRate ?? 0, barMax: 40, unit: "%", color: "text-foreground" },
   femaleHeightCm: { label: "Height (F)", format: (c) => c.femaleHeightCm ? `${c.femaleHeightCm}cm` : null, barValue: (c) => c.femaleHeightCm ?? 0, barMax: 170, unit: "cm", color: "text-foreground" },
   femaleBmi: { label: "BMI (F)", format: (c) => c.femaleBmi ? String(c.femaleBmi) : null, barValue: (c) => c.femaleBmi ?? 0, barMax: 35, unit: "", color: "text-foreground" },
-  adolescentBirthRate: { label: "Adolescent Birth", format: (c) => c.gender.adolescentBirthRate != null ? String(c.gender.adolescentBirthRate) : null, barValue: (c) => c.gender.adolescentBirthRate ?? 0, barMax: 200, unit: "", color: "text-foreground" },
+  adolescentBirthRate: { label: "Adolescent Birth", format: (c) => {
+    const val = c.gender.adolescentBirthRate ?? getAdolescentBirthRate(c.code);
+    return val != null ? String(val) : null;
+  }, barValue: (c) => c.gender.adolescentBirthRate ?? getAdolescentBirthRate(c.code) ?? 0, barMax: 200, unit: "", color: "text-foreground" },
   childMarriagePercent: { label: "Child Marriage", format: (c) => {
     const val = c.gender.childMarriagePercent ?? getChildMarriage(c.code);
     return val != null ? `${val}%` : null;
   }, barValue: (c) => c.gender.childMarriagePercent ?? getChildMarriage(c.code) ?? 0, barMax: 80, unit: "%", color: "text-foreground" },
-  laborForceGap: { label: "Labor Gap", format: (c) => c.gender.laborForceGap != null ? `${c.gender.laborForceGap}%` : null, barValue: (c) => Math.abs(c.gender.laborForceGap ?? 0), barMax: 80, unit: "%", color: "text-foreground" },
-  contraceptiveUse: { label: "Contraceptive", format: (c) => c.gender.contraceptiveUse != null ? `${c.gender.contraceptiveUse}%` : null, barValue: (c) => c.gender.contraceptiveUse ?? 0, barMax: 100, unit: "%", color: "text-foreground" },
+  laborForceGap: { label: "Labor Gap", format: (c) => {
+    const val = c.gender.laborForceGap ?? getLaborForceGap(c.code);
+    return val != null ? `${val}%` : null;
+  }, barValue: (c) => Math.abs(c.gender.laborForceGap ?? getLaborForceGap(c.code) ?? 0), barMax: 80, unit: "%", color: "text-foreground" },
+  contraceptiveUse: { label: "Contraceptive", format: (c) => {
+    const val = c.gender.contraceptiveUse ?? getContraceptiveUse(c.code);
+    return val != null ? `${val}%` : null;
+  }, barValue: (c) => c.gender.contraceptiveUse ?? getContraceptiveUse(c.code) ?? 0, barMax: 100, unit: "%", color: "text-foreground" },
 };
 
 function MiniBar({ value, max }: { value: number; max: number }) {
