@@ -2,8 +2,19 @@ import { Card, CardContent } from "~/components/ui/card";
 import { Badge } from "~/components/ui/badge";
 import { IncomeBar } from "~/components/income-bar";
 import { formatUsd, type CountryData } from "~/data/countries";
-import { getSkinColor, vonLuschanToFitzpatrick } from "~/data/skin-color-map";
+import { getSkinColor } from "~/data/skin-color-map";
 import { ChevronRight } from "lucide-react";
+
+// Map von Luschan (1-36) to skin color hex
+function getSkinColorHex(vls: number): string {
+  // Interpolate from very light (pinkish) to very dark (deep brown)
+  const t = (vls - 1) / 35; // 0-1
+  // RGB values: very light skin (~255,224,189) to very dark (~40,20,15)
+  const r = Math.round(255 - t * 215);
+  const g = Math.round(224 - t * 204);
+  const b = Math.round(189 - t * 174);
+  return `rgb(${r},${g},${b})`;
+}
 import { cn } from "~/lib/utils";
 
 export type SortKey =
@@ -121,12 +132,14 @@ export function CountryCard({ country, maxMedian = 9000, sortKey = "income", onS
             {(() => {
               const skin = getSkinColor(country.code);
               if (!skin) return null;
-              const fitz = vonLuschanToFitzpatrick((skin.min + skin.max) / 2);
-              const fitzLabel = ["Very light", "Light", "Light intermediate", "Olive", "Brown", "Dark", "Very dark"][fitz - 1];
+              const avg = (skin.min + skin.max) / 2;
+              const colorHex = getSkinColorHex(avg);
               return (
-                <Badge variant="secondary" className="text-[10px] font-normal" title={`Skin color: von Luschan ${skin.min}-${skin.max}`}>
-                  {fitzLabel}
-                </Badge>
+                <div
+                  className="w-4 h-4 rounded-sm border border-border/30"
+                  style={{ backgroundColor: colorHex }}
+                  title={`Skin: ${skin.min}-${skin.max} (von Luschan)`}
+                />
               );
             })()}
           </div>
