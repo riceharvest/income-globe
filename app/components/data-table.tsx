@@ -12,6 +12,7 @@ import { getHiv } from "~/data/hiv-map";
 import { getOutOfWedlock } from "~/data/outofwedlock-map";
 import { getReligion } from "~/data/religion-map";
 import { getEducation } from "~/data/education-map";
+import { getSkinColor } from "~/data/skin-color-map";
 import { Skeleton } from "~/components/ui/skeleton";
 import { ArrowUp, ArrowDown, ArrowUpDown, Columns3 } from "lucide-react";
 import { Button } from "~/components/ui/button";
@@ -56,6 +57,7 @@ const STATIC_COLUMNS: ColumnDef[] = [
   { id: "contraceptiveUse", label: "Contraceptive %" },
   { id: "religion", label: "Religion" },
   { id: "education", label: "Education %" },
+  { id: "skinColor", label: "Skin Color" },
 ];
 
 // Indicator columns — hidden unless user explicitly enabled them
@@ -139,6 +141,10 @@ export function DataTable({
       else if (sortCol === "outOfWedlock") cmp = (getOutOfWedlock(a.code) ?? -1) - (getOutOfWedlock(b.code) ?? -1);
       else if (sortCol === "religion") cmp = (getReligion(a.code)?.pct ?? -1) - (getReligion(b.code)?.pct ?? -1);
       else if (sortCol === "education") cmp = (getEducation(a.code) ?? -1) - (getEducation(b.code) ?? -1);
+      else if (sortCol === "skinColor") {
+        const sa = getSkinColor(a.code), sb = getSkinColor(b.code);
+        cmp = (sa ? (sa.min + sa.max) / 2 : -1) - (sb ? (sb.min + sb.max) / 2 : -1);
+      }
       else if (sortCol.startsWith("ind_")) {
         const idx = parseInt(sortCol.split("_")[1]);
         const ind = indicators[idx];
@@ -287,6 +293,9 @@ export function DataTable({
               <th className={cn("hidden p-2 text-right align-middle text-xs", !colVisible("education", true) && "hidden")}>
                 <button onClick={() => toggleSort("education")} className="inline-flex items-center gap-1 font-semibold hover:text-foreground">Education % <SortIcon col="education" /></button>
               </th>
+              <th className={cn("hidden p-2 text-right align-middle text-xs", !colVisible("skinColor", true) && "hidden")}>
+                <button onClick={() => toggleSort("skinColor")} className="inline-flex items-center gap-1 font-semibold hover:text-foreground">Skin Color <SortIcon col="skinColor" /></button>
+              </th>
               {indicators.map((ind, i) => {
                 const colId = makeIndicatorColId(i);
                 return (
@@ -357,6 +366,9 @@ export function DataTable({
                   </td>
                   <td className={cn("hidden p-2 text-muted-foreground text-right tabular-nums align-middle text-xs", !colVisible("education", true) && "hidden")}>
                     {getEducation(country.code) != null ? `${getEducation(country.code)}%` : "—"}
+                  </td>
+                  <td className={cn("hidden p-2 text-muted-foreground text-right tabular-nums align-middle text-xs", !colVisible("skinColor", true) && "hidden")}>
+                    {(() => { const s = getSkinColor(country.code); return s ? `${s.min}-${s.max}` : "—"; })()}
                   </td>
                   {indicators.map((ind, i) => {
                     const colId = makeIndicatorColId(i);
