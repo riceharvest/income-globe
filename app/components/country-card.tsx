@@ -11,6 +11,7 @@ import { getLaborForceGap } from "~/data/labor-force-gap-map";
 import { getEnglishSpeaking } from "~/data/english-speaking-map";
 import { getReligion } from "~/data/religion-map";
 import { getEducation } from "~/data/education-map";
+import { getOutOfWedlock } from "~/data/outofwedlock-map";
 import { ChevronRight } from "lucide-react";
 
 // Map von Luschan (1-36) to skin color hex
@@ -44,6 +45,7 @@ export type SortKey =
   | "contraceptiveUse"
   | "religion"
   | "education"
+  | "outOfWedlock"
   | "income";
 
 interface CountryCardProps {
@@ -95,6 +97,10 @@ const SORT_FIELD_META: Record<SortKey, { label: string; format: (c: CountryData)
     const e = getEducation(c.code);
     return e ? `${e}%` : null;
   }, barValue: (c) => getEducation(c.code) ?? 0, barMax: 100, unit: "%", color: "text-foreground" },
+  outOfWedlock: { label: "Out Wedlock", format: (c) => {
+    const o = getOutOfWedlock(c.code);
+    return o ? `${o}%` : null;
+  }, barValue: (c) => getOutOfWedlock(c.code) ?? 0, barMax: 100, unit: "%", color: "text-foreground" },
 };
 
 function MiniBar({ value, max }: { value: number; max: number }) {
