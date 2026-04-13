@@ -30,7 +30,7 @@ export const meta = () => [
 ];
 
 type ViewMode = "grid" | "table";
-type GroupId = "country" | "economic" | "health" | "gender" | "income";
+type GroupId = "country" | "economic" | "health" | "gender" | "culture" | "income";
 type SortKey =
   | "name"
   | "region"
@@ -74,9 +74,10 @@ const SORT_LABELS: Record<string, string> = {
 const GROUP_COLUMNS: Record<GroupId, string[]> = {
   country: ["name", "region"],
   economic: ["population", "minimumWageEur", "costOfLivingIndex", "internetPenetration", "unemploymentRate", "englishSpeakingPercent"],
-  health: ["obesityRate", "smokingRate", "femaleHeightCm", "femaleBmi"],
-  gender: ["adolescentBirthRate", "childMarriagePercent", "laborForceGap", "contraceptiveUse"],
-  income: [],
+  health: ["obesityRate", "smokingRate", "femaleHeightCm", "femaleBmi", "femaleObesity", "hiv"],
+  gender: ["adolescentBirthRate", "childMarriagePercent", "laborForceGap", "contraceptiveUse", "outOfWedlock"],
+  culture: ["religion", "education", "outOfWedlock"],
+  income: ["income"],
 };
 
 export function ErrorBoundary() {
@@ -102,7 +103,7 @@ export default function Home() {
   const [region, setRegion] = useState<Region>("All Regions");
   const [sort, setSort] = useState<SortKey>("income");
   const [activeGroups, setActiveGroups] = useState<Set<GroupId>>(
-    new Set(["country", "economic", "health", "gender", "income"])
+    new Set(["country", "economic", "health", "gender", "culture", "income"])
   );
   const [selectedCountryCode, setSelectedCountryCode] = useState<string | null>(null);
   const [showCommandPalette, setShowCommandPalette] = useState(false);

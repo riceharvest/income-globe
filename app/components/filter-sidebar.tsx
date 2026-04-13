@@ -3,13 +3,14 @@ import { type Region, regions } from "~/data/countries";
 import { Globe, ChevronDown } from "lucide-react";
 import { useState } from "react";
 
-type GroupId = "country" | "economic" | "health" | "gender" | "income";
+type GroupId = "country" | "economic" | "health" | "gender" | "culture" | "income";
 
 const GROUPS: { id: GroupId; label: string }[] = [
   { id: "country", label: "Country" },
   { id: "economic", label: "Economic" },
   { id: "health", label: "Health" },
   { id: "gender", label: "Gender" },
+  { id: "culture", label: "Culture" },
   { id: "income", label: "Income" },
 ];
 
