@@ -156,6 +156,13 @@ export function CountryCard({ country, maxMedian = 9000, sortKey = "income", onS
                 </div>
               );
             })()}
+            {country.population && (
+              <Badge variant="outline" className="text-[10px] font-normal">
+                {country.population >= 1_000_000 
+                  ? `${(country.population / 1_000_000).toFixed(1)}M` 
+                  : `${(country.population / 1_000).toFixed(0)}K`}
+              </Badge>
+            )}
           </div>
         </CardContent>
       </Card>
