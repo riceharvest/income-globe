@@ -1,238 +1,131 @@
-// Skin color data by country
-// Based on von Luschan scale (1-36): 1-5 very light, 6-10 light, 11-15 light intermediate, 
-// 16-21 olive, 22-28 dark/brown, 29-36 very dark/black
-// Ranges capture internal diversity (e.g., North Africa: Berber to Sub-Saharan heritage)
-//
-// References: 
-// - Jablonski & Chaplin (2000, 2004) Global skin pigmentation data
-// - ISSA (International Skin Spectra Archive) 2025 Nature dataset
-// - Biasutti map (1940s) regional pigmentation data
+// Skin color data by country (von Luschan scale 1-36)
+// Based on Jablonski Chaplin, ISSA, Biasutti map
 
 export const skinColorByCountry: Record<string, { min: number; max: number }> = {
   // North Africa
-  DZ: { min: 12, max: 28 },
-  LY: { min: 15, max: 30 },
-  MA: { min: 10, max: 27 },
-  TN: { min: 10, max: 26 },
-  EG: { min: 12, max: 30 },
-  SD: { min: 20, max: 35 },
-  SO: { min: 25, max: 35 },
-  DJ: { min: 20, max: 32 },
+  DZ: { min: 12, max: 28 }, LY: { min: 15, max: 30 }, MA: { min: 10, max: 27 },
+  TN: { min: 10, max: 26 }, EG: { min: 12, max: 30 }, SD: { min: 20, max: 35 },
+  SO: { min: 25, max: 35 }, DJ: { min: 20, max: 32 },
 
   // Middle East
-  IR: { min: 14, max: 28 },
-  IQ: { min: 18, max: 30 },
-  IL: { min: 6, max: 18 },
-  JO: { min: 14, max: 26 },
-  KW: { min: 14, max: 25 },
-  QA: { min: 14, max: 24 },
-  SA: { min: 12, max: 28 },
-  AE: { min: 12, max: 24 },
-  BH: { min: 12, max: 22 },
-  LB: { min: 10, max: 22 },
-  SY: { min: 12, max: 24 },
-  TR: { min: 6, max: 20 },
+  IR: { min: 14, max: 28 }, IQ: { min: 18, max: 30 }, IL: { min: 6, max: 18 },
+  JO: { min: 14, max: 26 }, KW: { min: 14, max: 25 }, QA: { min: 14, max: 24 },
+  SA: { min: 12, max: 28 }, AE: { min: 12, max: 24 }, BH: { min: 12, max: 22 },
+  LB: { min: 10, max: 22 }, SY: { min: 12, max: 24 }, TR: { min: 6, max: 20 },
+  GE: { min: 14, max: 28 }, // Caucasus
 
   // Sub-Saharan Africa - West
-  NG: { min: 20, max: 35 },
-  GH: { min: 18, max: 32 },
-  CI: { min: 20, max: 34 },
-  SN: { min: 14, max: 28 },
-  ML: { min: 18, max: 32 },
-  BF: { min: 20, max: 32 },
-  NE: { min: 20, max: 32 },
-  TG: { min: 16, max: 30 },
-  BJ: { min: 18, max: 30 },
-  GW: { min: 22, max: 32 },
-  GN: { min: 18, max: 32 },
-  SL: { min: 24, max: 34 },
-  LR: { min: 24, max: 34 },
-  GM: { min: 18, max: 30 },
+  NG: { min: 20, max: 35 }, GH: { min: 18, max: 32 }, CI: { min: 20, max: 34 },
+  SN: { min: 14, max: 28 }, ML: { min: 18, max: 32 }, BF: { min: 20, max: 32 },
+  NE: { min: 20, max: 32 }, TG: { min: 16, max: 30 }, BJ: { min: 18, max: 30 },
+  GW: { min: 22, max: 32 }, GN: { min: 18, max: 32 }, SL: { min: 24, max: 34 },
+  LR: { min: 24, max: 34 }, GM: { min: 18, max: 30 },
 
   // Sub-Saharan Africa - East
-  ET: { min: 18, max: 32 },
-  ER: { min: 20, max: 34 },
-  KE: { min: 22, max: 34 },
-  TZ: { min: 22, max: 34 },
-  UG: { min: 22, max: 34 },
-  RW: { min: 20, max: 32 },
-  BI: { min: 22, max: 34 },
-  MZ: { min: 24, max: 34 },
-  MW: { min: 24, max: 34 },
-  ZM: { min: 22, max: 34 },
-  ZW: { min: 22, max: 34 },
-  MG: { min: 24, max: 34 },
+  ET: { min: 18, max: 32 }, ER: { min: 20, max: 34 }, KE: { min: 22, max: 34 },
+  TZ: { min: 22, max: 34 }, UG: { min: 22, max: 34 }, RW: { min: 20, max: 32 },
+  BI: { min: 22, max: 34 }, MZ: { min: 24, max: 34 }, MW: { min: 24, max: 34 },
+  ZM: { min: 22, max: 34 }, ZW: { min: 22, max: 34 }, MG: { min: 24, max: 34 },
   MU: { min: 16, max: 28 },
 
   // Sub-Saharan Africa - Southern
-  ZA: { min: 14, max: 32 },
-  BW: { min: 18, max: 30 },
-  NA: { min: 16, max: 30 },
-  SZ: { min: 20, max: 32 },
-  LS: { min: 20, max: 32 },
+  ZA: { min: 14, max: 32 }, BW: { min: 18, max: 30 }, NA: { min: 16, max: 30 },
+  SZ: { min: 20, max: 32 }, LS: { min: 20, max: 32 },
 
   // Sub-Saharan Africa - Central
-  AO: { min: 22, max: 34 },
-  CD: { min: 28, max: 36 },
-  CG: { min: 24, max: 34 },
-  GA: { min: 20, max: 32 },
-  GQ: { min: 20, max: 32 },
-  CM: { min: 18, max: 32 },
-  CF: { min: 28, max: 36 },
-  TD: { min: 24, max: 34 },
-  SS: { min: 28, max: 36 },
+  AO: { min: 22, max: 34 }, CD: { min: 28, max: 36 }, CG: { min: 24, max: 34 },
+  GA: { min: 20, max: 32 }, GQ: { min: 20, max: 32 }, CM: { min: 18, max: 32 },
+  CF: { min: 28, max: 36 }, TD: { min: 24, max: 34 }, SS: { min: 28, max: 36 },
 
   // Sub-Saharan Africa - Indian Ocean
-  KM: { min: 22, max: 32 },
-  SC: { min: 18, max: 28 },
-  ST: { min: 18, max: 28 },
+  KM: { min: 22, max: 32 }, SC: { min: 18, max: 28 }, ST: { min: 18, max: 28 },
 
   // Europe - Northern
-  NO: { min: 2, max: 10 },
-  SE: { min: 2, max: 10 },
-  FI: { min: 2, max: 10 },
-  DK: { min: 3, max: 12 },
-  IS: { min: 3, max: 12 },
+  NO: { min: 2, max: 10 }, SE: { min: 2, max: 10 }, FI: { min: 2, max: 10 },
+  DK: { min: 3, max: 12 }, IS: { min: 3, max: 12 },
 
   // Europe - British Isles
-  GB: { min: 3, max: 14 },
-  IE: { min: 3, max: 12 },
+  GB: { min: 3, max: 14 }, IE: { min: 3, max: 12 },
 
   // Europe - Western
-  DE: { min: 4, max: 14 },
-  NL: { min: 4, max: 14 },
-  BE: { min: 4, max: 14 },
-  AT: { min: 4, max: 14 },
-  CH: { min: 4, max: 14 },
-  LU: { min: 4, max: 14 },
+  DE: { min: 4, max: 14 }, NL: { min: 4, max: 14 }, BE: { min: 4, max: 14 },
+  AT: { min: 4, max: 14 }, CH: { min: 4, max: 14 }, LU: { min: 4, max: 14 },
 
   // Europe - France
   FR: { min: 4, max: 16 },
 
   // Europe - Southern
-  ES: { min: 6, max: 18 },
-  PT: { min: 6, max: 18 },
-  IT: { min: 5, max: 18 },
-  GR: { min: 6, max: 18 },
-  MT: { min: 8, max: 18 },
-  CY: { min: 8, max: 18 },
+  ES: { min: 6, max: 18 }, PT: { min: 6, max: 18 }, IT: { min: 5, max: 18 },
+  GR: { min: 6, max: 18 }, MT: { min: 8, max: 18 }, CY: { min: 8, max: 18 },
 
   // Europe - Eastern
-  PL: { min: 4, max: 14 },
-  CZ: { min: 4, max: 14 },
-  SK: { min: 4, max: 14 },
-  HU: { min: 4, max: 14 },
-  RO: { min: 5, max: 16 },
-  BG: { min: 5, max: 16 },
-  HR: { min: 5, max: 16 },
-  SI: { min: 5, max: 14 },
-  RS: { min: 5, max: 16 },
-  BA: { min: 5, max: 16 },
-  ME: { min: 5, max: 16 },
-  AL: { min: 6, max: 18 },
-  MK: { min: 5, max: 16 },
-  UA: { min: 5, max: 16 },
-  BY: { min: 4, max: 14 },
-  MD: { min: 5, max: 16 },
-  LT: { min: 4, max: 14 },
-  LV: { min: 4, max: 14 },
+  PL: { min: 4, max: 14 }, CZ: { min: 4, max: 14 }, SK: { min: 4, max: 14 },
+  HU: { min: 4, max: 14 }, RO: { min: 5, max: 16 }, BG: { min: 5, max: 16 },
+  HR: { min: 5, max: 16 }, SI: { min: 5, max: 14 }, RS: { min: 5, max: 16 },
+  BA: { min: 5, max: 16 }, ME: { min: 5, max: 16 }, AL: { min: 6, max: 18 },
+  MK: { min: 5, max: 16 }, UA: { min: 5, max: 16 }, BY: { min: 4, max: 14 },
+  MD: { min: 5, max: 16 }, LT: { min: 4, max: 14 }, LV: { min: 4, max: 14 },
   EE: { min: 3, max: 12 },
 
   // Russia & Central Asia
-  RU: { min: 4, max: 20 },
-  KZ: { min: 6, max: 20 },
-  UZ: { min: 8, max: 22 },
-  TM: { min: 10, max: 24 },
-  KG: { min: 10, max: 24 },
-  TJ: { min: 10, max: 24 },
+  RU: { min: 4, max: 20 }, KZ: { min: 6, max: 20 }, UZ: { min: 8, max: 22 },
+  TM: { min: 10, max: 24 }, KG: { min: 10, max: 24 }, TJ: { min: 10, max: 24 },
 
   // South Asia
-  IN: { min: 10, max: 28 },
-  PK: { min: 12, max: 28 },
-  BD: { min: 10, max: 26 },
-  NP: { min: 8, max: 22 },
-  BT: { min: 8, max: 20 },
-  LK: { min: 12, max: 26 },
-  MV: { min: 10, max: 22 },
+  IN: { min: 10, max: 28 }, PK: { min: 12, max: 28 }, BD: { min: 10, max: 26 },
+  NP: { min: 8, max: 22 }, BT: { min: 8, max: 20 }, LK: { min: 12, max: 26 },
+  MV: { min: 10, max: 22 }, AF: { min: 10, max: 26 }, // Afghanistan
 
   // East Asia
-  CN: { min: 8, max: 22 },
-  MN: { min: 6, max: 18 },
-  KR: { min: 8, max: 20 },
-  JP: { min: 6, max: 18 },
-  TW: { min: 8, max: 20 },
+  CN: { min: 8, max: 22 }, MN: { min: 6, max: 18 }, KR: { min: 8, max: 20 },
+  JP: { min: 6, max: 18 }, TW: { min: 8, max: 20 }, HK: { min: 8, max: 20 },
+  KP: { min: 8, max: 18 }, // North Korea
 
   // Southeast Asia - Continental
-  VN: { min: 10, max: 24 },
-  TH: { min: 12, max: 26 },
-  LA: { min: 12, max: 24 },
-  MM: { min: 12, max: 26 },
-  KH: { min: 14, max: 28 },
+  VN: { min: 10, max: 24 }, TH: { min: 12, max: 26 }, LA: { min: 12, max: 24 },
+  MM: { min: 12, max: 26 }, KH: { min: 14, max: 28 },
 
   // Southeast Asia - Maritime
-  PH: { min: 10, max: 28 },
-  ID: { min: 16, max: 30 },
-  MY: { min: 12, max: 26 },
-  SG: { min: 10, max: 24 },
-  BN: { min: 12, max: 24 },
+  PH: { min: 10, max: 28 }, ID: { min: 16, max: 30 }, MY: { min: 12, max: 26 },
+  SG: { min: 10, max: 24 }, BN: { min: 12, max: 24 },
 
-  // Oceania
-  PG: { min: 28, max: 36 },
-  SB: { min: 28, max: 36 },
-  VU: { min: 26, max: 34 },
-  WS: { min: 22, max: 32 },
-  TO: { min: 22, max: 32 },
-  FJ: { min: 22, max: 34 },
-  AU: { min: 4, max: 20 },
-  NZ: { min: 4, max: 18 },
+  // Oceania - Pacific
+  PG: { min: 28, max: 36 }, SB: { min: 28, max: 36 }, VU: { min: 26, max: 34 },
+  WS: { min: 22, max: 32 }, TO: { min: 22, max: 32 }, FJ: { min: 22, max: 34 },
+
+  // Oceania - Australia & NZ
+  AU: { min: 4, max: 20 }, NZ: { min: 4, max: 18 },
 
   // North America
-  US: { min: 4, max: 28 },
-  CA: { min: 3, max: 24 },
+  US: { min: 4, max: 28 }, CA: { min: 3, max: 24 },
 
   // Caribbean
-  CU: { min: 10, max: 28 },
-  JM: { min: 12, max: 28 },
-  HT: { min: 18, max: 32 },
-  DO: { min: 10, max: 26 },
-  TT: { min: 10, max: 26 },
+  CU: { min: 10, max: 28 }, JM: { min: 12, max: 28 }, HT: { min: 18, max: 32 },
+  DO: { min: 10, max: 26 }, TT: { min: 10, max: 26 },
 
   // Central America
-  MX: { min: 8, max: 28 },
-  GT: { min: 10, max: 28 },
-  HN: { min: 10, max: 28 },
-  SV: { min: 10, max: 26 },
-  NI: { min: 12, max: 28 },
-  CR: { min: 10, max: 26 },
+  MX: { min: 8, max: 28 }, GT: { min: 10, max: 28 }, HN: { min: 10, max: 28 },
+  SV: { min: 10, max: 26 }, NI: { min: 12, max: 28 }, CR: { min: 10, max: 26 },
   PA: { min: 10, max: 26 },
 
   // South America - Andes
-  CO: { min: 8, max: 28 },
-  EC: { min: 10, max: 28 },
-  PE: { min: 10, max: 28 },
-  BO: { min: 10, max: 28 },
-  CL: { min: 6, max: 20 },
+  CO: { min: 8, max: 28 }, EC: { min: 10, max: 28 }, PE: { min: 10, max: 28 },
+  BO: { min: 10, max: 28 }, CL: { min: 6, max: 20 },
 
   // South America - Southern
-  AR: { min: 6, max: 22 },
-  UY: { min: 6, max: 20 },
-  PY: { min: 8, max: 26 },
+  AR: { min: 6, max: 22 }, UY: { min: 6, max: 20 }, PY: { min: 8, max: 26 },
 
   // South America - Brazil
   BR: { min: 6, max: 30 },
 
   // South America - Caribbean coast
-  VE: { min: 10, max: 28 },
-  GY: { min: 18, max: 32 },
-  SR: { min: 20, max: 32 },
+  VE: { min: 10, max: 28 }, GY: { min: 18, max: 32 }, SR: { min: 20, max: 32 },
 };
 
-// Helper to get skin color for a country (returns undefined if not available)
 export function getSkinColor(countryCode: string): { min: number; max: number } | undefined {
   return skinColorByCountry[countryCode];
 }
 
-// Convert von Luschan to Fitzpatrick (approximate)
 export function vonLuschanToFitzpatrick(vls: number): number {
   if (vls <= 5) return 1;
   if (vls <= 10) return 2;

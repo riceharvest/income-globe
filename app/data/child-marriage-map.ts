@@ -97,6 +97,11 @@ export const childMarriageByCountry: Record<string, number | null> = {
   // Europe
   TR: 12, // Turkey
   AL: 25, // Albania
+  GE: 17, // Georgia
+  HK: 5, // Hong Kong (very low)
+
+  // Asia
+  KP: 5, // North Korea (very low)
   XK: 16, // Kosovo
   RS: 14, // Serbia
   ME: 16, // Montenegro
