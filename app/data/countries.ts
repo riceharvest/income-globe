@@ -397,7 +397,11 @@ export const countriesData: CountryData[] = [
   //   - femaleHeightCm: NCD-RisC / WHO GHO 2019 (mean adult women)
   //   - femaleBmi: WHO GHO mean BMI adult women (estimated from obesity rate where unavailable)
   //   - minimumWageEur: ILO/national sources, monthly, market EUR
-  //   - englishSpeakingPercent: EF EPI 2025; estimated from regional patterns
+  //   - englishSpeakingPercent: EF EPI 2025 scores converted to % who can hold conversation;
+  //     Wikipedia/List of Countries by English-Speaking Population; Wikipedia census data.
+  //     Note: EF EPI 2025 uses 0-800 scale (600+=Very High, 550-599=High, 500-549=Moderate,
+  //     450-499=Low, <450=Very Low). For % English speakers, Wikipedia and census data used where
+  //     available; estimated from EF EPI band + regional context otherwise.
   //   - mainIndustry: CIA World Factbook / IMF
   //   - unemploymentRate: World Bank / ILO 2023
   // ═══════════════════════════════════════════
