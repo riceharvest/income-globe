@@ -564,13 +564,14 @@ export function WorldMap({
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (isDragging && dragStartRef.current && transform.k > 1) {
-      const dx = e.clientX - dragStartRef.current.x;
-      const dy = e.clientY - dragStartRef.current.y;
+    const start = dragStartRef.current;
+    if (isDragging && start) {
+      const dx = e.clientX - start.x;
+      const dy = e.clientY - start.y;
       setTransform((prev) => ({
         ...prev,
-        x: dragStartRef.current!.tx + dx,
-        y: dragStartRef.current!.ty + dy,
+        x: start.tx + dx,
+        y: start.ty + dy,
       }));
     }
 
