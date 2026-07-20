@@ -615,6 +615,7 @@ export function getSortValue(
   // Basic properties
   if (metricKey === "name") return country.name;
   if (metricKey === "region") return country.region;
+  if (metricKey === "code") return country.code;
   if (metricKey === "population") return country.population ?? 0;
   if (metricKey === "hdi") return country.hdi ?? 0;
   if (metricKey === "minimumWageEur") return country.minimumWageEur ?? 0;

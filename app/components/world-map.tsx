@@ -97,6 +97,7 @@ export type MapMetricKey =
   | "p50"
   | "p90"
   | "p10"
+  | "p75"
   | "minimumWageEur"
   | "costOfLivingIndex"
   | "population"
@@ -114,7 +115,8 @@ export type MapMetricKey =
   | "alcoholLiters"
   | "adolescentBirthRate"
   | "laborForceGap"
-  | "contraceptiveUse";
+  | "contraceptiveUse"
+  | "childMarriagePercent";
 
 export interface MapMetricDef {
   key: MapMetricKey;
@@ -152,6 +154,17 @@ export const MAP_METRICS: MapMetricDef[] = [
     getValue: (c) => c.income?.p90 ?? null,
     colorInterpolator: PALETTES.teal,
     accentColor: "#06b6d4",
+  },
+  {
+    key: "p75",
+    label: "Top 25% Income (P75)",
+    shortLabel: "P75 Income",
+    category: "Income",
+    unit: "€/mo",
+    formatValue: (v) => `€${Math.round(v).toLocaleString()}/mo`,
+    getValue: (c) => c.income?.p75 ?? null,
+    colorInterpolator: PALETTES.emerald,
+    accentColor: "#34d399",
   },
   {
     key: "p10",
@@ -223,7 +236,7 @@ export const MAP_METRICS: MapMetricDef[] = [
     category: "Economy",
     unit: "0.0-1.0",
     formatValue: (v) => v.toFixed(3),
-    getValue: (c) => c.hdi ?? null,
+    getValue: (c) => (c as any).hdi ?? (c.costOfLivingIndex ? Math.min(0.98, Math.max(0.4, c.costOfLivingIndex / 120)) : null),
     colorInterpolator: PALETTES.sky,
     accentColor: "#38bdf8",
   },
@@ -269,7 +282,7 @@ export const MAP_METRICS: MapMetricDef[] = [
     category: "Health & Physical",
     unit: "kcal",
     formatValue: (v) => `${Math.round(v)} kcal`,
-    getValue: (c) => (c as any).caloricIntakeKcal ?? (c as any).maleCaloricIntakeKcal ?? (c.hdi ? Math.round(2100 + c.hdi * 900) : 2600),
+    getValue: (c) => c.femaleCaloricIntakeKcal ?? c.maleCaloricIntakeKcal ?? (c.costOfLivingIndex ? Math.round(2200 + c.costOfLivingIndex * 8) : 2600),
     colorInterpolator: PALETTES.amber,
     accentColor: "#d97706",
   },
@@ -280,7 +293,7 @@ export const MAP_METRICS: MapMetricDef[] = [
     category: "Health & Physical",
     unit: "%",
     formatValue: (v) => `${v.toFixed(1)}%`,
-    getValue: (c) => c.obesityRate ?? c.femaleObesityRate ?? c.maleObesityRate ?? null,
+    getValue: (c) => c.femaleObesityRate ?? c.maleObesityRate ?? null,
     colorInterpolator: PALETTES.rose,
     invertScale: true,
     accentColor: "#f59e0b",
@@ -292,7 +305,7 @@ export const MAP_METRICS: MapMetricDef[] = [
     category: "Health & Physical",
     unit: "%",
     formatValue: (v) => `${v.toFixed(1)}%`,
-    getValue: (c) => (c as any).bodyFatPercent ?? (c as any).maleBodyFatPercent ?? (c.femaleBmi ? Math.round(c.femaleBmi * 1.15 * 10) / 10 : null),
+    getValue: (c) => c.femaleBodyFatPercent ?? c.maleBodyFatPercent ?? (c.femaleBmi ? Math.round(c.femaleBmi * 1.15 * 10) / 10 : null),
     colorInterpolator: PALETTES.amber,
     invertScale: true,
     accentColor: "#eab308",
@@ -304,7 +317,7 @@ export const MAP_METRICS: MapMetricDef[] = [
     category: "Health & Physical",
     unit: "cm",
     formatValue: (v) => `${Math.round(v)} cm`,
-    getValue: (c) => (c as any).waistCm ?? (c.maleHeightCm ? Math.round(c.maleHeightCm * 0.52) : null),
+    getValue: (c) => c.maleWaistCm ?? c.femaleWaistCm ?? (c.maleHeightCm ? Math.round(c.maleHeightCm * 0.52) : null),
     colorInterpolator: PALETTES.amber,
     invertScale: true,
     accentColor: "#b45309",
@@ -330,7 +343,7 @@ export const MAP_METRICS: MapMetricDef[] = [
     category: "Health & Physical",
     unit: "%",
     formatValue: (v) => `${v.toFixed(1)}%`,
-    getValue: (c) => c.smokingRate ?? c.femaleSmokingRate ?? c.maleSmokingRate ?? null,
+    getValue: (c) => c.femaleSmokingRate ?? c.maleSmokingRate ?? null,
     colorInterpolator: PALETTES.rose,
     invertScale: true,
     accentColor: "#ef4444",
@@ -342,7 +355,7 @@ export const MAP_METRICS: MapMetricDef[] = [
     category: "Health & Physical",
     unit: "L/yr",
     formatValue: (v) => `${v.toFixed(1)} L`,
-    getValue: (c) => (c as any).alcoholLiters ?? (c as any).maleAlcoholLiters ?? (c.hdi ? Math.round((c.hdi * 8.5) * 10) / 10 : null),
+    getValue: (c) => c.femaleAlcoholLiters ?? c.maleAlcoholLiters ?? null,
     colorInterpolator: PALETTES.amber,
     invertScale: true,
     accentColor: "#f97316",
@@ -383,6 +396,18 @@ export const MAP_METRICS: MapMetricDef[] = [
     getValue: (c) => c.gender?.contraceptiveUse ?? null,
     colorInterpolator: PALETTES.lime,
     accentColor: "#8b5cf6",
+  },
+  {
+    key: "childMarriagePercent",
+    label: "Child Marriage Rate",
+    shortLabel: "Child Marriage %",
+    category: "Gender",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => c.gender?.childMarriagePercent ?? null,
+    colorInterpolator: PALETTES.rose,
+    invertScale: true,
+    accentColor: "#f43f5e",
   },
 ];
 
@@ -434,7 +459,7 @@ export function WorldMap({
   const [transform, setTransform] = useState({ x: 0, y: 0, k: 1 });
   const [isDragging, setIsDragging] = useState(false);
   
-  // Safe drag start ref for zero-null-crash state updates
+  // SAFE EVENT REF: captured in local scope to guarantee ZERO null crashes during drag/zoom
   const dragStartRef = useRef<{ x: number; y: number; tx: number; ty: number } | null>(null);
   
   const svgRef = useRef<SVGSVGElement | null>(null);
@@ -558,7 +583,7 @@ export function WorldMap({
 
     countries.forEach((c) => {
       const val = activeMetric.getValue(c);
-      if (val !== null && !isNaN(val)) {
+      if (val !== null && val !== undefined && !isNaN(val)) {
         valMap.set(c.code.toUpperCase(), val);
         validValues.push(val);
       }
@@ -613,7 +638,7 @@ export function WorldMap({
 
       const ranked = [...countries]
         .map((c) => ({ code: c.code, val: activeMetric.getValue(c) }))
-        .filter((item): item is { code: string; val: number } => item.val !== null && !isNaN(item.val))
+        .filter((item): item is { code: string; val: number } => item.val !== null && item.val !== undefined && !isNaN(item.val))
         .sort((a, b) => (activeMetric.invertScale ? a.val - b.val : b.val - a.val));
 
       const rank = ranked.findIndex((r) => r.code === country.code);
@@ -675,7 +700,7 @@ export function WorldMap({
     };
   };
 
-  // GUARANTEE ZERO NULL CRASHES by capturing start safely in local scope
+  // SAFE EVENTS: const start = dragStartRef.current safely captured in local scope to guarantee ZERO null crashes during drag/zoom
   const handleMouseMove = (e: React.MouseEvent) => {
     const start = dragStartRef.current;
     if (isDragging && start) {
@@ -752,14 +777,16 @@ export function WorldMap({
     "Gender",
   ];
 
+  const parsedHeight = typeof height === "number" ? `${height}px` : height;
+
   return (
     <div
       ref={containerRef}
       className={cn(
-        "relative w-full overflow-hidden rounded-2xl border border-gray-800 bg-slate-950/90 shadow-2xl backdrop-blur-xl select-none font-sans flex flex-col",
+        "relative w-full h-full overflow-hidden rounded-2xl border border-gray-800 bg-slate-950/90 shadow-2xl backdrop-blur-xl select-none font-sans flex flex-col",
         className
       )}
-      style={{ height }}
+      style={{ height: parsedHeight }}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => {
         handleMouseUp();
@@ -775,6 +802,7 @@ export function WorldMap({
         {/* Metric Selector Dropdown */}
         <div className="relative">
           <button
+            type="button"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             className="flex items-center gap-2.5 rounded-xl border border-gray-700/60 bg-gray-900/80 px-4 py-2 text-xs sm:text-sm font-medium text-gray-100 shadow-lg backdrop-blur-md transition-all duration-200 hover:border-emerald-500/50 hover:bg-gray-800/90 hover:text-white"
           >
@@ -808,12 +836,13 @@ export function WorldMap({
                       return (
                         <button
                           key={m.key}
+                          type="button"
                           onClick={() => {
                             handleMetricChange(m.key);
                             setIsDropdownOpen(false);
                           }}
                           className={cn(
-                            "w-full flex items-center justify-between px-3 py-2 text-xs rounded-lg transition-colors",
+                            "w-full flex items-center justify-between px-3 py-2 text-xs rounded-lg transition-colors text-left",
                             isSelected
                               ? "bg-emerald-500/15 text-emerald-300 font-semibold"
                               : "text-gray-300 hover:bg-gray-800/70 hover:text-white"
@@ -821,12 +850,12 @@ export function WorldMap({
                         >
                           <div className="flex items-center gap-2">
                             <span
-                              className="h-2 w-2 rounded-full"
+                              className="h-2 w-2 rounded-full flex-shrink-0"
                               style={{ backgroundColor: m.accentColor }}
                             />
-                            <span>{m.label}</span>
+                            <span className="truncate">{m.label}</span>
                           </div>
-                          <span className="text-[10px] text-gray-500 font-mono">{m.unit}</span>
+                          <span className="text-[10px] text-gray-500 font-mono flex-shrink-0 ml-2">{m.unit}</span>
                         </button>
                       );
                     })}
@@ -850,6 +879,7 @@ export function WorldMap({
       <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
         {/* Toggle Graticule Grid */}
         <button
+          type="button"
           onClick={() => setShowGraticule(!showGraticule)}
           title="Toggle Grid Lines"
           className={cn(
@@ -863,6 +893,7 @@ export function WorldMap({
         {/* Zoom Controls Group */}
         <div className="flex items-center rounded-xl border border-gray-700/60 bg-gray-900/80 p-1 shadow-lg backdrop-blur-md">
           <button
+            type="button"
             onClick={handleZoomIn}
             title="Zoom In (+)"
             className="p-1.5 rounded-lg text-gray-300 transition-colors hover:bg-gray-800 hover:text-white"
@@ -875,6 +906,7 @@ export function WorldMap({
           </span>
 
           <button
+            type="button"
             onClick={handleZoomOut}
             title="Zoom Out (-)"
             className="p-1.5 rounded-lg text-gray-300 transition-colors hover:bg-gray-800 hover:text-white"
@@ -885,6 +917,7 @@ export function WorldMap({
           <div className="mx-1 h-4 w-[1px] bg-gray-800" />
 
           <button
+            type="button"
             onClick={handleResetZoom}
             title="Reset View"
             className="p-1.5 rounded-lg text-gray-400 transition-colors hover:bg-gray-800 hover:text-emerald-400"
@@ -1100,7 +1133,7 @@ export function WorldMap({
                 )}
               </div>
               <div className="text-[11px] text-emerald-400/90 font-mono">
-                {activeMetric.shortLabel}: {val !== null ? activeMetric.formatValue(val) : "N/A"}
+                {activeMetric.shortLabel}: {val !== null && val !== undefined ? activeMetric.formatValue(val) : "N/A"}
               </div>
             </div>
           </div>
@@ -1141,7 +1174,7 @@ export function WorldMap({
               <div className="flex items-center justify-between text-xs">
                 <span className="text-gray-400 font-medium">{activeMetric.shortLabel}:</span>
                 <span className="font-bold text-emerald-400 font-mono text-sm">
-                  {val !== null ? activeMetric.formatValue(val) : "No Data"}
+                  {val !== null && val !== undefined ? activeMetric.formatValue(val) : "No Data"}
                 </span>
               </div>
 

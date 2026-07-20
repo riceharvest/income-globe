@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Badge } from "~/components/ui/badge";
 import { Separator } from "~/components/ui/separator";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "~/components/ui/tabs";
-import { IncomeBar } from "~/components/income-bar";
 import {
   getCountryByCode,
   formatEur,
@@ -301,12 +300,30 @@ export default function CountryDetail() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <IncomeBar
-            income={currentData}
-            maxValue={maxIncome}
-            showLabels
-            highlightMedian
-          />
+          <div className="space-y-3">
+            {[
+              { key: "p10", label: "P10 (Bottom 10%)", val: currentData.p10 },
+              { key: "p25", label: "P25 (Lower 25%)", val: currentData.p25 },
+              { key: "p50", label: "P50 (Median)", val: currentData.p50 },
+              { key: "p75", label: "P75 (Upper 75%)", val: currentData.p75 },
+              { key: "p90", label: "P90 (Top 10%)", val: currentData.p90 },
+            ].map((item) => (
+              <div key={item.key} className="space-y-1">
+                <div className="flex justify-between text-xs">
+                  <span className="font-semibold">{item.label}</span>
+                  <span className="font-mono font-bold text-emerald-400">
+                    {formatEur(item.val)}
+                  </span>
+                </div>
+                <div className="h-2.5 w-full bg-secondary rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full"
+                    style={{ width: `${Math.min(100, (item.val / maxIncome) * 100)}%` }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
         </CardContent>
       </Card>
 

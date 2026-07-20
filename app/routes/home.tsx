@@ -5,88 +5,67 @@ import {
   LayoutGrid,
   Table2,
   Globe,
-  Command,
   PanelRightClose,
   PanelRightOpen,
   Map as MapIcon,
   SlidersHorizontal,
+  Award,
+  DollarSign,
+  TrendingUp,
+  Activity,
+  Users,
+  Building2,
+  Heart,
+  RotateCcw,
 } from "lucide-react";
 import { Input } from "~/components/ui/input";
-import { CountryCard } from "~/components/country-card";
-import { CompactTable } from "~/components/compact-table";
-import { IndicatorsPanel } from "~/components/indicators-panel";
-import { FilterSidebar } from "~/components/filter-sidebar";
-import { CountryDetailPanel } from "~/components/country-detail-panel";
-import { CommandPalette } from "~/components/command-palette";
-import { WorldMap, type MapMetricKey } from "~/components/world-map";
+import { WorldMap, type MapMetricKey, MAP_METRICS } from "~/components/world-map";
 import { CountrySidebar } from "~/components/country-sidebar";
+import { CountryGrid } from "~/components/country-grid";
+import { CountryTable } from "~/components/country-table";
 import {
   uniqueCountriesData,
+  regions,
   type Region,
   type CountryData,
-  type IndicatorSelection,
-  createDefaultIndicator,
-  getIndicatorValue,
+  getSortValue,
 } from "~/data/countries";
 import { cn } from "~/lib/utils";
 
 export const meta = () => [
-  { title: "Income Globe — Global Income & Demographic Intelligence" },
+  { title: "Income Globe — Global Income & Physical Intelligence" },
   {
     name: "description",
     content:
-      "Interactive world map and intelligence dashboard comparing income percentiles, economic stats, demographics, and health metrics across 169 countries.",
+      "Interactive 2D world map and country intelligence dashboard comparing income percentiles, economic stats, demographics, and physical characteristics across 245 countries.",
   },
 ];
 
 type ViewMode = "map" | "grid" | "table";
-type GroupId = "country" | "economic" | "health" | "gender" | "culture" | "income";
-type SortKey = string;
 
-const SORT_LABELS: Record<string, string> = {
-  income: "Income (P50)",
-  name: "A-Z",
-  region: "Region",
-  population: "Population",
-  minimumWageEur: "Min Wage",
-  costOfLivingIndex: "Cost of Living",
-  internetPenetration: "Internet %",
-  unemploymentRate: "Unemploy. %",
-  obesityRate: "Obesity %",
-  femaleHeightCm: "Height",
-  femaleBmi: "BMI",
-  adolescentBirthRate: "Adolescent Birth",
-  laborForceGap: "Labor Gap",
-};
-
-const GROUP_COLUMNS: Record<GroupId, string[]> = {
-  country: ["name", "region"],
-  economic: [
-    "population",
-    "minimumWageEur",
-    "costOfLivingIndex",
-    "internetPenetration",
-    "unemploymentRate",
-    "englishSpeakingPercent",
-  ],
-  health: [
-    "obesityRate",
-    "smokingRate",
-    "femaleHeightCm",
-    "femaleBmi",
-    "femaleObesity",
-    "hiv",
-  ],
-  gender: [
-    "adolescentBirthRate",
-    "childMarriagePercent",
-    "laborForceGap",
-    "contraceptiveUse",
-    "outOfWedlock",
-  ],
-  culture: ["religion", "education", "outOfWedlock"],
-  income: ["income"],
-};
+const SORT_OPTIONS: Array<{ key: string; label: string }> = [
+  { key: "income", label: "Income (P50)" },
+  { key: "p90", label: "Top 10% (P90)" },
+  { key: "p10", label: "Bottom 10% (P10)" },
+  { key: "name", label: "Country Name" },
+  { key: "region", label: "Region" },
+  { key: "population", label: "Population" },
+  { key: "minimumWageEur", label: "Min Wage" },
+  { key: "costOfLivingIndex", label: "Cost of Living" },
+  { key: "unemploymentRate", label: "Unemployment" },
+  { key: "hdi", label: "HDI Score" },
+  { key: "bmi", label: "BMI" },
+  { key: "femaleHeightCm", label: "Female Height" },
+  { key: "maleHeightCm", label: "Male Height" },
+  { key: "obesityRate", label: "Obesity %" },
+  { key: "caloricIntakeKcal", label: "Daily Calories" },
+  { key: "lifeExpectancy", label: "Life Expectancy" },
+  { key: "smokingRate", label: "Smoking %" },
+  { key: "alcoholLiters", label: "Alcohol L/yr" },
+  { key: "adolescentBirthRate", label: "Adolescent Birth" },
+  { key: "laborForceGap", label: "Labor Gap" },
+  { key: "contraceptiveUse", label: "Contraceptive %" },
+];
 
 export function ErrorBoundary() {
   return (
@@ -111,60 +90,34 @@ export function ErrorBoundary() {
 export default function Home() {
   const [viewMode, setViewMode] = useState<ViewMode>("map");
   const [search, setSearch] = useState("");
-  const [region, setRegion] = useState<Region | "All Regions">("All Regions");
+  const [selectedRegion, setSelectedRegion] = useState<string>("All Regions");
 
   // Connected State: sort & mapMetricKey
-  const [sort, setSort] = useState<SortKey>("income");
+  const [sortKey, setSortKey] = useState<string>("income");
   const [mapMetricKey, setMapMetricKey] = useState<MapMetricKey>("p50");
-
-  const [activeGroups, setActiveGroups] = useState<Set<GroupId>>(
-    new Set(["country", "economic", "health", "gender", "culture", "income"])
-  );
 
   // Active selected country (defaults to US)
   const [selectedCountryCode, setSelectedCountryCode] = useState<string>("US");
 
   // Layout UI Toggles
-  const [filterSidebarOpen, setFilterSidebarOpen] = useState(false);
+  const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
   const [countrySidebarOpen, setCountrySidebarOpen] = useState(true);
-  const [showCommandPalette, setShowCommandPalette] = useState(false);
-  const [showDetailPanel, setShowDetailPanel] = useState(false);
-
-  const [indicators, setIndicators] = useState<IndicatorSelection[]>([
-    createDefaultIndicator(),
-  ]);
-
-  const [globalSettings, setGlobalSettings] = useState({
-    currency: "usd_ppp" as "usd_ppp" | "usd_market",
-    prices: "constant_2024" as "constant_2024" | "current",
-    timePeriod: "monthly" as "monthly" | "annual",
-  });
-
-  // Global Cmd+K keyboard shortcut
-  useEffect(() => {
-    function handler(e: KeyboardEvent) {
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault();
-        setShowCommandPalette((v) => !v);
-      }
-    }
-    document.addEventListener("keydown", handler);
-    return () => document.removeEventListener("keydown", handler);
-  }, []);
 
   // Connected state handler: Triggered when user clicks ANY stat value in sidebar!
-  // Automatically updates sort AND mapMetricKey so map colors and country list sorting update simultaneously!
   const handleSelectMetric = useCallback((metricKey: string) => {
-    setSort(metricKey);
-    setMapMetricKey(metricKey as MapMetricKey);
+    setSortKey(metricKey);
+    const isMapMetric = MAP_METRICS.some((m) => m.key === metricKey);
+    if (isMapMetric) {
+      setMapMetricKey(metricKey as MapMetricKey);
+    }
   }, []);
 
   // Filtered & Sorted dataset
   const filteredCountries = useMemo(() => {
     let data = [...uniqueCountriesData];
 
-    if (region !== "All Regions") {
-      data = data.filter((d) => d.region === region);
+    if (selectedRegion !== "All Regions") {
+      data = data.filter((d) => d.region === selectedRegion);
     }
 
     if (search.trim()) {
@@ -173,29 +126,18 @@ export default function Home() {
         (d) =>
           d.name.toLowerCase().includes(q) ||
           d.code.toLowerCase().includes(q) ||
+          d.alpha2.toLowerCase().includes(q) ||
+          d.alpha3.toLowerCase().includes(q) ||
           d.region.toLowerCase().includes(q)
       );
     }
 
-    const primaryIndicator = indicators[0];
-
-    function getSortVal(c: CountryData): string | number {
-      if (sort === "name") return c.name;
-      if (sort === "region") return c.region;
-      if (sort === "income" || sort === "p50") return getIndicatorValue(c, primaryIndicator);
-      if (sort === "p90") return c.income?.p90 ?? -Infinity;
-      if (sort === "p10") return c.income?.p10 ?? -Infinity;
-
-      const val = (c as any)[sort];
-      if (val != null && typeof val === "number") return val;
-      return -Infinity;
-    }
-
     data.sort((a, b) => {
-      const va = getSortVal(a);
-      const vb = getSortVal(b);
+      const va = getSortValue(a, sortKey);
+      const vb = getSortValue(b, sortKey);
+
       if (typeof va === "string" && typeof vb === "string") {
-        return sort === "name" || sort === "region"
+        return sortKey === "name" || sortKey === "region"
           ? va.localeCompare(vb)
           : vb.localeCompare(va);
       }
@@ -203,19 +145,7 @@ export default function Home() {
     });
 
     return data;
-  }, [search, region, sort, indicators]);
-
-  const maxMedian = Math.max(...uniqueCountriesData.map((c) => c.income.p50));
-
-  const visibleGroupColumns = useMemo(() => {
-    const result: Record<string, boolean> = {};
-    (Object.keys(GROUP_COLUMNS) as GroupId[]).forEach((g) => {
-      GROUP_COLUMNS[g].forEach((col) => {
-        result[col] = activeGroups.has(g);
-      });
-    });
-    return result;
-  }, [activeGroups]);
+  }, [search, selectedRegion, sortKey]);
 
   function handleSelectCountry(code: string | CountryData) {
     const countryCode = typeof code === "string" ? code : code.code;
@@ -225,51 +155,60 @@ export default function Home() {
     }
   }
 
-  function handleQuickAction(action: string) {
-    if (action === "top10" || action === "bottom10") {
-      setSort("income");
-      setMapMetricKey("p50");
-      setRegion("All Regions");
-      setSearch("");
-    } else if (action === "reset") {
-      setSearch("");
-      setRegion("All Regions");
-      setSort("income");
-      setMapMetricKey("p50");
-      setActiveGroups(
-        new Set(["country", "economic", "health", "gender", "income"])
-      );
-    }
-    setShowCommandPalette(false);
-  }
-
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-background text-foreground select-none font-sans">
-      {/* ── Collapsible Left Filter Sidebar ── */}
-      {filterSidebarOpen && (
-        <div className="z-40 h-full flex-shrink-0 border-r border-border/60 bg-card/50 backdrop-blur-xl animate-in slide-in-from-left duration-200">
-          <FilterSidebar
-            groups={activeGroups}
-            onChange={setActiveGroups}
-            region={region as Region}
-            onRegionChange={(r) => setRegion(r as Region)}
-          />
+      {/* ── Collapsible Left Filter Drawer ── */}
+      {filterDrawerOpen && (
+        <div className="w-64 h-full flex-shrink-0 z-40 border-r border-border/60 bg-card/70 backdrop-blur-2xl p-4 space-y-4 animate-in slide-in-from-left duration-200">
+          <div className="flex items-center justify-between border-b border-border/40 pb-3">
+            <span className="font-bold text-xs uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+              <SlidersHorizontal className="h-4 w-4" />
+              <span>Regional Filters</span>
+            </span>
+            <button
+              onClick={() => setFilterDrawerOpen(false)}
+              className="text-xs text-muted-foreground hover:text-foreground"
+            >
+              Close
+            </button>
+          </div>
+
+          <div className="space-y-2 text-xs">
+            <span className="text-muted-foreground font-semibold">Select Region</span>
+            <div className="space-y-1">
+              {["All Regions", ...regions].map((r) => (
+                <button
+                  key={r}
+                  onClick={() => setSelectedRegion(r)}
+                  className={cn(
+                    "w-full text-left px-3 py-2 rounded-xl text-xs font-semibold transition-all",
+                    selectedRegion === r
+                      ? "bg-emerald-500 text-white shadow-md shadow-emerald-500/20"
+                      : "bg-secondary/40 text-muted-foreground hover:bg-secondary hover:text-foreground"
+                  )}
+                >
+                  {r}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       )}
 
-      {/* ── Main Layout Column ── */}
-      <div className="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
+      {/* ── Main Work Area ── */}
+      <div className="flex-1 flex flex-col h-full min-w-0 overflow-hidden">
         {/* ── Sticky Top Header Bar ── */}
         <header className="h-14 bg-card/90 backdrop-blur-xl border-b border-border/60 px-4 flex items-center justify-between gap-3 z-30 flex-shrink-0">
-          {/* Left: Brand Logo & Filter Sidebar Toggle */}
+          {/* Left: Logo & Region Toggle */}
           <div className="flex items-center gap-3">
             <button
-              onClick={() => setFilterSidebarOpen((v) => !v)}
+              onClick={() => setFilterDrawerOpen((v) => !v)}
               className={cn(
                 "p-2 rounded-xl border border-border/50 text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-all",
-                filterSidebarOpen && "bg-emerald-500/20 text-emerald-400 border-emerald-500/30 shadow-sm shadow-emerald-500/10"
+                filterDrawerOpen &&
+                  "bg-emerald-500/20 text-emerald-400 border-emerald-500/30 shadow-sm shadow-emerald-500/10"
               )}
-              title={filterSidebarOpen ? "Hide Filter Sidebar" : "Show Filter Sidebar"}
+              title={filterDrawerOpen ? "Hide Filter Drawer" : "Show Filter Drawer"}
             >
               <SlidersHorizontal className="h-4 w-4" />
             </button>
@@ -289,29 +228,21 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Center: Instant Search Bar & Cmd+K Shortcut Badge */}
+          {/* Center: Global Instant Search */}
           <div className="flex items-center gap-2 flex-1 max-w-md mx-2">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground pointer-events-none" />
               <Input
-                placeholder="Search 169 countries by name or region..."
+                placeholder="Search 245 countries by name, code (US/USA), or region..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="h-9 pl-9 pr-14 text-xs bg-secondary/40 focus:bg-background/80 backdrop-blur border-border/50 rounded-xl transition-all focus:ring-1 focus:ring-emerald-500/50"
+                className="h-9 pl-9 pr-4 text-xs bg-secondary/40 focus:bg-background/80 backdrop-blur border-border/50 rounded-xl transition-all focus:ring-1 focus:ring-emerald-500/50"
               />
-              <button
-                onClick={() => setShowCommandPalette(true)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-0.5 text-[10px] text-muted-foreground font-mono bg-secondary/80 px-1.5 py-0.5 rounded-lg border border-border/40 hover:text-foreground hover:bg-secondary transition-colors"
-              >
-                <Command className="h-2.5 w-2.5" />
-                <span>K</span>
-              </button>
             </div>
           </div>
 
-          {/* Right: View Mode Switcher & Country Sidebar Toggle */}
+          {/* Right: View Mode Switcher & Sidebar Toggle */}
           <div className="flex items-center gap-2">
-            {/* View Mode Switcher */}
             <div className="flex items-center bg-secondary/60 p-1 rounded-xl border border-border/40 shadow-inner">
               <button
                 onClick={() => setViewMode("map")}
@@ -335,7 +266,7 @@ export default function Home() {
                     ? "bg-emerald-500 text-white shadow-md shadow-emerald-500/20"
                     : "text-muted-foreground hover:text-foreground"
                 )}
-                title="Grid Card View"
+                title="Grid View"
               >
                 <LayoutGrid className="h-3.5 w-3.5" />
                 <span className="hidden md:inline">Grid</span>
@@ -349,19 +280,19 @@ export default function Home() {
                     ? "bg-emerald-500 text-white shadow-md shadow-emerald-500/20"
                     : "text-muted-foreground hover:text-foreground"
                 )}
-                title="Compact Table View"
+                title="Table View"
               >
                 <Table2 className="h-3.5 w-3.5" />
                 <span className="hidden md:inline">Table</span>
               </button>
             </div>
 
-            {/* Country Sidebar Toggle Button */}
             <button
               onClick={() => setCountrySidebarOpen((v) => !v)}
               className={cn(
                 "p-2 rounded-xl border border-border/50 text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-all",
-                countrySidebarOpen && "bg-emerald-500/20 text-emerald-400 border-emerald-500/30 shadow-sm shadow-emerald-500/10"
+                countrySidebarOpen &&
+                  "bg-emerald-500/20 text-emerald-400 border-emerald-500/30 shadow-sm shadow-emerald-500/10"
               )}
               title={countrySidebarOpen ? "Close Country Sidebar" : "Open Country Sidebar"}
             >
@@ -374,7 +305,7 @@ export default function Home() {
           </div>
         </header>
 
-        {/* ── Main Content Area ── */}
+        {/* ── Main View Content Area ── */}
         <div className="flex-1 flex flex-col h-full min-h-0 overflow-hidden relative">
           {/* VIEW MODE: WORLD MAP */}
           {viewMode === "map" && (
@@ -383,7 +314,7 @@ export default function Home() {
                 activeMetricKey={mapMetricKey}
                 onMetricChange={(key) => {
                   setMapMetricKey(key);
-                  setSort(key);
+                  setSortKey(key);
                 }}
                 selectedCountryCode={selectedCountryCode}
                 onSelectCountry={handleSelectCountry}
@@ -396,13 +327,7 @@ export default function Home() {
           {/* VIEW MODE: GRID */}
           {viewMode === "grid" && (
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
-              <IndicatorsPanel
-                indicators={indicators}
-                onChange={setIndicators}
-                globalSettings={globalSettings}
-                onGlobalSettingsChange={setGlobalSettings}
-              />
-
+              {/* Sort Bar */}
               <div className="flex flex-wrap items-center justify-between gap-3 p-3 bg-card/40 backdrop-blur-md rounded-2xl border border-border/50">
                 <p className="text-xs text-muted-foreground font-medium flex items-center gap-1.5">
                   <span>Showing</span>
@@ -414,55 +339,42 @@ export default function Home() {
 
                 <div className="flex flex-wrap items-center gap-1.5 text-xs">
                   <span className="text-muted-foreground font-medium mr-1">Sort Key:</span>
-                  {(Object.keys(SORT_LABELS) as SortKey[]).map((s) => (
+                  {SORT_OPTIONS.slice(0, 8).map((opt) => (
                     <button
-                      key={s}
-                      onClick={() => handleSelectMetric(s)}
+                      key={opt.key}
+                      onClick={() => handleSelectMetric(opt.key)}
                       className={cn(
                         "px-2.5 py-1 rounded-lg text-xs font-semibold transition-all",
-                        sort === s
+                        sortKey === opt.key
                           ? "bg-emerald-500 text-white shadow-md shadow-emerald-500/20"
                           : "bg-secondary/40 text-muted-foreground hover:bg-secondary hover:text-foreground border border-border/30"
                       )}
                     >
-                      {SORT_LABELS[s]}
+                      {opt.label}
                     </button>
                   ))}
                 </div>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {filteredCountries.map((c) => (
-                  <CountryCard
-                    key={c.code}
-                    country={c}
-                    maxMedian={maxMedian}
-                    sortKey={sort as any}
-                    onSelect={(code) => handleSelectCountry(code)}
-                  />
-                ))}
-              </div>
+              <CountryGrid
+                countries={filteredCountries}
+                sortKey={sortKey}
+                selectedCountryCode={selectedCountryCode}
+                onSelectCountry={handleSelectCountry}
+              />
             </div>
           )}
 
           {/* VIEW MODE: TABLE */}
           {viewMode === "table" && (
-            <div className="flex-1 flex flex-col min-h-0 overflow-hidden p-4 space-y-4">
-              <IndicatorsPanel
-                indicators={indicators}
-                onChange={setIndicators}
-                globalSettings={globalSettings}
-                onGlobalSettingsChange={setGlobalSettings}
-              />
+            <div className="flex-1 flex flex-col min-h-0 overflow-hidden p-4 space-y-3">
               <div className="flex-1 overflow-auto rounded-2xl border border-border/60 bg-card/30 backdrop-blur-md">
-                <CompactTable
+                <CountryTable
                   countries={filteredCountries}
-                  indicators={indicators}
-                  visibleGroupColumns={visibleGroupColumns}
-                  highlightedCodes={
-                    selectedCountryCode ? new Set([selectedCountryCode]) : undefined
-                  }
-                  onRowClick={(code) => handleSelectCountry(code)}
+                  sortKey={sortKey}
+                  onSortChange={handleSelectMetric}
+                  selectedCountryCode={selectedCountryCode}
+                  onSelectCountry={handleSelectCountry}
                 />
               </div>
             </div>
@@ -476,33 +388,13 @@ export default function Home() {
           <CountrySidebar
             selectedCountryCode={selectedCountryCode}
             onSelectCountry={handleSelectCountry}
-            activeSortKey={sort}
+            activeSortKey={sortKey}
             onSelectMetric={handleSelectMetric}
             className="w-full h-full"
             onCloseMobile={() => setCountrySidebarOpen(false)}
           />
         </div>
       )}
-
-      {/* ── Slide-over Detail Panel ── */}
-      <CountryDetailPanel
-        countryCode={showDetailPanel ? selectedCountryCode : null}
-        onClose={() => setShowDetailPanel(false)}
-        countries={uniqueCountriesData}
-        indicators={indicators}
-      />
-
-      {/* ── Global Command Palette (Cmd+K) ── */}
-      <CommandPalette
-        isOpen={showCommandPalette}
-        onClose={() => setShowCommandPalette(false)}
-        countries={uniqueCountriesData}
-        onSelectCountry={(code) => {
-          handleSelectCountry(code);
-          setShowCommandPalette(false);
-        }}
-        onQuickAction={handleQuickAction}
-      />
     </div>
   );
 }

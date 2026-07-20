@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { type CountryData } from "~/data/countries";
+import { type CountryData, getSortValue } from "~/data/countries";
 import { cn } from "~/lib/utils";
 
 type SortOption = "name" | "median_asc" | "median_desc";
@@ -7,8 +7,10 @@ type SortOption = "name" | "median_asc" | "median_desc";
 interface CountryGridProps {
   countries: CountryData[];
   onSelectCountry: (code: string) => void;
-  sort: SortOption;
-  onSortChange: (sort: SortOption) => void;
+  sort?: SortOption;
+  onSortChange?: (sort: SortOption) => void;
+  sortKey?: string;
+  selectedCountryCode?: string | null;
 }
 
 type IndicatorKey = "unemployment" | "obesity" | "adolescentBirthRate" | "laborForceGap";
@@ -145,11 +147,13 @@ function CountryCard({ country, maxP50, isSelected, onClick }: CountryCardProps)
   );
 }
 
-export default function CountryGrid({
+export function CountryGrid({
   countries,
   onSelectCountry,
   sort,
   onSortChange,
+  sortKey,
+  selectedCountryCode,
 }: CountryGridProps) {
   const maxP50 = useMemo(
     () => Math.max(...countries.map((c) => c.income.p50), 0),
@@ -158,38 +162,51 @@ export default function CountryGrid({
 
   const sorted = useMemo(() => {
     const arr = [...countries];
+    if (sortKey) {
+      return arr.sort((a, b) => {
+        const valA = getSortValue(a, sortKey);
+        const valB = getSortValue(b, sortKey);
+        if (typeof valA === "number" && typeof valB === "number") {
+          return valB - valA;
+        }
+        return String(valA).localeCompare(String(valB));
+      });
+    }
     switch (sort) {
       case "name":
         return arr.sort((a, b) => a.name.localeCompare(b.name));
       case "median_asc":
         return arr.sort((a, b) => a.income.p50 - b.income.p50);
       case "median_desc":
+      default:
         return arr.sort((a, b) => b.income.p50 - a.income.p50);
     }
-  }, [countries, sort]);
+  }, [countries, sort, sortKey]);
 
   return (
     <div>
       {/* Sort controls */}
-      <div className="flex items-center gap-2 mb-4">
-        <span className="text-sm text-muted-foreground">Sort:</span>
-        <div className="flex gap-1">
-          {SORT_OPTIONS.map((opt) => (
-            <button
-              key={opt.value}
-              onClick={() => onSortChange(opt.value)}
-              className={cn(
-                "text-sm px-3 py-1.5 rounded-md transition-colors",
-                sort === opt.value
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-transparent text-muted-foreground hover:bg-secondary hover:text-secondary-foreground"
-              )}
-            >
-              {opt.label}
-            </button>
-          ))}
+      {sort && onSortChange && (
+        <div className="flex items-center gap-2 mb-4">
+          <span className="text-sm text-muted-foreground">Sort:</span>
+          <div className="flex gap-1">
+            {SORT_OPTIONS.map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => onSortChange(opt.value)}
+                className={cn(
+                  "text-sm px-3 py-1.5 rounded-md transition-colors",
+                  sort === opt.value
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-transparent text-muted-foreground hover:bg-secondary hover:text-secondary-foreground"
+                )}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Grid */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
@@ -198,7 +215,7 @@ export default function CountryGrid({
             key={country.code}
             country={country}
             maxP50={maxP50}
-            isSelected={false}
+            isSelected={selectedCountryCode ? country.code === selectedCountryCode : false}
             onClick={() => onSelectCountry(country.code)}
           />
         ))}
@@ -206,3 +223,5 @@ export default function CountryGrid({
     </div>
   );
 }
+
+export default CountryGrid;
