@@ -109,7 +109,8 @@ export default function Compare() {
     }
   }
 
-  const getIncomeData = (country: CountryData) => country.indicators[activeIndicator];
+  const getIncomeData = (country: CountryData) =>
+    (country.indicators as any)[activeIndicator] ?? country.indicators.posttax_national;
 
   const maxValue = selected.length > 0
     ? Math.max(...selected.map((c) => getIncomeData(c).p90)) * 1.1

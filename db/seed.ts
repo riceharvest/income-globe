@@ -48,7 +48,7 @@ async function seed() {
     const percentiles = [10, 25, 50, 75, 90] as const;
 
     for (const indicatorType of indicatorTypes) {
-      const indicatorData = c.indicators[indicatorType];
+      const indicatorData = (c.indicators as any)[indicatorType] ?? c.indicators.posttax_national;
       const incomeMap = {
         10: indicatorData.p10,
         25: indicatorData.p25,

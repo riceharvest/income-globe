@@ -58,7 +58,7 @@ export default function CalculatorPage() {
 
   const currentIncomeData = useMemo(() => {
     if (!selectedCountry) return null;
-    return selectedCountry.indicators[activeIndicator];
+    return (selectedCountry.indicators as any)[activeIndicator] ?? selectedCountry.indicators.posttax_national;
   }, [selectedCountry, activeIndicator]);
 
   const percentile = useMemo(() => {

@@ -1,7 +1,17 @@
 import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router";
-import { Search, LayoutGrid, Table2, Globe, Command, PanelLeftClose, PanelLeftOpen } from "lucide-react";
-import { Button } from "~/components/ui/button";
+import {
+  Search,
+  LayoutGrid,
+  Table2,
+  Globe,
+  Command,
+  PanelRightClose,
+  PanelRightOpen,
+  Map as MapIcon,
+  SlidersHorizontal,
+  X,
+} from "lucide-react";
 import { Input } from "~/components/ui/input";
 import { CountryCard } from "~/components/country-card";
 import { CompactTable } from "~/components/compact-table";
@@ -9,6 +19,8 @@ import { IndicatorsPanel } from "~/components/indicators-panel";
 import { FilterSidebar } from "~/components/filter-sidebar";
 import { CountryDetailPanel } from "~/components/country-detail-panel";
 import { CommandPalette } from "~/components/command-palette";
+import { WorldMap } from "~/components/world-map";
+import { CountrySidebar } from "~/components/country-sidebar";
 import {
   uniqueCountriesData,
   regions,
@@ -21,15 +33,15 @@ import {
 import { cn } from "~/lib/utils";
 
 export const meta = () => [
-  { title: "Explore — Women Global" },
+  { title: "Income Globe — Global Income & Demographic Intelligence" },
   {
     name: "description",
     content:
-      "Explore gender-specific indicators and income distribution data for 31 countries worldwide.",
+      "Interactive world map and intelligence dashboard comparing income percentiles, economic stats, demographics, and health metrics across 169 countries.",
   },
 ];
 
-type ViewMode = "grid" | "table";
+type ViewMode = "map" | "grid" | "table";
 type GroupId = "country" | "economic" | "health" | "gender" | "culture" | "income";
 type SortKey =
   | "name"
@@ -51,6 +63,7 @@ type SortKey =
   | "income";
 
 const SORT_LABELS: Record<string, string> = {
+  income: "Income (P50)",
   name: "A-Z",
   region: "Region",
   population: "Population",
@@ -58,39 +71,55 @@ const SORT_LABELS: Record<string, string> = {
   costOfLivingIndex: "Cost of Living",
   internetPenetration: "Internet %",
   unemploymentRate: "Unemploy. %",
-  englishSpeakingPercent: "English %",
   obesityRate: "Obesity %",
-  smokingRate: "Smoking %",
   femaleHeightCm: "Height",
-  femaleBmi: "BMI",
   adolescentBirthRate: "Adolescent Birth",
-  childMarriagePercent: "Child Marriage",
   laborForceGap: "Labor Gap",
-  contraceptiveUse: "Contraceptive %",
-  income: "Income",
 };
 
-// All columns by group
 const GROUP_COLUMNS: Record<GroupId, string[]> = {
   country: ["name", "region"],
-  economic: ["population", "minimumWageEur", "costOfLivingIndex", "internetPenetration", "unemploymentRate", "englishSpeakingPercent"],
-  health: ["obesityRate", "smokingRate", "femaleHeightCm", "femaleBmi", "femaleObesity", "hiv"],
-  gender: ["adolescentBirthRate", "childMarriagePercent", "laborForceGap", "contraceptiveUse", "outOfWedlock"],
+  economic: [
+    "population",
+    "minimumWageEur",
+    "costOfLivingIndex",
+    "internetPenetration",
+    "unemploymentRate",
+    "englishSpeakingPercent",
+  ],
+  health: [
+    "obesityRate",
+    "smokingRate",
+    "femaleHeightCm",
+    "femaleBmi",
+    "femaleObesity",
+    "hiv",
+  ],
+  gender: [
+    "adolescentBirthRate",
+    "childMarriagePercent",
+    "laborForceGap",
+    "contraceptiveUse",
+    "outOfWedlock",
+  ],
   culture: ["religion", "education", "outOfWedlock"],
   income: ["income"],
 };
 
 export function ErrorBoundary() {
   return (
-    <div className="flex items-center justify-center min-h-[50vh]">
-      <div className="text-center space-y-4">
-        <h2 className="text-2xl font-bold text-gray-200">Something went wrong</h2>
-        <p className="text-gray-400">Please try refreshing the page.</p>
+    <div className="flex items-center justify-center min-h-[50vh] p-6 text-center">
+      <div className="space-y-4 max-w-md bg-card/80 backdrop-blur-xl p-8 rounded-2xl border border-border/60 shadow-2xl">
+        <Globe className="h-10 w-10 text-emerald-400 mx-auto animate-pulse" />
+        <h2 className="text-xl font-bold text-foreground">Something went wrong</h2>
+        <p className="text-xs text-muted-foreground">
+          An error occurred while rendering the interactive layout.
+        </p>
         <a
           href="/"
-          className="inline-block px-4 py-2 bg-emerald-600 hover:bg-emerald-700 rounded-lg text-white transition-colors"
+          className="inline-flex items-center justify-center px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition-colors"
         >
-          Go home
+          Reload Dashboard
         </a>
       </div>
     </div>
@@ -98,26 +127,34 @@ export function ErrorBoundary() {
 }
 
 export default function Home() {
-  const [viewMode, setViewMode] = useState<ViewMode>("grid");
+  const [viewMode, setViewMode] = useState<ViewMode>("map");
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState<Region>("All Regions");
   const [sort, setSort] = useState<SortKey>("income");
   const [activeGroups, setActiveGroups] = useState<Set<GroupId>>(
     new Set(["country", "economic", "health", "gender", "culture", "income"])
   );
-  const [selectedCountryCode, setSelectedCountryCode] = useState<string | null>(null);
+
+  // Active selected country (defaults to US)
+  const [selectedCountryCode, setSelectedCountryCode] = useState<string>("US");
+
+  // Layout UI Toggles
+  const [filterSidebarOpen, setFilterSidebarOpen] = useState(false);
+  const [countrySidebarOpen, setCountrySidebarOpen] = useState(true);
   const [showCommandPalette, setShowCommandPalette] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [showDetailPanel, setShowDetailPanel] = useState(false);
+
   const [indicators, setIndicators] = useState<IndicatorSelection[]>([
     createDefaultIndicator(),
   ]);
+
   const [globalSettings, setGlobalSettings] = useState({
     currency: "usd_ppp" as "usd_ppp" | "usd_market",
     prices: "constant_2024" as "constant_2024" | "current",
     timePeriod: "monthly" as "monthly" | "annual",
   });
 
-  // Global Cmd+K shortcut
+  // Global Cmd+K keyboard shortcut
   useEffect(() => {
     function handler(e: KeyboardEvent) {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
@@ -129,15 +166,16 @@ export default function Home() {
     return () => document.removeEventListener("keydown", handler);
   }, []);
 
-  const filtered = useMemo(() => {
+  // Filtered & Sorted dataset
+  const filteredCountries = useMemo(() => {
     let data = [...uniqueCountriesData];
 
     if (region !== "All Regions") {
       data = data.filter((d) => d.region === region);
     }
 
-    if (search) {
-      const q = search.toLowerCase();
+    if (search.trim()) {
+      const q = search.toLowerCase().trim();
       data = data.filter(
         (d) =>
           d.name.toLowerCase().includes(q) ||
@@ -172,7 +210,6 @@ export default function Home() {
 
   const maxMedian = Math.max(...uniqueCountriesData.map((c) => c.income.p50));
 
-  // Build visibleGroupColumns for CompactTable from activeGroups
   const visibleGroupColumns = useMemo(() => {
     const result: Record<string, boolean> = {};
     (Object.keys(GROUP_COLUMNS) as GroupId[]).forEach((g) => {
@@ -182,6 +219,13 @@ export default function Home() {
     });
     return result;
   }, [activeGroups]);
+
+  function handleSelectCountry(code: string) {
+    setSelectedCountryCode(code);
+    if (!countrySidebarOpen) {
+      setCountrySidebarOpen(true);
+    }
+  }
 
   function handleQuickAction(action: string) {
     if (action === "top10") {
@@ -196,194 +240,249 @@ export default function Home() {
       setSearch("");
       setRegion("All Regions");
       setSort("income");
-      setActiveGroups(new Set(["country", "economic", "health", "gender", "income"]));
+      setActiveGroups(
+        new Set(["country", "economic", "health", "gender", "income"])
+      );
     }
     setShowCommandPalette(false);
   }
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* ── Filter Sidebar ── */}
-      {!sidebarCollapsed && (
-        <FilterSidebar
-          groups={activeGroups}
-          onChange={setActiveGroups}
-          region={region}
-          onRegionChange={(r) => setRegion(r as Region)}
-        />
+    <div className="flex h-screen w-screen overflow-hidden bg-background text-foreground select-none">
+      {/* ── Collapsible Left Filter Sidebar ── */}
+      {filterSidebarOpen && (
+        <div className="z-40 h-full flex-shrink-0 animate-in slide-in-from-left duration-200">
+          <FilterSidebar
+            groups={activeGroups}
+            onChange={setActiveGroups}
+            region={region}
+            onRegionChange={(r) => setRegion(r as Region)}
+          />
+        </div>
       )}
 
-      {/* ── Main Content ── */}
-      <main className="flex-1 overflow-auto flex flex-col">
-        {/* Sticky Header */}
-        <header className="sticky top-0 z-50 bg-card border-b border-border h-14 flex items-center gap-3 px-4">
-          {/* Logo / Title */}
-          <Link to="/" className="flex items-center gap-2 flex-shrink-0">
-            <Globe className="h-5 w-5 text-primary" />
-            <span className="font-semibold text-sm hidden sm:inline">
-              Income Globe
-            </span>
-          </Link>
+      {/* ── Main Layout Column ── */}
+      <div className="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
+        {/* ── Sticky Top Header Bar ── */}
+        <header className="h-14 bg-card/90 backdrop-blur-xl border-b border-border/60 px-4 flex items-center justify-between gap-3 z-30 flex-shrink-0">
+          {/* Left: Brand Logo & Filter Sidebar Toggle */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setFilterSidebarOpen((v) => !v)}
+              className={cn(
+                "p-1.5 rounded-lg border border-border/50 text-muted-foreground hover:text-foreground transition-colors",
+                filterSidebarOpen && "bg-primary/20 text-primary border-primary/30"
+              )}
+              title={filterSidebarOpen ? "Hide Filter Sidebar" : "Show Filter Sidebar"}
+            >
+              <SlidersHorizontal className="h-4 w-4" />
+            </button>
 
-          {/* Search bar */}
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground pointer-events-none" />
-            <Input
-              placeholder="Search countries…"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="h-9 pl-9 text-sm"
+            <Link to="/" className="flex items-center gap-2">
+              <div className="p-1.5 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-500 text-white shadow-lg shadow-emerald-500/20">
+                <Globe className="h-4 w-4" />
+              </div>
+              <span className="font-bold text-sm tracking-tight text-foreground hidden sm:inline">
+                Income Globe
+              </span>
+            </Link>
+          </div>
+
+          {/* Center: Global Search Bar & Cmd+K Shortcut */}
+          <div className="flex items-center gap-2 flex-1 max-w-md mx-2">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground pointer-events-none" />
+              <Input
+                placeholder="Search 169 countries by name or region..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="h-9 pl-9 pr-12 text-xs bg-secondary/40 focus:bg-background border-border/50 rounded-xl"
+              />
+              <button
+                onClick={() => setShowCommandPalette(true)}
+                className="absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-0.5 text-[10px] text-muted-foreground font-mono bg-secondary px-1.5 py-0.5 rounded border border-border/40 hover:text-foreground"
+              >
+                <Command className="h-2.5 w-2.5" />
+                <span>K</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Right: View Mode Toggle & Country Sidebar Toggle */}
+          <div className="flex items-center gap-2">
+            {/* View Mode Switcher */}
+            <div className="flex items-center bg-secondary/60 p-0.5 rounded-xl border border-border/40">
+              <button
+                onClick={() => setViewMode("map")}
+                className={cn(
+                  "flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold transition-all",
+                  viewMode === "map"
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+                title="World Map View"
+              >
+                <MapIcon className="h-3.5 w-3.5" />
+                <span className="hidden md:inline">Map</span>
+              </button>
+
+              <button
+                onClick={() => setViewMode("grid")}
+                className={cn(
+                  "flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold transition-all",
+                  viewMode === "grid"
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+                title="Grid Card View"
+              >
+                <LayoutGrid className="h-3.5 w-3.5" />
+                <span className="hidden md:inline">Grid</span>
+              </button>
+
+              <button
+                onClick={() => setViewMode("table")}
+                className={cn(
+                  "flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold transition-all",
+                  viewMode === "table"
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+                title="Compact Table View"
+              >
+                <Table2 className="h-3.5 w-3.5" />
+                <span className="hidden md:inline">Table</span>
+              </button>
+            </div>
+
+            {/* Sidebar Toggle Button */}
+            <button
+              onClick={() => setCountrySidebarOpen((v) => !v)}
+              className={cn(
+                "p-1.5 rounded-lg border border-border/50 text-muted-foreground hover:text-foreground transition-colors",
+                countrySidebarOpen && "bg-emerald-500/20 text-emerald-400 border-emerald-500/30"
+              )}
+              title={countrySidebarOpen ? "Close Country Sidebar" : "Open Country Sidebar"}
+            >
+              {countrySidebarOpen ? (
+                <PanelRightClose className="h-4 w-4" />
+              ) : (
+                <PanelRightOpen className="h-4 w-4" />
+              )}
+            </button>
+          </div>
+        </header>
+
+        {/* ── Main Work Area ── */}
+        <div className="flex-1 overflow-hidden relative flex flex-col p-3 space-y-3">
+          {/* Indicators Selector Ribbon */}
+          <div className="flex-shrink-0">
+            <IndicatorsPanel
+              indicators={indicators}
+              onChange={setIndicators}
+              globalSettings={globalSettings}
+              onGlobalSettingsChange={setGlobalSettings}
             />
           </div>
 
-          {/* Cmd+K hint */}
-          <button
-            onClick={() => setShowCommandPalette(true)}
-            className="hidden md:flex items-center gap-1 text-xs text-muted-foreground border border-border rounded-md px-2 py-1 hover:bg-secondary transition-colors"
-          >
-            <Command className="h-3 w-3" />
-            <span>K</span>
-          </button>
-
-          {/* View toggle */}
-          <div className="flex items-center rounded-lg border border-border flex-shrink-0">
-            <button
-              onClick={() => setViewMode("grid")}
-              className={cn(
-                "rounded-l-lg p-1.5 transition-colors",
-                viewMode === "grid"
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-              title="Grid view"
-            >
-              <LayoutGrid className="h-4 w-4" />
-            </button>
-            <button
-              onClick={() => setViewMode("table")}
-              className={cn(
-                "rounded-r-lg p-1.5 transition-colors",
-                viewMode === "table"
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-              title="Table view"
-            >
-              <Table2 className="h-4 w-4" />
-            </button>
-          </div>
-
-          {/* Sidebar toggle */}
-          <button
-            onClick={() => setSidebarCollapsed((v) => !v)}
-            className="flex-shrink-0 p-1.5 rounded-md border border-border text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
-            title={sidebarCollapsed ? "Show filters" : "Hide filters"}
-          >
-            {sidebarCollapsed ? (
-              <PanelLeftOpen className="h-4 w-4" />
-            ) : (
-              <PanelLeftClose className="h-4 w-4" />
-            )}
-          </button>
-        </header>
-
-        {/* Scrollable body */}
-        <div className="flex-1 overflow-auto p-6 space-y-6">
-          {/* Indicator selector */}
-          <IndicatorsPanel
-            indicators={indicators}
-            onChange={setIndicators}
-            globalSettings={globalSettings}
-            onGlobalSettingsChange={setGlobalSettings}
-          />
-
-          {/* Sort controls (grid only) */}
-          {viewMode === "grid" && (
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground">Sort:</span>
-              {(Object.keys(SORT_LABELS) as SortKey[]).map((s) => (
-                <button
-                  key={s}
-                  onClick={() => setSort(s)}
-                  className={cn(
-                    "rounded-md px-3 py-1 text-xs font-medium transition-colors",
-                    sort === s
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                  )}
-                >
-                  {SORT_LABELS[s]}
-                </button>
-              ))}
+          {/* VIEW MODE: WORLD MAP */}
+          {viewMode === "map" && (
+            <div className="flex-1 w-full h-full min-h-0 relative">
+              <WorldMap
+                selectedCountryCode={selectedCountryCode}
+                onSelectCountry={handleSelectCountry}
+                className="w-full h-full"
+              />
             </div>
           )}
 
-          {/* Results count */}
-          <p className="text-sm text-muted-foreground">
-            Showing {filtered.length} of {uniqueCountriesData.length} countries
-          </p>
+          {/* VIEW MODE: GRID */}
+          {viewMode === "grid" && (
+            <div className="flex-1 overflow-y-auto p-2 space-y-4">
+              {/* Sort Bar */}
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <p className="text-xs text-muted-foreground font-medium">
+                  Showing <strong className="text-foreground">{filteredCountries.length}</strong> of {uniqueCountriesData.length} countries
+                </p>
 
-          {/* Content */}
-          {filtered.length > 0 ? (
-            viewMode === "grid" ? (
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {filtered.map((country) => (
+                <div className="flex flex-wrap items-center gap-1 text-xs">
+                  <span className="text-muted-foreground mr-1">Sort by:</span>
+                  {(Object.keys(SORT_LABELS) as SortKey[]).map((s) => (
+                    <button
+                      key={s}
+                      onClick={() => setSort(s)}
+                      className={cn(
+                        "px-2.5 py-1 rounded-lg text-xs font-semibold transition-all",
+                        sort === s
+                          ? "bg-primary text-primary-foreground shadow-sm"
+                          : "bg-secondary/60 text-muted-foreground hover:text-foreground"
+                      )}
+                    >
+                      {SORT_LABELS[s]}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Grid Cards */}
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {filteredCountries.map((c) => (
                   <CountryCard
-                    key={country.code}
-                    country={country}
+                    key={c.code}
+                    country={c}
                     maxMedian={maxMedian}
                     sortKey={sort}
-                    onSelect={(code) => setSelectedCountryCode(code)}
+                    onSelect={(code) => handleSelectCountry(code)}
                   />
                 ))}
               </div>
-            ) : (
+            </div>
+          )}
+
+          {/* VIEW MODE: TABLE */}
+          {viewMode === "table" && (
+            <div className="flex-1 overflow-auto p-2">
               <CompactTable
-                countries={filtered}
+                countries={filteredCountries}
                 indicators={indicators}
                 visibleGroupColumns={visibleGroupColumns}
                 highlightedCodes={
                   selectedCountryCode ? new Set([selectedCountryCode]) : undefined
                 }
-                onRowClick={(code) => setSelectedCountryCode(code)}
+                onRowClick={(code) => handleSelectCountry(code)}
               />
-            )
-          ) : (
-            <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-border py-16 text-center">
-              <Search className="mb-3 h-10 w-10 text-muted-foreground/50" />
-              <p className="text-lg font-medium">No countries found</p>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Try adjusting your search or filters
-              </p>
-              <button
-                onClick={() => {
-                  setSearch("");
-                  setRegion("All Regions");
-                }}
-                className="mt-4 text-sm font-medium text-primary hover:underline"
-              >
-                Clear all filters
-              </button>
             </div>
           )}
         </div>
-      </main>
+      </div>
 
-      {/* ── Detail Panel ── */}
+      {/* ── 2-Column Right Country Sidebar ── */}
+      {countrySidebarOpen && (
+        <div className="w-[420px] max-w-full h-full flex-shrink-0 z-30 animate-in slide-in-from-right duration-200">
+          <CountrySidebar
+            selectedCountryCode={selectedCountryCode}
+            onSelectCountry={handleSelectCountry}
+            className="w-full h-full"
+            onCloseMobile={() => setCountrySidebarOpen(false)}
+          />
+        </div>
+      )}
+
+      {/* ── Slide-over Detail Panel (Secondary) ── */}
       <CountryDetailPanel
-        countryCode={selectedCountryCode}
-        onClose={() => setSelectedCountryCode(null)}
+        countryCode={showDetailPanel ? selectedCountryCode : null}
+        onClose={() => setShowDetailPanel(false)}
         countries={uniqueCountriesData}
         indicators={indicators}
       />
 
-      {/* ── Command Palette ── */}
+      {/* ── Global Command Palette (Cmd+K) ── */}
       <CommandPalette
         isOpen={showCommandPalette}
         onClose={() => setShowCommandPalette(false)}
         countries={uniqueCountriesData}
         onSelectCountry={(code) => {
-          setSelectedCountryCode(code);
+          handleSelectCountry(code);
           setShowCommandPalette(false);
         }}
         onQuickAction={handleQuickAction}

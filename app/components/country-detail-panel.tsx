@@ -8,6 +8,7 @@ import {
   getIndicatorValue,
   adjustForTimePeriod,
   formatUsd,
+  getPhysicalStats,
 } from "~/data/countries";
 
 interface CountryDetailPanelProps {
@@ -231,32 +232,97 @@ export function CountryDetailPanel({
             />
           </Section>
 
-          {/* Health */}
-          <Section title="Health">
-            <StatRow
-              label="Obesity Rate"
-              value={country.obesityRate != null ? `${country.obesityRate}%` : "—"}
-              barFill={country.obesityRate ?? undefined}
-              barColor="bg-red-500"
-              delta={regionAvg("obesityRate")}
-            />
-            <StatRow
-              label="Smoking Rate"
-              value={country.smokingRate != null ? `${country.smokingRate}%` : "—"}
-              barFill={country.smokingRate ?? undefined}
-              barColor="bg-red-400"
-              delta={regionAvg("smokingRate")}
-            />
-            <StatRow
-              label="Female Avg Height"
-              value={country.femaleHeightCm != null ? `${country.femaleHeightCm} cm` : "—"}
-              delta={regionAvg("femaleHeightCm")}
-            />
-            <StatRow
-              label="Female Avg BMI"
-              value={country.femaleBmi?.toString() ?? "—"}
-              delta={regionAvg("femaleBmi")}
-            />
+          {/* Physical & Health Characteristics (Male vs Female) */}
+          <Section title="Physical & Health Characteristics (Male vs Female)">
+            {(() => {
+              const p = getPhysicalStats(country);
+              return (
+                <div className="space-y-3">
+                  {/* Summary Dual Cards */}
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="p-2.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-center">
+                      <p className="text-[11px] font-bold text-blue-400">👨 Male Avg</p>
+                      <p className="text-sm font-bold font-mono text-foreground">{p.heightCm.male} cm</p>
+                      <p className="text-[10px] text-muted-foreground">{p.weightKg.male} kg • BMI {p.bmi.male}</p>
+                    </div>
+                    <div className="p-2.5 rounded-lg bg-pink-500/10 border border-pink-500/20 text-center">
+                      <p className="text-[11px] font-bold text-pink-400">👩 Female Avg</p>
+                      <p className="text-sm font-bold font-mono text-foreground">{p.heightCm.female} cm</p>
+                      <p className="text-[10px] text-muted-foreground">{p.weightKg.female} kg • BMI {p.bmi.female}</p>
+                    </div>
+                  </div>
+
+                  <StatRow
+                    label="Obesity Rate (M vs F)"
+                    value={`M: ${p.obesityRate.male}% | F: ${p.obesityRate.female}%`}
+                    barFill={country.obesityRate ?? undefined}
+                    barColor="bg-red-500"
+                    delta={regionAvg("obesityRate")}
+                  />
+                  <StatRow
+                    label="Daily Caloric Intake"
+                    value={`M: ${p.caloricIntakeKcal.male} kcal | F: ${p.caloricIntakeKcal.female} kcal`}
+                    barFill={(p.caloricIntakeKcal.male / 3500) * 100}
+                    barColor="bg-amber-500"
+                  />
+                  <StatRow
+                    label="Body Fat % (M vs F)"
+                    value={`M: ${p.bodyFatPercent.male}% | F: ${p.bodyFatPercent.female}%`}
+                    barFill={p.bodyFatPercent.female}
+                    barColor="bg-pink-400"
+                  />
+                  <StatRow
+                    label="Waist Size (M vs F)"
+                    value={`M: ${p.waistCm.male} cm | F: ${p.waistCm.female} cm`}
+                    barFill={(p.waistCm.male / 120) * 100}
+                    barColor="bg-cyan-500"
+                  />
+                  <StatRow
+                    label="Shoe Size (M vs F)"
+                    value={`M: ${p.shoeSizeEu.male} EU | F: ${p.shoeSizeEu.female} EU`}
+                    barFill={(p.shoeSizeEu.male / 48) * 100}
+                    barColor="bg-indigo-400"
+                  />
+                  <StatRow
+                    label="Physical Inactivity Rate"
+                    value={`M: ${p.inactivityRate.male}% | F: ${p.inactivityRate.female}%`}
+                    barFill={p.inactivityRate.female}
+                    barColor="bg-purple-500"
+                  />
+                  <StatRow
+                    label="Diabetes Prevalence"
+                    value={`M: ${p.diabetesRate.male}% | F: ${p.diabetesRate.female}%`}
+                    barFill={p.diabetesRate.male * 3}
+                    barColor="bg-rose-500"
+                  />
+                  <StatRow
+                    label="Hypertension Rate"
+                    value={`M: ${p.hypertensionRate.male}% | F: ${p.hypertensionRate.female}%`}
+                    barFill={p.hypertensionRate.male * 2}
+                    barColor="bg-orange-400"
+                  />
+                  <StatRow
+                    label="Alcohol (L/yr per capita)"
+                    value={`M: ${p.alcoholLiters.male} L | F: ${p.alcoholLiters.female} L`}
+                    barFill={p.alcoholLiters.male * 5}
+                    barColor="bg-yellow-500"
+                  />
+                  <StatRow
+                    label="Smoking Rate (M vs F)"
+                    value={`M: ${p.smokingRate.male}% | F: ${p.smokingRate.female}%`}
+                    barFill={country.smokingRate ?? undefined}
+                    barColor="bg-orange-500"
+                    delta={regionAvg("smokingRate")}
+                  />
+                  <StatRow
+                    label="Life Expectancy (M vs F)"
+                    value={`M: ${p.lifeExpectancy.male}y | F: ${p.lifeExpectancy.female}y`}
+                    barFill={p.lifeExpectancy.female ? (p.lifeExpectancy.female / 90) * 100 : undefined}
+                    barColor="bg-emerald-500"
+                  />
+                </div>
+              );
+            })()}
           </Section>
 
           {/* Gender */}

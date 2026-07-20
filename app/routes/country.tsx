@@ -78,7 +78,8 @@ export default function CountryDetail() {
     );
   }
 
-  const currentData = country.indicators[activeIndicator];
+  const currentData =
+    (country.indicators as any)[activeIndicator] ?? country.indicators.posttax_national;
   const entries = [
     { key: "p10", label: "P10", value: currentData.p10, percentile: 10 },
     { key: "p25", label: "P25", value: currentData.p25, percentile: 25 },
