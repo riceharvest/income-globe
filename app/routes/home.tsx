@@ -19,7 +19,7 @@ import {
   RotateCcw,
 } from "lucide-react";
 import { Input } from "~/components/ui/input";
-import { WorldMap, type MapMetricKey, MAP_METRICS } from "~/components/world-map";
+import { WorldMap, type MapMetricKey, MAP_METRICS, normalizeMapMetricKey } from "~/components/world-map";
 import { CountrySidebar } from "~/components/country-sidebar";
 import { CountryGrid } from "~/components/country-grid";
 import { CountryTable } from "~/components/country-table";
@@ -106,10 +106,8 @@ export default function Home() {
   // Connected state handler: Triggered when user clicks ANY stat value in sidebar!
   const handleSelectMetric = useCallback((metricKey: string) => {
     setSortKey(metricKey);
-    const isMapMetric = MAP_METRICS.some((m) => m.key === metricKey);
-    if (isMapMetric) {
-      setMapMetricKey(metricKey as MapMetricKey);
-    }
+    const mapKey = normalizeMapMetricKey(metricKey);
+    setMapMetricKey(mapKey);
   }, []);
 
   // Filtered & Sorted dataset

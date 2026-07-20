@@ -96,8 +96,8 @@ export type MapMetricCategory = "Income" | "Economy" | "Health & Physical" | "Ge
 export type MapMetricKey =
   | "p50"
   | "p90"
-  | "p10"
   | "p75"
+  | "p10"
   | "minimumWageEur"
   | "costOfLivingIndex"
   | "population"
@@ -106,17 +106,64 @@ export type MapMetricKey =
   | "bmi"
   | "femaleHeightCm"
   | "maleHeightCm"
+  | "femaleWeightKg"
   | "caloricIntakeKcal"
   | "obesityRate"
   | "bodyFatPercent"
   | "waistCm"
+  | "shoeSizeEu"
+  | "inactivityRate"
+  | "diabetesRate"
+  | "hypertensionRate"
   | "lifeExpectancy"
   | "smokingRate"
   | "alcoholLiters"
+  | "internetPenetration"
+  | "englishSpeakingPercent"
   | "adolescentBirthRate"
   | "laborForceGap"
   | "contraceptiveUse"
   | "childMarriagePercent";
+
+export function normalizeMapMetricKey(key: string): MapMetricKey {
+  if (key === "income" || key === "p50" || key === "medianIncome") return "p50";
+  if (key === "p90") return "p90";
+  if (key === "p75") return "p75";
+  if (key === "p10" || key === "p25") return "p10";
+
+  if (key === "femaleHeightCm" || key === "heightCm" || key === "height") return "femaleHeightCm";
+  if (key === "maleHeightCm") return "maleHeightCm";
+  if (key === "femaleWeightKg" || key === "maleWeightKg" || key === "weightKg" || key === "weight") return "femaleWeightKg";
+
+  if (key === "femaleBmi" || key === "maleBmi" || key === "bmi") return "bmi";
+  if (key === "bodyFatPercent" || key === "femaleBodyFatPercent") return "bodyFatPercent";
+  if (key === "waistCm" || key === "femaleWaistCm") return "waistCm";
+  if (key === "shoeSizeEu" || key === "femaleShoeSizeEu") return "shoeSizeEu";
+
+  if (key === "caloricIntakeKcal" || key === "femaleCaloricIntakeKcal") return "caloricIntakeKcal";
+  if (key === "obesityRate" || key === "femaleObesityRate" || key === "maleObesityRate") return "obesityRate";
+  if (key === "inactivityRate" || key === "femaleInactivityRate") return "inactivityRate";
+  if (key === "diabetesRate" || key === "femaleDiabetesRate") return "diabetesRate";
+  if (key === "hypertensionRate" || key === "femaleHypertensionRate") return "hypertensionRate";
+  if (key === "alcoholLiters" || key === "femaleAlcoholLiters") return "alcoholLiters";
+  if (key === "smokingRate" || key === "femaleSmokingRate") return "smokingRate";
+  if (key === "femaleLifeExpectancy" || key === "maleLifeExpectancy" || key === "lifeExpectancy") return "lifeExpectancy";
+
+  if (key === "minimumWageEur") return "minimumWageEur";
+  if (key === "costOfLivingIndex") return "costOfLivingIndex";
+  if (key === "unemploymentRate") return "unemploymentRate";
+  if (key === "internetPenetration") return "internetPenetration";
+  if (key === "englishSpeakingPercent") return "englishSpeakingPercent";
+  if (key === "population") return "population";
+  if (key === "hdi") return "hdi";
+
+  if (key === "adolescentBirthRate") return "adolescentBirthRate";
+  if (key === "childMarriagePercent") return "childMarriagePercent";
+  if (key === "laborForceGap") return "laborForceGap";
+  if (key === "contraceptiveUse") return "contraceptiveUse";
+
+  return "p50";
+}
 
 export interface MapMetricDef {
   key: MapMetricKey;
@@ -240,6 +287,28 @@ export const MAP_METRICS: MapMetricDef[] = [
     colorInterpolator: PALETTES.sky,
     accentColor: "#38bdf8",
   },
+  {
+    key: "internetPenetration",
+    label: "Internet Penetration",
+    shortLabel: "Internet %",
+    category: "Economy",
+    unit: "%",
+    formatValue: (v) => `${Math.round(v)}%`,
+    getValue: (c) => c.internetPenetration ?? null,
+    colorInterpolator: PALETTES.teal,
+    accentColor: "#0ea5e9",
+  },
+  {
+    key: "englishSpeakingPercent",
+    label: "English Proficiency",
+    shortLabel: "English %",
+    category: "Economy",
+    unit: "%",
+    formatValue: (v) => `${Math.round(v)}%`,
+    getValue: (c) => c.englishSpeakingPercent ?? null,
+    colorInterpolator: PALETTES.sky,
+    accentColor: "#3b82f6",
+  },
 
   // ── CATEGORY 3: HEALTH & PHYSICAL ──
   {
@@ -276,6 +345,17 @@ export const MAP_METRICS: MapMetricDef[] = [
     accentColor: "#3b82f6",
   },
   {
+    key: "femaleWeightKg",
+    label: "Average Weight",
+    shortLabel: "Weight",
+    category: "Health & Physical",
+    unit: "kg",
+    formatValue: (v) => `${Math.round(v)} kg`,
+    getValue: (c) => c.femaleWeightKg ?? c.maleWeightKg ?? null,
+    colorInterpolator: PALETTES.amber,
+    accentColor: "#f59e0b",
+  },
+  {
     key: "caloricIntakeKcal",
     label: "Daily Caloric Intake",
     shortLabel: "Daily Calories",
@@ -293,7 +373,7 @@ export const MAP_METRICS: MapMetricDef[] = [
     category: "Health & Physical",
     unit: "%",
     formatValue: (v) => `${v.toFixed(1)}%`,
-    getValue: (c) => c.femaleObesityRate ?? c.maleObesityRate ?? null,
+    getValue: (c) => c.femaleObesityRate ?? c.maleObesityRate ?? c.obesityRate ?? null,
     colorInterpolator: PALETTES.rose,
     invertScale: true,
     accentColor: "#f59e0b",
@@ -323,6 +403,53 @@ export const MAP_METRICS: MapMetricDef[] = [
     accentColor: "#b45309",
   },
   {
+    key: "shoeSizeEu",
+    label: "Average Shoe Size (EU)",
+    shortLabel: "Shoe Size",
+    category: "Health & Physical",
+    unit: "EU",
+    formatValue: (v) => `${v.toFixed(1)} EU`,
+    getValue: (c) => c.femaleShoeSizeEu ?? c.maleShoeSizeEu ?? null,
+    colorInterpolator: PALETTES.indigo,
+    accentColor: "#6366f1",
+  },
+  {
+    key: "inactivityRate",
+    label: "Physical Inactivity Rate",
+    shortLabel: "Inactivity %",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => c.femaleInactivityRate ?? c.maleInactivityRate ?? null,
+    colorInterpolator: PALETTES.rose,
+    invertScale: true,
+    accentColor: "#f43f5e",
+  },
+  {
+    key: "diabetesRate",
+    label: "Diabetes Prevalence",
+    shortLabel: "Diabetes %",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => c.femaleDiabetesRate ?? c.maleDiabetesRate ?? null,
+    colorInterpolator: PALETTES.rose,
+    invertScale: true,
+    accentColor: "#e11d48",
+  },
+  {
+    key: "hypertensionRate",
+    label: "Hypertension (High BP)",
+    shortLabel: "Hypertension %",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => c.femaleHypertensionRate ?? c.maleHypertensionRate ?? null,
+    colorInterpolator: PALETTES.rose,
+    invertScale: true,
+    accentColor: "#be123c",
+  },
+  {
     key: "lifeExpectancy",
     label: "Life Expectancy",
     shortLabel: "Life Expectancy",
@@ -343,7 +470,7 @@ export const MAP_METRICS: MapMetricDef[] = [
     category: "Health & Physical",
     unit: "%",
     formatValue: (v) => `${v.toFixed(1)}%`,
-    getValue: (c) => c.femaleSmokingRate ?? c.maleSmokingRate ?? null,
+    getValue: (c) => c.femaleSmokingRate ?? c.maleSmokingRate ?? c.smokingRate ?? null,
     colorInterpolator: PALETTES.rose,
     invertScale: true,
     accentColor: "#ef4444",
@@ -375,6 +502,18 @@ export const MAP_METRICS: MapMetricDef[] = [
     accentColor: "#ec4899",
   },
   {
+    key: "childMarriagePercent",
+    label: "Child Marriage Percentage",
+    shortLabel: "Child Marriage %",
+    category: "Gender",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => c.gender?.childMarriagePercent ?? null,
+    colorInterpolator: PALETTES.fuchsia,
+    invertScale: true,
+    accentColor: "#f43f5e",
+  },
+  {
     key: "laborForceGap",
     label: "Gender Labor Force Gap",
     shortLabel: "Labor Gap",
@@ -399,7 +538,7 @@ export const MAP_METRICS: MapMetricDef[] = [
   },
   {
     key: "childMarriagePercent",
-    label: "Child Marriage Rate",
+    label: "Child Marriage Percentage",
     shortLabel: "Child Marriage %",
     category: "Gender",
     unit: "%",

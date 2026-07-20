@@ -72,18 +72,49 @@ function isMetricActive(targetKey: string, activeKey?: string): boolean {
   const aliases: Record<string, string[]> = {
     income: ["income", "p50"],
     p50: ["income", "p50"],
-    femaleHeightCm: ["femaleHeightCm", "heightCm", "maleHeightCm"],
-    heightCm: ["femaleHeightCm", "heightCm", "maleHeightCm"],
-    femaleWeightKg: ["femaleWeightKg", "weightKg", "maleWeightKg"],
-    weightKg: ["femaleWeightKg", "weightKg", "maleWeightKg"],
+    p10: ["p10"],
+    p25: ["p25"],
+    p75: ["p75"],
+    p90: ["p90"],
+    femaleHeightCm: ["femaleHeightCm", "heightCm", "maleHeightCm", "height"],
+    heightCm: ["femaleHeightCm", "heightCm", "maleHeightCm", "height"],
+    femaleWeightKg: ["femaleWeightKg", "weightKg", "maleWeightKg", "weight"],
+    weightKg: ["femaleWeightKg", "weightKg", "maleWeightKg", "weight"],
     femaleBmi: ["femaleBmi", "bmi", "maleBmi"],
     bmi: ["femaleBmi", "bmi", "maleBmi"],
     obesityRate: ["obesityRate", "femaleObesityRate", "maleObesityRate"],
     femaleObesityRate: ["obesityRate", "femaleObesityRate", "maleObesityRate"],
     smokingRate: ["smokingRate", "femaleSmokingRate", "maleSmokingRate"],
     femaleSmokingRate: ["smokingRate", "femaleSmokingRate", "maleSmokingRate"],
-    femaleLifeExpectancy: ["femaleLifeExpectancy", "lifeExpectancy", "maleLifeExpectancy"],
-    lifeExpectancy: ["femaleLifeExpectancy", "lifeExpectancy", "maleLifeExpectancy"],
+    femaleLifeExpectancy: [
+      "femaleLifeExpectancy",
+      "lifeExpectancy",
+      "maleLifeExpectancy",
+    ],
+    lifeExpectancy: [
+      "femaleLifeExpectancy",
+      "lifeExpectancy",
+      "maleLifeExpectancy",
+    ],
+    minimumWageEur: ["minimumWageEur", "minimumWage"],
+    unemploymentRate: ["unemploymentRate"],
+    costOfLivingIndex: ["costOfLivingIndex"],
+    internetPenetration: ["internetPenetration"],
+    hdi: ["hdi"],
+    population: ["population"],
+    exchangeRate: ["exchangeRate"],
+    englishSpeakingPercent: ["englishSpeakingPercent"],
+    adolescentBirthRate: ["adolescentBirthRate"],
+    childMarriagePercent: ["childMarriagePercent"],
+    laborForceGap: ["laborForceGap"],
+    contraceptiveUse: ["contraceptiveUse"],
+    bodyFatPercent: ["bodyFatPercent"],
+    waistCm: ["waistCm"],
+    shoeSizeEu: ["shoeSizeEu"],
+    caloricIntakeKcal: ["caloricIntakeKcal"],
+    diabetesRate: ["diabetesRate"],
+    hypertensionRate: ["hypertensionRate"],
+    alcoholLiters: ["alcoholLiters"],
   };
 
   const equivalentList = aliases[targetKey];
@@ -144,14 +175,18 @@ function MetricCard({
             <Icon
               className={cn(
                 "h-3.5 w-3.5 flex-shrink-0 transition-colors",
-                active ? "text-emerald-400" : "text-muted-foreground group-hover:text-emerald-400"
+                active
+                  ? "text-emerald-400"
+                  : "text-muted-foreground group-hover:text-emerald-400"
               )}
             />
           )}
           <span
             className={cn(
               "text-xs font-semibold truncate transition-colors",
-              active ? "text-emerald-300 font-bold" : "text-foreground group-hover:text-emerald-400"
+              active
+                ? "text-emerald-300 font-bold"
+                : "text-foreground group-hover:text-emerald-400"
             )}
           >
             {label}
@@ -533,7 +568,10 @@ export function CountrySidebar({
               <p className="text-[10px] text-muted-foreground uppercase font-medium tracking-wide">
                 Currency
               </p>
-              <p className="text-xs font-bold text-foreground font-mono truncate" title={`${country.currency} (${country.currencySymbol})`}>
+              <p
+                className="text-xs font-bold text-foreground font-mono truncate"
+                title={`${country.currency} (${country.currencySymbol})`}
+              >
                 {country.currency} ({country.currencySymbol})
               </p>
             </div>
