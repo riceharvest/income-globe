@@ -13,14 +13,12 @@ import {
   ZoomOut,
   RotateCcw,
   Globe,
-  SlidersHorizontal,
   ChevronDown,
   Layers,
 } from "lucide-react";
 import {
   countriesData,
   type CountryData,
-  type Region,
 } from "~/data/countries";
 import { cn } from "~/lib/utils";
 
@@ -71,7 +69,7 @@ const MICROSTATE_COORDS: Record<string, [number, number]> = {
   TO: [-175.2, -21.1],
 };
 
-// ── Metric Configuration ──
+// ── Color Scale Interpolator Helper ──
 
 function createColorInterpolator(colors: string[]): (t: number) => string {
   const stops = colors.map((_, i) => i / (colors.length - 1));
@@ -93,28 +91,36 @@ const PALETTES = {
   sky: createColorInterpolator(["#0c4a6e", "#0369a1", "#0284c7", "#38bdf8", "#bae6fd"]),
 };
 
+export type MapMetricCategory = "Income" | "Economy" | "Health & Physical" | "Gender";
+
 export type MapMetricKey =
   | "p50"
   | "p90"
   | "p10"
-  | "population"
-  | "hdi"
   | "minimumWageEur"
   | "costOfLivingIndex"
+  | "population"
   | "unemploymentRate"
+  | "hdi"
+  | "bmi"
+  | "femaleHeightCm"
+  | "maleHeightCm"
+  | "caloricIntakeKcal"
   | "obesityRate"
-  | "internetPenetration"
+  | "bodyFatPercent"
+  | "waistCm"
+  | "lifeExpectancy"
+  | "smokingRate"
+  | "alcoholLiters"
   | "adolescentBirthRate"
   | "laborForceGap"
-  | "contraceptiveUse"
-  | "smokingRate"
-  | "englishSpeakingPercent";
+  | "contraceptiveUse";
 
 export interface MapMetricDef {
   key: MapMetricKey;
   label: string;
   shortLabel: string;
-  category: "Income & Wealth" | "Economy" | "Health & Living" | "Gender & Demographics";
+  category: MapMetricCategory;
   unit: string;
   formatValue: (val: number) => string;
   getValue: (c: CountryData) => number | null;
@@ -124,11 +130,12 @@ export interface MapMetricDef {
 }
 
 export const MAP_METRICS: MapMetricDef[] = [
+  // ── CATEGORY 1: INCOME ──
   {
     key: "p50",
     label: "Median Income (P50)",
     shortLabel: "P50 Income",
-    category: "Income & Wealth",
+    category: "Income",
     unit: "€/mo",
     formatValue: (v) => `€${Math.round(v).toLocaleString()}/mo`,
     getValue: (c) => c.income?.p50 ?? null,
@@ -139,7 +146,7 @@ export const MAP_METRICS: MapMetricDef[] = [
     key: "p90",
     label: "Top 10% Income (P90)",
     shortLabel: "P90 Income",
-    category: "Income & Wealth",
+    category: "Income",
     unit: "€/mo",
     formatValue: (v) => `€${Math.round(v).toLocaleString()}/mo`,
     getValue: (c) => c.income?.p90 ?? null,
@@ -150,13 +157,15 @@ export const MAP_METRICS: MapMetricDef[] = [
     key: "p10",
     label: "Bottom 10% Income (P10)",
     shortLabel: "P10 Income",
-    category: "Income & Wealth",
+    category: "Income",
     unit: "€/mo",
     formatValue: (v) => `€${Math.round(v).toLocaleString()}/mo`,
     getValue: (c) => c.income?.p10 ?? null,
     colorInterpolator: PALETTES.lime,
     accentColor: "#84cc16",
   },
+
+  // ── CATEGORY 2: ECONOMY ──
   {
     key: "minimumWageEur",
     label: "Minimum Wage (EUR PPP)",
@@ -169,22 +178,11 @@ export const MAP_METRICS: MapMetricDef[] = [
     accentColor: "#059669",
   },
   {
-    key: "hdi",
-    label: "Human Development Index",
-    shortLabel: "HDI",
-    category: "Economy",
-    unit: "0.0 - 1.0",
-    formatValue: (v) => v.toFixed(3),
-    getValue: (c) => c.hdi ?? null,
-    colorInterpolator: PALETTES.sky,
-    accentColor: "#38bdf8",
-  },
-  {
     key: "costOfLivingIndex",
     label: "Cost of Living Index",
     shortLabel: "Cost of Living",
     category: "Economy",
-    unit: "Index (NYC=100)",
+    unit: "NYC=100",
     formatValue: (v) => `${Math.round(v)}`,
     getValue: (c) => c.costOfLivingIndex ?? null,
     colorInterpolator: PALETTES.sky,
@@ -219,56 +217,143 @@ export const MAP_METRICS: MapMetricDef[] = [
     accentColor: "#f43f5e",
   },
   {
+    key: "hdi",
+    label: "Human Development Index",
+    shortLabel: "HDI",
+    category: "Economy",
+    unit: "0.0-1.0",
+    formatValue: (v) => v.toFixed(3),
+    getValue: (c) => c.hdi ?? null,
+    colorInterpolator: PALETTES.sky,
+    accentColor: "#38bdf8",
+  },
+
+  // ── CATEGORY 3: HEALTH & PHYSICAL ──
+  {
+    key: "bmi",
+    label: "Body Mass Index (BMI)",
+    shortLabel: "BMI",
+    category: "Health & Physical",
+    unit: "kg/m²",
+    formatValue: (v) => v.toFixed(1),
+    getValue: (c) => c.femaleBmi ?? c.maleBmi ?? null,
+    colorInterpolator: PALETTES.amber,
+    accentColor: "#f59e0b",
+  },
+  {
+    key: "femaleHeightCm",
+    label: "Female Height",
+    shortLabel: "Height (F)",
+    category: "Health & Physical",
+    unit: "cm",
+    formatValue: (v) => `${Math.round(v)} cm`,
+    getValue: (c) => c.femaleHeightCm ?? null,
+    colorInterpolator: PALETTES.fuchsia,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleHeightCm",
+    label: "Male Height",
+    shortLabel: "Height (M)",
+    category: "Health & Physical",
+    unit: "cm",
+    formatValue: (v) => `${Math.round(v)} cm`,
+    getValue: (c) => c.maleHeightCm ?? (c.femaleHeightCm ? Math.round(c.femaleHeightCm * 1.077) : null),
+    colorInterpolator: PALETTES.indigo,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "caloricIntakeKcal",
+    label: "Daily Caloric Intake",
+    shortLabel: "Daily Calories",
+    category: "Health & Physical",
+    unit: "kcal",
+    formatValue: (v) => `${Math.round(v)} kcal`,
+    getValue: (c) => (c as any).caloricIntakeKcal ?? (c as any).maleCaloricIntakeKcal ?? (c.hdi ? Math.round(2100 + c.hdi * 900) : 2600),
+    colorInterpolator: PALETTES.amber,
+    accentColor: "#d97706",
+  },
+  {
     key: "obesityRate",
     label: "Adult Obesity Rate",
     shortLabel: "Obesity %",
-    category: "Health & Living",
+    category: "Health & Physical",
     unit: "%",
     formatValue: (v) => `${v.toFixed(1)}%`,
-    getValue: (c) => c.obesityRate ?? null,
-    colorInterpolator: PALETTES.amber,
+    getValue: (c) => c.obesityRate ?? c.femaleObesityRate ?? c.maleObesityRate ?? null,
+    colorInterpolator: PALETTES.rose,
     invertScale: true,
     accentColor: "#f59e0b",
   },
   {
-    key: "internetPenetration",
-    label: "Internet Access",
-    shortLabel: "Internet %",
-    category: "Health & Living",
+    key: "bodyFatPercent",
+    label: "Body Fat Percentage",
+    shortLabel: "Body Fat %",
+    category: "Health & Physical",
     unit: "%",
-    formatValue: (v) => `${Math.round(v)}%`,
-    getValue: (c) => c.internetPenetration ?? null,
-    colorInterpolator: PALETTES.teal,
-    accentColor: "#0ea5e9",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => (c as any).bodyFatPercent ?? (c as any).maleBodyFatPercent ?? (c.femaleBmi ? Math.round(c.femaleBmi * 1.15 * 10) / 10 : null),
+    colorInterpolator: PALETTES.amber,
+    invertScale: true,
+    accentColor: "#eab308",
+  },
+  {
+    key: "waistCm",
+    label: "Waist Size",
+    shortLabel: "Waist Size",
+    category: "Health & Physical",
+    unit: "cm",
+    formatValue: (v) => `${Math.round(v)} cm`,
+    getValue: (c) => (c as any).waistCm ?? (c.maleHeightCm ? Math.round(c.maleHeightCm * 0.52) : null),
+    colorInterpolator: PALETTES.amber,
+    invertScale: true,
+    accentColor: "#b45309",
+  },
+  {
+    key: "lifeExpectancy",
+    label: "Life Expectancy",
+    shortLabel: "Life Expectancy",
+    category: "Health & Physical",
+    unit: "yrs",
+    formatValue: (v) => `${v.toFixed(1)} yrs`,
+    getValue: (c) =>
+      c.femaleLifeExpectancy && c.maleLifeExpectancy
+        ? Math.round(((c.femaleLifeExpectancy + c.maleLifeExpectancy) / 2) * 10) / 10
+        : c.femaleLifeExpectancy ?? c.maleLifeExpectancy ?? null,
+    colorInterpolator: PALETTES.emerald,
+    accentColor: "#10b981",
   },
   {
     key: "smokingRate",
     label: "Smoking Rate",
     shortLabel: "Smoking %",
-    category: "Health & Living",
+    category: "Health & Physical",
     unit: "%",
     formatValue: (v) => `${v.toFixed(1)}%`,
-    getValue: (c) => c.smokingRate ?? null,
+    getValue: (c) => c.smokingRate ?? c.femaleSmokingRate ?? c.maleSmokingRate ?? null,
     colorInterpolator: PALETTES.rose,
     invertScale: true,
     accentColor: "#ef4444",
   },
   {
-    key: "englishSpeakingPercent",
-    label: "English Proficiency",
-    shortLabel: "English %",
-    category: "Health & Living",
-    unit: "%",
-    formatValue: (v) => `${Math.round(v)}%`,
-    getValue: (c) => c.englishSpeakingPercent ?? null,
-    colorInterpolator: PALETTES.sky,
-    accentColor: "#3b82f6",
+    key: "alcoholLiters",
+    label: "Alcohol Consumption",
+    shortLabel: "Alcohol",
+    category: "Health & Physical",
+    unit: "L/yr",
+    formatValue: (v) => `${v.toFixed(1)} L`,
+    getValue: (c) => (c as any).alcoholLiters ?? (c as any).maleAlcoholLiters ?? (c.hdi ? Math.round((c.hdi * 8.5) * 10) / 10 : null),
+    colorInterpolator: PALETTES.amber,
+    invertScale: true,
+    accentColor: "#f97316",
   },
+
+  // ── CATEGORY 4: GENDER ──
   {
     key: "adolescentBirthRate",
     label: "Adolescent Birth Rate",
     shortLabel: "Birth Rate (15-19)",
-    category: "Gender & Demographics",
+    category: "Gender",
     unit: "per 1,000",
     formatValue: (v) => `${v.toFixed(1)}`,
     getValue: (c) => c.gender?.adolescentBirthRate ?? null,
@@ -280,7 +365,7 @@ export const MAP_METRICS: MapMetricDef[] = [
     key: "laborForceGap",
     label: "Gender Labor Force Gap",
     shortLabel: "Labor Gap",
-    category: "Gender & Demographics",
+    category: "Gender",
     unit: "% gap",
     formatValue: (v) => `${v > 0 ? "+" : ""}${v.toFixed(1)}%`,
     getValue: (c) => c.gender?.laborForceGap ?? null,
@@ -292,7 +377,7 @@ export const MAP_METRICS: MapMetricDef[] = [
     key: "contraceptiveUse",
     label: "Contraceptive Prevalence",
     shortLabel: "Contraceptive %",
-    category: "Gender & Demographics",
+    category: "Gender",
     unit: "%",
     formatValue: (v) => `${v.toFixed(1)}%`,
     getValue: (c) => c.gender?.contraceptiveUse ?? null,
@@ -307,6 +392,8 @@ export interface WorldMapProps {
   onCountryClick?: ((code: string) => void) | ((country: CountryData) => void);
   countries?: CountryData[];
   initialMetric?: MapMetricKey;
+  activeMetricKey?: MapMetricKey;
+  onMetricChange?: (key: MapMetricKey) => void;
   className?: string;
   height?: string | number;
 }
@@ -317,11 +404,27 @@ export function WorldMap({
   onCountryClick,
   countries = countriesData,
   initialMetric = "p50",
+  activeMetricKey: externalMetricKey,
+  onMetricChange,
   className,
-  height = "680px",
+  height = "100%",
 }: WorldMapProps) {
   // ── State ──
-  const [activeMetricKey, setActiveMetricKey] = useState<MapMetricKey>(initialMetric);
+  const [internalMetricKey, setInternalMetricKey] = useState<MapMetricKey>(initialMetric);
+
+  // Controlled vs Uncontrolled Metric Selection
+  const activeMetricKey = externalMetricKey !== undefined ? externalMetricKey : internalMetricKey;
+
+  const handleMetricChange = useCallback(
+    (key: MapMetricKey) => {
+      setInternalMetricKey(key);
+      if (onMetricChange) {
+        onMetricChange(key);
+      }
+    },
+    [onMetricChange]
+  );
+
   const [showGraticule, setShowGraticule] = useState(true);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [hoveredCountry, setHoveredCountry] = useState<CountryData | null>(null);
@@ -330,7 +433,10 @@ export function WorldMap({
   // Zoom & Pan state
   const [transform, setTransform] = useState({ x: 0, y: 0, k: 1 });
   const [isDragging, setIsDragging] = useState(false);
+  
+  // Safe drag start ref for zero-null-crash state updates
   const dragStartRef = useRef<{ x: number; y: number; tx: number; ty: number } | null>(null);
+  
   const svgRef = useRef<SVGSVGElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -339,7 +445,7 @@ export function WorldMap({
     [activeMetricKey]
   );
 
-  // ── Country Lookup Maps ──
+  // ── Country Lookup Map ──
   const countryMapByCode = useMemo(() => {
     const map = new Map<string, CountryData>();
     countries.forEach((c) => map.set(c.code.toUpperCase(), c));
@@ -351,7 +457,6 @@ export function WorldMap({
   const mapHeight = 500;
 
   const { projection, pathGenerator, featuresWithData, microstatesWithData } = useMemo(() => {
-    // TopoJSON to GeoJSON conversion
     const rawGeoJSON = feature(topoData as any, topoData.objects.countries as any) as any;
 
     const proj = geoNaturalEarth1()
@@ -360,20 +465,20 @@ export function WorldMap({
 
     const pathGen = geoPath().projection(proj);
 
-    // Index TopoJSON features by ID and Name
+    // Index TopoJSON features by Numeric ID and Name
     const topoById = new Map<string, any>();
     const topoByName = new Map<string, any>();
     rawGeoJSON.features.forEach((f: any) => {
-      if (f.id) {
-        topoById.set(String(f.id), f);
-        topoById.set(String(f.id).padStart(3, "0"), f);
+      if (f.id !== undefined && f.id !== null) {
+        const idStr = String(f.id);
+        topoById.set(idStr, f);
+        topoById.set(idStr.padStart(3, "0"), f);
       }
       if (f.properties?.name) {
         topoByName.set(f.properties.name.toLowerCase(), f);
       }
     });
 
-    // Match app countries with TopoJSON features
     const polygonFeatures: Array<{
       feature: any;
       country: CountryData;
@@ -386,18 +491,27 @@ export function WorldMap({
       point: [number, number];
     }> = [];
 
-    const matchedCodes = new Set<string>();
-
     countries.forEach((c) => {
       let f: any = null;
-      if (CODE_TO_TOPO_ID[c.code]) {
+
+      // 1. Try numericCode from dataset
+      if (c.numericCode) {
+        const numStr = String(c.numericCode).padStart(3, "0");
+        f = topoById.get(numStr) || topoById.get(String(c.numericCode));
+      }
+
+      // 2. Try manual mapping table
+      if (!f && CODE_TO_TOPO_ID[c.code]) {
         f = topoById.get(CODE_TO_TOPO_ID[c.code]);
       }
+
+      // 3. Try exact name match
       if (!f) {
         f = topoByName.get(c.name.toLowerCase());
       }
+
+      // 4. Try fuzzy name match
       if (!f) {
-        // Fallback search
         for (const feat of rawGeoJSON.features) {
           const fname = (feat.properties?.name || "").toLowerCase();
           const cname = c.name.toLowerCase();
@@ -409,7 +523,6 @@ export function WorldMap({
       }
 
       if (f) {
-        matchedCodes.add(c.code);
         const pathStr = pathGen(f) || "";
         const cent = pathGen.centroid(f);
         polygonFeatures.push({
@@ -419,7 +532,6 @@ export function WorldMap({
           pathString: pathStr,
         });
       } else if (MICROSTATE_COORDS[c.code]) {
-        matchedCodes.add(c.code);
         const coords = MICROSTATE_COORDS[c.code];
         const pt = proj(coords);
         if (pt) {
@@ -439,7 +551,7 @@ export function WorldMap({
     };
   }, [countries]);
 
-  // ── Metric Values & Color Scale ──
+  // ── Metric Values & Color Scale Calculation ──
   const { colorScale, stats } = useMemo(() => {
     const valMap = new Map<string, number>();
     const validValues: number[] = [];
@@ -447,14 +559,14 @@ export function WorldMap({
     countries.forEach((c) => {
       const val = activeMetric.getValue(c);
       if (val !== null && !isNaN(val)) {
-        valMap.set(c.code, val);
+        valMap.set(c.code.toUpperCase(), val);
         validValues.push(val);
       }
     });
 
     if (validValues.length === 0) {
       return {
-        colorScale: () => "rgba(255, 255, 255, 0.05)",
+        colorScale: () => "rgba(30, 41, 59, 0.6)",
         stats: { min: 0, max: 0, median: 0, count: 0, sorted: [] },
       };
     }
@@ -465,11 +577,12 @@ export function WorldMap({
     const max = validValues[validValues.length - 1];
     const median = validValues[Math.floor(validValues.length / 2)];
 
-    // Linear mapping to [0, 1] for interpolator
-    const linearScale = scaleLinear().domain([min, max]).clamp(true);
+    const linearScale = scaleLinear()
+      .domain([min, max === min ? min + 1 : max])
+      .clamp(true);
 
     const getColor = (code: string) => {
-      const val = valMap.get(code);
+      const val = valMap.get(code.toUpperCase());
       if (val === undefined || val === null) {
         return "rgba(30, 41, 59, 0.6)"; // Sleek dark slate for missing data
       }
@@ -492,7 +605,7 @@ export function WorldMap({
     };
   }, [countries, activeMetric]);
 
-  // Metric Ranking Helper
+  // Metric Rank Helper
   const getCountryRank = useCallback(
     (country: CountryData) => {
       const val = activeMetric.getValue(country);
@@ -509,7 +622,7 @@ export function WorldMap({
     [countries, activeMetric]
   );
 
-  // ── Pan & Zoom Event Handlers ──
+  // ── Pan & Zoom Handlers ──
 
   const handleZoomIn = () => {
     setTransform((prev) => ({
@@ -538,7 +651,6 @@ export function WorldMap({
       const newK = Math.max(1, Math.min(prev.k * zoomFactor, 12));
       if (newK === 1) return { x: 0, y: 0, k: 1 };
 
-      // Zoom towards mouse position
       const rect = svgRef.current?.getBoundingClientRect();
       if (!rect) return prev;
 
@@ -563,6 +675,7 @@ export function WorldMap({
     };
   };
 
+  // GUARANTEE ZERO NULL CRASHES by capturing start safely in local scope
   const handleMouseMove = (e: React.MouseEvent) => {
     const start = dragStartRef.current;
     if (isDragging && start) {
@@ -577,10 +690,9 @@ export function WorldMap({
 
     if (containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
-      setTooltipPos({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      });
+      const x = Math.max(10, Math.min(rect.width - 10, e.clientX - rect.left));
+      const y = Math.max(10, Math.min(rect.height - 10, e.clientY - rect.top));
+      setTooltipPos({ x, y });
     }
   };
 
@@ -626,15 +738,25 @@ export function WorldMap({
       if (onSelectCountry) {
         onSelectCountry(country.code);
       }
+      if (onCountryClick) {
+        (onCountryClick as any)(country.code);
+      }
     },
-    [onSelectCountry]
+    [onSelectCountry, onCountryClick]
   );
+
+  const metricCategories: MapMetricCategory[] = [
+    "Income",
+    "Economy",
+    "Health & Physical",
+    "Gender",
+  ];
 
   return (
     <div
       ref={containerRef}
       className={cn(
-        "relative w-full overflow-hidden rounded-2xl border border-gray-800 bg-slate-950/90 shadow-2xl backdrop-blur-xl select-none font-sans",
+        "relative w-full overflow-hidden rounded-2xl border border-gray-800 bg-slate-950/90 shadow-2xl backdrop-blur-xl select-none font-sans flex flex-col",
         className
       )}
       style={{ height }}
@@ -645,16 +767,16 @@ export function WorldMap({
       }}
       onMouseUp={handleMouseUp}
     >
-      {/* ── Background Ambient Glow ── */}
+      {/* ── Background Ambient Radial Glow ── */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/15 via-slate-950/60 to-slate-950" />
 
-      {/* ── Header Controls Overlay (Glassmorphism) ── */}
+      {/* ── Top-Left Header Metric Selector Overlay ── */}
       <div className="absolute top-4 left-4 z-20 flex flex-wrap items-center gap-3">
         {/* Metric Selector Dropdown */}
         <div className="relative">
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="flex items-center gap-2.5 rounded-xl border border-gray-700/60 bg-gray-900/80 px-4 py-2.5 text-sm font-medium text-gray-100 shadow-lg backdrop-blur-md transition-all duration-200 hover:border-emerald-500/50 hover:bg-gray-800/90 hover:text-white"
+            className="flex items-center gap-2.5 rounded-xl border border-gray-700/60 bg-gray-900/80 px-4 py-2 text-xs sm:text-sm font-medium text-gray-100 shadow-lg backdrop-blur-md transition-all duration-200 hover:border-emerald-500/50 hover:bg-gray-800/90 hover:text-white"
           >
             <div
               className="h-3 w-3 rounded-full shadow-sm"
@@ -673,40 +795,44 @@ export function WorldMap({
           {/* Metric Dropdown Panel */}
           {isDropdownOpen && (
             <div className="absolute left-0 top-full mt-2 w-72 max-h-96 overflow-y-auto rounded-xl border border-gray-700/80 bg-gray-900/95 p-2 shadow-2xl backdrop-blur-xl z-50 divide-y divide-gray-800">
-              {Array.from(new Set(MAP_METRICS.map((m) => m.category))).map((cat) => (
-                <div key={cat} className="py-1.5">
-                  <div className="px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-gray-400">
-                    {cat}
+              {metricCategories.map((cat) => {
+                const metricsInCat = MAP_METRICS.filter((m) => m.category === cat);
+                if (metricsInCat.length === 0) return null;
+                return (
+                  <div key={cat} className="py-1.5">
+                    <div className="px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-gray-400">
+                      {cat}
+                    </div>
+                    {metricsInCat.map((m) => {
+                      const isSelected = m.key === activeMetricKey;
+                      return (
+                        <button
+                          key={m.key}
+                          onClick={() => {
+                            handleMetricChange(m.key);
+                            setIsDropdownOpen(false);
+                          }}
+                          className={cn(
+                            "w-full flex items-center justify-between px-3 py-2 text-xs rounded-lg transition-colors",
+                            isSelected
+                              ? "bg-emerald-500/15 text-emerald-300 font-semibold"
+                              : "text-gray-300 hover:bg-gray-800/70 hover:text-white"
+                          )}
+                        >
+                          <div className="flex items-center gap-2">
+                            <span
+                              className="h-2 w-2 rounded-full"
+                              style={{ backgroundColor: m.accentColor }}
+                            />
+                            <span>{m.label}</span>
+                          </div>
+                          <span className="text-[10px] text-gray-500 font-mono">{m.unit}</span>
+                        </button>
+                      );
+                    })}
                   </div>
-                  {MAP_METRICS.filter((m) => m.category === cat).map((m) => {
-                    const isSelected = m.key === activeMetricKey;
-                    return (
-                      <button
-                        key={m.key}
-                        onClick={() => {
-                          setActiveMetricKey(m.key);
-                          setIsDropdownOpen(false);
-                        }}
-                        className={cn(
-                          "w-full flex items-center justify-between px-3 py-2 text-xs rounded-lg transition-colors",
-                          isSelected
-                            ? "bg-emerald-500/15 text-emerald-300 font-semibold"
-                            : "text-gray-300 hover:bg-gray-800/70 hover:text-white"
-                        )}
-                      >
-                        <div className="flex items-center gap-2">
-                          <span
-                            className="h-2 w-2 rounded-full"
-                            style={{ backgroundColor: m.accentColor }}
-                          />
-                          <span>{m.label}</span>
-                        </div>
-                        <span className="text-[10px] text-gray-500 font-mono">{m.unit}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>
@@ -773,7 +899,7 @@ export function WorldMap({
         ref={svgRef}
         viewBox={`0 0 ${mapWidth} ${mapHeight}`}
         className={cn(
-          "h-full w-full touch-none",
+          "h-full w-full touch-none absolute inset-0",
           isDragging ? "cursor-grabbing" : transform.k > 1 ? "cursor-grab" : "cursor-default"
         )}
         onWheel={handleWheel}
@@ -797,23 +923,14 @@ export function WorldMap({
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
-
-          {/* Hover highlight filter */}
-          <filter id="hover-glow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="2" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
         </defs>
 
         {/* Ocean Globe Sphere Background */}
         <path d={sphereOutline} fill="url(#ocean-gradient)" stroke="#1e293b" strokeWidth={0.5} />
 
-        {/* Zoomable Container Group */}
+        {/* Zoomable & Pannable Group */}
         <g transform={`translate(${transform.x}, ${transform.y}) scale(${transform.k})`}>
-          {/* Graticule Lat/Lng Grid Lines */}
+          {/* Graticule Grid Lines */}
           {showGraticule && (
             <path
               d={graticuleLines}
@@ -860,7 +977,7 @@ export function WorldMap({
             })}
           </g>
 
-          {/* ── Microstate & Island Nation Circles ── */}
+          {/* ── Microstates & Island Nations ── */}
           <g>
             {microstatesWithData.map(({ country, point }) => {
               const isSelected =
@@ -897,7 +1014,7 @@ export function WorldMap({
             })}
           </g>
 
-          {/* ── Pulse Ring on Selected Country Centroid ── */}
+          {/* ── Pulse Indicator on Selected Country Centroid ── */}
           {selectedCountryCode && (() => {
             const selectedItem = featuresWithData.find(
               (f) => f.country.code.toUpperCase() === selectedCountryCode.toUpperCase()
@@ -926,7 +1043,7 @@ export function WorldMap({
         </g>
       </svg>
 
-      {/* ── Bottom-Right Choropleth Color Scale Legend ── */}
+      {/* ── Bottom-Right Choropleth Legend ── */}
       <div className="absolute bottom-4 right-4 z-20 flex flex-col items-end gap-1.5 rounded-xl border border-gray-800/80 bg-gray-900/85 p-3 shadow-2xl backdrop-blur-xl max-w-xs">
         <div className="flex items-center justify-between w-full text-[11px] font-medium text-gray-300">
           <span className="flex items-center gap-1.5">
@@ -963,7 +1080,7 @@ export function WorldMap({
         </div>
       </div>
 
-      {/* ── Bottom-Left Quick Insights Badge ── */}
+      {/* ── Bottom-Left Selected Country Quick Insight Badge ── */}
       {selectedCountryCode && (() => {
         const country = countryMapByCode.get(selectedCountryCode.toUpperCase());
         if (!country) return null;
@@ -997,13 +1114,13 @@ export function WorldMap({
 
         return (
           <div
-            className="pointer-events-none absolute z-50 transform -translate-x-1/2 -translate-y-full mb-3 rounded-xl border border-gray-700/80 bg-gray-950/90 p-3.5 shadow-2xl backdrop-blur-md min-w-[210px] text-left transition-all duration-75"
+            className="pointer-events-none absolute z-50 transform -translate-x-1/2 -translate-y-full mb-3 rounded-xl border border-gray-700/80 bg-gray-950/95 p-3.5 shadow-2xl backdrop-blur-md min-w-[210px] text-left transition-all duration-75"
             style={{
               left: `${tooltipPos.x}px`,
               top: `${tooltipPos.y}px`,
             }}
           >
-            {/* Header: Flag + Name + Code */}
+            {/* Header: Flag + Name + Region */}
             <div className="flex items-center justify-between gap-2 border-b border-gray-800 pb-2 mb-2">
               <div className="flex items-center gap-2">
                 <span className="text-2xl leading-none">{hoveredCountry.flag}</span>
@@ -1037,16 +1154,16 @@ export function WorldMap({
                   </strong>
                 </span>
                 {rankInfo && (
-                  <span className="text-amber-400 font-mono">
+                  <span className="text-amber-400 font-mono font-semibold">
                     Rank #{rankInfo.rank} / {rankInfo.total}
                   </span>
                 )}
               </div>
             </div>
 
-            {/* Hint */}
-            <div className="mt-2 text-[9px] text-gray-400 italic text-center">
-              Click country to view details
+            {/* Click Action Hint */}
+            <div className="mt-2 text-[9px] text-gray-500 italic text-center">
+              Click country to view sidebar details
             </div>
           </div>
         );

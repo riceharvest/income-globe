@@ -55,7 +55,7 @@ export type SortKey =
 interface CountryCardProps {
   country: CountryData;
   maxMedian?: number;
-  sortKey?: SortKey;
+  sortKey?: SortKey | string;
   onSelect?: (code: string) => void;
 }
 
@@ -99,9 +99,9 @@ const SORT_FIELD_META: Record<SortKey, { label: string; format: (c: CountryData)
   }, barValue: () => 0, barMax: 100, unit: "", color: "text-foreground" },
   education: { label: "Education", format: (c) => {
     const e = getEducation(c.code);
-    return e ? `${e}%` : null;
-  }, barValue: (c) => getEducation(c.code) ?? 0, barMax: 100, unit: "%", color: "text-foreground" },
-  outOfWedlock: { label: "Out Wedlock", format: (c) => {
+    return e != null ? `${e}y` : null;
+  }, barValue: (c) => getEducation(c.code) ?? 0, barMax: 20, unit: "y", color: "text-foreground" },
+  outOfWedlock: { label: "Wedlock", format: (c) => {
     const o = getOutOfWedlock(c.code);
     return o ? `${o}%` : null;
   }, barValue: (c) => getOutOfWedlock(c.code) ?? 0, barMax: 100, unit: "%", color: "text-foreground" },
@@ -126,7 +126,8 @@ function MiniBar({ value, max }: { value: number; max: number }) {
 }
 
 export function CountryCard({ country, maxMedian = 9000, sortKey = "income", onSelect }: CountryCardProps) {
-  const meta = SORT_FIELD_META[sortKey] ?? SORT_FIELD_META.income;
+  const key = (sortKey && sortKey in SORT_FIELD_META ? (sortKey as SortKey) : "income");
+  const meta = SORT_FIELD_META[key];
   const formatted = meta.format(country);
   const barVal = meta.barValue(country);
   const barPct = Math.min(1, barVal / meta.barMax);

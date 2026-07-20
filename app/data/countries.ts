@@ -228,6 +228,28 @@ export interface GenderData {
   contraceptiveUse: number | null;
 }
 
+export interface PhysicalMetricGenderPair {
+  male: number;
+  female: number;
+}
+
+export interface PhysicalStats {
+  heightCm: PhysicalMetricGenderPair;
+  weightKg: PhysicalMetricGenderPair;
+  bmi: PhysicalMetricGenderPair;
+  bodyFatPercent: PhysicalMetricGenderPair;
+  waistCm: PhysicalMetricGenderPair;
+  shoeSizeEu: PhysicalMetricGenderPair;
+  caloricIntakeKcal: PhysicalMetricGenderPair;
+  obesityRate: PhysicalMetricGenderPair;
+  inactivityRate: PhysicalMetricGenderPair;
+  diabetesRate: PhysicalMetricGenderPair;
+  hypertensionRate: PhysicalMetricGenderPair;
+  alcoholLiters: PhysicalMetricGenderPair;
+  smokingRate: PhysicalMetricGenderPair;
+  lifeExpectancy: PhysicalMetricGenderPair;
+}
+
 export interface CountryData {
   code: string;
   alpha2: string;
@@ -256,7 +278,15 @@ export interface CountryData {
   femaleHeightCm?: number;
   femaleWeightKg?: number;
   femaleBmi?: number;
+  femaleBodyFatPercent?: number;
+  femaleWaistCm?: number;
+  femaleShoeSizeEu?: number;
+  femaleCaloricIntakeKcal?: number;
   femaleObesityRate?: number;
+  femaleInactivityRate?: number;
+  femaleDiabetesRate?: number;
+  femaleHypertensionRate?: number;
+  femaleAlcoholLiters?: number;
   femaleSmokingRate?: number;
   femaleLifeExpectancy?: number;
 
@@ -264,7 +294,15 @@ export interface CountryData {
   maleHeightCm?: number;
   maleWeightKg?: number;
   maleBmi?: number;
+  maleBodyFatPercent?: number;
+  maleWaistCm?: number;
+  maleShoeSizeEu?: number;
+  maleCaloricIntakeKcal?: number;
   maleObesityRate?: number;
+  maleInactivityRate?: number;
+  maleDiabetesRate?: number;
+  maleHypertensionRate?: number;
+  maleAlcoholLiters?: number;
   maleSmokingRate?: number;
   maleLifeExpectancy?: number;
 
@@ -272,6 +310,18 @@ export interface CountryData {
   obesityRate?: number;
   smokingRate?: number;
   hdi?: number;
+  heightCm?: number;
+  weightKg?: number;
+  bmi?: number;
+  bodyFatPercent?: number;
+  waistCm?: number;
+  shoeSizeEu?: number;
+  caloricIntakeKcal?: number;
+  inactivityRate?: number;
+  diabetesRate?: number;
+  hypertensionRate?: number;
+  alcoholLiters?: number;
+  lifeExpectancy?: number;
 
   // Demographics & Misc
   englishSpeakingPercent?: number;
@@ -471,23 +521,6 @@ export function adjustForTimePeriod(value: number, timePeriod: TimePeriod): numb
 
 // ── Physical & Health Stats (Male vs Female) ──
 
-export interface PhysicalStats {
-  heightCm: { male: number; female: number };
-  weightKg: { male: number; female: number };
-  bmi: { male: number; female: number };
-  obesityRate: { male: number; female: number };
-  smokingRate: { male: number; female: number };
-  lifeExpectancy: { male: number; female: number };
-  caloricIntakeKcal: { male: number; female: number };
-  inactivityRate: { male: number; female: number };
-  shoeSizeEu: { male: number; female: number };
-  diabetesRate: { male: number; female: number };
-  hypertensionRate: { male: number; female: number };
-  alcoholLiters: { male: number; female: number };
-  bodyFatPercent: { male: number; female: number };
-  waistCm: { male: number; female: number };
-}
-
 export function getPhysicalStats(country: CountryData): PhysicalStats {
   const femaleHeight = country.femaleHeightCm ?? 163;
   const maleHeight = country.maleHeightCm ?? Math.round(femaleHeight * 1.077);
@@ -507,62 +540,224 @@ export function getPhysicalStats(country: CountryData): PhysicalStats {
   const femaleLifeExp = country.femaleLifeExpectancy ?? (country.hdi ? Math.round((62 + country.hdi * 22 + 3.4) * 10) / 10 : 78.5);
   const maleLifeExp = country.maleLifeExpectancy ?? (country.hdi ? Math.round((62 + country.hdi * 22 - 2.8) * 10) / 10 : 72.8);
 
-  // Derived & regional extended physical parameters
+  const femaleBodyFat = country.femaleBodyFatPercent ?? Math.round((1.2 * femaleBmi + 0.23 * 35 - 5.4) * 10) / 10;
+  const maleBodyFat = country.maleBodyFatPercent ?? Math.round((1.2 * maleBmi + 0.23 * 35 - 16.2) * 10) / 10;
+
+  const femaleWaist = country.femaleWaistCm ?? Math.round(femaleHeight * (femaleBmi > 25 ? 0.52 : 0.46));
+  const maleWaist = country.maleWaistCm ?? Math.round(maleHeight * (maleBmi > 25 ? 0.54 : 0.48));
+
+  const femaleShoe = country.femaleShoeSizeEu ?? Math.round(((femaleHeight - 163) * 0.15 + 38) * 10) / 10;
+  const maleShoe = country.maleShoeSizeEu ?? Math.round(((maleHeight - 175) * 0.15 + 43) * 10) / 10;
+
   const baseCalories = country.hdi ? Math.round(2100 + country.hdi * 900) : 2600;
-  const femaleCalories = Math.round(baseCalories * 0.82);
-  const maleCalories = Math.round(baseCalories * 1.05);
+  const femaleCalories = country.femaleCaloricIntakeKcal ?? Math.round(baseCalories * 0.82);
+  const maleCalories = country.maleCaloricIntakeKcal ?? Math.round(baseCalories * 1.05);
 
-  const femaleInactivity = country.hdi ? Math.round(20 + country.hdi * 18) : 28;
-  const maleInactivity = Math.round(femaleInactivity * 0.82);
+  const femaleInactivity = country.femaleInactivityRate ?? (country.hdi ? Math.round(20 + country.hdi * 18) : 28);
+  const maleInactivity = country.maleInactivityRate ?? Math.round(femaleInactivity * 0.82);
 
-  // Shoe size EU formula based on height: (height in cm + 1.5) / 4.1 approx
-  const maleShoeEu = Math.round(((maleHeight - 175) * 0.15 + 43) * 10) / 10;
-  const femaleShoeEu = Math.round(((femaleHeight - 163) * 0.15 + 38) * 10) / 10;
+  const femaleDiabetes = country.femaleDiabetesRate ?? (country.hdi ? Math.round((6.5 + (country.obesityRate ?? 20) * 0.15) * 10) / 10 : 8.2);
+  const maleDiabetes = country.maleDiabetesRate ?? Math.round(femaleDiabetes * 1.15 * 10) / 10;
 
-  const femaleDiabetes = country.hdi ? Math.round((6.5 + (country.obesityRate ?? 20) * 0.15) * 10) / 10 : 8.2;
-  const maleDiabetes = Math.round(femaleDiabetes * 1.15 * 10) / 10;
+  const femaleHypertension = country.femaleHypertensionRate ?? (country.hdi ? Math.round((22 + (country.obesityRate ?? 20) * 0.2) * 10) / 10 : 25);
+  const maleHypertension = country.maleHypertensionRate ?? Math.round(femaleHypertension * 1.25 * 10) / 10;
 
-  const femaleHypertension = country.hdi ? Math.round((22 + (country.obesityRate ?? 20) * 0.2) * 10) / 10 : 25;
-  const maleHypertension = Math.round(femaleHypertension * 1.25 * 10) / 10;
-
-  const maleAlcohol = country.hdi ? Math.round((country.hdi * 11) * 10) / 10 : 6.5;
-  const femaleAlcohol = Math.round(maleAlcohol * 0.32 * 10) / 10;
-
-  const femaleBodyFat = Math.round((1.2 * femaleBmi + 0.23 * 35 - 5.4) * 10) / 10;
-  const maleBodyFat = Math.round((1.2 * maleBmi + 0.23 * 35 - 16.2) * 10) / 10;
-
-  const femaleWaist = Math.round(femaleHeight * (femaleBmi > 25 ? 0.52 : 0.46));
-  const maleWaist = Math.round(maleHeight * (maleBmi > 25 ? 0.54 : 0.48));
+  const maleAlcohol = country.maleAlcoholLiters ?? (country.hdi ? Math.round((country.hdi * 11) * 10) / 10 : 6.5);
+  const femaleAlcohol = country.femaleAlcoholLiters ?? Math.round(maleAlcohol * 0.32 * 10) / 10;
 
   return {
     heightCm: { male: maleHeight, female: femaleHeight },
     weightKg: { male: maleWeight, female: femaleWeight },
     bmi: { male: maleBmi, female: femaleBmi },
-    obesityRate: { male: maleObesity, female: femaleObesity },
-    smokingRate: { male: maleSmoking, female: femaleSmoking },
-    lifeExpectancy: { male: maleLifeExp, female: femaleLifeExp },
+    bodyFatPercent: { male: maleBodyFat, female: femaleBodyFat },
+    waistCm: { male: maleWaist, female: femaleWaist },
+    shoeSizeEu: { male: maleShoe, female: femaleShoe },
     caloricIntakeKcal: { male: maleCalories, female: femaleCalories },
+    obesityRate: { male: maleObesity, female: femaleObesity },
     inactivityRate: { male: maleInactivity, female: femaleInactivity },
-    shoeSizeEu: { male: maleShoeEu, female: femaleShoeEu },
     diabetesRate: { male: maleDiabetes, female: femaleDiabetes },
     hypertensionRate: { male: maleHypertension, female: femaleHypertension },
     alcoholLiters: { male: maleAlcohol, female: femaleAlcohol },
-    bodyFatPercent: { male: maleBodyFat, female: femaleBodyFat },
-    waistCm: { male: maleWaist, female: femaleWaist },
+    smokingRate: { male: maleSmoking, female: femaleSmoking },
+    lifeExpectancy: { male: maleLifeExp, female: femaleLifeExp },
   };
+}
+
+// ── Unified Metric Evaluation & Sorting Engine ──
+
+export function getSortValue(
+  country: CountryData,
+  metricKey: string,
+  primaryIndicator?: IndicatorSelection
+): string | number {
+  if (!metricKey) return country.name;
+
+  // Primary indicator / income dynamic lookups
+  if (
+    metricKey === "income" ||
+    metricKey === "p50" ||
+    metricKey === "medianIncome" ||
+    metricKey === "indicator" ||
+    metricKey === "primaryIndicator"
+  ) {
+    if (primaryIndicator) {
+      return getIndicatorValue(country, primaryIndicator);
+    }
+    return country.income?.p50 ?? 0;
+  }
+
+  // Percentiles
+  if (metricKey === "p10") return country.income?.p10 ?? 0;
+  if (metricKey === "p25") return country.income?.p25 ?? 0;
+  if (metricKey === "p75") return country.income?.p75 ?? 0;
+  if (metricKey === "p90") return country.income?.p90 ?? 0;
+
+  // Basic properties
+  if (metricKey === "name") return country.name;
+  if (metricKey === "region") return country.region;
+  if (metricKey === "population") return country.population ?? 0;
+  if (metricKey === "hdi") return country.hdi ?? 0;
+  if (metricKey === "minimumWageEur") return country.minimumWageEur ?? 0;
+  if (metricKey === "costOfLivingIndex") return country.costOfLivingIndex ?? 0;
+  if (metricKey === "unemploymentRate") return country.unemploymentRate ?? 0;
+  if (metricKey === "internetPenetration") return country.internetPenetration ?? 0;
+  if (metricKey === "englishSpeakingPercent") return country.englishSpeakingPercent ?? 0;
+  if (metricKey === "mainIndustry") return country.mainIndustry ?? "";
+
+  // Gender indicators
+  if (metricKey === "adolescentBirthRate") return country.gender?.adolescentBirthRate ?? 0;
+  if (metricKey === "childMarriagePercent") return country.gender?.childMarriagePercent ?? 0;
+  if (metricKey === "laborForceGap") return country.gender?.laborForceGap ?? 0;
+  if (metricKey === "contraceptiveUse") return country.gender?.contraceptiveUse ?? 0;
+
+  // Physical stats (14 male & female metrics)
+  const phys = getPhysicalStats(country);
+
+  // Height
+  if (metricKey === "femaleHeightCm") return phys.heightCm.female;
+  if (metricKey === "maleHeightCm") return phys.heightCm.male;
+  if (metricKey === "heightCm" || metricKey === "height") {
+    return Math.round(((phys.heightCm.female + phys.heightCm.male) / 2) * 10) / 10;
+  }
+
+  // Weight
+  if (metricKey === "femaleWeightKg") return phys.weightKg.female;
+  if (metricKey === "maleWeightKg") return phys.weightKg.male;
+  if (metricKey === "weightKg" || metricKey === "weight") {
+    return Math.round(((phys.weightKg.female + phys.weightKg.male) / 2) * 10) / 10;
+  }
+
+  // BMI
+  if (metricKey === "femaleBmi") return phys.bmi.female;
+  if (metricKey === "maleBmi") return phys.bmi.male;
+  if (metricKey === "bmi") {
+    return Math.round(((phys.bmi.female + phys.bmi.male) / 2) * 10) / 10;
+  }
+
+  // Body Fat %
+  if (metricKey === "femaleBodyFatPercent") return phys.bodyFatPercent.female;
+  if (metricKey === "maleBodyFatPercent") return phys.bodyFatPercent.male;
+  if (metricKey === "bodyFatPercent" || metricKey === "bodyFat") {
+    return Math.round(((phys.bodyFatPercent.female + phys.bodyFatPercent.male) / 2) * 10) / 10;
+  }
+
+  // Waist Cm
+  if (metricKey === "femaleWaistCm") return phys.waistCm.female;
+  if (metricKey === "maleWaistCm") return phys.waistCm.male;
+  if (metricKey === "waistCm" || metricKey === "waist") {
+    return Math.round(((phys.waistCm.female + phys.waistCm.male) / 2) * 10) / 10;
+  }
+
+  // Shoe Size EU
+  if (metricKey === "femaleShoeSizeEu") return phys.shoeSizeEu.female;
+  if (metricKey === "maleShoeSizeEu") return phys.shoeSizeEu.male;
+  if (metricKey === "shoeSizeEu" || metricKey === "shoeSize") {
+    return Math.round(((phys.shoeSizeEu.female + phys.shoeSizeEu.male) / 2) * 10) / 10;
+  }
+
+  // Caloric Intake Kcal
+  if (metricKey === "femaleCaloricIntakeKcal") return phys.caloricIntakeKcal.female;
+  if (metricKey === "maleCaloricIntakeKcal") return phys.caloricIntakeKcal.male;
+  if (metricKey === "caloricIntakeKcal" || metricKey === "caloricIntake") {
+    return Math.round(((phys.caloricIntakeKcal.female + phys.caloricIntakeKcal.male) / 2) * 10) / 10;
+  }
+
+  // Obesity Rate
+  if (metricKey === "femaleObesityRate") return phys.obesityRate.female;
+  if (metricKey === "maleObesityRate") return phys.obesityRate.male;
+  if (metricKey === "obesityRate" || metricKey === "obesity") {
+    return Math.round(((phys.obesityRate.female + phys.obesityRate.male) / 2) * 10) / 10;
+  }
+
+  // Inactivity Rate
+  if (metricKey === "femaleInactivityRate") return phys.inactivityRate.female;
+  if (metricKey === "maleInactivityRate") return phys.inactivityRate.male;
+  if (metricKey === "inactivityRate" || metricKey === "inactivity") {
+    return Math.round(((phys.inactivityRate.female + phys.inactivityRate.male) / 2) * 10) / 10;
+  }
+
+  // Diabetes Rate
+  if (metricKey === "femaleDiabetesRate") return phys.diabetesRate.female;
+  if (metricKey === "maleDiabetesRate") return phys.diabetesRate.male;
+  if (metricKey === "diabetesRate" || metricKey === "diabetes") {
+    return Math.round(((phys.diabetesRate.female + phys.diabetesRate.male) / 2) * 10) / 10;
+  }
+
+  // Hypertension Rate
+  if (metricKey === "femaleHypertensionRate") return phys.hypertensionRate.female;
+  if (metricKey === "maleHypertensionRate") return phys.hypertensionRate.male;
+  if (metricKey === "hypertensionRate" || metricKey === "hypertension") {
+    return Math.round(((phys.hypertensionRate.female + phys.hypertensionRate.male) / 2) * 10) / 10;
+  }
+
+  // Alcohol Liters
+  if (metricKey === "femaleAlcoholLiters") return phys.alcoholLiters.female;
+  if (metricKey === "maleAlcoholLiters") return phys.alcoholLiters.male;
+  if (metricKey === "alcoholLiters" || metricKey === "alcohol") {
+    return Math.round(((phys.alcoholLiters.female + phys.alcoholLiters.male) / 2) * 10) / 10;
+  }
+
+  // Smoking Rate
+  if (metricKey === "femaleSmokingRate") return phys.smokingRate.female;
+  if (metricKey === "maleSmokingRate") return phys.smokingRate.male;
+  if (metricKey === "smokingRate" || metricKey === "smoking") {
+    return Math.round(((phys.smokingRate.female + phys.smokingRate.male) / 2) * 10) / 10;
+  }
+
+  // Life Expectancy
+  if (metricKey === "femaleLifeExpectancy") return phys.lifeExpectancy.female;
+  if (metricKey === "maleLifeExpectancy") return phys.lifeExpectancy.male;
+  if (metricKey === "lifeExpectancy") {
+    return Math.round(((phys.lifeExpectancy.female + phys.lifeExpectancy.male) / 2) * 10) / 10;
+  }
+
+  // Fallback: check dynamic object properties
+  const directVal = (country as unknown as Record<string, unknown>)[metricKey];
+  if (typeof directVal === "number" || typeof directVal === "string") {
+    return directVal;
+  }
+
+  return 0;
 }
 
 // ── Global Ranks & Comparative Aggregates ──
 
 export function getCountryRank(
   countryCode: string,
-  metric: "p50" | "hdi" = "p50"
+  metric: string = "p50",
+  primaryIndicator?: IndicatorSelection
 ): { rank: number; total: number } {
   const sorted = [...uniqueCountriesData].sort((a, b) => {
-    if (metric === "hdi") return (b.hdi ?? 0) - (a.hdi ?? 0);
-    return (b.income.p50 ?? 0) - (a.income.p50 ?? 0);
+    const valA = getSortValue(a, metric, primaryIndicator);
+    const valB = getSortValue(b, metric, primaryIndicator);
+    if (typeof valA === "number" && typeof valB === "number") {
+      return valB - valA;
+    }
+    return String(valB).localeCompare(String(valA));
   });
-  const index = sorted.findIndex((c) => c.code === countryCode || c.alpha3 === countryCode);
+  const index = sorted.findIndex(
+    (c) => c.code === countryCode || c.alpha2 === countryCode || c.alpha3 === countryCode
+  );
   return { rank: index >= 0 ? index + 1 : sorted.length, total: sorted.length };
 }
 
@@ -573,7 +768,7 @@ export function getRegionalAverageMetric(
   const inRegion = uniqueCountriesData.filter((c) => c.region === region);
   const values = inRegion
     .map(metricGetter)
-    .filter((v): v is number => v !== null && v !== undefined);
+    .filter((v): v is number => v !== null && v !== undefined && !isNaN(v));
   if (values.length === 0) return null;
   const sum = values.reduce((a, b) => a + b, 0);
   return Math.round((sum / values.length) * 10) / 10;
@@ -584,11 +779,10 @@ export function getGlobalMedianMetric(
 ): number | null {
   const values = uniqueCountriesData
     .map(metricGetter)
-    .filter((v): v is number => v !== null && v !== undefined)
+    .filter((v): v is number => v !== null && v !== undefined && !isNaN(v))
     .sort((a, b) => a - b);
   if (values.length === 0) return null;
   const mid = Math.floor(values.length / 2);
   const median = values.length % 2 !== 0 ? values[mid] : (values[mid - 1] + values[mid]) / 2;
   return Math.round(median * 10) / 10;
 }
-

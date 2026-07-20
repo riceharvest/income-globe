@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { Link } from "react-router";
 import {
   Search,
@@ -10,7 +10,6 @@ import {
   PanelRightOpen,
   Map as MapIcon,
   SlidersHorizontal,
-  X,
 } from "lucide-react";
 import { Input } from "~/components/ui/input";
 import { CountryCard } from "~/components/country-card";
@@ -19,11 +18,10 @@ import { IndicatorsPanel } from "~/components/indicators-panel";
 import { FilterSidebar } from "~/components/filter-sidebar";
 import { CountryDetailPanel } from "~/components/country-detail-panel";
 import { CommandPalette } from "~/components/command-palette";
-import { WorldMap } from "~/components/world-map";
+import { WorldMap, type MapMetricKey } from "~/components/world-map";
 import { CountrySidebar } from "~/components/country-sidebar";
 import {
   uniqueCountriesData,
-  regions,
   type Region,
   type CountryData,
   type IndicatorSelection,
@@ -43,24 +41,7 @@ export const meta = () => [
 
 type ViewMode = "map" | "grid" | "table";
 type GroupId = "country" | "economic" | "health" | "gender" | "culture" | "income";
-type SortKey =
-  | "name"
-  | "region"
-  | "population"
-  | "minimumWageEur"
-  | "costOfLivingIndex"
-  | "internetPenetration"
-  | "unemploymentRate"
-  | "englishSpeakingPercent"
-  | "obesityRate"
-  | "smokingRate"
-  | "femaleHeightCm"
-  | "femaleBmi"
-  | "adolescentBirthRate"
-  | "childMarriagePercent"
-  | "laborForceGap"
-  | "contraceptiveUse"
-  | "income";
+type SortKey = string;
 
 const SORT_LABELS: Record<string, string> = {
   income: "Income (P50)",
@@ -73,6 +54,7 @@ const SORT_LABELS: Record<string, string> = {
   unemploymentRate: "Unemploy. %",
   obesityRate: "Obesity %",
   femaleHeightCm: "Height",
+  femaleBmi: "BMI",
   adolescentBirthRate: "Adolescent Birth",
   laborForceGap: "Labor Gap",
 };
@@ -108,7 +90,7 @@ const GROUP_COLUMNS: Record<GroupId, string[]> = {
 
 export function ErrorBoundary() {
   return (
-    <div className="flex items-center justify-center min-h-[50vh] p-6 text-center">
+    <div className="flex items-center justify-center min-h-screen p-6 text-center bg-background">
       <div className="space-y-4 max-w-md bg-card/80 backdrop-blur-xl p-8 rounded-2xl border border-border/60 shadow-2xl">
         <Globe className="h-10 w-10 text-emerald-400 mx-auto animate-pulse" />
         <h2 className="text-xl font-bold text-foreground">Something went wrong</h2>
@@ -129,8 +111,12 @@ export function ErrorBoundary() {
 export default function Home() {
   const [viewMode, setViewMode] = useState<ViewMode>("map");
   const [search, setSearch] = useState("");
-  const [region, setRegion] = useState<Region>("All Regions");
+  const [region, setRegion] = useState<Region | "All Regions">("All Regions");
+
+  // Connected State: sort & mapMetricKey
   const [sort, setSort] = useState<SortKey>("income");
+  const [mapMetricKey, setMapMetricKey] = useState<MapMetricKey>("p50");
+
   const [activeGroups, setActiveGroups] = useState<Set<GroupId>>(
     new Set(["country", "economic", "health", "gender", "culture", "income"])
   );
@@ -166,6 +152,13 @@ export default function Home() {
     return () => document.removeEventListener("keydown", handler);
   }, []);
 
+  // Connected state handler: Triggered when user clicks ANY stat value in sidebar!
+  // Automatically updates sort AND mapMetricKey so map colors and country list sorting update simultaneously!
+  const handleSelectMetric = useCallback((metricKey: string) => {
+    setSort(metricKey);
+    setMapMetricKey(metricKey as MapMetricKey);
+  }, []);
+
   // Filtered & Sorted dataset
   const filteredCountries = useMemo(() => {
     let data = [...uniqueCountriesData];
@@ -189,9 +182,13 @@ export default function Home() {
     function getSortVal(c: CountryData): string | number {
       if (sort === "name") return c.name;
       if (sort === "region") return c.region;
-      if (sort === "income") return getIndicatorValue(c, primaryIndicator);
+      if (sort === "income" || sort === "p50") return getIndicatorValue(c, primaryIndicator);
+      if (sort === "p90") return c.income?.p90 ?? -Infinity;
+      if (sort === "p10") return c.income?.p10 ?? -Infinity;
+
       const val = (c as any)[sort];
-      return val == null ? -Infinity : val;
+      if (val != null && typeof val === "number") return val;
+      return -Infinity;
     }
 
     data.sort((a, b) => {
@@ -220,26 +217,25 @@ export default function Home() {
     return result;
   }, [activeGroups]);
 
-  function handleSelectCountry(code: string) {
-    setSelectedCountryCode(code);
+  function handleSelectCountry(code: string | CountryData) {
+    const countryCode = typeof code === "string" ? code : code.code;
+    setSelectedCountryCode(countryCode);
     if (!countrySidebarOpen) {
       setCountrySidebarOpen(true);
     }
   }
 
   function handleQuickAction(action: string) {
-    if (action === "top10") {
+    if (action === "top10" || action === "bottom10") {
       setSort("income");
-      setRegion("All Regions");
-      setSearch("");
-    } else if (action === "bottom10") {
-      setSort("income");
+      setMapMetricKey("p50");
       setRegion("All Regions");
       setSearch("");
     } else if (action === "reset") {
       setSearch("");
       setRegion("All Regions");
       setSort("income");
+      setMapMetricKey("p50");
       setActiveGroups(
         new Set(["country", "economic", "health", "gender", "income"])
       );
@@ -248,14 +244,14 @@ export default function Home() {
   }
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-background text-foreground select-none">
+    <div className="flex h-screen w-screen overflow-hidden bg-background text-foreground select-none font-sans">
       {/* ── Collapsible Left Filter Sidebar ── */}
       {filterSidebarOpen && (
-        <div className="z-40 h-full flex-shrink-0 animate-in slide-in-from-left duration-200">
+        <div className="z-40 h-full flex-shrink-0 border-r border-border/60 bg-card/50 backdrop-blur-xl animate-in slide-in-from-left duration-200">
           <FilterSidebar
             groups={activeGroups}
             onChange={setActiveGroups}
-            region={region}
+            region={region as Region}
             onRegionChange={(r) => setRegion(r as Region)}
           />
         </div>
@@ -270,25 +266,30 @@ export default function Home() {
             <button
               onClick={() => setFilterSidebarOpen((v) => !v)}
               className={cn(
-                "p-1.5 rounded-lg border border-border/50 text-muted-foreground hover:text-foreground transition-colors",
-                filterSidebarOpen && "bg-primary/20 text-primary border-primary/30"
+                "p-2 rounded-xl border border-border/50 text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-all",
+                filterSidebarOpen && "bg-emerald-500/20 text-emerald-400 border-emerald-500/30 shadow-sm shadow-emerald-500/10"
               )}
               title={filterSidebarOpen ? "Hide Filter Sidebar" : "Show Filter Sidebar"}
             >
               <SlidersHorizontal className="h-4 w-4" />
             </button>
 
-            <Link to="/" className="flex items-center gap-2">
-              <div className="p-1.5 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-500 text-white shadow-lg shadow-emerald-500/20">
+            <Link to="/" className="flex items-center gap-2.5 group">
+              <div className="p-1.5 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-cyan-500 text-white shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
                 <Globe className="h-4 w-4" />
               </div>
-              <span className="font-bold text-sm tracking-tight text-foreground hidden sm:inline">
-                Income Globe
-              </span>
+              <div className="hidden sm:flex flex-col">
+                <span className="font-bold text-sm tracking-tight text-foreground">
+                  Income Globe
+                </span>
+                <span className="text-[9px] text-emerald-400 font-semibold tracking-wider uppercase -mt-0.5">
+                  Intelligence
+                </span>
+              </div>
             </Link>
           </div>
 
-          {/* Center: Global Search Bar & Cmd+K Shortcut */}
+          {/* Center: Instant Search Bar & Cmd+K Shortcut Badge */}
           <div className="flex items-center gap-2 flex-1 max-w-md mx-2">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground pointer-events-none" />
@@ -296,11 +297,11 @@ export default function Home() {
                 placeholder="Search 169 countries by name or region..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="h-9 pl-9 pr-12 text-xs bg-secondary/40 focus:bg-background border-border/50 rounded-xl"
+                className="h-9 pl-9 pr-14 text-xs bg-secondary/40 focus:bg-background/80 backdrop-blur border-border/50 rounded-xl transition-all focus:ring-1 focus:ring-emerald-500/50"
               />
               <button
                 onClick={() => setShowCommandPalette(true)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-0.5 text-[10px] text-muted-foreground font-mono bg-secondary px-1.5 py-0.5 rounded border border-border/40 hover:text-foreground"
+                className="absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-0.5 text-[10px] text-muted-foreground font-mono bg-secondary/80 px-1.5 py-0.5 rounded-lg border border-border/40 hover:text-foreground hover:bg-secondary transition-colors"
               >
                 <Command className="h-2.5 w-2.5" />
                 <span>K</span>
@@ -308,16 +309,16 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right: View Mode Toggle & Country Sidebar Toggle */}
+          {/* Right: View Mode Switcher & Country Sidebar Toggle */}
           <div className="flex items-center gap-2">
             {/* View Mode Switcher */}
-            <div className="flex items-center bg-secondary/60 p-0.5 rounded-xl border border-border/40">
+            <div className="flex items-center bg-secondary/60 p-1 rounded-xl border border-border/40 shadow-inner">
               <button
                 onClick={() => setViewMode("map")}
                 className={cn(
-                  "flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold transition-all",
+                  "flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all",
                   viewMode === "map"
-                    ? "bg-primary text-primary-foreground shadow-sm"
+                    ? "bg-emerald-500 text-white shadow-md shadow-emerald-500/20"
                     : "text-muted-foreground hover:text-foreground"
                 )}
                 title="World Map View"
@@ -329,9 +330,9 @@ export default function Home() {
               <button
                 onClick={() => setViewMode("grid")}
                 className={cn(
-                  "flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold transition-all",
+                  "flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all",
                   viewMode === "grid"
-                    ? "bg-primary text-primary-foreground shadow-sm"
+                    ? "bg-emerald-500 text-white shadow-md shadow-emerald-500/20"
                     : "text-muted-foreground hover:text-foreground"
                 )}
                 title="Grid Card View"
@@ -343,9 +344,9 @@ export default function Home() {
               <button
                 onClick={() => setViewMode("table")}
                 className={cn(
-                  "flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold transition-all",
+                  "flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all",
                   viewMode === "table"
-                    ? "bg-primary text-primary-foreground shadow-sm"
+                    ? "bg-emerald-500 text-white shadow-md shadow-emerald-500/20"
                     : "text-muted-foreground hover:text-foreground"
                 )}
                 title="Compact Table View"
@@ -355,12 +356,12 @@ export default function Home() {
               </button>
             </div>
 
-            {/* Sidebar Toggle Button */}
+            {/* Country Sidebar Toggle Button */}
             <button
               onClick={() => setCountrySidebarOpen((v) => !v)}
               className={cn(
-                "p-1.5 rounded-lg border border-border/50 text-muted-foreground hover:text-foreground transition-colors",
-                countrySidebarOpen && "bg-emerald-500/20 text-emerald-400 border-emerald-500/30"
+                "p-2 rounded-xl border border-border/50 text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-all",
+                countrySidebarOpen && "bg-emerald-500/20 text-emerald-400 border-emerald-500/30 shadow-sm shadow-emerald-500/10"
               )}
               title={countrySidebarOpen ? "Close Country Sidebar" : "Open Country Sidebar"}
             >
@@ -373,24 +374,20 @@ export default function Home() {
           </div>
         </header>
 
-        {/* ── Main Work Area ── */}
-        <div className="flex-1 overflow-hidden relative flex flex-col p-3 space-y-3">
-          {/* Indicators Selector Ribbon */}
-          <div className="flex-shrink-0">
-            <IndicatorsPanel
-              indicators={indicators}
-              onChange={setIndicators}
-              globalSettings={globalSettings}
-              onGlobalSettingsChange={setGlobalSettings}
-            />
-          </div>
-
+        {/* ── Main Content Area ── */}
+        <div className="flex-1 flex flex-col h-full min-h-0 overflow-hidden relative">
           {/* VIEW MODE: WORLD MAP */}
           {viewMode === "map" && (
-            <div className="flex-1 w-full h-full min-h-0 relative">
+            <div className="flex-1 w-full h-full min-h-0 relative overflow-hidden bg-background">
               <WorldMap
+                activeMetricKey={mapMetricKey}
+                onMetricChange={(key) => {
+                  setMapMetricKey(key);
+                  setSort(key);
+                }}
                 selectedCountryCode={selectedCountryCode}
                 onSelectCountry={handleSelectCountry}
+                height="100%"
                 className="w-full h-full"
               />
             </div>
@@ -398,24 +395,34 @@ export default function Home() {
 
           {/* VIEW MODE: GRID */}
           {viewMode === "grid" && (
-            <div className="flex-1 overflow-y-auto p-2 space-y-4">
-              {/* Sort Bar */}
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <p className="text-xs text-muted-foreground font-medium">
-                  Showing <strong className="text-foreground">{filteredCountries.length}</strong> of {uniqueCountriesData.length} countries
+            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+              <IndicatorsPanel
+                indicators={indicators}
+                onChange={setIndicators}
+                globalSettings={globalSettings}
+                onGlobalSettingsChange={setGlobalSettings}
+              />
+
+              <div className="flex flex-wrap items-center justify-between gap-3 p-3 bg-card/40 backdrop-blur-md rounded-2xl border border-border/50">
+                <p className="text-xs text-muted-foreground font-medium flex items-center gap-1.5">
+                  <span>Showing</span>
+                  <strong className="text-foreground font-bold bg-secondary px-2 py-0.5 rounded-md border border-border/40 font-mono">
+                    {filteredCountries.length}
+                  </strong>
+                  <span>of {uniqueCountriesData.length} countries</span>
                 </p>
 
-                <div className="flex flex-wrap items-center gap-1 text-xs">
-                  <span className="text-muted-foreground mr-1">Sort by:</span>
+                <div className="flex flex-wrap items-center gap-1.5 text-xs">
+                  <span className="text-muted-foreground font-medium mr-1">Sort Key:</span>
                   {(Object.keys(SORT_LABELS) as SortKey[]).map((s) => (
                     <button
                       key={s}
-                      onClick={() => setSort(s)}
+                      onClick={() => handleSelectMetric(s)}
                       className={cn(
                         "px-2.5 py-1 rounded-lg text-xs font-semibold transition-all",
                         sort === s
-                          ? "bg-primary text-primary-foreground shadow-sm"
-                          : "bg-secondary/60 text-muted-foreground hover:text-foreground"
+                          ? "bg-emerald-500 text-white shadow-md shadow-emerald-500/20"
+                          : "bg-secondary/40 text-muted-foreground hover:bg-secondary hover:text-foreground border border-border/30"
                       )}
                     >
                       {SORT_LABELS[s]}
@@ -424,14 +431,13 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Grid Cards */}
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {filteredCountries.map((c) => (
                   <CountryCard
                     key={c.code}
                     country={c}
                     maxMedian={maxMedian}
-                    sortKey={sort}
+                    sortKey={sort as any}
                     onSelect={(code) => handleSelectCountry(code)}
                   />
                 ))}
@@ -441,34 +447,44 @@ export default function Home() {
 
           {/* VIEW MODE: TABLE */}
           {viewMode === "table" && (
-            <div className="flex-1 overflow-auto p-2">
-              <CompactTable
-                countries={filteredCountries}
+            <div className="flex-1 flex flex-col min-h-0 overflow-hidden p-4 space-y-4">
+              <IndicatorsPanel
                 indicators={indicators}
-                visibleGroupColumns={visibleGroupColumns}
-                highlightedCodes={
-                  selectedCountryCode ? new Set([selectedCountryCode]) : undefined
-                }
-                onRowClick={(code) => handleSelectCountry(code)}
+                onChange={setIndicators}
+                globalSettings={globalSettings}
+                onGlobalSettingsChange={setGlobalSettings}
               />
+              <div className="flex-1 overflow-auto rounded-2xl border border-border/60 bg-card/30 backdrop-blur-md">
+                <CompactTable
+                  countries={filteredCountries}
+                  indicators={indicators}
+                  visibleGroupColumns={visibleGroupColumns}
+                  highlightedCodes={
+                    selectedCountryCode ? new Set([selectedCountryCode]) : undefined
+                  }
+                  onRowClick={(code) => handleSelectCountry(code)}
+                />
+              </div>
             </div>
           )}
         </div>
       </div>
 
-      {/* ── 2-Column Right Country Sidebar ── */}
+      {/* ── Collapsible Right Country Sidebar ── */}
       {countrySidebarOpen && (
-        <div className="w-[420px] max-w-full h-full flex-shrink-0 z-30 animate-in slide-in-from-right duration-200">
+        <div className="w-[420px] max-w-full h-full flex-shrink-0 z-30 border-l border-border/60 bg-card/60 backdrop-blur-xl animate-in slide-in-from-right duration-200">
           <CountrySidebar
             selectedCountryCode={selectedCountryCode}
             onSelectCountry={handleSelectCountry}
+            activeSortKey={sort}
+            onSelectMetric={handleSelectMetric}
             className="w-full h-full"
             onCloseMobile={() => setCountrySidebarOpen(false)}
           />
         </div>
       )}
 
-      {/* ── Slide-over Detail Panel (Secondary) ── */}
+      {/* ── Slide-over Detail Panel ── */}
       <CountryDetailPanel
         countryCode={showDetailPanel ? selectedCountryCode : null}
         onClose={() => setShowDetailPanel(false)}

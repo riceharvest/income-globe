@@ -45,10 +45,33 @@ const navLinks = [
   { to: "/calculator", label: "Where Do I Fit?", icon: Calculator },
 ];
 
+import { useLocation } from "react-router";
+
 export function Layout({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
   useEffect(() => {
     initPostHog();
   }, []);
+
+  if (isHome) {
+    return (
+      <html lang="en" className="dark h-full w-full overflow-hidden">
+        <head>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <Meta />
+          <Links />
+        </head>
+        <body className="h-full w-full bg-background text-foreground antialiased overflow-hidden m-0 p-0">
+          {children}
+          <ScrollRestoration />
+          <Scripts />
+        </body>
+      </html>
+    );
+  }
 
   return (
     <html lang="en" className="dark">
@@ -66,7 +89,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               className="flex items-center gap-2.5 text-lg font-semibold tracking-tight"
             >
               <Globe className="h-5 w-5 text-primary" />
-              <span>Women Global</span>
+              <span>Income Globe</span>
             </NavLink>
             <nav className="flex items-center gap-1">
               {navLinks.map((link) => (
