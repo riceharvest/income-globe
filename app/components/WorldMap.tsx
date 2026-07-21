@@ -4,7 +4,7 @@ import { feature } from "topojson-client";
 import topoData from "world-atlas/countries-110m.json";
 import { countries, type CountryData } from "~/data/countries";
 import { colorScaleFor, noDataFill, oceanFill, borderStroke } from "~/lib/color";
-import { formatValue, type Sex, type StatDef } from "~/lib/stats";
+import { formatValue, statValue, type Mode, type StatDef } from "~/lib/stats";
 
 interface GeoFeature {
   type: "Feature";
@@ -38,12 +38,14 @@ export interface HoverInfo {
 
 export function WorldMap({
   stat,
-  sex,
+  mode,
+  region,
   selectedCode,
   onSelect,
 }: {
   stat: StatDef;
-  sex: Sex;
+  mode: Mode;
+  region: string | null;
   selectedCode: string | null;
   onSelect: (c: CountryData) => void;
 }) {
@@ -67,22 +69,22 @@ export function WorldMap({
     let min = Infinity;
     let max = -Infinity;
     for (const c of countries) {
-      const v = stat.get(c, sex);
+      const v = statValue(stat, c, mode);
       if (v == null) continue;
       if (v < min) min = v;
       if (v > max) max = v;
     }
     if (!Number.isFinite(min)) return [0, 1];
     return min === max ? [min, min + 1] : [min, max];
-  }, [stat, sex]);
+  }, [stat, mode]);
 
   const fill = useMemo(() => colorScaleFor(stat, extent), [stat, extent]);
 
   const valueByNumeric = useMemo(() => {
     const m = new Map<number, number | null>();
-    for (const [n, c] of byNumeric) m.set(n, stat.get(c, sex));
+    for (const [n, c] of byNumeric) m.set(n, statValue(stat, c, mode));
     return m;
-  }, [stat, sex]);
+  }, [stat, mode]);
 
   const onWheel = useCallback(
     (e: React.WheelEvent<SVGSVGElement>) => {
@@ -182,6 +184,7 @@ export function WorldMap({
             const country = byNumeric.get(num);
             const v = valueByNumeric.get(num);
             const isSelected = country != null && country.code === selectedCode;
+            const dimmed = region != null && country != null && country.region !== region;
             return (
               <path
                 key={f.id ?? f.properties.name}
@@ -189,9 +192,10 @@ export function WorldMap({
                 data-name={country?.name ?? f.properties.name ?? ""}
                 d={path(f as unknown as GeoJSON.Feature) ?? ""}
                 fill={v != null ? fill(v) : noDataFill}
+                fillOpacity={dimmed ? 0.12 : 1}
                 stroke={isSelected ? "#e4e4e7" : borderStroke}
                 strokeWidth={isSelected ? 1.2 / view.k : 0.4 / view.k}
-                className="transition-[fill] duration-200 hover:brightness-150"
+                className="transition-[fill,opacity] duration-200 hover:brightness-150"
                 onClick={() => {
                   if (!drag.current?.moved && country) onSelect(country);
                 }}
@@ -214,7 +218,7 @@ export function WorldMap({
           </div>
           <div className="text-zinc-400">
             {hover.country
-              ? formatValue(stat, stat.get(hover.country, sex))
+              ? formatValue(stat, statValue(stat, hover.country, mode))
               : "No data"}
           </div>
         </div>

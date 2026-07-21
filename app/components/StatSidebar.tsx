@@ -1,18 +1,26 @@
 import { useEffect, useMemo, useState } from "react";
 import { Info, Search, X } from "lucide-react";
-import { statGroups, stats, type StatDef } from "~/lib/stats";
-import { legendGradient } from "~/lib/color";
+import {
+  statGroups,
+  stats,
+  histogram,
+  percentileTicks,
+  valueExtent,
+  type Mode,
+  type StatDef,
+} from "~/lib/stats";
+import { legendGradient, rampFor } from "~/lib/color";
 import { cn } from "~/lib/utils";
 
 export function StatSidebar({
   activeStat,
+  mode,
   onSelect,
-  extent,
   formatTick,
 }: {
   activeStat: StatDef;
+  mode: Mode;
   onSelect: (s: StatDef) => void;
-  extent: [number, number];
   formatTick: (v: number) => string;
 }) {
   const [query, setQuery] = useState("");
@@ -118,17 +126,7 @@ export function StatSidebar({
       </div>
 
       <div className="border-t border-zinc-800/80 px-4 py-3">
-        <div
-          className="h-2 w-full rounded-full"
-          style={{
-            background: `linear-gradient(to right, ${legendGradient(activeStat).join(",")})`,
-          }}
-        />
-        <div className="mt-1 flex justify-between text-[10px] tabular-nums text-zinc-500">
-          <span>{formatTick(extent[0])}</span>
-          <span className="text-zinc-600">{activeStat.unit ?? ""}</span>
-          <span>{formatTick(extent[1])}</span>
-        </div>
+        <Distribution stat={activeStat} mode={mode} formatTick={formatTick} />
       </div>
 
       {infoStat && (
@@ -185,5 +183,64 @@ export function StatSidebar({
         </>
       )}
     </aside>
+  );
+}
+
+function Distribution({
+  stat,
+  mode,
+  formatTick,
+}: {
+  stat: StatDef;
+  mode: Mode;
+  formatTick: (v: number) => string;
+}) {
+  const extent = useMemo(() => valueExtent(stat, mode), [stat, mode]);
+  const hist = useMemo(() => histogram(stat, mode), [stat, mode]);
+  const [p25, p50, p75] = useMemo(() => percentileTicks(stat, mode), [stat, mode]);
+  const ramp = rampFor(stat);
+
+  const pos = (v: number) =>
+    `${Math.min(100, Math.max(0, ((v - extent[0]) / (extent[1] - extent[0])) * 100))}%`;
+
+  return (
+    <div>
+      {/* distribution strip */}
+      <div className="flex h-8 items-end gap-px" aria-hidden>
+        {hist.counts.map((n, i) => (
+          <div
+            key={i}
+            className="flex-1 rounded-sm"
+            style={{
+              height: `${Math.max(6, (n / hist.maxCount) * 100)}%`,
+              background: ramp((i + 0.5) / hist.counts.length),
+              opacity: 0.75,
+            }}
+          />
+        ))}
+      </div>
+      {/* color legend */}
+      <div
+        className="mt-1.5 h-2 w-full rounded-full"
+        style={{ background: `linear-gradient(to right, ${legendGradient(stat).join(",")})` }}
+      />
+      {/* percentile markers */}
+      <div className="relative mt-0.5 h-3.5 text-[9px] tabular-nums text-zinc-500">
+        <span className="absolute -translate-x-1/2" style={{ left: pos(p25) }} title="25th percentile">
+          p25
+        </span>
+        <span className="absolute -translate-x-1/2 text-zinc-400" style={{ left: pos(p50) }} title="median">
+          p50
+        </span>
+        <span className="absolute -translate-x-1/2" style={{ left: pos(p75) }} title="75th percentile">
+          p75
+        </span>
+      </div>
+      <div className="flex justify-between text-[10px] tabular-nums text-zinc-500">
+        <span>{formatTick(extent[0])}</span>
+        <span className="text-zinc-400">{formatTick(p50)} med</span>
+        <span>{formatTick(extent[1])}</span>
+      </div>
+    </div>
   );
 }

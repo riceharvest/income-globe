@@ -20,6 +20,14 @@ import { contraceptiveUseByCountry } from "~/data/contraceptive-map";
 import { laborForceGapByCountry } from "~/data/labor-force-gap-map";
 
 export type Sex = "male" | "female";
+/** Display mode: one sex, or the male−female gap (sexed stats only). */
+export type Mode = Sex | "gap";
+
+export const modeLabels: Record<Mode, string> = {
+  male: "male",
+  female: "female",
+  gap: "M−F gap",
+};
 
 export interface StatDef {
   id: string;
@@ -386,27 +394,83 @@ export interface RankedEntry {
   rank: number;
 }
 
-/** All countries with a value for stat+sex, sorted descending. */
-export function rankCountries(stat: StatDef, sex: Sex): RankedEntry[] {
+/**
+ * Value of a stat for a country in a display mode.
+ * "gap" = male − female (sexed stats only; null otherwise).
+ * fixedSex stats ignore the sex part of the mode.
+ */
+export function statValue(stat: StatDef, c: CountryData, mode: Mode): number | null {
+  if (mode === "gap") {
+    if (!stat.sexed) return null;
+    const m = stat.get(c, "male");
+    const f = stat.get(c, "female");
+    return m != null && f != null ? m - f : null;
+  }
+  return stat.get(c, stat.fixedSex ?? mode);
+}
+
+function allValues(stat: StatDef, mode: Mode): number[] {
+  const out: number[] = [];
+  for (const c of countries) {
+    const v = statValue(stat, c, mode);
+    if (v != null) out.push(v);
+  }
+  return out;
+}
+
+/** All countries with a value for stat+mode, sorted descending. */
+export function rankCountries(stat: StatDef, mode: Mode): RankedEntry[] {
   const rows: { country: CountryData; value: number }[] = [];
   for (const c of countries) {
-    const v = stat.get(c, sex);
+    const v = statValue(stat, c, mode);
     if (v != null) rows.push({ country: c, value: v });
   }
   rows.sort((a, b) => b.value - a.value);
   return rows.map((r, i) => ({ ...r, rank: i + 1 }));
 }
 
-export function valueExtent(stat: StatDef, sex: Sex): [number, number] {
+export function valueExtent(stat: StatDef, mode: Mode): [number, number] {
   let min = Infinity;
   let max = -Infinity;
-  for (const c of countries) {
-    const v = stat.get(c, sex);
-    if (v == null) continue;
+  for (const v of allValues(stat, mode)) {
     if (v < min) min = v;
     if (v > max) max = v;
   }
   if (!Number.isFinite(min)) return [0, 1];
   if (min === max) return [min, min + 1];
   return [min, max];
+}
+
+function quantile(sorted: number[], q: number): number {
+  const pos = (sorted.length - 1) * q;
+  const lo = Math.floor(pos);
+  const hi = Math.ceil(pos);
+  return sorted[lo] + (sorted[hi] - sorted[lo]) * (pos - lo);
+}
+
+/** 25th / 50th / 75th percentile of the current values. */
+export function percentileTicks(stat: StatDef, mode: Mode): [number, number, number] {
+  const vals = allValues(stat, mode).sort((a, b) => a - b);
+  if (vals.length === 0) return [0, 0, 0];
+  return [quantile(vals, 0.25), quantile(vals, 0.5), quantile(vals, 0.75)];
+}
+
+export interface Histogram {
+  counts: number[];
+  min: number;
+  binWidth: number;
+  maxCount: number;
+}
+
+/** Distribution of values across equal-width bins. */
+export function histogram(stat: StatDef, mode: Mode, bins = 24): Histogram {
+  const vals = allValues(stat, mode);
+  const [min, max] = valueExtent(stat, mode);
+  const binWidth = (max - min) / bins || 1;
+  const counts = new Array<number>(bins).fill(0);
+  for (const v of vals) {
+    const i = Math.min(bins - 1, Math.floor((v - min) / binWidth));
+    counts[i]++;
+  }
+  return { counts, min, binWidth, maxCount: Math.max(1, ...counts) };
 }

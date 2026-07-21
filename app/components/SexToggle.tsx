@@ -1,14 +1,20 @@
-import type { Sex } from "~/lib/stats";
+import type { Mode } from "~/lib/stats";
 import { cn } from "~/lib/utils";
 
+const modes: { id: Mode; label: string }[] = [
+  { id: "male", label: "Male" },
+  { id: "female", label: "Female" },
+  { id: "gap", label: "M−F gap" },
+];
+
 export function SexToggle({
-  sex,
+  mode,
   onChange,
   disabled,
   lockedLabel,
 }: {
-  sex: Sex;
-  onChange: (s: Sex) => void;
+  mode: Mode;
+  onChange: (m: Mode) => void;
   disabled?: boolean;
   lockedLabel?: string;
 }) {
@@ -24,22 +30,22 @@ export function SexToggle({
     <div
       role="tablist"
       aria-label="Sex"
-      className="grid grid-cols-2 rounded-md border border-zinc-800 bg-zinc-900/60 p-0.5 text-xs font-medium"
+      className="grid grid-cols-3 rounded-md border border-zinc-800 bg-zinc-900/60 p-0.5 text-xs font-medium"
     >
-      {(["male", "female"] as const).map((s) => (
+      {modes.map((m) => (
         <button
-          key={s}
+          key={m.id}
           role="tab"
-          aria-selected={sex === s}
-          onClick={() => onChange(s)}
+          aria-selected={mode === m.id}
+          onClick={() => onChange(m.id)}
           className={cn(
-            "rounded px-3 py-1.5 capitalize transition-colors",
-            sex === s
+            "whitespace-nowrap rounded px-2.5 py-1.5 transition-colors",
+            mode === m.id
               ? "bg-zinc-800 text-zinc-100 shadow-sm"
               : "text-zinc-500 hover:text-zinc-300",
           )}
         >
-          {s === "male" ? "Male" : "Female"}
+          {m.label}
         </button>
       ))}
     </div>
