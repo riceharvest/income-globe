@@ -409,9 +409,10 @@ export function statValue(stat: StatDef, c: CountryData, mode: Mode): number | n
   return stat.get(c, stat.fixedSex ?? mode);
 }
 
-function allValues(stat: StatDef, mode: Mode): number[] {
+function allValues(stat: StatDef, mode: Mode, region?: string | null): number[] {
   const out: number[] = [];
   for (const c of countries) {
+    if (region && c.region !== region) continue;
     const v = statValue(stat, c, mode);
     if (v != null) out.push(v);
   }
@@ -429,10 +430,10 @@ export function rankCountries(stat: StatDef, mode: Mode): RankedEntry[] {
   return rows.map((r, i) => ({ ...r, rank: i + 1 }));
 }
 
-export function valueExtent(stat: StatDef, mode: Mode): [number, number] {
+export function valueExtent(stat: StatDef, mode: Mode, region?: string | null): [number, number] {
   let min = Infinity;
   let max = -Infinity;
-  for (const v of allValues(stat, mode)) {
+  for (const v of allValues(stat, mode, region)) {
     if (v < min) min = v;
     if (v > max) max = v;
   }
@@ -449,8 +450,8 @@ function quantile(sorted: number[], q: number): number {
 }
 
 /** 25th / 50th / 75th percentile of the current values. */
-export function percentileTicks(stat: StatDef, mode: Mode): [number, number, number] {
-  const vals = allValues(stat, mode).sort((a, b) => a - b);
+export function percentileTicks(stat: StatDef, mode: Mode, region?: string | null): [number, number, number] {
+  const vals = allValues(stat, mode, region).sort((a, b) => a - b);
   if (vals.length === 0) return [0, 0, 0];
   return [quantile(vals, 0.25), quantile(vals, 0.5), quantile(vals, 0.75)];
 }
@@ -463,9 +464,9 @@ export interface Histogram {
 }
 
 /** Distribution of values across equal-width bins. */
-export function histogram(stat: StatDef, mode: Mode, bins = 24): Histogram {
-  const vals = allValues(stat, mode);
-  const [min, max] = valueExtent(stat, mode);
+export function histogram(stat: StatDef, mode: Mode, bins = 24, region?: string | null): Histogram {
+  const vals = allValues(stat, mode, region);
+  const [min, max] = valueExtent(stat, mode, region);
   const binWidth = (max - min) / bins || 1;
   const counts = new Array<number>(bins).fill(0);
   for (const v of vals) {

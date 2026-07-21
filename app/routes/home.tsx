@@ -124,6 +124,7 @@ export default function Home() {
         <StatSidebar
           activeStat={stat}
           mode={mode}
+          region={region}
           onSelect={selectStat}
           formatTick={formatTick}
         />

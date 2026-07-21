@@ -15,11 +15,13 @@ import { cn } from "~/lib/utils";
 export function StatSidebar({
   activeStat,
   mode,
+  region,
   onSelect,
   formatTick,
 }: {
   activeStat: StatDef;
   mode: Mode;
+  region?: string | null;
   onSelect: (s: StatDef) => void;
   formatTick: (v: number) => string;
 }) {
@@ -126,7 +128,7 @@ export function StatSidebar({
       </div>
 
       <div className="border-t border-zinc-800/80 px-4 py-3">
-        <Distribution stat={activeStat} mode={mode} formatTick={formatTick} />
+        <Distribution stat={activeStat} mode={mode} region={region} formatTick={formatTick} />
       </div>
 
       {infoStat && (
@@ -189,15 +191,17 @@ export function StatSidebar({
 function Distribution({
   stat,
   mode,
+  region,
   formatTick,
 }: {
   stat: StatDef;
   mode: Mode;
+  region?: string | null;
   formatTick: (v: number) => string;
 }) {
-  const extent = useMemo(() => valueExtent(stat, mode), [stat, mode]);
-  const hist = useMemo(() => histogram(stat, mode), [stat, mode]);
-  const [p25, p50, p75] = useMemo(() => percentileTicks(stat, mode), [stat, mode]);
+  const extent = useMemo(() => valueExtent(stat, mode, region), [stat, mode, region]);
+  const hist = useMemo(() => histogram(stat, mode, 24, region), [stat, mode, region]);
+  const [p25, p50, p75] = useMemo(() => percentileTicks(stat, mode, region), [stat, mode, region]);
   const ramp = rampFor(stat);
 
   const pos = (v: number) =>

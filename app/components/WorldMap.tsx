@@ -69,6 +69,7 @@ export function WorldMap({
     let min = Infinity;
     let max = -Infinity;
     for (const c of countries) {
+      if (region && c.region !== region) continue;
       const v = statValue(stat, c, mode);
       if (v == null) continue;
       if (v < min) min = v;
@@ -76,7 +77,7 @@ export function WorldMap({
     }
     if (!Number.isFinite(min)) return [0, 1];
     return min === max ? [min, min + 1] : [min, max];
-  }, [stat, mode]);
+  }, [stat, mode, region]);
 
   const fill = useMemo(() => colorScaleFor(stat, extent), [stat, extent]);
 
