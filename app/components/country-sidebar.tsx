@@ -671,37 +671,49 @@ export function CountrySidebar({
           </div>
 
           {/* Global Rank Badge */}
-          <div className="flex flex-col items-end flex-shrink-0">
-            <div className="flex items-center gap-1 px-2.5 py-1 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 shadow-inner">
+          <button
+            type="button"
+            onClick={() => onSelectMetric?.("p50")}
+            className="flex flex-col items-end flex-shrink-0 cursor-pointer group"
+          >
+            <div className="flex items-center gap-1 px-2.5 py-1 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 shadow-inner group-hover:bg-amber-500/20 group-hover:border-amber-500/40 transition-all">
               <Award className="h-3.5 w-3.5 flex-shrink-0" />
               <span className="text-xs font-bold font-mono">
                 #{rankInfo.rank} / {rankInfo.total}
               </span>
             </div>
-            <span className="text-[10px] text-muted-foreground mt-0.5 font-medium">
+            <span className="text-[10px] text-muted-foreground mt-0.5 font-medium group-hover:text-amber-300">
               Global Rank (P50)
             </span>
-          </div>
+          </button>
         </div>
 
         {/* Population & Currency Strip */}
         <div className="grid grid-cols-2 gap-2">
-          <div className="flex items-center gap-2 p-2 rounded-xl bg-secondary/40 border border-border/30">
+          <button
+            type="button"
+            onClick={() => onSelectMetric?.("population")}
+            className="flex items-center gap-2 p-2 rounded-xl bg-secondary/40 border border-border/30 hover:bg-cyan-500/10 hover:border-cyan-500/30 transition-all cursor-pointer text-left group"
+          >
             <Users className="h-4 w-4 text-cyan-400 flex-shrink-0" />
             <div className="min-w-0">
-              <p className="text-[10px] text-muted-foreground uppercase font-medium tracking-wide">
+              <p className="text-[10px] text-muted-foreground uppercase font-medium tracking-wide group-hover:text-cyan-300">
                 Population
               </p>
               <p className="text-xs font-bold text-foreground font-mono truncate">
                 {(country.population / 1_000_000).toFixed(1)}M
               </p>
             </div>
-          </div>
+          </button>
 
-          <div className="flex items-center gap-2 p-2 rounded-xl bg-secondary/40 border border-border/30">
+          <button
+            type="button"
+            onClick={() => onSelectMetric?.("minimumWageEur")}
+            className="flex items-center gap-2 p-2 rounded-xl bg-secondary/40 border border-border/30 hover:bg-emerald-500/10 hover:border-emerald-500/30 transition-all cursor-pointer text-left group"
+          >
             <DollarSign className="h-4 w-4 text-emerald-400 flex-shrink-0" />
             <div className="min-w-0">
-              <p className="text-[10px] text-muted-foreground uppercase font-medium tracking-wide">
+              <p className="text-[10px] text-muted-foreground uppercase font-medium tracking-wide group-hover:text-emerald-300">
                 Currency
               </p>
               <p
@@ -711,7 +723,7 @@ export function CountrySidebar({
                 {country.currency} ({country.currencySymbol})
               </p>
             </div>
-          </div>
+          </button>
         </div>
 
         {/* Currency & Time Period Display Controls */}
@@ -1135,15 +1147,38 @@ export function CountrySidebar({
                 icon={Ruler}
               >
                 <div className="space-y-2 pt-0.5">
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-center">
-                      <span className="text-[10px] font-semibold text-blue-400 block">👨 Male Leg Ratio</span>
-                      <span className="text-sm font-bold font-mono text-foreground">{physicalStats.legLengthPercent.male}%</span>
-                    </div>
-                    <div className="p-2 rounded-lg bg-pink-500/10 border border-pink-500/20 text-center">
-                      <span className="text-[10px] font-semibold text-pink-400 block">👩 Female Leg Ratio</span>
-                      <span className="text-sm font-bold font-mono text-foreground">{physicalStats.legLengthPercent.female}%</span>
-                    </div>
+                  <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("maleLegLengthPercent");
+                      }}
+                      className={cn(
+                        "p-2 rounded-xl border flex items-center justify-between transition-all cursor-pointer text-left",
+                        "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                        isMetricActive("maleLegLengthPercent", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold shadow-md text-emerald-400"
+                      )}
+                    >
+                      <span className="text-[10px] uppercase font-bold flex items-center gap-1">👨 Male</span>
+                      <span className="font-mono font-bold text-foreground">{physicalStats.legLengthPercent.male}%</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("femaleLegLengthPercent");
+                      }}
+                      className={cn(
+                        "p-2 rounded-xl border flex items-center justify-between transition-all cursor-pointer text-left",
+                        "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                        isMetricActive("femaleLegLengthPercent", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold shadow-md text-emerald-400"
+                      )}
+                    >
+                      <span className="text-[10px] uppercase font-bold flex items-center gap-1">👩 Female</span>
+                      <span className="font-mono font-bold text-foreground">{physicalStats.legLengthPercent.female}%</span>
+                    </button>
                   </div>
 
                   {/* Dual Bar Chart */}
@@ -1173,17 +1208,40 @@ export function CountrySidebar({
                 icon={Dumbbell}
               >
                 <div className="space-y-2 pt-0.5">
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-center">
-                      <span className="text-[10px] font-semibold text-blue-400 block">👨 Male Lean Mass</span>
+                  <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("maleLeanMuscleMassKg");
+                      }}
+                      className={cn(
+                        "p-2 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer text-center",
+                        "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                        isMetricActive("maleLeanMuscleMassKg", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold shadow-md text-emerald-400"
+                      )}
+                    >
+                      <span className="text-[10px] uppercase font-bold">👨 Male Lean Mass</span>
                       <span className="text-sm font-bold font-mono text-foreground">{physicalStats.leanMuscleMassKg.male} kg</span>
-                      <span className="text-[10px] text-muted-foreground block font-mono">({physicalStats.leanMusclePercent.male}%)</span>
-                    </div>
-                    <div className="p-2 rounded-lg bg-pink-500/10 border border-pink-500/20 text-center">
-                      <span className="text-[10px] font-semibold text-pink-400 block">👩 Female Lean Mass</span>
+                      <span className="text-[10px] text-muted-foreground font-mono">({physicalStats.leanMusclePercent.male}%)</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("femaleLeanMuscleMassKg");
+                      }}
+                      className={cn(
+                        "p-2 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer text-center",
+                        "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                        isMetricActive("femaleLeanMuscleMassKg", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold shadow-md text-emerald-400"
+                      )}
+                    >
+                      <span className="text-[10px] uppercase font-bold">👩 Female Lean Mass</span>
                       <span className="text-sm font-bold font-mono text-foreground">{physicalStats.leanMuscleMassKg.female} kg</span>
-                      <span className="text-[10px] text-muted-foreground block font-mono">({physicalStats.leanMusclePercent.female}%)</span>
-                    </div>
+                      <span className="text-[10px] text-muted-foreground font-mono">({physicalStats.leanMusclePercent.female}%)</span>
+                    </button>
                   </div>
 
                   {/* Dual Bar Chart */}
@@ -1213,15 +1271,38 @@ export function CountrySidebar({
                 icon={Hand}
               >
                 <div className="space-y-2 pt-0.5">
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-center">
-                      <span className="text-[10px] font-semibold text-blue-400 block">👨 Male 2D:4D Ratio</span>
+                  <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("maleDigitRatio");
+                      }}
+                      className={cn(
+                        "p-2 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer text-center",
+                        "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                        isMetricActive("maleDigitRatio", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold shadow-md text-emerald-400"
+                      )}
+                    >
+                      <span className="text-[10px] uppercase font-bold">👨 Male 2D:4D</span>
                       <span className="text-sm font-bold font-mono text-foreground">{physicalStats.digitRatio.male}</span>
-                    </div>
-                    <div className="p-2 rounded-lg bg-pink-500/10 border border-pink-500/20 text-center">
-                      <span className="text-[10px] font-semibold text-pink-400 block">👩 Female 2D:4D Ratio</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("femaleDigitRatio");
+                      }}
+                      className={cn(
+                        "p-2 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer text-center",
+                        "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                        isMetricActive("femaleDigitRatio", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold shadow-md text-emerald-400"
+                      )}
+                    >
+                      <span className="text-[10px] uppercase font-bold">👩 Female 2D:4D</span>
                       <span className="text-sm font-bold font-mono text-foreground">{physicalStats.digitRatio.female}</span>
-                    </div>
+                    </button>
                   </div>
 
                   <div className="text-[10px] text-muted-foreground text-center font-medium">
@@ -1239,15 +1320,38 @@ export function CountrySidebar({
                 icon={Activity}
               >
                 <div className="space-y-2 pt-0.5">
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-center">
-                      <span className="text-[10px] font-semibold text-blue-400 block">👨 Male V-Taper</span>
+                  <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("maleShoulderToWaistRatio");
+                      }}
+                      className={cn(
+                        "p-2 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer text-center",
+                        "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                        isMetricActive("maleShoulderToWaistRatio", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold shadow-md text-emerald-400"
+                      )}
+                    >
+                      <span className="text-[10px] uppercase font-bold">👨 Male V-Taper</span>
                       <span className="text-sm font-bold font-mono text-foreground">{physicalStats.shoulderToWaistRatio.male}</span>
-                    </div>
-                    <div className="p-2 rounded-lg bg-pink-500/10 border border-pink-500/20 text-center">
-                      <span className="text-[10px] font-semibold text-pink-400 block">👩 Female Hourglass</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("femaleShoulderToWaistRatio");
+                      }}
+                      className={cn(
+                        "p-2 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer text-center",
+                        "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                        isMetricActive("femaleShoulderToWaistRatio", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold shadow-md text-emerald-400"
+                      )}
+                    >
+                      <span className="text-[10px] uppercase font-bold">👩 Female Hourglass</span>
                       <span className="text-sm font-bold font-mono text-foreground">{physicalStats.shoulderToWaistRatio.female}</span>
-                    </div>
+                    </button>
                   </div>
 
                   {/* Dual Bar Chart */}
@@ -1278,15 +1382,38 @@ export function CountrySidebar({
                   onSelectMetric={onSelectMetric}
                   icon={Hand}
                 >
-                  <div className="space-y-1 pt-0.5 text-xs font-mono">
-                    <div className="flex justify-between text-blue-400 font-bold">
-                      <span>👨 Male:</span>
-                      <span>{physicalStats.handLengthCm.male} cm</span>
-                    </div>
-                    <div className="flex justify-between text-pink-400 font-bold">
-                      <span>👩 Female:</span>
-                      <span>{physicalStats.handLengthCm.female} cm</span>
-                    </div>
+                  <div className="space-y-1.5 pt-0.5 text-xs font-mono">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("maleHandLengthCm");
+                      }}
+                      className={cn(
+                        "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                        "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                        isMetricActive("maleHandLengthCm", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                      )}
+                    >
+                      <span className="text-[10px]">👨 Male</span>
+                      <span className="font-bold text-foreground">{physicalStats.handLengthCm.male} cm</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("femaleHandLengthCm");
+                      }}
+                      className={cn(
+                        "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                        "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                        isMetricActive("femaleHandLengthCm", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                      )}
+                    >
+                      <span className="text-[10px]">👩 Female</span>
+                      <span className="font-bold text-foreground">{physicalStats.handLengthCm.female} cm</span>
+                    </button>
                   </div>
                 </MetricCard>
 
@@ -1298,15 +1425,38 @@ export function CountrySidebar({
                   onSelectMetric={onSelectMetric}
                   icon={Volume2}
                 >
-                  <div className="space-y-1 pt-0.5 text-xs font-mono">
-                    <div className="flex justify-between text-blue-400 font-bold">
-                      <span>👨 Male:</span>
-                      <span>{physicalStats.vocalPitchHz.male} Hz</span>
-                    </div>
-                    <div className="flex justify-between text-pink-400 font-bold">
-                      <span>👩 Female:</span>
-                      <span>{physicalStats.vocalPitchHz.female} Hz</span>
-                    </div>
+                  <div className="space-y-1.5 pt-0.5 text-xs font-mono">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("maleVocalPitchHz");
+                      }}
+                      className={cn(
+                        "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                        "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                        isMetricActive("maleVocalPitchHz", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                      )}
+                    >
+                      <span className="text-[10px]">👨 Male</span>
+                      <span className="font-bold text-foreground">{physicalStats.vocalPitchHz.male} Hz</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("femaleVocalPitchHz");
+                      }}
+                      className={cn(
+                        "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                        "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                        isMetricActive("femaleVocalPitchHz", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                      )}
+                    >
+                      <span className="text-[10px]">👩 Female</span>
+                      <span className="font-bold text-foreground">{physicalStats.vocalPitchHz.female} Hz</span>
+                    </button>
                   </div>
                 </MetricCard>
               </div>
