@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { rankCountries, formatValue, type Sex, type StatDef } from "~/lib/stats";
+import { accentFor } from "~/lib/color";
 import type { CountryData } from "~/data/countries";
 import { cn } from "~/lib/utils";
 
@@ -16,6 +17,7 @@ export function RankingsPanel({
 }) {
   const rows = useMemo(() => rankCountries(stat, sex), [stat, sex]);
   const max = rows.length > 0 ? rows[0].value : 1;
+  const accent = accentFor(stat);
 
   return (
     <aside className="flex h-full w-80 shrink-0 flex-col border-l border-zinc-800/80 bg-zinc-950">
@@ -54,8 +56,8 @@ export function RankingsPanel({
               </span>
               <span className="relative h-1 w-14 shrink-0 overflow-hidden rounded-full bg-zinc-800">
                 <span
-                  className="absolute inset-y-0 left-0 rounded-full bg-cyan-500/70"
-                  style={{ width: `${Math.max(2, (value / max) * 100)}%` }}
+                  className="absolute inset-y-0 left-0 rounded-full"
+                  style={{ width: `${Math.max(2, (value / max) * 100)}%`, background: accent, opacity: 0.7 }}
                 />
               </span>
               <span className="w-16 shrink-0 text-right text-[11px] tabular-nums text-zinc-400">

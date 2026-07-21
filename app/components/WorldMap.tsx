@@ -3,7 +3,7 @@ import { geoEqualEarth, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 import topoData from "world-atlas/countries-110m.json";
 import { countries, type CountryData } from "~/data/countries";
-import { colorScale, noDataFill, oceanFill, borderStroke } from "~/lib/color";
+import { colorScaleFor, noDataFill, oceanFill, borderStroke } from "~/lib/color";
 import { formatValue, type Sex, type StatDef } from "~/lib/stats";
 
 interface GeoFeature {
@@ -76,7 +76,7 @@ export function WorldMap({
     return min === max ? [min, min + 1] : [min, max];
   }, [stat, sex]);
 
-  const fill = useMemo(() => colorScale(extent), [extent]);
+  const fill = useMemo(() => colorScaleFor(stat, extent), [stat, extent]);
 
   const valueByNumeric = useMemo(() => {
     const m = new Map<number, number | null>();

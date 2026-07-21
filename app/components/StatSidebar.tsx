@@ -121,7 +121,7 @@ export function StatSidebar({
         <div
           className="h-2 w-full rounded-full"
           style={{
-            background: `linear-gradient(to right, ${legendGradient().join(",")})`,
+            background: `linear-gradient(to right, ${legendGradient(activeStat).join(",")})`,
           }}
         />
         <div className="mt-1 flex justify-between text-[10px] tabular-nums text-zinc-500">

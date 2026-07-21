@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { X } from "lucide-react";
 import type { CountryData } from "~/data/countries";
 import { formatValue, statGroups, stats, type Sex, type StatDef } from "~/lib/stats";
+import { accentFor } from "~/lib/color";
 import { cn } from "~/lib/utils";
 
 function StatRow({ stat, country }: { stat: StatDef; country: CountryData }) {
@@ -92,7 +93,7 @@ export function CountryDrawer({
         </div>
         <div className="mt-1 flex items-baseline justify-between">
           <span className="text-sm text-zinc-200">{activeStat.label}</span>
-          <span className="text-lg font-semibold tabular-nums text-cyan-300">
+          <span className="text-lg font-semibold tabular-nums" style={{ color: accentFor(activeStat) }}>
             {formatValue(activeStat, activeStat.get(country, sex))}
           </span>
         </div>
