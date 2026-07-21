@@ -537,6 +537,159 @@ export const METRIC_HELP_MAP: Record<string, MetricHelpInfo> = {
     unitOrScale: "Hertz (Hz)",
   },
 
+  // New Extended Physique Suite
+  maleChestBustGirthCm: {
+    title: "Male Chest Girth",
+    definition: "Mean chest circumference for adult males measured across the fullest part of the chest.",
+    howToRead: "Male average is ~98–108 cm. Reflects ribcage size, pectoral and lat muscle development.",
+    unitOrScale: "Centimeters (cm)",
+  },
+  femaleChestBustGirthCm: {
+    title: "Female Bust Girth",
+    definition: "Mean bust circumference for adult females measured across the nipples.",
+    howToRead: "Female average is ~88–98 cm. Reflects thoracic frame and bust volume.",
+    unitOrScale: "Centimeters (cm)",
+  },
+  chestBustGirthCm: {
+    title: "Chest & Bust Girth",
+    definition: "Mean chest/bust circumference across adult population.",
+    howToRead: "Key apparel and physical stature baseline.",
+    unitOrScale: "Centimeters (cm)",
+  },
+
+  maleCalfCircumferenceCm: {
+    title: "Male Calf Circumference",
+    definition: "Maximal girth of the calf muscle (gastrocnemius and soleus) in adult men.",
+    howToRead: "Male average is ~37–41 cm. Key indicator of lower leg muscularity.",
+    unitOrScale: "Centimeters (cm)",
+  },
+  femaleCalfCircumferenceCm: {
+    title: "Female Calf Circumference",
+    definition: "Maximal girth of the calf muscle in adult women.",
+    howToRead: "Female average is ~34–38 cm.",
+    unitOrScale: "Centimeters (cm)",
+  },
+  calfCircumferenceCm: {
+    title: "Calf Circumference",
+    definition: "Maximal circumference of lower leg calf muscle.",
+    howToRead: "Correlates with lower body lean mass and mobility.",
+    unitOrScale: "Centimeters (cm)",
+  },
+
+  cephalicIndex: {
+    title: "Cephalic Index (Head Shape Ratio %)",
+    definition: "Maximal cranial breadth divided by maximal cranial length multiplied by 100.",
+    howToRead: "< 75.0% = Dolichocephalic (Long/Narrow); 75.0–79.9% = Mesocephalic (Medium); ≥ 80.0% = Brachycephalic (Round/Broad).",
+    unitOrScale: "Percentage Ratio (%)",
+  },
+  femaleCephalicIndex: {
+    title: "Female Cephalic Index",
+    definition: "Cranial breadth-to-length ratio in adult women.",
+    howToRead: "Higher values indicate rounder cranial morphology.",
+    unitOrScale: "Percentage Ratio (%)",
+  },
+  maleCephalicIndex: {
+    title: "Male Cephalic Index",
+    definition: "Cranial breadth-to-length ratio in adult men.",
+    howToRead: "Higher values indicate rounder cranial morphology.",
+    unitOrScale: "Percentage Ratio (%)",
+  },
+
+  maleHipCircumferenceCm: {
+    title: "Male Hip Circumference",
+    definition: "Gluteal circumference measured at the widest part of the buttocks in men.",
+    howToRead: "Male average is ~94–102 cm.",
+    unitOrScale: "Centimeters (cm)",
+  },
+  femaleHipCircumferenceCm: {
+    title: "Female Hip Circumference",
+    definition: "Gluteal circumference measured at the widest part of the buttocks in women.",
+    howToRead: "Female average is ~92–104 cm. Key measure for hourglass silhouette.",
+    unitOrScale: "Centimeters (cm)",
+  },
+  hipCircumferenceCm: {
+    title: "Hip Circumference",
+    definition: "Maximal gluteal circumference.",
+    howToRead: "Key baseline for waist-to-hip ratio body shape evaluation.",
+    unitOrScale: "Centimeters (cm)",
+  },
+
+  maleWaistToHipRatio: {
+    title: "Male Waist-to-Hip Ratio (WHR)",
+    definition: "Waist circumference divided by hip circumference in men (Waist / Hip).",
+    howToRead: "WHO healthy baseline is < 0.90. Values > 0.95 indicate abdominal obesity.",
+    unitOrScale: "WHR Ratio",
+  },
+  femaleWaistToHipRatio: {
+    title: "Female Waist-to-Hip Ratio (WHR)",
+    definition: "Waist circumference divided by hip circumference in women (Waist / Hip).",
+    howToRead: "WHO healthy baseline is < 0.85. Values ~0.70 represent classic hourglass proportions.",
+    unitOrScale: "WHR Ratio",
+  },
+  waistToHipRatio: {
+    title: "Waist-to-Hip Ratio (WHR)",
+    definition: "Body shape ratio of waist girth to hip girth.",
+    howToRead: "Primary WHO metric for fat distribution (apple vs pear body shape).",
+    unitOrScale: "WHR Ratio",
+  },
+
+  maleThighCircumferenceCm: {
+    title: "Male Thigh Circumference",
+    definition: "Mid-thigh circumference measured below the gluteal fold in men.",
+    howToRead: "Male average is ~55–62 cm. Reflects quadriceps and hamstrings mass.",
+    unitOrScale: "Centimeters (cm)",
+  },
+  femaleThighCircumferenceCm: {
+    title: "Female Thigh Circumference",
+    definition: "Mid-thigh circumference measured below the gluteal fold in women.",
+    howToRead: "Female average is ~52–60 cm.",
+    unitOrScale: "Centimeters (cm)",
+  },
+  thighCircumferenceCm: {
+    title: "Thigh Circumference",
+    definition: "Mid-thigh muscularity and tissue circumference.",
+    howToRead: "Correlates with lower body strength and athletic force.",
+    unitOrScale: "Centimeters (cm)",
+  },
+
+  maleChestToWaistDropCm: {
+    title: "Male Chest-to-Waist V-Drop",
+    definition: "Difference between male chest circumference and waist circumference (Chest - Waist).",
+    howToRead: "Higher drop (> 20 cm / 8 inches) represents a pronounced athletic V-taper frame.",
+    unitOrScale: "Centimeters (cm)",
+  },
+  femaleChestToWaistDropCm: {
+    title: "Female Chest-to-Waist Drop",
+    definition: "Difference between female bust circumference and waist circumference (Bust - Waist).",
+    howToRead: "Higher drop (> 15 cm) reflects upper torso definition.",
+    unitOrScale: "Centimeters (cm)",
+  },
+  chestToWaistDropCm: {
+    title: "Chest-to-Waist V-Drop",
+    definition: "Upper torso taper measured by subtracting waist girth from chest girth.",
+    howToRead: "Classic bodybuilding and fitness proportion metric.",
+    unitOrScale: "Centimeters (cm)",
+  },
+
+  maleGonialAngleDegrees: {
+    title: "Male Jawline / Gonial Angle",
+    definition: "Angle of the mandibular jaw between the ramus and body in men.",
+    howToRead: "Male average is ~116°–122°. A lower angle (~110°–115°) indicates a sharp, square jawline.",
+    unitOrScale: "Degrees (°)",
+  },
+  femaleGonialAngleDegrees: {
+    title: "Female Jawline / Gonial Angle",
+    definition: "Angle of the mandibular jaw between the ramus and body in women.",
+    howToRead: "Female average is ~122°–128°. Gives a softer, sloped jawline contour.",
+    unitOrScale: "Degrees (°)",
+  },
+  gonialAngleDegrees: {
+    title: "Jawline / Gonial Angle",
+    definition: "Mandibular jawline inclination angle.",
+    howToRead: "Craniofacial metric for jawline shape and definition.",
+    unitOrScale: "Degrees (°)",
+  },
+
   // Macroeconomics
   minimumWageEur: {
     title: "Minimum Wage",
@@ -865,6 +1018,30 @@ function isMetricActive(targetKey: string, activeKey?: string): boolean {
     vocalPitchHz: ["vocalPitchHz", "vocalPitch", "femaleVocalPitchHz", "maleVocalPitchHz"],
     femaleVocalPitchHz: ["vocalPitchHz", "vocalPitch", "femaleVocalPitchHz", "maleVocalPitchHz"],
     maleVocalPitchHz: ["vocalPitchHz", "vocalPitch", "femaleVocalPitchHz", "maleVocalPitchHz"],
+    chestBustGirthCm: ["chestBustGirthCm", "femaleChestBustGirthCm", "maleChestBustGirthCm"],
+    femaleChestBustGirthCm: ["chestBustGirthCm", "femaleChestBustGirthCm", "maleChestBustGirthCm"],
+    maleChestBustGirthCm: ["chestBustGirthCm", "femaleChestBustGirthCm", "maleChestBustGirthCm"],
+    calfCircumferenceCm: ["calfCircumferenceCm", "femaleCalfCircumferenceCm", "maleCalfCircumferenceCm"],
+    femaleCalfCircumferenceCm: ["calfCircumferenceCm", "femaleCalfCircumferenceCm", "maleCalfCircumferenceCm"],
+    maleCalfCircumferenceCm: ["calfCircumferenceCm", "femaleCalfCircumferenceCm", "maleCalfCircumferenceCm"],
+    cephalicIndex: ["cephalicIndex", "femaleCephalicIndex", "maleCephalicIndex"],
+    femaleCephalicIndex: ["cephalicIndex", "femaleCephalicIndex", "maleCephalicIndex"],
+    maleCephalicIndex: ["cephalicIndex", "femaleCephalicIndex", "maleCephalicIndex"],
+    hipCircumferenceCm: ["hipCircumferenceCm", "femaleHipCircumferenceCm", "maleHipCircumferenceCm"],
+    femaleHipCircumferenceCm: ["hipCircumferenceCm", "femaleHipCircumferenceCm", "maleHipCircumferenceCm"],
+    maleHipCircumferenceCm: ["hipCircumferenceCm", "femaleHipCircumferenceCm", "maleHipCircumferenceCm"],
+    waistToHipRatio: ["waistToHipRatio", "femaleWaistToHipRatio", "maleWaistToHipRatio"],
+    femaleWaistToHipRatio: ["waistToHipRatio", "femaleWaistToHipRatio", "maleWaistToHipRatio"],
+    maleWaistToHipRatio: ["waistToHipRatio", "femaleWaistToHipRatio", "maleWaistToHipRatio"],
+    thighCircumferenceCm: ["thighCircumferenceCm", "femaleThighCircumferenceCm", "maleThighCircumferenceCm"],
+    femaleThighCircumferenceCm: ["thighCircumferenceCm", "femaleThighCircumferenceCm", "maleThighCircumferenceCm"],
+    maleThighCircumferenceCm: ["thighCircumferenceCm", "femaleThighCircumferenceCm", "maleThighCircumferenceCm"],
+    chestToWaistDropCm: ["chestToWaistDropCm", "femaleChestToWaistDropCm", "maleChestToWaistDropCm"],
+    femaleChestToWaistDropCm: ["chestToWaistDropCm", "femaleChestToWaistDropCm", "maleChestToWaistDropCm"],
+    maleChestToWaistDropCm: ["chestToWaistDropCm", "femaleChestToWaistDropCm", "maleChestToWaistDropCm"],
+    gonialAngleDegrees: ["gonialAngleDegrees", "femaleGonialAngleDegrees", "maleGonialAngleDegrees"],
+    femaleGonialAngleDegrees: ["gonialAngleDegrees", "femaleGonialAngleDegrees", "maleGonialAngleDegrees"],
+    maleGonialAngleDegrees: ["gonialAngleDegrees", "femaleGonialAngleDegrees", "maleGonialAngleDegrees"],
   };
 
   const equivalentList = aliases[targetKey];
@@ -2188,6 +2365,305 @@ export function CountrySidebar({
                     >
                       <span className="text-[10px]">👩 Female</span>
                       <span className="font-bold text-foreground">{physicalStats.vocalPitchHz.female} Hz</span>
+                    </button>
+                  </div>
+                </MetricCard>
+              </div>
+
+              {/* 9. Chest & Bust Girth Card */}
+              <MetricCard
+                label="Chest & Bust Girth (cm)"
+                metricKey="chestBustGirthCm"
+                activeSortKey={activeSortKey}
+                onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
+                icon={Activity}
+              >
+                <div className="space-y-2 pt-0.5">
+                  <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("maleChestBustGirthCm");
+                      }}
+                      className={cn(
+                        "p-2 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer text-center",
+                        "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                        isMetricActive("maleChestBustGirthCm", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold text-emerald-400"
+                      )}
+                    >
+                      <span className="text-[10px] uppercase font-bold">👨 Male Chest</span>
+                      <span className="text-sm font-bold font-mono text-foreground">{physicalStats.chestBustGirthCm.male} cm</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("femaleChestBustGirthCm");
+                      }}
+                      className={cn(
+                        "p-2 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer text-center",
+                        "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                        isMetricActive("femaleChestBustGirthCm", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold text-emerald-400"
+                      )}
+                    >
+                      <span className="text-[10px] uppercase font-bold">👩 Female Bust</span>
+                      <span className="text-sm font-bold font-mono text-foreground">{physicalStats.chestBustGirthCm.female} cm</span>
+                    </button>
+                  </div>
+                </div>
+              </MetricCard>
+
+              {/* 10. Waist-to-Hip Ratio (WHR) Card */}
+              <MetricCard
+                label="Waist-to-Hip Ratio (WHR)"
+                metricKey="waistToHipRatio"
+                activeSortKey={activeSortKey}
+                onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
+                icon={Activity}
+              >
+                <div className="space-y-2 pt-0.5">
+                  <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("maleWaistToHipRatio");
+                      }}
+                      className={cn(
+                        "p-2 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer text-center",
+                        "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                        isMetricActive("maleWaistToHipRatio", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold text-emerald-400"
+                      )}
+                    >
+                      <span className="text-[10px] uppercase font-bold">👨 Male WHR</span>
+                      <span className="text-sm font-bold font-mono text-foreground">{physicalStats.waistToHipRatio.male}</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("femaleWaistToHipRatio");
+                      }}
+                      className={cn(
+                        "p-2 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer text-center",
+                        "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                        isMetricActive("femaleWaistToHipRatio", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold text-emerald-400"
+                      )}
+                    >
+                      <span className="text-[10px] uppercase font-bold">👩 Female WHR</span>
+                      <span className="text-sm font-bold font-mono text-foreground">{physicalStats.waistToHipRatio.female}</span>
+                    </button>
+                  </div>
+
+                  <div className="text-[10px] text-muted-foreground text-center font-medium">
+                    WHO healthy baseline: Male &lt; 0.90 | Female &lt; 0.85 (Hourglass ~0.70)
+                  </div>
+                </div>
+              </MetricCard>
+
+              {/* 11. Chest-to-Waist V-Drop Card */}
+              <MetricCard
+                label="Chest-to-Waist V-Drop (cm)"
+                metricKey="chestToWaistDropCm"
+                activeSortKey={activeSortKey}
+                onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
+                icon={TrendingUp}
+              >
+                <div className="space-y-2 pt-0.5">
+                  <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("maleChestToWaistDropCm");
+                      }}
+                      className={cn(
+                        "p-2 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer text-center",
+                        "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                        isMetricActive("maleChestToWaistDropCm", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold text-emerald-400"
+                      )}
+                    >
+                      <span className="text-[10px] uppercase font-bold">👨 Male V-Drop</span>
+                      <span className="text-sm font-bold font-mono text-foreground">+{physicalStats.chestToWaistDropCm.male} cm</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("femaleChestToWaistDropCm");
+                      }}
+                      className={cn(
+                        "p-2 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer text-center",
+                        "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                        isMetricActive("femaleChestToWaistDropCm", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold text-emerald-400"
+                      )}
+                    >
+                      <span className="text-[10px] uppercase font-bold">👩 Female Drop</span>
+                      <span className="text-sm font-bold font-mono text-foreground">+{physicalStats.chestToWaistDropCm.female} cm</span>
+                    </button>
+                  </div>
+                </div>
+              </MetricCard>
+
+              {/* 12. Jawline / Gonial Angle & Cephalic Index Dual Cards */}
+              <div className="grid grid-cols-2 gap-2">
+                {/* Gonial Angle Card */}
+                <MetricCard
+                  label="Jawline Angle (°)"
+                  metricKey="gonialAngleDegrees"
+                  activeSortKey={activeSortKey}
+                  onSelectMetric={onSelectMetric}
+                  onOpenHelp={setActiveHelpKey}
+                  icon={Activity}
+                >
+                  <div className="space-y-1.5 pt-0.5 text-xs font-mono">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("maleGonialAngleDegrees");
+                      }}
+                      className={cn(
+                        "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                        "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                        isMetricActive("maleGonialAngleDegrees", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                      )}
+                    >
+                      <span className="text-[10px]">👨 Male</span>
+                      <span className="font-bold text-foreground">{physicalStats.gonialAngleDegrees.male}°</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("femaleGonialAngleDegrees");
+                      }}
+                      className={cn(
+                        "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                        "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                        isMetricActive("femaleGonialAngleDegrees", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                      )}
+                    >
+                      <span className="text-[10px]">👩 Female</span>
+                      <span className="font-bold text-foreground">{physicalStats.gonialAngleDegrees.female}°</span>
+                    </button>
+                  </div>
+                </MetricCard>
+
+                {/* Cephalic Index Card */}
+                <MetricCard
+                  label="Head Shape Ratio"
+                  metricKey="cephalicIndex"
+                  activeSortKey={activeSortKey}
+                  onSelectMetric={onSelectMetric}
+                  onOpenHelp={setActiveHelpKey}
+                  icon={Activity}
+                >
+                  <div className="space-y-1 pt-0.5 text-center">
+                    <span className="text-xs font-bold text-cyan-400 font-mono">
+                      {physicalStats.cephalicIndex.male}%
+                    </span>
+                    <p className="text-[10px] text-muted-foreground font-medium truncate" title={physicalStats.cephalicIndex.label}>
+                      {physicalStats.cephalicIndex.label}
+                    </p>
+                  </div>
+                </MetricCard>
+              </div>
+
+              {/* 13. Thigh & Calf Circumference Dual Cards */}
+              <div className="grid grid-cols-2 gap-2">
+                {/* Thigh Circumference */}
+                <MetricCard
+                  label="Thigh Size (cm)"
+                  metricKey="thighCircumferenceCm"
+                  activeSortKey={activeSortKey}
+                  onSelectMetric={onSelectMetric}
+                  onOpenHelp={setActiveHelpKey}
+                  icon={Activity}
+                >
+                  <div className="space-y-1.5 pt-0.5 text-xs font-mono">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("maleThighCircumferenceCm");
+                      }}
+                      className={cn(
+                        "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                        "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                        isMetricActive("maleThighCircumferenceCm", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                      )}
+                    >
+                      <span className="text-[10px]">👨 Male</span>
+                      <span className="font-bold text-foreground">{physicalStats.thighCircumferenceCm.male} cm</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("femaleThighCircumferenceCm");
+                      }}
+                      className={cn(
+                        "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                        "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                        isMetricActive("femaleThighCircumferenceCm", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                      )}
+                    >
+                      <span className="text-[10px]">👩 Female</span>
+                      <span className="font-bold text-foreground">{physicalStats.thighCircumferenceCm.female} cm</span>
+                    </button>
+                  </div>
+                </MetricCard>
+
+                {/* Calf Circumference */}
+                <MetricCard
+                  label="Calf Size (cm)"
+                  metricKey="calfCircumferenceCm"
+                  activeSortKey={activeSortKey}
+                  onSelectMetric={onSelectMetric}
+                  onOpenHelp={setActiveHelpKey}
+                  icon={Activity}
+                >
+                  <div className="space-y-1.5 pt-0.5 text-xs font-mono">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("maleCalfCircumferenceCm");
+                      }}
+                      className={cn(
+                        "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                        "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                        isMetricActive("maleCalfCircumferenceCm", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                      )}
+                    >
+                      <span className="text-[10px]">👨 Male</span>
+                      <span className="font-bold text-foreground">{physicalStats.calfCircumferenceCm.male} cm</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMetric?.("femaleCalfCircumferenceCm");
+                      }}
+                      className={cn(
+                        "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                        "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                        isMetricActive("femaleCalfCircumferenceCm", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                      )}
+                    >
+                      <span className="text-[10px]">👩 Female</span>
+                      <span className="font-bold text-foreground">{physicalStats.calfCircumferenceCm.female} cm</span>
                     </button>
                   </div>
                 </MetricCard>

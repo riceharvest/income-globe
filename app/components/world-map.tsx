@@ -178,6 +178,30 @@ export type MapMetricKey =
   | "vocalPitchHz"
   | "femaleVocalPitchHz"
   | "maleVocalPitchHz"
+  | "chestBustGirthCm"
+  | "femaleChestBustGirthCm"
+  | "maleChestBustGirthCm"
+  | "calfCircumferenceCm"
+  | "femaleCalfCircumferenceCm"
+  | "maleCalfCircumferenceCm"
+  | "cephalicIndex"
+  | "femaleCephalicIndex"
+  | "maleCephalicIndex"
+  | "hipCircumferenceCm"
+  | "femaleHipCircumferenceCm"
+  | "maleHipCircumferenceCm"
+  | "waistToHipRatio"
+  | "femaleWaistToHipRatio"
+  | "maleWaistToHipRatio"
+  | "thighCircumferenceCm"
+  | "femaleThighCircumferenceCm"
+  | "maleThighCircumferenceCm"
+  | "chestToWaistDropCm"
+  | "femaleChestToWaistDropCm"
+  | "maleChestToWaistDropCm"
+  | "gonialAngleDegrees"
+  | "femaleGonialAngleDegrees"
+  | "maleGonialAngleDegrees"
   | "adolescentBirthRate"
   | "laborForceGap"
   | "contraceptiveUse"
@@ -282,6 +306,38 @@ export function normalizeMapMetricKey(key: string): MapMetricKey {
   // Vocal Pitch
   if (k === "maleVocalPitchHz") return "maleVocalPitchHz";
   if (k === "femaleVocalPitchHz" || k === "vocalPitchHz" || k === "vocalPitch") return "femaleVocalPitchHz";
+
+  // Chest / Bust Girth
+  if (k === "maleChestBustGirthCm") return "maleChestBustGirthCm";
+  if (k === "femaleChestBustGirthCm" || k === "chestBustGirthCm") return "femaleChestBustGirthCm";
+
+  // Calf Circumference
+  if (k === "maleCalfCircumferenceCm") return "maleCalfCircumferenceCm";
+  if (k === "femaleCalfCircumferenceCm" || k === "calfCircumferenceCm") return "femaleCalfCircumferenceCm";
+
+  // Cephalic Index
+  if (k === "maleCephalicIndex") return "maleCephalicIndex";
+  if (k === "femaleCephalicIndex" || k === "cephalicIndex") return "femaleCephalicIndex";
+
+  // Hip Circumference
+  if (k === "maleHipCircumferenceCm") return "maleHipCircumferenceCm";
+  if (k === "femaleHipCircumferenceCm" || k === "hipCircumferenceCm") return "femaleHipCircumferenceCm";
+
+  // Waist-to-Hip Ratio
+  if (k === "maleWaistToHipRatio") return "maleWaistToHipRatio";
+  if (k === "femaleWaistToHipRatio" || k === "waistToHipRatio" || k === "whr") return "femaleWaistToHipRatio";
+
+  // Thigh Circumference
+  if (k === "maleThighCircumferenceCm") return "maleThighCircumferenceCm";
+  if (k === "femaleThighCircumferenceCm" || k === "thighCircumferenceCm") return "femaleThighCircumferenceCm";
+
+  // Chest-to-Waist Drop
+  if (k === "maleChestToWaistDropCm") return "maleChestToWaistDropCm";
+  if (k === "femaleChestToWaistDropCm" || k === "chestToWaistDropCm" || k === "vdrop") return "femaleChestToWaistDropCm";
+
+  // Jawline / Gonial Angle
+  if (k === "maleGonialAngleDegrees") return "maleGonialAngleDegrees";
+  if (k === "femaleGonialAngleDegrees" || k === "gonialAngleDegrees" || k === "jawAngle") return "femaleGonialAngleDegrees";
 
   // Macro / Gender stats
   if (k === "minimumWageEur") return "minimumWageEur";
@@ -964,6 +1020,151 @@ export const MAP_METRICS: MapMetricDef[] = [
     formatValue: (v) => `${Math.round(v)} Hz`,
     getValue: (c) => getPhysicalStats(c).vocalPitchHz.female,
     colorInterpolator: PALETTES.fuchsia,
+    accentColor: "#ec4899",
+  },
+
+  // ── NEW EXTENDED PHYSIQUE & BODY SHAPE METRICS ──
+  {
+    key: "maleChestBustGirthCm",
+    label: "Male Chest Girth",
+    shortLabel: "Chest Girth (M)",
+    category: "Health & Physical",
+    unit: "cm",
+    formatValue: (v) => `${v.toFixed(1)} cm`,
+    getValue: (c) => getPhysicalStats(c).chestBustGirthCm.male,
+    colorInterpolator: PALETTES.indigo,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleChestBustGirthCm",
+    label: "Female Bust Girth",
+    shortLabel: "Bust Girth (F)",
+    category: "Health & Physical",
+    unit: "cm",
+    formatValue: (v) => `${v.toFixed(1)} cm`,
+    getValue: (c) => getPhysicalStats(c).chestBustGirthCm.female,
+    colorInterpolator: PALETTES.fuchsia,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleCalfCircumferenceCm",
+    label: "Male Calf Circumference",
+    shortLabel: "Calf Size (M)",
+    category: "Health & Physical",
+    unit: "cm",
+    formatValue: (v) => `${v.toFixed(1)} cm`,
+    getValue: (c) => getPhysicalStats(c).calfCircumferenceCm.male,
+    colorInterpolator: PALETTES.indigo,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleCalfCircumferenceCm",
+    label: "Female Calf Circumference",
+    shortLabel: "Calf Size (F)",
+    category: "Health & Physical",
+    unit: "cm",
+    formatValue: (v) => `${v.toFixed(1)} cm`,
+    getValue: (c) => getPhysicalStats(c).calfCircumferenceCm.female,
+    colorInterpolator: PALETTES.fuchsia,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "cephalicIndex",
+    label: "Cephalic Index (Cranial Ratio %)",
+    shortLabel: "Head Shape Index",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => getPhysicalStats(c).cephalicIndex.male,
+    colorInterpolator: PALETTES.sky,
+    accentColor: "#0284c7",
+  },
+  {
+    key: "maleWaistToHipRatio",
+    label: "Male Waist-to-Hip Ratio (WHR)",
+    shortLabel: "WHR Ratio (M)",
+    category: "Health & Physical",
+    unit: "",
+    formatValue: (v) => v.toFixed(2),
+    getValue: (c) => getPhysicalStats(c).waistToHipRatio.male,
+    colorInterpolator: PALETTES.amber,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleWaistToHipRatio",
+    label: "Female Waist-to-Hip Ratio (WHR)",
+    shortLabel: "WHR Ratio (F)",
+    category: "Health & Physical",
+    unit: "",
+    formatValue: (v) => v.toFixed(2),
+    getValue: (c) => getPhysicalStats(c).waistToHipRatio.female,
+    colorInterpolator: PALETTES.rose,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleThighCircumferenceCm",
+    label: "Male Thigh Circumference",
+    shortLabel: "Thigh Size (M)",
+    category: "Health & Physical",
+    unit: "cm",
+    formatValue: (v) => `${v.toFixed(1)} cm`,
+    getValue: (c) => getPhysicalStats(c).thighCircumferenceCm.male,
+    colorInterpolator: PALETTES.indigo,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleThighCircumferenceCm",
+    label: "Female Thigh Circumference",
+    shortLabel: "Thigh Size (F)",
+    category: "Health & Physical",
+    unit: "cm",
+    formatValue: (v) => `${v.toFixed(1)} cm`,
+    getValue: (c) => getPhysicalStats(c).thighCircumferenceCm.female,
+    colorInterpolator: PALETTES.fuchsia,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleChestToWaistDropCm",
+    label: "Male Chest-to-Waist V-Drop",
+    shortLabel: "V-Drop (M)",
+    category: "Health & Physical",
+    unit: "cm",
+    formatValue: (v) => `${v.toFixed(1)} cm`,
+    getValue: (c) => getPhysicalStats(c).chestToWaistDropCm.male,
+    colorInterpolator: PALETTES.emerald,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleChestToWaistDropCm",
+    label: "Female Chest-to-Waist Drop",
+    shortLabel: "V-Drop (F)",
+    category: "Health & Physical",
+    unit: "cm",
+    formatValue: (v) => `${v.toFixed(1)} cm`,
+    getValue: (c) => getPhysicalStats(c).chestToWaistDropCm.female,
+    colorInterpolator: PALETTES.emerald,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleGonialAngleDegrees",
+    label: "Male Jawline / Gonial Angle",
+    shortLabel: "Jaw Angle (M)",
+    category: "Health & Physical",
+    unit: "°",
+    formatValue: (v) => `${v.toFixed(1)}°`,
+    getValue: (c) => getPhysicalStats(c).gonialAngleDegrees.male,
+    colorInterpolator: PALETTES.sky,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleGonialAngleDegrees",
+    label: "Female Jawline / Gonial Angle",
+    shortLabel: "Jaw Angle (F)",
+    category: "Health & Physical",
+    unit: "°",
+    formatValue: (v) => `${v.toFixed(1)}°`,
+    getValue: (c) => getPhysicalStats(c).gonialAngleDegrees.female,
+    colorInterpolator: PALETTES.sky,
     accentColor: "#ec4899",
   },
 

@@ -261,6 +261,16 @@ export interface PhysicalStats {
   shoulderToWaistRatio: PhysicalMetricGenderPair;
   handLengthCm: PhysicalMetricGenderPair;
   vocalPitchHz: PhysicalMetricGenderPair;
+
+  // New Extended Physique & Body Shape Suite
+  chestBustGirthCm: PhysicalMetricGenderPair;
+  calfCircumferenceCm: PhysicalMetricGenderPair;
+  cephalicIndex: { male: number; female: number; label: string };
+  hipCircumferenceCm: PhysicalMetricGenderPair;
+  waistToHipRatio: PhysicalMetricGenderPair;
+  thighCircumferenceCm: PhysicalMetricGenderPair;
+  chestToWaistDropCm: PhysicalMetricGenderPair;
+  gonialAngleDegrees: PhysicalMetricGenderPair;
 }
 
 export interface CountryData {
@@ -788,6 +798,44 @@ export function getPhysicalStats(country: CountryData): PhysicalStats {
   const maleVoiceHz = Math.round((120 - (maleHeight - 175) * 0.45 + pitchOffsetMale) * 10) / 10;
   const femaleVoiceHz = Math.round((210 - (femaleHeight - 163) * 0.5 + pitchOffsetFemale) * 10) / 10;
 
+  // 12. Chest / Bust Girth Cm ({ male, female })
+  const maleChestGirth = Math.round(maleHeight * (maleBmi > 25 ? 0.61 : 0.57));
+  const femaleBustGirth = Math.round(femaleHeight * (femaleBmi > 25 ? 0.58 : 0.54));
+
+  // 13. Calf Circumference Cm ({ male, female })
+  const maleCalf = Math.round((maleHeight * 0.22 + (maleBmi > 25 ? 2.5 : 0)) * 10) / 10;
+  const femaleCalf = Math.round((femaleHeight * 0.22 + (femaleBmi > 25 ? 2.8 : 0)) * 10) / 10;
+
+  // 14. Cephalic Index (Head Shape %: { male, female, label })
+  let cephalicIndex = { male: 78.5, female: 79.2, label: "Mesocephalic (Medium)" };
+  if (isEastAsia || isSEAsia || isCentralAsia) {
+    cephalicIndex = { male: 83.5, female: 84.2, label: "Brachycephalic (Round)" };
+  } else if (isSubSaharanAfrica) {
+    cephalicIndex = { male: 73.8, female: 74.5, label: "Dolichocephalic (Long)" };
+  } else if (isNordicBaltic || isNWEurope || isBritishIsles) {
+    cephalicIndex = { male: 77.2, female: 77.9, label: "Mesocephalic (Medium)" };
+  }
+
+  // 15. Hip Circumference Cm ({ male, female })
+  const maleHip = Math.round(maleHeight * (maleBmi > 25 ? 0.58 : 0.54));
+  const femaleHip = Math.round(femaleHeight * (femaleBmi > 25 ? 0.64 : 0.59));
+
+  // 16. Waist-to-Hip Ratio (WHR: { male, female })
+  const maleWhr = Math.round((maleWaist / maleHip) * 100) / 100;
+  const femaleWhr = Math.round((femaleWaist / femaleHip) * 100) / 100;
+
+  // 17. Thigh Circumference Cm ({ male, female })
+  const maleThigh = Math.round((maleHeight * 0.32 + (maleBmi > 25 ? 3.5 : 0)) * 10) / 10;
+  const femaleThigh = Math.round((femaleHeight * 0.33 + (femaleBmi > 25 ? 4.2 : 0)) * 10) / 10;
+
+  // 18. Chest-to-Waist Drop Cm ({ male, female })
+  const maleChestDrop = Math.round((maleChestGirth - maleWaist) * 10) / 10;
+  const femaleChestDrop = Math.round((femaleBustGirth - femaleWaist) * 10) / 10;
+
+  // 19. Jawline / Gonial Angle Degrees ({ male, female })
+  const maleGonialAngle = Math.round((118 - (maleBmi > 25 ? 1 : 0) + (isEastAsia ? 2 : 0)) * 10) / 10;
+  const femaleGonialAngle = Math.round((124 - (femaleBmi > 25 ? 1 : 0) + (isEastAsia ? 2 : 0)) * 10) / 10;
+
   return {
     heightCm: { male: maleHeight, female: femaleHeight },
     weightKg: { male: maleWeight, female: femaleWeight },
@@ -814,6 +862,14 @@ export function getPhysicalStats(country: CountryData): PhysicalStats {
     shoulderToWaistRatio: { male: maleShoulderWaist, female: femaleShoulderWaist },
     handLengthCm: { male: maleHandCm, female: femaleHandCm },
     vocalPitchHz: { male: maleVoiceHz, female: femaleVoiceHz },
+    chestBustGirthCm: { male: maleChestGirth, female: femaleBustGirth },
+    calfCircumferenceCm: { male: maleCalf, female: femaleCalf },
+    cephalicIndex,
+    hipCircumferenceCm: { male: maleHip, female: femaleHip },
+    waistToHipRatio: { male: maleWhr, female: femaleWhr },
+    thighCircumferenceCm: { male: maleThigh, female: femaleThigh },
+    chestToWaistDropCm: { male: maleChestDrop, female: femaleChestDrop },
+    gonialAngleDegrees: { male: maleGonialAngle, female: femaleGonialAngle },
   };
 }
 
@@ -1025,6 +1081,62 @@ export function getSortValue(
   if (metricKey === "maleVocalPitchHz") return phys.vocalPitchHz.male;
   if (metricKey === "vocalPitchHz") {
     return Math.round(((phys.vocalPitchHz.female + phys.vocalPitchHz.male) / 2) * 10) / 10;
+  }
+
+  // Chest / Bust Girth
+  if (metricKey === "femaleChestBustGirthCm") return phys.chestBustGirthCm.female;
+  if (metricKey === "maleChestBustGirthCm") return phys.chestBustGirthCm.male;
+  if (metricKey === "chestBustGirthCm") {
+    return Math.round(((phys.chestBustGirthCm.female + phys.chestBustGirthCm.male) / 2) * 10) / 10;
+  }
+
+  // Calf Circumference
+  if (metricKey === "femaleCalfCircumferenceCm") return phys.calfCircumferenceCm.female;
+  if (metricKey === "maleCalfCircumferenceCm") return phys.calfCircumferenceCm.male;
+  if (metricKey === "calfCircumferenceCm") {
+    return Math.round(((phys.calfCircumferenceCm.female + phys.calfCircumferenceCm.male) / 2) * 10) / 10;
+  }
+
+  // Cephalic Index
+  if (metricKey === "femaleCephalicIndex") return phys.cephalicIndex.female;
+  if (metricKey === "maleCephalicIndex") return phys.cephalicIndex.male;
+  if (metricKey === "cephalicIndex") {
+    return Math.round(((phys.cephalicIndex.female + phys.cephalicIndex.male) / 2) * 10) / 10;
+  }
+
+  // Hip Circumference
+  if (metricKey === "femaleHipCircumferenceCm") return phys.hipCircumferenceCm.female;
+  if (metricKey === "maleHipCircumferenceCm") return phys.hipCircumferenceCm.male;
+  if (metricKey === "hipCircumferenceCm") {
+    return Math.round(((phys.hipCircumferenceCm.female + phys.hipCircumferenceCm.male) / 2) * 10) / 10;
+  }
+
+  // Waist-to-Hip Ratio
+  if (metricKey === "femaleWaistToHipRatio") return phys.waistToHipRatio.female;
+  if (metricKey === "maleWaistToHipRatio") return phys.waistToHipRatio.male;
+  if (metricKey === "waistToHipRatio") {
+    return Math.round(((phys.waistToHipRatio.female + phys.waistToHipRatio.male) / 2) * 100) / 100;
+  }
+
+  // Thigh Circumference
+  if (metricKey === "femaleThighCircumferenceCm") return phys.thighCircumferenceCm.female;
+  if (metricKey === "maleThighCircumferenceCm") return phys.thighCircumferenceCm.male;
+  if (metricKey === "thighCircumferenceCm") {
+    return Math.round(((phys.thighCircumferenceCm.female + phys.thighCircumferenceCm.male) / 2) * 10) / 10;
+  }
+
+  // Chest-to-Waist Drop
+  if (metricKey === "femaleChestToWaistDropCm") return phys.chestToWaistDropCm.female;
+  if (metricKey === "maleChestToWaistDropCm") return phys.chestToWaistDropCm.male;
+  if (metricKey === "chestToWaistDropCm") {
+    return Math.round(((phys.chestToWaistDropCm.female + phys.chestToWaistDropCm.male) / 2) * 10) / 10;
+  }
+
+  // Jawline / Gonial Angle
+  if (metricKey === "femaleGonialAngleDegrees") return phys.gonialAngleDegrees.female;
+  if (metricKey === "maleGonialAngleDegrees") return phys.gonialAngleDegrees.male;
+  if (metricKey === "gonialAngleDegrees") {
+    return Math.round(((phys.gonialAngleDegrees.female + phys.gonialAngleDegrees.male) / 2) * 10) / 10;
   }
 
   // Fallback: check dynamic object properties
