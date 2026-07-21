@@ -105,26 +105,55 @@ export type MapMetricKey =
   | "unemploymentRate"
   | "hdi"
   | "bmi"
+  | "femaleBmi"
+  | "maleBmi"
   | "femaleHeightCm"
   | "maleHeightCm"
   | "femaleWeightKg"
+  | "maleWeightKg"
   | "caloricIntakeKcal"
+  | "femaleCaloricIntakeKcal"
+  | "maleCaloricIntakeKcal"
   | "obesityRate"
+  | "femaleObesityRate"
+  | "maleObesityRate"
   | "bodyFatPercent"
+  | "femaleBodyFatPercent"
+  | "maleBodyFatPercent"
   | "waistCm"
+  | "femaleWaistCm"
+  | "maleWaistCm"
   | "shoeSizeEu"
+  | "femaleShoeSizeEu"
+  | "maleShoeSizeEu"
   | "inactivityRate"
+  | "femaleInactivityRate"
+  | "maleInactivityRate"
   | "diabetesRate"
+  | "femaleDiabetesRate"
+  | "maleDiabetesRate"
   | "hypertensionRate"
+  | "femaleHypertensionRate"
+  | "maleHypertensionRate"
   | "lifeExpectancy"
+  | "femaleLifeExpectancy"
+  | "maleLifeExpectancy"
   | "smokingRate"
+  | "femaleSmokingRate"
+  | "maleSmokingRate"
   | "alcoholLiters"
+  | "femaleAlcoholLiters"
+  | "maleAlcoholLiters"
   | "internetPenetration"
   | "englishSpeakingPercent"
   | "hairColorBlonde"
   | "hairColorRed"
   | "hairColorBrown"
   | "hairColorBlack"
+  | "hairTextureStraight"
+  | "hairTextureWavy"
+  | "hairTextureCurly"
+  | "hairTextureCoily"
   | "eyeColorBlue"
   | "eyeColorBrown"
   | "eyeColorGreen"
@@ -144,80 +173,129 @@ export type MapMetricKey =
   | "femaleShoulderToWaistRatio"
   | "maleShoulderToWaistRatio"
   | "handLengthCm"
+  | "femaleHandLengthCm"
+  | "maleHandLengthCm"
   | "vocalPitchHz"
+  | "femaleVocalPitchHz"
+  | "maleVocalPitchHz"
   | "adolescentBirthRate"
   | "laborForceGap"
   | "contraceptiveUse"
   | "childMarriagePercent";
 
 export function normalizeMapMetricKey(key: string): MapMetricKey {
-  if (key === "income" || key === "p50" || key === "medianIncome") return "p50";
-  if (key === "p90") return "p90";
-  if (key === "p75") return "p75";
-  if (key === "p10" || key === "p25") return "p10";
+  if (!key) return "p50";
+  const k = key.trim();
 
-  if (key === "femaleHeightCm" || key === "heightCm" || key === "height") return "femaleHeightCm";
-  if (key === "maleHeightCm") return "maleHeightCm";
-  if (key === "femaleWeightKg" || key === "maleWeightKg" || key === "weightKg" || key === "weight") return "femaleWeightKg";
+  // Primary indicator / income dynamic lookups
+  if (k === "income" || k === "p50" || k === "medianIncome") return "p50";
+  if (k === "p90") return "p90";
+  if (k === "p75") return "p75";
+  if (k === "p10" || k === "p25") return "p10";
 
-  if (key === "femaleBmi" || key === "maleBmi" || key === "bmi") return "bmi";
-  if (key === "bodyFatPercent" || key === "femaleBodyFatPercent") return "bodyFatPercent";
-  if (key === "waistCm" || key === "femaleWaistCm") return "waistCm";
-  if (key === "shoeSizeEu" || key === "femaleShoeSizeEu") return "shoeSizeEu";
+  // Male vs Female specific physical keys
+  if (k === "maleHeightCm") return "maleHeightCm";
+  if (k === "femaleHeightCm" || k === "heightCm" || k === "height") return "femaleHeightCm";
 
-  if (key === "caloricIntakeKcal" || key === "femaleCaloricIntakeKcal") return "caloricIntakeKcal";
-  if (key === "obesityRate" || key === "femaleObesityRate" || key === "maleObesityRate") return "obesityRate";
-  if (key === "inactivityRate" || key === "femaleInactivityRate") return "inactivityRate";
-  if (key === "diabetesRate" || key === "femaleDiabetesRate") return "diabetesRate";
-  if (key === "hypertensionRate" || key === "femaleHypertensionRate") return "hypertensionRate";
-  if (key === "alcoholLiters" || key === "femaleAlcoholLiters") return "alcoholLiters";
-  if (key === "smokingRate" || key === "femaleSmokingRate") return "smokingRate";
-  if (key === "femaleLifeExpectancy" || key === "maleLifeExpectancy" || key === "lifeExpectancy") return "lifeExpectancy";
+  if (k === "maleWeightKg") return "maleWeightKg";
+  if (k === "femaleWeightKg" || k === "weightKg" || k === "weight") return "femaleWeightKg";
 
-  if (key === "hairColorBlonde" || key === "blondeHair" || key === "blonde") return "hairColorBlonde";
-  if (key === "hairColorRed" || key === "redHair" || key === "red") return "hairColorRed";
-  if (key === "hairColorBrown" || key === "brownHair") return "hairColorBrown";
-  if (key === "hairColorBlack" || key === "blackHair") return "hairColorBlack";
+  if (k === "maleBmi") return "maleBmi";
+  if (k === "femaleBmi") return "femaleBmi";
+  if (k === "bmi") return "bmi";
 
-  if (key === "eyeColorBlue" || key === "blueEyes" || key === "blue") return "eyeColorBlue";
-  if (key === "eyeColorBrown" || key === "brownEyes") return "eyeColorBrown";
-  if (key === "eyeColorGreen" || key === "greenEyes" || key === "green") return "eyeColorGreen";
-  if (key === "eyeColorHazel" || key === "hazelEyes" || key === "hazel") return "eyeColorHazel";
+  if (k === "maleBodyFatPercent") return "maleBodyFatPercent";
+  if (k === "femaleBodyFatPercent" || k === "bodyFatPercent" || k === "bodyFat") return "femaleBodyFatPercent";
 
-  if (key === "skinPigmentation" || key === "melaninIndex" || key === "skinTone") return "skinPigmentation";
-  if (key === "itaAngle" || key === "ita") return "itaAngle";
+  if (k === "maleWaistCm") return "maleWaistCm";
+  if (k === "femaleWaistCm" || k === "waistCm" || k === "waist") return "femaleWaistCm";
 
-  if (key === "legLengthPercent" || key === "relativeLegLength") return "legLengthPercent";
-  if (key === "femaleLegLengthPercent") return "femaleLegLengthPercent";
-  if (key === "maleLegLengthPercent") return "maleLegLengthPercent";
+  if (k === "maleShoeSizeEu") return "maleShoeSizeEu";
+  if (k === "femaleShoeSizeEu" || k === "shoeSizeEu" || k === "shoeSize") return "femaleShoeSizeEu";
 
-  if (key === "leanMuscleMassKg" || key === "leanMuscleMass") return "leanMuscleMassKg";
-  if (key === "femaleLeanMuscleMassKg") return "femaleLeanMuscleMassKg";
-  if (key === "maleLeanMuscleMassKg") return "maleLeanMuscleMassKg";
+  if (k === "maleCaloricIntakeKcal") return "maleCaloricIntakeKcal";
+  if (k === "femaleCaloricIntakeKcal" || k === "caloricIntakeKcal" || k === "caloricIntake") return "femaleCaloricIntakeKcal";
 
-  if (key === "digitRatio" || key === "digitRatio2d4d" || key === "2d4d") return "digitRatio";
-  if (key === "femaleDigitRatio") return "femaleDigitRatio";
-  if (key === "maleDigitRatio") return "maleDigitRatio";
+  if (k === "maleObesityRate") return "maleObesityRate";
+  if (k === "femaleObesityRate" || k === "obesityRate" || k === "obesity") return "femaleObesityRate";
 
-  if (key === "shoulderToWaistRatio" || key === "shoulderWaistRatio") return "shoulderToWaistRatio";
-  if (key === "femaleShoulderToWaistRatio") return "femaleShoulderToWaistRatio";
-  if (key === "maleShoulderToWaistRatio") return "maleShoulderToWaistRatio";
+  if (k === "maleInactivityRate") return "maleInactivityRate";
+  if (k === "femaleInactivityRate" || k === "inactivityRate" || k === "inactivity") return "femaleInactivityRate";
 
-  if (key === "handLengthCm" || key === "handLength") return "handLengthCm";
-  if (key === "vocalPitchHz" || key === "vocalPitch" || key === "pitch") return "vocalPitchHz";
+  if (k === "maleDiabetesRate") return "maleDiabetesRate";
+  if (k === "femaleDiabetesRate" || k === "diabetesRate" || k === "diabetes") return "femaleDiabetesRate";
 
-  if (key === "minimumWageEur") return "minimumWageEur";
-  if (key === "costOfLivingIndex") return "costOfLivingIndex";
-  if (key === "unemploymentRate") return "unemploymentRate";
-  if (key === "internetPenetration") return "internetPenetration";
-  if (key === "englishSpeakingPercent") return "englishSpeakingPercent";
-  if (key === "population") return "population";
-  if (key === "hdi") return "hdi";
+  if (k === "maleHypertensionRate") return "maleHypertensionRate";
+  if (k === "femaleHypertensionRate" || k === "hypertensionRate" || k === "hypertension") return "femaleHypertensionRate";
 
-  if (key === "adolescentBirthRate") return "adolescentBirthRate";
-  if (key === "childMarriagePercent") return "childMarriagePercent";
-  if (key === "laborForceGap") return "laborForceGap";
-  if (key === "contraceptiveUse") return "contraceptiveUse";
+  if (k === "maleAlcoholLiters") return "maleAlcoholLiters";
+  if (k === "femaleAlcoholLiters" || k === "alcoholLiters" || k === "alcohol") return "femaleAlcoholLiters";
+
+  if (k === "maleSmokingRate") return "maleSmokingRate";
+  if (k === "femaleSmokingRate" || k === "smokingRate" || k === "smoking") return "femaleSmokingRate";
+
+  if (k === "maleLifeExpectancy") return "maleLifeExpectancy";
+  if (k === "femaleLifeExpectancy" || k === "lifeExpectancy") return "femaleLifeExpectancy";
+
+  // Phenotypic - Hair Colors
+  if (k === "hairColorBlonde" || k === "blondeHair" || k === "blonde") return "hairColorBlonde";
+  if (k === "hairColorRed" || k === "redHair" || k === "red") return "hairColorRed";
+  if (k === "hairColorBrown" || k === "brownHair") return "hairColorBrown";
+  if (k === "hairColorBlack" || k === "blackHair") return "hairColorBlack";
+
+  // Phenotypic - Hair Textures
+  if (k === "hairTextureStraight" || k === "straightHair" || k === "straight") return "hairTextureStraight";
+  if (k === "hairTextureWavy" || k === "wavyHair" || k === "wavy") return "hairTextureWavy";
+  if (k === "hairTextureCurly" || k === "curlyHair" || k === "curly") return "hairTextureCurly";
+  if (k === "hairTextureCoily" || k === "coilyHair" || k === "coily") return "hairTextureCoily";
+
+  // Eye Colors
+  if (k === "eyeColorBlue" || k === "blueEyes" || k === "blue") return "eyeColorBlue";
+  if (k === "eyeColorBrown" || k === "brownEyes") return "eyeColorBrown";
+  if (k === "eyeColorGreen" || k === "greenEyes" || k === "green") return "eyeColorGreen";
+  if (k === "eyeColorHazel" || k === "hazelEyes" || k === "hazel") return "eyeColorHazel";
+
+  // Skin Pigmentation
+  if (k === "skinPigmentation" || k === "melaninIndex" || k === "skinTone") return "skinPigmentation";
+  if (k === "itaAngle" || k === "ita") return "itaAngle";
+
+  // Leg Length %
+  if (k === "maleLegLengthPercent") return "maleLegLengthPercent";
+  if (k === "femaleLegLengthPercent" || k === "legLengthPercent" || k === "relativeLegLength") return "femaleLegLengthPercent";
+
+  // Lean Muscle Mass
+  if (k === "maleLeanMuscleMassKg") return "maleLeanMuscleMassKg";
+  if (k === "femaleLeanMuscleMassKg" || k === "leanMuscleMassKg" || k === "leanMuscleMass") return "femaleLeanMuscleMassKg";
+
+  // 2D:4D Digit Ratio
+  if (k === "maleDigitRatio") return "maleDigitRatio";
+  if (k === "femaleDigitRatio" || k === "digitRatio" || k === "2d4d") return "femaleDigitRatio";
+
+  // Shoulder-to-Waist Ratio
+  if (k === "maleShoulderToWaistRatio") return "maleShoulderToWaistRatio";
+  if (k === "femaleShoulderToWaistRatio" || k === "shoulderToWaistRatio") return "femaleShoulderToWaistRatio";
+
+  // Hand Size
+  if (k === "maleHandLengthCm") return "maleHandLengthCm";
+  if (k === "femaleHandLengthCm" || k === "handLengthCm" || k === "handLength") return "femaleHandLengthCm";
+
+  // Vocal Pitch
+  if (k === "maleVocalPitchHz") return "maleVocalPitchHz";
+  if (k === "femaleVocalPitchHz" || k === "vocalPitchHz" || k === "vocalPitch") return "femaleVocalPitchHz";
+
+  // Macro / Gender stats
+  if (k === "minimumWageEur") return "minimumWageEur";
+  if (k === "costOfLivingIndex") return "costOfLivingIndex";
+  if (k === "unemploymentRate") return "unemploymentRate";
+  if (k === "internetPenetration") return "internetPenetration";
+  if (k === "englishSpeakingPercent") return "englishSpeakingPercent";
+  if (k === "population") return "population";
+  if (k === "hdi") return "hdi";
+
+  if (k === "adolescentBirthRate") return "adolescentBirthRate";
+  if (k === "childMarriagePercent") return "childMarriagePercent";
+  if (k === "laborForceGap") return "laborForceGap";
+  if (k === "contraceptiveUse") return "contraceptiveUse";
 
   return "p50";
 }
@@ -543,6 +621,396 @@ export const MAP_METRICS: MapMetricDef[] = [
     colorInterpolator: PALETTES.amber,
     invertScale: true,
     accentColor: "#f97316",
+  },
+
+  // ── MALE & FEMALE SPECIFIC PHYSICAL METRICS ──
+  {
+    key: "maleWeightKg",
+    label: "Male Average Weight",
+    shortLabel: "Weight (M)",
+    category: "Health & Physical",
+    unit: "kg",
+    formatValue: (v) => `${v.toFixed(1)} kg`,
+    getValue: (c) => c.maleWeightKg ?? getPhysicalStats(c).weightKg.male,
+    colorInterpolator: PALETTES.indigo,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleWeightKg",
+    label: "Female Average Weight",
+    shortLabel: "Weight (F)",
+    category: "Health & Physical",
+    unit: "kg",
+    formatValue: (v) => `${v.toFixed(1)} kg`,
+    getValue: (c) => c.femaleWeightKg ?? getPhysicalStats(c).weightKg.female,
+    colorInterpolator: PALETTES.fuchsia,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleBmi",
+    label: "Male Average BMI",
+    shortLabel: "BMI (M)",
+    category: "Health & Physical",
+    unit: "",
+    formatValue: (v) => v.toFixed(1),
+    getValue: (c) => c.maleBmi ?? getPhysicalStats(c).bmi.male,
+    colorInterpolator: PALETTES.rose,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleBmi",
+    label: "Female Average BMI",
+    shortLabel: "BMI (F)",
+    category: "Health & Physical",
+    unit: "",
+    formatValue: (v) => v.toFixed(1),
+    getValue: (c) => c.femaleBmi ?? getPhysicalStats(c).bmi.female,
+    colorInterpolator: PALETTES.rose,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleBodyFatPercent",
+    label: "Male Body Fat Percentage",
+    shortLabel: "Body Fat % (M)",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => getPhysicalStats(c).bodyFatPercent.male,
+    colorInterpolator: PALETTES.rose,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleBodyFatPercent",
+    label: "Female Body Fat Percentage",
+    shortLabel: "Body Fat % (F)",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => getPhysicalStats(c).bodyFatPercent.female,
+    colorInterpolator: PALETTES.rose,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleWaistCm",
+    label: "Male Waist Circumference",
+    shortLabel: "Waist (M)",
+    category: "Health & Physical",
+    unit: "cm",
+    formatValue: (v) => `${v.toFixed(1)} cm`,
+    getValue: (c) => getPhysicalStats(c).waistCm.male,
+    colorInterpolator: PALETTES.amber,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleWaistCm",
+    label: "Female Waist Circumference",
+    shortLabel: "Waist (F)",
+    category: "Health & Physical",
+    unit: "cm",
+    formatValue: (v) => `${v.toFixed(1)} cm`,
+    getValue: (c) => getPhysicalStats(c).waistCm.female,
+    colorInterpolator: PALETTES.amber,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleShoeSizeEu",
+    label: "Male Average Shoe Size",
+    shortLabel: "Shoe Size (M)",
+    category: "Health & Physical",
+    unit: "EU",
+    formatValue: (v) => `${v.toFixed(1)} EU`,
+    getValue: (c) => getPhysicalStats(c).shoeSizeEu.male,
+    colorInterpolator: PALETTES.indigo,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleShoeSizeEu",
+    label: "Female Average Shoe Size",
+    shortLabel: "Shoe Size (F)",
+    category: "Health & Physical",
+    unit: "EU",
+    formatValue: (v) => `${v.toFixed(1)} EU`,
+    getValue: (c) => getPhysicalStats(c).shoeSizeEu.female,
+    colorInterpolator: PALETTES.fuchsia,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleCaloricIntakeKcal",
+    label: "Male Daily Caloric Intake",
+    shortLabel: "Calories (M)",
+    category: "Health & Physical",
+    unit: "kcal",
+    formatValue: (v) => `${Math.round(v)} kcal`,
+    getValue: (c) => getPhysicalStats(c).caloricIntakeKcal.male,
+    colorInterpolator: PALETTES.amber,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleCaloricIntakeKcal",
+    label: "Female Daily Caloric Intake",
+    shortLabel: "Calories (F)",
+    category: "Health & Physical",
+    unit: "kcal",
+    formatValue: (v) => `${Math.round(v)} kcal`,
+    getValue: (c) => getPhysicalStats(c).caloricIntakeKcal.female,
+    colorInterpolator: PALETTES.amber,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleObesityRate",
+    label: "Male Obesity Rate",
+    shortLabel: "Obesity % (M)",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => getPhysicalStats(c).obesityRate.male,
+    colorInterpolator: PALETTES.rose,
+    invertScale: true,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleObesityRate",
+    label: "Female Obesity Rate",
+    shortLabel: "Obesity % (F)",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => getPhysicalStats(c).obesityRate.female,
+    colorInterpolator: PALETTES.rose,
+    invertScale: true,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleInactivityRate",
+    label: "Male Physical Inactivity",
+    shortLabel: "Inactivity % (M)",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => getPhysicalStats(c).inactivityRate.male,
+    colorInterpolator: PALETTES.rose,
+    invertScale: true,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleInactivityRate",
+    label: "Female Physical Inactivity",
+    shortLabel: "Inactivity % (F)",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => getPhysicalStats(c).inactivityRate.female,
+    colorInterpolator: PALETTES.rose,
+    invertScale: true,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleDiabetesRate",
+    label: "Male Diabetes Prevalence",
+    shortLabel: "Diabetes % (M)",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => getPhysicalStats(c).diabetesRate.male,
+    colorInterpolator: PALETTES.rose,
+    invertScale: true,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleDiabetesRate",
+    label: "Female Diabetes Prevalence",
+    shortLabel: "Diabetes % (F)",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => getPhysicalStats(c).diabetesRate.female,
+    colorInterpolator: PALETTES.rose,
+    invertScale: true,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleHypertensionRate",
+    label: "Male Hypertension Rate",
+    shortLabel: "Hypertension % (M)",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => getPhysicalStats(c).hypertensionRate.male,
+    colorInterpolator: PALETTES.rose,
+    invertScale: true,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleHypertensionRate",
+    label: "Female Hypertension Rate",
+    shortLabel: "Hypertension % (F)",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => getPhysicalStats(c).hypertensionRate.female,
+    colorInterpolator: PALETTES.rose,
+    invertScale: true,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleAlcoholLiters",
+    label: "Male Alcohol Consumption",
+    shortLabel: "Alcohol (M)",
+    category: "Health & Physical",
+    unit: "L/yr",
+    formatValue: (v) => `${v.toFixed(1)} L`,
+    getValue: (c) => getPhysicalStats(c).alcoholLiters.male,
+    colorInterpolator: PALETTES.amber,
+    invertScale: true,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleAlcoholLiters",
+    label: "Female Alcohol Consumption",
+    shortLabel: "Alcohol (F)",
+    category: "Health & Physical",
+    unit: "L/yr",
+    formatValue: (v) => `${v.toFixed(1)} L`,
+    getValue: (c) => getPhysicalStats(c).alcoholLiters.female,
+    colorInterpolator: PALETTES.amber,
+    invertScale: true,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleSmokingRate",
+    label: "Male Smoking Rate",
+    shortLabel: "Smoking % (M)",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => getPhysicalStats(c).smokingRate.male,
+    colorInterpolator: PALETTES.rose,
+    invertScale: true,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleSmokingRate",
+    label: "Female Smoking Rate",
+    shortLabel: "Smoking % (F)",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => getPhysicalStats(c).smokingRate.female,
+    colorInterpolator: PALETTES.rose,
+    invertScale: true,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleLifeExpectancy",
+    label: "Male Life Expectancy",
+    shortLabel: "Life Exp (M)",
+    category: "Health & Physical",
+    unit: "yrs",
+    formatValue: (v) => `${v.toFixed(1)} yrs`,
+    getValue: (c) => getPhysicalStats(c).lifeExpectancy.male,
+    colorInterpolator: PALETTES.emerald,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleLifeExpectancy",
+    label: "Female Life Expectancy",
+    shortLabel: "Life Exp (F)",
+    category: "Health & Physical",
+    unit: "yrs",
+    formatValue: (v) => `${v.toFixed(1)} yrs`,
+    getValue: (c) => getPhysicalStats(c).lifeExpectancy.female,
+    colorInterpolator: PALETTES.emerald,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleHandLengthCm",
+    label: "Male Hand Size (Length)",
+    shortLabel: "Hand Size (M)",
+    category: "Health & Physical",
+    unit: "cm",
+    formatValue: (v) => `${v.toFixed(1)} cm`,
+    getValue: (c) => getPhysicalStats(c).handLengthCm.male,
+    colorInterpolator: PALETTES.indigo,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleHandLengthCm",
+    label: "Female Hand Size (Length)",
+    shortLabel: "Hand Size (F)",
+    category: "Health & Physical",
+    unit: "cm",
+    formatValue: (v) => `${v.toFixed(1)} cm`,
+    getValue: (c) => getPhysicalStats(c).handLengthCm.female,
+    colorInterpolator: PALETTES.fuchsia,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleVocalPitchHz",
+    label: "Male Vocal Pitch",
+    shortLabel: "Voice Pitch (M)",
+    category: "Health & Physical",
+    unit: "Hz",
+    formatValue: (v) => `${Math.round(v)} Hz`,
+    getValue: (c) => getPhysicalStats(c).vocalPitchHz.male,
+    colorInterpolator: PALETTES.indigo,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleVocalPitchHz",
+    label: "Female Vocal Pitch",
+    shortLabel: "Voice Pitch (F)",
+    category: "Health & Physical",
+    unit: "Hz",
+    formatValue: (v) => `${Math.round(v)} Hz`,
+    getValue: (c) => getPhysicalStats(c).vocalPitchHz.female,
+    colorInterpolator: PALETTES.fuchsia,
+    accentColor: "#ec4899",
+  },
+
+  // ── HAIR TEXTURE METRICS ──
+  {
+    key: "hairTextureStraight",
+    label: "Straight Hair Frequency",
+    shortLabel: "Straight Hair %",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${Math.round(v)}%`,
+    getValue: (c) => getPhysicalStats(c).hairTexture.straight,
+    colorInterpolator: PALETTES.sky,
+    accentColor: "#38bdf8",
+  },
+  {
+    key: "hairTextureWavy",
+    label: "Wavy Hair Frequency",
+    shortLabel: "Wavy Hair %",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${Math.round(v)}%`,
+    getValue: (c) => getPhysicalStats(c).hairTexture.wavy,
+    colorInterpolator: PALETTES.indigo,
+    accentColor: "#6366f1",
+  },
+  {
+    key: "hairTextureCurly",
+    label: "Curly Hair Frequency",
+    shortLabel: "Curly Hair %",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${Math.round(v)}%`,
+    getValue: (c) => getPhysicalStats(c).hairTexture.curly,
+    colorInterpolator: PALETTES.fuchsia,
+    accentColor: "#a855f7",
+  },
+  {
+    key: "hairTextureCoily",
+    label: "Coily Hair Frequency",
+    shortLabel: "Coily Hair %",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${Math.round(v)}%`,
+    getValue: (c) => getPhysicalStats(c).hairTexture.coily,
+    colorInterpolator: PALETTES.fuchsia,
+    accentColor: "#ec4899",
   },
 
   // ── EXTENDED PHENOTYPIC & ANTHROPOMETRIC METRICS ──
