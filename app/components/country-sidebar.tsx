@@ -883,73 +883,381 @@ export function CountrySidebar({
               </div>
             </div>
 
-            {/* Phenotypic Characteristics Cards (Hair, Eyes, Skin Tone) */}
+            {/* Phenotypic & Anthropometric Interactive Metric Cards */}
             <div className="space-y-2.5">
-              {/* Hair Color Breakdown Card */}
+              {/* 1. Hair Color & Texture Breakdown Card */}
               <MetricCard
-                label="Hair Color Frequency (%)"
-                metricKey="hairColorBlonde"
+                label="Hair Color & Texture Breakdown"
+                metricKey="hairColor"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
                 icon={Sparkles}
               >
-                <div className="space-y-2">
-                  <div className="grid grid-cols-4 gap-1 text-[11px] font-mono text-center font-bold">
-                    <span className="text-zinc-200">⬛ {physicalStats.hairColor.black}%</span>
-                    <span className="text-amber-700">🟫 {physicalStats.hairColor.brown}%</span>
-                    <span className="text-amber-300">👱 {physicalStats.hairColor.blonde}%</span>
-                    <span className="text-orange-400">👩‍🦰 {physicalStats.hairColor.red}%</span>
+                <div className="space-y-3 pt-0.5">
+                  {/* Hair Colors Breakdown */}
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between text-[11px] font-semibold text-muted-foreground">
+                      <span>Hair Color (%)</span>
+                      <span className="text-[10px] text-muted-foreground/70 font-normal">Click pill to map</span>
+                    </div>
+                    <div className="grid grid-cols-4 gap-1.5">
+                      {[
+                        { key: "hairColorBlack", label: "Black", val: physicalStats.hairColor.black, color: "bg-zinc-900/80 text-zinc-200 border-zinc-700" },
+                        { key: "hairColorBrown", label: "Brown", val: physicalStats.hairColor.brown, color: "bg-amber-950/60 text-amber-300 border-amber-800/60" },
+                        { key: "hairColorBlonde", label: "Blonde", val: physicalStats.hairColor.blonde, color: "bg-amber-500/20 text-amber-300 border-amber-500/40" },
+                        { key: "hairColorRed", label: "Red", val: physicalStats.hairColor.red, color: "bg-orange-500/20 text-orange-400 border-orange-500/40" },
+                      ].map((c) => {
+                        const isPillActive = isMetricActive(c.key, activeSortKey);
+                        return (
+                          <button
+                            key={c.key}
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onSelectMetric?.(c.key);
+                            }}
+                            className={cn(
+                              "p-1.5 rounded-lg border text-center transition-all cursor-pointer flex flex-col items-center justify-center",
+                              c.color,
+                              isPillActive && "ring-2 ring-emerald-400 border-emerald-500 shadow-md shadow-emerald-500/20 font-bold"
+                            )}
+                          >
+                            <span className="text-[10px] font-medium opacity-90 truncate w-full">{c.label}</span>
+                            <span className="text-xs font-mono font-bold">{c.val}%</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                    {/* Segmented Hair Color Bar */}
+                    <div className="h-2 w-full bg-secondary/80 rounded-full overflow-hidden flex shadow-inner">
+                      <div className="h-full bg-zinc-900 transition-all duration-500" style={{ width: `${physicalStats.hairColor.black}%` }} title={`Black: ${physicalStats.hairColor.black}%`} />
+                      <div className="h-full bg-amber-800 transition-all duration-500" style={{ width: `${physicalStats.hairColor.brown}%` }} title={`Brown: ${physicalStats.hairColor.brown}%`} />
+                      <div className="h-full bg-amber-300 transition-all duration-500" style={{ width: `${physicalStats.hairColor.blonde}%` }} title={`Blonde: ${physicalStats.hairColor.blonde}%`} />
+                      <div className="h-full bg-orange-500 transition-all duration-500" style={{ width: `${physicalStats.hairColor.red}%` }} title={`Red: ${physicalStats.hairColor.red}%`} />
+                    </div>
                   </div>
-                  <div className="h-2 w-full bg-secondary/80 rounded-full overflow-hidden flex">
-                    <div className="h-full bg-zinc-900" style={{ width: `${physicalStats.hairColor.black}%` }} />
-                    <div className="h-full bg-amber-800" style={{ width: `${physicalStats.hairColor.brown}%` }} />
-                    <div className="h-full bg-amber-300" style={{ width: `${physicalStats.hairColor.blonde}%` }} />
-                    <div className="h-full bg-orange-500" style={{ width: `${physicalStats.hairColor.red}%` }} />
+
+                  {/* Hair Textures Breakdown */}
+                  <div className="space-y-1.5 pt-1.5 border-t border-border/30">
+                    <div className="flex items-center justify-between text-[11px] font-semibold text-muted-foreground">
+                      <span>Hair Texture (%)</span>
+                    </div>
+                    <div className="grid grid-cols-4 gap-1.5">
+                      {[
+                        { key: "hairTextureStraight", label: "Straight", val: physicalStats.hairTexture.straight, color: "bg-sky-500/15 text-sky-300 border-sky-500/30" },
+                        { key: "hairTextureWavy", label: "Wavy", val: physicalStats.hairTexture.wavy, color: "bg-indigo-500/15 text-indigo-300 border-indigo-500/30" },
+                        { key: "hairTextureCurly", label: "Curly", val: physicalStats.hairTexture.curly, color: "bg-purple-500/15 text-purple-300 border-purple-500/30" },
+                        { key: "hairTextureCoily", label: "Coily", val: physicalStats.hairTexture.coily, color: "bg-pink-500/15 text-pink-300 border-pink-500/30" },
+                      ].map((t) => {
+                        const isPillActive = isMetricActive(t.key, activeSortKey);
+                        return (
+                          <button
+                            key={t.key}
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onSelectMetric?.(t.key);
+                            }}
+                            className={cn(
+                              "p-1.5 rounded-lg border text-center transition-all cursor-pointer flex flex-col items-center justify-center",
+                              t.color,
+                              isPillActive && "ring-2 ring-emerald-400 border-emerald-500 shadow-md shadow-emerald-500/20 font-bold"
+                            )}
+                          >
+                            <span className="text-[10px] font-medium opacity-90 truncate w-full">{t.label}</span>
+                            <span className="text-xs font-mono font-bold">{t.val}%</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                    {/* Segmented Texture Bar */}
+                    <div className="h-2 w-full bg-secondary/80 rounded-full overflow-hidden flex shadow-inner">
+                      <div className="h-full bg-sky-400 transition-all duration-500" style={{ width: `${physicalStats.hairTexture.straight}%` }} title={`Straight: ${physicalStats.hairTexture.straight}%`} />
+                      <div className="h-full bg-indigo-500 transition-all duration-500" style={{ width: `${physicalStats.hairTexture.wavy}%` }} title={`Wavy: ${physicalStats.hairTexture.wavy}%`} />
+                      <div className="h-full bg-purple-500 transition-all duration-500" style={{ width: `${physicalStats.hairTexture.curly}%` }} title={`Curly: ${physicalStats.hairTexture.curly}%`} />
+                      <div className="h-full bg-pink-500 transition-all duration-500" style={{ width: `${physicalStats.hairTexture.coily}%` }} title={`Coily: ${physicalStats.hairTexture.coily}%`} />
+                    </div>
                   </div>
                 </div>
               </MetricCard>
 
-              {/* Eye Color Breakdown Card */}
+              {/* 2. Eye Color Distribution Card */}
               <MetricCard
-                label="Eye Color Frequency (%)"
-                metricKey="eyeColorBlue"
+                label="Eye Color Distribution (%)"
+                metricKey="eyeColor"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
                 icon={Eye}
               >
-                <div className="space-y-2">
-                  <div className="grid grid-cols-4 gap-1 text-[11px] font-mono text-center font-bold">
-                    <span className="text-amber-700">👁️ {physicalStats.eyeColor.brown}%</span>
-                    <span className="text-sky-400">👁️ {physicalStats.eyeColor.blue}%</span>
-                    <span className="text-emerald-400">👁️ {physicalStats.eyeColor.green}%</span>
-                    <span className="text-amber-500">👁️ {physicalStats.eyeColor.hazel}%</span>
+                <div className="space-y-2 pt-0.5">
+                  <div className="grid grid-cols-4 gap-1.5">
+                    {[
+                      { key: "eyeColorBrown", label: "Brown 🟤", val: physicalStats.eyeColor.brown, color: "bg-amber-950/60 text-amber-300 border-amber-800/60" },
+                      { key: "eyeColorBlue", label: "Blue 🔵", val: physicalStats.eyeColor.blue, color: "bg-sky-500/20 text-sky-300 border-sky-500/40" },
+                      { key: "eyeColorGreen", label: "Green 🟢", val: physicalStats.eyeColor.green, color: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40" },
+                      { key: "eyeColorHazel", label: "Hazel 🟠", val: physicalStats.eyeColor.hazel, color: "bg-amber-600/20 text-amber-400 border-amber-600/40" },
+                    ].map((eItem) => {
+                      const isPillActive = isMetricActive(eItem.key, activeSortKey);
+                      return (
+                        <button
+                          key={eItem.key}
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectMetric?.(eItem.key);
+                          }}
+                          className={cn(
+                            "p-1.5 rounded-lg border text-center transition-all cursor-pointer flex flex-col items-center justify-center",
+                            eItem.color,
+                            isPillActive && "ring-2 ring-emerald-400 border-emerald-500 shadow-md shadow-emerald-500/20 font-bold"
+                          )}
+                        >
+                          <span className="text-[10px] font-medium opacity-90 truncate w-full">{eItem.label}</span>
+                          <span className="text-xs font-mono font-bold">{eItem.val}%</span>
+                        </button>
+                      );
+                    })}
                   </div>
-                  <div className="h-2 w-full bg-secondary/80 rounded-full overflow-hidden flex">
-                    <div className="h-full bg-amber-900" style={{ width: `${physicalStats.eyeColor.brown}%` }} />
-                    <div className="h-full bg-sky-400" style={{ width: `${physicalStats.eyeColor.blue}%` }} />
-                    <div className="h-full bg-emerald-500" style={{ width: `${physicalStats.eyeColor.green}%` }} />
-                    <div className="h-full bg-amber-600" style={{ width: `${physicalStats.eyeColor.hazel}%` }} />
+                  {/* Eye Color Segmented Bar */}
+                  <div className="h-2.5 w-full bg-secondary/80 rounded-full overflow-hidden flex shadow-inner">
+                    <div className="h-full bg-amber-900 transition-all duration-500" style={{ width: `${physicalStats.eyeColor.brown}%` }} title={`Brown: ${physicalStats.eyeColor.brown}%`} />
+                    <div className="h-full bg-sky-400 transition-all duration-500" style={{ width: `${physicalStats.eyeColor.blue}%` }} title={`Blue: ${physicalStats.eyeColor.blue}%`} />
+                    <div className="h-full bg-emerald-500 transition-all duration-500" style={{ width: `${physicalStats.eyeColor.green}%` }} title={`Green: ${physicalStats.eyeColor.green}%`} />
+                    <div className="h-full bg-amber-500 transition-all duration-500" style={{ width: `${physicalStats.eyeColor.hazel}%` }} title={`Hazel: ${physicalStats.eyeColor.hazel}%`} />
                   </div>
                 </div>
               </MetricCard>
 
-              {/* Skin Tone & Melanin Index Card */}
+              {/* 3. Skin Tone / Melanin Index Card */}
               <MetricCard
-                label="Skin Tone & Melanin Index (ITA°)"
+                label="Skin Tone / Melanin Index (ITA°)"
                 metricKey="skinPigmentation"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
-                icon={User}
+                icon={Palette}
               >
-                <div className="flex items-center justify-between text-xs">
-                  <span className="font-semibold text-foreground">
-                    {physicalStats.skinPigmentation.label} ({physicalStats.skinPigmentation.fitzpatrickType})
-                  </span>
-                  <span className="font-mono font-bold text-emerald-400">
-                    ITA° {physicalStats.skinPigmentation.itaAngle}°
-                  </span>
+                <div className="space-y-2 pt-0.5">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1.5 min-w-0">
+                      <span className="text-xs font-semibold text-foreground truncate">
+                        {physicalStats.skinPigmentation.label}
+                      </span>
+                      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 shrink-0">
+                        {physicalStats.skinPigmentation.fitzpatrickType}
+                      </span>
+                    </div>
+                    <span className="text-xs font-bold font-mono text-emerald-400 shrink-0">
+                      {physicalStats.skinPigmentation.itaAngle > 0 ? `+${physicalStats.skinPigmentation.itaAngle}°` : `${physicalStats.skinPigmentation.itaAngle}°`} ITA
+                    </span>
+                  </div>
+
+                  {/* Melanin Spectrum Visual Scale */}
+                  <div className="space-y-1">
+                    <div className="h-2.5 w-full rounded-full bg-gradient-to-r from-amber-950 via-amber-700 via-amber-400 to-amber-100 overflow-hidden relative border border-border/40 shadow-inner">
+                      {/* Cursor Position Marker */}
+                      {(() => {
+                        const positionPct = Math.max(0, Math.min(100, ((physicalStats.skinPigmentation.itaAngle + 50) / 110) * 100));
+                        return (
+                          <div
+                            className="absolute top-0 bottom-0 w-1.5 bg-emerald-400 border border-white shadow-md shadow-emerald-500/50 rounded-full -translate-x-1/2 transition-all duration-500"
+                            style={{ left: `${positionPct}%` }}
+                          />
+                        );
+                      })()}
+                    </div>
+                    <div className="flex justify-between text-[9px] text-muted-foreground font-mono">
+                      <span>Dark (-50°)</span>
+                      <span>Olive (28°)</span>
+                      <span>Very Fair (+60°)</span>
+                    </div>
+                  </div>
                 </div>
               </MetricCard>
+
+              {/* 4. Relative Leg Length (% of Height) Card */}
+              <MetricCard
+                label="Relative Leg Length (% of Height)"
+                metricKey="legLengthPercent"
+                activeSortKey={activeSortKey}
+                onSelectMetric={onSelectMetric}
+                icon={Ruler}
+              >
+                <div className="space-y-2 pt-0.5">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-center">
+                      <span className="text-[10px] font-semibold text-blue-400 block">👨 Male Leg Ratio</span>
+                      <span className="text-sm font-bold font-mono text-foreground">{physicalStats.legLengthPercent.male}%</span>
+                    </div>
+                    <div className="p-2 rounded-lg bg-pink-500/10 border border-pink-500/20 text-center">
+                      <span className="text-[10px] font-semibold text-pink-400 block">👩 Female Leg Ratio</span>
+                      <span className="text-sm font-bold font-mono text-foreground">{physicalStats.legLengthPercent.female}%</span>
+                    </div>
+                  </div>
+
+                  {/* Dual Bar Chart */}
+                  <div className="space-y-1">
+                    <div className="h-1.5 w-full bg-secondary/80 rounded-full overflow-hidden flex">
+                      <div
+                        className="h-full bg-blue-500 rounded-full transition-all duration-500"
+                        style={{ width: `${Math.min(100, (physicalStats.legLengthPercent.male / 55) * 100)}%` }}
+                      />
+                    </div>
+                    <div className="h-1.5 w-full bg-secondary/80 rounded-full overflow-hidden flex">
+                      <div
+                        className="h-full bg-pink-500 rounded-full transition-all duration-500"
+                        style={{ width: `${Math.min(100, (physicalStats.legLengthPercent.female / 55) * 100)}%` }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </MetricCard>
+
+              {/* 5. Lean Muscle Mass Card */}
+              <MetricCard
+                label="Lean Muscle Mass (kg & %)"
+                metricKey="leanMuscleMassKg"
+                activeSortKey={activeSortKey}
+                onSelectMetric={onSelectMetric}
+                icon={Dumbbell}
+              >
+                <div className="space-y-2 pt-0.5">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-center">
+                      <span className="text-[10px] font-semibold text-blue-400 block">👨 Male Lean Mass</span>
+                      <span className="text-sm font-bold font-mono text-foreground">{physicalStats.leanMuscleMassKg.male} kg</span>
+                      <span className="text-[10px] text-muted-foreground block font-mono">({physicalStats.leanMusclePercent.male}%)</span>
+                    </div>
+                    <div className="p-2 rounded-lg bg-pink-500/10 border border-pink-500/20 text-center">
+                      <span className="text-[10px] font-semibold text-pink-400 block">👩 Female Lean Mass</span>
+                      <span className="text-sm font-bold font-mono text-foreground">{physicalStats.leanMuscleMassKg.female} kg</span>
+                      <span className="text-[10px] text-muted-foreground block font-mono">({physicalStats.leanMusclePercent.female}%)</span>
+                    </div>
+                  </div>
+
+                  {/* Dual Bar Chart */}
+                  <div className="space-y-1">
+                    <div className="h-1.5 w-full bg-secondary/80 rounded-full overflow-hidden flex">
+                      <div
+                        className="h-full bg-blue-500 rounded-full transition-all duration-500"
+                        style={{ width: `${Math.min(100, physicalStats.leanMusclePercent.male)}%` }}
+                      />
+                    </div>
+                    <div className="h-1.5 w-full bg-secondary/80 rounded-full overflow-hidden flex">
+                      <div
+                        className="h-full bg-pink-500 rounded-full transition-all duration-500"
+                        style={{ width: `${Math.min(100, physicalStats.leanMusclePercent.female)}%` }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </MetricCard>
+
+              {/* 6. 2D:4D Digit Ratio Card */}
+              <MetricCard
+                label="2D:4D Digit Ratio (Index / Ring Finger)"
+                metricKey="digitRatio"
+                activeSortKey={activeSortKey}
+                onSelectMetric={onSelectMetric}
+                icon={Hand}
+              >
+                <div className="space-y-2 pt-0.5">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-center">
+                      <span className="text-[10px] font-semibold text-blue-400 block">👨 Male 2D:4D Ratio</span>
+                      <span className="text-sm font-bold font-mono text-foreground">{physicalStats.digitRatio.male}</span>
+                    </div>
+                    <div className="p-2 rounded-lg bg-pink-500/10 border border-pink-500/20 text-center">
+                      <span className="text-[10px] font-semibold text-pink-400 block">👩 Female 2D:4D Ratio</span>
+                      <span className="text-sm font-bold font-mono text-foreground">{physicalStats.digitRatio.female}</span>
+                    </div>
+                  </div>
+
+                  <div className="text-[10px] text-muted-foreground text-center font-medium">
+                    Lower male ratio (&lt;0.96) indicates higher prenatal testosterone exposure
+                  </div>
+                </div>
+              </MetricCard>
+
+              {/* 7. Shoulder-to-Waist Ratio Card */}
+              <MetricCard
+                label="Shoulder-to-Waist Ratio"
+                metricKey="shoulderToWaistRatio"
+                activeSortKey={activeSortKey}
+                onSelectMetric={onSelectMetric}
+                icon={Activity}
+              >
+                <div className="space-y-2 pt-0.5">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-center">
+                      <span className="text-[10px] font-semibold text-blue-400 block">👨 Male V-Taper</span>
+                      <span className="text-sm font-bold font-mono text-foreground">{physicalStats.shoulderToWaistRatio.male}</span>
+                    </div>
+                    <div className="p-2 rounded-lg bg-pink-500/10 border border-pink-500/20 text-center">
+                      <span className="text-[10px] font-semibold text-pink-400 block">👩 Female Hourglass</span>
+                      <span className="text-sm font-bold font-mono text-foreground">{physicalStats.shoulderToWaistRatio.female}</span>
+                    </div>
+                  </div>
+
+                  {/* Dual Bar Chart */}
+                  <div className="space-y-1">
+                    <div className="h-1.5 w-full bg-secondary/80 rounded-full overflow-hidden flex">
+                      <div
+                        className="h-full bg-blue-500 rounded-full transition-all duration-500"
+                        style={{ width: `${Math.min(100, (physicalStats.shoulderToWaistRatio.male / 1.7) * 100)}%` }}
+                      />
+                    </div>
+                    <div className="h-1.5 w-full bg-secondary/80 rounded-full overflow-hidden flex">
+                      <div
+                        className="h-full bg-pink-500 rounded-full transition-all duration-500"
+                        style={{ width: `${Math.min(100, (physicalStats.shoulderToWaistRatio.female / 1.7) * 100)}%` }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </MetricCard>
+
+              {/* 8. Hand Size & Vocal Pitch Dual Cards */}
+              <div className="grid grid-cols-2 gap-2">
+                {/* Hand Length Card */}
+                <MetricCard
+                  label="Hand Size (cm)"
+                  metricKey="handLengthCm"
+                  activeSortKey={activeSortKey}
+                  onSelectMetric={onSelectMetric}
+                  icon={Hand}
+                >
+                  <div className="space-y-1 pt-0.5 text-xs font-mono">
+                    <div className="flex justify-between text-blue-400 font-bold">
+                      <span>👨 Male:</span>
+                      <span>{physicalStats.handLengthCm.male} cm</span>
+                    </div>
+                    <div className="flex justify-between text-pink-400 font-bold">
+                      <span>👩 Female:</span>
+                      <span>{physicalStats.handLengthCm.female} cm</span>
+                    </div>
+                  </div>
+                </MetricCard>
+
+                {/* Vocal Pitch Card */}
+                <MetricCard
+                  label="Vocal Pitch (Hz)"
+                  metricKey="vocalPitchHz"
+                  activeSortKey={activeSortKey}
+                  onSelectMetric={onSelectMetric}
+                  icon={Volume2}
+                >
+                  <div className="space-y-1 pt-0.5 text-xs font-mono">
+                    <div className="flex justify-between text-blue-400 font-bold">
+                      <span>👨 Male:</span>
+                      <span>{physicalStats.vocalPitchHz.male} Hz</span>
+                    </div>
+                    <div className="flex justify-between text-pink-400 font-bold">
+                      <span>👩 Female:</span>
+                      <span>{physicalStats.vocalPitchHz.female} Hz</span>
+                    </div>
+                  </div>
+                </MetricCard>
+              </div>
             </div>
 
             {/* Detailed Physical Metrics List with Side-by-Side Dual-Bar Charts */}

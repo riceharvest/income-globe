@@ -558,8 +558,6 @@ export function adjustForTimePeriod(value: number, timePeriod: TimePeriod): numb
   return timePeriod === "annual" ? value * 12 : value;
 }
 
-// ── Physical & Health Stats (Male vs Female) ──
-
 export function getPhysicalStats(country: CountryData): PhysicalStats {
   const femaleHeight = country.femaleHeightCm ?? 163;
   const maleHeight = country.maleHeightCm ?? Math.round(femaleHeight * 1.077);
@@ -604,69 +602,191 @@ export function getPhysicalStats(country: CountryData): PhysicalStats {
   const maleAlcohol = country.maleAlcoholLiters ?? (country.hdi ? Math.round((country.hdi * 11) * 10) / 10 : 6.5);
   const femaleAlcohol = country.femaleAlcoholLiters ?? Math.round(maleAlcohol * 0.32 * 10) / 10;
 
-  // Regional Phenotypic Distributions
-  const region = country.region || "Europe";
-  let hairColor = { black: 35, brown: 45, blonde: 15, red: 5 };
-  let hairTexture = { straight: 40, wavy: 45, curly: 12, coily: 3 };
-  let eyeColor = { brown: 40, blue: 35, green: 15, hazel: 10 };
-  let skinPigmentation = { itaAngle: 42, fitzpatrickType: "Type II-III", label: "Fair / Medium" };
+  // ── Regional Phenotypic & Anthropometric Estimations ──
+  const code = (country.code || country.alpha2 || "").toUpperCase();
+  const reg = country.region || "";
 
-  if (region.includes("Europe")) {
-    if (country.code === "IS" || country.code === "NO" || country.code === "SE" || country.code === "FI" || country.code === "DK" || country.code === "EE") {
-      hairColor = { black: 5, brown: 30, blonde: 60, red: 5 };
-      eyeColor = { brown: 15, blue: 68, green: 12, hazel: 5 };
-      skinPigmentation = { itaAngle: 52, fitzpatrickType: "Type I-II", label: "Very Fair" };
-    } else if (country.code === "IE" || country.code === "GB" || country.code === "SCT") {
-      hairColor = { black: 10, brown: 45, blonde: 35, red: 10 };
-      eyeColor = { brown: 25, blue: 50, green: 15, hazel: 10 };
-      skinPigmentation = { itaAngle: 48, fitzpatrickType: "Type I-II", label: "Fair (Freckled)" };
-    } else {
-      hairColor = { black: 25, brown: 55, blonde: 17, red: 3 };
-      eyeColor = { brown: 45, blue: 32, green: 13, hazel: 10 };
-      skinPigmentation = { itaAngle: 38, fitzpatrickType: "Type II-III", label: "Fair-Intermediate" };
-    }
-  } else if (region.includes("Asia")) {
-    hairColor = { black: 88, brown: 11, blonde: 1, red: 0 };
-    hairTexture = { straight: 82, wavy: 15, curly: 2, coily: 1 };
-    eyeColor = { brown: 92, blue: 1, green: 2, hazel: 5 };
-    skinPigmentation = { itaAngle: 28, fitzpatrickType: "Type III-IV", label: "Intermediate / Olive" };
-  } else if (region.includes("Africa")) {
+  const isNordicBaltic = ["NO", "SE", "FI", "DK", "IS", "EE", "LV", "LT", "FO", "AX", "SJ"].includes(code);
+  const isBritishIsles = ["GB", "IE"].includes(code);
+  const isNWEurope = ["DE", "NL", "BE", "AT", "CH", "LU", "LI"].includes(code);
+  const isSEurope = ["ES", "PT", "IT", "GR", "MT", "CY", "AL", "AD", "SM", "VA", "GI"].includes(code);
+  const isEEurope = ["PL", "CZ", "SK", "HU", "RO", "BG", "UA", "BY", "MD", "RU", "HR", "SI", "BA", "RS", "ME", "MK", "XK"].includes(code);
+  const isEastAsia = ["CN", "JP", "KR", "KP", "TW", "HK", "MO", "MN"].includes(code);
+  const isSEAsia = ["VN", "TH", "PH", "ID", "MY", "SG", "MM", "KH", "LA", "BN", "TL"].includes(code);
+  const isSouthAsia = ["IN", "PK", "BD", "LK", "NP", "BT", "MV"].includes(code);
+  const isCentralAsia = reg === "Central Asia" || ["KZ", "KAZ", "UZ", "UZB", "TM", "TKM", "TJ", "TJK", "KG", "KGZ"].includes(code);
+  const isMENA = reg === "Middle East & North Africa" || ["EG", "SA", "AE", "TR", "IR", "IQ", "SY", "JO", "LB", "IL", "PS", "KW", "QA", "OM", "BH", "YE", "YEM", "MA", "DZ", "TN", "LY", "SD"].includes(code);
+  const isSubSaharanAfrica = reg === "Sub-Saharan Africa" || ["NG", "KE", "ZA", "GH", "ET", "TZ", "UG", "AO", "MZ", "CM", "CI", "SN", "ZW", "BW", "NA", "RW", "CD", "CG", "GA", "GN", "ML", "BF", "NE", "TD", "MW", "ZM", "SL", "LR", "TG", "BJ", "SS", "ER", "DJ", "SO", "LS", "SZ", "GM", "GW", "CV", "ST", "KM", "MU", "SC", "MG"].includes(code);
+  const isSouthernCone = ["AR", "UY"].includes(code);
+  const isLatAm = reg === "Latin America" || reg === "Caribbean" || ["MX", "BR", "CO", "CL", "PE", "VE", "EC", "GT", "CU", "HT", "DO", "BO", "PY", "CR", "PA", "SV", "HN", "NI", "JM", "TT"].includes(code);
+  const isWesternSettler = ["US", "CA", "AU", "NZ"].includes(code);
+  const isPacificIslands = ["FJ", "PG", "SB", "VU", "WS", "TO", "FM", "PW", "MH", "KI", "NR", "TV"].includes(code);
+
+  // 1. Hair Color ({ black, brown, blonde, red })
+  let hairColor = { black: 70, brown: 25, blonde: 4, red: 1 };
+  if (isNordicBaltic) {
+    hairColor = { black: 3, brown: 35, blonde: 54, red: 8 };
+  } else if (isBritishIsles) {
+    hairColor = { black: 5, brown: 48, blonde: 37, red: 10 };
+  } else if (isNWEurope) {
+    hairColor = { black: 6, brown: 52, blonde: 37, red: 5 };
+  } else if (isEEurope) {
+    hairColor = { black: 15, brown: 58, blonde: 24, red: 3 };
+  } else if (isSEurope) {
+    hairColor = { black: 25, brown: 62, blonde: 11, red: 2 };
+  } else if (isEastAsia) {
     hairColor = { black: 96, brown: 4, blonde: 0, red: 0 };
-    hairTexture = { straight: 2, wavy: 5, curly: 18, coily: 75 };
-    eyeColor = { brown: 96, blue: 1, green: 1, hazel: 2 };
-    skinPigmentation = { itaAngle: -35, fitzpatrickType: "Type V-VI", label: "Rich Brown / Dark" };
-  } else if (region.includes("Americas")) {
-    hairColor = { black: 45, brown: 42, blonde: 11, red: 2 };
-    hairTexture = { straight: 45, wavy: 40, curly: 12, coily: 3 };
-    eyeColor = { brown: 55, blue: 25, green: 12, hazel: 8 };
-    skinPigmentation = { itaAngle: 25, fitzpatrickType: "Type III-IV", label: "Medium / Olive" };
-  } else if (region.includes("Oceania")) {
-    hairColor = { black: 52, brown: 35, blonde: 11, red: 2 };
-    eyeColor = { brown: 62, blue: 25, green: 8, hazel: 5 };
-    skinPigmentation = { itaAngle: 15, fitzpatrickType: "Type IV", label: "Medium-Dark" };
+  } else if (isSEAsia) {
+    hairColor = { black: 95, brown: 5, blonde: 0, red: 0 };
+  } else if (isSouthAsia) {
+    hairColor = { black: 92, brown: 8, blonde: 0, red: 0 };
+  } else if (isCentralAsia) {
+    hairColor = { black: 75, brown: 22, blonde: 3, red: 0 };
+  } else if (isSubSaharanAfrica) {
+    hairColor = { black: 98, brown: 2, blonde: 0, red: 0 };
+  } else if (isMENA) {
+    hairColor = { black: 78, brown: 20, blonde: 2, red: 0 };
+  } else if (isSouthernCone) {
+    hairColor = { black: 30, brown: 52, blonde: 16, red: 2 };
+  } else if (isLatAm) {
+    hairColor = { black: 60, brown: 33, blonde: 6, red: 1 };
+  } else if (isWesternSettler) {
+    hairColor = { black: 18, brown: 50, blonde: 27, red: 5 };
+  } else if (isPacificIslands) {
+    hairColor = { black: 90, brown: 7, blonde: 3, red: 0 };
   }
 
-  // Anthropometrics (Leg %, Muscle Mass, Digit Ratio, Shoulder/Waist, Hand, Voice)
-  const maleLegPercent = Math.round((47.8 + (maleHeight > 175 ? 0.8 : 0)) * 10) / 10;
-  const femaleLegPercent = Math.round((48.4 + (femaleHeight > 165 ? 0.8 : 0)) * 10) / 10;
+  // 2. Hair Texture ({ straight, wavy, curly, coily })
+  let hairTexture = { straight: 45, wavy: 35, curly: 15, coily: 5 };
+  if (isSubSaharanAfrica) {
+    hairTexture = { straight: 1, wavy: 3, curly: 8, coily: 88 };
+  } else if (isEastAsia) {
+    hairTexture = { straight: 92, wavy: 7, curly: 1, coily: 0 };
+  } else if (isSEAsia) {
+    hairTexture = { straight: 85, wavy: 12, curly: 3, coily: 0 };
+  } else if (isSouthAsia) {
+    hairTexture = { straight: 52, wavy: 38, curly: 9, coily: 1 };
+  } else if (isNordicBaltic || isNWEurope || isEEurope || isBritishIsles) {
+    hairTexture = { straight: 48, wavy: 38, curly: 13, coily: 1 };
+  } else if (isSEurope) {
+    hairTexture = { straight: 38, wavy: 44, curly: 16, coily: 2 };
+  } else if (isMENA) {
+    hairTexture = { straight: 22, wavy: 45, curly: 28, coily: 5 };
+  } else if (isLatAm || isSouthernCone) {
+    hairTexture = { straight: 40, wavy: 38, curly: 16, coily: 6 };
+  } else if (isWesternSettler) {
+    hairTexture = { straight: 46, wavy: 38, curly: 13, coily: 3 };
+  } else if (isCentralAsia) {
+    hairTexture = { straight: 70, wavy: 24, curly: 5, coily: 1 };
+  } else if (isPacificIslands) {
+    hairTexture = { straight: 40, wavy: 35, curly: 20, coily: 5 };
+  }
 
-  const maleMuscleKg = Math.round((maleWeight * (1 - maleBodyFat / 100) * 0.58) * 10) / 10;
-  const femaleMuscleKg = Math.round((femaleWeight * (1 - femaleBodyFat / 100) * 0.52) * 10) / 10;
+  // 3. Eye Color ({ brown, blue, green, hazel })
+  let eyeColor = { brown: 75, blue: 12, green: 5, hazel: 8 };
+  if (isNordicBaltic) {
+    eyeColor = { brown: 10, blue: 72, green: 11, hazel: 7 };
+  } else if (isBritishIsles) {
+    eyeColor = { brown: 18, blue: 54, green: 15, hazel: 13 };
+  } else if (isNWEurope) {
+    eyeColor = { brown: 25, blue: 46, green: 15, hazel: 14 };
+  } else if (isEEurope) {
+    eyeColor = { brown: 35, blue: 42, green: 12, hazel: 11 };
+  } else if (isSEurope) {
+    eyeColor = { brown: 58, blue: 18, green: 8, hazel: 16 };
+  } else if (isEastAsia || isSEAsia) {
+    eyeColor = { brown: 98, blue: 0, green: 0, hazel: 2 };
+  } else if (isSouthAsia) {
+    eyeColor = { brown: 93, blue: 1, green: 2, hazel: 4 };
+  } else if (isCentralAsia) {
+    eyeColor = { brown: 78, blue: 7, green: 5, hazel: 10 };
+  } else if (isSubSaharanAfrica) {
+    eyeColor = { brown: 98, blue: 0, green: 0, hazel: 2 };
+  } else if (isMENA) {
+    eyeColor = { brown: 80, blue: 3, green: 5, hazel: 12 };
+  } else if (isSouthernCone) {
+    eyeColor = { brown: 48, blue: 26, green: 10, hazel: 16 };
+  } else if (isLatAm) {
+    eyeColor = { brown: 72, blue: 10, green: 6, hazel: 12 };
+  } else if (isWesternSettler) {
+    eyeColor = { brown: 42, blue: 34, green: 10, hazel: 14 };
+  }
 
-  const maleMusclePct = Math.round(((maleMuscleKg / maleWeight) * 100) * 10) / 10;
-  const femaleMusclePct = Math.round(((femaleMuscleKg / femaleWeight) * 100) * 10) / 10;
+  // 4. Skin Pigmentation ({ itaAngle, fitzpatrickType, label })
+  let skinPigmentation = { itaAngle: 25, fitzpatrickType: "Type IV", label: "Tan / Olive" };
+  if (isNordicBaltic || code === "IE") {
+    skinPigmentation = { itaAngle: 58, fitzpatrickType: "Type I", label: "Very Light" };
+  } else if (isNWEurope || isBritishIsles) {
+    skinPigmentation = { itaAngle: 48, fitzpatrickType: "Type II", label: "Light" };
+  } else if (isEEurope || isSEurope || isEastAsia || isSouthernCone || isCentralAsia) {
+    skinPigmentation = { itaAngle: 35, fitzpatrickType: "Type III", label: "Intermediate" };
+  } else if (isWesternSettler) {
+    skinPigmentation = { itaAngle: 42, fitzpatrickType: "Type II", label: "Light" };
+  } else if (isSEAsia || isMENA || isLatAm) {
+    skinPigmentation = { itaAngle: 22, fitzpatrickType: "Type IV", label: "Tan / Olive" };
+  } else if (isSouthAsia) {
+    skinPigmentation = { itaAngle: 0, fitzpatrickType: "Type V", label: "Brown" };
+  } else if (isSubSaharanAfrica) {
+    skinPigmentation = { itaAngle: -48, fitzpatrickType: "Type VI", label: "Dark / Deep" };
+  } else if (isPacificIslands) {
+    skinPigmentation = { itaAngle: -30, fitzpatrickType: "Type VI", label: "Dark / Deep" };
+  }
 
-  const maleDigitRatio = Math.round((0.952 + (region.includes("Asia") ? -0.008 : 0)) * 1000) / 1000;
-  const femaleDigitRatio = Math.round((0.981 + (region.includes("Asia") ? -0.006 : 0)) * 1000) / 1000;
+  // 5. Leg Length Percent (% of total height: { male, female })
+  let legLengthPercent = { male: 46.8, female: 46.2 };
+  if (isSubSaharanAfrica) {
+    legLengthPercent = { male: 48.2, female: 47.6 };
+  } else if (isEastAsia || isSEAsia) {
+    legLengthPercent = { male: 45.2, female: 44.6 };
+  } else if (isSouthAsia) {
+    legLengthPercent = { male: 46.5, female: 45.9 };
+  } else if (isNordicBaltic || isNWEurope || isBritishIsles || isEEurope || isWesternSettler) {
+    legLengthPercent = { male: 47.1, female: 46.5 };
+  } else if (isSEurope || isSouthernCone || isLatAm || isMENA) {
+    legLengthPercent = { male: 46.7, female: 46.1 };
+  }
 
-  const maleShoulderWaist = Math.round((1.46 - (maleWaist / maleHeight) * 0.4) * 100) / 100;
-  const femaleShoulderWaist = Math.round((1.22 - (femaleWaist / femaleHeight) * 0.3) * 100) / 100;
+  // 6. Lean Muscle Mass Kg ({ male, female })
+  const maleMuscleKg = Math.round(maleWeight * (1 - maleBodyFat / 100) * 10) / 10;
+  const femaleMuscleKg = Math.round(femaleWeight * (1 - femaleBodyFat / 100) * 10) / 10;
 
-  const maleHandCm = Math.round(((maleHeight * 0.108)) * 10) / 10;
-  const femaleHandCm = Math.round(((femaleHeight * 0.106)) * 10) / 10;
+  // 7. Lean Muscle Percent ({ male, female })
+  const maleMusclePct = Math.round((100 - maleBodyFat) * 10) / 10;
+  const femaleMusclePct = Math.round((100 - femaleBodyFat) * 10) / 10;
 
-  const maleVoiceHz = Math.round((120 - (maleHeight - 175) * 0.4));
-  const femaleVoiceHz = Math.round((210 - (femaleHeight - 163) * 0.6));
+  // 8. Digit Ratio (2D:4D ratio: { male, female })
+  let digitRatio = { male: 0.950, female: 0.976 };
+  if (isSubSaharanAfrica) {
+    digitRatio = { male: 0.940, female: 0.966 };
+  } else if (isNordicBaltic || isNWEurope || isBritishIsles || isEEurope) {
+    digitRatio = { male: 0.952, female: 0.978 };
+  } else if (isSEurope || isLatAm || isSouthernCone) {
+    digitRatio = { male: 0.950, female: 0.976 };
+  } else if (isMENA) {
+    digitRatio = { male: 0.946, female: 0.974 };
+  } else if (isEastAsia || isSEAsia) {
+    digitRatio = { male: 0.958, female: 0.982 };
+  } else if (isSouthAsia) {
+    digitRatio = { male: 0.948, female: 0.975 };
+  } else if (isWesternSettler) {
+    digitRatio = { male: 0.951, female: 0.977 };
+  }
+
+  // 9. Shoulder to Waist Ratio ({ male, female })
+  const maleShoulderWaist = Math.round((1.40 + (maleHeight - 175) * 0.003 - (maleWaist - 88) * 0.004) * 100) / 100;
+  const femaleShoulderWaist = Math.round((1.15 + (femaleHeight - 163) * 0.002 - (femaleWaist - 78) * 0.003) * 100) / 100;
+
+  // 10. Hand Length Cm ({ male, female })
+  const maleHandCm = Math.round(maleHeight * 0.109 * 10) / 10;
+  const femaleHandCm = Math.round(femaleHeight * 0.108 * 10) / 10;
+
+  // 11. Vocal Pitch Hz ({ male, female })
+  const isTonalLang = isEastAsia || isSEAsia;
+  const pitchOffsetMale = isTonalLang ? 4 : 0;
+  const pitchOffsetFemale = isTonalLang ? 8 : 0;
+
+  const maleVoiceHz = Math.round((120 - (maleHeight - 175) * 0.45 + pitchOffsetMale) * 10) / 10;
+  const femaleVoiceHz = Math.round((210 - (femaleHeight - 163) * 0.5 + pitchOffsetFemale) * 10) / 10;
 
   return {
     heightCm: { male: maleHeight, female: femaleHeight },
@@ -687,10 +807,10 @@ export function getPhysicalStats(country: CountryData): PhysicalStats {
     hairTexture,
     eyeColor,
     skinPigmentation,
-    legLengthPercent: { male: maleLegPercent, female: femaleLegPercent },
+    legLengthPercent: { male: legLengthPercent.male, female: legLengthPercent.female },
     leanMuscleMassKg: { male: maleMuscleKg, female: femaleMuscleKg },
     leanMusclePercent: { male: maleMusclePct, female: femaleMusclePct },
-    digitRatio: { male: maleDigitRatio, female: femaleDigitRatio },
+    digitRatio: { male: digitRatio.male, female: digitRatio.female },
     shoulderToWaistRatio: { male: maleShoulderWaist, female: femaleShoulderWaist },
     handLengthCm: { male: maleHandCm, female: femaleHandCm },
     vocalPitchHz: { male: maleVoiceHz, female: femaleVoiceHz },
@@ -745,7 +865,7 @@ export function getSortValue(
   if (metricKey === "laborForceGap") return country.gender?.laborForceGap ?? 0;
   if (metricKey === "contraceptiveUse") return country.gender?.contraceptiveUse ?? 0;
 
-  // Physical stats (14 male & female metrics)
+  // Physical stats (male & female metrics)
   const phys = getPhysicalStats(country);
 
   // Height
@@ -875,6 +995,12 @@ export function getSortValue(
     return Math.round(((phys.leanMuscleMassKg.female + phys.leanMuscleMassKg.male) / 2) * 10) / 10;
   }
 
+  if (metricKey === "femaleLeanMusclePercent") return phys.leanMusclePercent.female;
+  if (metricKey === "maleLeanMusclePercent") return phys.leanMusclePercent.male;
+  if (metricKey === "leanMusclePercent") {
+    return Math.round(((phys.leanMusclePercent.female + phys.leanMusclePercent.male) / 2) * 10) / 10;
+  }
+
   if (metricKey === "femaleDigitRatio") return phys.digitRatio.female;
   if (metricKey === "maleDigitRatio") return phys.digitRatio.male;
   if (metricKey === "digitRatio") {
@@ -887,16 +1013,18 @@ export function getSortValue(
     return Math.round(((phys.shoulderToWaistRatio.female + phys.shoulderToWaistRatio.male) / 2) * 100) / 100;
   }
 
+  // Hand Length Cm
   if (metricKey === "femaleHandLengthCm") return phys.handLengthCm.female;
   if (metricKey === "maleHandLengthCm") return phys.handLengthCm.male;
   if (metricKey === "handLengthCm") {
     return Math.round(((phys.handLengthCm.female + phys.handLengthCm.male) / 2) * 10) / 10;
   }
 
+  // Vocal Pitch Hz
   if (metricKey === "femaleVocalPitchHz") return phys.vocalPitchHz.female;
   if (metricKey === "maleVocalPitchHz") return phys.vocalPitchHz.male;
   if (metricKey === "vocalPitchHz") {
-    return Math.round((phys.vocalPitchHz.female + phys.vocalPitchHz.male) / 2);
+    return Math.round(((phys.vocalPitchHz.female + phys.vocalPitchHz.male) / 2) * 10) / 10;
   }
 
   // Fallback: check dynamic object properties
