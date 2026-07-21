@@ -690,6 +690,159 @@ export const METRIC_HELP_MAP: Record<string, MetricHelpInfo> = {
     unitOrScale: "Degrees (°)",
   },
 
+  // Evolutionary Attraction & Sexual Dimorphism Suite
+  facialSymmetryPercent: {
+    title: "Facial Bilateral Symmetry Index",
+    definition: "Symmetry of left and right facial feature halves (Grammer & Thornhill, 1994).",
+    howToRead: "Higher percentage (> 95%) reflects developmental health and immune stability.",
+    unitOrScale: "Percentage (%)",
+  },
+  maleFacialSymmetryPercent: {
+    title: "Male Facial Symmetry",
+    definition: "Facial feature symmetry index in adult men.",
+    howToRead: "Male average is ~94%–97%.",
+    unitOrScale: "Percentage (%)",
+  },
+  femaleFacialSymmetryPercent: {
+    title: "Female Facial Symmetry",
+    definition: "Facial feature symmetry index in adult women.",
+    howToRead: "Female average is ~95%–98%.",
+    unitOrScale: "Percentage (%)",
+  },
+
+  limbalRingScore: {
+    title: "Limbal Ring Clarity Score",
+    definition: "Prominence and darkness of the limbal ring encircling the iris (Peshek et al., 2011).",
+    howToRead: "Rated 1–5 scale. Prominent dark rings indicate youthfulness and ocular health.",
+    unitOrScale: "Score (1-5)",
+  },
+  maleLimbalRingScore: {
+    title: "Male Limbal Ring Clarity",
+    definition: "Limbal ring clarity score in men.",
+    howToRead: "Average is ~3.8–4.4.",
+    unitOrScale: "Score (1-5)",
+  },
+  femaleLimbalRingScore: {
+    title: "Female Limbal Ring Clarity",
+    definition: "Limbal ring clarity score in women.",
+    howToRead: "Average is ~4.1–4.7.",
+    unitOrScale: "Score (1-5)",
+  },
+
+  lipFullnessMm: {
+    title: "Vermilion Lip Fullness",
+    definition: "Total height of the upper and lower vermilion lip borders in mm (Johnston et al., 2001).",
+    howToRead: "Estrogen promotes female lip fullness (female avg ~17–22 mm vs male ~14–18 mm).",
+    unitOrScale: "Millimeters (mm)",
+  },
+  femaleLipFullnessMm: {
+    title: "Female Lip Fullness",
+    definition: "Vermilion lip height in women.",
+    howToRead: "Key estrogenic female attractiveness signal.",
+    unitOrScale: "Millimeters (mm)",
+  },
+  maleLipFullnessMm: {
+    title: "Male Lip Fullness",
+    definition: "Vermilion lip height in men.",
+    howToRead: "Male lip fullness baseline.",
+    unitOrScale: "Millimeters (mm)",
+  },
+
+  carotenoidSkinRadiance: {
+    title: "Carotenoid Skin Glow Index",
+    definition: "Skin redness/yellowness tone derived from dietary carotenoid antioxidants (Stephen et al., 2011).",
+    howToRead: "Rated 0–100. Higher scores indicate fruit/vegetable intake and micro-circulatory radiance.",
+    unitOrScale: "Index (0-100)",
+  },
+  femaleCarotenoidSkinRadiance: {
+    title: "Female Carotenoid Skin Glow",
+    definition: "Carotenoid skin radiance score in women.",
+    howToRead: "Strong predictor of facial attractiveness.",
+    unitOrScale: "Index (0-100)",
+  },
+  maleCarotenoidSkinRadiance: {
+    title: "Male Carotenoid Skin Glow",
+    definition: "Carotenoid skin radiance score in men.",
+    howToRead: "Reflects antioxidant health and fitness.",
+    unitOrScale: "Index (0-100)",
+  },
+
+  shoulderToHipRatio: {
+    title: "Shoulder-to-Hip Ratio (SHR)",
+    definition: "Shoulder width divided by hip width (Shoulder / Hip).",
+    howToRead: "Male ideal is ~1.40–1.60 V-taper (Dixson et al., 2014). Female ideal is ~1.10–1.25.",
+    unitOrScale: "SHR Ratio",
+  },
+  maleShoulderToHipRatio: {
+    title: "Male Shoulder-to-Hip V-Taper (SHR)",
+    definition: "Male shoulder breadth relative to hip width.",
+    howToRead: "Strongest physical predictor of male body attractiveness to women.",
+    unitOrScale: "SHR Ratio",
+  },
+  femaleShoulderToHipRatio: {
+    title: "Female Shoulder-to-Hip Ratio (SHR)",
+    definition: "Female shoulder breadth relative to hip width.",
+    howToRead: "Measures upper body vs pelvic proportion in women.",
+    unitOrScale: "SHR Ratio",
+  },
+
+  ffmiKgM2: {
+    title: "Fat-Free Mass Index (FFMI)",
+    definition: "Height-adjusted muscle mass excluding fat (Lean Mass / Height² in kg/m²).",
+    howToRead: "Male average is ~19–22 kg/m². Female average is ~15–18 kg/m².",
+    unitOrScale: "kg/m²",
+  },
+  maleFfmiKgM2: {
+    title: "Male Fat-Free Mass Index (FFMI)",
+    definition: "Lean muscle mass index for men.",
+    howToRead: "Women prefer athletic men with FFMI ~22–24 kg/m².",
+    unitOrScale: "kg/m²",
+  },
+  femaleFfmiKgM2: {
+    title: "Female Fat-Free Mass Index (FFMI)",
+    definition: "Lean muscle mass index for women.",
+    howToRead: "Female muscularity baseline.",
+    unitOrScale: "kg/m²",
+  },
+
+  vocalFormantDispersionHz: {
+    title: "Vocal Formant Frequency Dispersion (Δf)",
+    definition: "Spacing between resonant vocal tract frequencies in Hz (Puts et al., 2006).",
+    howToRead: "Measures vocal tract length. Male avg ~980–1050 Hz. Female avg ~1190–1260 Hz.",
+    unitOrScale: "Hertz (Hz)",
+  },
+  maleVocalFormantDispersionHz: {
+    title: "Male Vocal Formant Dispersion (Δf)",
+    definition: "Male vocal tract resonant spacing.",
+    howToRead: "Lower Δf indicates a longer vocal tract and deeper voice resonance.",
+    unitOrScale: "Hertz (Hz)",
+  },
+  femaleVocalFormantDispersionHz: {
+    title: "Female Vocal Formant Dispersion (Δf)",
+    definition: "Female vocal tract resonant spacing.",
+    howToRead: "Reflects female vocal tract acoustics.",
+    unitOrScale: "Hertz (Hz)",
+  },
+
+  dentalWhitenessScore: {
+    title: "Dental Whiteness & Symmetry Score",
+    definition: "Tooth whiteness shade (L*a*b* space) and dental arch alignment (Hendrie & Brewer, 2012).",
+    howToRead: "Rated 1–10 scale. Higher scores reflect bright, symmetrical teeth.",
+    unitOrScale: "Score (1-10)",
+  },
+  maleDentalWhitenessScore: {
+    title: "Male Dental Whiteness Score",
+    definition: "Tooth shade and symmetry score in men.",
+    howToRead: "Average is ~6.0–8.5.",
+    unitOrScale: "Score (1-10)",
+  },
+  femaleDentalWhitenessScore: {
+    title: "Female Dental Whiteness Score",
+    definition: "Tooth shade and symmetry score in women.",
+    howToRead: "Average is ~6.5–9.0.",
+    unitOrScale: "Score (1-10)",
+  },
+
   // Macroeconomics
   minimumWageEur: {
     title: "Minimum Wage",
@@ -1042,6 +1195,30 @@ function isMetricActive(targetKey: string, activeKey?: string): boolean {
     gonialAngleDegrees: ["gonialAngleDegrees", "femaleGonialAngleDegrees", "maleGonialAngleDegrees"],
     femaleGonialAngleDegrees: ["gonialAngleDegrees", "femaleGonialAngleDegrees", "maleGonialAngleDegrees"],
     maleGonialAngleDegrees: ["gonialAngleDegrees", "femaleGonialAngleDegrees", "maleGonialAngleDegrees"],
+    facialSymmetryPercent: ["facialSymmetryPercent", "femaleFacialSymmetryPercent", "maleFacialSymmetryPercent"],
+    femaleFacialSymmetryPercent: ["facialSymmetryPercent", "femaleFacialSymmetryPercent", "maleFacialSymmetryPercent"],
+    maleFacialSymmetryPercent: ["facialSymmetryPercent", "femaleFacialSymmetryPercent", "maleFacialSymmetryPercent"],
+    limbalRingScore: ["limbalRingScore", "femaleLimbalRingScore", "maleLimbalRingScore"],
+    femaleLimbalRingScore: ["limbalRingScore", "femaleLimbalRingScore", "maleLimbalRingScore"],
+    maleLimbalRingScore: ["limbalRingScore", "femaleLimbalRingScore", "maleLimbalRingScore"],
+    lipFullnessMm: ["lipFullnessMm", "femaleLipFullnessMm", "maleLipFullnessMm"],
+    femaleLipFullnessMm: ["lipFullnessMm", "femaleLipFullnessMm", "maleLipFullnessMm"],
+    maleLipFullnessMm: ["lipFullnessMm", "femaleLipFullnessMm", "maleLipFullnessMm"],
+    carotenoidSkinRadiance: ["carotenoidSkinRadiance", "femaleCarotenoidSkinRadiance", "maleCarotenoidSkinRadiance"],
+    femaleCarotenoidSkinRadiance: ["carotenoidSkinRadiance", "femaleCarotenoidSkinRadiance", "maleCarotenoidSkinRadiance"],
+    maleCarotenoidSkinRadiance: ["carotenoidSkinRadiance", "femaleCarotenoidSkinRadiance", "maleCarotenoidSkinRadiance"],
+    shoulderToHipRatio: ["shoulderToHipRatio", "femaleShoulderToHipRatio", "maleShoulderToHipRatio"],
+    femaleShoulderToHipRatio: ["shoulderToHipRatio", "femaleShoulderToHipRatio", "maleShoulderToHipRatio"],
+    maleShoulderToHipRatio: ["shoulderToHipRatio", "femaleShoulderToHipRatio", "maleShoulderToHipRatio"],
+    ffmiKgM2: ["ffmiKgM2", "femaleFfmiKgM2", "maleFfmiKgM2"],
+    femaleFfmiKgM2: ["ffmiKgM2", "femaleFfmiKgM2", "maleFfmiKgM2"],
+    maleFfmiKgM2: ["ffmiKgM2", "femaleFfmiKgM2", "maleFfmiKgM2"],
+    vocalFormantDispersionHz: ["vocalFormantDispersionHz", "femaleVocalFormantDispersionHz", "maleVocalFormantDispersionHz"],
+    femaleVocalFormantDispersionHz: ["vocalFormantDispersionHz", "femaleVocalFormantDispersionHz", "maleVocalFormantDispersionHz"],
+    maleVocalFormantDispersionHz: ["vocalFormantDispersionHz", "femaleVocalFormantDispersionHz", "maleVocalFormantDispersionHz"],
+    dentalWhitenessScore: ["dentalWhitenessScore", "femaleDentalWhitenessScore", "maleDentalWhitenessScore"],
+    femaleDentalWhitenessScore: ["dentalWhitenessScore", "femaleDentalWhitenessScore", "maleDentalWhitenessScore"],
+    maleDentalWhitenessScore: ["dentalWhitenessScore", "femaleDentalWhitenessScore", "maleDentalWhitenessScore"],
   };
 
   const equivalentList = aliases[targetKey];
@@ -2667,6 +2844,335 @@ export function CountrySidebar({
                     </button>
                   </div>
                 </MetricCard>
+              </div>
+
+              {/* 14. Evolutionary Attraction & Sexual Dimorphism Suite Header */}
+              <div className="pt-2 border-t border-border/40">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5 mb-2">
+                  <Sparkles className="h-3.5 w-3.5 text-amber-400" />
+                  <span>Attraction & Dimorphism Biomarkers</span>
+                </span>
+
+                <div className="space-y-2.5">
+                  {/* Facial Symmetry Card */}
+                  <MetricCard
+                    label="Facial Bilateral Symmetry Index"
+                    metricKey="facialSymmetryPercent"
+                    activeSortKey={activeSortKey}
+                    onSelectMetric={onSelectMetric}
+                    onOpenHelp={setActiveHelpKey}
+                    icon={Sparkles}
+                  >
+                    <div className="space-y-2 pt-0.5">
+                      <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectMetric?.("maleFacialSymmetryPercent");
+                          }}
+                          className={cn(
+                            "p-2 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer text-center",
+                            "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                            isMetricActive("maleFacialSymmetryPercent", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold text-emerald-400"
+                          )}
+                        >
+                          <span className="text-[10px] uppercase font-bold">👨 Male Symmetry</span>
+                          <span className="text-sm font-bold font-mono text-foreground">{physicalStats.facialSymmetryPercent.male}%</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectMetric?.("femaleFacialSymmetryPercent");
+                          }}
+                          className={cn(
+                            "p-2 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer text-center",
+                            "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                            isMetricActive("femaleFacialSymmetryPercent", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold text-emerald-400"
+                          )}
+                        >
+                          <span className="text-[10px] uppercase font-bold">👩 Female Symmetry</span>
+                          <span className="text-sm font-bold font-mono text-foreground">{physicalStats.facialSymmetryPercent.female}%</span>
+                        </button>
+                      </div>
+                    </div>
+                  </MetricCard>
+
+                  {/* Limbal Ring & Vermilion Lip Fullness Dual Cards */}
+                  <div className="grid grid-cols-2 gap-2">
+                    {/* Limbal Ring Card */}
+                    <MetricCard
+                      label="Limbal Ring Clarity"
+                      metricKey="limbalRingScore"
+                      activeSortKey={activeSortKey}
+                      onSelectMetric={onSelectMetric}
+                      onOpenHelp={setActiveHelpKey}
+                      icon={Eye}
+                    >
+                      <div className="space-y-1.5 pt-0.5 text-xs font-mono">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectMetric?.("maleLimbalRingScore");
+                          }}
+                          className={cn(
+                            "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                            "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                            isMetricActive("maleLimbalRingScore", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                          )}
+                        >
+                          <span className="text-[10px]">👨 Male</span>
+                          <span className="font-bold text-foreground">{physicalStats.limbalRingScore.male}/5</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectMetric?.("femaleLimbalRingScore");
+                          }}
+                          className={cn(
+                            "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                            "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                            isMetricActive("femaleLimbalRingScore", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                          )}
+                        >
+                          <span className="text-[10px]">👩 Female</span>
+                          <span className="font-bold text-foreground">{physicalStats.limbalRingScore.female}/5</span>
+                        </button>
+                      </div>
+                    </MetricCard>
+
+                    {/* Lip Fullness Card */}
+                    <MetricCard
+                      label="Lip Fullness (mm)"
+                      metricKey="lipFullnessMm"
+                      activeSortKey={activeSortKey}
+                      onSelectMetric={onSelectMetric}
+                      onOpenHelp={setActiveHelpKey}
+                      icon={Heart}
+                    >
+                      <div className="space-y-1.5 pt-0.5 text-xs font-mono">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectMetric?.("maleLipFullnessMm");
+                          }}
+                          className={cn(
+                            "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                            "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                            isMetricActive("maleLipFullnessMm", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                          )}
+                        >
+                          <span className="text-[10px]">👨 Male</span>
+                          <span className="font-bold text-foreground">{physicalStats.lipFullnessMm.male} mm</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectMetric?.("femaleLipFullnessMm");
+                          }}
+                          className={cn(
+                            "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                            "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                            isMetricActive("femaleLipFullnessMm", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                          )}
+                        >
+                          <span className="text-[10px]">👩 Female</span>
+                          <span className="font-bold text-foreground">{physicalStats.lipFullnessMm.female} mm</span>
+                        </button>
+                      </div>
+                    </MetricCard>
+                  </div>
+
+                  {/* Carotenoid Glow & Fat-Free Mass Index (FFMI) Dual Cards */}
+                  <div className="grid grid-cols-2 gap-2">
+                    {/* Carotenoid Glow */}
+                    <MetricCard
+                      label="Carotenoid Skin Glow"
+                      metricKey="carotenoidSkinRadiance"
+                      activeSortKey={activeSortKey}
+                      onSelectMetric={onSelectMetric}
+                      onOpenHelp={setActiveHelpKey}
+                      icon={Sparkles}
+                    >
+                      <div className="space-y-1.5 pt-0.5 text-xs font-mono">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectMetric?.("maleCarotenoidSkinRadiance");
+                          }}
+                          className={cn(
+                            "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                            "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                            isMetricActive("maleCarotenoidSkinRadiance", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                          )}
+                        >
+                          <span className="text-[10px]">👨 Male</span>
+                          <span className="font-bold text-foreground">{physicalStats.carotenoidSkinRadiance.male} pts</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectMetric?.("femaleCarotenoidSkinRadiance");
+                          }}
+                          className={cn(
+                            "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                            "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                            isMetricActive("femaleCarotenoidSkinRadiance", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                          )}
+                        >
+                          <span className="text-[10px]">👩 Female</span>
+                          <span className="font-bold text-foreground">{physicalStats.carotenoidSkinRadiance.female} pts</span>
+                        </button>
+                      </div>
+                    </MetricCard>
+
+                    {/* FFMI Card */}
+                    <MetricCard
+                      label="Fat-Free Mass Index"
+                      metricKey="ffmiKgM2"
+                      activeSortKey={activeSortKey}
+                      onSelectMetric={onSelectMetric}
+                      onOpenHelp={setActiveHelpKey}
+                      icon={TrendingUp}
+                    >
+                      <div className="space-y-1.5 pt-0.5 text-xs font-mono">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectMetric?.("maleFfmiKgM2");
+                          }}
+                          className={cn(
+                            "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                            "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                            isMetricActive("maleFfmiKgM2", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                          )}
+                        >
+                          <span className="text-[10px]">👨 Male</span>
+                          <span className="font-bold text-foreground">{physicalStats.ffmiKgM2.male} kg/m²</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectMetric?.("femaleFfmiKgM2");
+                          }}
+                          className={cn(
+                            "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                            "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                            isMetricActive("femaleFfmiKgM2", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                          )}
+                        >
+                          <span className="text-[10px]">👩 Female</span>
+                          <span className="font-bold text-foreground">{physicalStats.ffmiKgM2.female} kg/m²</span>
+                        </button>
+                      </div>
+                    </MetricCard>
+                  </div>
+
+                  {/* Shoulder-to-Hip Ratio (SHR) & Dental Whiteness Dual Cards */}
+                  <div className="grid grid-cols-2 gap-2">
+                    {/* SHR Card */}
+                    <MetricCard
+                      label="Shoulder-to-Hip Ratio"
+                      metricKey="shoulderToHipRatio"
+                      activeSortKey={activeSortKey}
+                      onSelectMetric={onSelectMetric}
+                      onOpenHelp={setActiveHelpKey}
+                      icon={Activity}
+                    >
+                      <div className="space-y-1.5 pt-0.5 text-xs font-mono">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectMetric?.("maleShoulderToHipRatio");
+                          }}
+                          className={cn(
+                            "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                            "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                            isMetricActive("maleShoulderToHipRatio", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                          )}
+                        >
+                          <span className="text-[10px]">👨 Male SHR</span>
+                          <span className="font-bold text-foreground">{physicalStats.shoulderToHipRatio.male}</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectMetric?.("femaleShoulderToHipRatio");
+                          }}
+                          className={cn(
+                            "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                            "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                            isMetricActive("femaleShoulderToHipRatio", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                          )}
+                        >
+                          <span className="text-[10px]">👩 Female SHR</span>
+                          <span className="font-bold text-foreground">{physicalStats.shoulderToHipRatio.female}</span>
+                        </button>
+                      </div>
+                    </MetricCard>
+
+                    {/* Dental Whiteness Card */}
+                    <MetricCard
+                      label="Teeth Whiteness Score"
+                      metricKey="dentalWhitenessScore"
+                      activeSortKey={activeSortKey}
+                      onSelectMetric={onSelectMetric}
+                      onOpenHelp={setActiveHelpKey}
+                      icon={Award}
+                    >
+                      <div className="space-y-1.5 pt-0.5 text-xs font-mono">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectMetric?.("maleDentalWhitenessScore");
+                          }}
+                          className={cn(
+                            "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                            "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20",
+                            isMetricActive("maleDentalWhitenessScore", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                          )}
+                        >
+                          <span className="text-[10px]">👨 Male</span>
+                          <span className="font-bold text-foreground">{physicalStats.dentalWhitenessScore.male}/10</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectMetric?.("femaleDentalWhitenessScore");
+                          }}
+                          className={cn(
+                            "w-full p-1 rounded-lg border flex justify-between items-center transition-all cursor-pointer",
+                            "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20",
+                            isMetricActive("femaleDentalWhitenessScore", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold"
+                          )}
+                        >
+                          <span className="text-[10px]">👩 Female</span>
+                          <span className="font-bold text-foreground">{physicalStats.dentalWhitenessScore.female}/10</span>
+                        </button>
+                      </div>
+                    </MetricCard>
+                  </div>
+                </div>
               </div>
             </div>
 

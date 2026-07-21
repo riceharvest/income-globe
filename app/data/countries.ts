@@ -271,6 +271,16 @@ export interface PhysicalStats {
   thighCircumferenceCm: PhysicalMetricGenderPair;
   chestToWaistDropCm: PhysicalMetricGenderPair;
   gonialAngleDegrees: PhysicalMetricGenderPair;
+
+  // Evolutionary Attraction & Sexual Dimorphism Suite
+  facialSymmetryPercent: PhysicalMetricGenderPair;
+  limbalRingScore: PhysicalMetricGenderPair;
+  lipFullnessMm: PhysicalMetricGenderPair;
+  carotenoidSkinRadiance: PhysicalMetricGenderPair;
+  shoulderToHipRatio: PhysicalMetricGenderPair;
+  ffmiKgM2: PhysicalMetricGenderPair;
+  vocalFormantDispersionHz: PhysicalMetricGenderPair;
+  dentalWhitenessScore: PhysicalMetricGenderPair;
 }
 
 export interface CountryData {
@@ -836,6 +846,38 @@ export function getPhysicalStats(country: CountryData): PhysicalStats {
   const maleGonialAngle = Math.round((118 - (maleBmi > 25 ? 1 : 0) + (isEastAsia ? 2 : 0)) * 10) / 10;
   const femaleGonialAngle = Math.round((124 - (femaleBmi > 25 ? 1 : 0) + (isEastAsia ? 2 : 0)) * 10) / 10;
 
+  // 20. Facial Bilateral Symmetry Index (%: { male, female })
+  const maleSymmetry = Math.round((93.5 + (country.hdi ? country.hdi * 3.5 : 2.5)) * 10) / 10;
+  const femaleSymmetry = Math.round((94.2 + (country.hdi ? country.hdi * 3.5 : 2.5)) * 10) / 10;
+
+  // 21. Limbal Ring Score (1-5 Scale: { male, female })
+  const maleLimbalRing = Math.round((4.2 - (maleSmoking > 15 ? 0.4 : 0) - (maleBmi > 28 ? 0.3 : 0)) * 10) / 10;
+  const femaleLimbalRing = Math.round((4.5 - (femaleSmoking > 15 ? 0.4 : 0) - (femaleBmi > 28 ? 0.3 : 0)) * 10) / 10;
+
+  // 22. Vermilion Lip Fullness (mm: { male, female })
+  const maleLipMm = Math.round((14.5 + (isSubSaharanAfrica ? 4.5 : isSEAsia ? 2.5 : isMENA ? 1.5 : 0)) * 10) / 10;
+  const femaleLipMm = Math.round((17.2 + (isSubSaharanAfrica ? 5.2 : isSEAsia ? 3.0 : isMENA ? 2.0 : 0)) * 10) / 10;
+
+  // 23. Carotenoid Skin Radiance Index (0-100: { male, female })
+  const maleCarotenoid = Math.round(Math.min(98, Math.max(20, (45 + (country.hdi ? country.hdi * 40 : 25) - (maleSmoking * 0.8)))) * 10) / 10;
+  const femaleCarotenoid = Math.round(Math.min(98, Math.max(20, (50 + (country.hdi ? country.hdi * 40 : 25) - (femaleSmoking * 0.8)))) * 10) / 10;
+
+  // 24. Shoulder-to-Hip Ratio (SHR: { male, female })
+  const maleShr = Math.round(((maleHeight * 0.235) / (maleHip / 2)) * 100) / 100;
+  const femaleShr = Math.round(((femaleHeight * 0.215) / (femaleHip / 2)) * 100) / 100;
+
+  // 25. Fat-Free Mass Index (FFMI kg/m²: { male, female })
+  const maleFfmi = Math.round((maleMuscleKg / Math.pow(maleHeight / 100, 2)) * 10) / 10;
+  const femaleFfmi = Math.round((femaleMuscleKg / Math.pow(femaleHeight / 100, 2)) * 10) / 10;
+
+  // 26. Vocal Formant Frequency Dispersion (Δf Hz: { male, female })
+  const maleFormantDispersion = Math.round((1030 - (maleHeight - 175) * 4.2) * 10) / 10;
+  const femaleFormantDispersion = Math.round((1240 - (femaleHeight - 163) * 4.5) * 10) / 10;
+
+  // 27. Dental Whiteness & Symmetry Score (1-10: { male, female })
+  const maleDental = Math.round(Math.min(9.8, Math.max(3.0, (6.0 + (country.hdi ? country.hdi * 3.2 : 1.5) - (maleSmoking * 0.08)))) * 10) / 10;
+  const femaleDental = Math.round(Math.min(9.8, Math.max(3.0, (6.5 + (country.hdi ? country.hdi * 3.2 : 1.5) - (femaleSmoking * 0.08)))) * 10) / 10;
+
   return {
     heightCm: { male: maleHeight, female: femaleHeight },
     weightKg: { male: maleWeight, female: femaleWeight },
@@ -870,6 +912,14 @@ export function getPhysicalStats(country: CountryData): PhysicalStats {
     thighCircumferenceCm: { male: maleThigh, female: femaleThigh },
     chestToWaistDropCm: { male: maleChestDrop, female: femaleChestDrop },
     gonialAngleDegrees: { male: maleGonialAngle, female: femaleGonialAngle },
+    facialSymmetryPercent: { male: maleSymmetry, female: femaleSymmetry },
+    limbalRingScore: { male: maleLimbalRing, female: femaleLimbalRing },
+    lipFullnessMm: { male: maleLipMm, female: femaleLipMm },
+    carotenoidSkinRadiance: { male: maleCarotenoid, female: femaleCarotenoid },
+    shoulderToHipRatio: { male: maleShr, female: femaleShr },
+    ffmiKgM2: { male: maleFfmi, female: femaleFfmi },
+    vocalFormantDispersionHz: { male: maleFormantDispersion, female: femaleFormantDispersion },
+    dentalWhitenessScore: { male: maleDental, female: femaleDental },
   };
 }
 
@@ -1137,6 +1187,62 @@ export function getSortValue(
   if (metricKey === "maleGonialAngleDegrees") return phys.gonialAngleDegrees.male;
   if (metricKey === "gonialAngleDegrees") {
     return Math.round(((phys.gonialAngleDegrees.female + phys.gonialAngleDegrees.male) / 2) * 10) / 10;
+  }
+
+  // Facial Bilateral Symmetry
+  if (metricKey === "femaleFacialSymmetryPercent") return phys.facialSymmetryPercent.female;
+  if (metricKey === "maleFacialSymmetryPercent") return phys.facialSymmetryPercent.male;
+  if (metricKey === "facialSymmetryPercent" || metricKey === "facialSymmetry") {
+    return Math.round(((phys.facialSymmetryPercent.female + phys.facialSymmetryPercent.male) / 2) * 10) / 10;
+  }
+
+  // Limbal Ring Score
+  if (metricKey === "femaleLimbalRingScore") return phys.limbalRingScore.female;
+  if (metricKey === "maleLimbalRingScore") return phys.limbalRingScore.male;
+  if (metricKey === "limbalRingScore" || metricKey === "limbalRing") {
+    return Math.round(((phys.limbalRingScore.female + phys.limbalRingScore.male) / 2) * 10) / 10;
+  }
+
+  // Lip Fullness
+  if (metricKey === "femaleLipFullnessMm") return phys.lipFullnessMm.female;
+  if (metricKey === "maleLipFullnessMm") return phys.lipFullnessMm.male;
+  if (metricKey === "lipFullnessMm" || metricKey === "lipFullness") {
+    return Math.round(((phys.lipFullnessMm.female + phys.lipFullnessMm.male) / 2) * 10) / 10;
+  }
+
+  // Carotenoid Skin Radiance
+  if (metricKey === "femaleCarotenoidSkinRadiance") return phys.carotenoidSkinRadiance.female;
+  if (metricKey === "maleCarotenoidSkinRadiance") return phys.carotenoidSkinRadiance.male;
+  if (metricKey === "carotenoidSkinRadiance" || metricKey === "carotenoidGlow") {
+    return Math.round(((phys.carotenoidSkinRadiance.female + phys.carotenoidSkinRadiance.male) / 2) * 10) / 10;
+  }
+
+  // Shoulder-to-Hip Ratio (SHR)
+  if (metricKey === "femaleShoulderToHipRatio") return phys.shoulderToHipRatio.female;
+  if (metricKey === "maleShoulderToHipRatio") return phys.shoulderToHipRatio.male;
+  if (metricKey === "shoulderToHipRatio" || metricKey === "shr") {
+    return Math.round(((phys.shoulderToHipRatio.female + phys.shoulderToHipRatio.male) / 2) * 100) / 100;
+  }
+
+  // Fat-Free Mass Index (FFMI)
+  if (metricKey === "femaleFfmiKgM2") return phys.ffmiKgM2.female;
+  if (metricKey === "maleFfmiKgM2") return phys.ffmiKgM2.male;
+  if (metricKey === "ffmiKgM2" || metricKey === "ffmi") {
+    return Math.round(((phys.ffmiKgM2.female + phys.ffmiKgM2.male) / 2) * 10) / 10;
+  }
+
+  // Vocal Formant Frequency Dispersion (Δf)
+  if (metricKey === "femaleVocalFormantDispersionHz") return phys.vocalFormantDispersionHz.female;
+  if (metricKey === "maleVocalFormantDispersionHz") return phys.vocalFormantDispersionHz.male;
+  if (metricKey === "vocalFormantDispersionHz" || metricKey === "formantDispersion") {
+    return Math.round(((phys.vocalFormantDispersionHz.female + phys.vocalFormantDispersionHz.male) / 2) * 10) / 10;
+  }
+
+  // Dental Whiteness & Symmetry Score
+  if (metricKey === "femaleDentalWhitenessScore") return phys.dentalWhitenessScore.female;
+  if (metricKey === "maleDentalWhitenessScore") return phys.dentalWhitenessScore.male;
+  if (metricKey === "dentalWhitenessScore" || metricKey === "dentalWhiteness") {
+    return Math.round(((phys.dentalWhitenessScore.female + phys.dentalWhitenessScore.male) / 2) * 10) / 10;
   }
 
   // Fallback: check dynamic object properties

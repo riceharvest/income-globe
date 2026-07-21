@@ -202,6 +202,30 @@ export type MapMetricKey =
   | "gonialAngleDegrees"
   | "femaleGonialAngleDegrees"
   | "maleGonialAngleDegrees"
+  | "facialSymmetryPercent"
+  | "femaleFacialSymmetryPercent"
+  | "maleFacialSymmetryPercent"
+  | "limbalRingScore"
+  | "femaleLimbalRingScore"
+  | "maleLimbalRingScore"
+  | "lipFullnessMm"
+  | "femaleLipFullnessMm"
+  | "maleLipFullnessMm"
+  | "carotenoidSkinRadiance"
+  | "femaleCarotenoidSkinRadiance"
+  | "maleCarotenoidSkinRadiance"
+  | "shoulderToHipRatio"
+  | "femaleShoulderToHipRatio"
+  | "maleShoulderToHipRatio"
+  | "ffmiKgM2"
+  | "femaleFfmiKgM2"
+  | "maleFfmiKgM2"
+  | "vocalFormantDispersionHz"
+  | "femaleVocalFormantDispersionHz"
+  | "maleVocalFormantDispersionHz"
+  | "dentalWhitenessScore"
+  | "femaleDentalWhitenessScore"
+  | "maleDentalWhitenessScore"
   | "adolescentBirthRate"
   | "laborForceGap"
   | "contraceptiveUse"
@@ -338,6 +362,31 @@ export function normalizeMapMetricKey(key: string): MapMetricKey {
   // Jawline / Gonial Angle
   if (k === "maleGonialAngleDegrees") return "maleGonialAngleDegrees";
   if (k === "femaleGonialAngleDegrees" || k === "gonialAngleDegrees" || k === "jawAngle") return "femaleGonialAngleDegrees";
+
+  // Evolutionary Attraction Suite
+  if (k === "maleFacialSymmetryPercent") return "maleFacialSymmetryPercent";
+  if (k === "femaleFacialSymmetryPercent" || k === "facialSymmetryPercent" || k === "facialSymmetry") return "femaleFacialSymmetryPercent";
+
+  if (k === "maleLimbalRingScore") return "maleLimbalRingScore";
+  if (k === "femaleLimbalRingScore" || k === "limbalRingScore" || k === "limbalRing") return "femaleLimbalRingScore";
+
+  if (k === "maleLipFullnessMm") return "maleLipFullnessMm";
+  if (k === "femaleLipFullnessMm" || k === "lipFullnessMm" || k === "lipFullness") return "femaleLipFullnessMm";
+
+  if (k === "maleCarotenoidSkinRadiance") return "maleCarotenoidSkinRadiance";
+  if (k === "femaleCarotenoidSkinRadiance" || k === "carotenoidSkinRadiance" || k === "carotenoidGlow") return "femaleCarotenoidSkinRadiance";
+
+  if (k === "maleShoulderToHipRatio") return "maleShoulderToHipRatio";
+  if (k === "femaleShoulderToHipRatio" || k === "shoulderToHipRatio" || k === "shr") return "femaleShoulderToHipRatio";
+
+  if (k === "maleFfmiKgM2") return "maleFfmiKgM2";
+  if (k === "femaleFfmiKgM2" || k === "ffmiKgM2" || k === "ffmi") return "femaleFfmiKgM2";
+
+  if (k === "maleVocalFormantDispersionHz") return "maleVocalFormantDispersionHz";
+  if (k === "femaleVocalFormantDispersionHz" || k === "vocalFormantDispersionHz" || k === "formantDispersion") return "femaleVocalFormantDispersionHz";
+
+  if (k === "maleDentalWhitenessScore") return "maleDentalWhitenessScore";
+  if (k === "femaleDentalWhitenessScore" || k === "dentalWhitenessScore" || k === "dentalWhiteness") return "femaleDentalWhitenessScore";
 
   // Macro / Gender stats
   if (k === "minimumWageEur") return "minimumWageEur";
@@ -1165,6 +1214,184 @@ export const MAP_METRICS: MapMetricDef[] = [
     formatValue: (v) => `${v.toFixed(1)}°`,
     getValue: (c) => getPhysicalStats(c).gonialAngleDegrees.female,
     colorInterpolator: PALETTES.sky,
+    accentColor: "#ec4899",
+  },
+
+  // ── EVOLUTIONARY ATTRACTION & SEXUAL DIMORPHISM SUITE ──
+  {
+    key: "maleFacialSymmetryPercent",
+    label: "Male Facial Bilateral Symmetry",
+    shortLabel: "Facial Symmetry (M)",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => getPhysicalStats(c).facialSymmetryPercent.male,
+    colorInterpolator: PALETTES.sky,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleFacialSymmetryPercent",
+    label: "Female Facial Bilateral Symmetry",
+    shortLabel: "Facial Symmetry (F)",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => getPhysicalStats(c).facialSymmetryPercent.female,
+    colorInterpolator: PALETTES.fuchsia,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleLimbalRingScore",
+    label: "Male Limbal Ring Clarity",
+    shortLabel: "Limbal Ring (M)",
+    category: "Health & Physical",
+    unit: "/5",
+    formatValue: (v) => `${v.toFixed(1)}/5`,
+    getValue: (c) => getPhysicalStats(c).limbalRingScore.male,
+    colorInterpolator: PALETTES.teal,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleLimbalRingScore",
+    label: "Female Limbal Ring Clarity",
+    shortLabel: "Limbal Ring (F)",
+    category: "Health & Physical",
+    unit: "/5",
+    formatValue: (v) => `${v.toFixed(1)}/5`,
+    getValue: (c) => getPhysicalStats(c).limbalRingScore.female,
+    colorInterpolator: PALETTES.teal,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleLipFullnessMm",
+    label: "Male Lip Fullness",
+    shortLabel: "Lip Fullness (M)",
+    category: "Health & Physical",
+    unit: "mm",
+    formatValue: (v) => `${v.toFixed(1)} mm`,
+    getValue: (c) => getPhysicalStats(c).lipFullnessMm.male,
+    colorInterpolator: PALETTES.rose,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleLipFullnessMm",
+    label: "Female Lip Fullness",
+    shortLabel: "Lip Fullness (F)",
+    category: "Health & Physical",
+    unit: "mm",
+    formatValue: (v) => `${v.toFixed(1)} mm`,
+    getValue: (c) => getPhysicalStats(c).lipFullnessMm.female,
+    colorInterpolator: PALETTES.rose,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleCarotenoidSkinRadiance",
+    label: "Male Carotenoid Skin Glow",
+    shortLabel: "Skin Glow (M)",
+    category: "Health & Physical",
+    unit: "pts",
+    formatValue: (v) => `${Math.round(v)} pts`,
+    getValue: (c) => getPhysicalStats(c).carotenoidSkinRadiance.male,
+    colorInterpolator: PALETTES.amber,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleCarotenoidSkinRadiance",
+    label: "Female Carotenoid Skin Glow",
+    shortLabel: "Skin Glow (F)",
+    category: "Health & Physical",
+    unit: "pts",
+    formatValue: (v) => `${Math.round(v)} pts`,
+    getValue: (c) => getPhysicalStats(c).carotenoidSkinRadiance.female,
+    colorInterpolator: PALETTES.amber,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleShoulderToHipRatio",
+    label: "Male Shoulder-to-Hip Ratio (SHR)",
+    shortLabel: "SHR V-Taper (M)",
+    category: "Health & Physical",
+    unit: "",
+    formatValue: (v) => v.toFixed(2),
+    getValue: (c) => getPhysicalStats(c).shoulderToHipRatio.male,
+    colorInterpolator: PALETTES.emerald,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleShoulderToHipRatio",
+    label: "Female Shoulder-to-Hip Ratio (SHR)",
+    shortLabel: "SHR Ratio (F)",
+    category: "Health & Physical",
+    unit: "",
+    formatValue: (v) => v.toFixed(2),
+    getValue: (c) => getPhysicalStats(c).shoulderToHipRatio.female,
+    colorInterpolator: PALETTES.fuchsia,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleFfmiKgM2",
+    label: "Male Fat-Free Mass Index (FFMI)",
+    shortLabel: "FFMI Lean (M)",
+    category: "Health & Physical",
+    unit: "kg/m²",
+    formatValue: (v) => `${v.toFixed(1)} kg/m²`,
+    getValue: (c) => getPhysicalStats(c).ffmiKgM2.male,
+    colorInterpolator: PALETTES.indigo,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleFfmiKgM2",
+    label: "Female Fat-Free Mass Index (FFMI)",
+    shortLabel: "FFMI Lean (F)",
+    category: "Health & Physical",
+    unit: "kg/m²",
+    formatValue: (v) => `${v.toFixed(1)} kg/m²`,
+    getValue: (c) => getPhysicalStats(c).ffmiKgM2.female,
+    colorInterpolator: PALETTES.indigo,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleVocalFormantDispersionHz",
+    label: "Male Vocal Formant Dispersion (Δf)",
+    shortLabel: "Formant Δf (M)",
+    category: "Health & Physical",
+    unit: "Hz",
+    formatValue: (v) => `${Math.round(v)} Hz`,
+    getValue: (c) => getPhysicalStats(c).vocalFormantDispersionHz.male,
+    colorInterpolator: PALETTES.teal,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleVocalFormantDispersionHz",
+    label: "Female Vocal Formant Dispersion (Δf)",
+    shortLabel: "Formant Δf (F)",
+    category: "Health & Physical",
+    unit: "Hz",
+    formatValue: (v) => `${Math.round(v)} Hz`,
+    getValue: (c) => getPhysicalStats(c).vocalFormantDispersionHz.female,
+    colorInterpolator: PALETTES.teal,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "maleDentalWhitenessScore",
+    label: "Male Dental Whiteness & Symmetry",
+    shortLabel: "Teeth Score (M)",
+    category: "Health & Physical",
+    unit: "/10",
+    formatValue: (v) => `${v.toFixed(1)}/10`,
+    getValue: (c) => getPhysicalStats(c).dentalWhitenessScore.male,
+    colorInterpolator: PALETTES.lime,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleDentalWhitenessScore",
+    label: "Female Dental Whiteness & Symmetry",
+    shortLabel: "Teeth Score (F)",
+    category: "Health & Physical",
+    unit: "/10",
+    formatValue: (v) => `${v.toFixed(1)}/10`,
+    getValue: (c) => getPhysicalStats(c).dentalWhitenessScore.female,
+    colorInterpolator: PALETTES.lime,
     accentColor: "#ec4899",
   },
 
