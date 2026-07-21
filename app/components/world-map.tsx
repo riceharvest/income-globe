@@ -19,6 +19,7 @@ import {
 import {
   countriesData,
   type CountryData,
+  getPhysicalStats,
 } from "~/data/countries";
 import { cn } from "~/lib/utils";
 
@@ -120,6 +121,30 @@ export type MapMetricKey =
   | "alcoholLiters"
   | "internetPenetration"
   | "englishSpeakingPercent"
+  | "hairColorBlonde"
+  | "hairColorRed"
+  | "hairColorBrown"
+  | "hairColorBlack"
+  | "eyeColorBlue"
+  | "eyeColorBrown"
+  | "eyeColorGreen"
+  | "eyeColorHazel"
+  | "skinPigmentation"
+  | "itaAngle"
+  | "legLengthPercent"
+  | "femaleLegLengthPercent"
+  | "maleLegLengthPercent"
+  | "leanMuscleMassKg"
+  | "femaleLeanMuscleMassKg"
+  | "maleLeanMuscleMassKg"
+  | "digitRatio"
+  | "femaleDigitRatio"
+  | "maleDigitRatio"
+  | "shoulderToWaistRatio"
+  | "femaleShoulderToWaistRatio"
+  | "maleShoulderToWaistRatio"
+  | "handLengthCm"
+  | "vocalPitchHz"
   | "adolescentBirthRate"
   | "laborForceGap"
   | "contraceptiveUse"
@@ -148,6 +173,38 @@ export function normalizeMapMetricKey(key: string): MapMetricKey {
   if (key === "alcoholLiters" || key === "femaleAlcoholLiters") return "alcoholLiters";
   if (key === "smokingRate" || key === "femaleSmokingRate") return "smokingRate";
   if (key === "femaleLifeExpectancy" || key === "maleLifeExpectancy" || key === "lifeExpectancy") return "lifeExpectancy";
+
+  if (key === "hairColorBlonde" || key === "blondeHair" || key === "blonde") return "hairColorBlonde";
+  if (key === "hairColorRed" || key === "redHair" || key === "red") return "hairColorRed";
+  if (key === "hairColorBrown" || key === "brownHair") return "hairColorBrown";
+  if (key === "hairColorBlack" || key === "blackHair") return "hairColorBlack";
+
+  if (key === "eyeColorBlue" || key === "blueEyes" || key === "blue") return "eyeColorBlue";
+  if (key === "eyeColorBrown" || key === "brownEyes") return "eyeColorBrown";
+  if (key === "eyeColorGreen" || key === "greenEyes" || key === "green") return "eyeColorGreen";
+  if (key === "eyeColorHazel" || key === "hazelEyes" || key === "hazel") return "eyeColorHazel";
+
+  if (key === "skinPigmentation" || key === "melaninIndex" || key === "skinTone") return "skinPigmentation";
+  if (key === "itaAngle" || key === "ita") return "itaAngle";
+
+  if (key === "legLengthPercent" || key === "relativeLegLength") return "legLengthPercent";
+  if (key === "femaleLegLengthPercent") return "femaleLegLengthPercent";
+  if (key === "maleLegLengthPercent") return "maleLegLengthPercent";
+
+  if (key === "leanMuscleMassKg" || key === "leanMuscleMass") return "leanMuscleMassKg";
+  if (key === "femaleLeanMuscleMassKg") return "femaleLeanMuscleMassKg";
+  if (key === "maleLeanMuscleMassKg") return "maleLeanMuscleMassKg";
+
+  if (key === "digitRatio" || key === "digitRatio2d4d" || key === "2d4d") return "digitRatio";
+  if (key === "femaleDigitRatio") return "femaleDigitRatio";
+  if (key === "maleDigitRatio") return "maleDigitRatio";
+
+  if (key === "shoulderToWaistRatio" || key === "shoulderWaistRatio") return "shoulderToWaistRatio";
+  if (key === "femaleShoulderToWaistRatio") return "femaleShoulderToWaistRatio";
+  if (key === "maleShoulderToWaistRatio") return "maleShoulderToWaistRatio";
+
+  if (key === "handLengthCm" || key === "handLength") return "handLengthCm";
+  if (key === "vocalPitchHz" || key === "vocalPitch" || key === "pitch") return "vocalPitchHz";
 
   if (key === "minimumWageEur") return "minimumWageEur";
   if (key === "costOfLivingIndex") return "costOfLivingIndex";
@@ -486,6 +543,118 @@ export const MAP_METRICS: MapMetricDef[] = [
     colorInterpolator: PALETTES.amber,
     invertScale: true,
     accentColor: "#f97316",
+  },
+
+  // ── EXTENDED PHENOTYPIC & ANTHROPOMETRIC METRICS ──
+  {
+    key: "hairColorBlonde",
+    label: "Blonde Hair Frequency",
+    shortLabel: "Blonde Hair %",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${Math.round(v)}%`,
+    getValue: (c) => getPhysicalStats(c).hairColor.blonde,
+    colorInterpolator: PALETTES.amber,
+    accentColor: "#f59e0b",
+  },
+  {
+    key: "eyeColorBlue",
+    label: "Blue Eye Frequency",
+    shortLabel: "Blue Eyes %",
+    category: "Health & Physical",
+    unit: "%",
+    formatValue: (v) => `${Math.round(v)}%`,
+    getValue: (c) => getPhysicalStats(c).eyeColor.blue,
+    colorInterpolator: PALETTES.sky,
+    accentColor: "#38bdf8",
+  },
+  {
+    key: "skinPigmentation",
+    label: "Melanin Index (ITA°)",
+    shortLabel: "Melanin Index",
+    category: "Health & Physical",
+    unit: "ITA°",
+    formatValue: (v) => `${Math.round(v)}°`,
+    getValue: (c) => getPhysicalStats(c).skinPigmentation.itaAngle,
+    colorInterpolator: PALETTES.amber,
+    accentColor: "#eab308",
+  },
+  {
+    key: "legLengthPercent",
+    label: "Relative Leg Length",
+    shortLabel: "Leg Length %",
+    category: "Health & Physical",
+    unit: "% of height",
+    formatValue: (v) => `${v.toFixed(1)}%`,
+    getValue: (c) => getPhysicalStats(c).legLengthPercent.female,
+    colorInterpolator: PALETTES.indigo,
+    accentColor: "#6366f1",
+  },
+  {
+    key: "maleLeanMuscleMassKg",
+    label: "Male Lean Muscle Mass",
+    shortLabel: "Muscle Mass (M)",
+    category: "Health & Physical",
+    unit: "kg",
+    formatValue: (v) => `${Math.round(v)} kg`,
+    getValue: (c) => getPhysicalStats(c).leanMuscleMassKg.male,
+    colorInterpolator: PALETTES.indigo,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "femaleLeanMuscleMassKg",
+    label: "Female Lean Muscle Mass",
+    shortLabel: "Muscle Mass (F)",
+    category: "Health & Physical",
+    unit: "kg",
+    formatValue: (v) => `${Math.round(v)} kg`,
+    getValue: (c) => getPhysicalStats(c).leanMuscleMassKg.female,
+    colorInterpolator: PALETTES.fuchsia,
+    accentColor: "#ec4899",
+  },
+  {
+    key: "digitRatio",
+    label: "2D:4D Digit Ratio",
+    shortLabel: "2D:4D Ratio",
+    category: "Health & Physical",
+    unit: "ratio",
+    formatValue: (v) => v.toFixed(3),
+    getValue: (c) => getPhysicalStats(c).digitRatio.male,
+    colorInterpolator: PALETTES.teal,
+    accentColor: "#14b8a6",
+  },
+  {
+    key: "shoulderToWaistRatio",
+    label: "Shoulder-to-Waist Ratio",
+    shortLabel: "V-Taper Ratio",
+    category: "Health & Physical",
+    unit: "ratio",
+    formatValue: (v) => v.toFixed(2),
+    getValue: (c) => getPhysicalStats(c).shoulderToWaistRatio.male,
+    colorInterpolator: PALETTES.indigo,
+    accentColor: "#6366f1",
+  },
+  {
+    key: "handLengthCm",
+    label: "Hand Size (Length)",
+    shortLabel: "Hand Size",
+    category: "Health & Physical",
+    unit: "cm",
+    formatValue: (v) => `${v.toFixed(1)} cm`,
+    getValue: (c) => getPhysicalStats(c).handLengthCm.male,
+    colorInterpolator: PALETTES.indigo,
+    accentColor: "#3b82f6",
+  },
+  {
+    key: "vocalPitchHz",
+    label: "Fundamental Vocal Pitch",
+    shortLabel: "Voice Pitch",
+    category: "Health & Physical",
+    unit: "Hz",
+    formatValue: (v) => `${Math.round(v)} Hz`,
+    getValue: (c) => getPhysicalStats(c).vocalPitchHz.female,
+    colorInterpolator: PALETTES.fuchsia,
+    accentColor: "#d946ef",
   },
 
   // ── CATEGORY 4: GENDER ──

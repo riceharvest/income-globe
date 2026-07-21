@@ -26,6 +26,12 @@ import {
   Clock,
   Footprints,
   Sparkles,
+  Eye,
+  Palette,
+  Volume2,
+  Hand,
+  Dumbbell,
+  Dna,
   Building2,
   BookOpen,
 } from "lucide-react";
@@ -115,6 +121,42 @@ function isMetricActive(targetKey: string, activeKey?: string): boolean {
     diabetesRate: ["diabetesRate"],
     hypertensionRate: ["hypertensionRate"],
     alcoholLiters: ["alcoholLiters"],
+    hairColor: ["hairColor", "hairColorBlonde", "hairColorRed", "hairColorBrown", "hairColorBlack"],
+    hairColorBlonde: ["hairColorBlonde", "hairColor"],
+    hairColorRed: ["hairColorRed", "hairColor"],
+    hairColorBrown: ["hairColorBrown", "hairColor"],
+    hairColorBlack: ["hairColorBlack", "hairColor"],
+    hairTexture: ["hairTexture", "hairTextureStraight", "hairTextureWavy", "hairTextureCurly", "hairTextureCoily"],
+    hairTextureStraight: ["hairTextureStraight", "hairTexture"],
+    hairTextureWavy: ["hairTextureWavy", "hairTexture"],
+    hairTextureCurly: ["hairTextureCurly", "hairTexture"],
+    hairTextureCoily: ["hairTextureCoily", "hairTexture"],
+    eyeColor: ["eyeColor", "eyeColorBlue", "eyeColorBrown", "eyeColorGreen", "eyeColorHazel"],
+    eyeColorBlue: ["eyeColorBlue", "eyeColor"],
+    eyeColorBrown: ["eyeColorBrown", "eyeColor"],
+    eyeColorGreen: ["eyeColorGreen", "eyeColor"],
+    eyeColorHazel: ["eyeColorHazel", "eyeColor"],
+    skinPigmentation: ["skinPigmentation", "itaAngle"],
+    itaAngle: ["skinPigmentation", "itaAngle"],
+    legLengthPercent: ["legLengthPercent", "femaleLegLengthPercent", "maleLegLengthPercent"],
+    femaleLegLengthPercent: ["legLengthPercent", "femaleLegLengthPercent", "maleLegLengthPercent"],
+    maleLegLengthPercent: ["legLengthPercent", "femaleLegLengthPercent", "maleLegLengthPercent"],
+    leanMuscleMassKg: ["leanMuscleMassKg", "femaleLeanMuscleMassKg", "maleLeanMuscleMassKg", "leanMusclePercent", "femaleLeanMusclePercent", "maleLeanMusclePercent"],
+    femaleLeanMuscleMassKg: ["leanMuscleMassKg", "femaleLeanMuscleMassKg", "maleLeanMuscleMassKg"],
+    maleLeanMuscleMassKg: ["leanMuscleMassKg", "femaleLeanMuscleMassKg", "maleLeanMuscleMassKg"],
+    leanMusclePercent: ["leanMuscleMassKg", "femaleLeanMuscleMassKg", "maleLeanMuscleMassKg", "leanMusclePercent"],
+    digitRatio: ["digitRatio", "femaleDigitRatio", "maleDigitRatio"],
+    femaleDigitRatio: ["digitRatio", "femaleDigitRatio", "maleDigitRatio"],
+    maleDigitRatio: ["digitRatio", "femaleDigitRatio", "maleDigitRatio"],
+    shoulderToWaistRatio: ["shoulderToWaistRatio", "femaleShoulderToWaistRatio", "maleShoulderToWaistRatio"],
+    femaleShoulderToWaistRatio: ["shoulderToWaistRatio", "femaleShoulderToWaistRatio", "maleShoulderToWaistRatio"],
+    maleShoulderToWaistRatio: ["shoulderToWaistRatio", "femaleShoulderToWaistRatio", "maleShoulderToWaistRatio"],
+    handLengthCm: ["handLengthCm", "handSize", "femaleHandLengthCm", "maleHandLengthCm"],
+    femaleHandLengthCm: ["handLengthCm", "handSize", "femaleHandLengthCm", "maleHandLengthCm"],
+    maleHandLengthCm: ["handLengthCm", "handSize", "femaleHandLengthCm", "maleHandLengthCm"],
+    vocalPitchHz: ["vocalPitchHz", "vocalPitch", "femaleVocalPitchHz", "maleVocalPitchHz"],
+    femaleVocalPitchHz: ["vocalPitchHz", "vocalPitch", "femaleVocalPitchHz", "maleVocalPitchHz"],
+    maleVocalPitchHz: ["vocalPitchHz", "vocalPitch", "femaleVocalPitchHz", "maleVocalPitchHz"],
   };
 
   const equivalentList = aliases[targetKey];
@@ -402,6 +444,60 @@ export function CountrySidebar({
       f: physicalStats.lifeExpectancy.female,
       max: 95,
       icon: Heart,
+    },
+    {
+      label: "Relative Leg Length (% height)",
+      metricKey: "legLengthPercent",
+      unit: "%",
+      m: physicalStats.legLengthPercent.male,
+      f: physicalStats.legLengthPercent.female,
+      max: 55,
+      icon: Ruler,
+    },
+    {
+      label: "Lean Muscle Mass (kg)",
+      metricKey: "maleLeanMuscleMassKg",
+      unit: " kg",
+      m: physicalStats.leanMuscleMassKg.male,
+      f: physicalStats.leanMuscleMassKg.female,
+      max: 75,
+      icon: Activity,
+    },
+    {
+      label: "2D:4D Digit Ratio",
+      metricKey: "digitRatio",
+      unit: "",
+      m: physicalStats.digitRatio.male,
+      f: physicalStats.digitRatio.female,
+      max: 1.05,
+      icon: Percent,
+    },
+    {
+      label: "Shoulder-to-Waist Ratio",
+      metricKey: "shoulderToWaistRatio",
+      unit: "",
+      m: physicalStats.shoulderToWaistRatio.male,
+      f: physicalStats.shoulderToWaistRatio.female,
+      max: 1.8,
+      icon: Ruler,
+    },
+    {
+      label: "Hand Size (Length cm)",
+      metricKey: "handLengthCm",
+      unit: " cm",
+      m: physicalStats.handLengthCm.male,
+      f: physicalStats.handLengthCm.female,
+      max: 24,
+      icon: Ruler,
+    },
+    {
+      label: "Fundamental Vocal Pitch (Hz)",
+      metricKey: "vocalPitchHz",
+      unit: " Hz",
+      m: physicalStats.vocalPitchHz.male,
+      f: physicalStats.vocalPitchHz.female,
+      max: 260,
+      icon: Activity,
     },
   ];
 
@@ -787,7 +883,76 @@ export function CountrySidebar({
               </div>
             </div>
 
-            {/* Detailed 14 Physical Metrics List with Side-by-Side Dual-Bar Charts */}
+            {/* Phenotypic Characteristics Cards (Hair, Eyes, Skin Tone) */}
+            <div className="space-y-2.5">
+              {/* Hair Color Breakdown Card */}
+              <MetricCard
+                label="Hair Color Frequency (%)"
+                metricKey="hairColorBlonde"
+                activeSortKey={activeSortKey}
+                onSelectMetric={onSelectMetric}
+                icon={Sparkles}
+              >
+                <div className="space-y-2">
+                  <div className="grid grid-cols-4 gap-1 text-[11px] font-mono text-center font-bold">
+                    <span className="text-zinc-200">⬛ {physicalStats.hairColor.black}%</span>
+                    <span className="text-amber-700">🟫 {physicalStats.hairColor.brown}%</span>
+                    <span className="text-amber-300">👱 {physicalStats.hairColor.blonde}%</span>
+                    <span className="text-orange-400">👩‍🦰 {physicalStats.hairColor.red}%</span>
+                  </div>
+                  <div className="h-2 w-full bg-secondary/80 rounded-full overflow-hidden flex">
+                    <div className="h-full bg-zinc-900" style={{ width: `${physicalStats.hairColor.black}%` }} />
+                    <div className="h-full bg-amber-800" style={{ width: `${physicalStats.hairColor.brown}%` }} />
+                    <div className="h-full bg-amber-300" style={{ width: `${physicalStats.hairColor.blonde}%` }} />
+                    <div className="h-full bg-orange-500" style={{ width: `${physicalStats.hairColor.red}%` }} />
+                  </div>
+                </div>
+              </MetricCard>
+
+              {/* Eye Color Breakdown Card */}
+              <MetricCard
+                label="Eye Color Frequency (%)"
+                metricKey="eyeColorBlue"
+                activeSortKey={activeSortKey}
+                onSelectMetric={onSelectMetric}
+                icon={Eye}
+              >
+                <div className="space-y-2">
+                  <div className="grid grid-cols-4 gap-1 text-[11px] font-mono text-center font-bold">
+                    <span className="text-amber-700">👁️ {physicalStats.eyeColor.brown}%</span>
+                    <span className="text-sky-400">👁️ {physicalStats.eyeColor.blue}%</span>
+                    <span className="text-emerald-400">👁️ {physicalStats.eyeColor.green}%</span>
+                    <span className="text-amber-500">👁️ {physicalStats.eyeColor.hazel}%</span>
+                  </div>
+                  <div className="h-2 w-full bg-secondary/80 rounded-full overflow-hidden flex">
+                    <div className="h-full bg-amber-900" style={{ width: `${physicalStats.eyeColor.brown}%` }} />
+                    <div className="h-full bg-sky-400" style={{ width: `${physicalStats.eyeColor.blue}%` }} />
+                    <div className="h-full bg-emerald-500" style={{ width: `${physicalStats.eyeColor.green}%` }} />
+                    <div className="h-full bg-amber-600" style={{ width: `${physicalStats.eyeColor.hazel}%` }} />
+                  </div>
+                </div>
+              </MetricCard>
+
+              {/* Skin Tone & Melanin Index Card */}
+              <MetricCard
+                label="Skin Tone & Melanin Index (ITA°)"
+                metricKey="skinPigmentation"
+                activeSortKey={activeSortKey}
+                onSelectMetric={onSelectMetric}
+                icon={User}
+              >
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-semibold text-foreground">
+                    {physicalStats.skinPigmentation.label} ({physicalStats.skinPigmentation.fitzpatrickType})
+                  </span>
+                  <span className="font-mono font-bold text-emerald-400">
+                    ITA° {physicalStats.skinPigmentation.itaAngle}°
+                  </span>
+                </div>
+              </MetricCard>
+            </div>
+
+            {/* Detailed Physical Metrics List with Side-by-Side Dual-Bar Charts */}
             <div className="space-y-2.5">
               {physicalMetricsList.map((item) => (
                 <MetricCard

@@ -248,6 +248,19 @@ export interface PhysicalStats {
   alcoholLiters: PhysicalMetricGenderPair;
   smokingRate: PhysicalMetricGenderPair;
   lifeExpectancy: PhysicalMetricGenderPair;
+
+  // Phenotypic & Advanced Anthropometrics
+  hairColor: { black: number; brown: number; blonde: number; red: number };
+  hairTexture: { straight: number; wavy: number; curly: number; coily: number };
+  eyeColor: { brown: number; blue: number; green: number; hazel: number };
+  skinPigmentation: { itaAngle: number; fitzpatrickType: string; label: string };
+  legLengthPercent: PhysicalMetricGenderPair;
+  leanMuscleMassKg: PhysicalMetricGenderPair;
+  leanMusclePercent: PhysicalMetricGenderPair;
+  digitRatio: PhysicalMetricGenderPair;
+  shoulderToWaistRatio: PhysicalMetricGenderPair;
+  handLengthCm: PhysicalMetricGenderPair;
+  vocalPitchHz: PhysicalMetricGenderPair;
 }
 
 export interface CountryData {
@@ -322,6 +335,32 @@ export interface CountryData {
   hypertensionRate?: number;
   alcoholLiters?: number;
   lifeExpectancy?: number;
+
+  // New Physical & Phenotypic Metrics
+  hairColorBlonde?: number;
+  hairColorRed?: number;
+  hairColorBrown?: number;
+  hairColorBlack?: number;
+  eyeColorBlue?: number;
+  eyeColorBrown?: number;
+  eyeColorGreen?: number;
+  eyeColorHazel?: number;
+  skinPigmentation?: number;
+  itaAngle?: number;
+  legLengthPercent?: number;
+  femaleLegLengthPercent?: number;
+  maleLegLengthPercent?: number;
+  leanMuscleMassKg?: number;
+  femaleLeanMuscleMassKg?: number;
+  maleLeanMuscleMassKg?: number;
+  digitRatio?: number;
+  femaleDigitRatio?: number;
+  maleDigitRatio?: number;
+  shoulderToWaistRatio?: number;
+  femaleShoulderToWaistRatio?: number;
+  maleShoulderToWaistRatio?: number;
+  handLengthCm?: number;
+  vocalPitchHz?: number;
 
   // Demographics & Misc
   englishSpeakingPercent?: number;
@@ -565,6 +604,70 @@ export function getPhysicalStats(country: CountryData): PhysicalStats {
   const maleAlcohol = country.maleAlcoholLiters ?? (country.hdi ? Math.round((country.hdi * 11) * 10) / 10 : 6.5);
   const femaleAlcohol = country.femaleAlcoholLiters ?? Math.round(maleAlcohol * 0.32 * 10) / 10;
 
+  // Regional Phenotypic Distributions
+  const region = country.region || "Europe";
+  let hairColor = { black: 35, brown: 45, blonde: 15, red: 5 };
+  let hairTexture = { straight: 40, wavy: 45, curly: 12, coily: 3 };
+  let eyeColor = { brown: 40, blue: 35, green: 15, hazel: 10 };
+  let skinPigmentation = { itaAngle: 42, fitzpatrickType: "Type II-III", label: "Fair / Medium" };
+
+  if (region.includes("Europe")) {
+    if (country.code === "IS" || country.code === "NO" || country.code === "SE" || country.code === "FI" || country.code === "DK" || country.code === "EE") {
+      hairColor = { black: 5, brown: 30, blonde: 60, red: 5 };
+      eyeColor = { brown: 15, blue: 68, green: 12, hazel: 5 };
+      skinPigmentation = { itaAngle: 52, fitzpatrickType: "Type I-II", label: "Very Fair" };
+    } else if (country.code === "IE" || country.code === "GB" || country.code === "SCT") {
+      hairColor = { black: 10, brown: 45, blonde: 35, red: 10 };
+      eyeColor = { brown: 25, blue: 50, green: 15, hazel: 10 };
+      skinPigmentation = { itaAngle: 48, fitzpatrickType: "Type I-II", label: "Fair (Freckled)" };
+    } else {
+      hairColor = { black: 25, brown: 55, blonde: 17, red: 3 };
+      eyeColor = { brown: 45, blue: 32, green: 13, hazel: 10 };
+      skinPigmentation = { itaAngle: 38, fitzpatrickType: "Type II-III", label: "Fair-Intermediate" };
+    }
+  } else if (region.includes("Asia")) {
+    hairColor = { black: 88, brown: 11, blonde: 1, red: 0 };
+    hairTexture = { straight: 82, wavy: 15, curly: 2, coily: 1 };
+    eyeColor = { brown: 92, blue: 1, green: 2, hazel: 5 };
+    skinPigmentation = { itaAngle: 28, fitzpatrickType: "Type III-IV", label: "Intermediate / Olive" };
+  } else if (region.includes("Africa")) {
+    hairColor = { black: 96, brown: 4, blonde: 0, red: 0 };
+    hairTexture = { straight: 2, wavy: 5, curly: 18, coily: 75 };
+    eyeColor = { brown: 96, blue: 1, green: 1, hazel: 2 };
+    skinPigmentation = { itaAngle: -35, fitzpatrickType: "Type V-VI", label: "Rich Brown / Dark" };
+  } else if (region.includes("Americas")) {
+    hairColor = { black: 45, brown: 42, blonde: 11, red: 2 };
+    hairTexture = { straight: 45, wavy: 40, curly: 12, coily: 3 };
+    eyeColor = { brown: 55, blue: 25, green: 12, hazel: 8 };
+    skinPigmentation = { itaAngle: 25, fitzpatrickType: "Type III-IV", label: "Medium / Olive" };
+  } else if (region.includes("Oceania")) {
+    hairColor = { black: 52, brown: 35, blonde: 11, red: 2 };
+    eyeColor = { brown: 62, blue: 25, green: 8, hazel: 5 };
+    skinPigmentation = { itaAngle: 15, fitzpatrickType: "Type IV", label: "Medium-Dark" };
+  }
+
+  // Anthropometrics (Leg %, Muscle Mass, Digit Ratio, Shoulder/Waist, Hand, Voice)
+  const maleLegPercent = Math.round((47.8 + (maleHeight > 175 ? 0.8 : 0)) * 10) / 10;
+  const femaleLegPercent = Math.round((48.4 + (femaleHeight > 165 ? 0.8 : 0)) * 10) / 10;
+
+  const maleMuscleKg = Math.round((maleWeight * (1 - maleBodyFat / 100) * 0.58) * 10) / 10;
+  const femaleMuscleKg = Math.round((femaleWeight * (1 - femaleBodyFat / 100) * 0.52) * 10) / 10;
+
+  const maleMusclePct = Math.round(((maleMuscleKg / maleWeight) * 100) * 10) / 10;
+  const femaleMusclePct = Math.round(((femaleMuscleKg / femaleWeight) * 100) * 10) / 10;
+
+  const maleDigitRatio = Math.round((0.952 + (region.includes("Asia") ? -0.008 : 0)) * 1000) / 1000;
+  const femaleDigitRatio = Math.round((0.981 + (region.includes("Asia") ? -0.006 : 0)) * 1000) / 1000;
+
+  const maleShoulderWaist = Math.round((1.46 - (maleWaist / maleHeight) * 0.4) * 100) / 100;
+  const femaleShoulderWaist = Math.round((1.22 - (femaleWaist / femaleHeight) * 0.3) * 100) / 100;
+
+  const maleHandCm = Math.round(((maleHeight * 0.108)) * 10) / 10;
+  const femaleHandCm = Math.round(((femaleHeight * 0.106)) * 10) / 10;
+
+  const maleVoiceHz = Math.round((120 - (maleHeight - 175) * 0.4));
+  const femaleVoiceHz = Math.round((210 - (femaleHeight - 163) * 0.6));
+
   return {
     heightCm: { male: maleHeight, female: femaleHeight },
     weightKg: { male: maleWeight, female: femaleWeight },
@@ -580,6 +683,17 @@ export function getPhysicalStats(country: CountryData): PhysicalStats {
     alcoholLiters: { male: maleAlcohol, female: femaleAlcohol },
     smokingRate: { male: maleSmoking, female: femaleSmoking },
     lifeExpectancy: { male: maleLifeExp, female: femaleLifeExp },
+    hairColor,
+    hairTexture,
+    eyeColor,
+    skinPigmentation,
+    legLengthPercent: { male: maleLegPercent, female: femaleLegPercent },
+    leanMuscleMassKg: { male: maleMuscleKg, female: femaleMuscleKg },
+    leanMusclePercent: { male: maleMusclePct, female: femaleMusclePct },
+    digitRatio: { male: maleDigitRatio, female: femaleDigitRatio },
+    shoulderToWaistRatio: { male: maleShoulderWaist, female: femaleShoulderWaist },
+    handLengthCm: { male: maleHandCm, female: femaleHandCm },
+    vocalPitchHz: { male: maleVoiceHz, female: femaleVoiceHz },
   };
 }
 
@@ -730,6 +844,59 @@ export function getSortValue(
   if (metricKey === "maleLifeExpectancy") return phys.lifeExpectancy.male;
   if (metricKey === "lifeExpectancy") {
     return Math.round(((phys.lifeExpectancy.female + phys.lifeExpectancy.male) / 2) * 10) / 10;
+  }
+
+  // Phenotypic & Advanced Anthropometrics
+  if (metricKey === "hairColorBlonde") return phys.hairColor.blonde;
+  if (metricKey === "hairColorRed") return phys.hairColor.red;
+  if (metricKey === "hairColorBrown") return phys.hairColor.brown;
+  if (metricKey === "hairColorBlack") return phys.hairColor.black;
+
+  if (metricKey === "hairTextureStraight") return phys.hairTexture.straight;
+  if (metricKey === "hairTextureCurly") return phys.hairTexture.curly;
+  if (metricKey === "hairTextureCoily") return phys.hairTexture.coily;
+
+  if (metricKey === "eyeColorBlue") return phys.eyeColor.blue;
+  if (metricKey === "eyeColorBrown") return phys.eyeColor.brown;
+  if (metricKey === "eyeColorGreen") return phys.eyeColor.green;
+  if (metricKey === "eyeColorHazel") return phys.eyeColor.hazel;
+
+  if (metricKey === "skinPigmentation" || metricKey === "itaAngle") return phys.skinPigmentation.itaAngle;
+
+  if (metricKey === "femaleLegLengthPercent") return phys.legLengthPercent.female;
+  if (metricKey === "maleLegLengthPercent") return phys.legLengthPercent.male;
+  if (metricKey === "legLengthPercent") {
+    return Math.round(((phys.legLengthPercent.female + phys.legLengthPercent.male) / 2) * 10) / 10;
+  }
+
+  if (metricKey === "femaleLeanMuscleMassKg") return phys.leanMuscleMassKg.female;
+  if (metricKey === "maleLeanMuscleMassKg") return phys.leanMuscleMassKg.male;
+  if (metricKey === "leanMuscleMassKg") {
+    return Math.round(((phys.leanMuscleMassKg.female + phys.leanMuscleMassKg.male) / 2) * 10) / 10;
+  }
+
+  if (metricKey === "femaleDigitRatio") return phys.digitRatio.female;
+  if (metricKey === "maleDigitRatio") return phys.digitRatio.male;
+  if (metricKey === "digitRatio") {
+    return Math.round(((phys.digitRatio.female + phys.digitRatio.male) / 2) * 1000) / 1000;
+  }
+
+  if (metricKey === "femaleShoulderToWaistRatio") return phys.shoulderToWaistRatio.female;
+  if (metricKey === "maleShoulderToWaistRatio") return phys.shoulderToWaistRatio.male;
+  if (metricKey === "shoulderToWaistRatio") {
+    return Math.round(((phys.shoulderToWaistRatio.female + phys.shoulderToWaistRatio.male) / 2) * 100) / 100;
+  }
+
+  if (metricKey === "femaleHandLengthCm") return phys.handLengthCm.female;
+  if (metricKey === "maleHandLengthCm") return phys.handLengthCm.male;
+  if (metricKey === "handLengthCm") {
+    return Math.round(((phys.handLengthCm.female + phys.handLengthCm.male) / 2) * 10) / 10;
+  }
+
+  if (metricKey === "femaleVocalPitchHz") return phys.vocalPitchHz.female;
+  if (metricKey === "maleVocalPitchHz") return phys.vocalPitchHz.male;
+  if (metricKey === "vocalPitchHz") {
+    return Math.round((phys.vocalPitchHz.female + phys.vocalPitchHz.male) / 2);
   }
 
   // Fallback: check dynamic object properties
