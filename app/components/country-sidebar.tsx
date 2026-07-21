@@ -317,11 +317,13 @@ export function CountrySidebar({
     onSelectCountry(uniqueCountriesData[randomIndex].code);
   }
 
-  // 14 Physical metrics metadata definition
+  // 20 Physical metrics metadata definition with Male vs Female specific keys
   const physicalMetricsList = [
     {
       label: "Height / Length (cm)",
-      metricKey: "femaleHeightCm",
+      metricKey: "heightCm",
+      mKey: "maleHeightCm",
+      fKey: "femaleHeightCm",
       unit: "cm",
       m: physicalStats.heightCm.male,
       f: physicalStats.heightCm.female,
@@ -330,7 +332,9 @@ export function CountrySidebar({
     },
     {
       label: "Average Weight (kg)",
-      metricKey: "femaleWeightKg",
+      metricKey: "weightKg",
+      mKey: "maleWeightKg",
+      fKey: "femaleWeightKg",
       unit: "kg",
       m: physicalStats.weightKg.male,
       f: physicalStats.weightKg.female,
@@ -339,7 +343,9 @@ export function CountrySidebar({
     },
     {
       label: "Body Mass Index (BMI)",
-      metricKey: "femaleBmi",
+      metricKey: "bmi",
+      mKey: "maleBmi",
+      fKey: "femaleBmi",
       unit: "",
       m: physicalStats.bmi.male,
       f: physicalStats.bmi.female,
@@ -349,6 +355,8 @@ export function CountrySidebar({
     {
       label: "Body Fat Percentage (%)",
       metricKey: "bodyFatPercent",
+      mKey: "maleBodyFatPercent",
+      fKey: "femaleBodyFatPercent",
       unit: "%",
       m: physicalStats.bodyFatPercent.male,
       f: physicalStats.bodyFatPercent.female,
@@ -358,6 +366,8 @@ export function CountrySidebar({
     {
       label: "Waist Circumference (cm)",
       metricKey: "waistCm",
+      mKey: "maleWaistCm",
+      fKey: "femaleWaistCm",
       unit: "cm",
       m: physicalStats.waistCm.male,
       f: physicalStats.waistCm.female,
@@ -367,6 +377,8 @@ export function CountrySidebar({
     {
       label: "Average Shoe Size (EU)",
       metricKey: "shoeSizeEu",
+      mKey: "maleShoeSizeEu",
+      fKey: "femaleShoeSizeEu",
       unit: " EU",
       m: physicalStats.shoeSizeEu.male,
       f: physicalStats.shoeSizeEu.female,
@@ -376,6 +388,8 @@ export function CountrySidebar({
     {
       label: "Daily Caloric Intake (kcal)",
       metricKey: "caloricIntakeKcal",
+      mKey: "maleCaloricIntakeKcal",
+      fKey: "femaleCaloricIntakeKcal",
       unit: " kcal",
       m: physicalStats.caloricIntakeKcal.male,
       f: physicalStats.caloricIntakeKcal.female,
@@ -385,6 +399,8 @@ export function CountrySidebar({
     {
       label: "Obesity Rate (%)",
       metricKey: "obesityRate",
+      mKey: "maleObesityRate",
+      fKey: "femaleObesityRate",
       unit: "%",
       m: physicalStats.obesityRate.male,
       f: physicalStats.obesityRate.female,
@@ -394,6 +410,8 @@ export function CountrySidebar({
     {
       label: "Physical Inactivity Rate (%)",
       metricKey: "inactivityRate",
+      mKey: "maleInactivityRate",
+      fKey: "femaleInactivityRate",
       unit: "%",
       m: physicalStats.inactivityRate.male,
       f: physicalStats.inactivityRate.female,
@@ -403,6 +421,8 @@ export function CountrySidebar({
     {
       label: "Diabetes Prevalence (%)",
       metricKey: "diabetesRate",
+      mKey: "maleDiabetesRate",
+      fKey: "femaleDiabetesRate",
       unit: "%",
       m: physicalStats.diabetesRate.male,
       f: physicalStats.diabetesRate.female,
@@ -412,6 +432,8 @@ export function CountrySidebar({
     {
       label: "Hypertension (High BP %)",
       metricKey: "hypertensionRate",
+      mKey: "maleHypertensionRate",
+      fKey: "femaleHypertensionRate",
       unit: "%",
       m: physicalStats.hypertensionRate.male,
       f: physicalStats.hypertensionRate.female,
@@ -421,6 +443,8 @@ export function CountrySidebar({
     {
       label: "Alcohol Consumption (L/yr)",
       metricKey: "alcoholLiters",
+      mKey: "maleAlcoholLiters",
+      fKey: "femaleAlcoholLiters",
       unit: " L/yr",
       m: physicalStats.alcoholLiters.male,
       f: physicalStats.alcoholLiters.female,
@@ -430,6 +454,8 @@ export function CountrySidebar({
     {
       label: "Smoking Rate (%)",
       metricKey: "smokingRate",
+      mKey: "maleSmokingRate",
+      fKey: "femaleSmokingRate",
       unit: "%",
       m: physicalStats.smokingRate.male,
       f: physicalStats.smokingRate.female,
@@ -438,7 +464,9 @@ export function CountrySidebar({
     },
     {
       label: "Life Expectancy (years)",
-      metricKey: "femaleLifeExpectancy",
+      metricKey: "lifeExpectancy",
+      mKey: "maleLifeExpectancy",
+      fKey: "femaleLifeExpectancy",
       unit: " yrs",
       m: physicalStats.lifeExpectancy.male,
       f: physicalStats.lifeExpectancy.female,
@@ -448,6 +476,8 @@ export function CountrySidebar({
     {
       label: "Relative Leg Length (% height)",
       metricKey: "legLengthPercent",
+      mKey: "maleLegLengthPercent",
+      fKey: "femaleLegLengthPercent",
       unit: "%",
       m: physicalStats.legLengthPercent.male,
       f: physicalStats.legLengthPercent.female,
@@ -456,7 +486,9 @@ export function CountrySidebar({
     },
     {
       label: "Lean Muscle Mass (kg)",
-      metricKey: "maleLeanMuscleMassKg",
+      metricKey: "leanMuscleMassKg",
+      mKey: "maleLeanMuscleMassKg",
+      fKey: "femaleLeanMuscleMassKg",
       unit: " kg",
       m: physicalStats.leanMuscleMassKg.male,
       f: physicalStats.leanMuscleMassKg.female,
@@ -466,6 +498,8 @@ export function CountrySidebar({
     {
       label: "2D:4D Digit Ratio",
       metricKey: "digitRatio",
+      mKey: "maleDigitRatio",
+      fKey: "femaleDigitRatio",
       unit: "",
       m: physicalStats.digitRatio.male,
       f: physicalStats.digitRatio.female,
@@ -475,6 +509,8 @@ export function CountrySidebar({
     {
       label: "Shoulder-to-Waist Ratio",
       metricKey: "shoulderToWaistRatio",
+      mKey: "maleShoulderToWaistRatio",
+      fKey: "femaleShoulderToWaistRatio",
       unit: "",
       m: physicalStats.shoulderToWaistRatio.male,
       f: physicalStats.shoulderToWaistRatio.female,
@@ -484,6 +520,8 @@ export function CountrySidebar({
     {
       label: "Hand Size (Length cm)",
       metricKey: "handLengthCm",
+      mKey: "maleHandLengthCm",
+      fKey: "femaleHandLengthCm",
       unit: " cm",
       m: physicalStats.handLengthCm.male,
       f: physicalStats.handLengthCm.female,
@@ -493,6 +531,8 @@ export function CountrySidebar({
     {
       label: "Fundamental Vocal Pitch (Hz)",
       metricKey: "vocalPitchHz",
+      mKey: "maleVocalPitchHz",
+      fKey: "femaleVocalPitchHz",
       unit: " Hz",
       m: physicalStats.vocalPitchHz.male,
       f: physicalStats.vocalPitchHz.female,
@@ -854,10 +894,16 @@ export function CountrySidebar({
               </span>
             </div>
 
-            {/* Overall Summary Dual Cards */}
-            <div className="grid grid-cols-2 gap-2.5">
+            {/* Top Male vs Female Overall Physical Summary Cards (Clickable!) */}
+            <div className="grid grid-cols-2 gap-2">
               {/* Male Summary Card */}
-              <div className="p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 space-y-1 text-center shadow-sm">
+              <div
+                onClick={() => onSelectMetric?.("maleHeightCm")}
+                className={cn(
+                  "p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 space-y-1 text-center shadow-sm cursor-pointer transition-all hover:bg-blue-500/20 hover:scale-[1.02]",
+                  isMetricActive("maleHeightCm", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15"
+                )}
+              >
                 <span className="text-[11px] font-bold text-blue-400 uppercase tracking-wider block">
                   👨 Male Overall Avg
                 </span>
@@ -870,7 +916,13 @@ export function CountrySidebar({
               </div>
 
               {/* Female Summary Card */}
-              <div className="p-3 rounded-xl bg-pink-500/10 border border-pink-500/20 space-y-1 text-center shadow-sm">
+              <div
+                onClick={() => onSelectMetric?.("femaleHeightCm")}
+                className={cn(
+                  "p-3 rounded-xl bg-pink-500/10 border border-pink-500/20 space-y-1 text-center shadow-sm cursor-pointer transition-all hover:bg-pink-500/20 hover:scale-[1.02]",
+                  isMetricActive("femaleHeightCm", activeSortKey) && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15"
+                )}
+              >
                 <span className="text-[11px] font-bold text-pink-400 uppercase tracking-wider block">
                   👩 Female Overall Avg
                 </span>
@@ -948,24 +1000,24 @@ export function CountrySidebar({
                         { key: "hairTextureWavy", label: "Wavy", val: physicalStats.hairTexture.wavy, color: "bg-indigo-500/15 text-indigo-300 border-indigo-500/30" },
                         { key: "hairTextureCurly", label: "Curly", val: physicalStats.hairTexture.curly, color: "bg-purple-500/15 text-purple-300 border-purple-500/30" },
                         { key: "hairTextureCoily", label: "Coily", val: physicalStats.hairTexture.coily, color: "bg-pink-500/15 text-pink-300 border-pink-500/30" },
-                      ].map((t) => {
-                        const isPillActive = isMetricActive(t.key, activeSortKey);
+                      ].map((tItem) => {
+                        const isPillActive = isMetricActive(tItem.key, activeSortKey);
                         return (
                           <button
-                            key={t.key}
+                            key={tItem.key}
                             type="button"
                             onClick={(e) => {
                               e.stopPropagation();
-                              onSelectMetric?.(t.key);
+                              onSelectMetric?.(tItem.key);
                             }}
                             className={cn(
                               "p-1.5 rounded-lg border text-center transition-all cursor-pointer flex flex-col items-center justify-center",
-                              t.color,
+                              tItem.color,
                               isPillActive && "ring-2 ring-emerald-400 border-emerald-500 shadow-md shadow-emerald-500/20 font-bold"
                             )}
                           >
-                            <span className="text-[10px] font-medium opacity-90 truncate w-full">{t.label}</span>
-                            <span className="text-xs font-mono font-bold">{t.val}%</span>
+                            <span className="text-[10px] font-medium opacity-90 truncate w-full">{tItem.label}</span>
+                            <span className="text-xs font-mono font-bold">{tItem.val}%</span>
                           </button>
                         );
                       })}
@@ -981,9 +1033,9 @@ export function CountrySidebar({
                 </div>
               </MetricCard>
 
-              {/* 2. Eye Color Distribution Card */}
+              {/* 2. Eye Color Breakdown Card */}
               <MetricCard
-                label="Eye Color Distribution (%)"
+                label="Eye Color Breakdown"
                 metricKey="eyeColor"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
@@ -992,10 +1044,10 @@ export function CountrySidebar({
                 <div className="space-y-2 pt-0.5">
                   <div className="grid grid-cols-4 gap-1.5">
                     {[
-                      { key: "eyeColorBrown", label: "Brown 🟤", val: physicalStats.eyeColor.brown, color: "bg-amber-950/60 text-amber-300 border-amber-800/60" },
-                      { key: "eyeColorBlue", label: "Blue 🔵", val: physicalStats.eyeColor.blue, color: "bg-sky-500/20 text-sky-300 border-sky-500/40" },
-                      { key: "eyeColorGreen", label: "Green 🟢", val: physicalStats.eyeColor.green, color: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40" },
-                      { key: "eyeColorHazel", label: "Hazel 🟠", val: physicalStats.eyeColor.hazel, color: "bg-amber-600/20 text-amber-400 border-amber-600/40" },
+                      { key: "eyeColorBrown", label: "Brown", val: physicalStats.eyeColor.brown, color: "bg-amber-950/60 text-amber-300 border-amber-800/60" },
+                      { key: "eyeColorBlue", label: "Blue", val: physicalStats.eyeColor.blue, color: "bg-sky-500/20 text-sky-300 border-sky-500/40" },
+                      { key: "eyeColorGreen", label: "Green", val: physicalStats.eyeColor.green, color: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40" },
+                      { key: "eyeColorHazel", label: "Hazel", val: physicalStats.eyeColor.hazel, color: "bg-amber-500/20 text-amber-400 border-amber-500/40" },
                     ].map((eItem) => {
                       const isPillActive = isMetricActive(eItem.key, activeSortKey);
                       return (
@@ -1262,53 +1314,88 @@ export function CountrySidebar({
 
             {/* Detailed Physical Metrics List with Side-by-Side Dual-Bar Charts */}
             <div className="space-y-2.5">
-              {physicalMetricsList.map((item) => (
-                <MetricCard
-                  key={item.label}
-                  label={item.label}
-                  metricKey={item.metricKey}
-                  activeSortKey={activeSortKey}
-                  onSelectMetric={onSelectMetric}
-                  icon={item.icon}
-                >
-                  <div className="space-y-1.5">
-                    <div className="flex items-center justify-between text-xs font-mono">
-                      <span className="text-blue-400 font-bold">
-                        👨 Male: {item.m}
-                        {item.unit}
-                      </span>
-                      <span className="text-pink-400 font-bold">
-                        👩 Female: {item.f}
-                        {item.unit}
-                      </span>
-                    </div>
+              {physicalMetricsList.map((item) => {
+                const isMaleActive = isMetricActive(item.mKey, activeSortKey);
+                const isFemaleActive = isMetricActive(item.fKey, activeSortKey);
 
-                    {/* Comparative Dual Bar Chart */}
-                    <div className="space-y-1">
-                      {/* Male Bar */}
-                      <div
-                        className="h-1.5 w-full bg-secondary/80 rounded-full overflow-hidden flex"
-                        title={`Male ${item.label}: ${item.m}${item.unit}`}
-                      >
-                        <div
-                          className="h-full bg-blue-500 rounded-full transition-all duration-500"
-                          style={{ width: `${Math.min(100, (item.m / item.max) * 100)}%` }}
-                        />
+                return (
+                  <MetricCard
+                    key={item.label}
+                    label={item.label}
+                    metricKey={item.metricKey}
+                    activeSortKey={activeSortKey}
+                    onSelectMetric={onSelectMetric}
+                    icon={item.icon}
+                  >
+                    <div className="space-y-2">
+                      {/* Interactive Male vs Female Click Buttons */}
+                      <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectMetric?.(item.mKey);
+                          }}
+                          className={cn(
+                            "p-2 rounded-xl border flex items-center justify-between transition-all cursor-pointer text-left",
+                            "bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20 hover:scale-[1.01]",
+                            isMaleActive && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold shadow-md shadow-emerald-500/20 text-emerald-400"
+                          )}
+                        >
+                          <span className="text-[10px] uppercase font-bold flex items-center gap-1">
+                            👨 Male
+                            {isMaleActive && <Check className="h-3 w-3 text-emerald-400" />}
+                          </span>
+                          <span className="font-mono font-bold text-foreground">{item.m}{item.unit}</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectMetric?.(item.fKey);
+                          }}
+                          className={cn(
+                            "p-2 rounded-xl border flex items-center justify-between transition-all cursor-pointer text-left",
+                            "bg-pink-500/10 border-pink-500/30 text-pink-400 hover:bg-pink-500/20 hover:scale-[1.01]",
+                            isFemaleActive && "ring-2 ring-emerald-400 border-emerald-500 bg-emerald-500/15 font-bold shadow-md shadow-emerald-500/20 text-emerald-400"
+                          )}
+                        >
+                          <span className="text-[10px] uppercase font-bold flex items-center gap-1">
+                            👩 Female
+                            {isFemaleActive && <Check className="h-3 w-3 text-emerald-400" />}
+                          </span>
+                          <span className="font-mono font-bold text-foreground">{item.f}{item.unit}</span>
+                        </button>
                       </div>
-                      {/* Female Bar */}
-                      <div
-                        className="h-1.5 w-full bg-secondary/80 rounded-full overflow-hidden flex"
-                        title={`Female ${item.label}: ${item.f}${item.unit}`}
-                      >
+
+                      {/* Comparative Dual Bar Chart */}
+                      <div className="space-y-1">
+                        {/* Male Bar */}
                         <div
-                          className="h-full bg-pink-500 rounded-full transition-all duration-500"
-                          style={{ width: `${Math.min(100, (item.f / item.max) * 100)}%` }}
-                        />
+                          className="h-1.5 w-full bg-secondary/80 rounded-full overflow-hidden flex"
+                          title={`Male ${item.label}: ${item.m}${item.unit}`}
+                        >
+                          <div
+                            className="h-full bg-blue-500 rounded-full transition-all duration-500"
+                            style={{ width: `${Math.min(100, (item.m / item.max) * 100)}%` }}
+                          />
+                        </div>
+                        {/* Female Bar */}
+                        <div
+                          className="h-1.5 w-full bg-secondary/80 rounded-full overflow-hidden flex"
+                          title={`Female ${item.label}: ${item.f}${item.unit}`}
+                        >
+                          <div
+                            className="h-full bg-pink-500 rounded-full transition-all duration-500"
+                            style={{ width: `${Math.min(100, (item.f / item.max) * 100)}%` }}
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </MetricCard>
-              ))}
+                  </MetricCard>
+                );
+              })}
             </div>
           </div>
         )}
