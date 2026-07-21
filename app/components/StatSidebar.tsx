@@ -43,7 +43,8 @@ export function StatSidebar({
       ? stats.filter(
           (s) =>
             s.label.toLowerCase().includes(q) ||
-            s.group.toLowerCase().includes(q),
+            s.group.toLowerCase().includes(q) ||
+            s.info.toLowerCase().includes(q),
         )
       : stats;
     return statGroups
@@ -54,8 +55,10 @@ export function StatSidebar({
   return (
     <aside className="relative flex h-full w-72 shrink-0 flex-col border-r border-zinc-800/80 bg-zinc-950">
       <div className="border-b border-zinc-800/80 px-4 py-3.5">
-        <div className="text-sm font-semibold tracking-tight text-zinc-100">
-          income<span className="text-cyan-400">·</span>globe
+        <div className="text-sm font-semibold tracking-tight text-zinc-100 flex items-center gap-1.5">
+          <span>income</span>
+          <span className="text-cyan-400 font-bold">·</span>
+          <span>globe</span>
         </div>
         <div className="mt-0.5 text-[11px] text-zinc-500">
           Global statistics, mapped by sex
@@ -69,8 +72,17 @@ export function StatSidebar({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search stats…"
-            className="w-full rounded-md border border-zinc-800 bg-zinc-900/60 py-1.5 pl-8 pr-2 text-xs text-zinc-200 placeholder:text-zinc-600 focus:border-zinc-700 focus:outline-none"
+            className="w-full rounded-md border border-zinc-800 bg-zinc-900/60 py-1.5 pl-8 pr-7 text-xs text-zinc-200 placeholder:text-zinc-600 focus:border-zinc-700 focus:outline-none"
           />
+          {query && (
+            <button
+              onClick={() => setQuery("")}
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300"
+              aria-label="Clear search"
+            >
+              <X className="h-3.5 w-3.5" />
+            </button>
+          )}
         </div>
       </div>
 
@@ -86,16 +98,16 @@ export function StatSidebar({
                 className={cn(
                   "group flex w-full items-center rounded-md transition-colors",
                   s.id === activeStat.id
-                    ? "bg-zinc-800/80"
+                    ? "bg-cyan-950/40 text-cyan-200 border border-cyan-800/40"
                     : "hover:bg-zinc-900",
                 )}
               >
                 <button
                   onClick={() => onSelect(s)}
                   className={cn(
-                    "flex min-w-0 flex-1 items-center justify-between px-2 py-1.5 text-left text-xs",
+                    "flex min-w-0 flex-1 items-center justify-between px-2 py-1.5 text-left text-xs font-medium",
                     s.id === activeStat.id
-                      ? "text-zinc-100"
+                      ? "text-cyan-300"
                       : "text-zinc-400 group-hover:text-zinc-200",
                   )}
                 >
@@ -131,19 +143,20 @@ export function StatSidebar({
         <Distribution stat={activeStat} mode={mode} region={region} formatTick={formatTick} />
       </div>
 
+      {/* Info Modal / Dialog for responsive compatibility */}
       {infoStat && (
-        <>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div
-            className="fixed inset-0 z-30"
+            className="fixed inset-0 bg-zinc-950/80 backdrop-blur-sm"
             onClick={() => setInfoStat(null)}
           />
-          <div className="absolute left-[17.5rem] top-3 z-40 w-80 rounded-lg border border-zinc-700/80 bg-zinc-900 p-4 shadow-2xl">
-            <div className="flex items-start justify-between gap-2">
+          <div className="relative z-10 w-full max-w-md rounded-xl border border-zinc-700/80 bg-zinc-900 p-5 shadow-2xl">
+            <div className="flex items-start justify-between gap-3">
               <div>
-                <div className="text-sm font-semibold text-zinc-100">
+                <div className="text-base font-semibold text-zinc-100">
                   {infoStat.label}
                 </div>
-                <div className="mt-0.5 text-[10px] uppercase tracking-widest text-zinc-500">
+                <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-widest text-zinc-500">
                   {infoStat.group}
                   {infoStat.unit ? ` · ${infoStat.unit}` : ""}
                   {infoStat.sexed
@@ -155,16 +168,16 @@ export function StatSidebar({
               </div>
               <button
                 onClick={() => setInfoStat(null)}
-                aria-label="Close"
-                className="rounded-md p-1 text-zinc-500 hover:bg-zinc-800 hover:text-zinc-200"
+                aria-label="Close modal"
+                className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-800 hover:text-zinc-200"
               >
-                <X className="h-3.5 w-3.5" />
+                <X className="h-4 w-4" />
               </button>
             </div>
-            <p className="mt-2.5 text-xs leading-relaxed text-zinc-300">
+            <p className="mt-3 text-xs leading-relaxed text-zinc-300">
               {infoStat.info}
             </p>
-            <div className="mt-3 border-t border-zinc-800 pt-2.5">
+            <div className="mt-4 border-t border-zinc-800 pt-3">
               <div className="text-[10px] font-semibold uppercase tracking-widest text-zinc-500">
                 How to read the numbers
               </div>
@@ -177,12 +190,12 @@ export function StatSidebar({
                 onSelect(infoStat);
                 setInfoStat(null);
               }}
-              className="mt-3 w-full rounded-md border border-cyan-800/60 bg-cyan-950/40 px-2 py-1.5 text-xs font-medium text-cyan-300 hover:bg-cyan-950/70"
+              className="mt-4 w-full rounded-lg border border-cyan-800/60 bg-cyan-950/60 px-3 py-2 text-xs font-medium text-cyan-300 hover:bg-cyan-950 transition-colors"
             >
               Show on map
             </button>
           </div>
-        </>
+        </div>
       )}
     </aside>
   );
@@ -203,46 +216,69 @@ function Distribution({
   const hist = useMemo(() => histogram(stat, mode, 24, region), [stat, mode, region]);
   const [p25, p50, p75] = useMemo(() => percentileTicks(stat, mode, region), [stat, mode, region]);
   const ramp = rampFor(stat);
+  const [hoveredBin, setHoveredBin] = useState<{ count: number; min: number; max: number } | null>(null);
 
   const pos = (v: number) =>
     `${Math.min(100, Math.max(0, ((v - extent[0]) / (extent[1] - extent[0])) * 100))}%`;
 
   return (
-    <div>
-      {/* distribution strip */}
-      <div className="flex h-8 items-end gap-px" aria-hidden>
-        {hist.counts.map((n, i) => (
-          <div
-            key={i}
-            className="flex-1 rounded-sm"
-            style={{
-              height: `${Math.max(6, (n / hist.maxCount) * 100)}%`,
-              background: ramp((i + 0.5) / hist.counts.length),
-              opacity: 0.75,
-            }}
-          />
-        ))}
+    <div className="relative">
+      <div className="flex items-center justify-between text-[11px] font-medium text-zinc-400 mb-1.5">
+        <span>Global Distribution</span>
+        {hoveredBin ? (
+          <span className="text-[10px] text-cyan-300 font-mono">
+            {hoveredBin.count} countries ({formatTick(hoveredBin.min)}–{formatTick(hoveredBin.max)})
+          </span>
+        ) : (
+          <span className="text-[10px] text-zinc-500 font-mono">
+            med: {formatTick(p50)}
+          </span>
+        )}
       </div>
-      {/* color legend */}
+
+      {/* Distribution histogram bars */}
+      <div className="flex h-9 items-end gap-px" aria-hidden>
+        {hist.counts.map((n, i) => {
+          const binMin = extent[0] + i * hist.binWidth;
+          const binMax = extent[0] + (i + 1) * hist.binWidth;
+          return (
+            <div
+              key={i}
+              onMouseEnter={() => setHoveredBin({ count: n, min: binMin, max: binMax })}
+              onMouseLeave={() => setHoveredBin(null)}
+              className="flex-1 rounded-sm transition-all duration-150 cursor-pointer hover:opacity-100 hover:scale-y-110 origin-bottom"
+              style={{
+                height: `${Math.max(6, (n / hist.maxCount) * 100)}%`,
+                background: ramp((i + 0.5) / hist.counts.length),
+                opacity: hoveredBin?.min === binMin ? 1 : 0.75,
+              }}
+            />
+          );
+        })}
+      </div>
+
+      {/* Color legend */}
       <div
-        className="mt-1.5 h-2 w-full rounded-full"
+        className="mt-1.5 h-2 w-full rounded-full shadow-inner"
         style={{ background: `linear-gradient(to right, ${legendGradient(stat).join(",")})` }}
       />
-      {/* percentile markers */}
-      <div className="relative mt-0.5 h-3.5 text-[9px] tabular-nums text-zinc-500">
-        <span className="absolute -translate-x-1/2" style={{ left: pos(p25) }} title="25th percentile">
+
+      {/* Percentile markers */}
+      <div className="relative mt-1 h-3.5 text-[9px] tabular-nums text-zinc-500">
+        <span className="absolute -translate-x-1/2 font-mono" style={{ left: pos(p25) }} title={`25th percentile: ${formatTick(p25)}`}>
           p25
         </span>
-        <span className="absolute -translate-x-1/2 text-zinc-400" style={{ left: pos(p50) }} title="median">
+        <span className="absolute -translate-x-1/2 font-mono text-zinc-300 font-semibold" style={{ left: pos(p50) }} title={`Median (50th percentile): ${formatTick(p50)}`}>
           p50
         </span>
-        <span className="absolute -translate-x-1/2" style={{ left: pos(p75) }} title="75th percentile">
+        <span className="absolute -translate-x-1/2 font-mono" style={{ left: pos(p75) }} title={`75th percentile: ${formatTick(p75)}`}>
           p75
         </span>
       </div>
-      <div className="flex justify-between text-[10px] tabular-nums text-zinc-500">
+
+      <div className="flex justify-between text-[10px] tabular-nums text-zinc-500 font-mono">
         <span>{formatTick(extent[0])}</span>
-        <span className="text-zinc-400">{formatTick(p50)} med</span>
+        <span className="text-zinc-300">{formatTick(p50)}</span>
         <span>{formatTick(extent[1])}</span>
       </div>
     </div>
