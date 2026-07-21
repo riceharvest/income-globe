@@ -34,7 +34,715 @@ import {
   Dna,
   Building2,
   BookOpen,
+  Info,
+  HelpCircle,
 } from "lucide-react";
+
+export interface MetricHelpInfo {
+  title: string;
+  definition: string;
+  howToRead: string;
+  unitOrScale?: string;
+}
+
+export const METRIC_HELP_MAP: Record<string, MetricHelpInfo> = {
+  // Income
+  p10: {
+    title: "P10 (Bottom 10% Income)",
+    definition: "The maximum income boundary of the lowest-earning 10% of the country's population.",
+    howToRead: "Measures the floor of economic earnings for low-income workers. Higher values mean higher working-poor living standards.",
+    unitOrScale: "USD PPP or Local Currency per month / year",
+  },
+  p25: {
+    title: "P25 (Lower 25% Income)",
+    definition: "The income cutoff level for the 25th percentile of earner distribution.",
+    howToRead: "Reflects working-class and entry-level salary standards in the country.",
+    unitOrScale: "USD PPP or Local Currency per month / year",
+  },
+  p50: {
+    title: "P50 (Median Income)",
+    definition: "The exact national middle income where 50% of people earn more and 50% earn less.",
+    howToRead: "The most representative snapshot of typical earnings, unskewed by billionaire outliers.",
+    unitOrScale: "USD PPP or Local Currency per month / year",
+  },
+  p75: {
+    title: "P75 (Upper 75% Income)",
+    definition: "The income cutoff reached by the top 25% highest earners.",
+    howToRead: "Reflects upper-middle-class income and skilled professional salary levels.",
+    unitOrScale: "USD PPP or Local Currency per month / year",
+  },
+  p90: {
+    title: "P90 (Top 10% Income)",
+    definition: "The income threshold required to enter the top 10% wealthiest earner bracket.",
+    howToRead: "Measures executive compensation, specialized professions, and high-earning potential.",
+    unitOrScale: "USD PPP or Local Currency per month / year",
+  },
+  income: {
+    title: "Median Income (P50)",
+    definition: "The median income earned by a typical resident in this nation.",
+    howToRead: "Higher numbers indicate stronger overall purchasing power.",
+    unitOrScale: "USD PPP or Local Currency",
+  },
+
+  // Height & Weight
+  femaleHeightCm: {
+    title: "Female Average Height",
+    definition: "Mean standing height for adult women (aged 18-49).",
+    howToRead: "Global average is ~162 cm (5'4\"). Values > 168 cm are tall (Netherlands/Nordic), < 155 cm are shorter.",
+    unitOrScale: "Centimeters (cm)",
+  },
+  maleHeightCm: {
+    title: "Male Average Height",
+    definition: "Mean standing height for adult men (aged 18-49).",
+    howToRead: "Global average is ~174 cm (5'8.5\"). Values > 180 cm are tall (Dinaric Alps/Scandinavia), < 165 cm are shorter.",
+    unitOrScale: "Centimeters (cm)",
+  },
+  heightCm: {
+    title: "Average National Height",
+    definition: "Combined adult mean standing height.",
+    howToRead: "Reflects childhood nutrition standards, healthcare quality, and genetic lineages.",
+    unitOrScale: "Centimeters (cm)",
+  },
+  maleWeightKg: {
+    title: "Male Average Weight",
+    definition: "Mean body weight for adult males.",
+    howToRead: "Global male average is ~75 kg. Higher values correlate with larger skeletal frames or higher BMI.",
+    unitOrScale: "Kilograms (kg)",
+  },
+  femaleWeightKg: {
+    title: "Female Average Weight",
+    definition: "Mean body weight for adult females.",
+    howToRead: "Global female average is ~64 kg.",
+    unitOrScale: "Kilograms (kg)",
+  },
+  weightKg: {
+    title: "Average Body Weight",
+    definition: "Mean adult body weight.",
+    howToRead: "Must be compared alongside height and muscle mass.",
+    unitOrScale: "Kilograms (kg)",
+  },
+
+  // BMI & Body Fat
+  maleBmi: {
+    title: "Male Average BMI",
+    definition: "Body Mass Index (weight / height²) for adult males.",
+    howToRead: "18.5–24.9 is Healthy Weight; 25.0–29.9 is Overweight; ≥30.0 is Obese.",
+    unitOrScale: "kg/m²",
+  },
+  femaleBmi: {
+    title: "Female Average BMI",
+    definition: "Body Mass Index (weight / height²) for adult females.",
+    howToRead: "18.5–24.9 is Healthy Weight; 25.0–29.9 is Overweight; ≥30.0 is Obese.",
+    unitOrScale: "kg/m²",
+  },
+  bmi: {
+    title: "Body Mass Index (BMI)",
+    definition: "WHO standard weight-to-height ratio for assessing metabolic health risks.",
+    howToRead: "Higher average BMI indicates elevated cardiovascular risk across the population.",
+    unitOrScale: "kg/m²",
+  },
+  maleBodyFatPercent: {
+    title: "Male Body Fat Percentage",
+    definition: "Proportion of total male body mass made of adipose fat tissue.",
+    howToRead: "Athletic: 8–14%; Normal: 15–20%; Elevated: >22%.",
+    unitOrScale: "Percentage (%)",
+  },
+  femaleBodyFatPercent: {
+    title: "Female Body Fat Percentage",
+    definition: "Proportion of total female body mass made of adipose fat tissue.",
+    howToRead: "Athletic: 16–22%; Normal: 22–28%; Elevated: >30%.",
+    unitOrScale: "Percentage (%)",
+  },
+  bodyFatPercent: {
+    title: "Body Fat Percentage",
+    definition: "Essential and storage body fat proportion relative to total weight.",
+    howToRead: "Lower fat with high muscle indicates athletic body composition.",
+    unitOrScale: "Percentage (%)",
+  },
+
+  // Waist & Shoes
+  maleWaistCm: {
+    title: "Male Waist Circumference",
+    definition: "Abdominal circumference measured at umbilical level.",
+    howToRead: "Clinical risk threshold for visceral fat in men is >102 cm (40 inches).",
+    unitOrScale: "Centimeters (cm)",
+  },
+  femaleWaistCm: {
+    title: "Female Waist Circumference",
+    definition: "Abdominal circumference measured at midpoint of waist.",
+    howToRead: "Clinical risk threshold for visceral fat in women is >88 cm (35 inches).",
+    unitOrScale: "Centimeters (cm)",
+  },
+  waistCm: {
+    title: "Waist Circumference",
+    definition: "Abdominal girth measuring abdominal fat accumulation.",
+    howToRead: "Key indicator for metabolic syndrome risk.",
+    unitOrScale: "Centimeters (cm)",
+  },
+  maleShoeSizeEu: {
+    title: "Male Average Shoe Size",
+    definition: "Mean adult male foot size in European sizing units.",
+    howToRead: "Directly correlates with male standing height. European male average is EU 42–44.",
+    unitOrScale: "EU Size Scale",
+  },
+  femaleShoeSizeEu: {
+    title: "Female Average Shoe Size",
+    definition: "Mean adult female foot size in European sizing units.",
+    howToRead: "Correlates with female height. European female average is EU 37–39.",
+    unitOrScale: "EU Size Scale",
+  },
+  shoeSizeEu: {
+    title: "Average Shoe Size",
+    definition: "Mean national shoe size.",
+    howToRead: "Reflects overall foot length and bone structure.",
+    unitOrScale: "EU Size Scale",
+  },
+
+  // Calories & Health
+  maleCaloricIntakeKcal: {
+    title: "Male Daily Caloric Intake",
+    definition: "Average daily food energy consumed by adult males.",
+    howToRead: "Recommended baseline is 2,200–2,800 kcal depending on activity level.",
+    unitOrScale: "kcal / day",
+  },
+  femaleCaloricIntakeKcal: {
+    title: "Female Daily Caloric Intake",
+    definition: "Average daily food energy consumed by adult females.",
+    howToRead: "Recommended baseline is 1,800–2,200 kcal depending on activity level.",
+    unitOrScale: "kcal / day",
+  },
+  caloricIntakeKcal: {
+    title: "Daily Caloric Intake",
+    definition: "Per capita food energy availability per day.",
+    howToRead: "Values > 3,200 kcal indicate high surplus energy availability.",
+    unitOrScale: "kcal / day",
+  },
+  maleObesityRate: {
+    title: "Male Obesity Rate",
+    definition: "Percentage of adult males with BMI ≥ 30.0 kg/m².",
+    howToRead: "Higher rates highlight male metabolic health challenges.",
+    unitOrScale: "Percentage (%)",
+  },
+  femaleObesityRate: {
+    title: "Female Obesity Rate",
+    definition: "Percentage of adult females with BMI ≥ 30.0 kg/m².",
+    howToRead: "Higher rates highlight female metabolic health challenges.",
+    unitOrScale: "Percentage (%)",
+  },
+  obesityRate: {
+    title: "Obesity Prevalence",
+    definition: "Percentage of overall adult population with BMI ≥ 30.0 kg/m².",
+    howToRead: "Higher percentages mean greater population risk of diabetes and heart disease.",
+    unitOrScale: "Percentage (%)",
+  },
+  maleInactivityRate: {
+    title: "Male Physical Inactivity",
+    definition: "Percentage of men failing WHO exercise recommendations (150 min/week).",
+    howToRead: "Higher values reflect sedentary lifestyle prevalence among men.",
+    unitOrScale: "Percentage (%)",
+  },
+  femaleInactivityRate: {
+    title: "Female Physical Inactivity",
+    definition: "Percentage of women failing WHO exercise recommendations (150 min/week).",
+    howToRead: "Higher values reflect sedentary lifestyle prevalence among women.",
+    unitOrScale: "Percentage (%)",
+  },
+  inactivityRate: {
+    title: "Physical Inactivity Rate",
+    definition: "Proportion of adults engaged in insufficient physical activity.",
+    howToRead: "Measures sedentary work and lifestyle patterns.",
+    unitOrScale: "Percentage (%)",
+  },
+  maleDiabetesRate: {
+    title: "Male Diabetes Prevalence",
+    definition: "Percentage of men with diagnosed or unmanaged type 2 diabetes.",
+    howToRead: "Values > 10% indicate high dietary and metabolic stress.",
+    unitOrScale: "Percentage (%)",
+  },
+  femaleDiabetesRate: {
+    title: "Female Diabetes Prevalence",
+    definition: "Percentage of women with diagnosed or unmanaged type 2 diabetes.",
+    howToRead: "Values > 10% indicate high dietary and metabolic stress.",
+    unitOrScale: "Percentage (%)",
+  },
+  diabetesRate: {
+    title: "Diabetes Rate",
+    definition: "National prevalence of diabetes mellitus among adults (20-79).",
+    howToRead: "Key indicator of metabolic health burden.",
+    unitOrScale: "Percentage (%)",
+  },
+  maleHypertensionRate: {
+    title: "Male Hypertension Rate",
+    definition: "Percentage of men with high blood pressure (systolic ≥ 140 or diastolic ≥ 90).",
+    howToRead: "Major contributor to cardiovascular mortality in men.",
+    unitOrScale: "Percentage (%)",
+  },
+  femaleHypertensionRate: {
+    title: "Female Hypertension Rate",
+    definition: "Percentage of women with high blood pressure.",
+    howToRead: "Major contributor to cardiovascular mortality in women.",
+    unitOrScale: "Percentage (%)",
+  },
+  hypertensionRate: {
+    title: "Hypertension Prevalence",
+    definition: "Percentage of adults with elevated arterial blood pressure.",
+    howToRead: "Higher rates increase stroke and heart attack incidence.",
+    unitOrScale: "Percentage (%)",
+  },
+  maleAlcoholLiters: {
+    title: "Male Alcohol Consumption",
+    definition: "Annual pure ethanol consumption per adult male (15+).",
+    howToRead: "Global average is ~9.5 L/yr for men. High rates exceed 15 L/yr.",
+    unitOrScale: "Liters pure ethanol / year",
+  },
+  femaleAlcoholLiters: {
+    title: "Female Alcohol Consumption",
+    definition: "Annual pure ethanol consumption per adult female (15+).",
+    howToRead: "Global average is ~2.5 L/yr for women.",
+    unitOrScale: "Liters pure ethanol / year",
+  },
+  alcoholLiters: {
+    title: "Alcohol Consumption per Capita",
+    definition: "Annual pure ethanol intake per person.",
+    howToRead: "Measures social drinking habits and alcohol-related health burdens.",
+    unitOrScale: "Liters pure ethanol / year",
+  },
+  maleSmokingRate: {
+    title: "Male Smoking Rate",
+    definition: "Percentage of adult males who smoke tobacco daily.",
+    howToRead: "Can reach 40–50%+ in parts of Eastern Europe and East Asia.",
+    unitOrScale: "Percentage (%)",
+  },
+  femaleSmokingRate: {
+    title: "Female Smoking Rate",
+    definition: "Percentage of adult females who smoke tobacco daily.",
+    howToRead: "Averages 5–20% globally.",
+    unitOrScale: "Percentage (%)",
+  },
+  smokingRate: {
+    title: "Smoking Prevalence",
+    definition: "Percentage of overall adult population using smoked tobacco.",
+    howToRead: "Direct driver of lung cancer and COPD rates.",
+    unitOrScale: "Percentage (%)",
+  },
+  maleLifeExpectancy: {
+    title: "Male Life Expectancy",
+    definition: "Average life span expected at birth for males.",
+    howToRead: "Global male average is ~70.5 years. Values > 80 yrs indicate top healthcare (Japan, Iceland).",
+    unitOrScale: "Years",
+  },
+  femaleLifeExpectancy: {
+    title: "Female Life Expectancy",
+    definition: "Average life span expected at birth for females.",
+    howToRead: "Global female average is ~75.5 years. Females typically outlive males by 4–6 years globally.",
+    unitOrScale: "Years",
+  },
+  lifeExpectancy: {
+    title: "Life Expectancy at Birth",
+    definition: "Composite average life span for all newborns under current mortality rates.",
+    howToRead: "The gold standard metric for healthcare quality and living conditions.",
+    unitOrScale: "Years",
+  },
+
+  // Phenotypic Metrics
+  hairColor: {
+    title: "Hair Color Distribution",
+    definition: "Percentage breakdown of natural hair pigmentation (Black, Brown, Blonde, Red).",
+    howToRead: "Black/Brown dominates worldwide (90%+). Blonde peaks in Scandinavia (30-80%). Red peaks in Scotland/Ireland (10-13%).",
+    unitOrScale: "Percentage (%) breakdown",
+  },
+  hairColorBlonde: {
+    title: "Blonde Hair Frequency",
+    definition: "Proportion of population with natural golden/blonde hair.",
+    howToRead: "Highest around Northern and Baltic Europe.",
+    unitOrScale: "Percentage (%)",
+  },
+  hairColorRed: {
+    title: "Red Hair Frequency",
+    definition: "Proportion carrying the MC1R gene variant causing reddish hair.",
+    howToRead: "Highest in the British Isles and Northwest Europe.",
+    unitOrScale: "Percentage (%)",
+  },
+  hairColorBrown: {
+    title: "Brown Hair Frequency",
+    definition: "Proportion with chestnut or dark brown hair pigmentation.",
+    howToRead: "Prevalent across Central, Southern Europe, and Central/West Asia.",
+    unitOrScale: "Percentage (%)",
+  },
+  hairColorBlack: {
+    title: "Black Hair Frequency",
+    definition: "Proportion with high-eumelanin natural black hair.",
+    howToRead: "The most common natural hair color worldwide.",
+    unitOrScale: "Percentage (%)",
+  },
+
+  hairTexture: {
+    title: "Hair Texture Breakdown",
+    definition: "Follicle shape frequencies producing Straight, Wavy, Curly, or Coily hair.",
+    howToRead: "Straight hair dominates in East Asia; Wavy in Europe/North Africa; Coily in Sub-Saharan Africa.",
+    unitOrScale: "Percentage (%) breakdown",
+  },
+  hairTextureStraight: {
+    title: "Straight Hair Frequency",
+    definition: "Percentage with round follicle cross-sections producing straight hair.",
+    howToRead: "Highest in East Asian and Indigenous American populations.",
+    unitOrScale: "Percentage (%)",
+  },
+  hairTextureWavy: {
+    title: "Wavy Hair Frequency",
+    definition: "Percentage with oval follicles creating gentle S-pattern waves.",
+    howToRead: "Common in European, North African, and South Asian populations.",
+    unitOrScale: "Percentage (%)",
+  },
+  hairTextureCurly: {
+    title: "Curly Hair Frequency",
+    definition: "Percentage with elliptical follicles producing spiral ringlets.",
+    howToRead: "Common in Mediterranean, Middle Eastern, and mixed populations.",
+    unitOrScale: "Percentage (%)",
+  },
+  hairTextureCoily: {
+    title: "Coily Hair Frequency",
+    definition: "Percentage with flat elliptical follicles producing tight Z/O coils.",
+    howToRead: "Highest in Sub-Saharan African populations.",
+    unitOrScale: "Percentage (%)",
+  },
+
+  eyeColor: {
+    title: "Eye Color Frequency",
+    definition: "Iris pigmentation frequency (Brown, Blue, Green, Hazel).",
+    howToRead: "Brown eyes are global majority (79%). Blue eyes peak around the Baltic Sea (70-80%). Green/Hazel are rare (2-5%).",
+    unitOrScale: "Percentage (%) breakdown",
+  },
+  eyeColorBlue: {
+    title: "Blue Eye Frequency",
+    definition: "Proportion of iris with low melanin causing blue light scattering.",
+    howToRead: "Highest in Northern and Eastern European countries.",
+    unitOrScale: "Percentage (%)",
+  },
+
+  skinPigmentation: {
+    title: "Skin Tone / ITA° Melanin Scale",
+    definition: "Individual Typology Angle ($ITA^\circ$) measuring skin tone spectrophotometry.",
+    howToRead: "ITA° > +55° = Very Fair (Type I); +28° to +55° = Intermediate (Type III-IV); < -30° = Dark (Type V-VI).",
+    unitOrScale: "ITA° Degrees",
+  },
+
+  // Anthropometrics
+  maleLegLengthPercent: {
+    title: "Male Relative Leg Length",
+    definition: "Male leg length divided by standing height.",
+    howToRead: "Higher percentages (>48%) mean longer leg proportions relative to torso.",
+    unitOrScale: "% of standing height",
+  },
+  femaleLegLengthPercent: {
+    title: "Female Relative Leg Length",
+    definition: "Female leg length divided by standing height.",
+    howToRead: "Higher percentages (>48%) mean longer leg proportions relative to torso.",
+    unitOrScale: "% of standing height",
+  },
+  legLengthPercent: {
+    title: "Relative Leg Length",
+    definition: "Leg length relative to total standing height.",
+    howToRead: "Higher numbers indicate linear body frames.",
+    unitOrScale: "% of standing height",
+  },
+  maleLeanMuscleMassKg: {
+    title: "Male Lean Muscle Mass",
+    definition: "Total skeletal muscle weight in adult males excluding fat mass.",
+    howToRead: "Higher muscle mass indicates higher athletic strength and metabolic throughput.",
+    unitOrScale: "Kilograms (kg)",
+  },
+  femaleLeanMuscleMassKg: {
+    title: "Female Lean Muscle Mass",
+    definition: "Total skeletal muscle weight in adult females excluding fat mass.",
+    howToRead: "Higher muscle mass indicates higher athletic strength and metabolic throughput.",
+    unitOrScale: "Kilograms (kg)",
+  },
+  leanMuscleMassKg: {
+    title: "Lean Muscle Mass",
+    definition: "Total weight of skeletal muscle mass.",
+    howToRead: "Measures muscularity independently of body fat.",
+    unitOrScale: "Kilograms (kg)",
+  },
+  maleDigitRatio: {
+    title: "Male 2D:4D Digit Ratio",
+    definition: "Index finger length divided by ring finger length in men.",
+    howToRead: "Values < 0.95 indicate higher prenatal testosterone exposure during fetal development.",
+    unitOrScale: "2D:4D Ratio",
+  },
+  femaleDigitRatio: {
+    title: "Female 2D:4D Digit Ratio",
+    definition: "Index finger length divided by ring finger length in women.",
+    howToRead: "Values ~0.98 are average for females.",
+    unitOrScale: "2D:4D Ratio",
+  },
+  digitRatio: {
+    title: "2D:4D Digit Ratio",
+    definition: "Ratio between index (2D) and ring (4D) finger lengths.",
+    howToRead: "Key biomarker for fetal hormone exposure.",
+    unitOrScale: "2D:4D Ratio",
+  },
+  maleShoulderToWaistRatio: {
+    title: "Male Shoulder-to-Waist Ratio",
+    definition: "Biacromial shoulder width divided by waist girth in men.",
+    howToRead: "Values > 1.40 represent a classic V-taper masculine frame.",
+    unitOrScale: "Ratio",
+  },
+  femaleShoulderToWaistRatio: {
+    title: "Female Shoulder-to-Waist Ratio",
+    definition: "Shoulder width divided by waist girth in women.",
+    howToRead: "Higher ratios reflect pronounced hourglass proportions.",
+    unitOrScale: "Ratio",
+  },
+  shoulderToWaistRatio: {
+    title: "Shoulder-to-Waist Ratio",
+    definition: "Upper torso width divided by waist circumference.",
+    howToRead: "Measures body shape and V-taper / hourglass proportions.",
+    unitOrScale: "Ratio",
+  },
+  maleHandLengthCm: {
+    title: "Male Hand Length",
+    definition: "Length from wrist crease to middle finger tip in men.",
+    howToRead: "Male average is 18.5–20.5 cm.",
+    unitOrScale: "Centimeters (cm)",
+  },
+  femaleHandLengthCm: {
+    title: "Female Hand Length",
+    definition: "Length from wrist crease to middle finger tip in women.",
+    howToRead: "Female average is 16.5–18.5 cm.",
+    unitOrScale: "Centimeters (cm)",
+  },
+  handLengthCm: {
+    title: "Hand Length",
+    definition: "Distance from mid-wrist crease to tip of middle finger.",
+    howToRead: "Directly correlates with skeletal stature.",
+    unitOrScale: "Centimeters (cm)",
+  },
+  maleVocalPitchHz: {
+    title: "Male Vocal Pitch",
+    definition: "Fundamental speaking frequency (F0) of male voice.",
+    howToRead: "Male voices average 110–135 Hz. Lower Hz means deeper voice.",
+    unitOrScale: "Hertz (Hz)",
+  },
+  femaleVocalPitchHz: {
+    title: "Female Vocal Pitch",
+    definition: "Fundamental speaking frequency (F0) of female voice.",
+    howToRead: "Female voices average 195–225 Hz. Higher Hz means higher pitch.",
+    unitOrScale: "Hertz (Hz)",
+  },
+  vocalPitchHz: {
+    title: "Fundamental Vocal Pitch",
+    definition: "Mean vocal fold vibration frequency during speech.",
+    howToRead: "Determined by vocal fold length, mass, and testosterone levels.",
+    unitOrScale: "Hertz (Hz)",
+  },
+
+  // Macroeconomics
+  minimumWageEur: {
+    title: "Minimum Wage",
+    definition: "Statutory minimum monthly compensation mandated by law.",
+    howToRead: "Toggle between USD PPP and Local currency to compare purchasing power.",
+    unitOrScale: "Currency / Month",
+  },
+  unemploymentRate: {
+    title: "Unemployment Rate",
+    definition: "Percentage of active labor force actively looking for work.",
+    howToRead: "< 4% is tight employment; > 10% indicates job scarcity.",
+    unitOrScale: "Percentage (%)",
+  },
+  costOfLivingIndex: {
+    title: "Cost of Living Index",
+    definition: "Price level relative to New York City baseline (100).",
+    howToRead: "120 means 20% more expensive than NYC; 40 means 60% cheaper.",
+    unitOrScale: "Index (NYC = 100)",
+  },
+  internetPenetration: {
+    title: "Internet Penetration Rate",
+    definition: "Percentage of population with active internet access.",
+    howToRead: "> 90% reflects modern digital infrastructure.",
+    unitOrScale: "Percentage (%)",
+  },
+  population: {
+    title: "National Population",
+    definition: "Total resident population count.",
+    howToRead: "Expressed in Millions.",
+    unitOrScale: "Millions",
+  },
+  exchangeRate: {
+    title: "Exchange Rate",
+    definition: "Local currency conversion value relative to 1 EUR / USD.",
+    howToRead: "Used to convert local earnings into international figures.",
+    unitOrScale: "Local Currency Units per EUR",
+  },
+
+  // Social & Demographics
+  hdi: {
+    title: "Human Development Index (HDI)",
+    definition: "UN score combining life expectancy, education years, and GNI.",
+    howToRead: "0.0 to 1.0. > 0.800 is Very High Human Development.",
+    unitOrScale: "Index (0–1.0)",
+  },
+  englishSpeakingPercent: {
+    title: "English Proficiency Rate",
+    definition: "Percentage of residents capable of holding an English conversation.",
+    howToRead: "Measures business connectivity and tourism ease.",
+    unitOrScale: "Percentage (%)",
+  },
+  mainIndustry: {
+    title: "Primary Industry",
+    definition: "The nation's largest economic sector by GDP contribution.",
+    howToRead: "Indicates whether economy is Service, Tech, Industrial, or Agriculture driven.",
+    unitOrScale: "Sector Name",
+  },
+
+  // Gender
+  adolescentBirthRate: {
+    title: "Adolescent Birth Rate",
+    definition: "Births per 1,000 women aged 15-19.",
+    howToRead: "Lower numbers reflect higher education and family planning access.",
+    unitOrScale: "Births per 1,000 women (15-19)",
+  },
+  childMarriagePercent: {
+    title: "Child Marriage Rate",
+    definition: "Percentage of women married before age 18.",
+    howToRead: "Measures social protection and gender rights.",
+    unitOrScale: "Percentage (%)",
+  },
+  laborForceGap: {
+    title: "Gender Labor Participation Gap",
+    definition: "Male minus female labor participation rate (%).",
+    howToRead: "0% is total employment parity; 30% means men participate 30 points more.",
+    unitOrScale: "Percentage Points Gap",
+  },
+  contraceptiveUse: {
+    title: "Contraceptive Prevalence Rate",
+    definition: "Percentage of women using modern family planning methods.",
+    howToRead: "Higher rates indicate reproductive healthcare access.",
+    unitOrScale: "Percentage (%)",
+  },
+};
+
+/**
+ * Little clickable (i) Info Button component
+ */
+export function InfoButton({
+  metricKey,
+  onOpenHelp,
+  className,
+}: {
+  metricKey: string;
+  onOpenHelp: (key: string) => void;
+  className?: string;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={(e) => {
+        e.stopPropagation();
+        onOpenHelp(metricKey);
+      }}
+      title="Click for explanation and how to read the numbers"
+      className={cn(
+        "p-1 rounded-full text-muted-foreground/60 hover:text-cyan-400 hover:bg-cyan-500/15 transition-all cursor-pointer flex-shrink-0",
+        className
+      )}
+    >
+      <Info className="h-3.5 w-3.5" />
+    </button>
+  );
+}
+
+/**
+ * Metric Explanation & How-to-Read Modal
+ */
+export function MetricHelpModal({
+  metricKey,
+  onClose,
+  onSelectMetric,
+}: {
+  metricKey: string | null;
+  onClose: () => void;
+  onSelectMetric?: (key: string) => void;
+}) {
+  if (!metricKey) return null;
+  const help = METRIC_HELP_MAP[metricKey] ?? {
+    title: metricKey,
+    definition: "Detailed country statistic collected from authoritative international datasets.",
+    howToRead: "Compare values across countries to observe geographic distributions and global trends.",
+    unitOrScale: "Standard metric units",
+  };
+
+  return (
+    <div
+      className="fixed inset-0 z-50 bg-black/75 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200"
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-md bg-card/95 border border-emerald-500/40 rounded-2xl shadow-2xl p-5 space-y-4 text-foreground relative animate-in zoom-in-95 duration-200 overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-start justify-between gap-3 border-b border-border/40 pb-3">
+          <div className="flex items-center gap-2.5">
+            <span className="p-2 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+              <Info className="h-5 w-5" />
+            </span>
+            <div>
+              <h3 className="text-base font-bold text-foreground">{help.title}</h3>
+              {help.unitOrScale && (
+                <span className="text-[11px] font-mono text-emerald-400 font-semibold">
+                  Unit: {help.unitOrScale}
+                </span>
+              )}
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            className="p-1 rounded-lg hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div className="space-y-3 text-xs leading-relaxed">
+          <div className="p-3 rounded-xl bg-secondary/40 border border-border/30 space-y-1">
+            <span className="text-[10px] uppercase font-bold text-muted-foreground flex items-center gap-1">
+              <HelpCircle className="h-3.5 w-3.5 text-cyan-400" />
+              <span>What it means exactly</span>
+            </span>
+            <p className="text-foreground font-medium">{help.definition}</p>
+          </div>
+
+          <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 space-y-1">
+            <span className="text-[10px] uppercase font-bold text-emerald-400 flex items-center gap-1">
+              <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
+              <span>How to read the numbers</span>
+            </span>
+            <p className="text-emerald-200/90 font-medium">{help.howToRead}</p>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-end gap-2 pt-2 border-t border-border/30">
+          <button
+            onClick={onClose}
+            className="px-3 py-1.5 text-xs font-semibold rounded-xl bg-secondary text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Close
+          </button>
+          <button
+            onClick={() => {
+              onSelectMetric?.(metricKey);
+              onClose();
+            }}
+            className="px-3.5 py-1.5 text-xs font-bold rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white shadow-md shadow-emerald-500/20 transition-all flex items-center gap-1.5"
+          >
+            <Globe className="h-3.5 w-3.5" />
+            <span>Color Map & Sort by Metric</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 import {
   uniqueCountriesData,
   type CountryData,
@@ -176,6 +884,7 @@ interface MetricCardProps {
   metricKey: string;
   activeSortKey?: string;
   onSelectMetric?: (metricKey: string) => void;
+  onOpenHelp?: (metricKey: string) => void;
   icon?: React.ComponentType<{ className?: string }>;
   children: React.ReactNode;
   className?: string;
@@ -186,6 +895,7 @@ function MetricCard({
   metricKey,
   activeSortKey,
   onSelectMetric,
+  onOpenHelp,
   icon: Icon,
   children,
   className,
@@ -233,6 +943,10 @@ function MetricCard({
           >
             {label}
           </span>
+
+          {onOpenHelp && (
+            <InfoButton metricKey={metricKey} onOpenHelp={onOpenHelp} />
+          )}
         </div>
 
         {active && (
@@ -259,6 +973,7 @@ export function CountrySidebar({
   // Global search state within sidebar header
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [activeHelpKey, setActiveHelpKey] = useState<string | null>(null);
 
   // Sidebar Controls
   const [activeTab, setActiveTab] = useState<SidebarTab>("income");
@@ -671,21 +1386,22 @@ export function CountrySidebar({
           </div>
 
           {/* Global Rank Badge */}
-          <button
-            type="button"
-            onClick={() => onSelectMetric?.("p50")}
-            className="flex flex-col items-end flex-shrink-0 cursor-pointer group"
-          >
-            <div className="flex items-center gap-1 px-2.5 py-1 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 shadow-inner group-hover:bg-amber-500/20 group-hover:border-amber-500/40 transition-all">
+          <div className="flex flex-col items-end flex-shrink-0">
+            <button
+              type="button"
+              onClick={() => onSelectMetric?.("p50")}
+              className="flex items-center gap-1 px-2.5 py-1 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 shadow-inner hover:bg-amber-500/20 hover:border-amber-500/40 transition-all cursor-pointer group"
+            >
               <Award className="h-3.5 w-3.5 flex-shrink-0" />
               <span className="text-xs font-bold font-mono">
                 #{rankInfo.rank} / {rankInfo.total}
               </span>
-            </div>
-            <span className="text-[10px] text-muted-foreground mt-0.5 font-medium group-hover:text-amber-300">
+              <InfoButton metricKey="p50" onOpenHelp={setActiveHelpKey} />
+            </button>
+            <span className="text-[10px] text-muted-foreground mt-0.5 font-medium">
               Global Rank (P50)
             </span>
-          </button>
+          </div>
         </div>
 
         {/* Population & Currency Strip */}
@@ -693,36 +1409,42 @@ export function CountrySidebar({
           <button
             type="button"
             onClick={() => onSelectMetric?.("population")}
-            className="flex items-center gap-2 p-2 rounded-xl bg-secondary/40 border border-border/30 hover:bg-cyan-500/10 hover:border-cyan-500/30 transition-all cursor-pointer text-left group"
+            className="flex items-center justify-between p-2 rounded-xl bg-secondary/40 border border-border/30 hover:bg-cyan-500/10 hover:border-cyan-500/30 transition-all cursor-pointer text-left group"
           >
-            <Users className="h-4 w-4 text-cyan-400 flex-shrink-0" />
-            <div className="min-w-0">
-              <p className="text-[10px] text-muted-foreground uppercase font-medium tracking-wide group-hover:text-cyan-300">
-                Population
-              </p>
-              <p className="text-xs font-bold text-foreground font-mono truncate">
-                {(country.population / 1_000_000).toFixed(1)}M
-              </p>
+            <div className="flex items-center gap-2 min-w-0">
+              <Users className="h-4 w-4 text-cyan-400 flex-shrink-0" />
+              <div className="min-w-0">
+                <p className="text-[10px] text-muted-foreground uppercase font-medium tracking-wide group-hover:text-cyan-300">
+                  Population
+                </p>
+                <p className="text-xs font-bold text-foreground font-mono truncate">
+                  {(country.population / 1_000_000).toFixed(1)}M
+                </p>
+              </div>
             </div>
+            <InfoButton metricKey="population" onOpenHelp={setActiveHelpKey} />
           </button>
 
           <button
             type="button"
             onClick={() => onSelectMetric?.("minimumWageEur")}
-            className="flex items-center gap-2 p-2 rounded-xl bg-secondary/40 border border-border/30 hover:bg-emerald-500/10 hover:border-emerald-500/30 transition-all cursor-pointer text-left group"
+            className="flex items-center justify-between p-2 rounded-xl bg-secondary/40 border border-border/30 hover:bg-emerald-500/10 hover:border-emerald-500/30 transition-all cursor-pointer text-left group"
           >
-            <DollarSign className="h-4 w-4 text-emerald-400 flex-shrink-0" />
-            <div className="min-w-0">
-              <p className="text-[10px] text-muted-foreground uppercase font-medium tracking-wide group-hover:text-emerald-300">
-                Currency
-              </p>
-              <p
-                className="text-xs font-bold text-foreground font-mono truncate"
-                title={`${country.currency} (${country.currencySymbol})`}
-              >
-                {country.currency} ({country.currencySymbol})
-              </p>
+            <div className="flex items-center gap-2 min-w-0">
+              <DollarSign className="h-4 w-4 text-emerald-400 flex-shrink-0" />
+              <div className="min-w-0">
+                <p className="text-[10px] text-muted-foreground uppercase font-medium tracking-wide group-hover:text-emerald-300">
+                  Currency
+                </p>
+                <p
+                  className="text-xs font-bold text-foreground font-mono truncate"
+                  title={`${country.currency} (${country.currencySymbol})`}
+                >
+                  {country.currency} ({country.currencySymbol})
+                </p>
+              </div>
             </div>
+            <InfoButton metricKey="minimumWageEur" onOpenHelp={setActiveHelpKey} />
           </button>
         </div>
 
@@ -868,6 +1590,7 @@ export function CountrySidebar({
                       metricKey={p.metricKey}
                       activeSortKey={activeSortKey}
                       onSelectMetric={onSelectMetric}
+                      onOpenHelp={setActiveHelpKey}
                       icon={DollarSign}
                     >
                       <div className="space-y-1.5">
@@ -955,6 +1678,7 @@ export function CountrySidebar({
                 metricKey="hairColor"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={Sparkles}
               >
                 <div className="space-y-3 pt-0.5">
@@ -1051,6 +1775,7 @@ export function CountrySidebar({
                 metricKey="eyeColor"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={Eye}
               >
                 <div className="space-y-2 pt-0.5">
@@ -1098,6 +1823,7 @@ export function CountrySidebar({
                 metricKey="skinPigmentation"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={Palette}
               >
                 <div className="space-y-2 pt-0.5">
@@ -1144,6 +1870,7 @@ export function CountrySidebar({
                 metricKey="legLengthPercent"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={Ruler}
               >
                 <div className="space-y-2 pt-0.5">
@@ -1205,6 +1932,7 @@ export function CountrySidebar({
                 metricKey="leanMuscleMassKg"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={Dumbbell}
               >
                 <div className="space-y-2 pt-0.5">
@@ -1268,6 +1996,7 @@ export function CountrySidebar({
                 metricKey="digitRatio"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={Hand}
               >
                 <div className="space-y-2 pt-0.5">
@@ -1317,6 +2046,7 @@ export function CountrySidebar({
                 metricKey="shoulderToWaistRatio"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={Activity}
               >
                 <div className="space-y-2 pt-0.5">
@@ -1380,6 +2110,7 @@ export function CountrySidebar({
                   metricKey="handLengthCm"
                   activeSortKey={activeSortKey}
                   onSelectMetric={onSelectMetric}
+                  onOpenHelp={setActiveHelpKey}
                   icon={Hand}
                 >
                   <div className="space-y-1.5 pt-0.5 text-xs font-mono">
@@ -1423,6 +2154,7 @@ export function CountrySidebar({
                   metricKey="vocalPitchHz"
                   activeSortKey={activeSortKey}
                   onSelectMetric={onSelectMetric}
+                  onOpenHelp={setActiveHelpKey}
                   icon={Volume2}
                 >
                   <div className="space-y-1.5 pt-0.5 text-xs font-mono">
@@ -1475,6 +2207,7 @@ export function CountrySidebar({
                     metricKey={item.metricKey}
                     activeSortKey={activeSortKey}
                     onSelectMetric={onSelectMetric}
+                    onOpenHelp={setActiveHelpKey}
                     icon={item.icon}
                   >
                     <div className="space-y-2">
@@ -1565,6 +2298,7 @@ export function CountrySidebar({
                 metricKey="minimumWageEur"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={DollarSign}
               >
                 <div className="flex items-center justify-between">
@@ -1585,6 +2319,7 @@ export function CountrySidebar({
                 metricKey="unemploymentRate"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={Users}
               >
                 <div className="flex items-center justify-between">
@@ -1601,6 +2336,7 @@ export function CountrySidebar({
                 metricKey="costOfLivingIndex"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={Building2}
               >
                 <div className="flex items-center justify-between">
@@ -1617,6 +2353,7 @@ export function CountrySidebar({
                 metricKey="internetPenetration"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={Globe}
               >
                 <div className="flex items-center justify-between">
@@ -1633,6 +2370,7 @@ export function CountrySidebar({
                 metricKey="population"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={Users}
               >
                 <div className="flex items-center justify-between">
@@ -1649,6 +2387,7 @@ export function CountrySidebar({
                 metricKey="exchangeRate"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={DollarSign}
               >
                 <div className="flex items-center justify-between">
@@ -1677,6 +2416,7 @@ export function CountrySidebar({
                 metricKey="hdi"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={Award}
               >
                 <div className="flex items-center justify-between">
@@ -1693,6 +2433,7 @@ export function CountrySidebar({
                 metricKey="population"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={Users}
               >
                 <div className="flex items-center justify-between">
@@ -1709,6 +2450,7 @@ export function CountrySidebar({
                 metricKey="englishSpeakingPercent"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={BookOpen}
               >
                 <div className="flex items-center justify-between">
@@ -1725,6 +2467,7 @@ export function CountrySidebar({
                 metricKey="mainIndustry"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={Building2}
               >
                 <div className="flex items-center justify-between">
@@ -1763,6 +2506,7 @@ export function CountrySidebar({
                 metricKey="adolescentBirthRate"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={Heart}
               >
                 <div className="flex items-center justify-between">
@@ -1779,6 +2523,7 @@ export function CountrySidebar({
                 metricKey="childMarriagePercent"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={HeartPulse}
               >
                 <div className="flex items-center justify-between">
@@ -1797,6 +2542,7 @@ export function CountrySidebar({
                 metricKey="laborForceGap"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={Users}
               >
                 <div className="flex items-center justify-between">
@@ -1813,6 +2559,7 @@ export function CountrySidebar({
                 metricKey="contraceptiveUse"
                 activeSortKey={activeSortKey}
                 onSelectMetric={onSelectMetric}
+                onOpenHelp={setActiveHelpKey}
                 icon={Activity}
               >
                 <div className="flex items-center justify-between">
@@ -1866,6 +2613,7 @@ export function CountrySidebar({
                     metricKey="income"
                     activeSortKey={activeSortKey}
                     onSelectMetric={onSelectMetric}
+                    onOpenHelp={setActiveHelpKey}
                     icon={TrendingUp}
                   >
                     <div className="space-y-2 text-xs">
@@ -1923,6 +2671,7 @@ export function CountrySidebar({
                     metricKey="hdi"
                     activeSortKey={activeSortKey}
                     onSelectMetric={onSelectMetric}
+                    onOpenHelp={setActiveHelpKey}
                     icon={Award}
                   >
                     <div className="space-y-2 text-xs">
@@ -1977,6 +2726,7 @@ export function CountrySidebar({
                     metricKey="obesityRate"
                     activeSortKey={activeSortKey}
                     onSelectMetric={onSelectMetric}
+                    onOpenHelp={setActiveHelpKey}
                     icon={Activity}
                   >
                     <div className="space-y-2 text-xs">
@@ -2033,6 +2783,7 @@ export function CountrySidebar({
                     metricKey="femaleLifeExpectancy"
                     activeSortKey={activeSortKey}
                     onSelectMetric={onSelectMetric}
+                    onOpenHelp={setActiveHelpKey}
                     icon={Heart}
                   >
                     <div className="space-y-2 text-xs">
@@ -2112,6 +2863,13 @@ export function CountrySidebar({
           <ExternalLink className="h-3.5 w-3.5" />
         </Link>
       </div>
+
+      {/* Interactive Explanation & How-to-Read Modal */}
+      <MetricHelpModal
+        metricKey={activeHelpKey}
+        onClose={() => setActiveHelpKey(null)}
+        onSelectMetric={onSelectMetric}
+      />
     </aside>
   );
 }
