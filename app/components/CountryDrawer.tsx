@@ -125,7 +125,7 @@ export function CountryDrawer({
   const delta = cur != null && pinVal != null ? cur - pinVal : null;
 
   return (
-    <div className="absolute inset-y-0 right-0 z-20 flex w-[28rem] max-w-[92vw] flex-col border-l border-zinc-800/90 bg-zinc-950/98 shadow-2xl backdrop-blur-md">
+    <div className="absolute inset-y-0 right-0 z-20 flex w-[28rem] max-w-[92vw] flex-col border-l border-zinc-800/90 bg-zinc-950/98 shadow-2xl backdrop-blur-md animate-drawer-in">
       {/* Header */}
       <div className="flex items-start justify-between border-b border-zinc-800/90 px-5 py-4">
         <div>

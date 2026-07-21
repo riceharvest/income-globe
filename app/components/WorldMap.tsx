@@ -5,7 +5,8 @@ import { Plus, Minus, RotateCcw } from "lucide-react";
 import topoData from "world-atlas/countries-110m.json";
 import { countries, type CountryData } from "~/data/countries";
 import { colorScaleFor, noDataFill, oceanFill, borderStroke } from "~/lib/color";
-import { formatValue, statValue, type Mode, type StatDef } from "~/lib/stats";
+import { formatValue, rankCountries, statValue, type Mode, type StatDef } from "~/lib/stats";
+import { MapLegendOverlay } from "~/components/MapLegendOverlay";
 
 interface GeoFeature {
   type: "Feature";
@@ -87,6 +88,13 @@ export function WorldMap({
     for (const [n, c] of byNumeric) m.set(n, statValue(stat, c, mode));
     return m;
   }, [stat, mode]);
+
+  const rankedEntries = useMemo(() => rankCountries(stat, mode), [stat, mode]);
+  const rankByCode = useMemo(() => {
+    const m = new Map<string, number>();
+    for (const r of rankedEntries) m.set(r.country.code, r.rank);
+    return m;
+  }, [rankedEntries]);
 
   const zoomIn = useCallback(() => {
     setView((v) => ({
@@ -179,11 +187,19 @@ export function WorldMap({
 
   const containerRect = svgRef.current?.getBoundingClientRect();
   const tooltipX = hover
-    ? Math.min(Math.max(12, hover.x + 14), (containerRect?.width ?? 400) - 180)
+    ? Math.min(Math.max(12, hover.x + 14), (containerRect?.width ?? 400) - 200)
     : 0;
   const tooltipY = hover
-    ? Math.max(12, Math.min(hover.y - 45, (containerRect?.height ?? 300) - 60))
+    ? Math.max(12, Math.min(hover.y - 45, (containerRect?.height ?? 300) - 70))
     : 0;
+
+  const formatTick = useCallback(
+    (v: number) =>
+      Math.abs(v) >= 1000
+        ? v.toLocaleString("en-US", { maximumFractionDigits: 0 })
+        : v.toFixed(stat.decimals),
+    [stat],
+  );
 
   return (
     <div className="relative h-full w-full overflow-hidden" style={{ background: oceanFill }}>
@@ -241,9 +257,18 @@ export function WorldMap({
         </g>
       </svg>
 
+      {/* Floating Map Legend Overlay */}
+      <MapLegendOverlay
+        stat={stat}
+        mode={mode}
+        region={region}
+        formatTick={formatTick}
+      />
+
+      {/* Country Hover Tooltip */}
       {hover && (
         <div
-          className="pointer-events-none absolute z-10 rounded-lg border border-zinc-800 bg-zinc-950/95 px-3 py-2 text-xs shadow-2xl backdrop-blur-md"
+          className="pointer-events-none absolute z-10 rounded-lg border border-zinc-800 bg-zinc-950/95 px-3 py-2 text-xs shadow-2xl backdrop-blur-md animate-fade-in"
           style={{
             left: tooltipX,
             top: tooltipY,
@@ -252,22 +277,29 @@ export function WorldMap({
           <div className="font-semibold text-zinc-100 flex items-center gap-1.5">
             {hover.country ? (
               <>
-                <span className="text-sm">{hover.country.flag}</span>
+                <span className="text-sm leading-none">{hover.country.flag}</span>
                 <span>{hover.country.name}</span>
               </>
             ) : (
               hover.name
             )}
           </div>
-          <div className="mt-0.5 text-cyan-300 font-medium tabular-nums">
-            {hover.country
-              ? formatValue(stat, statValue(stat, hover.country, mode))
-              : "No data"}
+          <div className="mt-0.5 flex items-baseline justify-between gap-3">
+            <span className="text-cyan-300 font-semibold tabular-nums">
+              {hover.country
+                ? formatValue(stat, statValue(stat, hover.country, mode))
+                : "No data"}
+            </span>
+            {hover.country && rankByCode.has(hover.country.code) && (
+              <span className="text-[10px] text-zinc-400 font-mono">
+                Rank #{rankByCode.get(hover.country.code)}
+              </span>
+            )}
           </div>
         </div>
       )}
 
-      {/* Map Control Buttons */}
+      {/* Map Zoom Controls */}
       <div className="absolute bottom-3 right-3 z-10 flex flex-col gap-1 rounded-lg border border-zinc-800/90 bg-zinc-950/90 p-1 shadow-lg backdrop-blur">
         <button
           onClick={zoomIn}
