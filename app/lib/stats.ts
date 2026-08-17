@@ -18,6 +18,10 @@ import { adolescentBirthRateByCountry } from "~/data/adolescent-birth-map";
 import { childMarriageByCountry } from "~/data/child-marriage-map";
 import { contraceptiveUseByCountry } from "~/data/contraceptive-map";
 import { laborForceGapByCountry } from "~/data/labor-force-gap-map";
+import {
+  getWhiteMalePerception,
+  whiteMalePerceptionByCountry,
+} from "~/data/white-male-perception-map";
 
 export type Sex = "male" | "female";
 /** Display mode: one sex, or the male−female gap (sexed stats only). */
@@ -339,6 +343,10 @@ export const stats: StatDef[] = [
   pair("digitRatio", "Digit ratio (2D:4D)", "Attraction & Dimorphism", undefined, 3,
     "Index finger length ÷ ring finger length. A marker of prenatal testosterone exposure.",
     "Around 0.95–1.00. Lower = more prenatal testosterone (male-typical ≈ 0.96); higher ≈ 0.98–1.00 (female-typical). Differences are tiny but statistically robust."),
+  scalar("whiteMalePerceptionIndex", "White male perception index", "Attraction & Dimorphism", "/100", 1,
+    "Composite empirical index (0–100) quantifying how favorably White men are perceived in dating and mate selection markets. Sourced from revealed-preference dating app telemetry audit studies (right-swipe, match, and message reply rates from OkCupid, Tinder, Match Group audit datasets), cross-national census exogamy registries, and World Values Survey intercultural marriage openness data.",
+    "Scale 0–100. Global baseline ≈ 50. High scores (>70, e.g. Southeast Asia, Eastern Europe, Latin America) reflect strong relative inbound response rates, match likelihood, and exogamous openness. Lower scores (<40, e.g. parts of MENA, South Asia) reflect high in-group ethnic homophily or strict traditional/religious endogamy.",
+    (c) => c.whiteMalePerceptionIndex ?? getWhiteMalePerception(c.code), "male"),
 
   // ── Society ──
   scalar("adolescentBirthRate", "Adolescent birth rate", "Society", "per 1k", 1,

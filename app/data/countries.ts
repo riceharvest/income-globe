@@ -1,4 +1,8 @@
 import countriesDatabase from "./countries-database.json";
+import {
+  getWhiteMalePerception,
+  whiteMalePerceptionByCountry,
+} from "./white-male-perception-map";
 
 // ── Indicator & Dimension Types ──
 
@@ -383,6 +387,7 @@ export interface CountryData {
   vocalPitchHz?: number;
 
   // Demographics & Misc
+  whiteMalePerceptionIndex?: number;
   englishSpeakingPercent?: number;
   mainIndustry?: string;
 }
@@ -1243,6 +1248,11 @@ export function getSortValue(
   if (metricKey === "maleDentalWhitenessScore") return phys.dentalWhitenessScore.male;
   if (metricKey === "dentalWhitenessScore" || metricKey === "dentalWhiteness") {
     return Math.round(((phys.dentalWhitenessScore.female + phys.dentalWhitenessScore.male) / 2) * 10) / 10;
+  }
+
+  // White Male Dating Perception & Desirability Index
+  if (metricKey === "whiteMalePerceptionIndex" || metricKey === "whiteMalePerception") {
+    return getWhiteMalePerception(country.code);
   }
 
   // Fallback: check dynamic object properties

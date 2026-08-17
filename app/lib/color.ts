@@ -54,6 +54,8 @@ const statPalette: Record<string, string> = {
   itaAngle: "skin",
   religionPct: "indigo",
   breastSize: "violet",
+  // Attraction & Dimorphism
+  whiteMalePerceptionIndex: "violet",
   // Society
   adolescentBirthRate: "rose",
   childMarriage: "rose",
