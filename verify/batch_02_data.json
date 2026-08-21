@@ -1,0 +1,684 @@
+[
+ {
+  "code": "BD",
+  "alpha2": "BD",
+  "alpha3": "BGD",
+  "numericCode": "050",
+  "name": "Bangladesh",
+  "region": "Asia",
+  "flag": "🇧🇩",
+  "currency": "BDT",
+  "currencySymbol": "৳",
+  "exchangeRate": 1,
+  "population": 175686899,
+  "dataSource": "ILO",
+  "dataYear": 2023,
+  "income": {
+   "p10": 35,
+   "p25": 70,
+   "p50": 150,
+   "p75": 330,
+   "p90": 680
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 36,
+    "p25": 72,
+    "p50": 157,
+    "p75": 356,
+    "p90": 756
+   },
+   "posttax_national": {
+    "p10": 35,
+    "p25": 70,
+    "p50": 150,
+    "p75": 330,
+    "p90": 680
+   },
+   "consumption": {
+    "p10": 32,
+    "p25": 57,
+    "p50": 123,
+    "p75": 253,
+    "p90": 488
+   },
+   "wealth": {
+    "p10": 70,
+    "p25": 560,
+    "p50": 3750,
+    "p75": 19800,
+    "p90": 102000
+   },
+   "labor_income": {
+    "p10": 21,
+    "p25": 49,
+    "p50": 120,
+    "p75": 281,
+    "p90": 612
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 70.8,
+   "childMarriagePercent": 51,
+   "laborForceGap": -41.8,
+   "contraceptiveUse": 64
+  },
+  "minimumWageEur": 50,
+  "costOfLivingIndex": 28,
+  "unemploymentRate": 3.8,
+  "internetPenetration": 53.4,
+  "femaleHeightCm": 154,
+  "femaleWeightKg": 55,
+  "femaleBmi": 23,
+  "femaleObesityRate": 6,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 76.7,
+  "maleHeightCm": 166,
+  "maleWeightKg": 65,
+  "maleBmi": 23.6,
+  "maleObesityRate": 5.3,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 73.3,
+  "obesityRate": 6,
+  "smokingRate": 8,
+  "hdi": 0.66,
+  "englishSpeakingPercent": 63,
+  "mainIndustry": "Agriculture"
+ },
+ {
+  "code": "BB",
+  "alpha2": "BB",
+  "alpha3": "BRB",
+  "numericCode": "052",
+  "name": "Barbados",
+  "region": "Caribbean",
+  "flag": "🇧🇧",
+  "currency": "BBD",
+  "currencySymbol": "$",
+  "exchangeRate": 1,
+  "population": 282623,
+  "dataSource": "REST Countries & World Bank API 2024",
+  "dataYear": 2024,
+  "income": {
+   "p10": 648,
+   "p25": 751,
+   "p50": 906,
+   "p75": 1181,
+   "p90": 1526
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 660,
+    "p25": 780,
+    "p50": 958,
+    "p75": 1293,
+    "p90": 1729
+   },
+   "posttax_national": {
+    "p10": 648,
+    "p25": 751,
+    "p50": 906,
+    "p75": 1181,
+    "p90": 1526
+   },
+   "consumption": {
+    "p10": 591,
+    "p25": 610,
+    "p50": 736,
+    "p75": 900,
+    "p90": 1087
+   },
+   "wealth": {
+    "p10": 1296,
+    "p25": 6008,
+    "p50": 22650,
+    "p75": 70860,
+    "p90": 228900
+   },
+   "labor_income": {
+    "p10": 389,
+    "p25": 526,
+    "p50": 725,
+    "p75": 1004,
+    "p90": 1373
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 45,
+   "childMarriagePercent": null,
+   "laborForceGap": -7.7,
+   "contraceptiveUse": null
+  },
+  "minimumWageEur": 450,
+  "costOfLivingIndex": 40,
+  "unemploymentRate": 6.5,
+  "internetPenetration": 70.4,
+  "femaleHeightCm": 162,
+  "femaleWeightKg": 66,
+  "femaleBmi": 25.3,
+  "femaleObesityRate": 22,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 78.8,
+  "maleHeightCm": 174,
+  "maleWeightKg": 78,
+  "maleBmi": 25.9,
+  "maleObesityRate": 19.4,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 73.8,
+  "obesityRate": 22,
+  "smokingRate": 8,
+  "hdi": 0.58
+ },
+ {
+  "code": "BY",
+  "alpha2": "BY",
+  "alpha3": "BLR",
+  "numericCode": "112",
+  "name": "Belarus",
+  "region": "Europe",
+  "flag": "🇧🇾",
+  "currency": "BYN",
+  "currencySymbol": "Br",
+  "exchangeRate": 1,
+  "population": 9085991,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 150,
+   "p25": 300,
+   "p50": 580,
+   "p75": 1050,
+   "p90": 1800
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 152,
+    "p25": 308,
+    "p50": 602,
+    "p75": 1116,
+    "p90": 1957
+   },
+   "posttax_national": {
+    "p10": 150,
+    "p25": 300,
+    "p50": 580,
+    "p75": 1050,
+    "p90": 1800
+   },
+   "consumption": {
+    "p10": 139,
+    "p25": 248,
+    "p50": 479,
+    "p75": 814,
+    "p90": 1305
+   },
+   "wealth": {
+    "p10": 300,
+    "p25": 2400,
+    "p50": 14500,
+    "p75": 63000,
+    "p90": 270000
+   },
+   "labor_income": {
+    "p10": 90,
+    "p25": 210,
+    "p50": 464,
+    "p75": 893,
+    "p90": 1620
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 8.2,
+   "childMarriagePercent": 5,
+   "laborForceGap": -13.1,
+   "contraceptiveUse": 52.6
+  },
+  "minimumWageEur": 200,
+  "costOfLivingIndex": 38,
+  "unemploymentRate": 3.4,
+  "internetPenetration": 94.3,
+  "femaleHeightCm": 163,
+  "femaleWeightKg": 69,
+  "femaleBmi": 26,
+  "femaleObesityRate": 26,
+  "femaleSmokingRate": 18,
+  "femaleLifeExpectancy": 79.2,
+  "maleHeightCm": 176,
+  "maleWeightKg": 83,
+  "maleBmi": 26.7,
+  "maleObesityRate": 22.9,
+  "maleSmokingRate": 28,
+  "maleLifeExpectancy": 69.7,
+  "obesityRate": 26,
+  "smokingRate": 18,
+  "hdi": 0.83,
+  "englishSpeakingPercent": 67,
+  "mainIndustry": "Services"
+ },
+ {
+  "code": "BE",
+  "alpha2": "BE",
+  "alpha3": "BEL",
+  "numericCode": "056",
+  "name": "Belgium",
+  "region": "Europe",
+  "flag": "🇧🇪",
+  "currency": "EUR",
+  "currencySymbol": "€",
+  "exchangeRate": 1,
+  "population": 11941781,
+  "dataSource": "OECD",
+  "dataYear": 2023,
+  "income": {
+   "p10": 1200,
+   "p25": 2000,
+   "p50": 3100,
+   "p75": 4400,
+   "p90": 5900
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 1216,
+    "p25": 2054,
+    "p50": 3226,
+    "p75": 4697,
+    "p90": 6458
+   },
+   "posttax_national": {
+    "p10": 1200,
+    "p25": 2000,
+    "p50": 3100,
+    "p75": 4400,
+    "p90": 5900
+   },
+   "consumption": {
+    "p10": 1108,
+    "p25": 1646,
+    "p50": 2551,
+    "p75": 3401,
+    "p90": 4266
+   },
+   "wealth": {
+    "p10": 2400,
+    "p25": 16000,
+    "p50": 77500,
+    "p75": 264000,
+    "p90": 885000
+   },
+   "labor_income": {
+    "p10": 720,
+    "p25": 1400,
+    "p50": 2480,
+    "p75": 3740,
+    "p90": 5310
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 3.5,
+   "childMarriagePercent": 3,
+   "laborForceGap": -9.2,
+   "contraceptiveUse": 66.7
+  },
+  "minimumWageEur": 1894,
+  "costOfLivingIndex": 73,
+  "unemploymentRate": 5.9,
+  "internetPenetration": 95.8,
+  "femaleHeightCm": 164,
+  "femaleWeightKg": 70,
+  "femaleBmi": 26,
+  "femaleObesityRate": 22,
+  "femaleSmokingRate": 18,
+  "femaleLifeExpectancy": 84.4,
+  "maleHeightCm": 177,
+  "maleWeightKg": 84,
+  "maleBmi": 26.7,
+  "maleObesityRate": 19.4,
+  "maleSmokingRate": 28,
+  "maleLifeExpectancy": 80.3,
+  "obesityRate": 22,
+  "smokingRate": 18,
+  "hdi": 0.94,
+  "englishSpeakingPercent": 76,
+  "mainIndustry": "Services"
+ },
+ {
+  "code": "BZ",
+  "alpha2": "BZ",
+  "alpha3": "BLZ",
+  "numericCode": "084",
+  "name": "Belize",
+  "region": "Latin America",
+  "flag": "🇧🇿",
+  "currency": "BZD",
+  "currencySymbol": "$",
+  "exchangeRate": 1,
+  "population": 422924,
+  "dataSource": "REST Countries & World Bank API 2024",
+  "dataYear": 2024,
+  "income": {
+   "p10": 375,
+   "p25": 434,
+   "p50": 524,
+   "p75": 683,
+   "p90": 882
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 382,
+    "p25": 450,
+    "p50": 554,
+    "p75": 748,
+    "p90": 999
+   },
+   "posttax_national": {
+    "p10": 375,
+    "p25": 434,
+    "p50": 524,
+    "p75": 683,
+    "p90": 882
+   },
+   "consumption": {
+    "p10": 342,
+    "p25": 352,
+    "p50": 425,
+    "p75": 520,
+    "p90": 628
+   },
+   "wealth": {
+    "p10": 750,
+    "p25": 3472,
+    "p50": 13100,
+    "p75": 40980,
+    "p90": 132300
+   },
+   "labor_income": {
+    "p10": 225,
+    "p25": 304,
+    "p50": 419,
+    "p75": 581,
+    "p90": 794
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 55.6,
+   "childMarriagePercent": null,
+   "laborForceGap": -25.2,
+   "contraceptiveUse": null
+  },
+  "minimumWageEur": 200,
+  "costOfLivingIndex": 25,
+  "unemploymentRate": 8.9,
+  "internetPenetration": 80,
+  "femaleHeightCm": 162,
+  "femaleWeightKg": 66,
+  "femaleBmi": 25.3,
+  "femaleObesityRate": 22,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 76.7,
+  "maleHeightCm": 174,
+  "maleWeightKg": 78,
+  "maleBmi": 25.9,
+  "maleObesityRate": 19.4,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 71.1,
+  "obesityRate": 22,
+  "smokingRate": 8,
+  "hdi": 0.5
+ },
+ {
+  "code": "BJ",
+  "alpha2": "BJ",
+  "alpha3": "BEN",
+  "numericCode": "204",
+  "name": "Benin",
+  "region": "Sub-Saharan Africa",
+  "flag": "🇧🇯",
+  "currency": "XOF",
+  "currencySymbol": "Fr",
+  "exchangeRate": 1,
+  "population": 14814460,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 25,
+   "p25": 50,
+   "p50": 100,
+   "p75": 220,
+   "p90": 480
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 25,
+    "p25": 52,
+    "p50": 106,
+    "p75": 241,
+    "p90": 544
+   },
+   "posttax_national": {
+    "p10": 25,
+    "p25": 50,
+    "p50": 100,
+    "p75": 220,
+    "p90": 480
+   },
+   "consumption": {
+    "p10": 23,
+    "p25": 41,
+    "p50": 81,
+    "p75": 168,
+    "p90": 342
+   },
+   "wealth": {
+    "p10": 50,
+    "p25": 400,
+    "p50": 2500,
+    "p75": 13200,
+    "p90": 72000
+   },
+   "labor_income": {
+    "p10": 15,
+    "p25": 35,
+    "p50": 80,
+    "p75": 187,
+    "p90": 432
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 76.4,
+   "childMarriagePercent": 26,
+   "laborForceGap": -2.4,
+   "contraceptiveUse": 22.4
+  },
+  "minimumWageEur": 40,
+  "costOfLivingIndex": 26,
+  "unemploymentRate": 1.6,
+  "internetPenetration": 34,
+  "femaleHeightCm": 158,
+  "femaleWeightKg": 62,
+  "femaleBmi": 25,
+  "femaleObesityRate": 15,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 62.4,
+  "maleHeightCm": 170,
+  "maleWeightKg": 74,
+  "maleBmi": 25.6,
+  "maleObesityRate": 13.2,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 59.5,
+  "obesityRate": 15,
+  "smokingRate": 8,
+  "hdi": 0.54,
+  "englishSpeakingPercent": 22,
+  "mainIndustry": "Agriculture"
+ },
+ {
+  "code": "BM",
+  "alpha2": "BM",
+  "alpha3": "BMU",
+  "numericCode": "060",
+  "name": "Bermuda",
+  "region": "North America",
+  "flag": "🇧🇲",
+  "currency": "BMD",
+  "currencySymbol": "$",
+  "exchangeRate": 1,
+  "population": 64555,
+  "dataSource": "REST Countries & World Bank API 2024",
+  "dataYear": 2024,
+  "income": {
+   "p10": 2971,
+   "p25": 3444,
+   "p50": 4155,
+   "p75": 5418,
+   "p90": 6997
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 3027,
+    "p25": 3575,
+    "p50": 4392,
+    "p75": 5933,
+    "p90": 7928
+   },
+   "posttax_national": {
+    "p10": 2971,
+    "p25": 3444,
+    "p50": 4155,
+    "p75": 5418,
+    "p90": 6997
+   },
+   "consumption": {
+    "p10": 2710,
+    "p25": 2797,
+    "p50": 3374,
+    "p75": 4129,
+    "p90": 4982
+   },
+   "wealth": {
+    "p10": 5942,
+    "p25": 27552,
+    "p50": 103875,
+    "p75": 325080,
+    "p90": 1049550
+   },
+   "labor_income": {
+    "p10": 1783,
+    "p25": 2411,
+    "p50": 3324,
+    "p75": 4605,
+    "p90": 6297
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 1.5,
+   "childMarriagePercent": null,
+   "laborForceGap": null,
+   "contraceptiveUse": null
+  },
+  "minimumWageEur": 1600,
+  "costOfLivingIndex": 130,
+  "unemploymentRate": 5.5,
+  "internetPenetration": 75,
+  "femaleHeightCm": 162,
+  "femaleWeightKg": 66,
+  "femaleBmi": 25.3,
+  "femaleObesityRate": 22,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 85.9,
+  "maleHeightCm": 174,
+  "maleWeightKg": 78,
+  "maleBmi": 25.9,
+  "maleObesityRate": 19.4,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 79.1,
+  "obesityRate": 22,
+  "smokingRate": 8,
+  "hdi": 0.96
+ },
+ {
+  "code": "BT",
+  "alpha2": "BT",
+  "alpha3": "BTN",
+  "numericCode": "064",
+  "name": "Bhutan",
+  "region": "Asia",
+  "flag": "🇧🇹",
+  "currency": "BTN",
+  "currencySymbol": "Nu.",
+  "exchangeRate": 1,
+  "population": 796682,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 55,
+   "p25": 115,
+   "p50": 240,
+   "p75": 480,
+   "p90": 900
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 56,
+    "p25": 119,
+    "p50": 253,
+    "p75": 524,
+    "p90": 1017
+   },
+   "posttax_national": {
+    "p10": 55,
+    "p25": 115,
+    "p50": 240,
+    "p75": 480,
+    "p90": 900
+   },
+   "consumption": {
+    "p10": 50,
+    "p25": 93,
+    "p50": 195,
+    "p75": 366,
+    "p90": 642
+   },
+   "wealth": {
+    "p10": 110,
+    "p25": 920,
+    "p50": 6000,
+    "p75": 28800,
+    "p90": 135000
+   },
+   "labor_income": {
+    "p10": 33,
+    "p25": 81,
+    "p50": 192,
+    "p75": 408,
+    "p90": 810
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 8.7,
+   "childMarriagePercent": 26,
+   "laborForceGap": -15.1,
+   "contraceptiveUse": 65.6
+  },
+  "minimumWageEur": 60,
+  "costOfLivingIndex": 32,
+  "unemploymentRate": 3.2,
+  "internetPenetration": 91.3,
+  "femaleHeightCm": 155,
+  "femaleWeightKg": 58,
+  "femaleBmi": 24,
+  "femaleObesityRate": 7,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 75.3,
+  "maleHeightCm": 167,
+  "maleWeightKg": 69,
+  "maleBmi": 24.6,
+  "maleObesityRate": 6.2,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 71.6,
+  "obesityRate": 7,
+  "smokingRate": 8,
+  "hdi": 0.69,
+  "englishSpeakingPercent": 33,
+  "mainIndustry": "Hydroelectric Power"
+ }
+]

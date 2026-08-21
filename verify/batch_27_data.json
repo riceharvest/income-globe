@@ -1,0 +1,684 @@
+[
+ {
+  "code": "TL",
+  "alpha2": "TL",
+  "alpha3": "TLS",
+  "numericCode": "626",
+  "name": "Timor-Leste",
+  "region": "Asia",
+  "flag": "🇹🇱",
+  "currency": "USD",
+  "currencySymbol": "$",
+  "exchangeRate": 1.08,
+  "population": 1418517,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 20,
+   "p25": 42,
+   "p50": 90,
+   "p75": 200,
+   "p90": 420
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 20,
+    "p25": 43,
+    "p50": 94,
+    "p75": 215,
+    "p90": 463
+   },
+   "posttax_national": {
+    "p10": 20,
+    "p25": 42,
+    "p50": 90,
+    "p75": 200,
+    "p90": 420
+   },
+   "consumption": {
+    "p10": 18,
+    "p25": 34,
+    "p50": 74,
+    "p75": 154,
+    "p90": 303
+   },
+   "wealth": {
+    "p10": 40,
+    "p25": 336,
+    "p50": 2250,
+    "p75": 12000,
+    "p90": 63000
+   },
+   "labor_income": {
+    "p10": 12,
+    "p25": 29,
+    "p50": 72,
+    "p75": 170,
+    "p90": 378
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 26.8,
+   "childMarriagePercent": 12,
+   "laborForceGap": -10.6,
+   "contraceptiveUse": 26
+  },
+  "minimumWageEur": 50,
+  "costOfLivingIndex": 28,
+  "unemploymentRate": 1.6,
+  "internetPenetration": 35,
+  "femaleHeightCm": 153,
+  "femaleWeightKg": 54,
+  "femaleBmi": 23,
+  "femaleObesityRate": 5,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 69.7,
+  "maleHeightCm": 165,
+  "maleWeightKg": 64,
+  "maleBmi": 23.6,
+  "maleObesityRate": 4.4,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 66.3,
+  "obesityRate": 5,
+  "smokingRate": 8,
+  "hdi": 0.63,
+  "englishSpeakingPercent": 5,
+  "mainIndustry": "Agriculture"
+ },
+ {
+  "code": "TG",
+  "alpha2": "TG",
+  "alpha3": "TGO",
+  "numericCode": "768",
+  "name": "Togo",
+  "region": "Sub-Saharan Africa",
+  "flag": "🇹🇬",
+  "currency": "XOF",
+  "currencySymbol": "Fr",
+  "exchangeRate": 1,
+  "population": 8591626,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 22,
+   "p25": 45,
+   "p50": 95,
+   "p75": 210,
+   "p90": 450
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 22,
+    "p25": 47,
+    "p50": 101,
+    "p75": 233,
+    "p90": 518
+   },
+   "posttax_national": {
+    "p10": 22,
+    "p25": 45,
+    "p50": 95,
+    "p75": 210,
+    "p90": 450
+   },
+   "consumption": {
+    "p10": 20,
+    "p25": 36,
+    "p50": 77,
+    "p75": 159,
+    "p90": 318
+   },
+   "wealth": {
+    "p10": 44,
+    "p25": 360,
+    "p50": 2375,
+    "p75": 12600,
+    "p90": 67500
+   },
+   "labor_income": {
+    "p10": 13,
+    "p25": 31,
+    "p50": 76,
+    "p75": 179,
+    "p90": 405
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 76.4,
+   "childMarriagePercent": 25,
+   "laborForceGap": -2.4,
+   "contraceptiveUse": 23.8
+  },
+  "minimumWageEur": 40,
+  "costOfLivingIndex": 28,
+  "unemploymentRate": 2,
+  "internetPenetration": 39.5,
+  "femaleHeightCm": 159,
+  "femaleWeightKg": 63,
+  "femaleBmi": 25,
+  "femaleObesityRate": 14,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 63.2,
+  "maleHeightCm": 171,
+  "maleWeightKg": 75,
+  "maleBmi": 25.6,
+  "maleObesityRate": 12.3,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 62.7,
+  "obesityRate": 14,
+  "smokingRate": 8,
+  "hdi": 0.5,
+  "englishSpeakingPercent": 39,
+  "mainIndustry": "Agriculture"
+ },
+ {
+  "code": "TK",
+  "alpha2": "TK",
+  "alpha3": "TKL",
+  "numericCode": "772",
+  "name": "Tokelau",
+  "region": "Oceania",
+  "flag": "🇹🇰",
+  "currency": "NZD",
+  "currencySymbol": "$",
+  "exchangeRate": 1,
+  "population": 1000000,
+  "dataSource": "REST Countries & World Bank API 2024",
+  "dataYear": 2024,
+  "income": {
+   "p10": 626,
+   "p25": 725,
+   "p50": 875,
+   "p75": 1141,
+   "p90": 1474
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 638,
+    "p25": 753,
+    "p50": 925,
+    "p75": 1249,
+    "p90": 1670
+   },
+   "posttax_national": {
+    "p10": 626,
+    "p25": 725,
+    "p50": 875,
+    "p75": 1141,
+    "p90": 1474
+   },
+   "consumption": {
+    "p10": 571,
+    "p25": 589,
+    "p50": 711,
+    "p75": 869,
+    "p90": 1049
+   },
+   "wealth": {
+    "p10": 1252,
+    "p25": 5800,
+    "p50": 21875,
+    "p75": 68460,
+    "p90": 221100
+   },
+   "labor_income": {
+    "p10": 376,
+    "p25": 507,
+    "p50": 700,
+    "p75": 970,
+    "p90": 1327
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": null,
+   "childMarriagePercent": null,
+   "laborForceGap": null,
+   "contraceptiveUse": null
+  },
+  "minimumWageEur": 450,
+  "costOfLivingIndex": 38,
+  "unemploymentRate": 5.5,
+  "internetPenetration": 75,
+  "femaleHeightCm": 162,
+  "femaleWeightKg": 66,
+  "femaleBmi": 25.3,
+  "femaleObesityRate": 22,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 78.5,
+  "maleHeightCm": 174,
+  "maleWeightKg": 78,
+  "maleBmi": 25.9,
+  "maleObesityRate": 19.4,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 72.8,
+  "obesityRate": 22,
+  "smokingRate": 8,
+  "hdi": 0.57
+ },
+ {
+  "code": "TO",
+  "alpha2": "TO",
+  "alpha3": "TON",
+  "numericCode": "776",
+  "name": "Tonga",
+  "region": "Oceania",
+  "flag": "🇹🇴",
+  "currency": "TOP",
+  "currencySymbol": "T$",
+  "exchangeRate": 1,
+  "population": 103742,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 50,
+   "p25": 105,
+   "p50": 220,
+   "p75": 450,
+   "p90": 850
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 51,
+    "p25": 109,
+    "p50": 233,
+    "p75": 493,
+    "p90": 963
+   },
+   "posttax_national": {
+    "p10": 50,
+    "p25": 105,
+    "p50": 220,
+    "p75": 450,
+    "p90": 850
+   },
+   "consumption": {
+    "p10": 46,
+    "p25": 85,
+    "p50": 179,
+    "p75": 343,
+    "p90": 605
+   },
+   "wealth": {
+    "p10": 100,
+    "p25": 840,
+    "p50": 5500,
+    "p75": 27000,
+    "p90": 127500
+   },
+   "labor_income": {
+    "p10": 30,
+    "p25": 74,
+    "p50": 176,
+    "p75": 383,
+    "p90": 765
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 25.1,
+   "childMarriagePercent": 13,
+   "laborForceGap": -16.6,
+   "contraceptiveUse": 29.3
+  },
+  "minimumWageEur": 80,
+  "costOfLivingIndex": 38,
+  "unemploymentRate": 2,
+  "internetPenetration": 67.4,
+  "femaleHeightCm": 158,
+  "femaleWeightKg": 65,
+  "femaleBmi": 26,
+  "femaleObesityRate": 52,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 76.5,
+  "maleHeightCm": 170,
+  "maleWeightKg": 77,
+  "maleBmi": 26.7,
+  "maleObesityRate": 45.8,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 69.5,
+  "obesityRate": 52,
+  "smokingRate": 8,
+  "hdi": 0.7,
+  "englishSpeakingPercent": 5,
+  "mainIndustry": "Agriculture"
+ },
+ {
+  "code": "TT",
+  "alpha2": "TT",
+  "alpha3": "TTO",
+  "numericCode": "780",
+  "name": "Trinidad and Tobago",
+  "region": "Caribbean",
+  "flag": "🇹🇹",
+  "currency": "TTD",
+  "currencySymbol": "$",
+  "exchangeRate": 1,
+  "population": 1367764,
+  "dataSource": "REST Countries & World Bank API 2024",
+  "dataYear": 2024,
+  "income": {
+   "p10": 929,
+   "p25": 1077,
+   "p50": 1299,
+   "p75": 1694,
+   "p90": 2188
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 947,
+    "p25": 1118,
+    "p50": 1373,
+    "p75": 1855,
+    "p90": 2479
+   },
+   "posttax_national": {
+    "p10": 929,
+    "p25": 1077,
+    "p50": 1299,
+    "p75": 1694,
+    "p90": 2188
+   },
+   "consumption": {
+    "p10": 847,
+    "p25": 875,
+    "p50": 1055,
+    "p75": 1291,
+    "p90": 1558
+   },
+   "wealth": {
+    "p10": 1858,
+    "p25": 8616,
+    "p50": 32475,
+    "p75": 101640,
+    "p90": 328200
+   },
+   "labor_income": {
+    "p10": 557,
+    "p25": 754,
+    "p50": 1039,
+    "p75": 1440,
+    "p90": 1969
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 36,
+   "childMarriagePercent": null,
+   "laborForceGap": -20.3,
+   "contraceptiveUse": 36.5
+  },
+  "minimumWageEur": 900,
+  "costOfLivingIndex": 57,
+  "unemploymentRate": 3.3,
+  "internetPenetration": 82.2,
+  "femaleHeightCm": 162,
+  "femaleWeightKg": 66,
+  "femaleBmi": 25.3,
+  "femaleObesityRate": 22,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 76.8,
+  "maleHeightCm": 174,
+  "maleWeightKg": 78,
+  "maleBmi": 25.9,
+  "maleObesityRate": 19.4,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 70.5,
+  "obesityRate": 22,
+  "smokingRate": 8,
+  "hdi": 0.66
+ },
+ {
+  "code": "TN",
+  "alpha2": "TN",
+  "alpha3": "TUN",
+  "numericCode": "788",
+  "name": "Tunisia",
+  "region": "Middle East & North Africa",
+  "flag": "🇹🇳",
+  "currency": "TND",
+  "currencySymbol": "د.ت",
+  "exchangeRate": 1,
+  "population": 12348573,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 80,
+   "p25": 165,
+   "p50": 340,
+   "p75": 680,
+   "p90": 1250
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 81,
+    "p25": 170,
+    "p50": 357,
+    "p75": 736,
+    "p90": 1394
+   },
+   "posttax_national": {
+    "p10": 80,
+    "p25": 165,
+    "p50": 340,
+    "p75": 680,
+    "p90": 1250
+   },
+   "consumption": {
+    "p10": 73,
+    "p25": 135,
+    "p50": 278,
+    "p75": 522,
+    "p90": 896
+   },
+   "wealth": {
+    "p10": 160,
+    "p25": 1320,
+    "p50": 8500,
+    "p75": 40800,
+    "p90": 187500
+   },
+   "labor_income": {
+    "p10": 48,
+    "p25": 115,
+    "p50": 272,
+    "p75": 578,
+    "p90": 1125
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 4.2,
+   "childMarriagePercent": 2,
+   "laborForceGap": -38.4,
+   "contraceptiveUse": 54
+  },
+  "minimumWageEur": 150,
+  "costOfLivingIndex": 30,
+  "unemploymentRate": 15.1,
+  "internetPenetration": 76.5,
+  "femaleHeightCm": 162,
+  "femaleWeightKg": 71,
+  "femaleBmi": 27,
+  "femaleObesityRate": 21,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 79.3,
+  "maleHeightCm": 174,
+  "maleWeightKg": 84,
+  "maleBmi": 27.7,
+  "maleObesityRate": 18.5,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 74.1,
+  "obesityRate": 21,
+  "smokingRate": 8,
+  "hdi": 0.77,
+  "englishSpeakingPercent": 38,
+  "mainIndustry": "Services"
+ },
+ {
+  "code": "TM",
+  "alpha2": "TM",
+  "alpha3": "TKM",
+  "numericCode": "795",
+  "name": "Turkmenistan",
+  "region": "Central Asia",
+  "flag": "🇹🇲",
+  "currency": "TMT",
+  "currencySymbol": "m",
+  "exchangeRate": 1,
+  "population": 7618847,
+  "dataSource": "ILO",
+  "dataYear": 2022,
+  "income": {
+   "p10": 55,
+   "p25": 115,
+   "p50": 240,
+   "p75": 480,
+   "p90": 900
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 56,
+    "p25": 120,
+    "p50": 255,
+    "p75": 529,
+    "p90": 1029
+   },
+   "posttax_national": {
+    "p10": 55,
+    "p25": 115,
+    "p50": 240,
+    "p75": 480,
+    "p90": 900
+   },
+   "consumption": {
+    "p10": 50,
+    "p25": 93,
+    "p50": 194,
+    "p75": 364,
+    "p90": 638
+   },
+   "wealth": {
+    "p10": 110,
+    "p25": 920,
+    "p50": 6000,
+    "p75": 28800,
+    "p90": 135000
+   },
+   "labor_income": {
+    "p10": 33,
+    "p25": 81,
+    "p50": 192,
+    "p75": 408,
+    "p90": 810
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 20.1,
+   "childMarriagePercent": 5,
+   "laborForceGap": -7.9,
+   "contraceptiveUse": 49.7
+  },
+  "minimumWageEur": 100,
+  "costOfLivingIndex": 38,
+  "unemploymentRate": 4.3,
+  "internetPenetration": 65,
+  "femaleHeightCm": 160,
+  "femaleWeightKg": 69,
+  "femaleBmi": 27,
+  "femaleObesityRate": 18,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 73,
+  "maleHeightCm": 172,
+  "maleWeightKg": 82,
+  "maleBmi": 27.7,
+  "maleObesityRate": 15.8,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 67,
+  "obesityRate": 18,
+  "smokingRate": 8,
+  "hdi": 0.76,
+  "englishSpeakingPercent": 57,
+  "mainIndustry": "Petroleum"
+ },
+ {
+  "code": "TC",
+  "alpha2": "TC",
+  "alpha3": "TCA",
+  "numericCode": "796",
+  "name": "Turks and Caicos Islands",
+  "region": "Caribbean",
+  "flag": "🇹🇨",
+  "currency": "USD",
+  "currencySymbol": "$",
+  "exchangeRate": 1.08,
+  "population": 46855,
+  "dataSource": "REST Countries & World Bank API 2024",
+  "dataYear": 2024,
+  "income": {
+   "p10": 951,
+   "p25": 1103,
+   "p50": 1330,
+   "p75": 1734,
+   "p90": 2240
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 969,
+    "p25": 1145,
+    "p50": 1406,
+    "p75": 1899,
+    "p90": 2538
+   },
+   "posttax_national": {
+    "p10": 951,
+    "p25": 1103,
+    "p50": 1330,
+    "p75": 1734,
+    "p90": 2240
+   },
+   "consumption": {
+    "p10": 867,
+    "p25": 896,
+    "p50": 1080,
+    "p75": 1321,
+    "p90": 1595
+   },
+   "wealth": {
+    "p10": 1902,
+    "p25": 8824,
+    "p50": 33250,
+    "p75": 104040,
+    "p90": 336000
+   },
+   "labor_income": {
+    "p10": 571,
+    "p25": 772,
+    "p50": 1064,
+    "p75": 1474,
+    "p90": 2016
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 15.6,
+   "childMarriagePercent": null,
+   "laborForceGap": null,
+   "contraceptiveUse": 34.4
+  },
+  "minimumWageEur": 900,
+  "costOfLivingIndex": 58,
+  "unemploymentRate": 5.5,
+  "internetPenetration": 75,
+  "femaleHeightCm": 162,
+  "femaleWeightKg": 66,
+  "femaleBmi": 25.3,
+  "femaleObesityRate": 22,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 80.4,
+  "maleHeightCm": 174,
+  "maleWeightKg": 78,
+  "maleBmi": 25.9,
+  "maleObesityRate": 19.4,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 76,
+  "obesityRate": 22,
+  "smokingRate": 8,
+  "hdi": 0.66
+ }
+]

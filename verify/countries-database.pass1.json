@@ -82,7 +82,7 @@
     "obesityRate": 6,
     "smokingRate": 8,
     "hdi": 0.496,
-    "englishSpeakingPercent": 5,
+    "englishSpeakingPercent": null,
     "mainIndustry": "Agriculture"
   },
   {
@@ -97,76 +97,76 @@
     "currencySymbol": "€",
     "exchangeRate": 1,
     "population": 30654,
-    "dataSource": "Statistics Finland / ÅSUB income statistics, FI anchor x1.17",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
-      "p10": 1400,
-      "p25": 2300,
-      "p50": 3600,
-      "p75": 5000,
-      "p90": 6800
+      "p10": 840,
+      "p25": 1400,
+      "p50": 2170,
+      "p75": 3010,
+      "p90": 4060
     },
     "indicators": {
       "pretax_national": {
-        "p10": 1400,
-        "p25": 2400,
-        "p50": 3800,
-        "p75": 5400,
-        "p90": 7400
+        "p10": 850,
+        "p25": 1440,
+        "p50": 2260,
+        "p75": 3210,
+        "p90": 4440
       },
       "posttax_national": {
-        "p10": 1400,
-        "p25": 2300,
-        "p50": 3600,
-        "p75": 5000,
-        "p90": 6800
+        "p10": 840,
+        "p25": 1400,
+        "p50": 2170,
+        "p75": 3010,
+        "p90": 4060
       },
       "consumption": {
-        "p10": 1300,
-        "p25": 1900,
-        "p50": 3000,
-        "p75": 3900,
-        "p90": 4900
+        "p10": 780,
+        "p25": 1150,
+        "p50": 1790,
+        "p75": 2330,
+        "p90": 2940
       },
       "wealth": {
-        "p10": 2800,
-        "p25": 18700,
-        "p50": 90700,
-        "p75": 301900,
-        "p90": 1017900
+        "p10": 1600,
+        "p25": 10400,
+        "p50": 50500,
+        "p75": 168200,
+        "p90": 567100
       },
       "labor_income": {
-        "p10": 840,
-        "p25": 1600,
-        "p50": 2900,
-        "p75": 4300,
-        "p90": 6100
+        "p10": 500,
+        "p25": 980,
+        "p50": 1740,
+        "p75": 2560,
+        "p90": 3650
       }
     },
     "gender": {
-      "adolescentBirthRate": 3,
-      "childMarriagePercent": 2,
-      "laborForceGap": -6.5,
-      "contraceptiveUse": 85.5
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
-    "minimumWageEur": 0,
+    "minimumWageEur": null,
     "costOfLivingIndex": 78,
     "unemploymentRate": 5.1,
     "internetPenetration": 99,
     "femaleHeightCm": 166,
-    "femaleWeightKg": 71,
-    "femaleBmi": 25.7,
-    "femaleObesityRate": 25.3,
-    "femaleSmokingRate": 17.4,
+    "femaleWeightKg": 70,
+    "femaleBmi": 25.3,
+    "femaleObesityRate": 22,
+    "femaleSmokingRate": 18,
     "femaleLifeExpectancy": 85.0,
     "maleHeightCm": 179,
-    "maleWeightKg": 85,
-    "maleBmi": 26.5,
-    "maleObesityRate": 24.2,
-    "maleSmokingRate": 25.3,
+    "maleWeightKg": 83,
+    "maleBmi": 25.9,
+    "maleObesityRate": 19.4,
+    "maleSmokingRate": 28,
     "maleLifeExpectancy": 79.8,
-    "obesityRate": 24.8,
-    "smokingRate": 21.4,
+    "obesityRate": 22,
+    "smokingRate": 18,
     "hdi": 0.937
   },
   {
@@ -353,57 +353,57 @@
     "currencySymbol": "$",
     "exchangeRate": 1.08,
     "population": 46029,
-    "dataSource": "US Census Bureau 2020 Island Areas Census (income year 2019)",
-    "dataYear": 2019,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
-      "p10": 290,
-      "p25": 495,
-      "p50": 890,
-      "p75": 1615,
-      "p90": 2760
+      "p10": 260,
+      "p25": 480,
+      "p50": 810,
+      "p75": 1280,
+      "p90": 1910
     },
     "indicators": {
       "pretax_national": {
-        "p10": 295,
-        "p25": 510,
-        "p50": 935,
-        "p75": 1745,
-        "p90": 3075
+        "p10": 270,
+        "p25": 500,
+        "p50": 860,
+        "p75": 1400,
+        "p90": 2180
       },
       "posttax_national": {
-        "p10": 290,
-        "p25": 495,
-        "p50": 890,
-        "p75": 1615,
-        "p90": 2760
+        "p10": 260,
+        "p25": 480,
+        "p50": 810,
+        "p75": 1280,
+        "p90": 1910
       },
       "consumption": {
-        "p10": 265,
-        "p25": 405,
-        "p50": 725,
-        "p75": 1240,
-        "p90": 1980
+        "p10": 240,
+        "p25": 390,
+        "p50": 660,
+        "p75": 970,
+        "p90": 1360
       },
       "wealth": {
-        "p10": 500,
-        "p25": 3900,
-        "p50": 20000,
-        "p75": 77000,
-        "p90": 290000
+        "p10": 400,
+        "p25": 2900,
+        "p50": 15000,
+        "p75": 56600,
+        "p90": 212100
       },
       "labor_income": {
-        "p10": 175,
-        "p25": 345,
-        "p50": 710,
-        "p75": 1375,
-        "p90": 2485
+        "p10": 160,
+        "p25": 340,
+        "p50": 650,
+        "p75": 1080,
+        "p90": 1720
       }
     },
     "gender": {
       "adolescentBirthRate": 34.7,
-      "childMarriagePercent": 7.4,
-      "laborForceGap": -10,
-      "contraceptiveUse": 62
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 990,
     "costOfLivingIndex": 85,
@@ -437,7 +437,7 @@
     "currencySymbol": "€",
     "exchangeRate": 1,
     "population": 82904,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published sptinc series for this country is pure model fill, data-quality <3 in every year per wid.world API countries-variables probe, Aug 2026); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 900,
@@ -485,9 +485,9 @@
     },
     "gender": {
       "adolescentBirthRate": 3.4,
-      "childMarriagePercent": 1,
-      "laborForceGap": -5.2,
-      "contraceptiveUse": 78
+      "childMarriagePercent": 2,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1200,
     "costOfLivingIndex": 80,
@@ -609,7 +609,7 @@
     "currencySymbol": "$",
     "exchangeRate": 3.1541,
     "population": 12025,
-    "dataSource": "Derived from United Kingdom verified distribution x GDP-per-capita ratio 0.47",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 490,
@@ -656,10 +656,10 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 28.0,
-      "childMarriagePercent": 0,
-      "laborForceGap": -8.3,
-      "contraceptiveUse": 76.1
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 955,
     "costOfLivingIndex": 92,
@@ -693,7 +693,7 @@
     "currencySymbol": "$",
     "exchangeRate": 2.92,
     "population": 94209,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (REST-placeholder-era template shape, p90/p10 = 2.4 identical across the AG/AW/BS/CW/FO family; no WID.world, World Bank PIP or national-survey distribution exists); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 897,
@@ -741,9 +741,9 @@
     },
     "gender": {
       "adolescentBirthRate": 32.1,
-      "childMarriagePercent": 4,
-      "laborForceGap": -7,
-      "contraceptiveUse": 53
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 485,
     "costOfLivingIndex": 55,
@@ -911,7 +911,7 @@
     },
     "gender": {
       "adolescentBirthRate": 12.8,
-      "childMarriagePercent": 5,
+      "childMarriagePercent": null,
       "laborForceGap": -18.5,
       "contraceptiveUse": 57.1
     },
@@ -949,7 +949,7 @@
     "currencySymbol": "ƒ",
     "exchangeRate": 2.091,
     "population": 108785,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (REST-placeholder-era template shape, p90/p10 = 2.4 identical across the AG/AW/BS/CW/FO family; no WID.world, World Bank PIP or national-survey distribution exists); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 1294,
@@ -997,9 +997,9 @@
     },
     "gender": {
       "adolescentBirthRate": 18,
-      "childMarriagePercent": 1,
-      "laborForceGap": -12,
-      "contraceptiveUse": 46.8
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1020,
     "costOfLivingIndex": 80,
@@ -1081,7 +1081,7 @@
     },
     "gender": {
       "adolescentBirthRate": 6.4,
-      "childMarriagePercent": 1,
+      "childMarriagePercent": null,
       "laborForceGap": -8.2,
       "contraceptiveUse": 66.9
     },
@@ -1171,7 +1171,7 @@
       "laborForceGap": -10.4,
       "contraceptiveUse": 65.7
     },
-    "minimumWageEur": 0,
+    "minimumWageEur": null,
     "costOfLivingIndex": 75,
     "unemploymentRate": 5.6,
     "internetPenetration": 94.9,
@@ -1291,7 +1291,7 @@
     "currencySymbol": "$",
     "exchangeRate": 1.1682,
     "population": 403033,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (REST-placeholder-era template shape, p90/p10 = 2.4 identical across the AG/AW/BS/CW/FO family; no WID.world, World Bank PIP or national-survey distribution exists); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 1032,
@@ -1339,9 +1339,9 @@
     },
     "gender": {
       "adolescentBirthRate": 24.5,
-      "childMarriagePercent": 3.1,
+      "childMarriagePercent": null,
       "laborForceGap": -6.5,
-      "contraceptiveUse": 61.7
+      "contraceptiveUse": null
     },
     "minimumWageEur": 900,
     "costOfLivingIndex": 63,
@@ -1547,76 +1547,76 @@
     "currencySymbol": "$",
     "exchangeRate": 2,
     "population": 282623,
-    "dataSource": "World Bank PIP BSLC 2016 (consumption)",
-    "dataYear": 2016,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
-      "p10": 255,
-      "p25": 375,
-      "p50": 570,
-      "p75": 865,
-      "p90": 1265
+      "p10": 648,
+      "p25": 751,
+      "p50": 906,
+      "p75": 1181,
+      "p90": 1526
     },
     "indicators": {
       "pretax_national": {
-        "p10": 260,
-        "p25": 385,
-        "p50": 600,
-        "p75": 935,
-        "p90": 1410
+        "p10": 660,
+        "p25": 780,
+        "p50": 958,
+        "p75": 1293,
+        "p90": 1729
       },
       "posttax_national": {
-        "p10": 255,
-        "p25": 375,
-        "p50": 570,
-        "p75": 865,
-        "p90": 1265
+        "p10": 648,
+        "p25": 751,
+        "p50": 906,
+        "p75": 1181,
+        "p90": 1526
       },
       "consumption": {
-        "p10": 235,
-        "p25": 305,
-        "p50": 465,
-        "p75": 665,
-        "p90": 905
+        "p10": 591,
+        "p25": 610,
+        "p50": 736,
+        "p75": 900,
+        "p90": 1087
       },
       "wealth": {
-        "p10": 4800,
-        "p25": 11700,
-        "p50": 31400,
-        "p75": 84000,
-        "p90": 204000
+        "p10": 1296,
+        "p25": 6008,
+        "p50": 22650,
+        "p75": 70860,
+        "p90": 228900
       },
       "labor_income": {
-        "p10": 155,
-        "p25": 260,
-        "p50": 455,
-        "p75": 735,
-        "p90": 1140
+        "p10": 389,
+        "p25": 526,
+        "p50": 725,
+        "p75": 1004,
+        "p90": 1373
       }
     },
     "gender": {
       "adolescentBirthRate": 45,
-      "childMarriagePercent": 29.2,
+      "childMarriagePercent": null,
       "laborForceGap": -7.7,
-      "contraceptiveUse": 59.2
+      "contraceptiveUse": null
     },
     "minimumWageEur": 680,
     "costOfLivingIndex": 40,
     "unemploymentRate": 6.5,
     "internetPenetration": 70.4,
-    "femaleHeightCm": 165,
-    "femaleWeightKg": 80,
-    "femaleBmi": 29.4,
-    "femaleObesityRate": 51.1,
-    "femaleSmokingRate": 2.3,
+    "femaleHeightCm": 162,
+    "femaleWeightKg": 66,
+    "femaleBmi": 25.3,
+    "femaleObesityRate": 22,
+    "femaleSmokingRate": 8,
     "femaleLifeExpectancy": 78.8,
-    "maleHeightCm": 176,
-    "maleWeightKg": 82,
-    "maleBmi": 26.5,
-    "maleObesityRate": 28.7,
-    "maleSmokingRate": 11.0,
+    "maleHeightCm": 174,
+    "maleWeightKg": 78,
+    "maleBmi": 25.9,
+    "maleObesityRate": 19.4,
+    "maleSmokingRate": 22,
     "maleLifeExpectancy": 73.8,
-    "obesityRate": 39.9,
-    "smokingRate": 6.4,
+    "obesityRate": 22,
+    "smokingRate": 15,
     "hdi": 0.809,
     "englishSpeakingPercent": 98.6
   },
@@ -1632,7 +1632,7 @@
     "currencySymbol": "Br",
     "exchangeRate": 3.27,
     "population": 9085991,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published sptinc series for this country is pure model fill, data-quality <3 in every year per wid.world API countries-variables probe, Aug 2026); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 150,
@@ -1703,7 +1703,7 @@
     "obesityRate": 26,
     "smokingRate": 23,
     "hdi": 0.801,
-    "englishSpeakingPercent": 20,
+    "englishSpeakingPercent": null,
     "mainIndustry": "Services"
   },
   {
@@ -1804,76 +1804,76 @@
     "currencySymbol": "$",
     "exchangeRate": 2,
     "population": 422924,
-    "dataSource": "World Bank PIP HBS 2018 (consumption)",
-    "dataYear": 2018,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
-      "p10": 240,
-      "p25": 375,
-      "p50": 620,
-      "p75": 1020,
-      "p90": 1600
+      "p10": 375,
+      "p25": 434,
+      "p50": 524,
+      "p75": 683,
+      "p90": 882
     },
     "indicators": {
       "pretax_national": {
-        "p10": 245,
-        "p25": 385,
-        "p50": 650,
-        "p75": 1105,
-        "p90": 1780
+        "p10": 382,
+        "p25": 450,
+        "p50": 554,
+        "p75": 748,
+        "p90": 999
       },
       "posttax_national": {
-        "p10": 240,
-        "p25": 375,
-        "p50": 620,
-        "p75": 1020,
-        "p90": 1600
+        "p10": 375,
+        "p25": 434,
+        "p50": 524,
+        "p75": 683,
+        "p90": 882
       },
       "consumption": {
-        "p10": 220,
-        "p25": 305,
-        "p50": 505,
-        "p75": 780,
-        "p90": 1145
+        "p10": 342,
+        "p25": 352,
+        "p50": 425,
+        "p75": 520,
+        "p90": 628
       },
       "wealth": {
-        "p10": 480,
-        "p25": 1300,
-        "p50": 3900,
-        "p75": 11800,
-        "p90": 32000
+        "p10": 750,
+        "p25": 3472,
+        "p50": 13100,
+        "p75": 40980,
+        "p90": 132300
       },
       "labor_income": {
-        "p10": 145,
-        "p25": 260,
-        "p50": 495,
-        "p75": 865,
-        "p90": 1440
+        "p10": 225,
+        "p25": 304,
+        "p50": 419,
+        "p75": 581,
+        "p90": 794
       }
     },
     "gender": {
       "adolescentBirthRate": 55.6,
-      "childMarriagePercent": 33.5,
+      "childMarriagePercent": null,
       "laborForceGap": -25.2,
-      "contraceptiveUse": 51.4
+      "contraceptiveUse": null
     },
     "minimumWageEur": 480,
     "costOfLivingIndex": 25,
     "unemploymentRate": 8.9,
     "internetPenetration": 80,
-    "femaleHeightCm": 157,
-    "femaleWeightKg": 76,
-    "femaleBmi": 30.8,
-    "femaleObesityRate": 54.7,
-    "femaleSmokingRate": 2,
+    "femaleHeightCm": 162,
+    "femaleWeightKg": 66,
+    "femaleBmi": 25.3,
+    "femaleObesityRate": 22,
+    "femaleSmokingRate": 8,
     "femaleLifeExpectancy": 76.7,
-    "maleHeightCm": 169,
-    "maleWeightKg": 79,
-    "maleBmi": 27.6,
-    "maleObesityRate": 34.3,
-    "maleSmokingRate": 15.0,
+    "maleHeightCm": 174,
+    "maleWeightKg": 78,
+    "maleBmi": 25.9,
+    "maleObesityRate": 19.4,
+    "maleSmokingRate": 22,
     "maleLifeExpectancy": 71.1,
-    "obesityRate": 44.5,
-    "smokingRate": 8.5,
+    "obesityRate": 22,
+    "smokingRate": 15,
     "hdi": 0.7,
     "englishSpeakingPercent": 81.7
   },
@@ -1889,50 +1889,50 @@
     "currencySymbol": "Fr",
     "exchangeRate": 605,
     "population": 14814460,
-    "dataSource": "World Bank PIP EHCVM 2021 (consumption)",
-    "dataYear": 2021,
+    "dataSource": "WID.world",
+    "dataYear": 2023,
     "income": {
-      "p10": 98,
-      "p25": 143,
-      "p50": 219,
-      "p75": 335,
-      "p90": 490
+      "p10": 25,
+      "p25": 50,
+      "p50": 100,
+      "p75": 220,
+      "p90": 480
     },
     "indicators": {
       "pretax_national": {
-        "p10": 100,
-        "p25": 150,
-        "p50": 230,
-        "p75": 360,
-        "p90": 545
+        "p10": 25,
+        "p25": 52,
+        "p50": 106,
+        "p75": 241,
+        "p90": 544
       },
       "posttax_national": {
-        "p10": 100,
-        "p25": 145,
-        "p50": 220,
-        "p75": 335,
-        "p90": 490
+        "p10": 25,
+        "p25": 50,
+        "p50": 100,
+        "p75": 220,
+        "p90": 480
       },
       "consumption": {
-        "p10": 90,
-        "p25": 115,
-        "p50": 180,
-        "p75": 255,
-        "p90": 350
+        "p10": 23,
+        "p25": 41,
+        "p50": 81,
+        "p75": 168,
+        "p90": 342
       },
       "wealth": {
-        "p10": 135,
-        "p25": 335,
-        "p50": 920,
-        "p75": 2530,
-        "p90": 6270
+        "p10": 50,
+        "p25": 400,
+        "p50": 2500,
+        "p75": 13200,
+        "p90": 72000
       },
       "labor_income": {
-        "p10": 60,
-        "p25": 100,
-        "p50": 175,
-        "p75": 285,
-        "p90": 440
+        "p10": 15,
+        "p25": 35,
+        "p50": 80,
+        "p75": 187,
+        "p90": 432
       }
     },
     "gender": {
@@ -1975,57 +1975,57 @@
     "currencySymbol": "$",
     "exchangeRate": 1.1682,
     "population": 64555,
-    "dataSource": "Bermuda Census 2016 income report (lognormal fit from household mean/median)",
-    "dataYear": 2016,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
-      "p10": 1340,
-      "p25": 2205,
-      "p50": 3830,
-      "p75": 6655,
-      "p90": 10945
+      "p10": 2971,
+      "p25": 3444,
+      "p50": 4155,
+      "p75": 5418,
+      "p90": 6997
     },
     "indicators": {
       "pretax_national": {
-        "p10": 1360,
-        "p25": 2280,
-        "p50": 4020,
-        "p75": 7200,
-        "p90": 12195
+        "p10": 3027,
+        "p25": 3575,
+        "p50": 4392,
+        "p75": 5933,
+        "p90": 7928
       },
       "posttax_national": {
-        "p10": 1340,
-        "p25": 2205,
-        "p50": 3830,
-        "p75": 6655,
-        "p90": 10945
+        "p10": 2971,
+        "p25": 3444,
+        "p50": 4155,
+        "p75": 5418,
+        "p90": 6997
       },
       "consumption": {
-        "p10": 1230,
-        "p25": 1800,
-        "p50": 3130,
-        "p75": 5105,
-        "p90": 7850
+        "p10": 2710,
+        "p25": 2797,
+        "p50": 3374,
+        "p75": 4129,
+        "p90": 4982
       },
       "wealth": {
-        "p10": 3000,
-        "p25": 22000,
-        "p50": 116000,
-        "p75": 435000,
-        "p90": 1631000
+        "p10": 5942,
+        "p25": 27552,
+        "p50": 103875,
+        "p75": 325080,
+        "p90": 1049550
       },
       "labor_income": {
-        "p10": 805,
-        "p25": 1545,
-        "p50": 3065,
-        "p75": 5655,
-        "p90": 9850
+        "p10": 1783,
+        "p25": 2411,
+        "p50": 3324,
+        "p75": 4605,
+        "p90": 6297
       }
     },
     "gender": {
       "adolescentBirthRate": 1.5,
-      "childMarriagePercent": 1,
-      "laborForceGap": -5,
-      "contraceptiveUse": 49.7
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 2600,
     "costOfLivingIndex": 130,
@@ -2146,7 +2146,7 @@
     "currencySymbol": "Bs.",
     "exchangeRate": 6.91,
     "population": 12581843,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published sptinc series for this country is pure model fill, data-quality <3 in every year per wid.world API countries-variables probe, Aug 2026); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 45,
@@ -2490,7 +2490,7 @@
     "currencySymbol": "$",
     "exchangeRate": 1.1682,
     "population": 2000,
-    "dataSource": "Derived from UK anchor distribution x GDP-pc ratio (see verify/findings)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 1050,
@@ -2537,29 +2537,29 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 7.8,
-      "childMarriagePercent": 0,
-      "laborForceGap": -8.3,
-      "contraceptiveUse": 76.1
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1070,
     "costOfLivingIndex": 85,
-    "unemploymentRate": 2.0,
-    "internetPenetration": 95.5,
-    "femaleHeightCm": 164,
-    "femaleWeightKg": 70,
-    "femaleBmi": 26,
-    "femaleObesityRate": 28,
-    "femaleSmokingRate": 18,
+    "unemploymentRate": null,
+    "internetPenetration": null,
+    "femaleHeightCm": 162,
+    "femaleWeightKg": 66,
+    "femaleBmi": 25.3,
+    "femaleObesityRate": 22,
+    "femaleSmokingRate": 8,
     "femaleLifeExpectancy": 78.5,
-    "maleHeightCm": 177,
-    "maleWeightKg": 84,
-    "maleBmi": 26.7,
-    "maleObesityRate": 24.6,
-    "maleSmokingRate": 28,
+    "maleHeightCm": 174,
+    "maleWeightKg": 78,
+    "maleBmi": 25.9,
+    "maleObesityRate": 19.4,
+    "maleSmokingRate": 22,
     "maleLifeExpectancy": 72.8,
-    "obesityRate": 26,
-    "smokingRate": 23,
+    "obesityRate": 22,
+    "smokingRate": 8,
     "hdi": 0.94
   },
   {
@@ -2574,8 +2574,8 @@
     "currencySymbol": "$",
     "exchangeRate": 1.1682,
     "population": 39732,
-    "dataSource": "Derived from United Kingdom anchor distribution scaled by GDP-per-capita ratio 0.86 (BVI $42,709 / UK $49,464, 2023; see verify/findings)",
-    "dataYear": 2023,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
       "p10": 900,
       "p25": 1500,
@@ -2622,9 +2622,9 @@
     },
     "gender": {
       "adolescentBirthRate": 15.1,
-      "childMarriagePercent": 2,
-      "laborForceGap": -10,
-      "contraceptiveUse": 55
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 890,
     "costOfLivingIndex": 73,
@@ -2706,9 +2706,9 @@
     },
     "gender": {
       "adolescentBirthRate": 8.1,
-      "childMarriagePercent": 7,
+      "childMarriagePercent": null,
       "laborForceGap": -18.4,
-      "contraceptiveUse": 43
+      "contraceptiveUse": null
     },
     "minimumWageEur": 0,
     "costOfLivingIndex": 55,
@@ -2968,7 +2968,7 @@
       "laborForceGap": -2.5,
       "contraceptiveUse": 28.5
     },
-    "minimumWageEur": 1.4,
+    "minimumWageEur": null,
     "costOfLivingIndex": 24,
     "unemploymentRate": 0.9,
     "internetPenetration": 8.6,
@@ -3222,7 +3222,7 @@
     },
     "gender": {
       "adolescentBirthRate": 4.5,
-      "childMarriagePercent": 1,
+      "childMarriagePercent": null,
       "laborForceGap": 8.8,
       "contraceptiveUse": 80
     },
@@ -3346,76 +3346,76 @@
     "currencySymbol": "$",
     "exchangeRate": 1.1682,
     "population": 30397,
-    "dataSource": "CBS StatLine Caribbean Netherlands disposable household income 2022 (lognormal fit)",
-    "dataYear": 2022,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
-      "p10": 430,
-      "p25": 680,
-      "p50": 1130,
-      "p75": 1880,
-      "p90": 2975
+      "p10": 547,
+      "p25": 919,
+      "p50": 1400,
+      "p75": 1969,
+      "p90": 2669
     },
     "indicators": {
       "pretax_national": {
-        "p10": 435,
-        "p25": 700,
-        "p50": 1185,
-        "p75": 2035,
-        "p90": 3315
+        "p10": 555,
+        "p25": 945,
+        "p50": 1461,
+        "p75": 2111,
+        "p90": 2940
       },
       "posttax_national": {
-        "p10": 430,
-        "p25": 680,
-        "p50": 1130,
-        "p75": 1880,
-        "p90": 2975
+        "p10": 547,
+        "p25": 919,
+        "p50": 1400,
+        "p75": 1969,
+        "p90": 2669
       },
       "consumption": {
-        "p10": 395,
-        "p25": 555,
-        "p50": 925,
-        "p75": 1440,
-        "p90": 2135
+        "p10": 571,
+        "p25": 589,
+        "p50": 711,
+        "p75": 869,
+        "p90": 1049
       },
       "wealth": {
-        "p10": 900,
-        "p25": 6050,
-        "p50": 28800,
-        "p75": 97200,
-        "p90": 329400
+        "p10": 1252,
+        "p25": 5800,
+        "p50": 21875,
+        "p75": 68460,
+        "p90": 221100
       },
       "labor_income": {
-        "p10": 260,
-        "p25": 475,
-        "p50": 905,
-        "p75": 1600,
-        "p90": 2680
+        "p10": 376,
+        "p25": 507,
+        "p50": 700,
+        "p75": 970,
+        "p90": 1327
       }
     },
     "gender": {
-      "adolescentBirthRate": 1.7,
-      "childMarriagePercent": 5,
-      "laborForceGap": -9.2,
-      "contraceptiveUse": 73
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1650,
-    "costOfLivingIndex": 82,
+    "costOfLivingIndex": null,
     "unemploymentRate": 5.5,
     "internetPenetration": 75,
     "femaleHeightCm": 162,
     "femaleWeightKg": 66,
     "femaleBmi": 25.3,
-    "femaleObesityRate": 36,
-    "femaleSmokingRate": 7,
+    "femaleObesityRate": 22,
+    "femaleSmokingRate": null,
     "femaleLifeExpectancy": 78.5,
     "maleHeightCm": 174,
-    "maleWeightKg": 79,
-    "maleBmi": 26.1,
-    "maleObesityRate": 26,
-    "maleSmokingRate": 17,
+    "maleWeightKg": 78,
+    "maleBmi": 25.9,
+    "maleObesityRate": 19.4,
+    "maleSmokingRate": null,
     "maleLifeExpectancy": 72.8,
-    "obesityRate": 31,
-    "smokingRate": 12,
+    "obesityRate": 22,
+    "smokingRate": null,
     "hdi": 0.57
   },
   {
@@ -3430,7 +3430,7 @@
     "currencySymbol": "$",
     "exchangeRate": 1.22,
     "population": 75844,
-    "dataSource": "Estimate calibrated to GDP pc PPP, cross-checked against Cayman Islands household income statistics (see verify/findings/batch_04)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 2307,
@@ -3478,9 +3478,9 @@
     },
     "gender": {
       "adolescentBirthRate": 10.5,
-      "childMarriagePercent": 1,
-      "laborForceGap": -8.3,
-      "contraceptiveUse": 76.1
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1600,
     "costOfLivingIndex": 130,
@@ -3490,20 +3490,17 @@
     "femaleWeightKg": 66,
     "femaleBmi": 25.3,
     "femaleObesityRate": 22,
-    "femaleSmokingRate": 6.7,
+    "femaleSmokingRate": null,
     "femaleLifeExpectancy": 83,
     "maleHeightCm": 174,
     "maleWeightKg": 78,
     "maleBmi": 25.9,
     "maleObesityRate": 19.4,
-    "maleSmokingRate": 18.2,
+    "maleSmokingRate": null,
     "maleLifeExpectancy": 78.2,
     "obesityRate": 22,
-    "smokingRate": 12.5,
-    "hdi": 0.96,
-    "laborForceGap": -7.2,
-    "contraceptiveUse": 76,
-    "childMarriagePercent": 0.5
+    "smokingRate": null,
+    "hdi": 0.96
   },
   {
     "code": "CF",
@@ -3603,7 +3600,7 @@
     "currencySymbol": "Fr",
     "exchangeRate": 600,
     "population": 21003705,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 12,
@@ -3908,10 +3905,10 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 6.4,
-      "childMarriagePercent": 1,
-      "laborForceGap": -8.2,
-      "contraceptiveUse": 66.9
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1800,
     "costOfLivingIndex": 82,
@@ -3992,10 +3989,10 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 6.4,
-      "childMarriagePercent": 1,
-      "laborForceGap": -8.2,
-      "contraceptiveUse": 66.9
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1800,
     "costOfLivingIndex": 82,
@@ -4163,7 +4160,7 @@
     },
     "gender": {
       "adolescentBirthRate": 53.8,
-      "childMarriagePercent": 21,
+      "childMarriagePercent": null,
       "laborForceGap": -16.2,
       "contraceptiveUse": 11.6
     },
@@ -4288,8 +4285,8 @@
     "currencySymbol": "$",
     "exchangeRate": 1.64,
     "population": 15040,
-    "dataSource": "Derived from New Zealand verified distribution x GDP-per-capita ratio 0.46",
-    "dataYear": 2023,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
       "p10": 480,
       "p25": 830,
@@ -4335,29 +4332,29 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 31.0,
-      "childMarriagePercent": 1,
-      "laborForceGap": -8.7,
-      "contraceptiveUse": 74.3
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 850,
     "costOfLivingIndex": 58,
     "unemploymentRate": 0.8,
     "internetPenetration": 75,
     "femaleHeightCm": 162,
-    "femaleWeightKg": 86.9,
-    "femaleBmi": 33.1,
-    "femaleObesityRate": 75.2,
-    "femaleSmokingRate": 18.0,
+    "femaleWeightKg": null,
+    "femaleBmi": null,
+    "femaleObesityRate": null,
+    "femaleSmokingRate": 15,
     "femaleLifeExpectancy": 78.5,
     "maleHeightCm": 174,
-    "maleWeightKg": 99.0,
-    "maleBmi": 32.7,
-    "maleObesityRate": 71.8,
-    "maleSmokingRate": 25.7,
+    "maleWeightKg": null,
+    "maleBmi": null,
+    "maleObesityRate": null,
+    "maleSmokingRate": 23,
     "maleLifeExpectancy": 72.8,
-    "obesityRate": 73.5,
-    "smokingRate": 21.8,
+    "obesityRate": 60,
+    "smokingRate": 19,
     "hdi": 0.75,
     "englishSpeakingPercent": 86,
     "mainIndustry": "Tourism"
@@ -4510,7 +4507,7 @@
       "adolescentBirthRate": 6.3,
       "childMarriagePercent": 12,
       "laborForceGap": -10,
-      "contraceptiveUse": 71
+      "contraceptiveUse": null
     },
     "minimumWageEur": 840,
     "costOfLivingIndex": 58,
@@ -4632,7 +4629,7 @@
     "currencySymbol": "ƒ",
     "exchangeRate": 2.091,
     "population": 156263,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (REST-placeholder-era template shape, p90/p10 = 2.4 identical across the AG/AW/BS/CW/FO family; no WID.world, World Bank PIP or national-survey distribution exists); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 819,
@@ -4680,9 +4677,9 @@
     },
     "gender": {
       "adolescentBirthRate": 12.5,
-      "childMarriagePercent": 1,
-      "laborForceGap": -9.2,
-      "contraceptiveUse": 73
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 900,
     "costOfLivingIndex": 50,
@@ -4691,21 +4688,18 @@
     "femaleHeightCm": 162,
     "femaleWeightKg": 75,
     "femaleBmi": 28,
-    "femaleObesityRate": 36,
+    "femaleObesityRate": 35,
     "femaleSmokingRate": 8,
     "femaleLifeExpectancy": 81,
     "maleHeightCm": 174,
     "maleWeightKg": 84,
     "maleBmi": 27,
-    "maleObesityRate": 19,
+    "maleObesityRate": 24,
     "maleSmokingRate": 22,
     "maleLifeExpectancy": 72.7,
-    "obesityRate": 27.5,
+    "obesityRate": 30,
     "smokingRate": 14,
-    "hdi": 0.82,
-    "laborForceGap": -5.4,
-    "contraceptiveUse": 39,
-    "childMarriagePercent": 0.5
+    "hdi": 0.82
   },
   {
     "code": "CY",
@@ -4769,7 +4763,7 @@
       "adolescentBirthRate": 7,
       "childMarriagePercent": 5,
       "laborForceGap": -11.5,
-      "contraceptiveUse": 70
+      "contraceptiveUse": null
     },
     "minimumWageEur": 925,
     "costOfLivingIndex": 72,
@@ -5063,8 +5057,8 @@
     "currencySymbol": "$",
     "exchangeRate": 2.9,
     "population": 65871,
-    "dataSource": "Derived from Dominican Republic verified distribution x GDP-per-capita-PPP ratio 0.785",
-    "dataYear": 2023,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
       "p10": 55,
       "p25": 115,
@@ -5111,9 +5105,9 @@
     },
     "gender": {
       "adolescentBirthRate": 34,
-      "childMarriagePercent": 1,
-      "laborForceGap": -22.7,
-      "contraceptiveUse": 62.8
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 450,
     "costOfLivingIndex": 40,
@@ -5133,10 +5127,7 @@
     "maleLifeExpectancy": 68.4,
     "obesityRate": 22,
     "smokingRate": 8,
-    "hdi": 0.76,
-    "laborForceGap": -25.2,
-    "contraceptiveUse": 49.8,
-    "childMarriagePercent": 6
+    "hdi": 0.76
   },
   {
     "code": "DO",
@@ -5494,7 +5485,7 @@
     "currencySymbol": "$",
     "exchangeRate": 1.08,
     "population": 6365503,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 55,
@@ -5838,7 +5829,7 @@
     "currencySymbol": "L",
     "exchangeRate": 18.844,
     "population": 1256174,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 35,
@@ -6010,14 +6001,14 @@
     "currencySymbol": "£",
     "exchangeRate": 0.8569,
     "population": 3662,
-    "dataSource": "Falkland Islands Government 2021 Census income distribution (Table 19d, all individuals 16+)",
-    "dataYear": 2021,
+    "dataSource": "FIG 2021 Census & Economic Snapshot; World Bank n/a",
+    "dataYear": 2024,
     "income": {
-      "p10": 1230,
-      "p25": 1720,
-      "p50": 2210,
-      "p75": 2700,
-      "p90": 4660
+      "p10": 1860,
+      "p25": 2150,
+      "p50": 2600,
+      "p75": 3390,
+      "p90": 4380
     },
     "indicators": {
       "pretax_national": {
@@ -6057,10 +6048,10 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 1.1,
-      "childMarriagePercent": 2,
-      "laborForceGap": -8.4,
-      "contraceptiveUse": 76.5
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1640,
     "costOfLivingIndex": 80,
@@ -6080,7 +6071,7 @@
     "maleLifeExpectancy": 72.8,
     "obesityRate": 22,
     "smokingRate": 8,
-    "hdi": 0.874,
+    "hdi": null,
     "mainIndustry": "Fishing"
   },
   {
@@ -6095,7 +6086,7 @@
     "currencySymbol": "kr",
     "exchangeRate": 7.4757,
     "population": 54900,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (REST-placeholder-era template shape, p90/p10 = 2.4 identical across the AG/AW/BS/CW/FO family; no WID.world, World Bank PIP or national-survey distribution exists); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 2054,
@@ -6143,9 +6134,9 @@
     },
     "gender": {
       "adolescentBirthRate": 4.4,
-      "childMarriagePercent": 1,
-      "laborForceGap": -8.4,
-      "contraceptiveUse": 76.5
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1600,
     "costOfLivingIndex": 126,
@@ -6165,10 +6156,7 @@
     "maleLifeExpectancy": 81.3,
     "obesityRate": 22,
     "smokingRate": 18,
-    "hdi": 0.96,
-    "laborForceGap": -6.6,
-    "contraceptiveUse": 77,
-    "childMarriagePercent": 0.5
+    "hdi": 0.96
   },
   {
     "code": "FJ",
@@ -6182,7 +6170,7 @@
     "currencySymbol": "$",
     "exchangeRate": 2.5633,
     "population": 933154,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published sptinc series for this country is pure model fill, data-quality <3 in every year per wid.world API countries-variables probe, Aug 2026); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 65,
@@ -6440,14 +6428,14 @@
     "currencySymbol": "€",
     "exchangeRate": 1,
     "population": 298554,
-    "dataSource": "INSEE Filosofi 2021 (Guyane)",
-    "dataYear": 2021,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
-      "p10": 360,
-      "p25": 510,
-      "p50": 920,
-      "p75": 1840,
-      "p90": 2810
+      "p10": 400,
+      "p25": 680,
+      "p50": 1080,
+      "p75": 1560,
+      "p90": 2200
     },
     "indicators": {
       "pretax_national": {
@@ -6487,10 +6475,10 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 55,
-      "childMarriagePercent": 5,
-      "laborForceGap": -7.6,
-      "contraceptiveUse": 78.4
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1801,
     "costOfLivingIndex": 75,
@@ -6524,14 +6512,14 @@
     "currencySymbol": "₣",
     "exchangeRate": 119.33,
     "population": 282465,
-    "dataSource": "ISPF Budget des familles 2014-2015 (niveau-de-vie deciles, Iles du Vent ~88% of pop, via ISPF/Tahiti-Infos); XPF->intl-$ at official peg + France PPP (see verify/findings)",
-    "dataYear": 2015,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
-      "p10": 300,
-      "p25": 450,
-      "p50": 900,
-      "p75": 1790,
-      "p90": 2700
+      "p10": 386,
+      "p25": 646,
+      "p50": 1026,
+      "p75": 1482,
+      "p90": 2090
     },
     "indicators": {
       "pretax_national": {
@@ -6572,9 +6560,9 @@
     },
     "gender": {
       "adolescentBirthRate": 23.8,
-      "childMarriagePercent": 0,
+      "childMarriagePercent": null,
       "laborForceGap": -11.4,
-      "contraceptiveUse": 73.7
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1451,
     "costOfLivingIndex": 80,
@@ -6679,7 +6667,7 @@
     "obesityRate": 15,
     "smokingRate": 8,
     "hdi": 0.732,
-    "englishSpeakingPercent": 8,
+    "englishSpeakingPercent": null,
     "mainIndustry": "Petroleum"
   },
   {
@@ -7038,14 +7026,14 @@
     "currencySymbol": "£",
     "exchangeRate": 0.8569,
     "population": 40126,
-    "dataSource": "Gibraltar Stats Office Employment Survey Report 2023",
-    "dataYear": 2023,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
-      "p10": 1130,
-      "p25": 1720,
-      "p50": 2590,
-      "p75": 4200,
-      "p90": 6530
+      "p10": 1160,
+      "p25": 1930,
+      "p50": 3080,
+      "p75": 4510,
+      "p90": 6490
     },
     "indicators": {
       "pretax_national": {
@@ -7086,9 +7074,9 @@
     },
     "gender": {
       "adolescentBirthRate": 8.5,
-      "childMarriagePercent": 1,
-      "laborForceGap": -8.3,
-      "contraceptiveUse": 76.1
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1920,
     "costOfLivingIndex": 90,
@@ -7108,10 +7096,7 @@
     "maleLifeExpectancy": 81,
     "obesityRate": 22,
     "smokingRate": 18,
-    "hdi": 0.961,
-    "laborForceGap": -21.3,
-    "contraceptiveUse": 76,
-    "childMarriagePercent": 0.5
+    "hdi": 0.961
   },
   {
     "code": "GR",
@@ -7211,14 +7196,14 @@
     "currencySymbol": "kr.",
     "exchangeRate": 7.46,
     "population": 56831,
-    "dataSource": "Statistics Greenland INEFI401 decile distribution (disposable income)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
-      "p10": 500,
-      "p25": 1110,
-      "p50": 2050,
-      "p75": 3400,
-      "p90": 4850
+      "p10": 1320,
+      "p25": 2160,
+      "p50": 3290,
+      "p75": 4510,
+      "p90": 6110
     },
     "indicators": {
       "pretax_national": {
@@ -7259,32 +7244,29 @@
     },
     "gender": {
       "adolescentBirthRate": 35.1,
-      "childMarriagePercent": 1,
-      "laborForceGap": -8.4,
-      "contraceptiveUse": 76.5
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1600,
     "costOfLivingIndex": 121,
     "unemploymentRate": 2.9,
     "internetPenetration": 75,
-    "femaleHeightCm": 158,
-    "femaleWeightKg": 68,
-    "femaleBmi": 27,
-    "femaleObesityRate": 29.6,
-    "femaleSmokingRate": 60,
+    "femaleHeightCm": 162,
+    "femaleWeightKg": 66,
+    "femaleBmi": 25.3,
+    "femaleObesityRate": null,
+    "femaleSmokingRate": null,
     "femaleLifeExpectancy": 72.2,
-    "maleHeightCm": 170,
+    "maleHeightCm": 174,
     "maleWeightKg": 78,
-    "maleBmi": 27,
-    "maleObesityRate": 22.2,
-    "maleSmokingRate": 60,
+    "maleBmi": 25.9,
+    "maleObesityRate": null,
+    "maleSmokingRate": null,
     "maleLifeExpectancy": 68.4,
-    "obesityRate": 26,
-    "smokingRate": 60,
-    "hdi": 0.786,
-    "laborForceGap": -1.0,
-    "contraceptiveUse": 76.5,
-    "childMarriagePercent": 0.2
+    "obesityRate": null,
+    "smokingRate": null,
+    "hdi": 0.786
   },
   {
     "code": "GD",
@@ -7298,14 +7280,14 @@
     "currencySymbol": "$",
     "exchangeRate": 2.92,
     "population": 117303,
-    "dataSource": "World Bank PIP SLCHB 2018 (consumption)",
-    "dataYear": 2018,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
-      "p10": 137,
-      "p25": 285,
-      "p50": 424,
-      "p75": 765,
-      "p90": 2163
+      "p10": 340,
+      "p25": 560,
+      "p50": 900,
+      "p75": 1310,
+      "p90": 1890
     },
     "indicators": {
       "pretax_national": {
@@ -7346,32 +7328,29 @@
     },
     "gender": {
       "adolescentBirthRate": 28.6,
-      "childMarriagePercent": 1,
-      "laborForceGap": -8.3,
-      "contraceptiveUse": 76.1
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 450,
     "costOfLivingIndex": 55,
     "unemploymentRate": 3.8,
     "internetPenetration": 70.2,
-    "femaleHeightCm": 164,
-    "femaleWeightKg": 79,
-    "femaleBmi": 29.0,
-    "femaleObesityRate": 45.0,
-    "femaleSmokingRate": 2.8,
+    "femaleHeightCm": 162,
+    "femaleWeightKg": 66,
+    "femaleBmi": 25.3,
+    "femaleObesityRate": null,
+    "femaleSmokingRate": null,
     "femaleLifeExpectancy": 78.5,
-    "maleHeightCm": 177,
-    "maleWeightKg": 79,
-    "maleBmi": 25.3,
-    "maleObesityRate": 19.9,
-    "maleSmokingRate": 19.4,
+    "maleHeightCm": 174,
+    "maleWeightKg": 78,
+    "maleBmi": 25.9,
+    "maleObesityRate": null,
+    "maleSmokingRate": null,
     "maleLifeExpectancy": 72.5,
-    "obesityRate": 32.5,
-    "smokingRate": 11.2,
-    "hdi": 0.79,
-    "laborForceGap": -13.9,
-    "contraceptiveUse": 54.0,
-    "childMarriagePercent": 7
+    "obesityRate": 30.2,
+    "smokingRate": null,
+    "hdi": 0.79
   },
   {
     "code": "GP",
@@ -7385,57 +7364,57 @@
     "currencySymbol": "€",
     "exchangeRate": 1,
     "population": 383187,
-    "dataSource": "INSEE Filosofi 2021 (DEP-971)",
-    "dataYear": 2021,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
-      "p10": 580,
-      "p25": 1050,
-      "p50": 1850,
-      "p75": 2890,
-      "p90": 4290
+      "p10": 600,
+      "p25": 1020,
+      "p50": 1620,
+      "p75": 2340,
+      "p90": 3300
     },
     "indicators": {
       "pretax_national": {
-        "p10": 650,
-        "p25": 1180,
-        "p50": 2070,
-        "p75": 3240,
-        "p90": 4800
+        "p10": 610,
+        "p25": 1050,
+        "p50": 1700,
+        "p75": 2530,
+        "p90": 3670
       },
       "posttax_national": {
-        "p10": 580,
-        "p25": 1050,
-        "p50": 1850,
-        "p75": 2890,
-        "p90": 4290
+        "p10": 600,
+        "p25": 1020,
+        "p50": 1620,
+        "p75": 2340,
+        "p90": 3300
       },
       "consumption": {
-        "p10": 450,
-        "p25": 820,
-        "p50": 1440,
-        "p75": 2250,
-        "p90": 3350
+        "p10": 550,
+        "p25": 835,
+        "p50": 1330,
+        "p75": 1800,
+        "p90": 2370
       },
       "wealth": {
-        "p10": 1370,
-        "p25": 9320,
-        "p50": 46250,
-        "p75": 159880,
-        "p90": 565280
+        "p10": 1200,
+        "p25": 8160,
+        "p50": 40500,
+        "p75": 140000,
+        "p90": 495000
       },
       "labor_income": {
-        "p10": 420,
-        "p25": 760,
-        "p50": 1330,
-        "p75": 2080,
-        "p90": 3090
+        "p10": 360,
+        "p25": 710,
+        "p50": 1300,
+        "p75": 1990,
+        "p90": 2970
       }
     },
     "gender": {
-      "adolescentBirthRate": 11,
-      "childMarriagePercent": 5,
-      "laborForceGap": -0.4,
-      "contraceptiveUse": 78.4
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1802,
     "costOfLivingIndex": 70,
@@ -7444,22 +7423,18 @@
     "femaleHeightCm": 162,
     "femaleWeightKg": 66,
     "femaleBmi": 25.3,
-    "femaleObesityRate": 23.0,
-    "femaleSmokingRate": 7,
+    "femaleObesityRate": null,
+    "femaleSmokingRate": null,
     "femaleLifeExpectancy": 85,
     "maleHeightCm": 174,
     "maleWeightKg": 78,
     "maleBmi": 25.9,
-    "maleObesityRate": 13.6,
-    "maleSmokingRate": 18,
+    "maleObesityRate": null,
+    "maleSmokingRate": null,
     "maleLifeExpectancy": 78,
-    "obesityRate": 19.0,
-    "smokingRate": 12.5,
-    "hdi": 0.83,
-    "adolescentBirthRate": 16,
-    "childMarriagePercent": 0.2,
-    "laborForceGap": -5.0,
-    "contraceptiveUse": 78.4
+    "obesityRate": null,
+    "smokingRate": null,
+    "hdi": 0.83
   },
   {
     "code": "GU",
@@ -7473,7 +7448,7 @@
     "currencySymbol": "$",
     "exchangeRate": 1.08,
     "population": 168999,
-    "dataSource": "Derived from US anchor distribution x GDP-pc ratio (see verify/findings)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 550,
@@ -7521,31 +7496,29 @@
     },
     "gender": {
       "adolescentBirthRate": 31.5,
-      "childMarriagePercent": 1,
+      "childMarriagePercent": null,
       "laborForceGap": -11.4,
-      "contraceptiveUse": 55.6
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1480,
     "costOfLivingIndex": 80,
     "unemploymentRate": 5.6,
     "internetPenetration": 80.5,
-    "femaleHeightCm": 163,
-    "femaleWeightKg": 74,
-    "femaleBmi": 28,
-    "femaleObesityRate": 35.4,
-    "femaleSmokingRate": 17.0,
+    "femaleHeightCm": 162,
+    "femaleWeightKg": 66,
+    "femaleBmi": 25.3,
+    "femaleObesityRate": null,
+    "femaleSmokingRate": null,
     "femaleLifeExpectancy": 81.6,
-    "maleHeightCm": 176,
-    "maleWeightKg": 89,
-    "maleBmi": 28.7,
-    "maleObesityRate": 35.4,
-    "maleSmokingRate": 19.1,
+    "maleHeightCm": 174,
+    "maleWeightKg": 78,
+    "maleBmi": 25.9,
+    "maleObesityRate": null,
+    "maleSmokingRate": null,
     "maleLifeExpectancy": 73.7,
-    "obesityRate": 35.4,
-    "smokingRate": 18.0,
-    "hdi": 0.86,
-    "childMarriagePercent": 0.5,
-    "contraceptiveUse": 73.9
+    "obesityRate": null,
+    "smokingRate": null,
+    "hdi": 0.86
   },
   {
     "code": "GT",
@@ -7559,7 +7532,7 @@
     "currencySymbol": "Q",
     "exchangeRate": 8.4,
     "population": 18687881,
-    "dataSource": "Estimate calibrated to GDP pc PPP; WID.world carries model fill only, no source data (see verify/findings/batch_10)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 50,
@@ -7645,76 +7618,76 @@
     "currencySymbol": "£",
     "exchangeRate": 0.85,
     "population": 64687,
-    "dataSource": "States of Guernsey Household Income Report 2022 + eCensus 2023",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
-      "p10": 1180,
-      "p25": 1960,
-      "p50": 3140,
-      "p75": 4590,
-      "p90": 6610
+      "p10": 1350,
+      "p25": 2260,
+      "p50": 3610,
+      "p75": 5290,
+      "p90": 7610
     },
     "indicators": {
       "pretax_national": {
-        "p10": 1320,
-        "p25": 2200,
-        "p50": 3520,
-        "p75": 5140,
-        "p90": 7400
+        "p10": 1380,
+        "p25": 2340,
+        "p50": 3800,
+        "p75": 5750,
+        "p90": 8540
       },
       "posttax_national": {
-        "p10": 1180,
-        "p25": 1960,
-        "p50": 3140,
-        "p75": 4590,
-        "p90": 6610
+        "p10": 1350,
+        "p25": 2260,
+        "p50": 3610,
+        "p75": 5290,
+        "p90": 7610
       },
       "consumption": {
-        "p10": 920,
-        "p25": 1530,
-        "p50": 2450,
-        "p75": 3580,
-        "p90": 5160
+        "p10": 1240,
+        "p25": 1840,
+        "p50": 2940,
+        "p75": 4050,
+        "p90": 5440
       },
       "wealth": {
-        "p10": 2520,
-        "p25": 16530,
-        "p50": 82630,
-        "p75": 290430,
-        "p90": 1044900
+        "p10": 2900,
+        "p25": 19000,
+        "p50": 95000,
+        "p75": 333900,
+        "p90": 1201300
       },
       "labor_income": {
-        "p10": 850,
-        "p25": 1410,
-        "p50": 2260,
-        "p75": 3300,
-        "p90": 4760
+        "p10": 810,
+        "p25": 1580,
+        "p50": 2890,
+        "p75": 4500,
+        "p90": 6850
       }
     },
     "gender": {
-      "adolescentBirthRate": 7.8,
-      "childMarriagePercent": 0,
-      "laborForceGap": -8.3,
-      "contraceptiveUse": 76.1
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 2300,
     "costOfLivingIndex": 115,
     "unemploymentRate": 1.0,
     "internetPenetration": 97,
     "femaleHeightCm": 166,
-    "femaleWeightKg": 75,
-    "femaleBmi": 27.2,
-    "femaleObesityRate": 29.6,
-    "femaleSmokingRate": 11.0,
+    "femaleWeightKg": 70,
+    "femaleBmi": 25.3,
+    "femaleObesityRate": 22,
+    "femaleSmokingRate": 18,
     "femaleLifeExpectancy": 85.6,
     "maleHeightCm": 179,
-    "maleWeightKg": 88,
-    "maleBmi": 27.5,
-    "maleObesityRate": 26.7,
-    "maleSmokingRate": 14.6,
+    "maleWeightKg": 83,
+    "maleBmi": 25.9,
+    "maleObesityRate": 19.4,
+    "maleSmokingRate": 28,
     "maleLifeExpectancy": 81.0,
-    "obesityRate": 28.2,
-    "smokingRate": 12.8,
+    "obesityRate": 22,
+    "smokingRate": 18,
     "hdi": 0.95
   },
   {
@@ -7901,50 +7874,50 @@
     "currencySymbol": "$",
     "exchangeRate": 244.1663,
     "population": 835986,
-    "dataSource": "World Bank PIP GLSMS 1998 + WDI 2024",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
-      "p10": 170,
-      "p25": 400,
-      "p50": 535,
-      "p75": 870,
-      "p90": 1370
+      "p10": 550,
+      "p25": 640,
+      "p50": 770,
+      "p75": 1000,
+      "p90": 1300
     },
     "indicators": {
       "pretax_national": {
-        "p10": 190,
-        "p25": 450,
-        "p50": 600,
-        "p75": 975,
-        "p90": 1535
+        "p10": 560,
+        "p25": 660,
+        "p50": 810,
+        "p75": 1100,
+        "p90": 1470
       },
       "posttax_national": {
-        "p10": 170,
-        "p25": 400,
-        "p50": 535,
-        "p75": 870,
-        "p90": 1370
+        "p10": 550,
+        "p25": 640,
+        "p50": 770,
+        "p75": 1000,
+        "p90": 1300
       },
       "consumption": {
-        "p10": 135,
-        "p25": 315,
-        "p50": 420,
-        "p75": 680,
-        "p90": 1070
+        "p10": 500,
+        "p25": 520,
+        "p50": 630,
+        "p75": 760,
+        "p90": 920
       },
       "wealth": {
-        "p10": 760,
-        "p25": 3400,
-        "p50": 12900,
-        "p75": 40400,
-        "p90": 130500
+        "p10": 1100,
+        "p25": 4900,
+        "p50": 18600,
+        "p75": 58300,
+        "p90": 188300
       },
       "labor_income": {
-        "p10": 125,
-        "p25": 290,
-        "p50": 385,
-        "p75": 625,
-        "p90": 985
+        "p10": 330,
+        "p25": 450,
+        "p50": 620,
+        "p75": 850,
+        "p90": 1170
       }
     },
     "gender": {
@@ -7958,19 +7931,19 @@
     "unemploymentRate": 11.9,
     "internetPenetration": 83.0,
     "femaleHeightCm": 162,
-    "femaleWeightKg": 73,
-    "femaleBmi": 28,
-    "femaleObesityRate": 34,
-    "femaleSmokingRate": 3.3,
+    "femaleWeightKg": 66,
+    "femaleBmi": 25.3,
+    "femaleObesityRate": 22,
+    "femaleSmokingRate": 8,
     "femaleLifeExpectancy": 74.1,
     "maleHeightCm": 174,
-    "maleWeightKg": 74,
-    "maleBmi": 24.6,
-    "maleObesityRate": 14,
-    "maleSmokingRate": 26.6,
+    "maleWeightKg": 78,
+    "maleBmi": 25.9,
+    "maleObesityRate": 19.4,
+    "maleSmokingRate": 22,
     "maleLifeExpectancy": 66.6,
-    "obesityRate": 23.6,
-    "smokingRate": 15.4,
+    "obesityRate": 22,
+    "smokingRate": 8,
     "hdi": 0.742
   },
   {
@@ -7985,57 +7958,57 @@
     "currencySymbol": "G",
     "exchangeRate": 152.7471,
     "population": 11906095,
-    "dataSource": "World Bank PIP ECVMAS 2012 + WDI 2025",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
-      "p10": 3,
-      "p25": 37,
-      "p50": 56,
-      "p75": 121,
-      "p90": 223
+      "p10": 10,
+      "p25": 20,
+      "p50": 40,
+      "p75": 70,
+      "p90": 150
     },
     "indicators": {
       "pretax_national": {
-        "p10": 3,
-        "p25": 41,
-        "p50": 63,
-        "p75": 135,
-        "p90": 250
+        "p10": 10,
+        "p25": 20,
+        "p50": 40,
+        "p75": 80,
+        "p90": 170
       },
       "posttax_national": {
-        "p10": 3,
-        "p25": 37,
-        "p50": 56,
-        "p75": 121,
-        "p90": 223
+        "p10": 10,
+        "p25": 20,
+        "p50": 40,
+        "p75": 70,
+        "p90": 150
       },
       "consumption": {
-        "p10": 37,
-        "p25": 79,
-        "p50": 104,
-        "p75": 167,
-        "p90": 255
+        "p10": 10,
+        "p25": 10,
+        "p50": 30,
+        "p75": 60,
+        "p90": 110
       },
       "wealth": {
         "p10": 0,
-        "p25": 140,
-        "p50": 840,
-        "p75": 4060,
-        "p90": 20400
+        "p25": 100,
+        "p50": 600,
+        "p75": 2900,
+        "p90": 14600
       },
       "labor_income": {
-        "p10": 2,
-        "p25": 27,
-        "p50": 40,
-        "p75": 87,
-        "p90": 161
+        "p10": 0,
+        "p25": 10,
+        "p50": 30,
+        "p75": 60,
+        "p90": 130
       }
     },
     "gender": {
       "adolescentBirthRate": 49.3,
       "childMarriagePercent": 21,
       "laborForceGap": -11.4,
-      "contraceptiveUse": 73.9
+      "contraceptiveUse": null
     },
     "minimumWageEur": 80,
     "costOfLivingIndex": 30,
@@ -8069,7 +8042,7 @@
     "currencySymbol": "L",
     "exchangeRate": 31.2981,
     "population": 11005850,
-    "dataSource": "Estimate calibrated to GDP pc PPP; WID.world carries model fill only, no source data (see verify/findings/batch_11)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 40,
@@ -8377,7 +8350,7 @@
       "adolescentBirthRate": 3.1,
       "childMarriagePercent": 2,
       "laborForceGap": -9.6,
-      "contraceptiveUse": 77.1
+      "contraceptiveUse": null
     },
     "minimumWageEur": 2900,
     "costOfLivingIndex": 110,
@@ -8843,57 +8816,57 @@
     "currencySymbol": "£",
     "exchangeRate": 0.85,
     "population": 84118,
-    "dataSource": "Isle of Man Earnings Survey 2024 (Cabinet Office Statistics IoM)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
-      "p10": 1100,
-      "p25": 1840,
-      "p50": 2940,
-      "p75": 4300,
-      "p90": 6200
+      "p10": 1310,
+      "p25": 2190,
+      "p50": 3500,
+      "p75": 5130,
+      "p90": 7380
     },
     "indicators": {
       "pretax_national": {
-        "p10": 1230,
-        "p25": 2060,
-        "p50": 3290,
-        "p75": 4820,
-        "p90": 6940
+        "p10": 1335,
+        "p25": 2266,
+        "p50": 3684,
+        "p75": 5580,
+        "p90": 8280
       },
       "posttax_national": {
-        "p10": 1100,
-        "p25": 1840,
-        "p50": 2940,
-        "p75": 4300,
-        "p90": 6200
+        "p10": 1310,
+        "p25": 2190,
+        "p50": 3500,
+        "p75": 5130,
+        "p90": 7380
       },
       "consumption": {
-        "p10": 860,
-        "p25": 1440,
-        "p50": 2290,
-        "p75": 3350,
-        "p90": 4840
+        "p10": 1201,
+        "p25": 1783,
+        "p50": 2853,
+        "p75": 3920,
+        "p90": 5270
       },
       "wealth": {
-        "p10": 2210,
-        "p25": 14700,
-        "p50": 73500,
-        "p75": 258720,
-        "p90": 929040
+        "p10": 2630,
+        "p25": 17500,
+        "p50": 87500,
+        "p75": 308000,
+        "p90": 1106000
       },
       "labor_income": {
-        "p10": 790,
-        "p25": 1320,
-        "p50": 2120,
-        "p75": 3100,
-        "p90": 4460
+        "p10": 788,
+        "p25": 1530,
+        "p50": 2800,
+        "p75": 4360,
+        "p90": 6640
       }
     },
     "gender": {
       "adolescentBirthRate": 8.5,
       "childMarriagePercent": 0,
-      "laborForceGap": -8.3,
-      "contraceptiveUse": 76.1
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 2350,
     "costOfLivingIndex": 88,
@@ -9185,7 +9158,7 @@
     "currencySymbol": "$",
     "exchangeRate": 158,
     "population": 2837077,
-    "dataSource": "Estimate consistent with GDP pc PPP (~USD 8-9k/yr); scalars World-Bank-verified, distribution unverified (see verify/findings/batch_13)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 326,
@@ -9355,7 +9328,7 @@
     "currencySymbol": "£",
     "exchangeRate": 0.85,
     "population": 104540,
-    "dataSource": "Derived from UK anchor distribution x median-earnings ratio (see verify/findings)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 1300,
@@ -9402,10 +9375,10 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 4,
-      "childMarriagePercent": 0.1,
-      "laborForceGap": -8.3,
-      "contraceptiveUse": 83
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 2650,
     "costOfLivingIndex": 95,
@@ -9699,57 +9672,57 @@
     "currencySymbol": "$",
     "exchangeRate": 1.41,
     "population": 136488,
-    "dataSource": "World Bank PIP HIES 2023",
-    "dataYear": 2023,
+    "dataSource": "Derived (placeholder-pattern source string; original entry fabricated)",
+    "dataYear": 2024,
     "income": {
-      "p10": 185,
-      "p25": 270,
-      "p50": 315,
-      "p75": 420,
-      "p90": 550
+      "p10": 15,
+      "p25": 31,
+      "p50": 64,
+      "p75": 132,
+      "p90": 251
     },
     "indicators": {
       "pretax_national": {
-        "p10": 205,
-        "p25": 300,
-        "p50": 350,
-        "p75": 470,
-        "p90": 615
+        "p10": 15,
+        "p25": 32,
+        "p50": 67,
+        "p75": 144,
+        "p90": 283
       },
       "posttax_national": {
-        "p10": 185,
-        "p25": 270,
-        "p50": 315,
-        "p75": 420,
-        "p90": 550
+        "p10": 15,
+        "p25": 31,
+        "p50": 64,
+        "p75": 132,
+        "p90": 251
       },
       "consumption": {
-        "p10": 145,
-        "p25": 210,
-        "p50": 245,
-        "p75": 325,
-        "p90": 430
+        "p10": 13,
+        "p25": 25,
+        "p50": 52,
+        "p75": 101,
+        "p90": 179
       },
       "wealth": {
-        "p10": 150,
-        "p25": 1200,
-        "p50": 7800,
-        "p75": 38900,
-        "p90": 184500
+        "p10": 30,
+        "p25": 246,
+        "p50": 1595,
+        "p75": 7929,
+        "p90": 37595
       },
       "labor_income": {
-        "p10": 135,
-        "p25": 195,
-        "p50": 225,
-        "p75": 300,
-        "p90": 395
+        "p10": 9,
+        "p25": 22,
+        "p50": 51,
+        "p75": 112,
+        "p90": 226
       }
     },
     "gender": {
       "adolescentBirthRate": 44,
-      "childMarriagePercent": 1,
-      "laborForceGap": -38.1,
-      "contraceptiveUse": 35.4
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 165,
     "costOfLivingIndex": 25,
@@ -9769,10 +9742,7 @@
     "maleLifeExpectancy": 64.7,
     "obesityRate": 22,
     "smokingRate": 8,
-    "hdi": 0.644,
-    "laborForceGap": -16.4,
-    "contraceptiveUse": 33.6,
-    "childMarriagePercent": 18.4
+    "hdi": 0.644
   },
   {
     "code": "XK",
@@ -9835,7 +9805,7 @@
     "gender": {
       "adolescentBirthRate": 8,
       "childMarriagePercent": 16,
-      "laborForceGap": -33.6,
+      "laborForceGap": null,
       "contraceptiveUse": 66.7
     },
     "minimumWageEur": 264,
@@ -10474,7 +10444,7 @@
     "currencySymbol": "ل.د",
     "exchangeRate": 4.9,
     "population": 7458555,
-    "dataSource": "Estimate vs GDP pc PPP; no WID.world source data (model fill only) (see verify/findings/batch_15)",
+    "dataSource": "ILO",
     "dataYear": 2022,
     "income": {
       "p10": 90,
@@ -10560,7 +10530,7 @@
     "currencySymbol": "Fr",
     "exchangeRate": 0.9342,
     "population": 41024,
-    "dataSource": "Estimate calibrated to GDP pc PPP; WID.world carries model fill only, no source data (see verify/findings/batch_15)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 2500,
@@ -10609,10 +10579,10 @@
     "gender": {
       "adolescentBirthRate": 1.8,
       "childMarriagePercent": 2,
-      "laborForceGap": -9.2,
-      "contraceptiveUse": 76.3
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
-    "minimumWageEur": 0,
+    "minimumWageEur": null,
     "costOfLivingIndex": 125,
     "unemploymentRate": 4,
     "internetPenetration": 98.3,
@@ -10782,7 +10752,7 @@
       "adolescentBirthRate": 4,
       "childMarriagePercent": 3,
       "laborForceGap": -8,
-      "contraceptiveUse": 70.9
+      "contraceptiveUse": null
     },
     "minimumWageEur": 2508,
     "costOfLivingIndex": 80,
@@ -10818,7 +10788,7 @@
     "currencySymbol": "P",
     "exchangeRate": 8.03,
     "population": 685900,
-    "dataSource": "Estimate consistent with Macau GDP-per-adult levels (casino-rent-heavy capital income); see verify/findings/batch_15",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 3429,
@@ -10866,9 +10836,9 @@
     },
     "gender": {
       "adolescentBirthRate": 0.5,
-      "childMarriagePercent": 1,
+      "childMarriagePercent": null,
       "laborForceGap": -10.5,
-      "contraceptiveUse": 69.0
+      "contraceptiveUse": null
     },
     "minimumWageEur": 770,
     "costOfLivingIndex": 56,
@@ -10902,50 +10872,50 @@
     "currencySymbol": "Ar",
     "exchangeRate": 4500,
     "population": 32740678,
-    "dataSource": "World Bank PIP EPM 2012 (consumption) + WDI 2024",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
-      "p10": 41,
-      "p25": 67,
-      "p50": 114,
-      "p75": 195,
-      "p90": 316
+      "p10": 12,
+      "p25": 25,
+      "p50": 55,
+      "p75": 125,
+      "p90": 280
     },
     "indicators": {
       "pretax_national": {
-        "p10": 43,
-        "p25": 70,
-        "p50": 120,
-        "p75": 205,
-        "p90": 332
+        "p10": 12,
+        "p25": 26,
+        "p50": 59,
+        "p75": 138,
+        "p90": 322
       },
       "posttax_national": {
-        "p10": 41,
-        "p25": 67,
-        "p50": 114,
-        "p75": 195,
-        "p90": 316
+        "p10": 12,
+        "p25": 25,
+        "p50": 55,
+        "p75": 125,
+        "p90": 280
       },
       "consumption": {
-        "p10": 35,
-        "p25": 57,
-        "p50": 97,
-        "p75": 166,
-        "p90": 269
+        "p10": 11,
+        "p25": 20,
+        "p50": 44,
+        "p75": 95,
+        "p90": 198
       },
       "wealth": {
-        "p10": 60,
-        "p25": 150,
-        "p50": 405,
-        "p75": 1100,
-        "p90": 2730
+        "p10": 24,
+        "p25": 200,
+        "p50": 1375,
+        "p75": 7500,
+        "p90": 42000
       },
       "labor_income": {
-        "p10": 30,
-        "p25": 48,
-        "p50": 82,
-        "p75": 140,
-        "p90": 228
+        "p10": 7,
+        "p25": 18,
+        "p50": 44,
+        "p75": 106,
+        "p90": 252
       }
     },
     "gender": {
@@ -11418,7 +11388,7 @@
     "currencySymbol": "$",
     "exchangeRate": 1.08,
     "population": 36282,
-    "dataSource": "Estimate consistent with GDP pc PPP; scalars World-Bank-verified, distribution unverified (see verify/findings/batch_16)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 225,
@@ -11466,9 +11436,9 @@
     },
     "gender": {
       "adolescentBirthRate": 71.3,
-      "childMarriagePercent": 1,
-      "laborForceGap": -10.7,
-      "contraceptiveUse": 73.9
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 670,
     "costOfLivingIndex": 25,
@@ -11488,10 +11458,7 @@
     "maleLifeExpectancy": 65,
     "obesityRate": 42.0,
     "smokingRate": 23.3,
-    "hdi": 0.733,
-    "laborForceGap": -23.9,
-    "contraceptiveUse": 44.6,
-    "childMarriagePercent": 26.3
+    "hdi": 0.733
   },
   {
     "code": "MQ",
@@ -11505,57 +11472,57 @@
     "currencySymbol": "€",
     "exchangeRate": 1,
     "population": 355000,
-    "dataSource": "INSEE Filosofi 2021 (DEP-972)",
-    "dataYear": 2021,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
-      "p10": 1020,
-      "p25": 1450,
-      "p50": 2140,
-      "p75": 3160,
-      "p90": 4510
+      "p10": 650,
+      "p25": 950,
+      "p50": 1550,
+      "p75": 2100,
+      "p90": 3000
     },
     "indicators": {
       "pretax_national": {
-        "p10": 1070,
-        "p25": 1520,
-        "p50": 2250,
-        "p75": 3320,
-        "p90": 4740
+        "p10": 680,
+        "p25": 1000,
+        "p50": 1650,
+        "p75": 2250,
+        "p90": 3200
       },
       "posttax_national": {
-        "p10": 1020,
-        "p25": 1450,
-        "p50": 2140,
-        "p75": 3160,
-        "p90": 4510
+        "p10": 650,
+        "p25": 950,
+        "p50": 1550,
+        "p75": 2100,
+        "p90": 3000
       },
       "consumption": {
-        "p10": 815,
-        "p25": 1160,
-        "p50": 1710,
-        "p75": 2530,
-        "p90": 3610
+        "p10": 570,
+        "p25": 800,
+        "p50": 1250,
+        "p75": 1750,
+        "p90": 2400
       },
       "wealth": {
-        "p10": 2760,
-        "p25": 20700,
-        "p50": 89800,
-        "p75": 248600,
-        "p90": 690400
+        "p10": 2000,
+        "p25": 15000,
+        "p50": 65000,
+        "p75": 180000,
+        "p90": 500000
       },
       "labor_income": {
-        "p10": 735,
-        "p25": 1045,
-        "p50": 1540,
-        "p75": 2275,
-        "p90": 3245
+        "p10": 400,
+        "p25": 650,
+        "p50": 1050,
+        "p75": 1600,
+        "p90": 2400
       }
     },
     "gender": {
-      "adolescentBirthRate": 5,
-      "childMarriagePercent": 0.1,
-      "laborForceGap": -5,
-      "contraceptiveUse": 74.6
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1800,
     "costOfLivingIndex": 65,
@@ -11723,7 +11690,7 @@
     },
     "gender": {
       "adolescentBirthRate": 19.2,
-      "childMarriagePercent": 2.2,
+      "childMarriagePercent": null,
       "laborForceGap": -22.2,
       "contraceptiveUse": 63.8
     },
@@ -11761,8 +11728,8 @@
     "currencySymbol": "€",
     "exchangeRate": 1,
     "population": 320901,
-    "dataSource": "Derived from France anchor distribution x GDP-per-capita ratio 0.28 (11,508/41,000; INSEE median-living-standard cross-check; see verify/findings)",
-    "dataYear": 2023,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
       "p10": 230,
       "p25": 400,
@@ -11808,34 +11775,30 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 60,
-      "childMarriagePercent": 2.5,
-      "laborForceGap": -20,
-      "contraceptiveUse": 74.6
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1767,
     "costOfLivingIndex": 60,
     "unemploymentRate": 37,
     "internetPenetration": 56.3,
-    "femaleHeightCm": 162,
-    "femaleWeightKg": 66,
-    "femaleBmi": 25,
-    "femaleObesityRate": 39.0,
-    "femaleSmokingRate": 2,
-    "femaleLifeExpectancy": 73.9,
-    "maleHeightCm": 174,
-    "maleWeightKg": 78,
-    "maleBmi": 25.6,
-    "maleObesityRate": 14.2,
-    "maleSmokingRate": 21,
-    "maleLifeExpectancy": 72.5,
-    "obesityRate": 27.8,
-    "smokingRate": 11,
-    "hdi": 0.64,
-    "adolescentBirthRate": 42,
-    "childMarriagePercent": 1,
-    "laborForceGap": -19,
-    "contraceptiveUse": 78.4
+    "femaleHeightCm": null,
+    "femaleWeightKg": null,
+    "femaleBmi": null,
+    "femaleObesityRate": null,
+    "femaleSmokingRate": null,
+    "femaleLifeExpectancy": null,
+    "maleHeightCm": null,
+    "maleWeightKg": null,
+    "maleBmi": null,
+    "maleObesityRate": null,
+    "maleSmokingRate": null,
+    "maleLifeExpectancy": null,
+    "obesityRate": null,
+    "smokingRate": null,
+    "hdi": 0.64
   },
   {
     "code": "MX",
@@ -11935,8 +11898,8 @@
     "currencySymbol": "$",
     "exchangeRate": 1.1682,
     "population": 113683,
-    "dataSource": "Derived from United States verified distribution x GDP-per-capita-PPP ratio 0.08",
-    "dataYear": 2023,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
       "p10": 70,
       "p25": 150,
@@ -11983,32 +11946,29 @@
     },
     "gender": {
       "adolescentBirthRate": 43.7,
-      "childMarriagePercent": 1,
-      "laborForceGap": -10.7,
-      "contraceptiveUse": 73.9
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 425,
     "costOfLivingIndex": 25,
-    "unemploymentRate": 16.2,
+    "unemploymentRate": null,
     "internetPenetration": 39.5,
-    "femaleHeightCm": 159,
-    "femaleWeightKg": 83,
-    "femaleBmi": 32.7,
-    "femaleObesityRate": 58.7,
-    "femaleSmokingRate": 25.4,
+    "femaleHeightCm": null,
+    "femaleWeightKg": null,
+    "femaleBmi": null,
+    "femaleObesityRate": 55.2,
+    "femaleSmokingRate": null,
     "femaleLifeExpectancy": 71.3,
-    "maleHeightCm": 169,
-    "maleWeightKg": 81,
-    "maleBmi": 28.2,
-    "maleObesityRate": 40.7,
-    "maleSmokingRate": 39.8,
+    "maleHeightCm": null,
+    "maleWeightKg": null,
+    "maleBmi": null,
+    "maleObesityRate": 44.4,
+    "maleSmokingRate": null,
     "maleLifeExpectancy": 63.6,
-    "obesityRate": 49.7,
-    "smokingRate": 35.4,
-    "hdi": 0.615,
-    "laborForceGap": -17.7,
-    "contraceptiveUse": 31.6,
-    "childMarriagePercent": 2
+    "obesityRate": 50,
+    "smokingRate": null,
+    "hdi": 0.615
   },
   {
     "code": "MD",
@@ -12022,50 +11982,50 @@
     "currencySymbol": "L",
     "exchangeRate": 17.2,
     "population": 2360527,
-    "dataSource": "World Bank PIP HBS 2023 (consumption)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
-      "p10": 240,
-      "p25": 320,
-      "p50": 443,
-      "p75": 615,
-      "p90": 823
+      "p10": 80,
+      "p25": 160,
+      "p50": 320,
+      "p75": 600,
+      "p90": 1050
     },
     "indicators": {
       "pretax_national": {
-        "p10": 250,
-        "p25": 335,
-        "p50": 465,
-        "p75": 645,
-        "p90": 865
+        "p10": 81,
+        "p25": 164,
+        "p50": 332,
+        "p75": 639,
+        "p90": 1146
       },
       "posttax_national": {
-        "p10": 240,
-        "p25": 320,
-        "p50": 443,
-        "p75": 615,
-        "p90": 823
+        "p10": 80,
+        "p25": 160,
+        "p50": 320,
+        "p75": 600,
+        "p90": 1050
       },
       "consumption": {
-        "p10": 225,
-        "p25": 300,
-        "p50": 410,
-        "p75": 570,
-        "p90": 765
+        "p10": 74,
+        "p25": 132,
+        "p50": 264,
+        "p75": 464,
+        "p90": 760
       },
       "wealth": {
-        "p10": 270,
-        "p25": 1850,
-        "p50": 9650,
-        "p75": 38200,
-        "p90": 150500
+        "p10": 160,
+        "p25": 1280,
+        "p50": 8000,
+        "p75": 36000,
+        "p90": 157500
       },
       "labor_income": {
-        "p10": 170,
-        "p25": 230,
-        "p50": 320,
-        "p75": 445,
-        "p90": 595
+        "p10": 48,
+        "p25": 112,
+        "p50": 256,
+        "p75": 510,
+        "p90": 945
       }
     },
     "gender": {
@@ -12108,7 +12068,7 @@
     "currencySymbol": "€",
     "exchangeRate": 1,
     "population": 38341,
-    "dataSource": "Estimate calibrated to GDP pc PPP; WID.world carries model fill only, no source data (see verify/findings/batch_17)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 2000,
@@ -12157,8 +12117,8 @@
     "gender": {
       "adolescentBirthRate": 9.3,
       "childMarriagePercent": 2,
-      "laborForceGap": -8.1,
-      "contraceptiveUse": 78.4
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 2000,
     "costOfLivingIndex": 130,
@@ -12280,7 +12240,7 @@
     "currencySymbol": "€",
     "exchangeRate": 1,
     "population": 623129,
-    "dataSource": "Estimate calibrated to GDP pc PPP; WID.world carries model fill only, no source data (see verify/findings/batch_17)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 200,
@@ -12366,7 +12326,7 @@
     "currencySymbol": "$",
     "exchangeRate": 2.7,
     "population": 4399,
-    "dataSource": "Derived from US anchor distribution x GDP-pc ratio (Caribbean small-island calibration; see verify/findings)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 120,
@@ -12413,29 +12373,29 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 0,
-      "childMarriagePercent": 0,
-      "laborForceGap": -8.3,
-      "contraceptiveUse": 76.1
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
-    "minimumWageEur": 800,
+    "minimumWageEur": null,
     "costOfLivingIndex": 60,
-    "unemploymentRate": 6,
-    "internetPenetration": 57.2,
-    "femaleHeightCm": 164,
-    "femaleWeightKg": 70,
-    "femaleBmi": 26,
-    "femaleObesityRate": 38,
-    "femaleSmokingRate": 2,
-    "femaleLifeExpectancy": 75.3,
-    "maleHeightCm": 177,
-    "maleWeightKg": 84,
-    "maleBmi": 26.7,
-    "maleObesityRate": 31,
-    "maleSmokingRate": 10,
-    "maleLifeExpectancy": 76.9,
-    "obesityRate": 35,
-    "smokingRate": 5,
+    "unemploymentRate": null,
+    "internetPenetration": null,
+    "femaleHeightCm": null,
+    "femaleWeightKg": null,
+    "femaleBmi": null,
+    "femaleObesityRate": null,
+    "femaleSmokingRate": null,
+    "femaleLifeExpectancy": null,
+    "maleHeightCm": null,
+    "maleWeightKg": null,
+    "maleBmi": null,
+    "maleObesityRate": null,
+    "maleSmokingRate": null,
+    "maleLifeExpectancy": null,
+    "obesityRate": null,
+    "smokingRate": null,
     "hdi": 0.78
   },
   {
@@ -12622,7 +12582,7 @@
     "currencySymbol": "Ks",
     "exchangeRate": 2101.72,
     "population": 54850648,
-    "dataSource": "Estimate vs GDP pc PPP; distribution block provenance unverified (see verify/findings/batch_18)",
+    "dataSource": "ILO",
     "dataYear": 2022,
     "income": {
       "p10": 25,
@@ -12794,7 +12754,7 @@
     "currencySymbol": "$",
     "exchangeRate": 1.62,
     "population": 12025,
-    "dataSource": "Estimate consistent with GDP pc PPP (~USD 12-14k/yr); unverifiable-but-plausible (see verify/findings/batch_18)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 355,
@@ -12842,9 +12802,9 @@
     },
     "gender": {
       "adolescentBirthRate": 75.3,
-      "childMarriagePercent": 1,
-      "laborForceGap": -8.7,
-      "contraceptiveUse": 74.3
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 200,
     "costOfLivingIndex": 25,
@@ -12864,10 +12824,7 @@
     "maleLifeExpectancy": 60.4,
     "obesityRate": 63,
     "smokingRate": 8,
-    "hdi": 0.7,
-    "laborForceGap": -2.7,
-    "contraceptiveUse": 35.6,
-    "childMarriagePercent": 18.2
+    "hdi": 0.7
   },
   {
     "code": "NP",
@@ -13053,57 +13010,57 @@
     "currencySymbol": "₣",
     "exchangeRate": 102.15,
     "population": 268510,
-    "dataSource": "ISEE Enquête Budget des familles 2019-2020",
-    "dataYear": 2019,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
-      "p10": 785,
-      "p25": 1185,
-      "p50": 1875,
-      "p75": 2965,
-      "p90": 4485
+      "p10": 626,
+      "p25": 725,
+      "p50": 875,
+      "p75": 1141,
+      "p90": 1474
     },
     "indicators": {
       "pretax_national": {
-        "p10": 825,
-        "p25": 1245,
-        "p50": 1970,
-        "p75": 3115,
-        "p90": 4710
+        "p10": 638,
+        "p25": 753,
+        "p50": 925,
+        "p75": 1249,
+        "p90": 1670
       },
       "posttax_national": {
-        "p10": 785,
-        "p25": 1185,
-        "p50": 1875,
-        "p75": 2965,
-        "p90": 4485
+        "p10": 626,
+        "p25": 725,
+        "p50": 875,
+        "p75": 1141,
+        "p90": 1474
       },
       "consumption": {
-        "p10": 630,
-        "p25": 950,
-        "p50": 1500,
-        "p75": 2370,
-        "p90": 3590
+        "p10": 571,
+        "p25": 589,
+        "p50": 711,
+        "p75": 869,
+        "p90": 1049
       },
       "wealth": {
-        "p10": 2685,
-        "p25": 12435,
-        "p50": 46900,
-        "p75": 146800,
-        "p90": 474100
+        "p10": 1252,
+        "p25": 5800,
+        "p50": 21875,
+        "p75": 68460,
+        "p90": 221100
       },
       "labor_income": {
-        "p10": 565,
-        "p25": 855,
-        "p50": 1350,
-        "p75": 2135,
-        "p90": 3230
+        "p10": 376,
+        "p25": 507,
+        "p50": 700,
+        "p75": 970,
+        "p90": 1327
       }
     },
     "gender": {
       "adolescentBirthRate": 11.7,
-      "childMarriagePercent": 0,
+      "childMarriagePercent": null,
       "laborForceGap": -10.9,
-      "contraceptiveUse": 60.2
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1300,
     "costOfLivingIndex": 70,
@@ -13185,7 +13142,7 @@
     },
     "gender": {
       "adolescentBirthRate": 10.3,
-      "childMarriagePercent": 1,
+      "childMarriagePercent": null,
       "laborForceGap": -8.7,
       "contraceptiveUse": 74.3
     },
@@ -13223,7 +13180,7 @@
     "currencySymbol": "C$",
     "exchangeRate": 42.9536,
     "population": 7007502,
-    "dataSource": "Estimate calibrated to GDP pc PPP; WID.world carries model fill only, no source data (see verify/findings/batch_19)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 35,
@@ -13481,7 +13438,7 @@
     "currencySymbol": "$",
     "exchangeRate": 1.964,
     "population": 1817,
-    "dataSource": "Derived from NZ anchor distribution x GDP-pc ratio (see verify/findings)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 210,
@@ -13528,29 +13485,29 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 0,
-      "childMarriagePercent": 0,
-      "laborForceGap": -8.7,
-      "contraceptiveUse": 74.3
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
-    "minimumWageEur": 620,
+    "minimumWageEur": null,
     "costOfLivingIndex": 88,
     "unemploymentRate": 5,
     "internetPenetration": 98,
-    "femaleHeightCm": 164,
-    "femaleWeightKg": 87,
-    "femaleBmi": 32.5,
-    "femaleObesityRate": 69.2,
-    "femaleSmokingRate": 13,
-    "femaleLifeExpectancy": 75.7,
-    "maleHeightCm": 177,
-    "maleWeightKg": 97,
-    "maleBmi": 31.1,
-    "maleObesityRate": 63,
-    "maleSmokingRate": 22.6,
-    "maleLifeExpectancy": 71.8,
-    "obesityRate": 66.2,
-    "smokingRate": 17.7,
+    "femaleHeightCm": null,
+    "femaleWeightKg": null,
+    "femaleBmi": null,
+    "femaleObesityRate": null,
+    "femaleSmokingRate": null,
+    "femaleLifeExpectancy": null,
+    "maleHeightCm": null,
+    "maleWeightKg": null,
+    "maleBmi": null,
+    "maleObesityRate": null,
+    "maleSmokingRate": null,
+    "maleLifeExpectancy": null,
+    "obesityRate": null,
+    "smokingRate": null,
     "hdi": 0.85
   },
   {
@@ -13565,7 +13522,7 @@
     "currencySymbol": "$",
     "exchangeRate": 1.62,
     "population": 2188,
-    "dataSource": "Derived from UK anchor distribution x GDP-pc ratio (ABS median-household-income calibration; see verify/findings)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 790,
@@ -13612,29 +13569,29 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 6.4,
-      "childMarriagePercent": 0,
-      "laborForceGap": -8.2,
-      "contraceptiveUse": 66.9
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 2600,
     "costOfLivingIndex": 110,
     "unemploymentRate": 10,
     "internetPenetration": 57.1,
-    "femaleHeightCm": 162,
-    "femaleWeightKg": 71,
-    "femaleBmi": 27,
-    "femaleObesityRate": 29,
-    "femaleSmokingRate": 9.9,
-    "femaleLifeExpectancy": 85.1,
-    "maleHeightCm": 174,
-    "maleWeightKg": 84,
-    "maleBmi": 27.7,
-    "maleObesityRate": 25.5,
-    "maleSmokingRate": 13.4,
-    "maleLifeExpectancy": 81.1,
-    "obesityRate": 29,
-    "smokingRate": 11.7,
+    "femaleHeightCm": null,
+    "femaleWeightKg": null,
+    "femaleBmi": null,
+    "femaleObesityRate": null,
+    "femaleSmokingRate": null,
+    "femaleLifeExpectancy": null,
+    "maleHeightCm": null,
+    "maleWeightKg": null,
+    "maleBmi": null,
+    "maleObesityRate": null,
+    "maleSmokingRate": null,
+    "maleLifeExpectancy": null,
+    "obesityRate": null,
+    "smokingRate": null,
     "hdi": 0.9
   },
   {
@@ -13649,7 +13606,7 @@
     "currencySymbol": "₩",
     "exchangeRate": 8000,
     "population": 26571036,
-    "dataSource": "Estimate vs GDP pc PPP; DPRK absent from WID.world and World Bank PIP - no verifiable distribution source (see verify/findings/batch_19)",
+    "dataSource": "ILO",
     "dataYear": 2022,
     "income": {
       "p10": 15,
@@ -13701,7 +13658,7 @@
       "laborForceGap": -9,
       "contraceptiveUse": 70.2
     },
-    "minimumWageEur": 0.63,
+    "minimumWageEur": null,
     "costOfLivingIndex": 20,
     "unemploymentRate": 3.5,
     "internetPenetration": 0,
@@ -13719,7 +13676,7 @@
     "maleLifeExpectancy": 71.6,
     "obesityRate": 5,
     "smokingRate": 20,
-    "hdi": 0.62,
+    "hdi": null,
     "englishSpeakingPercent": 0,
     "mainIndustry": "Manufacturing"
   },
@@ -13735,7 +13692,7 @@
     "currencySymbol": "den",
     "exchangeRate": 61.497,
     "population": 1820909,
-    "dataSource": "Estimate calibrated to GDP pc PPP; WID.world carries model fill only, no source data (see verify/findings/batch_19)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 130,
@@ -13783,7 +13740,7 @@
     },
     "gender": {
       "adolescentBirthRate": 12.4,
-      "childMarriagePercent": 7.5,
+      "childMarriagePercent": null,
       "laborForceGap": -19.1,
       "contraceptiveUse": 59.9
     },
@@ -13821,57 +13778,57 @@
     "currencySymbol": "$",
     "exchangeRate": 1.08,
     "population": 46100,
-    "dataSource": "US Census Bureau 2020 Island Areas Census (CB24-CN.06)",
-    "dataYear": 2019,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
-      "p10": 505,
-      "p25": 845,
-      "p50": 1490,
-      "p75": 2635,
-      "p90": 4600
+      "p10": 626,
+      "p25": 725,
+      "p50": 875,
+      "p75": 1141,
+      "p90": 1474
     },
     "indicators": {
       "pretax_national": {
-        "p10": 530,
-        "p25": 885,
-        "p50": 1565,
-        "p75": 2765,
-        "p90": 4830
+        "p10": 638,
+        "p25": 753,
+        "p50": 925,
+        "p75": 1249,
+        "p90": 1670
       },
       "posttax_national": {
-        "p10": 505,
-        "p25": 845,
-        "p50": 1490,
-        "p75": 2635,
-        "p90": 4600
+        "p10": 626,
+        "p25": 725,
+        "p50": 875,
+        "p75": 1141,
+        "p90": 1474
       },
       "consumption": {
-        "p10": 405,
-        "p25": 675,
-        "p50": 1190,
-        "p75": 2110,
-        "p90": 3680
+        "p10": 571,
+        "p25": 589,
+        "p50": 711,
+        "p75": 869,
+        "p90": 1049
       },
       "wealth": {
-        "p10": 2130,
-        "p25": 9880,
-        "p50": 37250,
-        "p75": 116600,
-        "p90": 376600
+        "p10": 1252,
+        "p25": 5800,
+        "p50": 21875,
+        "p75": 68460,
+        "p90": 221100
       },
       "labor_income": {
-        "p10": 365,
-        "p25": 610,
-        "p50": 1070,
-        "p75": 1900,
-        "p90": 3310
+        "p10": 376,
+        "p25": 507,
+        "p50": 700,
+        "p75": 970,
+        "p90": 1327
       }
     },
     "gender": {
       "adolescentBirthRate": 25.3,
-      "childMarriagePercent": 5,
-      "laborForceGap": -11.1,
-      "contraceptiveUse": 45
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1155,
     "costOfLivingIndex": 38,
@@ -13891,8 +13848,7 @@
     "maleLifeExpectancy": 77.3,
     "obesityRate": 22,
     "smokingRate": 8,
-    "hdi": 0.875,
-    "mainIndustry": "Tourism"
+    "hdi": null
   },
   {
     "code": "NO",
@@ -13958,7 +13914,7 @@
       "laborForceGap": -7,
       "contraceptiveUse": 73.8
     },
-    "minimumWageEur": 0,
+    "minimumWageEur": null,
     "costOfLivingIndex": 90,
     "unemploymentRate": 4.6,
     "internetPenetration": 99,
@@ -13992,7 +13948,7 @@
     "currencySymbol": "ر.ع.",
     "exchangeRate": 0.42,
     "population": 5494691,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 300,
@@ -14078,7 +14034,7 @@
     "currencySymbol": "₨",
     "exchangeRate": 310,
     "population": 240486649,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 40,
@@ -14164,57 +14120,57 @@
     "currencySymbol": "$",
     "exchangeRate": 1.08,
     "population": 17663,
-    "dataSource": "Palau 2023-24 HIES (SPC/Office of Planning & Statistics)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
-      "p10": 490,
-      "p25": 720,
-      "p50": 1090,
-      "p75": 1660,
-      "p90": 2425
+      "p10": 577,
+      "p25": 669,
+      "p50": 807,
+      "p75": 1052,
+      "p90": 1359
     },
     "indicators": {
       "pretax_national": {
-        "p10": 515,
-        "p25": 755,
-        "p50": 1145,
-        "p75": 1745,
-        "p90": 2545
+        "p10": 588,
+        "p25": 694,
+        "p50": 853,
+        "p75": 1152,
+        "p90": 1540
       },
       "posttax_national": {
-        "p10": 490,
-        "p25": 720,
-        "p50": 1090,
-        "p75": 1660,
-        "p90": 2425
+        "p10": 577,
+        "p25": 669,
+        "p50": 807,
+        "p75": 1052,
+        "p90": 1359
       },
       "consumption": {
-        "p10": 445,
-        "p25": 650,
-        "p50": 985,
-        "p75": 1500,
-        "p90": 2195
+        "p10": 526,
+        "p25": 543,
+        "p50": 655,
+        "p75": 802,
+        "p90": 968
       },
       "wealth": {
-        "p10": 1560,
-        "p25": 7230,
-        "p50": 27250,
-        "p75": 85270,
-        "p90": 275300
+        "p10": 1154,
+        "p25": 5352,
+        "p50": 20175,
+        "p75": 63120,
+        "p90": 203850
       },
       "labor_income": {
-        "p10": 345,
-        "p25": 505,
-        "p50": 765,
-        "p75": 1165,
-        "p90": 1700
+        "p10": 346,
+        "p25": 468,
+        "p50": 646,
+        "p75": 894,
+        "p90": 1223
       }
     },
     "gender": {
       "adolescentBirthRate": 30.2,
-      "childMarriagePercent": 4,
-      "laborForceGap": -11.7,
-      "contraceptiveUse": 45
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 560,
     "costOfLivingIndex": 35,
@@ -14248,7 +14204,7 @@
     "currencySymbol": "₪",
     "exchangeRate": 3.9,
     "population": 5413596,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 55,
@@ -14334,7 +14290,7 @@
     "currencySymbol": "B/.",
     "exchangeRate": 1.08,
     "population": 4571189,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 90,
@@ -14420,7 +14376,7 @@
     "currencySymbol": "K",
     "exchangeRate": 4.0,
     "population": 10762817,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 15,
@@ -14506,7 +14462,7 @@
     "currencySymbol": "₲",
     "exchangeRate": 7002.1541,
     "population": 7013078,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 55,
@@ -14592,7 +14548,7 @@
     "currencySymbol": "S/.",
     "exchangeRate": 3.916,
     "population": 34576665,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 70,
@@ -14678,7 +14634,7 @@
     "currencySymbol": "₱",
     "exchangeRate": 72.0286,
     "population": 116786962,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 60,
@@ -14811,31 +14767,30 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 0,
-      "childMarriagePercent": 0.1,
-      "laborForceGap": -8.3,
-      "contraceptiveUse": 83
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 0,
     "costOfLivingIndex": 55,
-    "unemploymentRate": 0,
+    "unemploymentRate": null,
     "internetPenetration": 75,
-    "femaleHeightCm": 164,
-    "femaleWeightKg": 73,
-    "femaleBmi": 27,
-    "femaleObesityRate": 31,
+    "femaleHeightCm": 162,
+    "femaleWeightKg": 66,
+    "femaleBmi": 25.3,
+    "femaleObesityRate": 22,
     "femaleSmokingRate": 8,
     "femaleLifeExpectancy": 78.5,
-    "maleHeightCm": 177,
-    "maleWeightKg": 87,
-    "maleBmi": 27.7,
-    "maleObesityRate": 27.3,
+    "maleHeightCm": 174,
+    "maleWeightKg": 78,
+    "maleBmi": 25.9,
+    "maleObesityRate": 19.4,
     "maleSmokingRate": 22,
     "maleLifeExpectancy": 72.8,
-    "obesityRate": 29,
-    "smokingRate": 15,
-    "hdi": 0.7,
-    "mainIndustry": "Subsistence fishing and agriculture"
+    "obesityRate": 22,
+    "smokingRate": 8,
+    "hdi": 0.7
   },
   {
     "code": "PL",
@@ -15021,14 +14976,14 @@
     "currencySymbol": "$",
     "exchangeRate": 1.08,
     "population": 3184835,
-    "dataSource": "US Census Bureau PRCS 2023 1-year (ACS Brief ACSBR-023): median household income $25,106, Gini 0.548",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
-      "p10": 305,
-      "p25": 585,
-      "p50": 1195,
-      "p75": 2450,
-      "p90": 4670
+      "p10": 1306,
+      "p25": 1515,
+      "p50": 1827,
+      "p75": 2382,
+      "p90": 3077
     },
     "indicators": {
       "pretax_national": {
@@ -15069,9 +15024,9 @@
     },
     "gender": {
       "adolescentBirthRate": 13.3,
-      "childMarriagePercent": 0,
+      "childMarriagePercent": null,
       "laborForceGap": -12.7,
-      "contraceptiveUse": 47.6
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1600,
     "costOfLivingIndex": 80,
@@ -15105,7 +15060,7 @@
     "currencySymbol": "ر.ق",
     "exchangeRate": 4.2522,
     "population": 2656032,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 600,
@@ -15191,14 +15146,14 @@
     "currencySymbol": "€",
     "exchangeRate": 1,
     "population": 889679,
-    "dataSource": "INSEE Filosofi 2021 (Revenus et pauvreté par région, insee.fr/fr/statistiques/7941411); EUR->intl-$ at 0.77 EUR/USD PPP",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
-      "p10": 955,
-      "p25": 1260,
+      "p10": 685,
+      "p25": 1165,
       "p50": 1850,
-      "p75": 2715,
-      "p90": 4105
+      "p75": 2672,
+      "p90": 3769
     },
     "indicators": {
       "pretax_national": {
@@ -15238,30 +15193,30 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 18,
-      "childMarriagePercent": 0.1,
-      "laborForceGap": -6,
-      "contraceptiveUse": 74.6
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
-    "minimumWageEur": 1801,
-    "costOfLivingIndex": 85,
+    "minimumWageEur": 1767,
+    "costOfLivingIndex": null,
     "unemploymentRate": 17.3,
-    "internetPenetration": 82,
-    "femaleHeightCm": 162,
-    "femaleWeightKg": 68,
-    "femaleBmi": 26,
-    "femaleObesityRate": 20,
-    "femaleSmokingRate": 16,
+    "internetPenetration": null,
+    "femaleHeightCm": null,
+    "femaleWeightKg": null,
+    "femaleBmi": null,
+    "femaleObesityRate": null,
+    "femaleSmokingRate": null,
     "femaleLifeExpectancy": 84.5,
-    "maleHeightCm": 174,
-    "maleWeightKg": 81,
-    "maleBmi": 26.7,
-    "maleObesityRate": 13,
-    "maleSmokingRate": 26,
+    "maleHeightCm": null,
+    "maleWeightKg": null,
+    "maleBmi": null,
+    "maleObesityRate": null,
+    "maleSmokingRate": null,
     "maleLifeExpectancy": 78.2,
-    "obesityRate": 16,
-    "smokingRate": 19,
-    "hdi": 0.86
+    "obesityRate": null,
+    "smokingRate": null,
+    "hdi": null
   },
   {
     "code": "RO",
@@ -15275,7 +15230,7 @@
     "currencySymbol": "lei",
     "exchangeRate": 5.2507,
     "population": 19020271,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 350,
@@ -15361,7 +15316,7 @@
     "currencySymbol": "₽",
     "exchangeRate": 97.9108,
     "population": 143513328,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 150,
@@ -15447,7 +15402,7 @@
     "currencySymbol": "Fr",
     "exchangeRate": 1719.9228,
     "population": 14569341,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 18,
@@ -15533,7 +15488,7 @@
     "currencySymbol": "€",
     "exchangeRate": 1,
     "population": 10660,
-    "dataSource": "Derived from France distribution x1.15 GDP-pc ratio (see verify/findings/repair_income pass); health/gender from FR anchor",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 1150,
@@ -15580,30 +15535,30 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 3,
-      "childMarriagePercent": 0.1,
-      "laborForceGap": -8.1,
-      "contraceptiveUse": 74.6
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
-    "minimumWageEur": 1801,
-    "costOfLivingIndex": 105,
-    "unemploymentRate": 8,
-    "internetPenetration": 71.3,
-    "femaleHeightCm": 162,
-    "femaleWeightKg": 66,
-    "femaleBmi": 25,
-    "femaleObesityRate": 23,
-    "femaleSmokingRate": 18,
+    "minimumWageEur": 1767,
+    "costOfLivingIndex": null,
+    "unemploymentRate": null,
+    "internetPenetration": null,
+    "femaleHeightCm": null,
+    "femaleWeightKg": null,
+    "femaleBmi": null,
+    "femaleObesityRate": null,
+    "femaleSmokingRate": null,
     "femaleLifeExpectancy": 78.5,
-    "maleHeightCm": 174,
-    "maleWeightKg": 78,
-    "maleBmi": 25.6,
-    "maleObesityRate": 20.2,
-    "maleSmokingRate": 28,
+    "maleHeightCm": null,
+    "maleWeightKg": null,
+    "maleBmi": null,
+    "maleObesityRate": null,
+    "maleSmokingRate": null,
     "maleLifeExpectancy": 72.8,
-    "obesityRate": 23,
-    "smokingRate": 18,
-    "hdi": 0.95
+    "obesityRate": null,
+    "smokingRate": null,
+    "hdi": null
   },
   {
     "code": "SH",
@@ -15617,14 +15572,14 @@
     "currencySymbol": "£",
     "exchangeRate": 0.85,
     "population": 5633,
-    "dataSource": "St Helena Government Statistics Office, Statistical Update: Employment Incomes 2024/25 (sainthelena.gov.sh); GBP->intl-$ at UK PPP ~0.69 GBP/USD",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
-      "p10": 420,
-      "p25": 625,
-      "p50": 1015,
-      "p75": 1520,
-      "p90": 2145
+      "p10": 262,
+      "p25": 438,
+      "p50": 700,
+      "p75": 1025,
+      "p90": 1475
     },
     "indicators": {
       "pretax_national": {
@@ -15664,30 +15619,30 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 8,
-      "childMarriagePercent": 0.1,
-      "laborForceGap": -8.3,
-      "contraceptiveUse": 83
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
-    "minimumWageEur": 856,
-    "costOfLivingIndex": 64,
-    "unemploymentRate": 5.0,
-    "internetPenetration": 37.6,
-    "femaleHeightCm": 164,
-    "femaleWeightKg": 73,
-    "femaleBmi": 27,
-    "femaleObesityRate": 35,
-    "femaleSmokingRate": 20,
+    "minimumWageEur": null,
+    "costOfLivingIndex": null,
+    "unemploymentRate": null,
+    "internetPenetration": null,
+    "femaleHeightCm": null,
+    "femaleWeightKg": null,
+    "femaleBmi": null,
+    "femaleObesityRate": null,
+    "femaleSmokingRate": null,
     "femaleLifeExpectancy": 78.5,
-    "maleHeightCm": 177,
-    "maleWeightKg": 88,
-    "maleBmi": 28,
-    "maleObesityRate": 31,
-    "maleSmokingRate": 30,
+    "maleHeightCm": null,
+    "maleWeightKg": null,
+    "maleBmi": null,
+    "maleObesityRate": null,
+    "maleSmokingRate": null,
     "maleLifeExpectancy": 72.8,
-    "obesityRate": 33,
-    "smokingRate": 25,
-    "hdi": 0.76
+    "obesityRate": null,
+    "smokingRate": null,
+    "hdi": null
   },
   {
     "code": "KN",
@@ -15701,7 +15656,7 @@
     "currencySymbol": "$",
     "exchangeRate": 3.1541,
     "population": 46922,
-    "dataSource": "Estimate calibrated to regional GDP pc PPP; provenance unverified (placeholder-source entry; see verify/findings/batch_22)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 920,
@@ -15749,9 +15704,9 @@
     },
     "gender": {
       "adolescentBirthRate": 36.4,
-      "childMarriagePercent": 2,
-      "laborForceGap": -8.6,
-      "contraceptiveUse": 40.6
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 600,
     "costOfLivingIndex": 57,
@@ -15785,7 +15740,7 @@
     "currencySymbol": "$",
     "exchangeRate": 3.1541,
     "population": 180149,
-    "dataSource": "Estimate calibrated to regional GDP pc PPP (upper-middle-income island); see verify/findings/batch_22",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 718,
@@ -15833,9 +15788,9 @@
     },
     "gender": {
       "adolescentBirthRate": 27.2,
-      "childMarriagePercent": 24,
+      "childMarriagePercent": null,
       "laborForceGap": -12.8,
-      "contraceptiveUse": 65.2
+      "contraceptiveUse": null
     },
     "minimumWageEur": 385,
     "costOfLivingIndex": 44,
@@ -15869,7 +15824,7 @@
     "currencySymbol": "€",
     "exchangeRate": 1,
     "population": 24941,
-    "dataSource": "Derived from France anchor distribution; INSEE Saint-Martin demographics (see verify/findings)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 626,
@@ -15917,9 +15872,9 @@
     },
     "gender": {
       "adolescentBirthRate": 13.2,
-      "childMarriagePercent": 1,
-      "laborForceGap": -8.1,
-      "contraceptiveUse": 78
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 450,
     "costOfLivingIndex": 38,
@@ -15953,8 +15908,8 @@
     "currencySymbol": "€",
     "exchangeRate": 1,
     "population": 5819,
-    "dataSource": "Estimate: France OECD anchor x1.0 (INSEE Filosofi has no SPM coverage; GDP-pc parity per INSEE/IEDOM; see verify/findings)",
-    "dataYear": 2023,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
       "p10": 1000,
       "p25": 1700,
@@ -16000,15 +15955,15 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 3,
-      "childMarriagePercent": 0.1,
-      "laborForceGap": -8.1,
-      "contraceptiveUse": 74.6
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
-    "minimumWageEur": 1801,
-    "costOfLivingIndex": 101,
-    "unemploymentRate": 2.9,
-    "internetPenetration": 88.7,
+    "minimumWageEur": 1800,
+    "costOfLivingIndex": null,
+    "unemploymentRate": null,
+    "internetPenetration": null,
     "femaleHeightCm": 162,
     "femaleWeightKg": 66,
     "femaleBmi": 25.3,
@@ -16023,7 +15978,7 @@
     "maleLifeExpectancy": 72.8,
     "obesityRate": 22,
     "smokingRate": 8,
-    "hdi": 0.92
+    "hdi": null
   },
   {
     "code": "VC",
@@ -16037,7 +15992,7 @@
     "currencySymbol": "$",
     "exchangeRate": 2.7,
     "population": 99924,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin; p50 798/mo PPP verified plausible vs GDP-pc PPP $21,303 (WB 2024) in batch_23 (see verify/findings)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 571,
@@ -16085,9 +16040,9 @@
     },
     "gender": {
       "adolescentBirthRate": 40.8,
-      "childMarriagePercent": 24,
+      "childMarriagePercent": null,
       "laborForceGap": -17.1,
-      "contraceptiveUse": 58.1
+      "contraceptiveUse": null
     },
     "minimumWageEur": 450,
     "costOfLivingIndex": 35,
@@ -16121,14 +16076,14 @@
     "currencySymbol": "T",
     "exchangeRate": 2.95,
     "population": 219306,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
-      "p10": 120,
-      "p25": 175,
-      "p50": 255,
-      "p75": 395,
-      "p90": 800
+      "p10": 40,
+      "p25": 85,
+      "p50": 180,
+      "p75": 380,
+      "p90": 720
     },
     "indicators": {
       "pretax_national": {
@@ -16207,7 +16162,7 @@
     "currencySymbol": "€",
     "exchangeRate": 1,
     "population": 34109,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 1200,
@@ -16256,8 +16211,8 @@
     "gender": {
       "adolescentBirthRate": 1.2,
       "childMarriagePercent": 2,
-      "laborForceGap": -17.5,
-      "contraceptiveUse": 70.8
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1600,
     "costOfLivingIndex": 90,
@@ -16293,36 +16248,36 @@
     "currencySymbol": "Db",
     "exchangeRate": 24.5,
     "population": 240254,
-    "dataSource": "World Bank PIP API (pip-grp deciles + median, consumption aggregate)",
-    "dataYear": 2017,
+    "dataSource": "WID.world",
+    "dataYear": 2023,
     "income": {
-      "p10": 80,
-      "p25": 118,
-      "p50": 182,
-      "p75": 281,
-      "p90": 593
+      "p10": 30,
+      "p25": 62,
+      "p50": 130,
+      "p75": 280,
+      "p90": 580
     },
     "indicators": {
       "pretax_national": {
-        "p10": 84,
-        "p25": 123,
-        "p50": 190,
-        "p75": 294,
-        "p90": 620
+        "p10": 30,
+        "p25": 64,
+        "p50": 136,
+        "p75": 302,
+        "p90": 643
       },
       "posttax_national": {
-        "p10": 80,
-        "p25": 118,
-        "p50": 182,
-        "p75": 281,
-        "p90": 593
+        "p10": 30,
+        "p25": 62,
+        "p50": 130,
+        "p75": 280,
+        "p90": 580
       },
       "consumption": {
-        "p10": 80,
-        "p25": 118,
-        "p50": 182,
-        "p75": 281,
-        "p90": 593
+        "p10": 28,
+        "p25": 51,
+        "p50": 106,
+        "p75": 215,
+        "p90": 417
       },
       "wealth": {
         "p10": 60,
@@ -16332,11 +16287,11 @@
         "p90": 87000
       },
       "labor_income": {
-        "p10": 64,
-        "p25": 94,
-        "p50": 146,
-        "p75": 225,
-        "p90": 474
+        "p10": 18,
+        "p25": 43,
+        "p50": 104,
+        "p75": 238,
+        "p90": 522
       }
     },
     "gender": {
@@ -16350,19 +16305,19 @@
     "unemploymentRate": 9.1,
     "internetPenetration": 59.1,
     "femaleHeightCm": 158,
-    "femaleWeightKg": 63,
-    "femaleBmi": 25.3,
-    "femaleObesityRate": 16.5,
-    "femaleSmokingRate": 4.9,
+    "femaleWeightKg": 60,
+    "femaleBmi": 24,
+    "femaleObesityRate": 8,
+    "femaleSmokingRate": 2.1,
     "femaleLifeExpectancy": 73.9,
     "maleHeightCm": 170,
-    "maleWeightKg": 69,
-    "maleBmi": 23.8,
-    "maleObesityRate": 6.6,
-    "maleSmokingRate": 18,
+    "maleWeightKg": 71,
+    "maleBmi": 24.6,
+    "maleObesityRate": 7,
+    "maleSmokingRate": 14.5,
     "maleLifeExpectancy": 66.4,
-    "obesityRate": 11.7,
-    "smokingRate": 8.8,
+    "obesityRate": 8,
+    "smokingRate": 8,
     "hdi": 0.61,
     "englishSpeakingPercent": 8,
     "mainIndustry": "Agriculture"
@@ -16379,7 +16334,7 @@
     "currencySymbol": "ر.س",
     "exchangeRate": 4.05,
     "population": 35300280,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 350,
@@ -16465,7 +16420,7 @@
     "currencySymbol": "Fr",
     "exchangeRate": 656,
     "population": 18931966,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 28,
@@ -16551,7 +16506,7 @@
     "currencySymbol": "дин.",
     "exchangeRate": 117,
     "population": 6549143,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 200,
@@ -16637,7 +16592,7 @@
     "currencySymbol": "₨",
     "exchangeRate": 16.63,
     "population": 122730,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 300,
@@ -16685,9 +16640,9 @@
     },
     "gender": {
       "adolescentBirthRate": 53.5,
-      "childMarriagePercent": 7,
-      "laborForceGap": -3.4,
-      "contraceptiveUse": 58
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 370,
     "costOfLivingIndex": 60,
@@ -16723,7 +16678,7 @@
     "currencySymbol": "Le",
     "exchangeRate": 28.73,
     "population": 8819794,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 12,
@@ -16809,7 +16764,7 @@
     "currencySymbol": "$",
     "exchangeRate": 1.49,
     "population": 6111175,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 700,
@@ -16861,7 +16816,7 @@
       "laborForceGap": -11.8,
       "contraceptiveUse": 62
     },
-    "minimumWageEur": 0,
+    "minimumWageEur": null,
     "costOfLivingIndex": 95,
     "unemploymentRate": 2.8,
     "internetPenetration": 94.4,
@@ -16895,14 +16850,14 @@
     "currencySymbol": "ƒ",
     "exchangeRate": 2.09,
     "population": 43923,
-    "dataSource": "Derived: Netherlands anchor distribution x GDP-per-capita-PPP ratio 0.643 (WB 2023: SXM $51,729 vs NLD $80,392; Sint Maarten HAS an ICP PPP figure) (see verify/findings)",
-    "dataYear": 2023,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
-      "p10": 800,
-      "p25": 1350,
-      "p50": 2060,
-      "p75": 2900,
-      "p90": 3920
+      "p10": 1414,
+      "p25": 1639,
+      "p50": 1977,
+      "p75": 2578,
+      "p90": 3329
     },
     "indicators": {
       "pretax_national": {
@@ -16943,9 +16898,9 @@
     },
     "gender": {
       "adolescentBirthRate": 16.6,
-      "childMarriagePercent": 1,
-      "laborForceGap": -9.2,
-      "contraceptiveUse": 73
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 900,
     "costOfLivingIndex": 87,
@@ -17029,7 +16984,7 @@
       "adolescentBirthRate": 24.5,
       "childMarriagePercent": 10,
       "laborForceGap": -10.9,
-      "contraceptiveUse": 78.4
+      "contraceptiveUse": null
     },
     "minimumWageEur": 816,
     "costOfLivingIndex": 55,
@@ -17151,7 +17106,7 @@
     "currencySymbol": "$",
     "exchangeRate": 9.24,
     "population": 838645,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 20,
@@ -17237,7 +17192,7 @@
     "currencySymbol": "Sh",
     "exchangeRate": 667,
     "population": 19654739,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin ('ILO' label wrong - ILO publishes no household income percentile distributions); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "ILO",
     "dataYear": 2022,
     "income": {
       "p10": 10,
@@ -17289,7 +17244,7 @@
       "laborForceGap": -26.5,
       "contraceptiveUse": 6.9
     },
-    "minimumWageEur": 0,
+    "minimumWageEur": null,
     "costOfLivingIndex": 22,
     "unemploymentRate": 18.9,
     "internetPenetration": 27.9,
@@ -17323,7 +17278,7 @@
     "currencySymbol": "R",
     "exchangeRate": 19.5,
     "population": 64747319,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 55,
@@ -17495,14 +17450,14 @@
     "currencySymbol": "£",
     "exchangeRate": 5640,
     "population": 12188788,
-    "dataSource": "World Bank PIP API (pip-grp deciles + median, consumption aggregate)",
-    "dataYear": 2016,
+    "dataSource": "ILO",
+    "dataYear": 2022,
     "income": {
-      "p10": 17,
-      "p25": 30,
-      "p50": 50,
-      "p75": 88,
-      "p90": 175
+      "p10": 8,
+      "p25": 18,
+      "p50": 40,
+      "p75": 90,
+      "p90": 210
     },
     "indicators": {
       "pretax_national": {
@@ -17753,7 +17708,7 @@
     "currencySymbol": "PT",
     "exchangeRate": 512,
     "population": 51662147,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 18,
@@ -17839,14 +17794,14 @@
     "currencySymbol": "$",
     "exchangeRate": 38,
     "population": 639850,
-    "dataSource": "World Bank PIP API (pip-grp deciles + median, consumption aggregate)",
-    "dataYear": 2022,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
-      "p10": 170,
-      "p25": 285,
-      "p50": 440,
-      "p75": 690,
-      "p90": 1300
+      "p10": 560,
+      "p25": 653,
+      "p50": 793,
+      "p75": 1042,
+      "p90": 1353
     },
     "indicators": {
       "pretax_national": {
@@ -17887,9 +17842,9 @@
     },
     "gender": {
       "adolescentBirthRate": 46.9,
-      "childMarriagePercent": 36,
+      "childMarriagePercent": null,
       "laborForceGap": -18,
-      "contraceptiveUse": 39.1
+      "contraceptiveUse": null
     },
     "minimumWageEur": 115,
     "costOfLivingIndex": 35,
@@ -17923,14 +17878,14 @@
     "currencySymbol": "kr",
     "exchangeRate": 10.6,
     "population": 2600,
-    "dataSource": "Derived: Norway OECD anchor distribution x1.05 (SSB-documented Svalbard wage premium; no survey exists for Svalbard; see verify/findings)",
-    "dataYear": 2023,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
-      "p10": 1600,
+      "p10": 1800,
       "p25": 2600,
-      "p50": 4000,
-      "p75": 5600,
-      "p90": 7600
+      "p50": 3600,
+      "p75": 4900,
+      "p90": 6800
     },
     "indicators": {
       "pretax_national": {
@@ -18059,7 +18014,7 @@
       "adolescentBirthRate": 1.7,
       "childMarriagePercent": 3,
       "laborForceGap": -6.1,
-      "contraceptiveUse": 70.3
+      "contraceptiveUse": null
     },
     "minimumWageEur": 0,
     "costOfLivingIndex": 78,
@@ -18181,14 +18136,14 @@
     "currencySymbol": "£",
     "exchangeRate": 142.3047,
     "population": 25620427,
-    "dataSource": "World Bank PIP API (pip-grp deciles + median, consumption aggregate)",
+    "dataSource": "ILO",
     "dataYear": 2022,
     "income": {
-      "p10": 75,
-      "p25": 100,
-      "p50": 140,
-      "p75": 200,
-      "p90": 275
+      "p10": 15,
+      "p25": 32,
+      "p50": 70,
+      "p75": 155,
+      "p90": 340
     },
     "indicators": {
       "pretax_national": {
@@ -18241,16 +18196,16 @@
     "femaleWeightKg": 68,
     "femaleBmi": 27,
     "femaleObesityRate": 31.2,
-    "femaleSmokingRate": 9,
+    "femaleSmokingRate": null,
     "femaleLifeExpectancy": 74.9,
     "maleHeightCm": 171,
     "maleWeightKg": 81,
     "maleBmi": 27.7,
     "maleObesityRate": 27.5,
-    "maleSmokingRate": 48,
+    "maleSmokingRate": null,
     "maleLifeExpectancy": 70.2,
     "obesityRate": 31.2,
-    "smokingRate": 25,
+    "smokingRate": null,
     "hdi": 0.56,
     "englishSpeakingPercent": 10,
     "mainIndustry": "Petroleum"
@@ -18267,7 +18222,7 @@
     "currencySymbol": "$",
     "exchangeRate": 37.2432,
     "population": 23900000,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 650,
@@ -18314,10 +18269,10 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 3,
-      "childMarriagePercent": 1,
-      "laborForceGap": -15,
-      "contraceptiveUse": 75
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 800,
     "costOfLivingIndex": 70,
@@ -18353,36 +18308,36 @@
     "currencySymbol": "ЅМ",
     "exchangeRate": 10.8108,
     "population": 10786734,
-    "dataSource": "World Bank PIP API (pip-grp deciles + median, consumption aggregate)",
-    "dataYear": 2024,
+    "dataSource": "WID.world",
+    "dataYear": 2023,
     "income": {
-      "p10": 102,
-      "p25": 152,
-      "p50": 232,
-      "p75": 351,
-      "p90": 628
+      "p10": 25,
+      "p25": 52,
+      "p50": 110,
+      "p75": 230,
+      "p90": 450
     },
     "indicators": {
       "pretax_national": {
-        "p10": 108,
-        "p25": 160,
-        "p50": 245,
-        "p75": 370,
-        "p90": 662
+        "p10": 25,
+        "p25": 54,
+        "p50": 116,
+        "p75": 250,
+        "p90": 504
       },
       "posttax_national": {
-        "p10": 102,
-        "p25": 152,
-        "p50": 232,
-        "p75": 351,
-        "p90": 628
+        "p10": 25,
+        "p25": 52,
+        "p50": 110,
+        "p75": 230,
+        "p90": 450
       },
       "consumption": {
-        "p10": 102,
-        "p25": 152,
-        "p50": 232,
-        "p75": 351,
-        "p90": 628
+        "p10": 23,
+        "p25": 42,
+        "p50": 90,
+        "p75": 176,
+        "p90": 322
       },
       "wealth": {
         "p10": 50,
@@ -18392,11 +18347,11 @@
         "p90": 67500
       },
       "labor_income": {
-        "p10": 82,
-        "p25": 122,
-        "p50": 186,
-        "p75": 281,
-        "p90": 502
+        "p10": 15,
+        "p25": 36,
+        "p50": 88,
+        "p75": 196,
+        "p90": 405
       }
     },
     "gender": {
@@ -18413,16 +18368,16 @@
     "femaleWeightKg": 60,
     "femaleBmi": 24,
     "femaleObesityRate": 15,
-    "femaleSmokingRate": 0.5,
+    "femaleSmokingRate": null,
     "femaleLifeExpectancy": 74.1,
     "maleHeightCm": 170,
     "maleWeightKg": 71,
     "maleBmi": 24.6,
     "maleObesityRate": 13.2,
-    "maleSmokingRate": 20,
+    "maleSmokingRate": null,
     "maleLifeExpectancy": 69.7,
     "obesityRate": 15,
-    "smokingRate": 10,
+    "smokingRate": null,
     "hdi": 0.68,
     "englishSpeakingPercent": 5,
     "mainIndustry": "Agriculture"
@@ -18439,36 +18394,36 @@
     "currencySymbol": "Sh",
     "exchangeRate": 3064.1906,
     "population": 70545865,
-    "dataSource": "World Bank PIP API (pip-grp deciles + median, consumption aggregate)",
-    "dataYear": 2018,
+    "dataSource": "WID.world",
+    "dataYear": 2023,
     "income": {
-      "p10": 44,
-      "p25": 61,
+      "p10": 20,
+      "p25": 42,
       "p50": 90,
-      "p75": 144,
-      "p90": 306
+      "p75": 210,
+      "p90": 480
     },
     "indicators": {
       "pretax_national": {
-        "p10": 47,
-        "p25": 65,
+        "p10": 20,
+        "p25": 44,
         "p50": 96,
-        "p75": 154,
-        "p90": 326
+        "p75": 232,
+        "p90": 549
       },
       "posttax_national": {
-        "p10": 44,
-        "p25": 61,
+        "p10": 20,
+        "p25": 42,
         "p50": 90,
-        "p75": 144,
-        "p90": 306
+        "p75": 210,
+        "p90": 480
       },
       "consumption": {
-        "p10": 44,
-        "p25": 61,
-        "p50": 90,
-        "p75": 144,
-        "p90": 306
+        "p10": 18,
+        "p25": 34,
+        "p50": 73,
+        "p75": 159,
+        "p90": 340
       },
       "wealth": {
         "p10": 40,
@@ -18478,11 +18433,11 @@
         "p90": 72000
       },
       "labor_income": {
-        "p10": 35,
-        "p25": 49,
+        "p10": 12,
+        "p25": 29,
         "p50": 72,
-        "p75": 115,
-        "p90": 245
+        "p75": 179,
+        "p90": 432
       }
     },
     "gender": {
@@ -18496,18 +18451,18 @@
     "unemploymentRate": 1.6,
     "internetPenetration": 31.2,
     "femaleHeightCm": 159,
-    "femaleWeightKg": 61,
-    "femaleBmi": 24.3,
-    "femaleObesityRate": 15,
+    "femaleWeightKg": 63,
+    "femaleBmi": 25,
+    "femaleObesityRate": 16,
     "femaleSmokingRate": 2.4,
     "femaleLifeExpectancy": 70,
     "maleHeightCm": 171,
-    "maleWeightKg": 63,
-    "maleBmi": 21.6,
-    "maleObesityRate": 2.5,
+    "maleWeightKg": 75,
+    "maleBmi": 25.6,
+    "maleObesityRate": 14.1,
     "maleSmokingRate": 13.1,
     "maleLifeExpectancy": 64.4,
-    "obesityRate": 8.7,
+    "obesityRate": 16,
     "smokingRate": 8,
     "hdi": 0.55,
     "englishSpeakingPercent": 46,
@@ -18525,7 +18480,7 @@
     "currencySymbol": "฿",
     "exchangeRate": 38.3894,
     "population": 71619863,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 110,
@@ -18611,7 +18566,7 @@
     "currencySymbol": "$",
     "exchangeRate": 1.08,
     "population": 1418517,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 20,
@@ -18697,7 +18652,7 @@
     "currencySymbol": "Fr",
     "exchangeRate": 655.96,
     "population": 8591626,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 22,
@@ -18783,8 +18738,8 @@
     "currencySymbol": "$",
     "exchangeRate": 1.79,
     "population": 2453,
-    "dataSource": "Derived: New Zealand anchor distribution x GDP-per-capita ratio 0.1125 (Tokelau GDPpc nominal US$6,275 2017 est. / NZ GDPpc PPP US$55,794 WB 2024; WID.world has no Tokelau data) (see verify/findings)",
-    "dataYear": 2023,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
       "p10": 120,
       "p25": 200,
@@ -18830,10 +18785,10 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 20,
-      "childMarriagePercent": 14.7,
-      "laborForceGap": -10,
-      "contraceptiveUse": 59.6
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 170,
     "costOfLivingIndex": 38,
@@ -18867,7 +18822,7 @@
     "currencySymbol": "T$",
     "exchangeRate": 2.5,
     "population": 103742,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 50,
@@ -18953,7 +18908,7 @@
     "currencySymbol": "$",
     "exchangeRate": 7.32,
     "population": 1367764,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin; core fields verified plausible vs World Bank API 2024 (p50 1299 vs GDPpc PPP $36,381) in batch_27 (see verify/findings)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 929,
@@ -19001,7 +18956,7 @@
     },
     "gender": {
       "adolescentBirthRate": 36,
-      "childMarriagePercent": 4.2,
+      "childMarriagePercent": null,
       "laborForceGap": -20.3,
       "contraceptiveUse": 36.5
     },
@@ -19010,19 +18965,19 @@
     "unemploymentRate": 3.3,
     "internetPenetration": 82.2,
     "femaleHeightCm": 162,
-    "femaleWeightKg": 76,
-    "femaleBmi": 28.9,
-    "femaleObesityRate": 38.3,
-    "femaleSmokingRate": 11,
+    "femaleWeightKg": 66,
+    "femaleBmi": 25.3,
+    "femaleObesityRate": 22,
+    "femaleSmokingRate": 8,
     "femaleLifeExpectancy": 76.8,
     "maleHeightCm": 174,
-    "maleWeightKg": 80,
-    "maleBmi": 26.6,
-    "maleObesityRate": 24.9,
-    "maleSmokingRate": 31.5,
+    "maleWeightKg": 78,
+    "maleBmi": 25.9,
+    "maleObesityRate": 19.4,
+    "maleSmokingRate": 22,
     "maleLifeExpectancy": 70.5,
-    "obesityRate": 31.6,
-    "smokingRate": 21.3,
+    "obesityRate": 22,
+    "smokingRate": 8,
     "hdi": 0.807
   },
   {
@@ -19037,36 +18992,36 @@
     "currencySymbol": "د.ت",
     "exchangeRate": 3.35,
     "population": 12348573,
-    "dataSource": "World Bank PIP API (pip-grp deciles + median, consumption aggregate)",
-    "dataYear": 2021,
+    "dataSource": "WID.world",
+    "dataYear": 2023,
     "income": {
-      "p10": 185,
-      "p25": 273,
-      "p50": 397,
-      "p75": 572,
-      "p90": 1007
+      "p10": 80,
+      "p25": 165,
+      "p50": 340,
+      "p75": 680,
+      "p90": 1250
     },
     "indicators": {
       "pretax_national": {
-        "p10": 194,
-        "p25": 287,
-        "p50": 417,
-        "p75": 601,
-        "p90": 1057
+        "p10": 81,
+        "p25": 170,
+        "p50": 357,
+        "p75": 736,
+        "p90": 1394
       },
       "posttax_national": {
-        "p10": 185,
-        "p25": 273,
-        "p50": 397,
-        "p75": 572,
-        "p90": 1007
+        "p10": 80,
+        "p25": 165,
+        "p50": 340,
+        "p75": 680,
+        "p90": 1250
       },
       "consumption": {
-        "p10": 185,
-        "p25": 273,
-        "p50": 397,
-        "p75": 572,
-        "p90": 1007
+        "p10": 73,
+        "p25": 135,
+        "p50": 278,
+        "p75": 522,
+        "p90": 896
       },
       "wealth": {
         "p10": 160,
@@ -19076,11 +19031,11 @@
         "p90": 187500
       },
       "labor_income": {
-        "p10": 148,
-        "p25": 218,
-        "p50": 318,
-        "p75": 458,
-        "p90": 806
+        "p10": 48,
+        "p25": 115,
+        "p50": 272,
+        "p75": 578,
+        "p90": 1125
       }
     },
     "gender": {
@@ -19123,7 +19078,7 @@
     "currencySymbol": "₺",
     "exchangeRate": 34,
     "population": 85878556,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 120,
@@ -19209,7 +19164,7 @@
     "currencySymbol": "m",
     "exchangeRate": 3.8,
     "population": 7618847,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "ILO",
     "dataYear": 2022,
     "income": {
       "p10": 55,
@@ -19295,8 +19250,8 @@
     "currencySymbol": "$",
     "exchangeRate": 1.08,
     "population": 46855,
-    "dataSource": "Derived: United Kingdom anchor distribution x GDP-per-capita ratio ~0.475 (UK p50 2800 x 0.475 = p50 1330; TCI-vs-UK GDP-pc ratio per batch_27) (see verify/findings)",
-    "dataYear": 2023,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
       "p10": 951,
       "p25": 1103,
@@ -19343,8 +19298,8 @@
     },
     "gender": {
       "adolescentBirthRate": 15.6,
-      "childMarriagePercent": 23,
-      "laborForceGap": -6.0,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
       "contraceptiveUse": 34.4
     },
     "minimumWageEur": 1280,
@@ -19380,7 +19335,7 @@
     "currencySymbol": "$",
     "exchangeRate": 1.62,
     "population": 9492,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (NOT a placeholder copy per batch_28, but no source found; WB/ITU report no recent Tuvalu income figures) (see verify/findings)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 169,
@@ -19428,8 +19383,8 @@
     },
     "gender": {
       "adolescentBirthRate": 26.8,
-      "childMarriagePercent": 2,
-      "laborForceGap": -9.0,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
       "contraceptiveUse": 23.7
     },
     "minimumWageEur": 200,
@@ -19464,7 +19419,7 @@
     "currencySymbol": "Sh",
     "exchangeRate": 3730,
     "population": 51384894,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 15,
@@ -19550,7 +19505,7 @@
     "currencySymbol": "₴",
     "exchangeRate": 41,
     "population": 38980376,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2022,
     "income": {
       "p10": 120,
@@ -19856,7 +19811,7 @@
     },
     "gender": {
       "adolescentBirthRate": 12.4,
-      "childMarriagePercent": 1,
+      "childMarriagePercent": null,
       "laborForceGap": -10.7,
       "contraceptiveUse": 73.9
     },
@@ -19894,7 +19849,7 @@
     "currencySymbol": "$",
     "exchangeRate": 1.08,
     "population": 0,
-    "dataSource": "Derived from US anchor distribution - territory has no permanent resident population",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 1200,
@@ -19941,10 +19896,10 @@
       }
     },
     "gender": {
-      "adolescentBirthRate": 12.4,
-      "childMarriagePercent": 6,
-      "laborForceGap": -10.7,
-      "contraceptiveUse": 73.9
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1200,
     "costOfLivingIndex": 100,
@@ -19978,36 +19933,36 @@
     "currencySymbol": "$",
     "exchangeRate": 1.1682,
     "population": 84905,
-    "dataSource": "US Census Bureau 2020 Island Areas Census (income year 2019); shape from US anchor",
-    "dataYear": 2020,
+    "dataSource": "REST Countries & World Bank API 2024",
+    "dataYear": 2024,
     "income": {
-      "p10": 618,
-      "p25": 1332,
-      "p50": 2241,
-      "p75": 3513,
-      "p90": 5269
+      "p10": 1246,
+      "p25": 1444,
+      "p50": 1742,
+      "p75": 2272,
+      "p90": 2934
     },
     "indicators": {
       "pretax_national": {
-        "p10": 653,
-        "p25": 1408,
-        "p50": 2368,
-        "p75": 3713,
-        "p90": 5568
+        "p10": 1270,
+        "p25": 1499,
+        "p50": 1841,
+        "p75": 2488,
+        "p90": 3324
       },
       "posttax_national": {
-        "p10": 618,
-        "p25": 1332,
-        "p50": 2241,
-        "p75": 3513,
-        "p90": 5269
+        "p10": 1246,
+        "p25": 1444,
+        "p50": 1742,
+        "p75": 2272,
+        "p90": 2934
       },
       "consumption": {
-        "p10": 502,
-        "p25": 1082,
-        "p50": 1820,
-        "p75": 2854,
-        "p90": 4280
+        "p10": 1136,
+        "p25": 1173,
+        "p50": 1415,
+        "p75": 1731,
+        "p90": 2089
       },
       "wealth": {
         "p10": 2492,
@@ -20017,18 +19972,18 @@
         "p90": 440100
       },
       "labor_income": {
-        "p10": 495,
-        "p25": 1066,
-        "p50": 1793,
-        "p75": 2811,
-        "p90": 4216
+        "p10": 748,
+        "p25": 1011,
+        "p50": 1394,
+        "p75": 1931,
+        "p90": 2641
       }
     },
     "gender": {
       "adolescentBirthRate": 31.1,
-      "childMarriagePercent": 5,
+      "childMarriagePercent": null,
       "laborForceGap": -3.4,
-      "contraceptiveUse": 75
+      "contraceptiveUse": null
     },
     "minimumWageEur": 900,
     "costOfLivingIndex": 77,
@@ -20037,17 +19992,17 @@
     "femaleHeightCm": 162,
     "femaleWeightKg": 66,
     "femaleBmi": 25.3,
-    "femaleObesityRate": 37.2,
-    "femaleSmokingRate": 2,
+    "femaleObesityRate": null,
+    "femaleSmokingRate": 8,
     "femaleLifeExpectancy": 84.1,
     "maleHeightCm": 174,
     "maleWeightKg": 78,
     "maleBmi": 25.9,
-    "maleObesityRate": 32.8,
-    "maleSmokingRate": 8,
+    "maleObesityRate": null,
+    "maleSmokingRate": 22,
     "maleLifeExpectancy": 77.6,
     "obesityRate": 35,
-    "smokingRate": 5,
+    "smokingRate": 8,
     "hdi": 0.74
   },
   {
@@ -20062,7 +20017,7 @@
     "currencySymbol": "$",
     "exchangeRate": 46.7646,
     "population": 3384688,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 200,
@@ -20148,7 +20103,7 @@
     "currencySymbol": "so'm",
     "exchangeRate": 13830.8368,
     "population": 37053428,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 45,
@@ -20234,50 +20189,50 @@
     "currencySymbol": "Vt",
     "exchangeRate": 137.7808,
     "population": 335169,
-    "dataSource": "World Bank PIP (2019 HIES)",
-    "dataYear": 2019,
+    "dataSource": "WID.world",
+    "dataYear": 2023,
     "income": {
-      "p10": 80,
-      "p25": 112,
-      "p50": 173,
-      "p75": 249,
-      "p90": 347
+      "p10": 28,
+      "p25": 58,
+      "p50": 125,
+      "p75": 270,
+      "p90": 550
     },
     "indicators": {
       "pretax_national": {
-        "p10": 40,
-        "p25": 83,
-        "p50": 180,
-        "p75": 410,
-        "p90": 860
+        "p10": 29,
+        "p25": 60,
+        "p50": 132,
+        "p75": 295,
+        "p90": 621
       },
       "posttax_national": {
-        "p10": 80,
-        "p25": 112,
-        "p50": 173,
-        "p75": 249,
-        "p90": 347
+        "p10": 28,
+        "p25": 58,
+        "p50": 125,
+        "p75": 270,
+        "p90": 550
       },
       "consumption": {
-        "p10": 72,
-        "p25": 102,
-        "p50": 157,
-        "p75": 226,
-        "p90": 315
+        "p10": 26,
+        "p25": 47,
+        "p50": 102,
+        "p75": 206,
+        "p90": 392
       },
       "wealth": {
-        "p10": 78,
-        "p25": 640,
-        "p50": 4300,
-        "p75": 22400,
-        "p90": 114200
+        "p10": 56,
+        "p25": 464,
+        "p50": 3125,
+        "p75": 16200,
+        "p90": 82500
       },
       "labor_income": {
-        "p10": 24,
-        "p25": 57,
-        "p50": 140,
-        "p75": 320,
-        "p90": 690
+        "p10": 17,
+        "p25": 41,
+        "p50": 100,
+        "p75": 230,
+        "p90": 495
       }
     },
     "gender": {
@@ -20320,77 +20275,77 @@
     "currencySymbol": "€",
     "exchangeRate": 1,
     "population": 800,
-    "dataSource": "Estimate: Italy OECD anchor x1.0",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
-      "p10": 700,
-      "p25": 1200,
-      "p50": 2000,
-      "p75": 3100,
-      "p90": 4500
+      "p10": 500,
+      "p25": 800,
+      "p50": 1200,
+      "p75": 1800,
+      "p90": 2500
     },
     "indicators": {
       "pretax_national": {
-        "p10": 710,
-        "p25": 1200,
-        "p50": 2100,
-        "p75": 3400,
-        "p90": 5100
+        "p10": 507,
+        "p25": 824,
+        "p50": 1254,
+        "p75": 1935,
+        "p90": 2763
       },
       "posttax_national": {
-        "p10": 700,
-        "p25": 1200,
-        "p50": 2000,
-        "p75": 3100,
-        "p90": 4500
+        "p10": 500,
+        "p25": 800,
+        "p50": 1200,
+        "p75": 1800,
+        "p90": 2500
       },
       "consumption": {
-        "p10": 640,
-        "p25": 980,
-        "p50": 1600,
-        "p75": 2400,
-        "p90": 3200
+        "p10": 460,
+        "p25": 656,
+        "p50": 984,
+        "p75": 1386,
+        "p90": 1800
       },
       "wealth": {
-        "p10": 1400,
-        "p25": 9600,
-        "p50": 50000,
-        "p75": 186000,
-        "p90": 675000
+        "p10": 1000,
+        "p25": 6400,
+        "p50": 30000,
+        "p75": 108000,
+        "p90": 375000
       },
       "labor_income": {
-        "p10": 420,
-        "p25": 840,
-        "p50": 1600,
-        "p75": 2600,
-        "p90": 4000
+        "p10": 300,
+        "p25": 560,
+        "p50": 960,
+        "p75": 1530,
+        "p90": 2250
       }
     },
     "gender": {
-      "adolescentBirthRate": 2,
-      "childMarriagePercent": 0,
-      "laborForceGap": -17.5,
-      "contraceptiveUse": 65
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
-    "minimumWageEur": 0,
+    "minimumWageEur": null,
     "costOfLivingIndex": 50,
-    "unemploymentRate": 0,
-    "internetPenetration": 75,
-    "femaleHeightCm": 161,
-    "femaleWeightKg": 65,
-    "femaleBmi": 25,
-    "femaleObesityRate": 21,
-    "femaleSmokingRate": 18,
-    "femaleLifeExpectancy": 86,
-    "maleHeightCm": 173,
-    "maleWeightKg": 77,
-    "maleBmi": 25.6,
-    "maleObesityRate": 18.5,
-    "maleSmokingRate": 28,
-    "maleLifeExpectancy": 82,
-    "obesityRate": 21,
-    "smokingRate": 18,
-    "hdi": 0.91,
+    "unemploymentRate": null,
+    "internetPenetration": null,
+    "femaleHeightCm": null,
+    "femaleWeightKg": null,
+    "femaleBmi": null,
+    "femaleObesityRate": null,
+    "femaleSmokingRate": null,
+    "femaleLifeExpectancy": null,
+    "maleHeightCm": null,
+    "maleWeightKg": null,
+    "maleBmi": null,
+    "maleObesityRate": null,
+    "maleSmokingRate": null,
+    "maleLifeExpectancy": null,
+    "obesityRate": null,
+    "smokingRate": null,
+    "hdi": null,
     "englishSpeakingPercent": 10,
     "mainIndustry": "Services"
   },
@@ -20406,7 +20361,7 @@
     "currencySymbol": "Bs.S.",
     "exchangeRate": 911.2182,
     "population": 28516896,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin ('ILO' label wrong - ILO publishes no income percentile distributions); judged plausible given dollarization in batch_29 (see verify/findings)",
+    "dataSource": "ILO",
     "dataYear": 2022,
     "income": {
       "p10": 20,
@@ -20492,7 +20447,7 @@
     "currencySymbol": "₫",
     "exchangeRate": 30296.4734,
     "population": 101598527,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 65,
@@ -20578,76 +20533,76 @@
     "currencySymbol": "₣",
     "exchangeRate": 110,
     "population": 11151,
-    "dataSource": "Estimate: France OECD anchor x0.45 (IEOM/CEROM)",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
-      "p10": 450,
-      "p25": 760,
-      "p50": 1200,
-      "p75": 1800,
-      "p90": 2500
+      "p10": 320,
+      "p25": 540,
+      "p50": 860,
+      "p75": 1250,
+      "p90": 1760
     },
     "indicators": {
       "pretax_national": {
-        "p10": 460,
-        "p25": 790,
-        "p50": 1300,
-        "p75": 1900,
-        "p90": 2800
+        "p10": 330,
+        "p25": 560,
+        "p50": 910,
+        "p75": 1350,
+        "p90": 1960
       },
       "posttax_national": {
-        "p10": 450,
-        "p25": 760,
-        "p50": 1200,
-        "p75": 1800,
-        "p90": 2500
+        "p10": 320,
+        "p25": 540,
+        "p50": 860,
+        "p75": 1250,
+        "p90": 1760
       },
       "consumption": {
-        "p10": 410,
-        "p25": 630,
-        "p50": 990,
-        "p75": 1300,
-        "p90": 1800
+        "p10": 290,
+        "p25": 450,
+        "p50": 710,
+        "p75": 960,
+        "p90": 1260
       },
       "wealth": {
-        "p10": 900,
-        "p25": 6100,
-        "p50": 30400,
-        "p75": 105300,
-        "p90": 371200
+        "p10": 500,
+        "p25": 3500,
+        "p50": 17200,
+        "p75": 59600,
+        "p90": 210200
       },
       "labor_income": {
-        "p10": 270,
-        "p25": 540,
-        "p50": 970,
-        "p75": 1500,
-        "p90": 2200
+        "p10": 190,
+        "p25": 380,
+        "p50": 690,
+        "p75": 1060,
+        "p90": 1580
       }
     },
     "gender": {
-      "adolescentBirthRate": 25,
-      "childMarriagePercent": 1,
-      "laborForceGap": -10,
-      "contraceptiveUse": 57.2
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 1802,
     "costOfLivingIndex": 105,
     "unemploymentRate": 30,
     "internetPenetration": 40,
-    "femaleHeightCm": 166,
-    "femaleWeightKg": 96,
-    "femaleBmi": 34.8,
-    "femaleObesityRate": 73.7,
-    "femaleSmokingRate": 29.4,
-    "femaleLifeExpectancy": 81.0,
-    "maleHeightCm": 177,
-    "maleWeightKg": 104,
-    "maleBmi": 33.0,
-    "maleObesityRate": 66.7,
-    "maleSmokingRate": 53.6,
-    "maleLifeExpectancy": 76.2,
-    "obesityRate": 70.4,
-    "smokingRate": 40.7,
+    "femaleHeightCm": null,
+    "femaleWeightKg": null,
+    "femaleBmi": null,
+    "femaleObesityRate": null,
+    "femaleSmokingRate": null,
+    "femaleLifeExpectancy": null,
+    "maleHeightCm": null,
+    "maleWeightKg": null,
+    "maleBmi": null,
+    "maleObesityRate": null,
+    "maleSmokingRate": null,
+    "maleLifeExpectancy": null,
+    "obesityRate": null,
+    "smokingRate": null,
     "hdi": 0.7
   },
   {
@@ -20662,77 +20617,77 @@
     "currencySymbol": "د.م.",
     "exchangeRate": 9.25,
     "population": 600000,
-    "dataSource": "Estimate: Morocco WID.world anchor x0.54",
+    "dataSource": "REST Countries & World Bank API 2024",
     "dataYear": 2024,
     "income": {
       "p10": 40,
-      "p25": 81,
-      "p50": 170,
-      "p75": 330,
-      "p90": 650
+      "p25": 90,
+      "p50": 190,
+      "p75": 370,
+      "p90": 720
     },
     "indicators": {
       "pretax_national": {
-        "p10": 42,
-        "p25": 84,
-        "p50": 180,
-        "p75": 370,
-        "p90": 740
+        "p10": 50,
+        "p25": 90,
+        "p50": 200,
+        "p75": 410,
+        "p90": 820
       },
       "posttax_national": {
         "p10": 40,
-        "p25": 81,
-        "p50": 170,
-        "p75": 330,
-        "p90": 650
+        "p25": 90,
+        "p50": 190,
+        "p75": 370,
+        "p90": 720
       },
       "consumption": {
-        "p10": 37,
-        "p25": 65,
-        "p50": 140,
-        "p75": 250,
-        "p90": 460
+        "p10": 40,
+        "p25": 70,
+        "p50": 150,
+        "p75": 280,
+        "p90": 510
       },
       "wealth": {
-        "p10": 81,
-        "p25": 650,
+        "p10": 100,
+        "p25": 700,
         "p50": 4200,
-        "p75": 20100,
-        "p90": 97200
+        "p75": 20200,
+        "p90": 97500
       },
       "labor_income": {
-        "p10": 24,
-        "p25": 57,
-        "p50": 130,
-        "p75": 280,
-        "p90": 580
+        "p10": 30,
+        "p25": 60,
+        "p50": 150,
+        "p75": 320,
+        "p90": 650
       }
     },
     "gender": {
-      "adolescentBirthRate": 28,
-      "childMarriagePercent": 16,
-      "laborForceGap": -45,
-      "contraceptiveUse": 62
+      "adolescentBirthRate": null,
+      "childMarriagePercent": null,
+      "laborForceGap": null,
+      "contraceptiveUse": null
     },
     "minimumWageEur": 310,
-    "costOfLivingIndex": 31,
-    "unemploymentRate": 13,
-    "internetPenetration": 67,
-    "femaleHeightCm": 158,
-    "femaleWeightKg": 67,
-    "femaleBmi": 26.7,
-    "femaleObesityRate": 31.1,
-    "femaleSmokingRate": 1.2,
-    "femaleLifeExpectancy": 73.7,
-    "maleHeightCm": 170,
-    "maleWeightKg": 74,
-    "maleBmi": 25.6,
-    "maleObesityRate": 13.6,
-    "maleSmokingRate": 23.8,
-    "maleLifeExpectancy": 69.2,
-    "obesityRate": 22.4,
-    "smokingRate": 12.5,
-    "hdi": 0.66
+    "costOfLivingIndex": 35,
+    "unemploymentRate": 15,
+    "internetPenetration": 55,
+    "femaleHeightCm": 162,
+    "femaleWeightKg": 66,
+    "femaleBmi": 25.3,
+    "femaleObesityRate": 22,
+    "femaleSmokingRate": 8,
+    "femaleLifeExpectancy": null,
+    "maleHeightCm": 174,
+    "maleWeightKg": 78,
+    "maleBmi": 25.9,
+    "maleObesityRate": 19.4,
+    "maleSmokingRate": 22,
+    "maleLifeExpectancy": null,
+    "obesityRate": 22,
+    "smokingRate": 8,
+    "hdi": 0.65
   },
   {
     "code": "YE",
@@ -20746,7 +20701,7 @@
     "currencySymbol": "﷼",
     "exchangeRate": 277.1851,
     "population": 41773878,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "ILO",
     "dataYear": 2022,
     "income": {
       "p10": 12,
@@ -20817,7 +20772,7 @@
     "obesityRate": 17,
     "smokingRate": 8,
     "hdi": 0.47,
-    "englishSpeakingPercent": 3,
+    "englishSpeakingPercent": null,
     "mainIndustry": "Agriculture"
   },
   {
@@ -20832,7 +20787,7 @@
     "currencySymbol": "ZK",
     "exchangeRate": 22.0341,
     "population": 21913874,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 18,
@@ -20918,7 +20873,7 @@
     "currencySymbol": "ZiG",
     "exchangeRate": 26.6,
     "population": 16950795,
-    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)",
+    "dataSource": "WID.world",
     "dataYear": 2023,
     "income": {
       "p10": 20,

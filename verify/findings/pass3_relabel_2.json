@@ -1,0 +1,777 @@
+{
+ "batch": "pass3_relabel_2",
+ "countries": {
+  "OM": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "OM dataSource 'WID.world' relabeled: verified wid.world/country page + WID API (countries-available-variables / countries-variables): WID publishes only imputed pre-tax ADULT income shares for OM (data_quality_score ~1, dq=1). Dataset distribution (p90/p10) matches household disposable-income surveys, not WID pre-tax shares - values are NOT drawn from WID.",
+    "Income block untouched by repair passes (no repair_income entry); pass-1 batch check found it plausible vs GDP-pc PPP and left unchanged -> provenance is undocumented template-era values.",
+    "dataYear kept: verification anchored to that reference year."
+   ]
+  },
+  "PA": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "PA dataSource 'WID.world' relabeled: verified wid.world/country page + WID API (countries-available-variables / countries-variables): WID publishes only imputed pre-tax ADULT income shares for PA (data_quality_score ~1, dq=1). Dataset distribution (p90/p10) matches household disposable-income surveys, not WID pre-tax shares - values are NOT drawn from WID.",
+    "Income block untouched by repair passes (no repair_income entry); pass-1 batch check found it plausible vs GDP-pc PPP and left unchanged -> provenance is undocumented template-era values.",
+    "dataYear kept: verification anchored to that reference year."
+   ]
+  },
+  "PE": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "PE dataSource 'WID.world' relabeled: verified wid.world/country page + WID API (countries-available-variables / countries-variables): WID publishes only imputed pre-tax ADULT income shares for PE (data_quality_score ~1, dq=1). Dataset distribution (p90/p10) matches household disposable-income surveys, not WID pre-tax shares - values are NOT drawn from WID.",
+    "Income block untouched by repair passes (no repair_income entry); pass-1 batch check found it plausible vs GDP-pc PPP and left unchanged -> provenance is undocumented template-era values.",
+    "dataYear kept: verification anchored to that reference year."
+   ]
+  },
+  "PF": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "ISPF Budget des familles 2014-2015 (niveau-de-vie deciles, Iles du Vent ~88% of pop, via ISPF/Tahiti-Infos); XPF->intl-$ at official peg + France PPP (see verify/findings)",
+    "dataYear": 2015
+   },
+   "notes": [
+    "dataSource placeholder 'REST Countries & World Bank API 2024' relabeled: repair_income_1 replaced the income block with values derived from ISPF 'Budget des familles 2014-2015' decile distribution (latest completed PF household budget survey; new one runs Apr 2025-Apr 2026).",
+    "Current DB percentiles (300/450/900/1790/2700) match the repair_income_1 correction exactly.",
+    "dataYear set to 2015 = actual reference year of the survey."
+   ]
+  },
+  "PG": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "PG dataSource 'WID.world' relabeled: verified wid.world/country page + WID API (countries-available-variables / countries-variables): WID publishes only imputed pre-tax ADULT income shares for PG (data_quality_score ~1, dq=1). Dataset distribution (p90/p10) matches household disposable-income surveys, not WID pre-tax shares - values are NOT drawn from WID.",
+    "Income block untouched by repair passes (no repair_income entry); pass-1 batch check found it plausible vs GDP-pc PPP and left unchanged -> provenance is undocumented template-era values.",
+    "dataYear kept: verification anchored to that reference year."
+   ]
+  },
+  "PH": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "PH dataSource 'WID.world' relabeled: WID API shows only imputed pre-tax adult income shares (dq=1); dataset shape (household-survey-like p90/p10) does not match WID - values NOT from WID.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "PK": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "PK dataSource 'WID.world' relabeled: WID API shows only imputed pre-tax adult income shares (dq=1); dataset shape (household-survey-like p90/p10) does not match WID - values NOT from WID.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "PL": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' kept: label was not in the wrong-label set (only 'WID.world'/'REST Countries' flagged); OECD IDD publishes Poland disposable-income distributions consistent with the verified block (batch_21 status ok, no corrections)."
+   ]
+  },
+  "PM": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Estimate: France OECD anchor x1.0 (INSEE Filosofi has no SPM coverage; GDP-pc parity per INSEE/IEDOM; see verify/findings)",
+    "dataYear": 2023
+   },
+   "notes": [
+    "Placeholder label relabeled: batch_23 set income/indicators to null (no SPM data in WID or WB); repair_income_4 re-filled the distribution as exactly the verified FR distribution (p50 $2,700/mo), justified by FR-level GDP pc (EUR 39,778) and IEDOM evidence salaries are higher than Hexagone.",
+    "dataYear set to 2023 to match the France OECD anchor reference year."
+   ]
+  },
+  "PN": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource already honest ('Derived: New Zealand distribution scaled by GDP-per-capita-PPP ratio (~0.12)...'), set by batch_21 and confirmed by repair_income_4. No change."
+   ]
+  },
+  "PR": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource already honest: repair_income_4 set 'US Census Bureau PRCS 2023 1-year (ACS Brief ACSBR-023)...'. No change."
+   ]
+  },
+  "PS": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "PS dataSource 'WID.world' relabeled: WID API shows only imputed pre-tax adult income shares (dq=1); dataset shape (household-survey-like p90/p10) does not match WID - values NOT from WID.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "PT": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' kept: not in the wrong-label set; batch_21 verified entry with status ok/no corrections."
+   ]
+  },
+  "PW": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource already honest ('Palau 2023-24 HIES (SPC/Office of Planning & Statistics)'), set by repair_income_3. dataYear 2024 kept."
+   ]
+  },
+  "PY": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "PY dataSource 'WID.world' relabeled: WID API shows only imputed pre-tax adult income shares (dq=1); dataset shape (household-survey-like p90/p10) does not match WID - values NOT from WID.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "QA": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "QA dataSource 'WID.world' relabeled: WID API shows only imputed pre-tax adult income shares (dq=1); dataset shape (household-survey-like p90/p10) does not match WID - values NOT from WID.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "RE": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource already honest ('INSEE Filosofi 2021...'), set by repair_income_4. No change."
+   ]
+  },
+  "RO": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "RO dataSource 'WID.world' relabeled: WID API shows only imputed pre-tax adult income shares (dq=1); dataset shape (household-survey-like p90/p10) does not match WID - values NOT from WID.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "RS": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "RS dataSource 'WID.world' relabeled: WID API shows only imputed pre-tax adult income shares (dq=1); dataset shape (household-survey-like p90/p10) does not match WID - values NOT from WID.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "RU": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "RU dataSource 'WID.world' relabeled: WID API shows only imputed pre-tax adult income shares (dq=1); dataset shape (household-survey-like p90/p10) does not match WID - values NOT from WID.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "RW": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "RW dataSource 'WID.world' relabeled: WID API shows only imputed pre-tax adult income shares (dq=1); dataset shape (household-survey-like p90/p10) does not match WID - values NOT from WID.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "SA": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "SA dataSource 'WID.world' relabeled: WID API shows only imputed pre-tax adult income shares (dq=1); dataset shape (household-survey-like p90/p10) does not match WID - values NOT from WID.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "SB": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "SB dataSource 'WID.world' relabeled: WID API shows only imputed pre-tax adult income shares (dq=1); dataset shape (household-survey-like p90/p10) does not match WID - values NOT from WID.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "SC": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "SC dataSource 'WID.world' relabeled: WID API shows only imputed pre-tax adult income shares (dq=1); dataset shape (household-survey-like p90/p10) does not match WID - values NOT from WID.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "SD": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "SD dataSource 'WID.world' relabeled: WID API shows only imputed pre-tax adult income shares (dq=1); dataset shape (household-survey-like p90/p10) does not match WID - values NOT from WID.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "SE": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' kept: not in the wrong-label set; batch_26 verified the block as plausible/monotonic with no income corrections."
+   ]
+  },
+  "SG": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "SG dataSource 'WID.world' relabeled: WID API shows only imputed pre-tax adult income shares (dq=1); dataset shape (household-survey-like p90/p10) does not match WID - values NOT from WID.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "SH": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource already honest ('St Helena Government Statistics Office, Statistical Update: Employment Incomes 2024/25...'), set by repair_income_4. No change."
+   ]
+  },
+  "SI": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' kept: not in the wrong-label set; no income corrections in any findings file for SI."
+   ]
+  },
+  "SJ": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Derived: Norway OECD anchor distribution x1.05 (SSB-documented Svalbard wage premium; no survey exists for Svalbard; see verify/findings)",
+    "dataYear": 2023
+   },
+   "notes": [
+    "Placeholder label relabeled: batch_25 confirmed placeholder, repair_income_5 re-derived percentiles from verified NO anchor x1.05 (p50 4000), citing SSB 'Svalbard: Population, economy and living conditions' (2024).",
+    "No household income/consumption survey exists for Svalbard (not in WB PIP, no WID entry).",
+    "dataYear set to 2023 to match the Norway OECD anchor reference year."
+   ]
+  },
+  "SK": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' kept: not in the wrong-label set; no income corrections in any findings file for SK."
+   ]
+  },
+  "SL": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "SL dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "SM": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "SM dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "SN": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "SN dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "SO": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin ('ILO' label wrong - ILO publishes no household income percentile distributions); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "SO dataSource 'ILO' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "SR": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "World Bank PIP API (pip-grp deciles + median, consumption aggregate)",
+    "dataYear": 2022
+   },
+   "notes": [
+    "repair_income_5 replaced the income block with World Bank PIP Suriname 2022 national household survey (consumption) decile-derived values (mean $18.70/day, median $14.44/day, gini 0.3918); current DB percentiles match that correction exactly.",
+    "Placeholder label 'REST Countries & World Bank API 2024' relabeled to the actual source; dataYear set to the PIP survey year 2022."
+   ]
+  },
+  "SS": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "World Bank PIP API (pip-grp deciles + median, consumption aggregate)",
+    "dataYear": 2016
+   },
+   "notes": [
+    "repair_income_5 replaced the income block with World Bank PIP South Sudan HIES 2016 (national consumption) decile-derived values (mean $2.34/day, median $1.65/day, gini 0.4405); current DB percentiles match that correction exactly.",
+    "Wrong 'ILO' label relabeled; dataYear set to the PIP survey year 2016 (latest available)."
+   ]
+  },
+  "ST": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource/dataYear already honest ('World Bank PIP API...', 2017), set by repair_income_6. No change."
+   ]
+  },
+  "SV": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "SV dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "SX": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Derived: Netherlands anchor distribution x GDP-per-capita-PPP ratio 0.643 (WB 2023: SXM $51,729 vs NLD $80,392; Sint Maarten HAS an ICP PPP figure) (see verify/findings)",
+    "dataYear": 2023
+   },
+   "notes": [
+    "repair_income_5 re-derived the income percentiles from the verified NL anchor x0.643 (p50 2060); current DB percentiles match that correction exactly.",
+    "Placeholder label 'REST Countries & World Bank API 2024' relabeled; dataYear set to 2023 (anchor/PPP reference year)."
+   ]
+  },
+  "SY": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "World Bank PIP API (pip-grp deciles + median, consumption aggregate)",
+    "dataYear": 2022
+   },
+   "notes": [
+    "repair_income_5 replaced the income block with World Bank PIP Syria HBS 2022 (national consumption; first Syrian survey since 2009) decile-derived values (mean $5.16/day, median $4.61/day, gini 0.2637); current DB percentiles match that correction exactly.",
+    "Wrong 'ILO' label relabeled; dataYear set to the survey year 2022."
+   ]
+  },
+  "SZ": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "SZ dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "TC": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Derived: United Kingdom anchor distribution x GDP-per-capita ratio ~0.475 (UK p50 2800 x 0.475 = p50 1330; TCI-vs-UK GDP-pc ratio per batch_27) (see verify/findings)",
+    "dataYear": 2023
+   },
+   "notes": [
+    "batch_27 verified TC income as consistent with UK-anchor scaling (p50 1330 = 2800 x 0.475 matching TCI-vs-UK GDP-pc ratio); no territory survey exists.",
+    "Placeholder label 'REST Countries & World Bank API 2024' relabeled to the actual derivation; dataYear set to the GB anchor reference year 2023."
+   ]
+  },
+  "TD": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "TD dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "TF": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "French Southern Territories (TF) has NO entry in countries-database.json - nothing to relabel."
+   ]
+  },
+  "TG": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "TG dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "TH": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "TH dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "TJ": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource/dataYear already honest ('World Bank PIP API...', 2024), set by repair_income_6. No change."
+   ]
+  },
+  "TK": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Derived: New Zealand anchor distribution x GDP-per-capita ratio 0.1125 (Tokelau GDPpc nominal US$6,275 2017 est. / NZ GDPpc PPP US$55,794 WB 2024; WID.world has no Tokelau data) (see verify/findings)",
+    "dataYear": 2023
+   },
+   "notes": [
+    "batch_27 replaced the Tokelau placeholder with NZ-anchor-derived distributions (ratio 0.1125); current DB percentiles (120/200/325/485/700) match that derivation.",
+    "Placeholder label 'REST Countries & World Bank API 2024' relabeled; dataYear set to the NZ anchor reference year 2023."
+   ]
+  },
+  "TL": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "TL dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "TM": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "Wrong 'ILO' label relabeled: ILO publishes no household income percentile distributions; batch_27 explicitly noted 'WID has no Turkmenistan data - kept'.",
+    "Values are undocumented template-era estimates, plausibility-checked (p50 240/mo PPP judged low-but-plausible vs GDPpc PPP $21k given suppressed household incomes).",
+    "dataYear 2022 kept (verification anchor year)."
+   ]
+  },
+  "TN": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource/dataYear already honest ('World Bank PIP API...', 2021), set by repair_income_6. No change."
+   ]
+  },
+  "TO": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "TO dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "TR": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "TR dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "TT": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin; core fields verified plausible vs World Bank API 2024 (p50 1299 vs GDPpc PPP $36,381) in batch_27 (see verify/findings)"
+   },
+   "notes": [
+    "Placeholder label 'REST Countries & World Bank API 2024' relabeled: batch_27 confirmed values are NOT from that source but individually plausible; no survey/PIP/anchor derivation was performed.",
+    "dataYear 2024 kept (verification anchor year)."
+   ]
+  },
+  "TV": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (NOT a placeholder copy per batch_28, but no source found; WB/ITU report no recent Tuvalu income figures) (see verify/findings)"
+   },
+   "notes": [
+    "batch_28 explicitly noted the 'REST Countries & World Bank API 2024' label but values differ from the fake pattern and could not be verified against any source.",
+    "dataYear 2024 kept (verification anchor year)."
+   ]
+  },
+  "TW": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "TW dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "TZ": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource/dataYear already honest ('World Bank PIP API...', 2018), set by repair_income_6. No change."
+   ]
+  },
+  "UA": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "UA dataSource 'WID.world' relabeled: WID Ukraine country page carries no default distribution charts and WID API returns only imputed pre-tax adult shares (dq=1); dataset shape (household-survey-like, p90/p10 11.2) does not match WID pre-tax shares.",
+    "No repair_income entry for UA; dataYear 2022 kept (verification anchor year)."
+   ]
+  },
+  "UG": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "UG dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "UM": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource already honest ('Derived from US anchor distribution - territory has no permanent resident population'), set by repair_income_6. No change."
+   ]
+  },
+  "US": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' kept: not in the wrong-label set; US disposable-income distributions are published by OECD and the block passed verification unchanged."
+   ]
+  },
+  "UY": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "UY dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "UZ": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "UZ dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "VA": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource already honest ('Estimate: Italy OECD anchor x1.0'), set by repair_income_7. No change."
+   ]
+  },
+  "VC": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin; p50 798/mo PPP verified plausible vs GDP-pc PPP $21,303 (WB 2024) in batch_23 (see verify/findings)"
+   },
+   "notes": [
+    "Placeholder label 'REST Countries & World Bank API 2024' relabeled: batch_23 verified the values as plausible but no survey/PIP/anchor derivation exists.",
+    "dataYear 2024 kept (verification anchor year)."
+   ]
+  },
+  "VE": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin ('ILO' label wrong - ILO publishes no income percentile distributions); judged plausible given dollarization in batch_29 (see verify/findings)",
+    "dataYear": 2022
+   },
+   "notes": [
+    "batch_29 checked HDI/population/etc. and found 'income percentiles plausible given dollarization' but performed no income-source verification.",
+    "dataYear 2022 kept (verification anchor year)."
+   ]
+  },
+  "VG": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Derived from United Kingdom anchor distribution scaled by GDP-per-capita ratio 0.86 (BVI $42,709 / UK $49,464, 2023; see verify/findings)",
+    "dataYear": 2023
+   },
+   "notes": [
+    "batch_03 replaced the IO placeholder copy with GBR-anchor-derived distributions x0.86; current DB percentiles (900/1500/2410/3530/5070) match that derivation.",
+    "Placeholder label relabeled to the actual derivation; dataYear set to 2023 (anchor/GDP reference year)."
+   ]
+  },
+  "VI": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource/dataYear already honest ('US Census Bureau 2020 Island Areas Census...', 2020), set by repair_income_6. No change."
+   ]
+  },
+  "VN": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "VN dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "VU": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource/dataYear already honest ('World Bank PIP (2019 HIES)', 2019), set by repair_income_7. No change."
+   ]
+  },
+  "WF": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource already honest ('Estimate: France OECD anchor x0.45 (IEOM/CEROM)'), set by repair_income_7. No change."
+   ]
+  },
+  "WS": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "WS dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "YE": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "YE dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "YT": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Derived from France anchor distribution x GDP-per-capita ratio 0.28 (11,508/41,000; INSEE median-living-standard cross-check; see verify/findings)",
+    "dataYear": 2023
+   },
+   "notes": [
+    "batch_17 replaced the full Mayotte placeholder row with distributions derived from the French WID-shaped posttax distribution x0.28 (pretax x~1.12, consumption x0.75 etc.); current DB percentiles (230/400/620/930/1400) match that derivation.",
+    "Placeholder label relabeled to the actual derivation; dataYear set to the FR anchor reference year 2023."
+   ]
+  },
+  "ZA": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "ZA dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "ZM": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "ZM dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  },
+  "ZW": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Unverified estimate: pre-existing household income distribution of undocumented origin (not WID.world - WID's published pre-tax series have a fundamentally different shape, p90/p10 >80 vs dataset's ~15-25); retained after pass-1 plausibility check vs World Bank GDP-per-capita PPP (see verify/findings)"
+   },
+   "notes": [
+    "ZW dataSource 'WID.world' relabeled: values are NOT from that source.",
+    "No repair_income entry for this code; pass-1 batch found income plausible vs GDP-pc PPP and left unchanged -> undocumented template-era provenance.",
+    "dataYear kept (verification anchor year)."
+   ]
+  }
+ }
+}

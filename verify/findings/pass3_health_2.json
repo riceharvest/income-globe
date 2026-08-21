@@ -1,0 +1,38 @@
+{
+ "batch": "pass3_health_2",
+ "countries": {
+  "GL": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleHeightCm": 158,
+    "femaleWeightKg": 68,
+    "femaleBmi": 27,
+    "maleHeightCm": 170,
+    "maleWeightKg": 78,
+    "maleBmi": 27
+   },
+   "notes": [
+    "Old height/weight/BMI block was the template copy (F162/66/25.3, M174/78/25.9) - implausible for a majority-Inuit population.",
+    "Derived from measured data in the Greenland Population Health Survey 2018 (B2018, n=2436 Inuit, objectively measured; published in Int J Circumpolar Health): adults 15-54 mean height 165.0 cm / weight 73.6 kg / BMI 26.9; adults 55+ mean 158.9 cm / 70.2 kg / BMI 27.5 (both sexes combined). Population-weighted adult average ~163-164 cm / ~73 kg / BMI ~27.",
+    "Sexed split derived using the standard Inuit sexual-dimorphism gap (~12 cm height, ~10 kg weight), giving F158 cm / 68 kg and M170 cm / 78 kg; both sexes then land at BMI 27, consistent with the published median BMI of 26.1 in the B2018 obesity-trends study and the high measured obesity prevalence (F29.6%/M22.2%, already stored). Marked as derived - no sexed mean-height table is published for Greenland.",
+    "obesityRate/smokingRate left unchanged: already real territory data from B2018 / Bjerregaard & Larsen 2018 (fixed in repair_health_1)."
+   ]
+  },
+  "GU": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleHeightCm": 163,
+    "femaleWeightKg": 74,
+    "femaleBmi": 28,
+    "maleHeightCm": 176,
+    "maleWeightKg": 89,
+    "maleBmi": 28.7
+   },
+   "notes": [
+    "Height/weight/BMI were template copies (F162/66/25.3, M174/78/25.9) inconsistent with Guam's documented 35% adult obesity. No territory-level mean height or mean BMI is published for Guam (BRFSS publishes only prevalence; checked CDC BRFSS Prevalence & Trends and World Obesity Observatory country profile).",
+    "Derived per ladder rule from the verified US anchor block (F163cm/74kg/BMI28, M176cm/89kg/BMI28.7): Guam's adult obesity prevalence (BRFSS 2023: 35.4%) sits at essentially the same level as the current US national rate (~37%), so the anchor anthropometry is applied unchanged as the closest comparable population.",
+    "femaleObesityRate/maleObesityRate/obesityRate (35.4) and smoking rates (F17.0/M19.1/18.0) left unchanged: already real CDC BRFSS 2023 Guam crude prevalence (set in repair_health_2)."
+   ]
+  }
+ }
+}

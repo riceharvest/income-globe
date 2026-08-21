@@ -1,0 +1,688 @@
+[
+ {
+  "code": "SC",
+  "alpha2": "SC",
+  "alpha3": "SYC",
+  "numericCode": "690",
+  "name": "Seychelles",
+  "region": "Sub-Saharan Africa",
+  "flag": "🇸🇨",
+  "currency": "SCR",
+  "currencySymbol": "₨",
+  "exchangeRate": 1,
+  "population": 122730,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 300,
+   "p25": 600,
+   "p50": 1150,
+   "p75": 2100,
+   "p90": 3600
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 305,
+    "p25": 619,
+    "p50": 1205,
+    "p75": 2268,
+    "p90": 4003
+   },
+   "posttax_national": {
+    "p10": 300,
+    "p25": 600,
+    "p50": 1150,
+    "p75": 2100,
+    "p90": 3600
+   },
+   "consumption": {
+    "p10": 275,
+    "p25": 491,
+    "p50": 941,
+    "p75": 1613,
+    "p90": 2585
+   },
+   "wealth": {
+    "p10": 600,
+    "p25": 4800,
+    "p50": 28750,
+    "p75": 126000,
+    "p90": 540000
+   },
+   "labor_income": {
+    "p10": 180,
+    "p25": 420,
+    "p50": 920,
+    "p75": 1785,
+    "p90": 3240
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 53.5,
+   "childMarriagePercent": null,
+   "laborForceGap": null,
+   "contraceptiveUse": null
+  },
+  "minimumWageEur": 200,
+  "costOfLivingIndex": 60,
+  "unemploymentRate": 15,
+  "internetPenetration": 87.8,
+  "femaleHeightCm": 159,
+  "femaleWeightKg": 63,
+  "femaleBmi": 25,
+  "femaleObesityRate": 12,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 80.7,
+  "maleHeightCm": 171,
+  "maleWeightKg": 75,
+  "maleBmi": 25.6,
+  "maleObesityRate": 10.6,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 72.1,
+  "obesityRate": 12,
+  "smokingRate": 8,
+  "hdi": 0.8,
+  "englishSpeakingPercent": 61,
+  "mainIndustry": "Services"
+ },
+ {
+  "code": "SL",
+  "alpha2": "SL",
+  "alpha3": "SLE",
+  "numericCode": "694",
+  "name": "Sierra Leone",
+  "region": "Sub-Saharan Africa",
+  "flag": "🇸🇱",
+  "currency": "SLE",
+  "currencySymbol": "Le",
+  "exchangeRate": 1,
+  "population": 8819794,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 12,
+   "p25": 25,
+   "p50": 55,
+   "p75": 125,
+   "p90": 280
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 12,
+    "p25": 26,
+    "p50": 58,
+    "p75": 136,
+    "p90": 315
+   },
+   "posttax_national": {
+    "p10": 12,
+    "p25": 25,
+    "p50": 55,
+    "p75": 125,
+    "p90": 280
+   },
+   "consumption": {
+    "p10": 11,
+    "p25": 20,
+    "p50": 45,
+    "p75": 95,
+    "p90": 200
+   },
+   "wealth": {
+    "p10": 24,
+    "p25": 200,
+    "p50": 1375,
+    "p75": 7500,
+    "p90": 42000
+   },
+   "labor_income": {
+    "p10": 7,
+    "p25": 18,
+    "p50": 44,
+    "p75": 106,
+    "p90": 252
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 91.2,
+   "childMarriagePercent": 39,
+   "laborForceGap": -3.6,
+   "contraceptiveUse": 21.2
+  },
+  "minimumWageEur": 30,
+  "costOfLivingIndex": 28,
+  "unemploymentRate": 3.2,
+  "internetPenetration": 25.1,
+  "femaleHeightCm": 158,
+  "femaleWeightKg": 60,
+  "femaleBmi": 24,
+  "femaleObesityRate": 15,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 63.7,
+  "maleHeightCm": 170,
+  "maleWeightKg": 71,
+  "maleBmi": 24.6,
+  "maleObesityRate": 13.2,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 60.2,
+  "obesityRate": 15,
+  "smokingRate": 8,
+  "hdi": 0.45,
+  "englishSpeakingPercent": 40,
+  "mainIndustry": "Agriculture"
+ },
+ {
+  "code": "SG",
+  "alpha2": "SG",
+  "alpha3": "SGP",
+  "numericCode": "702",
+  "name": "Singapore",
+  "region": "Asia",
+  "flag": "🇸🇬",
+  "currency": "SGD",
+  "currencySymbol": "$",
+  "exchangeRate": 1,
+  "population": 6111175,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 700,
+   "p25": 1400,
+   "p50": 2800,
+   "p75": 5000,
+   "p90": 8500
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 716,
+    "p25": 1464,
+    "p50": 2993,
+    "p75": 5575,
+    "p90": 9869
+   },
+   "posttax_national": {
+    "p10": 700,
+    "p25": 1400,
+    "p50": 2800,
+    "p75": 5000,
+    "p90": 8500
+   },
+   "consumption": {
+    "p10": 633,
+    "p25": 1126,
+    "p50": 2251,
+    "p75": 3770,
+    "p90": 5984
+   },
+   "wealth": {
+    "p10": 1400,
+    "p25": 11200,
+    "p50": 70000,
+    "p75": 300000,
+    "p90": 1275000
+   },
+   "labor_income": {
+    "p10": 420,
+    "p25": 980,
+    "p50": 2240,
+    "p75": 4250,
+    "p90": 7650
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 2.2,
+   "childMarriagePercent": 4,
+   "laborForceGap": -11.8,
+   "contraceptiveUse": 62
+  },
+  "minimumWageEur": 1600,
+  "costOfLivingIndex": 95,
+  "unemploymentRate": 2.8,
+  "internetPenetration": 94.4,
+  "femaleHeightCm": 160,
+  "femaleWeightKg": 61,
+  "femaleBmi": 24,
+  "femaleObesityRate": 7,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 85.6,
+  "maleHeightCm": 172,
+  "maleWeightKg": 73,
+  "maleBmi": 24.6,
+  "maleObesityRate": 6.2,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 81.2,
+  "obesityRate": 7,
+  "smokingRate": 8,
+  "hdi": 0.94,
+  "englishSpeakingPercent": 92,
+  "mainIndustry": "Finance & Insurance"
+ },
+ {
+  "code": "SX",
+  "alpha2": "SX",
+  "alpha3": "SXM",
+  "numericCode": "534",
+  "name": "Sint Maarten",
+  "region": "Caribbean",
+  "flag": "🇸🇽",
+  "currency": "ANG",
+  "currencySymbol": "ƒ",
+  "exchangeRate": 1,
+  "population": 43923,
+  "dataSource": "REST Countries & World Bank API 2024",
+  "dataYear": 2024,
+  "income": {
+   "p10": 1414,
+   "p25": 1639,
+   "p50": 1977,
+   "p75": 2578,
+   "p90": 3329
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 1441,
+    "p25": 1701,
+    "p50": 2090,
+    "p75": 2823,
+    "p90": 3772
+   },
+   "posttax_national": {
+    "p10": 1414,
+    "p25": 1639,
+    "p50": 1977,
+    "p75": 2578,
+    "p90": 3329
+   },
+   "consumption": {
+    "p10": 1290,
+    "p25": 1331,
+    "p50": 1605,
+    "p75": 1964,
+    "p90": 2370
+   },
+   "wealth": {
+    "p10": 2828,
+    "p25": 13112,
+    "p50": 49425,
+    "p75": 154680,
+    "p90": 499350
+   },
+   "labor_income": {
+    "p10": 848,
+    "p25": 1147,
+    "p50": 1582,
+    "p75": 2191,
+    "p90": 2996
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 16.6,
+   "childMarriagePercent": null,
+   "laborForceGap": null,
+   "contraceptiveUse": null
+  },
+  "minimumWageEur": 1600,
+  "costOfLivingIndex": 87,
+  "unemploymentRate": 5.5,
+  "internetPenetration": 75,
+  "femaleHeightCm": 162,
+  "femaleWeightKg": 66,
+  "femaleBmi": 25.3,
+  "femaleObesityRate": 22,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 79.7,
+  "maleHeightCm": 174,
+  "maleWeightKg": 78,
+  "maleBmi": 25.9,
+  "maleObesityRate": 19.4,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 73.8,
+  "obesityRate": 22,
+  "smokingRate": 8,
+  "hdi": 0.79
+ },
+ {
+  "code": "SK",
+  "alpha2": "SK",
+  "alpha3": "SVK",
+  "numericCode": "703",
+  "name": "Slovakia",
+  "region": "Europe",
+  "flag": "🇸🇰",
+  "currency": "EUR",
+  "currencySymbol": "€",
+  "exchangeRate": 1,
+  "population": 5413813,
+  "dataSource": "OECD",
+  "dataYear": 2023,
+  "income": {
+   "p10": 450,
+   "p25": 780,
+   "p50": 1250,
+   "p75": 2000,
+   "p90": 3000
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 456,
+    "p25": 799,
+    "p50": 1297,
+    "p75": 2125,
+    "p90": 3262
+   },
+   "posttax_national": {
+    "p10": 450,
+    "p25": 780,
+    "p50": 1250,
+    "p75": 2000,
+    "p90": 3000
+   },
+   "consumption": {
+    "p10": 416,
+    "p25": 644,
+    "p50": 1031,
+    "p75": 1550,
+    "p90": 2175
+   },
+   "wealth": {
+    "p10": 900,
+    "p25": 6240,
+    "p50": 31250,
+    "p75": 120000,
+    "p90": 450000
+   },
+   "labor_income": {
+    "p10": 270,
+    "p25": 546,
+    "p50": 1000,
+    "p75": 1700,
+    "p90": 2700
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 24.5,
+   "childMarriagePercent": 10,
+   "laborForceGap": -10.9,
+   "contraceptiveUse": null
+  },
+  "minimumWageEur": 780,
+  "costOfLivingIndex": 55,
+  "unemploymentRate": 5.4,
+  "internetPenetration": 89.8,
+  "femaleHeightCm": 163,
+  "femaleWeightKg": 69,
+  "femaleBmi": 26,
+  "femaleObesityRate": 25,
+  "femaleSmokingRate": 18,
+  "femaleLifeExpectancy": 81.7,
+  "maleHeightCm": 176,
+  "maleWeightKg": 83,
+  "maleBmi": 26.7,
+  "maleObesityRate": 22,
+  "maleSmokingRate": 28,
+  "maleLifeExpectancy": 75.2,
+  "obesityRate": 25,
+  "smokingRate": 18,
+  "hdi": 0.86,
+  "englishSpeakingPercent": 76,
+  "mainIndustry": "Manufacturing"
+ },
+ {
+  "code": "SI",
+  "alpha2": "SI",
+  "alpha3": "SVN",
+  "numericCode": "705",
+  "name": "Slovenia",
+  "region": "Europe",
+  "flag": "🇸🇮",
+  "currency": "EUR",
+  "currencySymbol": "€",
+  "exchangeRate": 1,
+  "population": 2130986,
+  "dataSource": "OECD",
+  "dataYear": 2023,
+  "income": {
+   "p10": 600,
+   "p25": 1000,
+   "p50": 1700,
+   "p75": 2600,
+   "p90": 3800
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 607,
+    "p25": 1024,
+    "p50": 1761,
+    "p75": 2756,
+    "p90": 4119
+   },
+   "posttax_national": {
+    "p10": 600,
+    "p25": 1000,
+    "p50": 1700,
+    "p75": 2600,
+    "p90": 3800
+   },
+   "consumption": {
+    "p10": 556,
+    "p25": 826,
+    "p50": 1404,
+    "p75": 2018,
+    "p90": 2759
+   },
+   "wealth": {
+    "p10": 1200,
+    "p25": 8000,
+    "p50": 42500,
+    "p75": 156000,
+    "p90": 570000
+   },
+   "labor_income": {
+    "p10": 360,
+    "p25": 700,
+    "p50": 1360,
+    "p75": 2210,
+    "p90": 3420
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 3.4,
+   "childMarriagePercent": 4,
+   "laborForceGap": -10.5,
+   "contraceptiveUse": 78.9
+  },
+  "minimumWageEur": 940,
+  "costOfLivingIndex": 65,
+  "unemploymentRate": 3.2,
+  "internetPenetration": 90.8,
+  "femaleHeightCm": 164,
+  "femaleWeightKg": 70,
+  "femaleBmi": 26,
+  "femaleObesityRate": 25,
+  "femaleSmokingRate": 18,
+  "femaleLifeExpectancy": 85,
+  "maleHeightCm": 177,
+  "maleWeightKg": 84,
+  "maleBmi": 26.7,
+  "maleObesityRate": 22,
+  "maleSmokingRate": 28,
+  "maleLifeExpectancy": 79.7,
+  "obesityRate": 25,
+  "smokingRate": 18,
+  "hdi": 0.92,
+  "englishSpeakingPercent": 74,
+  "mainIndustry": "Services"
+ },
+ {
+  "code": "SB",
+  "alpha2": "SB",
+  "alpha3": "SLB",
+  "numericCode": "090",
+  "name": "Solomon Islands",
+  "region": "Oceania",
+  "flag": "🇸🇧",
+  "currency": "SBD",
+  "currencySymbol": "$",
+  "exchangeRate": 1,
+  "population": 838645,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 20,
+   "p25": 42,
+   "p50": 90,
+   "p75": 200,
+   "p90": 420
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 20,
+    "p25": 44,
+    "p50": 95,
+    "p75": 219,
+    "p90": 474
+   },
+   "posttax_national": {
+    "p10": 20,
+    "p25": 42,
+    "p50": 90,
+    "p75": 200,
+    "p90": 420
+   },
+   "consumption": {
+    "p10": 18,
+    "p25": 34,
+    "p50": 73,
+    "p75": 153,
+    "p90": 299
+   },
+   "wealth": {
+    "p10": 40,
+    "p25": 336,
+    "p50": 2250,
+    "p75": 12000,
+    "p90": 63000
+   },
+   "labor_income": {
+    "p10": 12,
+    "p25": 29,
+    "p50": 72,
+    "p75": 170,
+    "p90": 378
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 49.4,
+   "childMarriagePercent": 5,
+   "laborForceGap": -3.9,
+   "contraceptiveUse": 29.3
+  },
+  "minimumWageEur": 80,
+  "costOfLivingIndex": 38,
+  "unemploymentRate": 1.4,
+  "internetPenetration": 29,
+  "femaleHeightCm": 158,
+  "femaleWeightKg": 65,
+  "femaleBmi": 26,
+  "femaleObesityRate": 25,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 72.2,
+  "maleHeightCm": 170,
+  "maleWeightKg": 77,
+  "maleBmi": 26.7,
+  "maleObesityRate": 22,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 69.4,
+  "obesityRate": 25,
+  "smokingRate": 8,
+  "hdi": 0.7,
+  "englishSpeakingPercent": 5,
+  "mainIndustry": "Agriculture"
+ },
+ {
+  "code": "SO",
+  "alpha2": "SO",
+  "alpha3": "SOM",
+  "numericCode": "706",
+  "name": "Somalia",
+  "region": "Sub-Saharan Africa",
+  "flag": "🇸🇴",
+  "currency": "SOS",
+  "currencySymbol": "Sh",
+  "exchangeRate": 1,
+  "population": 19654739,
+  "dataSource": "ILO",
+  "dataYear": 2022,
+  "income": {
+   "p10": 10,
+   "p25": 22,
+   "p50": 48,
+   "p75": 110,
+   "p90": 250
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 10,
+    "p25": 23,
+    "p50": 51,
+    "p75": 120,
+    "p90": 282
+   },
+   "posttax_national": {
+    "p10": 10,
+    "p25": 22,
+    "p50": 48,
+    "p75": 110,
+    "p90": 250
+   },
+   "consumption": {
+    "p10": 9,
+    "p25": 18,
+    "p50": 39,
+    "p75": 84,
+    "p90": 178
+   },
+   "wealth": {
+    "p10": 20,
+    "p25": 176,
+    "p50": 1200,
+    "p75": 6600,
+    "p90": 37500
+   },
+   "labor_income": {
+    "p10": 6,
+    "p25": 15,
+    "p50": 38,
+    "p75": 94,
+    "p90": 225
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 115.4,
+   "childMarriagePercent": 45,
+   "laborForceGap": -26.5,
+   "contraceptiveUse": 6.9
+  },
+  "minimumWageEur": 30,
+  "costOfLivingIndex": 22,
+  "unemploymentRate": 18.9,
+  "internetPenetration": 27.9,
+  "femaleHeightCm": 158,
+  "femaleWeightKg": 57,
+  "femaleBmi": 23,
+  "femaleObesityRate": 5,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 61.6,
+  "maleHeightCm": 170,
+  "maleWeightKg": 68,
+  "maleBmi": 23.6,
+  "maleObesityRate": 4.4,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 56.5,
+  "obesityRate": 5,
+  "smokingRate": 8,
+  "hdi": 0.36,
+  "englishSpeakingPercent": 3,
+  "mainIndustry": "Agriculture"
+ }
+]

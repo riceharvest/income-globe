@@ -1,0 +1,686 @@
+[
+ {
+  "code": "NZ",
+  "alpha2": "NZ",
+  "alpha3": "NZL",
+  "numericCode": "554",
+  "name": "New Zealand",
+  "region": "Oceania",
+  "flag": "🇳🇿",
+  "currency": "NZD",
+  "currencySymbol": "$",
+  "exchangeRate": 1,
+  "population": 5324700,
+  "dataSource": "OECD",
+  "dataYear": 2023,
+  "income": {
+   "p10": 1050,
+   "p25": 1800,
+   "p50": 2900,
+   "p75": 4300,
+   "p90": 6200
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 1067,
+    "p25": 1859,
+    "p50": 3044,
+    "p75": 4655,
+    "p90": 6916
+   },
+   "posttax_national": {
+    "p10": 1050,
+    "p25": 1800,
+    "p50": 2900,
+    "p75": 4300,
+    "p90": 6200
+   },
+   "consumption": {
+    "p10": 963,
+    "p25": 1471,
+    "p50": 2369,
+    "p75": 3298,
+    "p90": 4445
+   },
+   "wealth": {
+    "p10": 2100,
+    "p25": 14400,
+    "p50": 72500,
+    "p75": 258000,
+    "p90": 930000
+   },
+   "labor_income": {
+    "p10": 630,
+    "p25": 1260,
+    "p50": 2320,
+    "p75": 3655,
+    "p90": 5580
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 10.3,
+   "childMarriagePercent": null,
+   "laborForceGap": -8.7,
+   "contraceptiveUse": 74.3
+  },
+  "minimumWageEur": 1500,
+  "costOfLivingIndex": 78,
+  "unemploymentRate": 5.1,
+  "internetPenetration": 93.5,
+  "femaleHeightCm": 164,
+  "femaleWeightKg": 73,
+  "femaleBmi": 27,
+  "femaleObesityRate": 31,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 83.7,
+  "maleHeightCm": 177,
+  "maleWeightKg": 87,
+  "maleBmi": 27.7,
+  "maleObesityRate": 27.3,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 80.4,
+  "obesityRate": 31,
+  "smokingRate": 8,
+  "hdi": 0.94,
+  "englishSpeakingPercent": 98,
+  "mainIndustry": "Services"
+ },
+ {
+  "code": "NI",
+  "alpha2": "NI",
+  "alpha3": "NIC",
+  "numericCode": "558",
+  "name": "Nicaragua",
+  "region": "Latin America",
+  "flag": "🇳🇮",
+  "currency": "NIO",
+  "currencySymbol": "C$",
+  "exchangeRate": 1,
+  "population": 7007502,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 35,
+   "p25": 75,
+   "p50": 160,
+   "p75": 350,
+   "p90": 700
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 36,
+    "p25": 78,
+    "p50": 171,
+    "p75": 390,
+    "p90": 813
+   },
+   "posttax_national": {
+    "p10": 35,
+    "p25": 75,
+    "p50": 160,
+    "p75": 350,
+    "p90": 700
+   },
+   "consumption": {
+    "p10": 32,
+    "p25": 60,
+    "p50": 129,
+    "p75": 264,
+    "p90": 493
+   },
+   "wealth": {
+    "p10": 70,
+    "p25": 600,
+    "p50": 4000,
+    "p75": 21000,
+    "p90": 105000
+   },
+   "labor_income": {
+    "p10": 21,
+    "p25": 53,
+    "p50": 128,
+    "p75": 298,
+    "p90": 630
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 93.2,
+   "childMarriagePercent": 35,
+   "laborForceGap": -30.5,
+   "contraceptiveUse": 80.4
+  },
+  "minimumWageEur": 150,
+  "costOfLivingIndex": 32,
+  "unemploymentRate": 5,
+  "internetPenetration": 61.4,
+  "femaleHeightCm": 159,
+  "femaleWeightKg": 66,
+  "femaleBmi": 26,
+  "femaleObesityRate": 32,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 77.6,
+  "maleHeightCm": 171,
+  "maleWeightKg": 78,
+  "maleBmi": 26.7,
+  "maleObesityRate": 28.2,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 72.5,
+  "obesityRate": 32,
+  "smokingRate": 8,
+  "hdi": 0.73,
+  "englishSpeakingPercent": 64,
+  "mainIndustry": "Services"
+ },
+ {
+  "code": "NE",
+  "alpha2": "NE",
+  "alpha3": "NER",
+  "numericCode": "562",
+  "name": "Niger",
+  "region": "Sub-Saharan Africa",
+  "flag": "🇳🇪",
+  "currency": "XOF",
+  "currencySymbol": "Fr",
+  "exchangeRate": 1,
+  "population": 27917831,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 12,
+   "p25": 25,
+   "p50": 55,
+   "p75": 120,
+   "p90": 270
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 12,
+    "p25": 26,
+    "p50": 58,
+    "p75": 130,
+    "p90": 302
+   },
+   "posttax_national": {
+    "p10": 12,
+    "p25": 25,
+    "p50": 55,
+    "p75": 120,
+    "p90": 270
+   },
+   "consumption": {
+    "p10": 11,
+    "p25": 20,
+    "p50": 45,
+    "p75": 92,
+    "p90": 193
+   },
+   "wealth": {
+    "p10": 24,
+    "p25": 200,
+    "p50": 1375,
+    "p75": 7200,
+    "p90": 40500
+   },
+   "labor_income": {
+    "p10": 7,
+    "p25": 18,
+    "p50": 44,
+    "p75": 102,
+    "p90": 243
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 141.6,
+   "childMarriagePercent": 76,
+   "laborForceGap": -13.7,
+   "contraceptiveUse": 15.3
+  },
+  "minimumWageEur": 30,
+  "costOfLivingIndex": 24,
+  "unemploymentRate": 0.4,
+  "internetPenetration": 15.6,
+  "femaleHeightCm": 158,
+  "femaleWeightKg": 57,
+  "femaleBmi": 23,
+  "femaleObesityRate": 9,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 62.4,
+  "maleHeightCm": 170,
+  "maleWeightKg": 68,
+  "maleBmi": 23.6,
+  "maleObesityRate": 7.9,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 60.5,
+  "obesityRate": 9,
+  "smokingRate": 8,
+  "hdi": 0.4,
+  "englishSpeakingPercent": 3,
+  "mainIndustry": "Agriculture"
+ },
+ {
+  "code": "NG",
+  "alpha2": "NG",
+  "alpha3": "NGA",
+  "numericCode": "566",
+  "name": "Nigeria",
+  "region": "Sub-Saharan Africa",
+  "flag": "🇳🇬",
+  "currency": "NGN",
+  "currencySymbol": "₦",
+  "exchangeRate": 1,
+  "population": 237527782,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 35,
+   "p25": 68,
+   "p50": 130,
+   "p75": 290,
+   "p90": 620
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 36,
+    "p25": 71,
+    "p50": 138,
+    "p75": 318,
+    "p90": 705
+   },
+   "posttax_national": {
+    "p10": 35,
+    "p25": 68,
+    "p50": 130,
+    "p75": 290,
+    "p90": 620
+   },
+   "consumption": {
+    "p10": 32,
+    "p25": 55,
+    "p50": 105,
+    "p75": 221,
+    "p90": 441
+   },
+   "wealth": {
+    "p10": 70,
+    "p25": 544,
+    "p50": 3250,
+    "p75": 17400,
+    "p90": 93000
+   },
+   "labor_income": {
+    "p10": 21,
+    "p25": 48,
+    "p50": 104,
+    "p75": 247,
+    "p90": 558
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 84,
+   "childMarriagePercent": 30,
+   "laborForceGap": -3.6,
+   "contraceptiveUse": 21.6
+  },
+  "minimumWageEur": 60,
+  "costOfLivingIndex": 34,
+  "unemploymentRate": 3.1,
+  "internetPenetration": 41.2,
+  "femaleHeightCm": 158,
+  "femaleWeightKg": 62,
+  "femaleBmi": 25,
+  "femaleObesityRate": 20,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 54.9,
+  "maleHeightCm": 170,
+  "maleWeightKg": 74,
+  "maleBmi": 25.6,
+  "maleObesityRate": 17.6,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 54.3,
+  "obesityRate": 20,
+  "smokingRate": 8,
+  "hdi": 0.54,
+  "englishSpeakingPercent": 57,
+  "mainIndustry": "Petroleum"
+ },
+ {
+  "code": "NU",
+  "alpha2": "NU",
+  "alpha3": "NIU",
+  "numericCode": "570",
+  "name": "Niue",
+  "region": "Oceania",
+  "flag": "🇳🇺",
+  "currency": "NZD",
+  "currencySymbol": "$",
+  "exchangeRate": 1,
+  "population": 1000000,
+  "dataSource": "REST Countries & World Bank API 2024",
+  "dataYear": 2024,
+  "income": {
+   "p10": 626,
+   "p25": 725,
+   "p50": 875,
+   "p75": 1141,
+   "p90": 1474
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 638,
+    "p25": 753,
+    "p50": 925,
+    "p75": 1249,
+    "p90": 1670
+   },
+   "posttax_national": {
+    "p10": 626,
+    "p25": 725,
+    "p50": 875,
+    "p75": 1141,
+    "p90": 1474
+   },
+   "consumption": {
+    "p10": 571,
+    "p25": 589,
+    "p50": 711,
+    "p75": 869,
+    "p90": 1049
+   },
+   "wealth": {
+    "p10": 1252,
+    "p25": 5800,
+    "p50": 21875,
+    "p75": 68460,
+    "p90": 221100
+   },
+   "labor_income": {
+    "p10": 376,
+    "p25": 507,
+    "p50": 700,
+    "p75": 970,
+    "p90": 1327
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": null,
+   "childMarriagePercent": null,
+   "laborForceGap": null,
+   "contraceptiveUse": null
+  },
+  "minimumWageEur": 450,
+  "costOfLivingIndex": 38,
+  "unemploymentRate": 5.5,
+  "internetPenetration": 75,
+  "femaleHeightCm": 162,
+  "femaleWeightKg": 66,
+  "femaleBmi": 25.3,
+  "femaleObesityRate": 22,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 78.5,
+  "maleHeightCm": 174,
+  "maleWeightKg": 78,
+  "maleBmi": 25.9,
+  "maleObesityRate": 19.4,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 72.8,
+  "obesityRate": 22,
+  "smokingRate": 8,
+  "hdi": 0.57
+ },
+ {
+  "code": "NF",
+  "alpha2": "NF",
+  "alpha3": "NFK",
+  "numericCode": "574",
+  "name": "Norfolk Island",
+  "region": "Oceania",
+  "flag": "🇳🇫",
+  "currency": "AUD",
+  "currencySymbol": "$",
+  "exchangeRate": 1.62,
+  "population": 1000000,
+  "dataSource": "REST Countries & World Bank API 2024",
+  "dataYear": 2024,
+  "income": {
+   "p10": 626,
+   "p25": 725,
+   "p50": 875,
+   "p75": 1141,
+   "p90": 1474
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 638,
+    "p25": 753,
+    "p50": 925,
+    "p75": 1249,
+    "p90": 1670
+   },
+   "posttax_national": {
+    "p10": 626,
+    "p25": 725,
+    "p50": 875,
+    "p75": 1141,
+    "p90": 1474
+   },
+   "consumption": {
+    "p10": 571,
+    "p25": 589,
+    "p50": 711,
+    "p75": 869,
+    "p90": 1049
+   },
+   "wealth": {
+    "p10": 1252,
+    "p25": 5800,
+    "p50": 21875,
+    "p75": 68460,
+    "p90": 221100
+   },
+   "labor_income": {
+    "p10": 376,
+    "p25": 507,
+    "p50": 700,
+    "p75": 970,
+    "p90": 1327
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": null,
+   "childMarriagePercent": null,
+   "laborForceGap": null,
+   "contraceptiveUse": null
+  },
+  "minimumWageEur": 450,
+  "costOfLivingIndex": 38,
+  "unemploymentRate": 5.5,
+  "internetPenetration": 75,
+  "femaleHeightCm": 162,
+  "femaleWeightKg": 66,
+  "femaleBmi": 25.3,
+  "femaleObesityRate": 22,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 78.5,
+  "maleHeightCm": 174,
+  "maleWeightKg": 78,
+  "maleBmi": 25.9,
+  "maleObesityRate": 19.4,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 72.8,
+  "obesityRate": 22,
+  "smokingRate": 8,
+  "hdi": 0.57
+ },
+ {
+  "code": "KP",
+  "alpha2": "KP",
+  "alpha3": "PRK",
+  "numericCode": "408",
+  "name": "North Korea",
+  "region": "Asia",
+  "flag": "🇰🇵",
+  "currency": "KPW",
+  "currencySymbol": "₩",
+  "exchangeRate": 1,
+  "population": 26571036,
+  "dataSource": "ILO",
+  "dataYear": 2022,
+  "income": {
+   "p10": 15,
+   "p25": 30,
+   "p50": 60,
+   "p75": 110,
+   "p90": 200
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 15,
+    "p25": 31,
+    "p50": 63,
+    "p75": 119,
+    "p90": 222
+   },
+   "posttax_national": {
+    "p10": 15,
+    "p25": 30,
+    "p50": 60,
+    "p75": 110,
+    "p90": 200
+   },
+   "consumption": {
+    "p10": 14,
+    "p25": 25,
+    "p50": 49,
+    "p75": 85,
+    "p90": 144
+   },
+   "wealth": {
+    "p10": 30,
+    "p25": 240,
+    "p50": 1500,
+    "p75": 6600,
+    "p90": 30000
+   },
+   "labor_income": {
+    "p10": 9,
+    "p25": 21,
+    "p50": 48,
+    "p75": 94,
+    "p90": 180
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 0.5,
+   "childMarriagePercent": 5,
+   "laborForceGap": -9,
+   "contraceptiveUse": 70.2
+  },
+  "minimumWageEur": 30,
+  "costOfLivingIndex": 20,
+  "unemploymentRate": 3.5,
+  "internetPenetration": 30,
+  "femaleHeightCm": 154,
+  "femaleWeightKg": 52,
+  "femaleBmi": 22,
+  "femaleObesityRate": 5,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 75.9,
+  "maleHeightCm": 166,
+  "maleWeightKg": 62,
+  "maleBmi": 22.5,
+  "maleObesityRate": 4.4,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 71.6,
+  "obesityRate": 5,
+  "smokingRate": 8,
+  "hdi": 0.42,
+  "englishSpeakingPercent": 0,
+  "mainIndustry": "Manufacturing"
+ },
+ {
+  "code": "MK",
+  "alpha2": "MK",
+  "alpha3": "MKD",
+  "numericCode": "807",
+  "name": "North Macedonia",
+  "region": "Europe",
+  "flag": "🇲🇰",
+  "currency": "MKD",
+  "currencySymbol": "den",
+  "exchangeRate": 1,
+  "population": 1820909,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 130,
+   "p25": 260,
+   "p50": 500,
+   "p75": 900,
+   "p90": 1550
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 132,
+    "p25": 269,
+    "p50": 525,
+    "p75": 974,
+    "p90": 1729
+   },
+   "posttax_national": {
+    "p10": 130,
+    "p25": 260,
+    "p50": 500,
+    "p75": 900,
+    "p90": 1550
+   },
+   "consumption": {
+    "p10": 119,
+    "p25": 212,
+    "p50": 409,
+    "p75": 690,
+    "p90": 1111
+   },
+   "wealth": {
+    "p10": 260,
+    "p25": 2080,
+    "p50": 12500,
+    "p75": 54000,
+    "p90": 232500
+   },
+   "labor_income": {
+    "p10": 78,
+    "p25": 182,
+    "p50": 400,
+    "p75": 765,
+    "p90": 1395
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 12.4,
+   "childMarriagePercent": null,
+   "laborForceGap": -19.1,
+   "contraceptiveUse": 59.9
+  },
+  "minimumWageEur": 370,
+  "costOfLivingIndex": 40,
+  "unemploymentRate": 12.3,
+  "internetPenetration": 93.1,
+  "femaleHeightCm": 162,
+  "femaleWeightKg": 68,
+  "femaleBmi": 26,
+  "femaleObesityRate": 25,
+  "femaleSmokingRate": 18,
+  "femaleLifeExpectancy": 78.9,
+  "maleHeightCm": 174,
+  "maleWeightKg": 81,
+  "maleBmi": 26.7,
+  "maleObesityRate": 22,
+  "maleSmokingRate": 28,
+  "maleLifeExpectancy": 74.5,
+  "obesityRate": 25,
+  "smokingRate": 18,
+  "hdi": 0.81,
+  "englishSpeakingPercent": 74,
+  "mainIndustry": "Services"
+ }
+]

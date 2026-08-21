@@ -1,0 +1,801 @@
+{
+ "batch": "pass3_relabel_1",
+ "countries": {
+  "GA": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years [2005, 2017] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "GB": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' left unchanged: pass-1 notes independently describe the income shape as OECD-sourced ('plausible OECD-sourced', 'vs OECD/WID'), and OECD/WID both cover this country; no evidence the OECD attribution is false.",
+    "dataYear 2023 kept."
+   ]
+  },
+  "GD": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "World Bank PIP SLCHB 2018 (consumption)",
+    "dataYear": 2018
+   },
+   "notes": [
+    "repair_income_1 rebuilt income block from World Bank PIP Grenada SLCHB 2018 decile shares (consumption aggregate). Old REST-label + dataYear 2024 wrong on both counts."
+   ]
+  },
+  "GE": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2019'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "GF": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "INSEE Filosofi 2021 (Guyane)",
+    "dataYear": 2021
+   },
+   "notes": [
+    "repair_income_1 replaced template with INSEE Filosofi 2021 decile stats for Guyane (edition 2024, year 2021)."
+   ]
+  },
+  "GG": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource already honestly relabeled by earlier repair passes - no change needed."
+   ]
+  },
+  "GH": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years [1991, 1998, 2005, 2012, 2016] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "GI": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Gibraltar Stats Office Employment Survey Report 2023",
+    "dataYear": 2023
+   },
+   "notes": [
+    "repair_income_1 used Gibraltar Employment Survey Report 2023 Table 13.3 earnings distribution."
+   ]
+  },
+  "GL": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Statistics Greenland INEFI401 decile distribution (disposable income)",
+    "dataYear": 2024
+   },
+   "notes": [
+    "repair_income_1 used Statistics Greenland bank.stat.gl INEFI401 disposable-income deciles, year 2024."
+   ]
+  },
+  "GM": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years [1998, 2003, 2010, 2015, 2020] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "GN": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years [1994, 2002, 2007, 2012, 2018] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "GP": {
+   "status": "errors_found",
+   "corrections": {
+    "dataYear": 2021
+   },
+   "notes": [
+    "dataSource already honestly relabeled by earlier repair passes - no change needed.",
+    "Label names INSEE Filosofi 2021 (income reference year 2021); stored dataYear 2024 was wrong."
+   ]
+  },
+  "GQ": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years [2022] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "GR": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' left unchanged: pass-1 notes independently describe the income shape as OECD-sourced ('plausible OECD-sourced', 'vs OECD/WID'), and OECD/WID both cover this country; no evidence the OECD attribution is false.",
+    "dataYear 2023 kept."
+   ]
+  },
+  "GT": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Estimate calibrated to GDP pc PPP; WID.world carries model fill only, no source data (see verify/findings/batch_10)"
+   },
+   "notes": [
+    "wid.world API probe: post-tax national income (sptinc_p90p100_999_j) series is data-quality 0-1 in EVERY year - modeled fill, not country data. Pass-1 (batch_10) judged the block 'plausible' without a primary source, so the WID.world attribution was never justified.",
+    "dataYear 2023 kept (estimate not tied to a specific reference year)."
+   ]
+  },
+  "GU": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Derived from US anchor distribution x GDP-pc ratio (see verify/findings)"
+   },
+   "notes": [
+    "batch_10 derived GU income from USA distribution x0.46 (ACS Guam median-household cross-check). Placeholder REST label replaced.",
+    "dataYear 2024 kept: derivation anchored on the current verified anchor distribution."
+   ]
+  },
+  "GW": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years [1993, 2002, 2010, 2018, 2021] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "GY": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource already honestly relabeled by earlier repair passes - no change needed."
+   ]
+  },
+  "HK": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years [1996, 2001, 2006, 2011, 2016] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "HM": {
+   "status": "not_in_database",
+   "corrections": {},
+   "notes": [
+    "HM (Heard Island & McDonald Is) has no entry in app/data/countries-database.json - nothing to relabel."
+   ]
+  },
+  "HN": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Estimate calibrated to GDP pc PPP; WID.world carries model fill only, no source data (see verify/findings/batch_11)"
+   },
+   "notes": [
+    "wid.world API probe: post-tax national income (sptinc_p90p100_999_j) series is data-quality 0-1 in EVERY year - modeled fill, not country data. Pass-1 (batch_11) judged the block 'plausible' without a primary source, so the WID.world attribution was never justified.",
+    "dataYear 2023 kept (estimate not tied to a specific reference year)."
+   ]
+  },
+  "HR": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2023'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "HT": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource already honestly relabeled by earlier repair passes - no change needed."
+   ]
+  },
+  "HU": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' left unchanged: pass-1 notes independently describe the income shape as OECD-sourced ('plausible OECD-sourced', 'vs OECD/WID'), and OECD/WID both cover this country; no evidence the OECD attribution is false.",
+    "dataYear 2023 kept."
+   ]
+  },
+  "ID": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2018'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "IE": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' left unchanged: pass-1 notes independently describe the income shape as OECD-sourced ('plausible OECD-sourced', 'vs OECD/WID'), and OECD/WID both cover this country; no evidence the OECD attribution is false.",
+    "dataYear 2023 kept."
+   ]
+  },
+  "IL": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' left unchanged: pass-1 notes independently describe the income shape as OECD-sourced ('plausible OECD-sourced', 'vs OECD/WID'), and OECD/WID both cover this country; no evidence the OECD attribution is false.",
+    "dataYear 2023 kept."
+   ]
+  },
+  "IM": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource already honestly relabeled by earlier repair passes - no change needed."
+   ]
+  },
+  "IN": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2022'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "IO": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Derived from UK anchor distribution x GDP-pc ratio (see verify/findings)"
+   },
+   "notes": [
+    "batch_03 derived IO income from GBR distribution x1.00; no WID/World Bank data exists for BIOT.",
+    "dataYear 2024 kept: derivation anchored on the current verified anchor distribution."
+   ]
+  },
+  "IQ": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years [2007, 2011, 2012, 2013, 2024] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "IR": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2023'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "IS": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' left unchanged: pass-1 notes independently describe the income shape as OECD-sourced ('plausible OECD-sourced', 'vs OECD/WID'), and OECD/WID both cover this country; no evidence the OECD attribution is false.",
+    "dataYear 2023 kept."
+   ]
+  },
+  "IT": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' left unchanged: pass-1 notes independently describe the income shape as OECD-sourced ('plausible OECD-sourced', 'vs OECD/WID'), and OECD/WID both cover this country; no evidence the OECD attribution is false.",
+    "dataYear 2023 kept."
+   ]
+  },
+  "JE": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Derived from UK anchor distribution x median-earnings ratio (see verify/findings)"
+   },
+   "notes": [
+    "batch_13 derived Jersey income from GB entry x1.25 (Jersey median FTE earnings vs UK ASHE); explicitly noted no WID.world coverage.",
+    "dataYear 2024 kept: derivation anchored on the current verified anchor distribution."
+   ]
+  },
+  "JM": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Estimate consistent with GDP pc PPP (~USD 8-9k/yr); scalars World-Bank-verified, distribution unverified (see verify/findings/batch_13)"
+   },
+   "notes": [
+    "REST placeholder-family label; batch_13 verified WB scalars exactly and judged income percentiles plausible for a PPP-adjusted adult distribution, but recorded no primary source.",
+    "dataYear 2024 kept."
+   ]
+  },
+  "JO": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years [2006, 2008, 2010, 2011, 2013] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "JP": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' left unchanged: pass-1 notes independently describe the income shape as OECD-sourced ('plausible OECD-sourced', 'vs OECD/WID'), and OECD/WID both cover this country; no evidence the OECD attribution is false.",
+    "dataYear 2023 kept."
+   ]
+  },
+  "KE": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years [2005, 2015, 2020, 2021, 2022] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "KG": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2019'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "KH": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2014'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "KI": {
+   "status": "errors_found",
+   "corrections": {
+    "dataYear": 2023
+   },
+   "notes": [
+    "dataSource already honestly relabeled by earlier repair passes - no change needed.",
+    "Label names World Bank PIP Kiribati HIES 2023; repair_income_2 states 'current data, no level-update needed', so reference year is 2023, not 2024."
+   ]
+  },
+  "KM": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years [2004, 2014] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "KN": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Estimate calibrated to regional GDP pc PPP; provenance unverified (placeholder-source entry; see verify/findings/batch_22)"
+   },
+   "notes": [
+    "batch_22 corrected HDI/min-wage/health but recorded no income-block provenance; REST label was fabricated regardless."
+   ]
+  },
+  "KP": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Estimate vs GDP pc PPP; DPRK absent from WID.world and World Bank PIP - no verifiable distribution source (see verify/findings/batch_19)"
+   },
+   "notes": [
+    "wid.world API probe: sptinc series for KP is pure model fill (data-quality 0 in every year). ILO publishes no income distribution. batch_19 reached the same conclusion."
+   ]
+  },
+  "KR": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' left unchanged: pass-1 notes independently describe the income shape as OECD-sourced ('plausible OECD-sourced', 'vs OECD/WID'), and OECD/WID both cover this country; no evidence the OECD attribution is false.",
+    "dataYear 2023 kept."
+   ]
+  },
+  "KW": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years [2007, 2013, 2014] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "KY": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Estimate calibrated to GDP pc PPP, cross-checked against Cayman Islands household income statistics (see verify/findings/batch_04)"
+   },
+   "notes": [
+    "REST placeholder-family label; batch_04 found distribution plausible vs Cayman household income statistics but sourced no primary series. dataYear 2024 kept."
+   ]
+  },
+  "KZ": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2018'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "LA": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2018'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "LB": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2013'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "LC": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Estimate calibrated to regional GDP pc PPP (upper-middle-income island); see verify/findings/batch_22"
+   },
+   "notes": [
+    "REST placeholder-family label; batch_22 found income.p50 1004/mo plausible, no primary source recorded."
+   ]
+  },
+  "LI": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Estimate calibrated to GDP pc PPP; WID.world carries model fill only, no source data (see verify/findings/batch_15)"
+   },
+   "notes": [
+    "wid.world API probe: post-tax national income (sptinc_p90p100_999_j) series is data-quality 0-1 in EVERY year - modeled fill, not country data. Pass-1 (batch_15) judged the block 'plausible' without a primary source, so the WID.world attribution was never justified.",
+    "dataYear 2023 kept (estimate not tied to a specific reference year)."
+   ]
+  },
+  "LK": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2016'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "LR": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years [2007, 2014, 2016] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "LS": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years [1986, 1994, 2002, 2017] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "LT": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' left unchanged: pass-1 notes independently describe the income shape as OECD-sourced ('plausible OECD-sourced', 'vs OECD/WID'), and OECD/WID both cover this country; no evidence the OECD attribution is false.",
+    "dataYear 2023 kept."
+   ]
+  },
+  "LU": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' left unchanged: pass-1 notes independently describe the income shape as OECD-sourced ('plausible OECD-sourced', 'vs OECD/WID'), and OECD/WID both cover this country; no evidence the OECD attribution is false.",
+    "dataYear 2023 kept."
+   ]
+  },
+  "LV": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' left unchanged: pass-1 notes independently describe the income shape as OECD-sourced ('plausible OECD-sourced', 'vs OECD/WID'), and OECD/WID both cover this country; no evidence the OECD attribution is false.",
+    "dataYear 2023 kept."
+   ]
+  },
+  "LY": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Estimate vs GDP pc PPP; no WID.world source data (model fill only) (see verify/findings/batch_15)"
+   },
+   "notes": [
+    "wid.world API probe: Libya sptinc series is data-quality 0 in all 45 years - pure model fill. ILO publishes no distribution."
+   ]
+  },
+  "MA": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years [2013] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "MC": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Estimate calibrated to GDP pc PPP; WID.world carries model fill only, no source data (see verify/findings/batch_17)"
+   },
+   "notes": [
+    "wid.world API probe: post-tax national income (sptinc_p90p100_999_j) series is data-quality 0-1 in EVERY year - modeled fill, not country data. Pass-1 (batch_17) judged the block 'plausible' without a primary source, so the WID.world attribution was never justified.",
+    "dataYear 2023 kept (estimate not tied to a specific reference year)."
+   ]
+  },
+  "MD": {
+   "status": "errors_found",
+   "corrections": {
+    "dataYear": 2023
+   },
+   "notes": [
+    "dataSource already honestly relabeled by earlier repair passes - no change needed.",
+    "Label names World Bank PIP Moldova HBS 2023; repair_income_3 states 'no level update needed (survey is 2023)', so reference year is 2023, not 2024."
+   ]
+  },
+  "ME": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Estimate calibrated to GDP pc PPP; WID.world carries model fill only, no source data (see verify/findings/batch_17)"
+   },
+   "notes": [
+    "wid.world API probe: post-tax national income (sptinc_p90p100_999_j) series is data-quality 0-1 in EVERY year - modeled fill, not country data. Pass-1 (batch_17) judged the block 'plausible' without a primary source, so the WID.world attribution was never justified.",
+    "dataYear 2023 kept (estimate not tied to a specific reference year)."
+   ]
+  },
+  "MH": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Estimate consistent with GDP pc PPP; scalars World-Bank-verified, distribution unverified (see verify/findings/batch_16)"
+   },
+   "notes": [
+    "batch_16 confirmed non-placeholder scalars but found no distribution source; REST label was fabricated regardless."
+   ]
+  },
+  "MK": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Estimate calibrated to GDP pc PPP; WID.world carries model fill only, no source data (see verify/findings/batch_19)"
+   },
+   "notes": [
+    "wid.world API probe: post-tax national income (sptinc_p90p100_999_j) series is data-quality 0-1 in EVERY year - modeled fill, not country data. Pass-1 (batch_19) judged the block 'plausible' without a primary source, so the WID.world attribution was never justified.",
+    "dataYear 2023 kept (estimate not tied to a specific reference year)."
+   ]
+  },
+  "ML": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2021'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "MM": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Estimate vs GDP pc PPP; distribution block provenance unverified (see verify/findings/batch_18)"
+   },
+   "notes": [
+    "Myanmar has some genuine WID coverage (dq>=3 years exist) but the ILO-labeled block was never tied to it; kept as honest estimate label rather than asserting WID attribution."
+   ]
+  },
+  "MN": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2018'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "MO": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Estimate consistent with Macau GDP-per-adult levels (casino-rent-heavy capital income); see verify/findings/batch_15"
+   },
+   "notes": [
+    "batch_15: placeholder source string on an otherwise-real-looking entry; distribution kept as plausible, never sourced."
+   ]
+  },
+  "MP": {
+   "status": "errors_found",
+   "corrections": {
+    "dataYear": 2019
+   },
+   "notes": [
+    "dataSource already honestly relabeled by earlier repair passes - no change needed.",
+    "Label names 2020 Island Areas Census; income question refers to income year 2019 (census.gov CB24-CN.06), so reference year set to 2019."
+   ]
+  },
+  "MQ": {
+   "status": "errors_found",
+   "corrections": {
+    "dataYear": 2021
+   },
+   "notes": [
+    "dataSource already honestly relabeled by earlier repair passes - no change needed.",
+    "Label names INSEE Filosofi 2021 (DEP-972); stored dataYear 2024 wrong - repair_income_3 used Filosofi mill\u00e9sime 2021 (2022 cancelled for quality reasons)."
+   ]
+  },
+  "MR": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2019'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "MS": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Derived from US anchor distribution x GDP-pc ratio (Caribbean small-island calibration; see verify/findings)"
+   },
+   "notes": [
+    "batch_17 derived Montserrat percentiles from real GDP pc with Caribbean PPP uplift; 'no WID distribution exists for Montserrat'.",
+    "dataYear 2024 kept: derivation anchored on the current verified anchor distribution."
+   ]
+  },
+  "MT": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2023'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "MU": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2017'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "MV": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years [2002, 2009, 2016] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "MW": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2019'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "MX": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2022'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "MY": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2022'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "MZ": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2022'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "NA": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years [1993, 2003, 2009, 2015] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "NC": {
+   "status": "errors_found",
+   "corrections": {
+    "dataYear": 2019
+   },
+   "notes": [
+    "dataSource already honestly relabeled by earlier repair passes - no change needed.",
+    "Label names ISEE Enqu\u00eate Budget des familles 2019-2020; income reference year taken as 2019 (first survey year). Flag if repo convention prefers the later fieldwork year."
+   ]
+  },
+  "NE": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2021'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "NF": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Derived from UK anchor distribution x GDP-pc ratio (ABS median-household-income calibration; see verify/findings)"
+   },
+   "notes": [
+    "null_repair derived NF income from GB distribution x0.75, ratio set from ABS 2016 Census median household income.",
+    "dataYear 2024 kept: derivation anchored on the current verified anchor distribution."
+   ]
+  },
+  "NG": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years ['..2022'] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "NI": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Estimate calibrated to GDP pc PPP; WID.world carries model fill only, no source data (see verify/findings/batch_19)"
+   },
+   "notes": [
+    "wid.world API probe: post-tax national income (sptinc_p90p100_999_j) series is data-quality 0-1 in EVERY year - modeled fill, not country data. Pass-1 (batch_19) judged the block 'plausible' without a primary source, so the WID.world attribution was never justified.",
+    "dataYear 2023 kept (estimate not tied to a specific reference year)."
+   ]
+  },
+  "NL": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' left unchanged: pass-1 notes independently describe the income shape as OECD-sourced ('plausible OECD-sourced', 'vs OECD/WID'), and OECD/WID both cover this country; no evidence the OECD attribution is false.",
+    "dataYear 2023 kept."
+   ]
+  },
+  "NO": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' left unchanged: pass-1 notes independently describe the income shape as OECD-sourced ('plausible OECD-sourced', 'vs OECD/WID'), and OECD/WID both cover this country; no evidence the OECD attribution is false.",
+    "dataYear 2023 kept."
+   ]
+  },
+  "NP": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'WID.world' VERIFIED GENUINE: wid.world API countries-variables probe shows sptinc (post-tax national income) series with source-backed observations (data quality >=3) in years [1984, 1995, 2003, 2010] - real country data, not model fill. Label kept.",
+    "dataYear 2023 kept (existing income block verified against that year in earlier passes)."
+   ]
+  },
+  "NR": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Estimate consistent with GDP pc PPP (~USD 12-14k/yr); unverifiable-but-plausible (see verify/findings/batch_18)"
+   },
+   "notes": [
+    "batch_18 checked Nauru field-by-field: p50=497 lacks placeholder signature, consistent with GDP pc PPP; no primary source exists."
+   ]
+  },
+  "NU": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Derived from NZ anchor distribution x GDP-pc ratio (see verify/findings)"
+   },
+   "notes": [
+    "null_repair derived NU income from NZ verified distribution x0.2; Niue absent from WID.world, WB microdata, Numbeo, ITU, UNDP.",
+    "dataYear 2024 kept: derivation anchored on the current verified anchor distribution."
+   ]
+  },
+  "NZ": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "dataSource 'OECD' left unchanged: pass-1 notes independently describe the income shape as OECD-sourced ('plausible OECD-sourced', 'vs OECD/WID'), and OECD/WID both cover this country; no evidence the OECD attribution is false.",
+    "dataYear 2023 kept."
+   ]
+  }
+ }
+}

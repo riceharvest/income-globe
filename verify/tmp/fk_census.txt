@@ -1,0 +1,1848 @@
+Falkland Islands Government
+Directorate of Policy, Economy & Corporate Services
+Introduction
+
+The 25th census of the Falkland Islands population took place on the night of Sunday 10 October 2021, in accordance with the Statistics Ordinance 2010. This report is the
+second of two publications on the results of the 2021 census. The first was published in October 2022 and provided a summary of the headline results; this second report
+provides further details of the findings and presents the results across several key themes.
+
+The 2021 census was the third time people were given the option to complete their census form online, and 52 per cent of households chose to complete their returns on
+the eCensus platform. These new census data, together with the information from previous census years, provide valuable information on households, employment,
+national identity, education and skills, and health-related topics for the Falkland Islands population. The findings will be used to identify population needs and areas for
+development, and will inform Government’s strategic decision-making and service planning for social and economic development in the Islands.
+
+It’s important to remember that the census is simply a snapshot in time of the people living in the Falkland Islands – as with any small nation, even minor changes within
+the population can have an outsized impact on the overall picture – and this should be taken into account when making inferences and reporting results.
+
+The convention for reporting census data is to refer to the ‘usually resident and present on census night’ population i.e. all individuals counted at the time of the census
+who normally live in the Islands. However, the findings in this report may refer to the ‘usually resident’ population i.e. those who normally live in the Islands but who were
+overseas at the time of the census. This will be highlighted in the report where relevant.
+
+Throughout this report, the results presented relate to the population living in Stanley and Camp who were present on census night. As the civilian population living at MPC
+is a largely self-contained subpopulation, they are generally not included in this analysis unless otherwise stated. However, all of the information collated for those based at
+MPC is included in the census data tables.
+
+The headline results publication and this report on the 2021 census are freely available for viewing or download on the FIG Policy Department website. Additional data
+tables not included in this report for size and space reasons are also available online.
+
+For further information or if you have any data requests in relation to the 2021 census, please contact:
+
+Maeve Daly-Llamosa,
+Head of Policy
+Directorate of Policy, Economy & Corporate Services
+Email: mdaly-llamosa@sec.gov.fk
+Web: www.falklands.gov.fk/policy
+Contents
+
+Population change and historical perspective ..................................................................................................................................................................... 1
+     Counting people on census night.................................................................................................................................................................................................... 1
+     Population change .......................................................................................................................................................................................................................... 3
+     Historic population trends .............................................................................................................................................................................................................. 3
+     Drivers of population growth ......................................................................................................................................................................................................... 4
+     Population by location.................................................................................................................................................................................................................... 5
+Resident and present population: age and sex distribution ................................................................................................................................................. 6
+     Age and sex composition ................................................................................................................................................................................................................ 6
+     Average age.................................................................................................................................................................................................................................... 7
+     Age structure by immigration category ......................................................................................................................................................................................... 7
+     Dependency ratio ........................................................................................................................................................................................................................... 8
+Usually resident population: population diversity ............................................................................................................................................................... 9
+     Place of birth .................................................................................................................................................................................................................................. 9
+     National identity ...........................................................................................................................................................................................................................11
+     Population by residency status .....................................................................................................................................................................................................12
+Resident and present population: Housing and households ............................................................................................................................................... 13
+     Household types ...........................................................................................................................................................................................................................13
+     Property size: number of bedrooms .............................................................................................................................................................................................13
+     Household composition ................................................................................................................................................................................................................13
+     Housing types ...............................................................................................................................................................................................................................14
+     Housing tenure .............................................................................................................................................................................................................................14
+     Mortgage and rent costs ..............................................................................................................................................................................................................15
+Usually resident population: employment and income ...................................................................................................................................................... 17
+     Employment levels........................................................................................................................................................................................................................17
+     Growth in the labour force ...........................................................................................................................................................................................................17
+     Labour force participation ............................................................................................................................................................................................................18
+     Primary sector of employment .....................................................................................................................................................................................................19
+     Employees and self-employed workers ........................................................................................................................................................................................20
+     Multiple employments..................................................................................................................................................................................................................21
+     Income from employment ............................................................................................................................................................................................................21
+     Income for all individuals..............................................................................................................................................................................................................23
+     Household income ........................................................................................................................................................................................................................24
+Resident and present population: Health and lifestyle characteristics ................................................................................................................................ 25
+     Self-rated health ...........................................................................................................................................................................................................................25
+     Life satisfaction.............................................................................................................................................................................................................................25
+     Tobacco consumption...................................................................................................................................................................................................................26
+     Consumption of alcohol ................................................................................................................................................................................................................27
+List of tables .................................................................................................................................................................................................................... 30
+Population change and historical perspective
+
+Counting people on census night
+The total number of people counted in the Falkland Islands on census night was 3,541. This figure includes visitors to the Islands and people who are not normally resident
+in the country, for example tourists or crew on vessels in Falklands waters on census night. Table 1 below shows the breakdown of people counted across the Islands. The
+number of people that usually live in the Islands but who were overseas at the time of the census was calculated to be approximately 520 persons, and if this is added to
+the usually resident and present figure it gives a total estimated population count of 3,662. However, when reporting census data, the convention is to report the usually
+resident population present on the night of census. Thus, all of the figures reported here will relate to the usually resident and present population of 3,142 unless otherwise
+specified.
+
+Table 1: Population counts in Census 2021                                                                                                        Key terms
+                                                                                                      Marine                 Usual residents are defined as persons who have
+On Census night:                                         Stanley    East    West Islands      MPC                Total
+                                                                                                      Vessels                lived in, or intend to stay in, the Falkland Islands
+a. Persons present in the Islands                         2,848     172       123      45      347          6    3,541       for 12 months or more, or; persons who have a
+                                                                                                                             permanent address in the Islands but who are
+b. Non-resident visitors                                    310      23        28       9        23         6      399
+                                                                                                                             overseas and intend to be for less than 12 months.
+c. Usually resident and present population (a minus b)    2,538     149        95      36      324          -    3,142
+                                                                                                                             Non-residents are persons who at the time of the
+d. Usually resident and absent                              436      32        34       8        10         -      520       census intend to stay in the Falkland Islands for
+e. Total usually resident population (c plus d)           2,974     181       129      44      334          -    3,662       less than 3 months, and are usually resident
+                                                                                                                             outside the Falklands.
+
+
+
+                                                         Census population comparisons: 2016 versus 2021
+
+               Table 2: Usually resident and present population                                   Table 3: Usually resident population, including those absent
+                                      2016        2021 Change         %
+             Stanley                  2,460       2,538    78        3%
+             East Falkland              190         149   -41      -22%
+             West Falkland              151          95   -56      -37%
+             Outer islands               40          36    -4      -10%
+             MPC                        359         324   -35      -10%
+             Total                    3,200       3,142   -58       -2%
+
+                                                                                                                                                                                 1
+Figure 1: Usually resident and present population on census night: changes since 2012
+
+                                        Outer islands                 East Falkland
+                                             2012: 22                      2012: 202
+                                             2016: 40                      2016: 190
+                                             2021: 36                      2021: 149
+
+
+  West Falkland
+      2012: 127
+      2016: 151
+      2021: 95
+
+
+
+
+                                                                                       Stanley
+                                                                                       2012: 2,120
+                                                                                       2016: 2,460
+                                                                                       2021: 2,538
+
+ The total usually resident and present population              MPC
+   of the Falkland Islands decreased by 1.9 per                2012: 369
+       cent, from 3,200 people in 2016,                        2016: 359
+                                                               2021: 324
+           to 3,142 people in 2021                                                                   2
+Population change
+The 2021 census shows that the Falkland Islands usually resident population increased by an estimated 264 people over the four years since the previous census in October
+2016, reaching 3,662 persons in October 2021. This represents a total increase of 7.8 per cent over the five years, or an average annual growth rate of 1.2%. For
+comparison, an average annual population growth rate of 0.5% was reported for the UK, over the 10 years from 2011 to 2021. If the civilian population of 359 people
+based at MPC is not taken into account, the usually resident population across the rest of the Islands has increased by 296 persons, or 9.8 per cent, from 3,032 in 2016 to
+3,328 in 2021.
+
+Historic population trends
+The population of the Falkland Islands has increased by approximately 1,700 persons over the last 50 years, rising from 1,957 in 1971 to 3,662 in 2021. The population from
+each census is presented in Table 4 alongside the population change from period to period. As can be seen, the population declined throughout the 1950s up to the 1980s,
+particularly in the 1970s, before beginning to increase in the late 1980s. This growth largely continued to the present day, with almost 1,800 added to the population
+between 1986 and 2021.The 1996 census saw the largest single increase in the population over the preceding 60 years, with 514 more persons than in the 1991 census; an
+increase of 25 per cent. However, 1996 marked the first time that civilian residents at MPC were counted in the usual resident population and the 483 individuals based
+there in 1996 accounted for 94 per cent of the population increase in that year.
+
+                                                                           Figure 2: Usually resident and present population on census night: changes over time
+     Table 4: Usually resident population 1953-2021
+     Census year     Population Change               %
+     1953*                 2,230         -9      -0.4%
+     1962*                 2,172        -58      -2.6%
+     1972*                 1,957       -215      -9.9%
+     1980*                 1,813       -144      -7.4%
+     1986                  1,916        103       5.7%
+     1991                  2,169        253     13.2%
+     1996                  2,704        535     24.7%
+     2001                  3,025        321     11.9%
+     2006                  3,039         14       0.5%
+     2012                  2,931       -108      -3.6%
+     2016                  3,398        467     15.9%
+     2021                  3,662        264       7.8%
+    * Not know how many usual residents were absent at census.
+      Note: Civilian personnel and their families based at MPC are
+      included in census counts from 1996 onwards.
+
+
+
+
+                                                                                                                                                                          3
+Drivers of population growth
+Population change is driven by three factors; births, deaths and net migration. The Falkland Islands population                                  Key terms
+has grown through a combination of natural increase, declining outward migration and increased inward                     Natural increase is the total number of births less
+migration, resulting in the current usually resident population being over double the size it was in 1980.                the total number of deaths.
+                                                                                                                          Net migration is immigration less emigration.
+
+The estimated net migration is derived by subtracting the natural increase from the total population change for a given period. Table 5 below shows the estimated net
+migration for each of the intercensal periods from 1972 to 2021, using the recorded natural increases and census population changes for each period.
+
+Table 5: Components of population change 1980-2021                                                      Figure 3: Total population and intercensal change 1953-2021
+                                               Natural Change in        Estimated net                                                Intercensal population change
+     Period             Births       Deaths
+                                              increase population           migration
+  1972 - 1980             292           156        136           -144             -280
+  1981 - 1986             140           143         -3            103              106
+  1987 - 1991             110           117         -7            175              182
+  1992 - 1996             123           117          6            473              467
+  1997 - 2001             144            74         70            349              279
+  2002 - 2006             153            95         58             42              -16
+  2007 - 2012             169           100         69           -114             -183
+  2013 - 2016             100            76         24            359              335
+  2017 - 2021             110           111         -1            264              265
+
+Over the last five years, the natural increase in the Falklands population was a mere -1, accounted for by 110 births and 111 deaths between 2017 and 2021. This represents
+a substantial fall compared to the natural increase figure for the previous intercensal period, and is a continuation of the downward trend observed since the mid-1990s
+when higher birth rates resulted in relatively larger natural increases.
+
+As Table 5 and Figure 4 show, the net migration for this census period was positive, but 20 per cent lower than recorded in the previous period; reflecting the unusually low
+natural population increase between 2017 and 2021. Net migration has the greatest impact on population growth worldwide and accounts for up to two thirds of
+population growth, despite temporal fluctuations in response to the pandemic and country-specific immigration policy changes.
+
+In the Falkland Islands this proportion is much larger, accounting for approximately three quarters of total demographic change since the 1980s. Thus, net migration is
+certainly the most influential driver of population growth in the Falklands and is the only determinant of long-term change; particularly if fertility rates continue to fall
+below replacement levels. Without net immigration or a significant increase in fertility rates, the Falklands population would remain essentially stable, and would be
+expected to decrease, over a longer time frame.
+                                                                                                                                                                                4
+                                                          Figure 4: Change in population components, 1972-2021
+
+
+
+
+Population by location
+While the population of the Falkland Islands grew overall between 2016 and 2021, growth was not evenly distributed across all locations. Indeed growth was seen only in
+Stanley, with 340 more people recorded than in 2016, and the capital now accounts for 81 per cent of the population; 89 per cent if MPC is not factored in. It is important
+to remember, however, that the census is a snapshot in time and that at other times of the year, people may live in a household elsewhere in the Islands; this is particularly
+important when considering population figures and changes over time for Camp households.
+
+
+
+
+                                                                                                                                                                             5
+Resident and present population: age and sex distribution
+
+Table 6: Proportion of males and females by location 2016 and 2021                  Age and sex composition
+                                    2016                           2021             With 1,645 males and 1,497 females (1,437 males and 1,381
+  Location                                                                          females excluding MPC); there were 148 more males than
+                             Female         Male           Female         Male
+                                                                                    females in the Islands, resulting in an overall sex ratio of 110
+  Stanley                     49%           51%             49%           51%       males to 100 females (104:100 in Stanley, 102:100 in Camp).
+                                                                                     For comparison, the ratio in 2016 was 112 males to 100 females
+  Camp                        51%           49%             49%           51%       (105:100 in Stanley, 97:100 in Camp).
+  MPC                         34%           66%             36%           64%
+                                                                                    The number of males and females by 5-year age category is
+  Total                       47%           53%             48%           52%       represented in the population pyramid in Figure 5. This is a
+                                                                                    useful way to see at a glance the structure of the population in
+Figure 5: Population by 5-year age category and sex, 2021                           terms of age and sex. It is apparent that the population is
+                                                                                    concentrated around the centre of the pyramid, indicating that
+                                                                                    the majority of the population, 72 per cent, lies in the working-
+                                                                                    age range of 15-64 years. Young people aged 0 to 14 years
+                                                                                    comprise 16 per cent of the population and older people aged 65
+                                                                                    years and over make up the remaining 12 per cent.
+
+
+
+                                                                                 Population breakdown by age cohort and residency status, 2016 and 2021
+
+                                                                                 Young people (0 to 14 years)
+                                                                                 2021: 16% (Permanent population: 18%, Temporary population: 12%)
+                                                                                 2016: 18% (Permanent population: 20%, Temporary population: 16%)
+
+                                                                                 Working age people (15-64 years)
+                                                                                 2021: 72% (Permanent population: 66%, Temporary population: 87%)
+                                                                                 2016: 71% (Permanent population: 64%, Temporary population: 82%)
+
+                                                                                 Older people (65 years and over)
+                                                                                 2021: 12% (Permanent population: 16%, Temporary population: 1%)
+                                                                                 2016: 11% (Permanent population: 15%, Temporary population: 2%)
+
+
+                                                                                                                                                        6
+Average age
+The average age of the population is 40.1 years median 41) an increase on the 2016 average of 38.3        Table 7: Mean age by location, 2012-2016
+years. This shift upwards brings the Falklands population in line with trends in other developed          Location                         2012       2016        2021
+countries such as the UK (median 40 years), but still compares favourably with the EU average             Total area                       38.1       38.3        40.1
+(median 44.4 years). When age is looked at in terms of location (Table 7) the distribution varies, with   Stanley                          37.3       37.4        39.1
+a tendency towards an older population in Camp, particularly in East Falkland and the outer islands.      East Falkland                    41.5       42.5        49.4
+Compared to 2016, the greatest changes were in East and West Falkland where the average age               West Falkland                    41.6       39.5        45.7
+increased by 6.9 and 6.2 years respectively on average. However, immigration also has a significant
+                                                                                                          Outer islands                    49.2       48.8        48.9
+impact on the age structure of the population.
+                                                                                                          MPC                              38.9       40.0        41.1
+Age structure by immigration category
+Figure 6 below shows the effect that temporary immigration categories such as Work Permit holders and their dependants have on the overall structure of the
+population. The working-age population, the centre of each pyramid, is bolstered by the addition of Work Permit holders and other temporary immigration categories,
+increasing it by 58.7 per cent in 2016 and by 58.5 per cent in 2021. The addition of a younger cohort of people to the population has the effect of reducing the average
+age overall; although the permanent population is getting older the aging trend is offset by the addition of younger workers and their families.
+
+Figure 6: Population by 5-year age category, immigration category and sex, 2016 and 2021
+
+
+
+
+                                                                                                                                                                           7
+Dependency ratio
+Note that the civilian population based at MPC are excluded from this analysis. Age dependency
+                                                                                                        Table 8: Dependency ratios, 2012-2016-2021
+ratios can be used to assess the level of support given to younger and older persons by the
+working-age population, and are expressed in terms of the relative size of the younger and older        Dependency ratio         2012       2016         2021    % change
+populations compared those of working-age. Table 8 shows the changes in the young and old age
+                                                                                                        Young                   26.8%      28.2%        24.8%          1.4
+dependency ratios since 2012. The total dependency ratio, the ratio of young and old age to the
+working population, decreased from 45.9 per cent in 2016 to 43.6 per cent in 2021 and indicates         Old age                 17.5%      17.7%        18.8%          0.2
+that there are 2.3 working-age people for every dependent person. Lower values for this ratio           Total                   44.3%      45.9%       43.6%           1.6
+reflect a more positive population structure in terms of dependency, and the ratio compares
+favourably with the UK rate of 57.8 per cent.
+
+Table 9: Age and dependency ratios for permanent and temporary populations, 2015 and 2021
+                                2016                                 2021                          Additional persons in the working age population as a result of immigration
+                                                                                                   had a positive impact on the dependency ratios. In 2016 the total ratio for
+                 Permanent Temporary                  Permanent     Temporary
+                                              Total                                 Total          permanent residents was 54.8 per cent, which decreased to 52.0 per cent in
+                  (n=2,205)  (n=630)                   (n=2,178)      (n=964)
+                                                                                                   2021 as a result of a greater increase in the number of dependants than in
+Mean age                39.6         36.2      38.5         41.2            37.7    40.1           those aged 15-64 years. The impact of having 534 working-age persons with
+                                                                                                   temporary immigration status in the local population reduces the overall
+Median age              41.5         37.3      39.6         43.0            39.0    41.0
+                                                                                                   dependency ratio by 8.4 per cent.
+Dependency ratio        55%          22%       46%           52%            15%      21%
+
+
+
+Figure 7: Comparison of age dependency ratio for different countries or regions, 2012 to 2021
+
+
+
+                                                                                                                             Low-income countries: 82.6% (2021)
+
+                                                                                                                              United Kingdom: 57.8% (2021)
+                                                                                                                              EU: 54.3% (2021)
+                                                                                                                              High-income countries: 54.1% (2021)
+                                                                                                                              Falkland Islands: 43.6% (2021)
+
+
+
+                                                                                                                                                                             8
+Usually resident population: population diversity
+
+Place of birth
+                                                                                                     Table 10: Country of birth of usual residents, 2012-2021
+The number of usual residents born in the Falkland Islands was 1,530 or 44.6 per cent of the
+population; an increase in absolute numbers, but representing an approximate 2 per cent                                                                                       Change
+                                                                                                     Country of birth              2012           2016          2021
+fall in the population proportion of Falkland Islands-born compared to 2016. At the time of                                                                               2016 v 2021
+the census, 1,898 individuals stated they were born elsewhere; an increase of 75 people or           Falkland Islands              1,339         1,371         1,530                159
+4.1 per cent on 2016.                                                                                Total Foreign-born            1,501         1,823         1,898                 75
+                                                                                                          UK                         798           878            749              -129
+Table 10 shows a summary of the recorded countries of birth and the changes since 2012. A
+total of 71 different countries or territories of birth were accounted for in 2021, 11 more               Saint Helena               295           315            369                54
+than was reported in 2016; an astonishing indication of just how multicultural our Islands are.           Philippines                 22             63           178               115
+                                                                                                          Chile                      181           199            168               -31
+As in previous census years, the predominant foreign countries of birth are still the UK and
+Saint Helena. The largest foreign-born group is from the UK at 21.8 per cent of the                       Other                      205           368            434                66
+population, followed by Saint Helena at almost 11 per cent and the Philippines at                    Not known*                      227           431            234                30
+approximately 5 per cent. The Falkland Islands and the UK combined represent 66.5 per
+                                                                                                   *Country of birth not known for some usual residents overseas at the time of the census
+cent of the population’s birth countries.
+
+In total, 130 individuals were born outside the Falkland Islands for medical reasons and arrived in the Islands within 6 months of birth; with 85 per cent of those births
+occurring in the UK. For the purposes of the census, these individuals are considered Falkland Islands-born.
+
+                                                                    Figure 8: Changes in the size of foreign-born population groups relative to 2016
+Between 2016 and 2021, the population groups that showed
+the largest absolute increases were the Philippines, St Helena
+and South Africa, reflecting the dynamics of specific
+employment sectors in the Islands.
+
+In contrast, the UK, Chile and Zimbabwe were the groups
+with the largest absolute decreases compared to 2016.
+
+Figure 8 to the right shows the changes in the number of
+people born overseas since 2016, for the countries with an
+absolute difference greater than 10.
+
+                                                                                                                                                                                       9
+  Figure 9: Population of top five reported citizenships of usual residents by census year, 1986-2021
+         1986                      1991                     1996                     2001                     2006                      2012                     2016                     2021
+
+
+
+
+ British: 1,804           British: 1,989           British: 2,245            British: 2,350           British: 2,698           British: 2,341           British: 2,320            British: 2,281
+
+
+
+
+ New Zealand: 21          Chile: 23                British Overseas          British Overseas         Chile: 104               British Overseas         British Overseas          British Overseas
+                                                   Territory: 265            Territory: 443                                    Territory: 247           Territory: 459            Territory: 479
+
+
+
+
+ Chile: 16                Japan: 17                Chile: 20                 Chile: 39                Australia: 38            Chile: 136               Chile: 148                Philippines: 161
+
+
+
+
+ USA: 14                  New Zealand: 15          New Zealand: 14           Australia: 35            British Overseas         Philippines: 15          Zimbabwe: 72              Chile: 133
+                                                                                                      Territory: 29*
+
+
+
+
+ Uruguay: 6               USA: 13                  Ireland: 7                New Zealand: 18          New Zealand: 19          New Zealand: 13          Philippines: 53           South Africa: 58
+
+*It’s likely that this sharp decline in in 2006 compared to previous census is due to people being categorised as British generally, as opposed to British Overseas Territory citizens more specifically.
+                                                                                                                                                                                                   10
+National identity
+National identity is more of a subjective measure as while it’s linked to both country of birth and citizenship; it is instead an indicator of the culture, traditions and language
+people most identify with. This may be a single cultural identity or can reflect the influences of two or more cultures combined. Approximately 54 per cent of the usually
+resident population identified as Falkland Islanders or a combination of Falkland Islander and another culture, with a further 22 per cent as being British or a combination of
+British and another culture. In total, approximately 76 per cent of people stated they embody a Falkland Islands identity; a British identity, or a combination of both. The
+next largest groups were Saint Helenian at 8 per cent, followed by Filipino at 5 per cent.
+
+Figure 10 shows the absolute changes over time for the ten largest groups. While it appears that the number of people claiming a Falkland Islands or British identity has
+fallen since 2016, it’s important to bear in mind that a person’s sense of their national identity and the relative importance of their cultural background or heritage may
+change over time. Over the same period, the number of people claiming a combined ‘Falkland Islands/British’ or a ‘Falkland Islands/other’ identity increased; offsetting
+much of decrease mentioned above.
+
+Of those who consider themselves Falkland Islanders, 78 per cent were born in the Islands; 16 per cent were born in the UK; and the remaining 5 per cent were born in one
+of 31 different countries.
+
+
+                                Figure 10: Number of people claiming specific national identities and changes since 2016
+
+
+
+
+                                                                                                          Absolute change in values since 2016
+
+
+
+
+                                                                                                                                                                                11
+Population by residency status
+Overall, Falkland Islanders/Status Holders comprise 61 per               Table 11: Population by immigration category and proportion by location, 2021
+cent of the population, followed by Work Permit (WP)                                                                              Stanley                    Camp              MPC
+holders at 23 per cent; Permanent Residence Permit (PRP)                 Immigration category                     Total
+                                                                                                                                Count          %           Count        %     Count    %
+holders at 10 per cent. Table 11 shows the population                    Falkland Islander/Status Holder          2,089         1,800        86.2            286      13.7        3   0.1
+breakdown by immigration category and the proportion of
+                                                                         Permanent Residence Permit                 331            311       94.0              15       4.5      5    1.5
+each category across broad locations in the Islands.
+                                                                         Residence Permit                            49             49      100.0               0       0.0      0    0.0
+Falkland Islander/Status Holders make up 65 per cent of
+the population in Stanley and 87 per cent within Camp,                   Work Permit                                770            456       59.2              27       3.5    287 37.3
+whereas WP holders and their dependants make up 19 per                   Dependent Permit                            75             71       94.7               0       0.0      4    5.3
+cent in Stanley and 8 per cent of the Camp population.                   Accompanying Dependent Permit               66             64       97.0               0       0.0      2    3.0
+                                                                         Visitor's Permit                              6              4      66.7               2     33.3       0    0.0
+                                                                         Exempt                                      42             11       26.2               0       0.0     31 73.8
+                                                                          Note: Immigration category not known for some usual residents overseas at the time of the census
+
+As in 2016, the largest concentration of WP holders is in Stanley and not MPC. This contrasts with 2012 and earlier census years, due to the combination of an increase in
+the number of people recruited to Stanley and a continued reduction in the population based at MPC. Although the system of permits has changed since 2016, comparisons
+can still be made across the ‘main’ permit categories1.
+
+
+    Table 12: Period of residency in the Islands by immigration category, 2021
+                                                               Years resident in the Falkland Islands        In absolute terms, increases were recorded across all of the main categories
+                                              TOTAL              <3         3-5        6 - 10          >10   with the exception of Residence Permit. Overall, the largest increase was
+    Falkland Islander/Status Holder             2089             78          98          157          1756   observed in the PRP category, where 166 more individuals were recorded
+    Permanent Residence Permit                     331           18           79         111           123   compared to 2016.
+    Residence Permit                                 49          25           11            9            4   The length of time usual residents have lived in the Islands is detailed in
+    Work Permit                                    770          316          233         108           113   Table 12. As would be expected, the majority of Status Holders (84 per
+    Dependent Permit                                 75          39           26            9            1   cent) and PRP holders (37 per cent) have lived in the Islands for more than
+    Accompanying Dependent Permit                    66          48           17            1            0   10 years. However, 15 per cent of WP holders have been resident for more
+    Visitor's Permit                                  6            4           0            0            2   than 10 years.
+    Exempt                                           42          34            8            0            0
+    Note: Length of residency not known for some usual residents overseas at the time of the census
+
+
+1
+    Here the ‘main’ permit categories are identified as Falkland Islander/Status Holder, Permanent Residence Permit, Residence Permit, and Work Permit.
+                                                                                                                                                                                       12
+Resident and present population: Housing and households
+
+Household types
+Note that civilian personnel based at MPC are not required to provide information on their accommodation or household characteristics in the census.The estimated total
+number of households in the Islands excluding MPC is 1,352, of which 1,297 were occupied on the night of the census. Table 13 shows how the numbers of occupied
+households types counted in 2012, 2016 and 2021 have changed over time. In line with population changes, Stanley saw the greatest increases in household numbers and
+West Falkland the largest fall. It is important to note that these figures reflect the number of occupied households on the night of the census, and not the number of each
+type of property in the Islands. An estimated 520 usual residents were overseas at the time of the 2021 census and it is likely that a considerable proportion had no one
+remaining in their respective households in the Islands to submit a census return. For comparison, the number of usual residents overseas at the time of census in 2016
+was estimated to be 198, and 91 in 2012. In addition, there may be differences in how people categorised their type of household between censuses.
+
+                                          Table 13: Occupied housing units by type of household and location, 2012, 2016 and 2021
+
+               Household type                       Total                    Stanley                  East                     West                 Outer Islands
+
+                                            2012    2016    2021     2012     2016     2021    2012   2016     2021    2012    2016     2021    2012     2016    2021
+      House                                1,050    1,051   1,142     841      900     1,002    120      79      77       69      57      47       20      15       16
+      Flat                                    97       77      83      94       73       81       1       2       2        2        2       0       0       0        0
+      Mobile or temporary structure           48       60      72      42       52       65       5       4       3        1        3       2       0       1        2
+      Not specified                             0       1       0        0        1       0       0       0       0        0        0       0       0       0        0
+      Total                                1,195    1,189   1,297     977     1,026    1,148    126      85      82       72      62      49       20      16       18
+
+
+Property size: number of bedrooms
+The number of bedrooms recorded in occupied households ranged from 1 to 11 per property, with an average of 2.8 and a median of 3. The most frequent configuration is
+3-bed properties, at 38 per cent of households, followed by 2-bed properties at 33 percent. In Stanley, 10 percent of properties are one bedroomed compared to 6 per cent
+in Camp, and 73 per cent are 2 or 3-bedroomed properties compared to 55 per cent in Camp.
+
+Household composition
+The average household size in 2021 is 2.3 persons; a slight decrease on the 2016 figure of 2.4 persons. When the number of people per household is correlated with the
+number of bedrooms per property, Stanley households are more likely to be occupied to capacity overall; with the exception of 1-bedroomed households which were more
+likely to have single occupants than in Camp. As in 2016, nuclear households are the most frequent type at 63 per cent of all returns; this category includes single parents,
+and couples with or without children. Non-nuclear households; where residents are unrelated to each other; two or more families live together; or where a single family
+and other unrelated persons live together, make up 9 per cent of all households; a slight decrease compared to 2016.
+
+                                                                                                                                                                           13
+Housing types
+Of all the occupied dwellings on census night, 186 (14 per cent) were built between 2016 and 2021. Houses account for 85 per cent of new builds; 72 per cent of which are
+detached houses. The majority of temporary or mobile properties were constructed between 1991 and 2015, and 11 per cent or 8 properties were constructed over 30
+years ago. Approximately 1 in 6 of the occupied properties in Stanley were built between 2016 and 2021, compared to 1 in 18 Camp properties. Approximately 70 per cent
+of properties in Camp were built more than thirty years ago.
+
+
+Housing tenure
+Overall, 54 per cent of householders indicated they own their own home, either outright (34 per cent) or with a mortgage (21 per cent). Those renting their home increased
+from 32 per cent in 2016 to 36 per cent of households in 2021. The proportion of households living rent-free remained unchanged from 2016 at 9 per cent.
+
+                                          Figure 11: Tenure of occupied households, 2012, 2016 and 2021
+
+                                                                            2012       2016   2021
+                                    45%
+
+                                              39%
+                                                                                                            36%
+                                    35%             33% 34%
+                                                                                                     32%
+
+                                                                                              28%
+                                                                           25%
+                                                                     24%
+                                    25%
+                                                                                 21%
+
+
+
+                                    15%
+
+                                                                                                                   9%   9%     9%
+
+
+                                     5%
+
+
+
+                                               Owns outright       Owns with mortgage               Rents          Lives rent free
+                                    -5%
+
+
+
+
+                                                                                                                                                                        14
+Mortgage and rent costs
+Figure 12 presents the monthly mortgage or rent outgoings householders reported in 2021. Roughly half of all households with mortgage or rent costs reported
+accommodation costs ranging from £401 to £700 per month, with the most frequent expenditure range between £551 and £700 for 28 per cent of households.
+
+
+                      Figure 12: Monthly mortgage or rent expenditure for all occupied households, 2021
+
+                        More than £1,600         1%
+
+                          £1,451 - £1,600        1%
+
+                          £1,301 - £1,450        1%
+
+                          £1,151 - £1,300             2%
+
+                          £1,001 - £1,150                  3%
+
+                           £851 - £1,000                             7%
+
+                             £701 - £850                                         12%
+
+                             £551 - £700                                                                                            28%
+
+                             £401 - £550                                                                    21%
+
+                             £251 - £400                                                           18%
+
+                             £101 - £250                    4%
+
+                             £100 or less             2%
+
+                                            0%                  5%        10%          15%            20%             25%             30%
+
+
+
+As householders were not asked to state the exact amount they spend on their mortgage or rent, the midpoint of each expenditure category was used to calculate the
+average household accommodation costs. For example, the midpoint of the £551 to £700 category was set at £630 and this was used to estimate the mean value. While
+this does not represent a true average as individual household expenditure may be at the top or bottom end of each category, it is still useful as an indicator of expenditure
+on accommodation and as a measure of changes over time relative to previous censuses.
+
+Figure 13 overleaf illustrates the reported monthly expenditure on both mortgages and rents at the time of the last four censuses. The median values are shown in addition
+to the averages, as it is important to note that average values can be skewed (upwards or downwards) by a minority of properties with either very high or very low costs.
+Therefore it is more appropriate to compare median values; this is the point above and below which 50 per cent of all the values lie, and is a truer reflection of the
+expenditure on accommodation by households.
+
+
+                                                                                                                                                                            15
+                                             Figure 13: Average and median monthly mortgage and rent expenditure, 2006-2021
+
+                                                    Median mortgage and rent           Average mortgage             Average rent
+                £700
+                                                                                                                                      £602
+
+                £600
+
+                                                                                              £534                                                   £597
+
+                £500           £443                                £427
+
+                        £421                                                                                       £475
+                £400
+                                                          £415
+
+                £300
+
+
+
+                £200
+
+
+                                      £335                             £335                             £475                             £630
+                £100
+                                      2006                            2012                             2016                             2021
+
+
+The graph above shows the changes in accommodation costs since 2006. In 2012 and 2016, the average cost of accommodation was inflated by some households with high
+mortgage and rent payments. However, that reversed in 2021, when average rent and mortgage payments are reported to have increased by 26 and 13 per cent
+respectively compared to 2016, while the median accommodation cost increased by 33 per cent. What this means is while the top end of the mortgage and rent payments
+scale increased substantially in 2021, the distribution of costs is skewed to left with the mass concentrated in the right of the curve – accommodation costs have increased
+overall and half of all households are now paying up to a third more in rent or mortgage payments than they were five years ago.
+
+In terms of the difference in value between mortgage and rent payments, there was little variance in 2006 or 2012 between the average costs and the median expenditure
+for both was the same in each year. In 2016, the median values were also equal but the average rent payments were 12 per cent higher than average mortgage payments.
+In 2021, the average costs of each payment type have largely equalised, indicating that while rent and mortgage payments have both risen considerably compared to
+previous census years, the average cost of a mortgage has now ‘caught up’ with the elevated average cost of renting.
+                                                                                                                                                                          16
+Usually resident population: employment and income
+
+Employment levels
+Excluding MPC, the total number of people in employment increased by 198 or approximately 11 per cent; from 1,829 in 2016 to 2,027 in 2021. All individuals aged 16 years
+and over who are working full or part-time are counted in this employment figure, including 71 individuals who indicated they are semi-retired and working occasionally. In
+2021, 94 people stated they were ‘not working for other reasons’ and 92 people indicated they are in education or training.
+
+Growth in the labour force
+The 2021 census showed that the total number of people in the labour force was 1,909;                                         Key terms
+an increase of 180 or 10 per cent on 2016. This translates into an average annual
+increase of 2.1 per cent for the intercensal period. With an unemployment rate of less       Working-age population: all people between 16 and 64 years of age.
+than 1 per cent, there is essentially full employment in the Falkland Islands; this
+                                                                                             Labour force: all people aged 16-64 years who are working full-time or part-
+highlights that the labour market is operating at full capacity and illustrates the
+                                                                                             time, in addition to those who are unemployed and looking for work.
+necessity for drawing on labour from overseas. Table 14 details the employment status
+of the labour force in addition to those outside it. Of note is that compared to 2016,       Labour force participation rate: calculated by dividing the number of people
+there are more people aged 65 years and over who are in either full- or part-time            in the labour force who are in work, by the total working-age population.
+employment.
+
+
+
+                       Table 14: Labour force by employment status (excluding MPC), 2012, 2016 and 2021
+                                                                                                                              Change
+                                                                              2012             2016             2021     2016 to 2021     % change
+                       a. Employed                                            1,500            1,708            1,881            +173        +10.1
+                       b. Unemployed and seeking work                            24               21               28              +7         +33.3
+                       Labour force (a plus b)                                1,524            1,729            1,909            +180        +10.4
+                       c. Employed and aged 65 years and older                   75              121             147              +26         +21.5
+                       d. Retired                                              244               253             258               +5          +2.0
+                       e. Not working for other reasons                        130               161             188              +27         +16.8
+                       f. Aged 15 years and younger                            481               571             597              +26          +4.6
+                       Outside the labour force (c to f)                       930             1,106            1,190             +84          +7.6
+
+
+
+
+                                                                                                                                                                        17
+Labour force participation
+The labour force participation rate (LFPR), which focuses on the working age population, is one of measures used internationally to report labour market statistics. The
+overall rate for the Falkland Islands remains exceptionally high at 89 per cent in 2021; for comparison, and over the same period, the UK rate was 78 per cent, and the OECD
+average was 75 per cent.
+
+In total, 995 males participated in the labour force, with an overall rate of 93 per cent. Female participation, 886 individuals, was approximately 8 per cent lower overall at
+85 per cent. However, the gap is smaller than was seen during the last census; approximately 10 per cent in 2016.
+
+In the younger age groups female participation is notably significantly lower than for males, reflecting higher female participation in education and training. Males were
+also more likely to continue working up until retirement, at 92 per cent participating at ages 60 to 64 years compared to 76 per cent of women.
+
+There are several factors which impact on female participation in the labour force and the lower rates seen here could be due to the availability of attractive employment;
+the uptake of education and training; that dependent children need to be cared for and the costs associated with childcare; in addition to other financial considerations.
+
+
+                                         Figure 14: Labour force participation rate by sex and age group (excluding MPC), 2021
+
+
+
+
+                                                                                                                                                                              18
+Primary sector of employment
+Table 15 shows that the Falkland Islands Government (FIG) remains the largest employer in the Islands with 663 employees and 33 per cent of all workers indicating their
+primary sector of employment is within government. The number of FIG employees increased by 138 or 26 per cent compared to 2016. Construction and Agriculture were
+the next two largest sectors, with 11 and 10 per cent of all employees respectively. Completing the top three non-public service sectors was Wholesale & Retail Trade, with
+194 workers or 10 per cent of all employees.
+
+
+                                  Table 15: Primary sector of employment, 2021
+
+                                  Employment sector                                                              Number                 %
+
+                                  Public Service (e.g. FIG, UK Government, Government of SGSSI)                      665           32.8%
+                                  Construction                                                                       217           10.7%
+                                  Agriculture crop and animal production                                             204           10.1%
+                                  Wholesale and retail trade repair of motor vehicles and motorcycles                193             9.5%
+                                  Business services, administrative and support service activities                   128             6.3%
+                                  Accommodation and food service activities                                          101             5.0%
+                                  Fishing and fisheries                                                                82            4.0%
+                                  Community, social and personal services                                              77            3.8%
+                                  Tourism                                                                              69            3.4%
+                                  Transportation and storage                                                           68            3.4%
+                                  Information and communication                                                        58            2.9%
+                                  Professional, Scientific and Technical                                               39            1.9%
+                                  Electricity, Water and Gas                                                           36            1.8%
+                                  Financial Services                                                                   35            1.7%
+                                  Arts, entertainment and recreation                                                   21            1.0%
+                                  Manufacturing of food and beverages                                                  19            0.9%
+                                  Insurance                                                                             6            0.3%
+                                  Manufacturing of consumer goods excluding food and textile products                   6            0.3%
+                                  Manufacturing of textiles, clothing, leather                                          2            0.1%
+                                  Real Estate                                                                           1          0.05%
+
+
+
+                                                                                                                                                                         19
+Employees and self-employed workers
+Of the 2,027 people in employment in 2021, 1,714 (85 per cent) were employees and 313 (15 per cent) were self-employed; proportionately similar to 2016. For those that
+are self-employed, the majority (68 per cent) do not employ any workers and operate alone. Table 16 shows the number of self-employed in each sector; Agriculture,
+Construction, and Tourism have the largest numbers of self-employed workers. Men were slightly more likely to be self-employed than women, at 10 per cent of all
+workers compared to 6 per cent of female workers.
+
+                 Table 16: Self-employed workers by sector, 2021
+                                                                                                     Self-employed
+                 Employment sector                                                              With       Without                    % self-employed
+                                                                                                                             Total
+                                                                                           employees     employees                       within sector
+                 Accommodation and food service activities                                         5             8              13              12.9%
+                 Agriculture crop and animal production                                             27             72           99               48.5%
+                 Arts, entertainment and recreation                                                  1              6            7               33.3%
+                 Business services, administrative and support service activities                    6             12           18               14.1%
+                 Community, social and personal services                                            10             13           23               29.9%
+                 Construction                                                                       20             25           45               20.7%
+                 Electricity, Water and Gas                                                          3              4            7               19.4%
+                 Financial Services                                                                  1              0            1                2.9%
+                 Fishing and fisheries                                                               5              6           11               13.4%
+                 Information and communication                                                       3              2            5                8.6%
+                 Insurance                                                                           0              1            1               16.7%
+                 Manufacturing of consumer goods excluding food and textile products                 0              6            6             100.0%
+                 Manufacturing of food and beverages                                                 0              4            4               21.1%
+                 Manufacturing of textiles, clothing, leather                                        1              1            2             100.0%
+                 Professional, Scientific and Technical                                              1              8            9               23.1%
+                 Public Service (e.g. FIG, UK Government, Government of SGSSI)                       4              9           13                2.0%
+                 Real Estate                                                                         0              1            1             100.0%
+                 Tourism                                                                             6             22           28               40.6%
+                 Transportation and storage                                                          4              8            8               11.8%
+                 Wholesale and retail trade repair of motor vehicles and motorcycles                 5              8           12                6.2%
+
+
+
+                                                                                                                                                                     20
+Multiple employments
+One in six people indicated they have two or more jobs; largely comparable to what was found in 2012 and 2016, again highlighting the tight labour market in the Islands.
+While the majority of roles people provided information on are likely to be part-time, year-round jobs; approximately 21 per cent were roles within the public service, and
+10 per cent were within the Tourism industry.
+
+Income from employment
+The average reported income for all people in employment in 2021 was approximately £29,900 with a median of £24,000. This represents a 13 per cent increase on the
+average income from employment in 2016 and a rise of £1,500 in median income (Figure 15). The proportion of people in employment who earned £15,000 or less per
+annum decreased from a quarter of workers in 2016 to 21 per cent in 2021.
+
+
+                         Figure 15: Per capita income for all individuals in employment (excluding MPC), 2016 and 2021
+
+                                              2016:                                                          2021:
+                                   Mean £26,400, Median £22,500                                   Mean £29,900, Median £24,000
+
+
+
+
+                                                                                                     >£40,000
+                                         >£40,000                                                      17%                £15,000 or less
+                                           16%                                                                                 21%
+                                                              <£15,000
+                                                                25%
+
+
+                                  £25,001-£40,000                                           £25,001 - £40,000
+                                        25%                                                       26%
+
+                                                           £15,001-                                                      £15,001 - £25,000
+                                                           £25,000                                                             36%
+                                                             34%
+
+
+
+
+                                                                                                                                                                          21
+On average, annual income from employment increased in 2021 for all workers; irrespective of their location in the Islands, their sex, or their residency status (Table 17).
+The gap between Stanley and Camp workers continues to close, with an average difference of £4,700 per annum compared to 2016. The median Camp income increased
+from £17,500 in 2016 to £19,200 in 2021.
+
+As is found in other developed economies, males earn more than females on average and in 2021 the gender pay gap was £5,300 per annum. This disparity continues to
+fall, with the gap closing by 22 per cent since 2016. Of note is that the median incomes for both sexes have increased and for the first time since 2012, when income
+statistics were first captured in a census; median income is the same on average for both sexes.
+
+Looking at income from employment in relation to residency status; permanent residents are on average more likely to have lower annual incomes from employment than
+temporary residents. However, that gap is also continuing to close and median incomes for both groups are level on average.
+
+
+                  Table 17: Mean and median annual incomes by location, sex, and residency status for individuals in employment, 2012, 2016 and 2021
+
+                                                             2012                                2016                                2021
+                                                        Mean             Median             Mean            Median             Mean             Median
+                      Stanley                         £23,300           £17,500           £27,200           £22,500          £30,400            £24,000
+                      Camp                            £21,200           £12,500           £21,200           £17,500          £25,700            £19,200
+                      Difference                       £2,100             £5,000           £6,000            £5,000           £4,700             £4,800
+                      Male                            £26,600           £22,500           £29,500           £22,500          £32,300            £24,000
+                      Female                          £18,800           £17,500           £22,700           £17,500          £27,000            £24,000
+                      Difference                       £7,800             £5,000           £6,800            £5,000           £5,300                   --
+                      Permanent residents             £22,300           £17,500           £25,700           £22,500          £29,300            £24,000
+                      Temporary residents             £25,900           £17,500           £28,900           £22,500          £31,300            £24,000
+                      Difference                       £3,600                  --          £3,200                  --         £2,000                   --
+
+
+
+
+                                                                                                                                                                               22
+Income for all individuals
+Figure 16 shows the annual per capita income for all working and non-working individuals aged 16 and over in the Islands. As these figures include incomes from non-
+employment sources such as pensions and welfare payments, the overall mean and median incomes are lower than was seen for employment incomes alone. Both the
+mean and median per capita income has increased since 2016, by 14 per cent and 37 per cent respectively. Fewer people have incomes of £15,000 or less, and half of all
+individuals aged 16 and over have annual incomes of 24,000 or more.
+
+
+                          Figure 16: Per capita income for all individuals aged 16 and over, working and non-working (excluding MPC), 2016 and 2021
+
+                                                2016:                                                       2021:
+                                     Mean £23,100, Median £17,500                                Mean £26,400, Median £24,000
+
+
+                                          >£40,000                                                   >£40,000
+                                            13%                                                        15%
+                                                                                                                      £15,000 or less
+                                                                                                                           32%
+                                                             £15,000 or less
+                              £25,001-£40,000                     37%
+                                                                                         £25,001 - £40,000
+                                    21%
+                                                                                               22%
+
+
+                                              £15,001-£25,000
+                                                    29%                                                       £15,001 - £25,000
+                                                                                                                    31%
+
+
+
+
+As with employment-only income, there are differences in terms of location and sex (Table 18 overleaf). Average incomes for all individuals are higher in Stanley although
+the variance is not as large as that for work-related income, indicating that some individuals outside the workforce have incomes higher than those in employment. Males
+in this cohort again have higher incomes than females on average. In contrast to those in employment, a difference was found in the median incomes of males and females;
+with half of women in this cohort reporting median incomes of £19,200 or less, compared to £24,000 for men.
+
+                                                                                                                                                                         23
+               Table 18: Mean and median annual incomes by location, sex, and residency status for all individuals > 16 years, 2012, 2016 and 2021
+
+                                                                  2012                                    2016                                         2021
+                                                               Mean                Median              Mean                   Median               Mean             Median
+                     Stanley                                  £20,600              £17,500         £23,900                    £17,500             £26,800           £24,000
+                     Camp                                     £18,400              £12,500         £18,800                    £12,500             £23,500           £19,200
+                     Difference                                £2,200               £5,000             £5,100                  £5,000              £3,300            £4,800
+                     Male                                     £24,200              £17,500         £26,500                    £22,500             £29,900           £24,000
+                     Female                                   £16,100              £12,500         £19,200                    £17,500             £22,800           £19,200
+                     Difference                                £8,100               £5,000             £7,300                  £5,000              £5,300            £4,800
+
+Household income
+Average household income in 2021, excluding households based at MPC, was calculated to be £49,000 with a median of £43,200; an increase of 12 per cent and 15 per cent
+for each respective measure compared to 2016. The average income for Camp households has grown by 14 per cent since 2016, however median household income
+increased by just 5 per cent; meaning that while overall household income in Camp has increased to £41,900 on average; half of all Camp households have not experienced
+those gains and have a combined income of £28,800 or less. Whereas the average and median household income levels in Stanley increased by 12 per cent and 15 per cent
+respectively; indicating that the gap between well-off and less well-off household in Stanley is closing.
+                        Figure 17: Annual household income by location (excluding MPC), 2016 and 2021
+                                                   Location mean                     Location median                2021 overall median (£43,200)
+                         £60,000                                                                                                                               £60,000
+
+
+                         £50,000                                                                                                                               £50,000
+
+
+                         £40,000                                                                                                                               £40,000
+
+
+                         £30,000                                                                                                                               £30,000
+
+
+                         £20,000                                                                                                                               £20,000
+                                         £44,700
+
+
+                                                    £37,500
+
+
+
+
+                                                                         £36,600
+
+
+                                                                                      £27,500
+
+
+
+
+                                                                                                          £49,900
+
+
+                                                                                                                    £43,200
+
+
+
+
+                                                                                                                                        £41,900
+
+
+                                                                                                                                                     £28,800
+                         £10,000                                                                                                                               £10,000
+
+
+                               £0                                                                                                                              £0
+                                             Stanley                           Camp                           Stanley                         Camp
+                                                                                                                                                                              24
+                                                                 2016                                                           2021
+Resident and present population: Health and lifestyle characteristics
+
+Self-rated health
+Self-rating of health is one of the most frequently used measures to assess the general health of a population. While it is a brief and simple assessment, it is proven to be
+strongly correlated with mental, functional and physical health outcomes, and is useful in providing a snapshot of the health of the population at a given point in time.
+The 2016 census was the first time people were asked to provide a rating of their own health; Figure 18 compares the findings in 2016 and 2021. overall, 85 per cent of the
+2021 population rated their health as being ‘good’ or ‘very good’, a 3 per cent decrease on 2016. In contrast with the 2016 findings, and with health research elsewhere in
+the world, males were equally, rather than more, likely to rate their health as being ‘good’ or ‘very good’ compared to females (85 per cent). Of note are the differences by
+location; MPC residents were overwhelmingly more likely to report their health as being ‘good’ or ‘very good’ compared to other locations, at 96 per cent. Camp residents
+were substantially less likely to rate their health as being ‘very good’; 30 percent compared to 41 per cent for Stanley residents and 53 per cent for MPC residents.
+
+
+ Figure 18: Self-rated health, 2016 and 2021                                           Figure 19: Self-rated life satisfaction, 2021
+
+                                    2016     2021
+                                                                                       95-100                                                                     8.5
+  50%      46%                                                                          85-94                                                       7.2
+                 41%     43% 43%
+                                                                                        75-84                                                         7.6
+  40%
+                                                                                        65-74                                                              7.9
+  30%                                                                                   55-64                                                             7.8
+                                                                                        45-54                                                               8.0
+  20%                                                                                   35-44                                                             7.7
+                                             13%
+                                       11%                                              25-34                                                             7.7
+  10%
+                                                                                        15-24                                                              7.9
+                                                      1% 1%        0.1% 0.3%
+   0%                                                                                     <15                                                                      8.7
+          Very good        Good            Fair         Bad         Very bad
+                                                                                                0.0   1.0   2.0    3.0    4.0    5.0   6.0    7.0     8.0         9.0    10.0
+
+
+
+Life satisfaction
+2021 was the first time a question on life satisfaction was included in the census, and similar to self-rated health; provides a useful snapshot of the life experiences of
+Falkland Islands residents. Encouragingly, 99 per cent of people responded to the question and on average, rated their life satisfaction as 8.0 on a scale of 0 to 10 (median
+value 8). Males expressed marginally lower life satisfaction than females, 7.9 compared to 8.0; and MPC residents reported an average satisfaction score of 8.4 compared to
+8.1 for Camp residents and 7.9 for those in Stanley. Those aged 95 years and older (n=2) and ≤25 years (n=731) were more like to have higher scores on average.
+                                                                                                                                                                                25
+Tobacco consumption
+2021 was the third census that surveyed the population’s consumption of tobacco. Self-reported data are typically used to monitor trends in smoking behaviour and while it
+is accepted that there is a tendency to underreport undesirable health behaviours, research finds that self-reported information still provides a valid estimate of the true
+prevalence. In addition, reporting biases tend to be consistent over time and determining the relative change in prevalence between two or more time periods is of value.
+
+In 2012, 28 per cent of people aged 16 years and over indicated that they smoke; in 2016 this fell to 20 per cent, and remained at that proportion in 2021 with marginal changes
+across 10=year age groups (Figure 20). As in 2016, the highest prevalence of smoking was in the 16 to 34 years age groups at 31 per cent, with rates steadily declining to a
+prevalence of 7 per cent for those aged 85 years and over.
+
+                         Figure 20: Proportion of smokers within each 10-year age group, 2016 and 2021
+
+                                                                                 2016      2021
+                           35%
+                                                       32%
+                                            31%                31%
+                                    30%
+                           30%
+
+
+                           25%
+                                                                                  20%
+                           20%                                            19%                        18%
+                                                                                              18%
+                                                                                                                        16%
+                                                                                                                 15%
+                           15%
+
+
+                           10%                                                                                                      8%
+                                                                                                                                               7%
+
+                            5%
+
+
+                            0%
+                                       16 - 24            25 - 34            35 - 44            45 - 54            55 - 64               65+
+
+
+As is seen elsewhere in the world, men are more likely to smoke than women. In 2016, 22 per cent of men in the Falkland Islands aged 16 years and above smoked
+cigarettes compared to 18 per cent of women. In 2021, these rates remained stable. The average daily cigarette consumption for men who smoke is also higher than for
+women; 10.8 compared to 8.7 cigarettes per day, however the number of daily cigarettes consumed has fallen for men compared to 2016, when it was 12.2.
+
+
+                                                                                                                                                                             26
+                       Figure 21: Proportion of smokers and average number of cigarettes smoked per day, by age group and sex, 2021
+
+                                               Per cent smokers          Male average per day           Female average per day
+                       50%                                                                                                                         18.0
+
+                       45%                                                                                                                         16.0
+
+                       40%
+                                                                                                                                                   14.0
+                       35%
+                                                                                                                                                   12.0
+                       30%
+                                                                                                                                                   10.0
+                       25%
+                                                                                                                                                   8.0
+                       20%
+                                                                                                                                                   6.0
+                       15%
+                                                                                                                                                   4.0
+                       10%
+
+                         5%                                                                                                                        2.0
+                                     30%                33%                19%                18%                 15%                8%
+                         0%                                                                                                                        0.0
+                                    16-24              25-34              35-44               45-54              55-64               >65
+
+
+
+Consumption of alcohol
+The prevalence of alcohol consumption continues to decline in many countries such as the UK and across the EU, despite acute increases recorded as a result of the
+pandemic. In 2021 in the UK, 79 per cent of adults are reported to have drank alcohol in the previous 12 months. In the Falkland Islands, that figure is considerably lower at
+69 per cent of the 2021 population aged 16 years and over; however this represents a 3 per cent increase on the 2016 figures.
+
+Figure 22 overleaf shows the proportion of people who consume alcohol by age group, and compares to 2016. In contrast to what was found in relation to smoking; there
+was an increase in reported alcohol use across almost all age categories, with the largest increases found in the 16 to 24 and 35 to 44 age categories. In 2021, the average
+number of units consumed per week was reported to be 9.1; approximately one bottle of wine, or six 330ml beers. Figure 23 shows that men were more likely to be
+drinkers than women across all age groups (75 per cent and 61 per cent respectively) and also consumed more on average than women; 10.1 compared to 7.7 units.
+
+
+
+
+                                                                                                                                                                            27
+                        Figure 22: Proportion of people who consume alcohol within each age group, 2016 and 2021
+
+                                                                            2016     2021
+                         90%
+                                                    80%    79%
+                         80%
+                                                                             74%               72%
+                                                                      69%               70%
+                         70%             67%
+                                  62%                                                                     63%    64%
+                         60%
+
+                         50%                                                                                               46%         47%
+
+                         40%
+
+                         30%
+
+                         20%
+
+                         10%
+
+                          0%
+                                    16 - 24           25 - 34           35 - 44           45 - 54           55 - 64              65+
+
+
+
+The UK’s alcohol unit guidelines recommend limiting consumption to a maximum of 14 units per week for both men and women. In the Falkland Islands, approximately 16
+per cent of men and 8 per cent of women consume more than this limit per week (12 per cent overall), with this more likely in younger age groups. However, this is
+somewhat lower than was reported in 2016 when 15 per cent reported consuming more than 14 units per week (20 per cent of men and 8 per cent of women).
+
+
+
+
+                                                                                                                                                                  28
+Figure 23: Alcohol consumption and average units consumed per week for adults aged 16 and over, by 10-year age group and sex, 2021
+
+                         Per cent drinkers       Male average per week          Female average per week
+     90%                                                                                                               14.0
+
+     80%
+                                                                                                                       12.0
+     70%
+                                                                                                                       10.0
+     60%
+
+     50%                                                                                                               8.0
+
+     40%                                                                                                               6.0
+
+     30%
+                                                                                                                       4.0
+     20%
+                                                                                                                       2.0
+     10%
+                  67%              79%               74%               72%               64%               47%
+      0%                                                                                                               0.0
+                 16-24             25-34            35-44             45-54             55-64              >65
+
+
+
+
+                                                                                                                                     29
+List of tables
+
+Table 1a: Total population counted on census night, by sex and location breakdown (de facto)
+Table 1b: Estimated usually resident population, by location
+Table 1c: Total usually resident population present on census night, by sex and location breakdown (de jure)
+Table 1d: Total usually resident and present population counts for 1851 - 2021
+Table 1e: Total population by sex and location breakdown, 1986 - 2021
+Table 1f: Population by five-year age group, sex and location: Stanley, 1986 - 2021
+Table 1g: Population by five-year age group, sex and location: East Falkland, 1986 - 2021
+Table 1h: Population by five-year age group, sex and location: West Falkland, 1986 - 2021
+Table 1i: Population by five-year age group, sex and location: outer islands, 1986 - 2021
+Table 1j: Population by five-year age group, sex and location: MPC, 1986 - 2021
+Table 2a: Population by five-year age group, sex and location
+Table 8a: Population by immigration category, 5-year age group and location - Both sexes, Stanley
+Table 8d: Population by immigration category, 5-year age group and location - Both sexes, Camp
+Table 8g: Population by condensed immigration category, 5-year age group and location - Both sexes
+Table 9a: Native and foreign-born population by age, sex and location - Total area
+Table 15a. Employment status by sex and location
+Table 15c: Employment status by 5-year age group, sex and location - Both sexes
+Table 19a: Annual income by sex and location - All individuals in employment incl. semi-retired and working occasionally
+Table 19d: Annual income by sex and location - All individuals
+Table 20: Self-reported health by sex and location
+Table 23a: Reported cigarette smoking by 5-year age group, sex and location
+Table 24a: Reported alcohol consumption by 5-year age group, sex and location
+Table 25: Housing units occupied on census night by type of housing unit and location
+
+
+                                                                                                                           30
+2021 Census Table 1a
+Total Population
+
+Table 1a: Total population counted on census night, by sex and location breakdown (de facto)
+
+
+                                                                              Both
+Population                                                                    Sexes       Male       Female
+TOTAL POPULATION                                                                 3,541     1,847      1,694
+STANLEY POPULATION                                                               2,848     1,457      1,391
+CAMP POPULATION                                                                    340         166      174
+MPC POPULATION                                                                     347         220      127
+POPULATION ON MARINE VESSELS                                                          6          4        2
+
+Notes: The de facto population refers to all individuals counted at the time of census, regardless of where they normally reside (i.e. including visitors and foreigners temporarily
+residing in the country)
+
+
+
+
+2021 Census Table 1b
+Usual residents
+
+Table 1b: Estimated usually resident population, by location
+
+
+
+Population                                                            Total
+
+TOTAL POPULATION                                                      3,662
+
+STANLEY POPULATION                                                    2,974
+
+CAMP POPULATION                                                         354
+
+MPC POPULATION                                                          334
+
+
+
+
+                                                                                                                                                                                       31
+2021 Census Table 1c
+Usually resident and present population
+
+
+Table 1c: Total usually resident population present on census night, by sex and location breakdown (de jure)
+
+
+
+Population                                                                                  Both Sexes        Male     Female
+
+TOTAL POPULATION                                                                                   3,142     1,645       1,497
+
+STANLEY POPULATION                                                                                 2,538     1,295       1,243
+
+CAMP POPULATION                                                                                      280       142           138
+
+MPC POPULATION                                                                                       324       208           116
+
+
+Notes: The de jure population refers to all individuals counted at the time of census who are usually resident in the Islands. An estimated 520 usually resident individuals were absent
+on the night of the census.
+
+
+
+
+2021 Census Table 1d
+Usually resident and present population
+
+
+Table 1d: Total usually resident and present population counts for 1851 - 2021
+                                                                                                         Census Year
+              1851     1861    1871      1881     1891      1901     1911     1921      1931     1946      1953      1962      1972    1980     1986      1991    1996    2001    2006    2012    2016         2021
+Population     287      541      811    1,510    1,789     2,043    2,272     2,094    2,392     2,239     2,230     2,172     1,957   1,813    1,885     2,050   2,564   2,913   2,955   2,840   3,200    3,142
+
+Notes: Figures for 1851, 1861 and 1871 are estimated. Civilian personnel and their families based at MPC are included in census counts for 1996 onwards
+
+
+
+
+                                                                                                                                                                                                          32
+   2021 Census Table 1e
+   Usually resident and present population
+
+
+   Table 1e: Total population by sex and location breakdown, 1986 - 2021
+
+                                                 Total                                                               Males                                                           Females
+                   1986     1991    1996     2001     2006     2012    2016     2021    1986     1991     1996    2001       2006    2012    2016    2021    1986   1991   1996    2001    2006     2012    2016     2021
+
+Total             1,885    2,050    2,564   2,913    2,955     2,840   3,200   3,142     998    1,095    1,447    1,598      1,569   1,491   1,687   1,645   887    955    1,117   1,315   1,386    1,349   1,511    1,497
+Stanley           1,232    1,557    1,636   1,989    2,115     2,120   2,460   2,538     626      814      855    1,009      1,060   1,062   1,261   1,295   606    743     781     980    1,055    1,058   1,197    1,243
+East Falkland       388      245      233     208        194    202     190      149     230      148      129     113        107     105      95      76    158     97     104      95        87     97      95         73
+West Falkland       265      196      174     144        127    127     151       95     142      104       88       74        68      63      74      48    123     92      86      70        59     64      77         47
+Outer islands          0      52       38       38       42      22       40      36        0      29       22       21        25      11      19      18      0     23      16      17        17     11      21         18
+MPC                    0       0      483     534        477    369     359      324        0        0     353     381        309     250     238     208      0      0     130     153     168      119     121         116
+
+   Notes: Civilian population based at MPC not counted prior to 1996. Sex not known for two individuals in Stanley in 2016
+
+
+   .
+
+
+
+
+                                                                                                                                                                                                                    33
+  2021 Census Table 1f
+  Usually resident and present population: Stanley
+
+
+  Table 1f: Population by five-year age group, sex and location: Stanley, 1986 - 2021
+
+
+
+                                          Total                                                            Males                                                       Females
+
+  Year       1986     1991    1996     2001       2006    2012    2016    2021    1986   1991   1996   2001    2006     2012    2016    2021    1986   1991   1996   2001   2006     2012    2016    2021
+  Total     1,232    1,557    1,636   1,989       2,115   2,120   2,460   2,538   626    814    855    1,009   1,060    1,062   1,261   1,295   606    743    781    980    1,055    1,058   1,197   1,243
+  0-4          83      101       96     122        143     126     168     116     35     56     51      63        73     62      92      52     48     45     45     59      70       64      76      64
+  5-9          89       91     108      120        140     140     160     204     47     41     67      59        68     59      86     110     42     50     41     61      72       81      74      94
+ 10 - 14      129      124       99     128        123     138     162     137     65     63     46      72        58     60      89      67     64     61     53     56      65       78      73      70
+ 15 - 19       90      108     136      121        127     117     124     109     48     48     71      60        79     57      51      49     42     60     65     61      48       60      73      60
+ 20 - 24       81      109     125      143        133     122     117     102     37     61     60      68        59     63      53      54     44     48     65     75      74       59      64      48
+ 25 - 29       85      130     134      165        148     142     164     164     37     66     80      76        74     57      73      81     48     64     54     89      74       85      91      83
+ 30 - 34      108      149     129      178        182     155     170     195     66     71     63     103        77     80      83     101     42     78     66     75     105       75      87      94
+ 35 - 39       89      140     148      165        196     185     222     217     49     86     71      83     105       87     115     101     40     54     77     82      91       98     107     116
+ 40 - 44       76      112     124      169        167     199     225     230     38     58     74      71        93    111     110     116     38     54     50     98      74       88     115     114
+ 45 - 49       69       95     120      148        173     151     203     230     43     46     60      88        79     86     118     124     26     49     60     60      94       65      85     106
+ 50 - 54       70       94       99     131        148     149     173     223     35     61     50      66        79     71      95     121     35     33     49     65      69       78      78     102
+ 55 - 59       62       69       84     112        114     131     166     168     25     37     46      58        57     76      79      93     37     32     38     54      57       55      87      75
+ 60 - 64       56       67       61      84         93     101     115     132     35     31     31      52        45     58      72      59     21     36     30     32      48       43      43      73
+ 65 - 69       49       54       56      68         83      82      89     100     23     34     26      35        50     38      47      60     26     20     30     33      33       44      42      40
+ 70 - 74       35       47       40      55         53      60      73      78     18     23     23      21        27     37      36      40     17     24     17     34      26       23      37      38
+ 75 - 79       30       36       39      27         44      54      57      56     14     18     18      14        16     25      33      25     16     18     21     13      28       29      24      31
+  80+          30       31       38      53         48      56      69      77     11     14     18      20        21     28      28      42     19     17     20     33      27       28      41      35
+Unknown         1        0        0       0          0      12       3       0      0      0      0       0        0       7       1       0      1      0      0      0         0      5       0       0
+
+
+
+
+  Notes:
+  Sex not known for two individuals in Stanley in 2016.
+  Age categories over 80 years merged, as 5-year groups not recorded prior to 2012.
+
+
+                                                                                                                                                                                                       34
+  2021 Census Table 1g
+  Usually resident and present population: East Falkland
+
+
+  Table 1g: Population by five-year age group, sex and location: East Falkland, 1986 - 2021
+
+
+                                          Total                                                             Males                                                    Females
+
+  Year       1986    1991     1996    2001        2006   2012   2016    2021    1986   1991       1996   2001   2006     2012   2016   2021   1986   1991   1996   2001   2006     2012   2016   2021
+  Total       388      246     233      208       194    202     190     149     230    148       129    113    107      105     95     76    158     97    104     95     87       97     95     73
+  0-4          22       15      13        7         7     13      12        4     12     11         4      4        3      3      5      1     10      5      9      3         4    10      7      3
+  5-9          33       19      17       15         9      9        7       8     13     11        11      6        3      5      1      1     20      8      6      9         6     4      6      7
+ 10 - 14       13       20      21       17        14      9      10        2     11     10        10     11        6      5      3      0      2      9     11      6         8     4      7      2
+ 15 - 19       41       21       8       10         7      7        9       0     23     19         5      4        3      3      5      0     18      4      3      6         4     4      4      0
+ 20 - 24       37       18      12        5         4      7        4       1     25     10         7      3        1      5      0      1     12      9      5      2         3     2      4      0
+ 25 - 29       39       17      10       10        12      6        6       7     25          9     3      7        9      2      4      3     14      6      7      3         3     4      2      4
+ 30 - 34       35       17      23       14        11     14      13        7     21          7    12      3        6      6      6      4     14      7     11     11         5     8      7      3
+ 35 - 39       29       19      10       25        20     15        7       8     15          7     5     15        10     9      4      5     14     12      5     10     10        6      3      3
+ 40 - 44       35       27      22       11        26     17      21        8     19     15        12      5        16    11     14      4     16     13     10      6     10        6      7      4
+ 45 - 49       33       20      27       21        13     25      15      17      21     13        15     12        8     12      5     10     12      9     12      9         5    13     10      7
+ 50 - 54       22       18      22       30        14     22      27      17      15     13        13     15        9     10     16      9      7      5      9     15         5    12     11      8
+ 55 - 59       19       13      16       17        23     15      16      23      11     10        10     11        11     9      8     13      8      3      6      6     12        6      8     10
+ 60 - 64       10       13      13        8        18     20      14      14       7          6    11      4        13    12      6      7      3      5      2      4         5     8      8      7
+ 65 - 69        9        4      12       10         6     14      17      14       5          4     5      9        2      9      9      7      4      0      7      1         4     5      8      7
+ 70 - 74        5        4       4        4         7      5        7     13       3          2     4      1        5      1      7      7      2      2      0      3         2     4      0      6
+ 75 - 79        3        0       3        1         1      4        3       4      2          0     2      1        0      3      1      4      1      0      1      0         1     1      2      0
+  80+           1        1       0        3         2      0        2       2      0          1     0      2        2      0      1      0      1      0      0      1         0     0      1      2
+Unknown         2        0       0        0         0      0        0       0      2          0     0      0        0      0      0      0      0      0      0      0         0     0      0      0
+
+
+
+
+  Notes:
+  Sex not known for two individuals in Stanley in 2016.
+  Age categories over 80 years merged, as 5-year groups not recorded prior to 2012.
+
+                                                                                                                                                                                                  35
+  2021 Census Table 1h
+  Usually resident and present population: West Falkland
+
+
+  Table 1h: Population by five-year age group, sex and location: West Falkland, 1986 - 2021
+
+
+                                         Total                                                          Males                                                    Females
+
+  Year       1986    1991     1996    2001       2006   2012    2016    2021   1986    1991   1996   2001   2006     2012   2016   2021   1986   1991   1996   2001   2006     2012   2016   2021
+  Total       265     196      174     144       127     127     151      95    142     104    88     74        68    63     74     48    123     92     86     70     59       64     77     47
+  0-4          32        6      10        5        5       8      11       7     13       2     3      2        3      4      5      4     19      4      7      3         2     4      6      3
+  5-9          21       19      11      10         5       8      11       7     11       6     4      5        3      3      4      3     10     13      7      5         2     5      7      4
+ 10 - 14        7       15      17        9       10       4       7       2       2      8     6      4        4      3      3      1      5      7     11      5         6     1      4      1
+ 15 - 19        6       17      12      10         8      10       8       1       1     12     7      3        3      4      5      1      5      5      5      7         5     6      3      0
+ 20 - 24       34        8       5        1        4       1      10       2     19       5     4      1        2      0      4      2     15      3      1      0         2     1      6      0
+ 25 - 29       37       28      10        5        1       7       3       4     20      13     4      3        1      4      1      2     17     15      6      2         0     3      2      2
+ 30 - 34       25       15      21        8        8       3      13       2     14       7    11      4        5      1      6      1     11      8     10      4         3     2      7      1
+ 35 - 39       21       20      15      15         7      11       5       7     11      12     5      8        3      5      1      4     10      8     10      7         4     6      4      3
+ 40 - 44       20       12      20      17        12       7      11       8     11       6    12      9        9      4      6      3      9      6      8      8         3     3      5      5
+ 45 - 49       18       16      12      21        14      13      10       7     12       9     7     12        7      6      6      3      6      7      5      9         7     7      4      4
+ 50 - 54       15       14      16        9       15      16      17       7     10       7     9      5        7      9      8      4      5      7      7      4         8     7      9      3
+ 55 - 59       12       12       9      14        12       8      13       7       7      7     5      8        7      2      8      1      5      5      4      6         5     6      5      6
+ 60 - 64        5        6       7        9       13      10      10      13       4      4     4      4        8      6      5      8      1      2      3      5         5     4      5      5
+ 65 - 69        3        4       6        6        7       7       8       9       2      3     5      2        3      4      4      4      1      1      1      4         4     3      4      5
+ 70 - 74        3        1       1        4        3       7       7       5       2      1     1      3        1      4      4      4      1      0      0      1         2     3      3      1
+ 75 - 79        1        3       1        0        2       3       5       4       1      2     0      0        1      1      3      2      0      1      1      0         1     2      2      2
+  80+           1        0       1        1        1       2       2       3       0      0     1      1        1      1      1      1      1      0      0      0         0     1      1      2
+Unknown         4        0       0        0        0       2       0       0       2      0     0      0        0      2      0      0      2      0      0      0         0     0      0      0
+
+
+
+
+  Notes:
+  Sex not known for two individuals in Stanley in 2016.
+  Age categories over 80 years merged, as 5-year groups not recorded prior to 2012.
+
+
+
+
+                                                                                                                                                                                              36
+  2021 Census Table 1i
+  Usually resident and present population: outer islands
+
+
+  Table 1i: Population by five-year age group, sex and location: outer islands, 1986 - 2021
+
+
+                                          Total                                                              Males                                                    Females
+
+  Year       1986     1991    1996     2001       2006   2012    2016    2021    1986   1991       1996   2001   2006     2012   2016   2021   1986   1991   1996   2001   2006     2012   2016   2021
+  Total         0       52       38      38        42      22      40      36       0         29    22     21        25    11     19     18      0     23     16     17     17       11     21     18
+  0-4           0        2        0       2         1       0       0        0      0         1      0      1        0      0      0      0      0      1      0      1         1     0      0      0
+  5-9           0        8        1       1         1       0       0        0      0         3      0      1        1      0      0      0      0      5      1      0         0     0      0      0
+ 10 - 14        0        2        6       1         0       0       0        0      0         2      2      0        0      0      0      0      0      0      4      1         0     0      0      0
+ 15 - 19        0        1        3       2         3       0       0        0      0         0      3      1        1      0      0      0      0      1      0      1         2     0      0      0
+ 20 - 24        0        4        1       3         1       2       5        1      0         1      1      2        0      1      1      0      0      3      0      1         1     1      4      1
+ 25 - 29        0        2        2       2         5       2       3        2      0         0      0      2        3      0      0      1      0      2      2      0         2     2      3      1
+ 30 - 34        0        6        3       1         3       1       3        3      0         5      0      0        3      0      1      0      0      1      3      1         0     1      2      3
+ 35 - 39        0        4        4       4         2       0       4        4      0         2      4      1        2      0      3      2      0      2      0      3         0     0      1      2
+ 40 - 44        0        2        3       3         5       1       2        4      0         1      2      1        1      1      0      2      0      1      1      2         4     0      2      2
+ 45 - 49        0        8        3       5         3       3       2        5      0         5      1      2        2      1      2      2      0      3      2      3         1     2      0      3
+ 50 - 54        0        5        4       2         4       3       3        3      0         2      3      1        2      2      1      3      0      3      1      1         2     1      2      0
+ 55 - 59        0        4        2       3         2       3       5        4      0         3      1      3        1      1      3      1      0      1      1      0         1     2      2      3
+ 60 - 64        0        1        3       1         4       2       4        6      0         1      2      1        3      1      2      5      0      0      1      0         1     1      2      1
+ 65 - 69        0        1        1       5         1       3       2        2      0         1      1      3        1      2      1      0      0      0      0      2         0     1      1      2
+ 70 - 74        0        2        1       1         5       0       4        0      0         2      1      1        3      0      3      0      0      0      0      0         2     0      1      0
+ 75 - 79        0        0        1       0         1       1       0        2      0         0      1      0        1      1      0      2      0      0      0      0         0     0      0      0
+  80+           0        0        0       0         1       0       3        0      0         0      0      0        1      0      2      0      0      0      0      0         0     0      1      0
+Unknown         0        0        0       2         0       1       0        0      0         0      0      1        0      1      0      0      0      0      0      1         0     0      0      0
+
+
+
+
+  Notes:
+  Sex not known for two individuals in Stanley in 2016.
+  Age categories over 80 years merged, as 5-year groups not recorded prior to 2012.
+
+
+
+
+                                                                                                                                                                                                   37
+  2021 Census Table 1j
+  Usually resident and present population: MPC
+
+
+  Table 1j: Population by five-year age group, sex and location: MPC, 1986 - 2021
+
+
+                                         Total                                                           Males                                                    Females
+
+  Year       1986    1991     1996    2001       2006   2012    2016    2021   1986     1991   1996   2001   2006     2012   2016   2021   1986   1991   1996   2001   2006     2012   2016   2021
+  Total         0        0     483     534       477     369     359     324        0     0    353    381    309      250    238    208      0      0    130    153    168      119    121    116
+  0-4           0        0       1        1        0       5       6       0        0     0      1      0        0      3      3      0      0      0      0      1         0     2      3      0
+  5-9           0        0       0        0        6       4       7       6        0     0      0      0        0      2      5      5      0      0      0      0         6     2      2      1
+ 10 - 14        0        0       1        0        7       1       3       1        0     0      1      0        3      0      1      0      0      0      0      0         4     1      2      1
+ 15 - 19        0        0       4        6       10       9       1       2        0     0      0      1        4      4      0      1      0      0      4      5         6     5      1      1
+ 20 - 24        0        0      46       71       65      33      22      23        0     0     21     37        27    20     13     15      0      0     25     34     38       13      9      8
+ 25 - 29        0        0     110       89       66      46      46      32        0     0     72     55        39    25     23     19      0      0     38     34     27       21     23     13
+ 30 - 34        0        0      80       91       62      44      43      43        0     0     60     63        40    28     30     23      0      0     20     28     22       16     13     20
+ 35 - 39        0        0      58       68       66      45      38      41        0     0     42     52        45    31     25     30      0      0     16     16     21       14     13     11
+ 40 - 44        0        0      39       50       51      42      44      50        0     0     29     38        37    31     29     32      0      0     10     12     14       11     15     18
+ 45 - 49        0        0      61       46       46      33      52      36        0     0     53     38        32    25     34     19      0      0      8      8     14        8     18     17
+ 50 - 54        0        0      39       61       34      45      32      33        0     0     38     52        26    35     25     23      0      0      1      9         8    10      7     10
+ 55 - 59        0        0      28       42       43      32      35      30        0     0     21     37        37    21     25     19      0      0      7      5         6    11     10     11
+ 60 - 64        0        0      14        8       20      12      18      19        0     0     13      7        18    12     14     16      0      0      1      1         2     0      4      3
+ 65 - 69        0        0       0        1        1       3       5       6        0     0      0      1        1      2      4      4      0      0      0      0         0     1      1      2
+ 70 - 74        0        0       0        0        0       0       0       1        0     0      0      0        0      0      0      1      0      0      0      0         0     0      0      0
+ 75 - 79        0        0       0        0        0       0       0       1        0     0      0      0        0      0      0      1      0      0      0      0         0     0      0      0
+  80+           0        0       0        0        0       0       0       0        0     0      0      0        0      0      0      0      0      0      0      0         0     0      0      0
+Unknown         0        0       2        0        0      15       7       0        0     0      2      0        0     11      7      0      0      0      0      0         0     4      0      0
+
+
+
+
+  Notes:
+  Sex not known for two individuals in Stanley in 2016.
+  Age categories over 80 years merged, as 5-year groups not recorded prior to 2012.
+2021 Census Table 2a
+Usually resident and present population
+
+
+
+Table 2a: Population by five-year age group, sex and location
+                             TOTAL                                      STANLEY                          CAMP                              MPC
+   Age
+(in years)   Both Sexes          Male        Female     Both Sexes          Male   Female   Both Sexes     Male      Female   Both Sexes     Male      Female
+  Total           3,142          1,645         1,497            2,538      1,295    1,243         280       142         138         324          208      116
+  0-4               127              57           70             116          52       64          11           5         6           0           0         0
+  5-9               225           119            106             204         110       94          15           4        11           6           5         1
+ 10 - 14            142              68           74             137          67       70           4           1         3           1           0         1
+ 15 - 19            112              51           61             109          49       60           1           1         0           2           1         1
+ 20 - 24            129              72           57             102          54       48           4           3         1          23          15         8
+ 25 - 29            209           106            103             164          81       83          13           6         7          32          19        13
+ 30 - 34            250           129            121             195         101       94          12           5         7          43          23        20
+ 35 - 39            277           142            135             217         101      116          19           11        8          41          30        11
+ 40 - 44            300           157            143             230         116      114          20           9        11          50          32        18
+ 45 - 49            295           158            137             230         124      106          29           15       14          36          19        17
+ 50 - 54            283           160            123             223         121      102          27           16       11          33          23        10
+ 55 - 59            232           127            105             168          93       75          34           15       19          30          19        11
+ 60 - 64            184              95           89             132          59       73          33           20       13          19          16         3
+ 65 - 69            131              75           56             100          60       40          25           11       14           6           4         2
+ 70 - 74             97              52           45              78          40       38          18           11        7           1           1         0
+ 75 - 79             67              34           33              56          25       31          10           8         2           1           1         0
+   80+               82              43           39              77          42       35           5           1         4           0           0         0
+Unknown               0              0             0               0          0         0           0           0         0           0           0         0
+2021 Census Table 8a
+Usually resident and present population - Stanley
+
+
+Table 8a: Population by immigration category, 5-year age group and location - Both sexes, Stanley
+
+
+                           Falkland       Permanent                        Accompanying                                      Dependant of
+                                                             Residence
+                     Islands Status       Residence                           Dependant       Visitor Permit   Work Permit    Work Permit   Exempt
+                                                                Permit
+ Age (in years)              Holder          Permit                              Permit                                            Holder
+
+      Total                   1,625               292                46                64                 2           433             65        11
+      0-4                        89                 8                 5                 7                 0             1              5         1
+      5-9                       138                15                 7                24                 0             0             19         1
+     10 - 14                     90                15                 3                10                 0             1             18         0
+     15 - 19                     76                16                 0                 5                 0             9              3         0
+     20 - 24                     77                 4                 1                 0                 0            20              0         0
+     25 - 29                     90                21                 1                 1                 0            51              0         0
+     30 - 34                     87                42                 4                 2                 1            57              2         0
+     35 - 39                     93                39                 6                 2                 0            74              1         2
+     40 - 44                    110                35                 7                 1                 0            66              7         4
+     45 - 49                    143                33                 1                 2                 1            48              2         0
+     50 - 54                    133                24                 1                 4                 0            56              3         2
+     55 - 59                    107                20                 5                 3                 0            29              3         1
+     60 - 64                    103                 9                 2                 1                 0            15              2         0
+     65 - 69                     87                 6                 1                 2                 0             4              0         0
+     70 - 74                     71                 4                 1                 0                 0             2              0         0
+     75 - 79                     54                 1                 1                 0                 0             0              0         0
+      80+                        77                 0                 0                 0                 0             0              0         0
+Unknown                           0                 0                 0                 0                 0             0              0         0
+2021 Census Table 8d
+Usually resident and present population - Both sexes, Camp
+
+
+Table 8d: Population by immigration category, 5-year age group and location - Both sexes, Camp
+
+
+                            Falkland        Permanent        Temporary                                                        Dependant of
+                                                                               Naturalised
+                      Islands Status        Residence        Residence                       Visitor's Permit   Work Permit    Work Permit   Exempt
+                                                                                   Citizen
+  Age (in years)              Holder           Permit           Permit                                                              Holder
+
+       Total                     241                12                 0                 0                 2            25              0         0
+       0-4                        11                 0                 0                 0                 0             0              0         0
+       5-9                        15                 0                 0                 0                 0             0              0         0
+      10 - 14                      4                 0                 0                 0                 0             0              0         0
+      15 - 19                      1                 0                 0                 0                 0             0              0         0
+      20 - 24                      4                 0                 0                 0                 0             0              0         0
+      25 - 29                     10                 0                 0                 0                 0             3              0         0
+      30 - 34                      8                 1                 0                 0                 0             3              0         0
+      35 - 39                     16                 1                 0                 0                 0             2              0         0
+      40 - 44                     12                 3                 0                 0                 0             5              0         0
+      45 - 49                     22                 2                 0                 0                 1             4              0         0
+      50 - 54                     26                 1                 0                 0                 0             0              0         0
+      55 - 59                     29                 1                 0                 0                 1             3              0         0
+      60 - 64                     27                 2                 0                 0                 0             4              0         0
+      65 - 69                     24                 0                 0                 0                 0             1              0         0
+      70 - 74                     17                 1                 0                 0                 0             0              0         0
+      75 - 79                     10                 0                 0                 0                 0             0              0         0
+       80+                         5                 0                 0                 0                 0             0              0         0
+Unknown                            0                 0                 0                 0                 0             0              0         0
+2021 Census Table 8g
+Usually resident and present population
+
+
+Table 8g: Population by condensed immigration category, 5-year age group and location - Both sexes
+
+
+                                    TOTAL                             STANLEY                                CAMP                         MPC
+
+                           Permanent         Temporary         Permanent         Temporary           Permanent      Temporary    Permanent      Temporary
+   Age (in years)           Residents         Residents         Residents         Residents           Residents      Residents    Residents      Residents
+       Total                     2,178              964             1,917               621                253             27            8            316
+        1-4                       108                25                97                19                 11              0            0              6
+        5-9                       168                52               153                51                 15              0            0              1
+       10 - 14                    109                34               105                32                  4              0            0              2
+       15 - 19                      94               39                92                17                  1              0            1             22
+       20 - 24                      86               52                81                21                  4              0            1             31
+       25 - 29                    123                97               111                53                 10              3            2             41
+       30 - 34                    138               110               129                66                  9              3            0             41
+       35 - 39                    150               136               132                85                 17              2            1             49
+       40 - 44                    161               125               145                85                 15              5            1             35
+       45 - 49                    201                91               176                54                 24              5            1             32
+       50 - 54                    184                96               157                66                 27              0            0             30
+       55 - 59                    157                64               127                41                 30              4            0             19
+       60 - 64                    141                30               112                20                 29              4            0              6
+       65 - 69                    117                 9                93                 7                 24              1            0              1
+       70 - 74                      94                3                75                 3                 18              0            1              0
+       75 - 79                      65                1                55                 1                 10              0            0              0
+
+        80+                         82                0                77                 0                  5              0            0              0
+     Unknown                         0                0                 0                 0                  0              0            0              0
+2021 Census Table 9a
+Usually resident and present population
+
+
+Table 9a: Native and foreign-born population by age, sex and location - Total area
+
+
+                                   Both Sexes                                                   Male                                   Female
+   Age                                       Foreign-                                                  Foreign-                                 Foreign-
+(in years)         Total          Native        born          Unknown            Total     Native         born    Unknown   Total   Native         born    Unknown
+  Total            3,142           1,247          1,895               0          1,645       615         1,030          0   1,497     632           865          0
+  0-4                127              88             39               0              57       40            17          0     70       48            22          0
+  5-9                225            123             102               0              119      68            51          0    106       55            51          0
+ 10 - 14             142              73             69               0              68       33            35          0     74       40            34          0
+ 15 - 19             112              60             52               0              51       28            23          0     61       32            29          0
+ 20 - 24             129              60             69               0              72       30            42          0     57       30            27          0
+ 25 - 29             209              68            141               0              106      38            68          0    103       30            73          0
+ 30 - 34             250              61            189               0              129      36            93          0    121       25            96          0
+ 35 - 39             277              72            205               0              142      29           113          0    135       43            92          0
+ 40 - 44             300              59            241               0              157      27           130          0    143       32           111          0
+ 45 - 49             295              97            198               0              158      50           108          0    137       47            90          0
+ 50 - 54             283              93            190               0              160      47           113          0    123       46            77          0
+ 55 - 59             232              88            144               0              127      42            85          0    105       46            59          0
+ 60 - 64             184              81            103               0              95       36            59          0     89       45            44          0
+ 65 - 69             131              71             60               0              75       38            37          0     56       33            23          0
+ 70 - 74              97              53             44               0              52       24            28          0     45       29            16          0
+ 75 - 79              67              38             29               0              34       17            17          0     33       21            12          0
+   80+                82              62             20               0              43       32            11          0     39       30             9          0
+Unknown                0               0              0               0               0        0             0          0      0        0             0          0
+2021 Census Table 15a
+Usually resident and present population
+
+
+Table 15a. Employment status by sex and location
+
+
+                                                   TOTAL                         STANLEY                          CAMP                             MPC
+                                            Both                         Both                            Both                            Both
+Employment status                          Sexes     Male   Female      Sexes       Male     Female     Sexes       Male     Female     Sexes       Male     Female
+Total                                      3,142    1,645    1,497       2,538      1,295      1,243      280        142        138        324       208        116
+Employed                                   2,159    1,189      970       1,642       875        767       202        111         91        315       203        112
+   Employee                                1,901    1,037      864       1,486       776        710       101         59         42        314       202        112
+   Self-employed with employees               90      57        33         65         43         22        24         13         11          1           1        0
+   Self-employed without employees           168      95        73         91         56         35        77         39         38          0           0        0
+Unemployed                                    23       6        17         22          5         17         1          1          0          0           0        0
+Studying                                      44      15        29         42         15         27         1          0          1          1           0        1
+Retired and not working                      241     108       133        216         98        118        25         10         15          0           0        0
+Semi-retired and working occasionally         67      47        20         55         38         17        12          9          3          0           0        0
+   Employee                                   27      18         9         26         17          9         1          1          0          0           0        0
+   Self-employed with employees                7       5         2          7          5          2         0          0          0          0           0        0
+   Self-employed without employees            33      24         9         22         16          6        11          8          3          0           0        0
+Not working for other reasons                 83      22        61         73         21         52         9          1          8          1           0        1
+Aged 15 years or under                       525     258       267        488        243        245        30         10         20          7           5        2
+Unknown                                        0       0         0          0          0          0         0          0          0          0           0        0
+
+
+
+
+Notes: 2016 was the first year the option 'semi-retired and working occasionally' was offered. 2021 was the first year the option 'studying' was offered.
+2021 Census Table 15c
+Usually resident and present population - Both sexes
+
+
+Table 15c: Employment status by 5-year age group, sex and location - Both sexes
+
+
+                                                                                                               Semi-retired
+                                                                                             Retired and not                  Not working for
+                                          Employed        Unemployed              Studying                     and working
+                                                                                                    working                    other reasons
+          Age (in years)                                                                                       occasionally
+
+Total                                          2,159               23                  44               241             67                83
+              16 - 19                             57                 1                 21                 0              0                 2
+              20 - 24                            114                 2                  9                 0              0                 4
+              25 - 29                            198                 1                  1                 0              0                 9
+              30 - 34                            237                 3                  2                 0              0                 8
+              35 - 39                            263                 6                  1                 0              0                 7
+              40 - 44                            289                 3                  1                 0              0                 7
+              45 - 49                            284                 2                  4                 0              0                 5
+              50 - 54                            270                 2                  2                 0              0                 9
+              55 - 59                            212                 1                  3                 0              0                16
+              60 - 64                            157                 2                  0                 9              0                16
+              65 - 69                             54                 0                  0                46             31                 0
+              70 - 74                             18                 0                  0                59             20                 0
+              75 - 79                              5                 0                  0                50             12                 0
+               80+                                 1                 0                  0                77              4                 0
+            Unknown                                0                 0                  0                 0              0                 0
+
+
+
+
+Notes: 2016 was the first year the option 'semi-retired and working occasionally' was offered. 2021 was the first year the option 'studying' was offered.
+2021 Census Table 19a
+Usually resident and present population
+
+
+Table 19a: Annual income by sex and location - All individuals in employment incl. semi-retired and working occasionally
+                                  TOTAL                               STANLEY                                CAMP                            MPC
+                         Both                                 Both                                  Both                             Both
+Income                  sexes        Male      Female        sexes         Male      Female        sexes        Male       Female   sexes     Male      Female
+Total                   2,226        1,236         990        1,697         913         784          214         120           94     315      203         112
+<5,000                     79           29          50           53          22           31          26            7          19       0          0         0
+5,001-10,000                2             2          0            1           1            0           1            1           0       0          0         0
+10,001-15,000             326         137          189         236           79         157           69           42          27      21          16        5
+15,001-20,000             539         275          264         337          157         180           35           23          12     167          95       72
+20,001-25,000             399         232          167         322          179         143           17           12           5      60          41       19
+25,001-30,000             262         158          104         221          132           89          18            9           9      23          17        6
+30,001-35,000             170         119           51         144          103           41          14            6           8      12          10        2
+35,001-40,000             105           69          36           96          62           34           4            4           0       5          3         2
+40,001-45,000              66           37          29           59          31           28           3            2           1       4          4         0
+45,001-50,000              69           41          28           53          33           20          13            7           6       3          1         2
+50,001-55,000              34           21          13           29          17           12           1            1           0       4          3         1
+55,001-60,000              51           32          19           43          27           16           3            1           2       5          4         1
+60,001-65,000              24           16           8           18          11            7           1            1           0       5          4         1
+65,001-70,000              11             7          4           10           7            3           1            0           1       0          0         0
+70,001-75,000               9             4          5            8           4            4           1            0           1       0          0         0
+75,001-80,000              14           11           3           13          10            3           0            0           0       1          1         0
+80,001-85,000               8             7          1            6           5            1           0            0           0       2          2         0
+85,001-90,000               4             3          1            4           3            1           0            0           0       0          0         0
+90,001-95,000               3             3          0            3           3            0           0            0           0       0          0         0
+95,001-100,000              8             4          4            7           4            3           1            0           1       0          0         0
+>100,000                   43           29          14           34          23           11           6            4           2       3          2         1
+Mean                   29,200       31,400      26,400       30,400      33,200       27,100      25,100      25,900       24,100   25,400   26,400     23,500
+Median                 24,000       24,000      19,200       24,000      28,800       24,000      19,200      19,200       19,100   19,200   19,200     19,200
+
+
+Notes: Respondents indicated their annual income from all sources from the above range of £5,000 income bands.
+The midpoint of each band was used to calculate the scale income for each individual, and the overall mean and median income values.
+ 2021 Census Table 19d
+ Usually resident and present population
+
+
+ Table 19d: Annual income by sex and location - All individuals
+                                     TOTAL                                 STANLEY                      CAMP                         MPC
+                            Both                                   Both                         Both                         Both
+ Income                    sexes        Male      Female          sexes       Male    Female   sexes      Male     Female   sexes     Male      Female
+ Total                     2,617        1,387       1,230          2,050      1,052      998     250      132         118     317      203         114
+ <5,000                      245           75         170           203         65       138      40       10          30       2          0         2
+ 5,001-10,000                  8             4          4             4          3         1       2           1        1       2          0         2
+ 10,001-15,000               473          200         273           373        140       233      81       44          37      19          16        3
+ 15,001-20,000               564          286         278           361        167       194      36       24          12     167          95       72
+ 20,001-25,000               413          240         173           333        185       148      20       14           6      60          41       19
+ 25,001-30,000               266          161         105           224        134        90      19       10           9      23          17        6
+ 30,001-35,000               177          124          53           151        108        43      14           6        8      12          10        2
+ 35,001-40,000               114           74          40           103         65        38       6           6        0       5          3         2
+ 40,001-45,000                67           37          30            59         31        28       4           2        2       4          4         0
+ 45,001-50,000                72           43          29            56         35        21      13           7        6       3          1         2
+ 50,001-55,000                36           23          13            31         19        12       1           1        0       4          3         1
+ 55,001-60,000                51           32          19            43         27        16       3           1        2       5          4         1
+ 60,001-65,000                24           16           8            18         11         7       1           1        0       5          4         1
+ 65,001-70,000                11             7          4            10          7         3       1           0        1       0          0         0
+ 70,001-75,000                10             5          5             8          4         4       2           1        1       0          0         0
+ 75,001-80,000                14           11           3            13         10         3       0           0        0       1          1         0
+ 80,001-85,000                 8             7          1             6          5         1       0           0        0       2          2         0
+ 85,001-90,000                 4             3          1             4          3         1       0           0        0       0          0         0
+ 90,001-95,000                 3             3          0             3          3         0       0           0        0       0          0         0
+ 95,001-100,000                8             4          4             7          4         3       1           0        1       0          0         0
+ >100,000                     49           32          17            40         26        14       6           4        2       3          2         1
+ Mean                     26,700       29,700      23,200         27,300     30,900   23,500   23,500   25,700     21,100   25,200   26,400     23,100
+ Median                   24,000       24,000      19,200         24,000     24,000   19,200   19,200   19,200     14,400   19,200   19,200     19,200
+
+
+Notes: Excludes individuals ≤15 years (n=525). Respondents indicated their annual income from all sources from the above range of £5,000 income bands.
+The midpoint of each band was used to calculate the scale income for each individual, and the overall mean and median income values.
+2021 Census Table 20
+Usually resident and present population
+
+
+Table 20: Self-reported health by sex and location
+
+
+
+
+                                   TOTAL                           STANLEY                    CAMP                     MPC
+                           Both                             Both                       Both                     Both
+Health rating             sexes       Male    Female       sexes      Male   Female   sexes    Male   Female   sexes    Male     Female
+Total                      3,125     1,638      1,487      2,527     1,291    1,236     275     140      135    323     207         116
+Very good                  1,293       681           612   1,040      528       512      82      36       46    171     117          54
+Good                       1,358       704           654   1,092      557       535     127      63       64    139      84          55
+Fair                        420        229           191    344       184       160      63      39       24     13          6        7
+Bad                          45         18            27     42        16        26      3       2         1      0          0        0
+Very bad                       9         6             3      9         6         3      0       0         0      0          0        0
+
+
+Notes: No information available for 17 individuals
+2021 Census Table 23a
+Usually resident and present population
+
+
+Table 23a: Reported cigarette smoking by 5-year age group, sex and location
+                                       TOTAL                              STANLEY                     CAMP                        MPC
+                              Both                                 Both                        Both                        Both
+    Age (in years)           sexes        Male      Female        sexes       Male   Female   sexes     Male     Female   sexes    Male      Female
+         Total                 527         303          224         388       218       170     52       27          25     87          58       29
+        16 - 19                 18             9          9          18         9         9      0           0        0      0          0         0
+        20 - 24                 48          29           19          36        21        15      3           3        0      9          5         4
+        25 - 29                 71          40           31          57        31        26      4           2        2     10          7         3
+        30 - 34                 73          50           23          53        37        16      4           2        2     16          11        5
+        35 - 39                 56          33           23          38        19        19      6           5        1     12          9         3
+        40 - 44                 62          30           32          47        24        23      6           2        4      9          4         5
+        45 - 49                 54          25           29          39        18        21      7           4        3      8          3         5
+        50 - 54                 52          32           20          37        21        16      5           2        3     10          9         1
+        55 - 59                 43          25           18          32        19        13      5           3        2      6          3         3
+        60 - 64                 25          18            7          13        10         3      6           2        4      6          6         0
+        65 - 69                 11             6          5           8         5         3      3           1        2      0          0         0
+        70 - 74                  6             2          4           3         1         2      2           0        2      1          1         0
+        75 - 79                  6             3          3           5         2         3      1           1        0      0          0         0
+          80+                    2             1          1           2         1         1      0           0        0      0          0         0
+Mean cigarettes/day             9.9        10.8         8.7        10.1       11.2      8.8    11.7     12.0       11.3     7.6     8.6         5.5
+Median cigarettes/day         10.0         10.0         8.0        10.0       10.0      8.0    10.0     10.0       10.0     7.0    10.0         5.0
+2021 Census Table 24a
+Usually resident and present population
+
+
+Table 24a: Reported alcohol consumption by 5-year age group, sex and location
+
+
+
+
+                                         TOTAL                          STANLEY                       CAMP                     MPC
+                                 Both                           Both                           Both                     Both
+       Age (in years)           sexes      Male    Female      sexes       Male      Female   sexes    Male   Female   sexes    Male     Female
+           Total                1,793      1,044       749      1,399       796         603    173       98       75    221     150          71
+           16 - 19                 35         19        16        33            18       15      0       0         0       2         1        1
+           20 - 24                106         61        45        83            46       37      4       3         1      19     12           7
+           25 - 29                166         91        75       128            69       59     12       6         6      26     16          10
+           30 - 34                198        108        90       151            86       65     10       4         6      37     18          19
+           35 - 39                212        119        93       164            84       80     15       9         6      33     26           7
+           40 - 44                214        122        92       169            93       76     14       8         6      31     21          10
+           45 - 49                210        122        88       167            97       70     21       12        9      22     13           9
+           50 - 54                208        126        82       166            98       68     22       13        9      20     15           5
+           55 - 59                147         92        55       113            72       41     19       8        11      15     12           3
+           60 - 64                118         68        50        81            41       40     25       15       10      12     12           0
+           65 - 69                 69         46        23        51            35       16     15       8         7       3         3        0
+           70 - 74                 56         33        23        46            26       20     10       7         3       0         0        0
+           75 - 79                 33         21        12        28            16       12      4       4         0       1         1        0
+            80+                    21         16         5        19            15        4      2       1         1       0         0        0
+Mean units per week                9.1      10.1       7.7        9.2      10.3         7.8    10.4    12.2      8.0     7.0     7.3        6.3
+Median units per week              5.0       8.0       5.0        5.0       8.0         5.0     8.0     8.0      5.0     5.0     5.0        5.0
+2021 Census Table 25
+Usually resident and present population
+
+
+Table 25: Housing units occupied on census night by type of housing unit and location
+
+
+
+                                                                                 CAMP:        CAMP:      CAMP:
+                                                                                    East        West      Outer
+Type of housing unit                                TOTAL       STANLEY         Falkland     Falkland   islands   MPC
+Total                                                 1,600          1,148              82        49        18    303
+  House                                               1,161          1,002              77        47        16     19
+    Detached house                                     932            780               73        45        16     18
+    Semi-detached house                                195            188               4          2         0      1
+    Terraced house                                       34             34              0          0         0      0
+
+
+  Flat                                                 363              81              2          0         0    280
+    In purpose-built block                             114              66              1          0         0     47
+    In a shared house                                  238               7              0          0         0    231
+    In a converted building                               5              4              0          0         0      1
+    In commercial building                                6              4              1          0         0      1
+
+
+  Mobile or temporary structure                          76             65              3          2         2      4
+    Mobile home or portacabin                            73             63              2          2         2      4
+    Caravan                                               3              2              1          0         0      0
+

@@ -1,0 +1,686 @@
+[
+ {
+  "code": "CG",
+  "alpha2": "CG",
+  "alpha3": "COG",
+  "numericCode": "178",
+  "name": "Congo",
+  "region": "Sub-Saharan Africa",
+  "flag": "🇨🇬",
+  "currency": "XAF",
+  "currencySymbol": "Fr",
+  "exchangeRate": 1,
+  "population": 6484437,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 25,
+   "p25": 55,
+   "p50": 120,
+   "p75": 280,
+   "p90": 620
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 26,
+    "p25": 58,
+    "p50": 129,
+    "p75": 314,
+    "p90": 726
+   },
+   "posttax_national": {
+    "p10": 25,
+    "p25": 55,
+    "p50": 120,
+    "p75": 280,
+    "p90": 620
+   },
+   "consumption": {
+    "p10": 23,
+    "p25": 44,
+    "p50": 96,
+    "p75": 210,
+    "p90": 435
+   },
+   "wealth": {
+    "p10": 50,
+    "p25": 440,
+    "p50": 3000,
+    "p75": 16800,
+    "p90": 93000
+   },
+   "labor_income": {
+    "p10": 15,
+    "p25": 39,
+    "p50": 96,
+    "p75": 238,
+    "p90": 558
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 108.1,
+   "childMarriagePercent": 33,
+   "laborForceGap": -4.5,
+   "contraceptiveUse": 30.1
+  },
+  "minimumWageEur": 70,
+  "costOfLivingIndex": 32,
+  "unemploymentRate": 19.9,
+  "internetPenetration": 47.3,
+  "femaleHeightCm": 159,
+  "femaleWeightKg": 63,
+  "femaleBmi": 25,
+  "femaleObesityRate": 10,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 67.7,
+  "maleHeightCm": 171,
+  "maleWeightKg": 75,
+  "maleBmi": 25.6,
+  "maleObesityRate": 8.8,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 64.3,
+  "obesityRate": 10,
+  "smokingRate": 8,
+  "hdi": 0.59,
+  "englishSpeakingPercent": 33,
+  "mainIndustry": "Petroleum"
+ },
+ {
+  "code": "CK",
+  "alpha2": "CK",
+  "alpha3": "COK",
+  "numericCode": "184",
+  "name": "Cook Islands",
+  "region": "Oceania",
+  "flag": "🇨🇰",
+  "currency": "CKD",
+  "currencySymbol": "$",
+  "exchangeRate": 1,
+  "population": 1000000,
+  "dataSource": "REST Countries & World Bank API 2024",
+  "dataYear": 2024,
+  "income": {
+   "p10": 626,
+   "p25": 725,
+   "p50": 875,
+   "p75": 1141,
+   "p90": 1474
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 638,
+    "p25": 753,
+    "p50": 925,
+    "p75": 1249,
+    "p90": 1670
+   },
+   "posttax_national": {
+    "p10": 626,
+    "p25": 725,
+    "p50": 875,
+    "p75": 1141,
+    "p90": 1474
+   },
+   "consumption": {
+    "p10": 571,
+    "p25": 589,
+    "p50": 711,
+    "p75": 869,
+    "p90": 1049
+   },
+   "wealth": {
+    "p10": 1252,
+    "p25": 5800,
+    "p50": 21875,
+    "p75": 68460,
+    "p90": 221100
+   },
+   "labor_income": {
+    "p10": 376,
+    "p25": 507,
+    "p50": 700,
+    "p75": 970,
+    "p90": 1327
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": null,
+   "childMarriagePercent": null,
+   "laborForceGap": null,
+   "contraceptiveUse": null
+  },
+  "minimumWageEur": 450,
+  "costOfLivingIndex": 38,
+  "unemploymentRate": 5.5,
+  "internetPenetration": 75,
+  "femaleHeightCm": 162,
+  "femaleWeightKg": 66,
+  "femaleBmi": 25.3,
+  "femaleObesityRate": 22,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 78.5,
+  "maleHeightCm": 174,
+  "maleWeightKg": 78,
+  "maleBmi": 25.9,
+  "maleObesityRate": 19.4,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 72.8,
+  "obesityRate": 22,
+  "smokingRate": 8,
+  "hdi": 0.57
+ },
+ {
+  "code": "CR",
+  "alpha2": "CR",
+  "alpha3": "CRI",
+  "numericCode": "188",
+  "name": "Costa Rica",
+  "region": "Latin America",
+  "flag": "🇨🇷",
+  "currency": "CRC",
+  "currencySymbol": "₡",
+  "exchangeRate": 1,
+  "population": 5152950,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 120,
+   "p25": 250,
+   "p50": 520,
+   "p75": 1050,
+   "p90": 2000
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 123,
+    "p25": 262,
+    "p50": 558,
+    "p75": 1179,
+    "p90": 2343
+   },
+   "posttax_national": {
+    "p10": 120,
+    "p25": 250,
+    "p50": 520,
+    "p75": 1050,
+    "p90": 2000
+   },
+   "consumption": {
+    "p10": 108,
+    "p25": 200,
+    "p50": 417,
+    "p75": 789,
+    "p90": 1402
+   },
+   "wealth": {
+    "p10": 240,
+    "p25": 2000,
+    "p50": 13000,
+    "p75": 63000,
+    "p90": 300000
+   },
+   "labor_income": {
+    "p10": 72,
+    "p25": 175,
+    "p50": 416,
+    "p75": 893,
+    "p90": 1800
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 24.8,
+   "childMarriagePercent": 21,
+   "laborForceGap": -23.7,
+   "contraceptiveUse": 70.9
+  },
+  "minimumWageEur": 280,
+  "costOfLivingIndex": 40,
+  "unemploymentRate": 6.8,
+  "internetPenetration": 87.2,
+  "femaleHeightCm": 159,
+  "femaleWeightKg": 66,
+  "femaleBmi": 26,
+  "femaleObesityRate": 24,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 83.6,
+  "maleHeightCm": 171,
+  "maleWeightKg": 78,
+  "maleBmi": 26.7,
+  "maleObesityRate": 21.1,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 78.4,
+  "obesityRate": 24,
+  "smokingRate": 8,
+  "hdi": 0.81,
+  "englishSpeakingPercent": 65,
+  "mainIndustry": "Services"
+ },
+ {
+  "code": "HR",
+  "alpha2": "HR",
+  "alpha3": "HRV",
+  "numericCode": "191",
+  "name": "Croatia",
+  "region": "Europe",
+  "flag": "🇭🇷",
+  "currency": "EUR",
+  "currencySymbol": "€",
+  "exchangeRate": 1,
+  "population": 3876200,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 350,
+   "p25": 620,
+   "p50": 1050,
+   "p75": 1700,
+   "p90": 2700
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 355,
+    "p25": 638,
+    "p50": 1096,
+    "p75": 1823,
+    "p90": 2974
+   },
+   "posttax_national": {
+    "p10": 350,
+    "p25": 620,
+    "p50": 1050,
+    "p75": 1700,
+    "p90": 2700
+   },
+   "consumption": {
+    "p10": 322,
+    "p25": 509,
+    "p50": 862,
+    "p75": 1311,
+    "p90": 1947
+   },
+   "wealth": {
+    "p10": 700,
+    "p25": 4960,
+    "p50": 26250,
+    "p75": 102000,
+    "p90": 405000
+   },
+   "labor_income": {
+    "p10": 210,
+    "p25": 434,
+    "p50": 840,
+    "p75": 1445,
+    "p90": 2430
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 6.3,
+   "childMarriagePercent": 12,
+   "laborForceGap": -10,
+   "contraceptiveUse": null
+  },
+  "minimumWageEur": 840,
+  "costOfLivingIndex": 58,
+  "unemploymentRate": 5,
+  "internetPenetration": 83.6,
+  "femaleHeightCm": 164,
+  "femaleWeightKg": 70,
+  "femaleBmi": 26,
+  "femaleObesityRate": 24,
+  "femaleSmokingRate": 18,
+  "femaleLifeExpectancy": 81.9,
+  "maleHeightCm": 177,
+  "maleWeightKg": 84,
+  "maleBmi": 26.7,
+  "maleObesityRate": 21.1,
+  "maleSmokingRate": 28,
+  "maleLifeExpectancy": 76.1,
+  "obesityRate": 24,
+  "smokingRate": 18,
+  "hdi": 0.88,
+  "englishSpeakingPercent": 77,
+  "mainIndustry": "Services"
+ },
+ {
+  "code": "CU",
+  "alpha2": "CU",
+  "alpha3": "CUB",
+  "numericCode": "192",
+  "name": "Cuba",
+  "region": "Caribbean",
+  "flag": "🇨🇺",
+  "currency": "CUC",
+  "currencySymbol": "$",
+  "exchangeRate": 1,
+  "population": 10937203,
+  "dataSource": "ILO",
+  "dataYear": 2022,
+  "income": {
+   "p10": 30,
+   "p25": 55,
+   "p50": 100,
+   "p75": 180,
+   "p90": 320
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 31,
+    "p25": 57,
+    "p50": 106,
+    "p75": 198,
+    "p90": 365
+   },
+   "posttax_national": {
+    "p10": 30,
+    "p25": 55,
+    "p50": 100,
+    "p75": 180,
+    "p90": 320
+   },
+   "consumption": {
+    "p10": 27,
+    "p25": 45,
+    "p50": 81,
+    "p75": 137,
+    "p90": 227
+   },
+   "wealth": {
+    "p10": 60,
+    "p25": 440,
+    "p50": 2500,
+    "p75": 10800,
+    "p90": 48000
+   },
+   "labor_income": {
+    "p10": 18,
+    "p25": 39,
+    "p50": 80,
+    "p75": 153,
+    "p90": 288
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 48.2,
+   "childMarriagePercent": 26,
+   "laborForceGap": -25.1,
+   "contraceptiveUse": 62.1
+  },
+  "minimumWageEur": 60,
+  "costOfLivingIndex": 30,
+  "unemploymentRate": 1.7,
+  "internetPenetration": 70.5,
+  "femaleHeightCm": 159,
+  "femaleWeightKg": 66,
+  "femaleBmi": 26,
+  "femaleObesityRate": 25,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 80.7,
+  "maleHeightCm": 171,
+  "maleWeightKg": 78,
+  "maleBmi": 26.7,
+  "maleObesityRate": 22,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 75.9,
+  "obesityRate": 25,
+  "smokingRate": 8,
+  "hdi": 0.73,
+  "englishSpeakingPercent": 64,
+  "mainIndustry": "Services"
+ },
+ {
+  "code": "CW",
+  "alpha2": "CW",
+  "alpha3": "CUW",
+  "numericCode": "531",
+  "name": "Curaçao",
+  "region": "Caribbean",
+  "flag": "🇨🇼",
+  "currency": "ANG",
+  "currencySymbol": "ƒ",
+  "exchangeRate": 1,
+  "population": 156263,
+  "dataSource": "REST Countries & World Bank API 2024",
+  "dataYear": 2024,
+  "income": {
+   "p10": 819,
+   "p25": 950,
+   "p50": 1146,
+   "p75": 1494,
+   "p90": 1930
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 835,
+    "p25": 986,
+    "p50": 1211,
+    "p75": 1636,
+    "p90": 2187
+   },
+   "posttax_national": {
+    "p10": 819,
+    "p25": 950,
+    "p50": 1146,
+    "p75": 1494,
+    "p90": 1930
+   },
+   "consumption": {
+    "p10": 747,
+    "p25": 771,
+    "p50": 931,
+    "p75": 1138,
+    "p90": 1374
+   },
+   "wealth": {
+    "p10": 1638,
+    "p25": 7600,
+    "p50": 28650,
+    "p75": 89640,
+    "p90": 289500
+   },
+   "labor_income": {
+    "p10": 491,
+    "p25": 665,
+    "p50": 917,
+    "p75": 1270,
+    "p90": 1737
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 12.5,
+   "childMarriagePercent": null,
+   "laborForceGap": null,
+   "contraceptiveUse": null
+  },
+  "minimumWageEur": 900,
+  "costOfLivingIndex": 50,
+  "unemploymentRate": 5.5,
+  "internetPenetration": 75,
+  "femaleHeightCm": 162,
+  "femaleWeightKg": 66,
+  "femaleBmi": 25.3,
+  "femaleObesityRate": 22,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 81,
+  "maleHeightCm": 174,
+  "maleWeightKg": 78,
+  "maleBmi": 25.9,
+  "maleObesityRate": 19.4,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 72.7,
+  "obesityRate": 22,
+  "smokingRate": 8,
+  "hdi": 0.63
+ },
+ {
+  "code": "CY",
+  "alpha2": "CY",
+  "alpha3": "CYP",
+  "numericCode": "196",
+  "name": "Cyprus",
+  "region": "Europe",
+  "flag": "🇨🇾",
+  "currency": "EUR",
+  "currencySymbol": "€",
+  "exchangeRate": 1,
+  "population": 1370754,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 500,
+   "p25": 900,
+   "p50": 1550,
+   "p75": 2500,
+   "p90": 3800
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 508,
+    "p25": 929,
+    "p50": 1624,
+    "p75": 2700,
+    "p90": 4226
+   },
+   "posttax_national": {
+    "p10": 500,
+    "p25": 900,
+    "p50": 1550,
+    "p75": 2500,
+    "p90": 3800
+   },
+   "consumption": {
+    "p10": 459,
+    "p25": 736,
+    "p50": 1268,
+    "p75": 1920,
+    "p90": 2728
+   },
+   "wealth": {
+    "p10": 1000,
+    "p25": 7200,
+    "p50": 38750,
+    "p75": 150000,
+    "p90": 570000
+   },
+   "labor_income": {
+    "p10": 300,
+    "p25": 630,
+    "p50": 1240,
+    "p75": 2125,
+    "p90": 3420
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 7,
+   "childMarriagePercent": 5,
+   "laborForceGap": -11.5,
+   "contraceptiveUse": null
+  },
+  "minimumWageEur": 925,
+  "costOfLivingIndex": 72,
+  "unemploymentRate": 4.9,
+  "internetPenetration": 89.6,
+  "femaleHeightCm": 163,
+  "femaleWeightKg": 69,
+  "femaleBmi": 26,
+  "femaleObesityRate": 21,
+  "femaleSmokingRate": 18,
+  "femaleLifeExpectancy": 83.8,
+  "maleHeightCm": 176,
+  "maleWeightKg": 83,
+  "maleBmi": 26.7,
+  "maleObesityRate": 18.5,
+  "maleSmokingRate": 28,
+  "maleLifeExpectancy": 79.8,
+  "obesityRate": 21,
+  "smokingRate": 18,
+  "hdi": 0.87,
+  "englishSpeakingPercent": 67,
+  "mainIndustry": "Services"
+ },
+ {
+  "code": "CZ",
+  "alpha2": "CZ",
+  "alpha3": "CZE",
+  "numericCode": "203",
+  "name": "Czechia",
+  "region": "Europe",
+  "flag": "🇨🇿",
+  "currency": "CZK",
+  "currencySymbol": "Kč",
+  "exchangeRate": 1,
+  "population": 10886878,
+  "dataSource": "OECD",
+  "dataYear": 2023,
+  "income": {
+   "p10": 500,
+   "p25": 850,
+   "p50": 1400,
+   "p75": 2200,
+   "p90": 3300
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 506,
+    "p25": 871,
+    "p50": 1453,
+    "p75": 2338,
+    "p90": 3589
+   },
+   "posttax_national": {
+    "p10": 500,
+    "p25": 850,
+    "p50": 1400,
+    "p75": 2200,
+    "p90": 3300
+   },
+   "consumption": {
+    "p10": 462,
+    "p25": 701,
+    "p50": 1155,
+    "p75": 1705,
+    "p90": 2393
+   },
+   "wealth": {
+    "p10": 1000,
+    "p25": 6800,
+    "p50": 35000,
+    "p75": 132000,
+    "p90": 495000
+   },
+   "labor_income": {
+    "p10": 300,
+    "p25": 595,
+    "p50": 1120,
+    "p75": 1870,
+    "p90": 2970
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 5.8,
+   "childMarriagePercent": 9,
+   "laborForceGap": -14.1,
+   "contraceptiveUse": 86.3
+  },
+  "minimumWageEur": 725,
+  "costOfLivingIndex": 55,
+  "unemploymentRate": 2.8,
+  "internetPenetration": 87.7,
+  "femaleHeightCm": 163,
+  "femaleWeightKg": 69,
+  "femaleBmi": 26,
+  "femaleObesityRate": 23,
+  "femaleSmokingRate": 18,
+  "femaleLifeExpectancy": 83,
+  "maleHeightCm": 176,
+  "maleWeightKg": 83,
+  "maleBmi": 26.7,
+  "maleObesityRate": 20.2,
+  "maleSmokingRate": 28,
+  "maleLifeExpectancy": 77.1,
+  "obesityRate": 23,
+  "smokingRate": 18,
+  "hdi": 0.9,
+  "englishSpeakingPercent": 73,
+  "mainIndustry": "Manufacturing"
+ }
+]

@@ -1,0 +1,46 @@
+{
+ "batch": "pass3_health_4",
+ "countries": {
+  "ST": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleBmi": 25.3,
+    "maleBmi": 23.8,
+    "femaleWeightKg": 63,
+    "maleWeightKg": 69,
+    "femaleObesityRate": 16.5,
+    "maleObesityRate": 6.6,
+    "obesityRate": 11.7,
+    "femaleSmokingRate": 4.9,
+    "maleSmokingRate": 18,
+    "smokingRate": 8.8
+   },
+   "notes": [
+    "Anthropometrics from the official WHO STEPS fact sheet, Sao Tome and Principe Survey 2008 (measured Step 2, adults 25-64, n=2457): mean BMI males 23.8 kg/m2 (23.3-24.2), females 25.3 kg/m2 (24.5-26.0); obesity (BMI>=30) males 6.6%, females 16.5%, both sexes 11.7%. Old block (F bmi24/ob8, M bmi24.6/ob7) was template-mixed.",
+    "Smoking updated to the more recent national STEPS 2019 survey (Pengpid & Peltzer, Front Public Health 2023, secondary analysis of STP_2019_STEPS, adults 25-64): current tobacco use males 18.0% (15.2-21.3), females 4.9% (3.5-6.8), overall 8.8% (7.5-10.4). 2008 fact-sheet comparison: M 9.7 / F 1.7 - male smoking roughly doubled between surveys.",
+    "Weights derived from measured mean BMI x anchor height (F 25.3 x 1.58^2 = 63 kg; M 23.8 x 1.70^2 = 69 kg); heights kept at anchor (fact sheets publish BMI only).",
+    "WHO GHO API returned no usable rows for ST on 2026-08 (persistent timeouts), so the two national STEPS surveys are the primary sources."
+   ]
+  },
+  "TT": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleBmi": 28.9,
+    "maleBmi": 26.6,
+    "femaleWeightKg": 76,
+    "maleWeightKg": 80,
+    "femaleObesityRate": 38.3,
+    "maleObesityRate": 24.9,
+    "obesityRate": 31.6,
+    "femaleSmokingRate": 11,
+    "maleSmokingRate": 31.5,
+    "smokingRate": 21.3
+   },
+   "notes": [
+    "All values from the official WHO 2024 STEPS Fact Sheet Trinidad and Tobago (survey May-Aug 2024, adults 18-69, n=4052, measured Step 2): mean BMI males 26.6 kg/m2 (26.2-27.0), females 28.9 (28.2-29.6); obesity (BMI>=30) males 24.9% (21.5-28.8), females 38.3% (34.4-42.4), both sexes 31.6%; current tobacco smoking males 31.5% (28.6-34.6), females 11.0% (8.9-13.6), overall 21.3%.",
+    "Old block was the byte-identical template copy (F162/66/25.3/ob22/smoke8, M174/78/25.9/ob19.4/smoke22) - badly understated Trinidad's measured NCD burden.",
+    "Weights derived from measured mean BMI x anchor height (F 28.9 x 1.62^2 = 76 kg; M 26.6 x 1.74^2 = 80 kg); heights kept at anchor (fact sheet publishes BMI and waist, not mean height)."
+   ]
+  }
+ }
+}

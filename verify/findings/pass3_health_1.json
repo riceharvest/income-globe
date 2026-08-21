@@ -1,0 +1,43 @@
+{
+ "batch": "pass3_health_1",
+ "countries": {
+  "GY": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleBmi": 28,
+    "maleBmi": 24.6,
+    "femaleWeightKg": 73,
+    "maleWeightKg": 74,
+    "femaleObesityRate": 34,
+    "maleObesityRate": 14,
+    "obesityRate": 23.6,
+    "femaleSmokingRate": 3.3,
+    "maleSmokingRate": 26.6,
+    "smokingRate": 15.4
+   },
+   "notes": [
+    "All values from Guyana's first national STEPS survey (Pan American STEPS 2016, Ministry of Public Health/PAHO, measured Step 2, adults 18-69, n=2837): mean BMI males 24.6 kg/m2 (24.0-25.3), females 28.0 kg/m2 (27.5-28.5); obesity (BMI>=30) males 14.0% (11.1-16.8), females 34.0% (31.1-37.0), both sexes 23.6% (21.3-25.9).",
+    "Smoking (current tobacco smokers, self-reported): males 26.6% (21.2-32.0), females 3.3% (2.3-4.4), overall 15.4% (12.3-18.4). Replaces template F8/M22.",
+    "Weights derived from measured mean BMI x anchor height (F 28.0 x 1.62^2 = 73 kg; M 24.6 x 1.74^2 = 74 kg); heights kept at anchor (no mean height published in the STEPS report) - heights vary little regionally, note kept per brief rule.",
+    "WHO GHO API returned zero rows for Guyana for NCD_BMI_MEAN / NCD_BMI_30A / smoking estimates (checked 2026-08), so the STEPS survey is both the best and effectively the only source."
+   ]
+  },
+  "TZ": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleBmi": 24.3,
+    "maleBmi": 21.6,
+    "femaleWeightKg": 61,
+    "maleWeightKg": 63,
+    "femaleObesityRate": 15,
+    "maleObesityRate": 2.5,
+    "obesityRate": 8.7
+   },
+   "notes": [
+    "Tanzania STEPS Survey 2012 (WHO fact sheet, measured, adults 25-64): mean BMI males 21.6 kg/m2 (21.3-22.0), females 24.3 kg/m2 (23.8-24.8); obesity (BMI>=30) males 2.5% (1.5-3.5), females 15.0% (12.4-17.7), both sexes 8.7% (7.3-10.1). Old male obesity 14.1% and male BMI 25.6 were template-inflated and are corrected.",
+    "Weights derived from measured mean BMI x anchor height (F 24.3 x 1.59^2 = 61 kg; M 21.6 x 1.71^2 = 63 kg); heights kept at anchor (STEPS fact sheet publishes BMI, not mean height).",
+    "Smoking left unchanged (F 2.4 / M 13.1): these are not template values and match WHO tobacco-prevalence estimates for Tanzania; STEPS 2012 current-smoking (M 26.0 / F 2.9, ages 25-64, self-reported) is higher than the WHO age-standardized estimate - both are real, WHO estimates kept for consistency with other countries in the DB."
+   ]
+  }
+ }
+}

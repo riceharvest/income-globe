@@ -1,0 +1,21 @@
+{
+ "batch": "pass3_health_5",
+ "countries": {
+  "RE": {
+   "status": "no_errors_found",
+   "corrections": {},
+   "notes": [
+    "Health block verified against repair_health_4 (prior pass): every stored value already matches the corrections recorded there - smoking from Sante publique France Barometre DROM 2021 / EHIS-DREES 2019 (F16 / M26 / 19), obesity F20 (EHIS 2019, real) / M13 (derived, noted there) / 16 combined, anthropometry derived from the FR anchor with +2 kg both sexes.",
+    "No template remnants remain; no changes made in this pass."
+   ]
+  },
+  "SH": {
+   "status": "no_errors_found",
+   "corrections": {},
+   "notes": [
+    "Health block verified against repair_health_4 (prior pass): every stored value already matches the corrections recorded there - smokingRate 25 from St Helena Government health statistics (NSMC case study, corroborated by BMC Public Health 2024), sexed smoking/obesity scaled to GB-anchor patterns as documented, heights/weights derived from GB anchor.",
+    "These are honest derived estimates (the island publishes no measured BMI data: 'BMI data for the general adult population is not available' per BMC Public Health 2024); no template remnants remain; no changes made in this pass."
+   ]
+  }
+ }
+}

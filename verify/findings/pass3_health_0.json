@@ -1,0 +1,216 @@
+{
+ "batch": "pass3_health_0",
+ "countries": {
+  "BB": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleHeightCm": 165,
+    "maleHeightCm": 176,
+    "femaleWeightKg": 80,
+    "maleWeightKg": 82,
+    "femaleBmi": 29.4,
+    "maleBmi": 26.5,
+    "femaleObesityRate": 51.1,
+    "maleObesityRate": 28.7,
+    "obesityRate": 39.9,
+    "femaleSmokingRate": 2.3,
+    "maleSmokingRate": 11.0,
+    "smokingRate": 6.4
+   },
+   "notes": [
+    "Previous sexed block (162/66/25.3/22/8 F; 174/78/25.9/19.4/22 M) was a byte-identical template copy shared across unrelated countries.",
+    "Mean BMI: NCD-RisC Lancet 2017 age-standardized estimates, Barbados 2016: women 29.4, men 26.5 kg/m2 (ncdrisc.org downloads/bmi-2017 country CSV).",
+    "Obesity: NCD-RisC Nature 2026 age-standardized prevalence of BMI>=30, adults 18+, Barbados 2024: women 51.1%, men 28.7%; combined stored as average of sexed values (39.9%). Cross-check: Barbados Health of the Nation Survey 2012-13 (measured, 25+, n=1234): obese women 46.4%, men 25.3%, all 36.0% (BMC Public Health 2018 sodium study Table 1) - direction consistent.",
+    "Weights derived as mean BMI x height^2 using the new heights (F 29.4x1.653^2=80 kg; M 26.5x1.759^2=82 kg).",
+    "Heights: NCD-RisC 'A century of trends in adult human height' (eLife 2016), height at age 18, 1996 birth cohort: women 165.3 cm, men 175.9 cm -> rounded 165/176. Replaces template 162/174.",
+    "Smoking: Barbados Health of the Nation Survey 2012 (ages 25-86), as reported by Barbados in its WHO FCTC 2023 core questionnaire report: daily smokers men 11.0%, women 2.3%, total 6.4%. Replaces template 8/22."
+   ]
+  },
+  "BZ": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleHeightCm": 157,
+    "maleHeightCm": 169,
+    "femaleWeightKg": 76,
+    "maleWeightKg": 79,
+    "femaleBmi": 30.8,
+    "maleBmi": 27.6,
+    "femaleObesityRate": 54.7,
+    "maleObesityRate": 34.3,
+    "obesityRate": 44.5,
+    "femaleSmokingRate": 2,
+    "maleSmokingRate": 15.0,
+    "smokingRate": 8.5
+   },
+   "notes": [
+    "Previous sexed block was the byte-identical template copy (162/66/25.3/22/8 F; 174/78/25.9/19.4/22 M).",
+    "Mean BMI: NCD-RisC Lancet 2017 age-standardized, Belize 2016: women 30.8, men 27.6 kg/m2 (ncdrisc.org downloads/bmi-2017 country CSV).",
+    "Obesity: NCD-RisC Nature 2026 age-standardized BMI>=30, adults 18+, Belize 2024: women 54.7%, men 34.3%; combined stored as average of sexed values (44.5%). Cross-check: Belize CAMDI national risk-factor survey 2005-06 (measured, 20+, n~2635): obese women 41.9%, men 23.1% - rising trend consistent.",
+    "Weights derived as mean BMI x height^2 (F 30.8x1.569^2=76 kg; M 27.6x1.687^2=79 kg).",
+    "Heights: NCD-RisC eLife 2016, height at age 18, 1996 birth cohort: women 156.9 cm, men 168.7 cm -> 157/169.",
+    "Smoking: WHO GHO age-standardized current-smoking estimates (via World Bank SH.PRV.SMOK.MA/.FE API, 2024): men 15.0%, women 2.0% -> combined average 8.5%. Cross-check: Belize CAMDI national risk-factor survey 2005-06 (measured): men 17.7%, women 1.4%. Replaces template 8/22."
+   ]
+  },
+  "AX": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleBmi": 25.7,
+    "maleBmi": 26.5,
+    "femaleWeightKg": 71,
+    "maleWeightKg": 85,
+    "femaleObesityRate": 25.3,
+    "maleObesityRate": 24.2,
+    "obesityRate": 24.8,
+    "femaleSmokingRate": 17.4,
+    "maleSmokingRate": 25.3,
+    "smokingRate": 21.4
+   },
+   "notes": [
+    "Previous sexed block (166/70/25.3/22/18 F; 179/83/25.9/19.4/28 M) carried template-derived BMI/obesity/smoking values shared with unrelated countries.",
+    "Anchor rule: no separate \u00c5land health survey exists; Finnish national data used.",
+    "Mean BMI: NCD-RisC Lancet 2017 age-standardized, Finland 2016: women 25.7, men 26.5 kg/m2 (ncdrisc.org downloads/bmi-2017 country CSV).",
+    "Weights derived as mean BMI x stored height^2 (F 25.7x1.66^2=71 kg; M 26.5x1.79^2=85 kg).",
+    "Heights kept (166/179): NCD-RisC eLife 2016 height-at-age-18, Finland 1996 birth cohort = women 165.9 / men 179.6 cm - matches stored values.",
+    "Obesity: NCD-RisC Nature 2026 age-standardized BMI>=30, adults 18+, Finland 2024: women 25.3%, men 24.2%; combined = average of sexed values (24.8%). Consistent with FinHealth 2017 measured mean BMI (women 26.3 / men 27.2, ages 30+, Sci Rep/Nature tables).",
+    "Smoking: WHO GHO age-standardized current-smoking estimates via World Bank SH.PRV.SMOK API, Finland 2024: men 25.3%, women 17.4%; combined = average of sexed values (21.4%). Higher than THL daily-cigarette rates (~15%/13%) because it counts current use of any tobacco product."
+   ]
+  },
+  "GG": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleBmi": 27.2,
+    "maleBmi": 27.5,
+    "femaleWeightKg": 75,
+    "maleWeightKg": 88,
+    "femaleObesityRate": 29.6,
+    "maleObesityRate": 26.7,
+    "obesityRate": 28.2,
+    "femaleSmokingRate": 11.0,
+    "maleSmokingRate": 14.6,
+    "smokingRate": 12.8
+   },
+   "notes": [
+    "Previous sexed block (166/70/25.3/22/18 F; 179/83/25.9/19.4/28 M) carried template-derived values shared with \u00c5land and other unrelated countries.",
+    "Anchor rule: Guernsey has no measured adult anthropometry programme; GB used as verified anchor per assignment.",
+    "Mean BMI: NCD-RisC Lancet 2017 age-standardized, UK 2016: women 27.2, men 27.5 kg/m2 (ncdrisc.org downloads/bmi-2017 country CSV).",
+    "Weights derived as mean BMI x stored height^2 (F 27.2x1.66^2=75 kg; M 27.5x1.79^2=88 kg).",
+    "Heights kept (166/179): NCD-RisC eLife 2016 height-at-age-18, UK 1996 birth cohort = women 164.4 / men 177.5 cm - close to stored values.",
+    "Obesity: NCD-RisC Nature 2026 age-standardized BMI>=30, adults 18+, UK 2024: women 29.6%, men 26.7%; combined = average of sexed values (28.2%). Cross-check: local self-reported data - Guernsey and Alderney Wellbeing Survey 2018 found 24% obese and 56% overweight+obese (self-report underestimates vs measured UK).",
+    "Smoking: WHO GHO age-standardized current-smoking estimates via World Bank SH.PRV.SMOK API, UK 2024: men 14.6%, women 11.0%; combined = average of sexed values (12.8%). Cross-check: Guernsey and Alderney Wellbeing Survey: regular smokers 13.1% (2018), 9.1% (2023) - consistent."
+   ]
+  },
+  "CK": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleObesityRate": 75.2,
+    "maleObesityRate": 71.8,
+    "obesityRate": 73.5,
+    "femaleSmokingRate": 18.0,
+    "maleSmokingRate": 25.7,
+    "smokingRate": 21.8
+   },
+   "notes": [
+    "Block was already de-templated in repair_health_0 (WHO GHO/NCD-RisC 2016-series BMI/weight/obesity); this pass updates obesity to the newest vintage and fixes smoking.",
+    "Obesity: NCD-RisC Nature 2026 age-standardized BMI>=30, adults 18+, Cook Islands 2024: women 75.2%, men 71.8%; combined = average of sexed values (73.5%). Supersedes the 72.7%/68.8% (2022-vintage GHO) stored by repair_health_0; same source family, newer edition.",
+    "Smoking: WHO report on the global tobacco epidemic country profile Cook Islands (data.wpro.who.int/sites/default/files/2022-08/cok.pdf): latest WHO estimates of current tobacco use - men 25.7%, women 18.0%, both sexes 21.8%. Replaces DB values (M23/F15) which were low and had no source.",
+    "Cross-check on smoking: Cook Islands STEPS 2013-15 report: current smokers (last 12 months) men 37.9% / women 27.7% / all 32.6% - measured rates higher than WHO modelled estimates, direction consistent.",
+    "Kept from repair_health_0: heights 162/174 (consistent with NCD-RisC eLife 163.2/174.8), BMI 33.1/32.7 and derived weights (NCD-RisC 2016 CSV gives 33.4/32.9 for 2016, same series)."
+   ]
+  },
+  "GD": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleHeightCm": 164,
+    "maleHeightCm": 177,
+    "femaleWeightKg": 79,
+    "maleWeightKg": 79,
+    "femaleBmi": 29.0,
+    "maleBmi": 25.3,
+    "femaleObesityRate": 45.0,
+    "maleObesityRate": 19.9,
+    "obesityRate": 32.5
+   },
+   "notes": [
+    "repair_health_1 already fixed sexed obesity/smoking for Grenada; this pass replaces the still-template height/weight/BMI trio (162/66/25.3 F; 174/78/25.9 M) and refreshes obesity to the newest NCD-RisC vintage.",
+    "Mean BMI: NCD-RisC Lancet 2017 age-standardized, Grenada 2016: women 29.0, men 25.3 kg/m2 (ncdrisc.org downloads/bmi-2017 country CSV).",
+    "Heights: NCD-RisC eLife 2016 height-at-age-18, Grenada 1996 birth cohort: women 164.5 / men 177.0 cm -> rounded 164/177.",
+    "Weights derived as mean BMI x new height^2 (F 29.0x1.645^2=78.5->79 kg; M 25.3x1.77^2=79.2->79 kg).",
+    "Obesity: NCD-RisC Nature 2026 age-standardized BMI>=30, adults 18+, Grenada 2024: women 45.0%, men 19.9%; combined = average of sexed values (32.5%). Supersedes 32.4/15.6 stored by repair_health_1 (older NCD-RisC vintage via Global Nutrition Report); same source family.",
+    "Smoking kept from repair_health_1 (WHO estimates F2.8/M19.4/total 11.2)."
+   ]
+  },
+  "EH": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleHeightCm": 158,
+    "maleHeightCm": 170,
+    "femaleWeightKg": 67,
+    "maleWeightKg": 74,
+    "femaleBmi": 26.7,
+    "maleBmi": 25.6,
+    "femaleObesityRate": 31.1,
+    "maleObesityRate": 13.6,
+    "obesityRate": 22.4,
+    "femaleSmokingRate": 1.2,
+    "maleSmokingRate": 23.8,
+    "smokingRate": 12.5
+   },
+   "notes": [
+    "Previous sexed block was the byte-identical template copy (162/66/25.3/22/8 F; 174/78/25.9/19.4/22 M). Anchor rule: Western Sahara -> Morocco (repair_health_6 confirmed no WHO GHO rows exist for ESH).",
+    "Mean BMI: NCD-RisC Lancet 2017 age-standardized, Morocco 2016: women 26.7, men 25.6 kg/m2 (ncdrisc.org downloads/bmi-2017 country CSV).",
+    "Heights: NCD-RisC eLife 2016 height-at-age-18, Morocco 1996 birth cohort: women 157.8 / men 170.4 cm -> rounded 158/170.",
+    "Weights derived as mean BMI x new height^2 (F 26.7x1.578^2=66.5->67 kg; M 25.6x1.704^2=74.4->74 kg).",
+    "Obesity: NCD-RisC Nature 2026 age-standardized BMI>=30, adults 18+, Morocco 2024: women 31.1%, men 13.6%; combined = average of sexed values (22.4%). Consistent with Morocco STEPS 2017-18 measured survey (obesity ~20% overall, overweight 53%; WHO EMRO).",
+    "Smoking: WHO GHO age-standardized current-smoking estimates via World Bank SH.PRV.SMOK API, Morocco 2024: men 23.8%, women 1.2%; combined = average of sexed values (12.5%). Consistent with STEPS 2017-18 (overall current smoking 7.7% in the 18+ analysis sample; MPOWER ~11.7%)."
+   ]
+  },
+  "FM": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleObesityRate": 58.7,
+    "maleObesityRate": 40.7,
+    "obesityRate": 49.7
+   },
+   "notes": [
+    "Block already de-templated in repair_health_2 with WHO STEPS 2006 measured heights/weights/BMI and WHO RGTE smoking; this pass fixes the sexed obesity rates, whose stored values (55.2 F / 44.4 M) had no identified source.",
+    "Obesity: NCD-RisC Nature 2026 age-standardized BMI>=30, adults 18+, Micronesia 2024: women 58.7%, men 40.7%; combined = average of sexed values (49.7%).",
+    "Cross-check: NCD-RisC Lancet 2017 mean BMI for FSM 2016 was women 31.5 / men 28.3 kg/m2 - close to the STEPS-2006-measured 32.7/28.2 kept in the record.",
+    "Kept from repair_health_2: heights 159/169, weights 83/81, BMI 32.7/28.2 (STEPS 2006 Chuuk measured), smoking F25.4/M39.8/total 35.4 (WHO RGTE 2025)."
+   ]
+  },
+  "CW": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleObesityRate": 36,
+    "maleObesityRate": 19,
+    "obesityRate": 27.5
+   },
+   "notes": [
+    "The stored CW block is not byte-identical to the template (heights/smoking/weight/BMI differ), but its sexed obesity (35 F / 24 M) did not match any located source.",
+    "Obesity: Curacao Health Study 1993/94 (random sample n=2248, response 85%, self-reported height/weight; Grobbee et al., Int J Obes 1997, 'Alarmingly high prevalence of obesity in Curacao'): obese women 36%, men 19%; combined = average of sexed values (27.5%). This remains the only adult anthropometry survey for Curacao per World Obesity Federation country report card (curacao-254).",
+    "Heights/BMI/weights/smoking left as stored: no measured height or mean-BMI data exists for Curacao; NL anchor heights are far taller than the predominantly Afro-Caribbean population warrants, so existing values were kept rather than anchor-derived. Smoking total (17.1% of participants were smokers, West Indian Med J 1997 Cura\u00e7ao Health Study) is consistent with the stored sexed split (~15% weighted).",
+    "Flagged low-confidence: heights 162/174, BMI 28/27, weights 75/84, smoking 8/22 lack a verified primary source; next pass should replace if Dutch Caribbean survey data surfaces."
+   ]
+  },
+  "BQ": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleObesityRate": 36,
+    "maleObesityRate": 26,
+    "obesityRate": 31,
+    "femaleBmi": 25.3,
+    "maleBmi": 26.1,
+    "femaleWeightKg": 66,
+    "maleWeightKg": 79
+   },
+   "notes": [
+    "Only smoking had been de-templated (repair_health_0); heights/weights/BMI/obesity were still the byte-identical template block.",
+    "Anchor rule: Caribbean Netherlands -> NL/CBS. No NCD-RisC or WHO GHO coverage exists for BES (checked ISO codes in both NCD-RisC country CSVs; repair_health_6 confirmed GHO has no BES rows for BMI/smoking indicators either).",
+    "Obesity: CBS (Statistics Netherlands) Gezondheidsenquete/Omnibus Caribbean Netherlands 2021 (already cited by repair_health_0): obese (BMI>=30) women 36%, men 26%; combined = average of sexed values (31%).",
+    "Mean BMI: no measured mean BMI published for Caribbean Netherlands; derived from NL anchor NCD-RisC Lancet 2017 age-standardized 2016 values (women 25.3 / men 26.1 kg/m2) - last-resort derivation per brief. Flagged low-confidence: given CBS-measured obesity is ~10pp above the Dutch mainland (15.5% W / 14.7% M, NCD-RisC 2024), true mean BMI is likely somewhat higher.",
+    "Weights derived as derived-BMI x stored height^2 (F 25.3x1.62^2=66 kg; M 26.1x1.74^2=79 kg).",
+    "Heights kept (162/174): no measured adult height data for the islands; population is predominantly Afro-Caribbean so mainland-Dutch heights (168.7/182.5, NCD-RisC eLife) were judged inappropriate as anchor."
+   ]
+  }
+ }
+}

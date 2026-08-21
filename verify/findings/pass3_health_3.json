@@ -1,0 +1,49 @@
+{
+ "batch": "pass3_health_3",
+ "countries": {
+  "IO": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleHeightCm": 164,
+    "femaleWeightKg": 70,
+    "femaleBmi": 26,
+    "maleHeightCm": 177,
+    "maleWeightKg": 84,
+    "maleBmi": 26.7,
+    "femaleObesityRate": 28,
+    "maleObesityRate": 24.6,
+    "obesityRate": 26,
+    "femaleSmokingRate": 18,
+    "maleSmokingRate": 28,
+    "smokingRate": 23
+   },
+   "notes": [
+    "Old block was the byte-identical template copy (F162/66/25.3/ob22/smoke8, M174/78/25.9/ob19.4/smoke22).",
+    "No real anthropometric or behavioural data can exist: the territory has no permanent civilian population (the Chagossians were removed by 1973); the ~2,000-3,000 people present at any time are rotating US military personnel and contractors on Diego Garcia. No health survey has ever been conducted.",
+    "All values DERIVED from the verified GB anchor block (per ladder rule - BIOT is a UK Overseas Territory): heights/weights/BMI copied unchanged (F164cm/70kg/BMI26, M177cm/84kg/BMI26.7), obesity F28/M24.6, smoking F18/M28, combined averages 26 / 23."
+   ]
+  },
+  "PN": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleHeightCm": 164,
+    "femaleWeightKg": 73,
+    "femaleBmi": 27,
+    "maleHeightCm": 177,
+    "maleWeightKg": 87,
+    "maleBmi": 27.7,
+    "femaleObesityRate": 31,
+    "maleObesityRate": 27.3,
+    "obesityRate": 29,
+    "femaleSmokingRate": 8,
+    "maleSmokingRate": 22,
+    "smokingRate": 15
+   },
+   "notes": [
+    "Old block was the byte-identical template copy (identical to IO's old block).",
+    "Population is 35 residents (2023), all descendants of the HMS Bounty mutineers (mixed Polynesian/European ancestry); no health survey or anthropometric dataset exists and none is feasible at this population size.",
+    "All values DERIVED from the verified NZ anchor block (per ladder rule - the closest comparable Polynesian population and the territory's administering-state reference): F164cm/73kg/BMI27, M177cm/87kg/BMI27.7, obesity F31/M27.3 (combined 29), smoking F8/M22 (combined 15)."
+   ]
+  }
+ }
+}

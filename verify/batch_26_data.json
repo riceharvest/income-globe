@@ -1,0 +1,690 @@
+[
+ {
+  "code": "ST",
+  "alpha2": "ST",
+  "alpha3": "STP",
+  "numericCode": "678",
+  "name": "São Tomé and Príncipe",
+  "region": "Sub-Saharan Africa",
+  "flag": "🇸🇹",
+  "currency": "STN",
+  "currencySymbol": "Db",
+  "exchangeRate": 1,
+  "population": 240254,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 30,
+   "p25": 62,
+   "p50": 130,
+   "p75": 280,
+   "p90": 580
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 30,
+    "p25": 64,
+    "p50": 136,
+    "p75": 302,
+    "p90": 643
+   },
+   "posttax_national": {
+    "p10": 30,
+    "p25": 62,
+    "p50": 130,
+    "p75": 280,
+    "p90": 580
+   },
+   "consumption": {
+    "p10": 28,
+    "p25": 51,
+    "p50": 106,
+    "p75": 215,
+    "p90": 417
+   },
+   "wealth": {
+    "p10": 60,
+    "p25": 496,
+    "p50": 3250,
+    "p75": 16800,
+    "p90": 87000
+   },
+   "labor_income": {
+    "p10": 18,
+    "p25": 43,
+    "p50": 104,
+    "p75": 238,
+    "p90": 522
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 85.2,
+   "childMarriagePercent": 22,
+   "laborForceGap": -1.2,
+   "contraceptiveUse": 49.7
+  },
+  "minimumWageEur": 60,
+  "costOfLivingIndex": 38,
+  "unemploymentRate": 9.1,
+  "internetPenetration": 59.1,
+  "femaleHeightCm": 158,
+  "femaleWeightKg": 60,
+  "femaleBmi": 24,
+  "femaleObesityRate": 8,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 73.9,
+  "maleHeightCm": 170,
+  "maleWeightKg": 71,
+  "maleBmi": 24.6,
+  "maleObesityRate": 7,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 66.4,
+  "obesityRate": 8,
+  "smokingRate": 8,
+  "hdi": 0.56,
+  "englishSpeakingPercent": 8,
+  "mainIndustry": "Agriculture"
+ },
+ {
+  "code": "SE",
+  "alpha2": "SE",
+  "alpha3": "SWE",
+  "numericCode": "752",
+  "name": "Sweden",
+  "region": "Europe",
+  "flag": "🇸🇪",
+  "currency": "SEK",
+  "currencySymbol": "kr",
+  "exchangeRate": 1,
+  "population": 10596620,
+  "dataSource": "OECD",
+  "dataYear": 2023,
+  "income": {
+   "p10": 1300,
+   "p25": 2100,
+   "p50": 3300,
+   "p75": 4600,
+   "p90": 6200
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 1318,
+    "p25": 2159,
+    "p50": 3439,
+    "p75": 4922,
+    "p90": 6808
+   },
+   "posttax_national": {
+    "p10": 1300,
+    "p25": 2100,
+    "p50": 3300,
+    "p75": 4600,
+    "p90": 6200
+   },
+   "consumption": {
+    "p10": 1199,
+    "p25": 1726,
+    "p50": 2713,
+    "p75": 3551,
+    "p90": 4476
+   },
+   "wealth": {
+    "p10": 2600,
+    "p25": 16800,
+    "p50": 82500,
+    "p75": 276000,
+    "p90": 930000
+   },
+   "labor_income": {
+    "p10": 780,
+    "p25": 1470,
+    "p50": 2640,
+    "p75": 3910,
+    "p90": 5580
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 1.7,
+   "childMarriagePercent": 3,
+   "laborForceGap": -6.1,
+   "contraceptiveUse": null
+  },
+  "minimumWageEur": 1600,
+  "costOfLivingIndex": 78,
+  "unemploymentRate": 8.7,
+  "internetPenetration": 95.8,
+  "femaleHeightCm": 166,
+  "femaleWeightKg": 72,
+  "femaleBmi": 26,
+  "femaleObesityRate": 22,
+  "femaleSmokingRate": 18,
+  "femaleLifeExpectancy": 85.6,
+  "maleHeightCm": 179,
+  "maleWeightKg": 86,
+  "maleBmi": 26.7,
+  "maleObesityRate": 19.4,
+  "maleSmokingRate": 28,
+  "maleLifeExpectancy": 82.6,
+  "obesityRate": 22,
+  "smokingRate": 18,
+  "hdi": 0.95,
+  "englishSpeakingPercent": 76,
+  "mainIndustry": "Services"
+ },
+ {
+  "code": "CH",
+  "alpha2": "CH",
+  "alpha3": "CHE",
+  "numericCode": "756",
+  "name": "Switzerland",
+  "region": "Europe",
+  "flag": "🇨🇭",
+  "currency": "CHF",
+  "currencySymbol": "Fr.",
+  "exchangeRate": 1,
+  "population": 9092436,
+  "dataSource": "OECD",
+  "dataYear": 2023,
+  "income": {
+   "p10": 2200,
+   "p25": 3500,
+   "p50": 5200,
+   "p75": 7200,
+   "p90": 9800
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 2236,
+    "p25": 3615,
+    "p50": 5457,
+    "p75": 7794,
+    "p90": 10932
+   },
+   "posttax_national": {
+    "p10": 2200,
+    "p25": 3500,
+    "p50": 5200,
+    "p75": 7200,
+    "p90": 9800
+   },
+   "consumption": {
+    "p10": 2017,
+    "p25": 2860,
+    "p50": 4248,
+    "p75": 5522,
+    "p90": 7027
+   },
+   "wealth": {
+    "p10": 4400,
+    "p25": 28000,
+    "p50": 130000,
+    "p75": 432000,
+    "p90": 1470000
+   },
+   "labor_income": {
+    "p10": 1320,
+    "p25": 2450,
+    "p50": 4160,
+    "p75": 6120,
+    "p90": 8820
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 1.5,
+   "childMarriagePercent": 2,
+   "laborForceGap": -9.2,
+   "contraceptiveUse": 71.6
+  },
+  "minimumWageEur": 1600,
+  "costOfLivingIndex": 120,
+  "unemploymentRate": 4.9,
+  "internetPenetration": 97.3,
+  "femaleHeightCm": 164,
+  "femaleWeightKg": 67,
+  "femaleBmi": 25,
+  "femaleObesityRate": 21,
+  "femaleSmokingRate": 18,
+  "femaleLifeExpectancy": 86.2,
+  "maleHeightCm": 177,
+  "maleWeightKg": 80,
+  "maleBmi": 25.6,
+  "maleObesityRate": 18.5,
+  "maleSmokingRate": 28,
+  "maleLifeExpectancy": 82.7,
+  "obesityRate": 21,
+  "smokingRate": 18,
+  "hdi": 0.97,
+  "englishSpeakingPercent": 71,
+  "mainIndustry": "Finance & Insurance"
+ },
+ {
+  "code": "SY",
+  "alpha2": "SY",
+  "alpha3": "SYR",
+  "numericCode": "760",
+  "name": "Syria",
+  "region": "Middle East & North Africa",
+  "flag": "🇸🇾",
+  "currency": "SYP",
+  "currencySymbol": "£",
+  "exchangeRate": 1,
+  "population": 25620427,
+  "dataSource": "ILO",
+  "dataYear": 2022,
+  "income": {
+   "p10": 15,
+   "p25": 32,
+   "p50": 70,
+   "p75": 155,
+   "p90": 340
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 15,
+    "p25": 33,
+    "p50": 74,
+    "p75": 170,
+    "p90": 386
+   },
+   "posttax_national": {
+    "p10": 15,
+    "p25": 32,
+    "p50": 70,
+    "p75": 155,
+    "p90": 340
+   },
+   "consumption": {
+    "p10": 14,
+    "p25": 26,
+    "p50": 57,
+    "p75": 118,
+    "p90": 242
+   },
+   "wealth": {
+    "p10": 30,
+    "p25": 256,
+    "p50": 1750,
+    "p75": 9300,
+    "p90": 51000
+   },
+   "labor_income": {
+    "p10": 9,
+    "p25": 22,
+    "p50": 56,
+    "p75": 132,
+    "p90": 306
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 38.6,
+   "childMarriagePercent": 12,
+   "laborForceGap": -48.7,
+   "contraceptiveUse": 53.9
+  },
+  "minimumWageEur": 60,
+  "costOfLivingIndex": 25,
+  "unemploymentRate": 13.6,
+  "internetPenetration": 40,
+  "femaleHeightCm": 159,
+  "femaleWeightKg": 68,
+  "femaleBmi": 27,
+  "femaleObesityRate": 31.2,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 74.9,
+  "maleHeightCm": 171,
+  "maleWeightKg": 81,
+  "maleBmi": 27.7,
+  "maleObesityRate": 27.5,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 70.2,
+  "obesityRate": 31.2,
+  "smokingRate": 8,
+  "hdi": 0.53,
+  "englishSpeakingPercent": 57,
+  "mainIndustry": "Petroleum"
+ },
+ {
+  "code": "TW",
+  "alpha2": "TW",
+  "alpha3": "TWN",
+  "numericCode": "158",
+  "name": "Taiwan",
+  "region": "Asia",
+  "flag": "🇹🇼",
+  "currency": "TWD",
+  "currencySymbol": "$",
+  "exchangeRate": 1,
+  "population": 23900000,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 650,
+   "p25": 1100,
+   "p50": 1900,
+   "p75": 3100,
+   "p90": 4800
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 661,
+    "p25": 1137,
+    "p50": 1997,
+    "p75": 3364,
+    "p90": 5371
+   },
+   "posttax_national": {
+    "p10": 650,
+    "p25": 1100,
+    "p50": 1900,
+    "p75": 3100,
+    "p90": 4800
+   },
+   "consumption": {
+    "p10": 595,
+    "p25": 898,
+    "p50": 1550,
+    "p75": 2375,
+    "p90": 3437
+   },
+   "wealth": {
+    "p10": 1300,
+    "p25": 8800,
+    "p50": 47500,
+    "p75": 186000,
+    "p90": 720000
+   },
+   "labor_income": {
+    "p10": 390,
+    "p25": 770,
+    "p50": 1520,
+    "p75": 2635,
+    "p90": 4320
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": null,
+   "childMarriagePercent": null,
+   "laborForceGap": null,
+   "contraceptiveUse": null
+  },
+  "minimumWageEur": 1000,
+  "costOfLivingIndex": 70,
+  "unemploymentRate": 5,
+  "internetPenetration": 93,
+  "femaleHeightCm": 160,
+  "femaleWeightKg": 61,
+  "femaleBmi": 24,
+  "femaleObesityRate": 8,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 85.9,
+  "maleHeightCm": 172,
+  "maleWeightKg": 73,
+  "maleBmi": 24.6,
+  "maleObesityRate": 7,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 79.7,
+  "obesityRate": 8,
+  "smokingRate": 8,
+  "hdi": 0.93,
+  "englishSpeakingPercent": 20,
+  "mainIndustry": "Manufacturing"
+ },
+ {
+  "code": "TJ",
+  "alpha2": "TJ",
+  "alpha3": "TJK",
+  "numericCode": "762",
+  "name": "Tajikistan",
+  "region": "Central Asia",
+  "flag": "🇹🇯",
+  "currency": "TJS",
+  "currencySymbol": "ЅМ",
+  "exchangeRate": 1,
+  "population": 10786734,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 25,
+   "p25": 52,
+   "p50": 110,
+   "p75": 230,
+   "p90": 450
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 25,
+    "p25": 54,
+    "p50": 116,
+    "p75": 250,
+    "p90": 504
+   },
+   "posttax_national": {
+    "p10": 25,
+    "p25": 52,
+    "p50": 110,
+    "p75": 230,
+    "p90": 450
+   },
+   "consumption": {
+    "p10": 23,
+    "p25": 42,
+    "p50": 90,
+    "p75": 176,
+    "p90": 322
+   },
+   "wealth": {
+    "p10": 50,
+    "p25": 416,
+    "p50": 2750,
+    "p75": 13800,
+    "p90": 67500
+   },
+   "labor_income": {
+    "p10": 15,
+    "p25": 36,
+    "p50": 88,
+    "p75": 196,
+    "p90": 405
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 39.4,
+   "childMarriagePercent": 6,
+   "laborForceGap": -33.9,
+   "contraceptiveUse": 29.3
+  },
+  "minimumWageEur": 30,
+  "costOfLivingIndex": 32,
+  "unemploymentRate": 6.9,
+  "internetPenetration": 55.8,
+  "femaleHeightCm": 158,
+  "femaleWeightKg": 60,
+  "femaleBmi": 24,
+  "femaleObesityRate": 15,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 74.1,
+  "maleHeightCm": 170,
+  "maleWeightKg": 71,
+  "maleBmi": 24.6,
+  "maleObesityRate": 13.2,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 69.7,
+  "obesityRate": 15,
+  "smokingRate": 8,
+  "hdi": 0.68,
+  "englishSpeakingPercent": 51,
+  "mainIndustry": "Agriculture"
+ },
+ {
+  "code": "TZ",
+  "alpha2": "TZ",
+  "alpha3": "TZA",
+  "numericCode": "834",
+  "name": "Tanzania",
+  "region": "Sub-Saharan Africa",
+  "flag": "🇹🇿",
+  "currency": "TZS",
+  "currencySymbol": "Sh",
+  "exchangeRate": 1,
+  "population": 70545865,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 20,
+   "p25": 42,
+   "p50": 90,
+   "p75": 210,
+   "p90": 480
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 20,
+    "p25": 44,
+    "p50": 96,
+    "p75": 232,
+    "p90": 549
+   },
+   "posttax_national": {
+    "p10": 20,
+    "p25": 42,
+    "p50": 90,
+    "p75": 210,
+    "p90": 480
+   },
+   "consumption": {
+    "p10": 18,
+    "p25": 34,
+    "p50": 73,
+    "p75": 159,
+    "p90": 340
+   },
+   "wealth": {
+    "p10": 40,
+    "p25": 336,
+    "p50": 2250,
+    "p75": 12600,
+    "p90": 72000
+   },
+   "labor_income": {
+    "p10": 12,
+    "p25": 29,
+    "p50": 72,
+    "p75": 179,
+    "p90": 432
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 112.6,
+   "childMarriagePercent": 22,
+   "laborForceGap": -7,
+   "contraceptiveUse": 37.6
+  },
+  "minimumWageEur": 55,
+  "costOfLivingIndex": 30,
+  "unemploymentRate": 1.6,
+  "internetPenetration": 31.2,
+  "femaleHeightCm": 159,
+  "femaleWeightKg": 63,
+  "femaleBmi": 25,
+  "femaleObesityRate": 16,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 70,
+  "maleHeightCm": 171,
+  "maleWeightKg": 75,
+  "maleBmi": 25.6,
+  "maleObesityRate": 14.1,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 64.4,
+  "obesityRate": 16,
+  "smokingRate": 8,
+  "hdi": 0.55,
+  "englishSpeakingPercent": 46,
+  "mainIndustry": "Agriculture"
+ },
+ {
+  "code": "TH",
+  "alpha2": "TH",
+  "alpha3": "THA",
+  "numericCode": "764",
+  "name": "Thailand",
+  "region": "Asia",
+  "flag": "🇹🇭",
+  "currency": "THB",
+  "currencySymbol": "฿",
+  "exchangeRate": 1,
+  "population": 71619863,
+  "dataSource": "WID.world",
+  "dataYear": 2023,
+  "income": {
+   "p10": 110,
+   "p25": 230,
+   "p50": 470,
+   "p75": 950,
+   "p90": 1850
+  },
+  "indicators": {
+   "pretax_national": {
+    "p10": 112,
+    "p25": 238,
+    "p50": 495,
+    "p75": 1033,
+    "p90": 2077
+   },
+   "posttax_national": {
+    "p10": 110,
+    "p25": 230,
+    "p50": 470,
+    "p75": 950,
+    "p90": 1850
+   },
+   "consumption": {
+    "p10": 101,
+    "p25": 187,
+    "p50": 383,
+    "p75": 727,
+    "p90": 1323
+   },
+   "wealth": {
+    "p10": 220,
+    "p25": 1840,
+    "p50": 11750,
+    "p75": 57000,
+    "p90": 277500
+   },
+   "labor_income": {
+    "p10": 66,
+    "p25": 161,
+    "p50": 376,
+    "p75": 808,
+    "p90": 1665
+   }
+  },
+  "gender": {
+   "adolescentBirthRate": 25,
+   "childMarriagePercent": 11,
+   "laborForceGap": -16,
+   "contraceptiveUse": 72.8
+  },
+  "minimumWageEur": 200,
+  "costOfLivingIndex": 38,
+  "unemploymentRate": 0.8,
+  "internetPenetration": 90.9,
+  "femaleHeightCm": 159,
+  "femaleWeightKg": 61,
+  "femaleBmi": 24,
+  "femaleObesityRate": 13,
+  "femaleSmokingRate": 8,
+  "femaleLifeExpectancy": 81,
+  "maleHeightCm": 171,
+  "maleWeightKg": 72,
+  "maleBmi": 24.6,
+  "maleObesityRate": 11.4,
+  "maleSmokingRate": 22,
+  "maleLifeExpectancy": 72.3,
+  "obesityRate": 13,
+  "smokingRate": 8,
+  "hdi": 0.8,
+  "englishSpeakingPercent": 50,
+  "mainIndustry": "Manufacturing"
+ }
+]

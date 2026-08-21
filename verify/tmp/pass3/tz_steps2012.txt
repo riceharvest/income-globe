@@ -1,0 +1,130 @@
+                                    TANZANIA STEPS Survey-2012
+                                                         Fact Sheet
+
+The STEPS survey of chronic disease risk factors in Tanzania was carried out in phases from February to October
+2012.Tanzania carried out Step 1, Step 2 and Step 3. Socio demographic and behavioral information was collected in Step 1.
+Physical measurements such as height, weight, waist and hip circumference and blood pressure were collected in Step 2.
+Biochemical measurements were collected to assess blood glucose and cholesterol levels (TC and TG) in Step 3. The STEPS
+survey in Tanzania was a population-based survey of adults aged 25-64. A multistage cluster sampling design was used to
+select a representative sample for that age range. A total of 5680 adults participated in the Tanzania STEPS survey. The
+overall response rate was 94.7%. A repeat survey is planned for 2016 if funds permit.
+
+Results for adults aged 25-64 years (incl. 95% CI)                       Both Sexes           Males                Females
+
+Step 1 Tobacco Use
+Percentage who currently smoke tobacco                                        14.1%                26.0%                 2.9%
+                                                                          (12.4%-15.8%)        (23.1%-28.9%)         (1.7%-4.1%)
+Percentage who currently smoke tobacco daily                                  11.8%                22.2%                 2.0%
+                                                                          (10.2%-13.4%)        (19.7%-24.7%)         (0.7%-3.2%)
+Percentage of current tobacco users (smoke and smokeless                      15.9%                28.0%                 4.5%
+tobacco)                                                                  (14.0%-17.9%)        (25.1%-30.9%)         (3.3%-5.6%)
+For those who smoke tobacco daily
+Average age started smoking (years)                                            21.9                 21.8                22.4
+                                                                            (21.0-22.8)          (21.1-22.5)         (17.8-27.0)
+Percentage of daily smokers smoking manufactured cigarettes                   79.8%                81.2%               64.8%
+                                                                          (72.6%-87.0%)        (74.9%-87.5%)       (32.6%-96.9%)
+Mean number of manufactured cigarettes smoked per day (by                   5.1(4.0-6.1)        4.9(4.3-5.5)         6.7(0.0-13.8)
+smokers of     manufactured cigarettes)
+Step 1 Alcohol Consumption
+Percentage who are lifetime abstainers                                        51.0%                43.1%               58.5%
+                                                                          (47.6%-54.4%)        (37.9%-48.3%)       (55.0%-62.0%)
+Percentage who are past 12 month abstainers                                    11.4%               11.3%                11.6%
+                                                                           (9.8%-13.1%)        (8.4%-14.2%)         (9.8%-13.3%)
+Percentage who currently drink (drank alcohol in the past 30 days)            29.3%                38.3%               20.9%
+                                                                          (26.8%-31.9%)        (35.1%-41.6%)       (18.2%-23.6%)
+Percentage who engage in heavy episodic drinking (men who had 5                  _                 27.4%               13.4%
+or more / women who had 4 or more drinks on any day in the past 30                             (23.7%-31.1%)       (11.4%-15.4%)
+days)
+Step 1 Fruit and Vegetable Consumption (in a typical week)
+Mean number of days fruit consumed                                          2.5(2.2-2.8)        2.2(2.1-2.4)         2.8(2.3-3.2)
+Mean number of servings of fruit consumed on average per day                0.7(0.6-0.8)        0.6(0.5-0.7)         0.8(0.6-0.9)
+Mean number of days vegetables consumed                                     4.5(4.3-4.7)        4.3(4.0-4.7)         4.7(4.5-4.8)
+Mean number of servings of vegetables consumed on average per              1.0(0.97-1.1)        1.0(0.9-1.1)         1.0(0.96-1.1)
+day
+Percentage who ate less than 5 servings of fruit and/or vegetables on         97.2%                97.3%               97.1%
+average per day                                                           (96.3%-98.1%)        (96.0%-98.6%)       (96.0%-98.3%)
+Step 1 Physical Activity
+Percentage with low levels of activity (defined as < 600 MET-minutes           7.5%                 7.2%                7.8%
+per week)*                                                                 (6.0%-9.0%)          (5.6%-8.7%)         (5.5%-10.1%)
+Percentage with high levels of activity (defined as ≥ 3000 MET-               83.3%                86.3%               80.5%
+minutes per week)*                                                        (80.1%-86.0%)        (83.2%-89.3%)       (77.2%-83.7%)
+Median time spent in physical activity on average per day (minutes)            330.0               370.0                287.1
+(presented with inter-quartile range)                                      (180.0-492.9)       (214.3-527.1)        (137.1-462.9)
+Percentage not engaging in vigorous activity                                  32.4%                23.1%               41.4%
+                                                                          (29.1%-35.7%)        (20.1%-26.0%)       (36.8%-46.0%)
+
+ * For complete definitions of low and high levels of physical activity, other conditions are specified in the GPAQ Analysis Guide,
+ available at:
+ http://www.who.int/chp/steps/GPAQ/en/index.html
+ WHO STEPS chronic disease risk factor surveillance                                                                        6-3C-1
+ www.who.int/chp/steps                                                                                                   fact sheet
+                                TANZANIA STEPS Survey-2012
+                                                           Fact Sheet
+
+         Results for adults aged 25-64 years (incl. 95% CI)                  Both Sexes           Males            Females
+Step 2    Physical Measurements
+                                    2                                           22.9              21.6               24.3
+Mean body mass index - BMI (kg/m )
+                                                                             (22.7-23.2)       (21.3-22.0)        (23.8-24.8)
+                                                 2                              26.0%             15.1%             37.1%
+Percentage who are overweight (BMI ≥ 25 kg/m )
+                                                                            (22.5%-28.4%)     (12.7%-17.6%)     (31.6%-42.6%)
+                                           2                                    8.7%               2.5%             15.0%
+Percentage who are obese (BMI ≥ 30 kg/m )
+                                                                            (7.3%-10.1%)       (1.5%-3.5%)      (12.4%-17.7%)
+                                                                                  _               80.6               84.9
+Average waist circumference (cm)
+                                                                                               (79.9-81.3)        (84.0-85.8)
+Mean systolic blood pressure - SBP (mmHg), including those                      128.6             131.1              126.3
+currently on medication for raised BP                                       (127.8-129.4)     (129.4-132.8)      (125.0-127.7)
+Mean diastolic blood pressure - DBP (mmHg), including those                     80.3              79.7               80.8
+currently on medication for raised BP                                        (79.8-80.8)       (78.9-80.4)        (80.2-81.5)
+Percentage with raised BP (SBP ≥ 140 and/or DBP ≥ 90 mmHg or                    26.0%             25.4%             26.5%
+currently on medication for raised BP)                                      (23.8%-28.1%)     (22.1%-28.7%)     (24.3%-28.6%)
+Percentage with raised BP (SBP ≥ 140 and/or DBP ≥ 90 mmHg) who                  92.6%             96.7%             88.9%
+are not currently on medication for raised BP                               (89.8%-95.4%)     (94.6%-98.8%)     (83.9%-94.0%)
+Step 3    Biochemical Measurement
+Mean fasting blood glucose, including those currently on medication          4.8(4.7-4.9)      4.8(4.6-4.9)      4.9(4.8-5.0)
+for raised blood glucose [mmol/L]
+Percentage with impaired fasting glycaemia as defined below                     10.6%             11.3%             10.0%
+Capillary whole blood value ≥5.6 mmol/L (100 mg/dl) and <6.1                (8.3%-12.9%)      (9.4%-13.1%)      (6.5%-13.5%)
+mmol/L (110 mg/dl)
+Percentage with raised fasting blood glucose as defined below                   9.1%              8.0%              10.0%
+or currently on medication for raised blood glucose                         (7.8%-10.3%)      (5.6%-10.5%)      (7.8%-12.2%)
+Capillary whole blood value ≥ 6.1 mmol/L (110 mg/dl)
+Mean total blood cholesterol, including those currently on                   4.6(4.5-4.7)      4.4(4.4-4.5)      4.7(4.6-4.8)
+medication for raised cholesterol [mmol/L]
+Percentage with raised total cholesterol (≥ 5.0 mmol/L or                       26.0%             17.0%             33.9%
+currently on medication for raised cholesterol)                             (21.4%-30.7%)     (12.0%-22.0%)     (27.2%-40.6%)
+Mean blood triglycerides, including those currently on medication for        1.7(1.6-1.9)      1.7(1.5-1.8)      1.8(1.6-2.0)
+raised cholesterol [mmol/L]
+Percentage with raised triglycerides (≥ 1.7 mmol/L or currently on              33.8%             31.3%             36.0%
+medication for raised triglycerides)                                        (25.7%-41.9%)     (22.1%-40.5%)     (27.9%-44.1%)
+Summary of combined risk factors
+                                                                                                     2
+    •    current daily smokers                                          •    overweight (BMI ≥ 25 kg/m )
+    •    less than 5 servings of fruits & vegetables per day            •    raised BP (SBP ≥ 140 and/or DBP ≥ 90 mmHg or
+    •    low level of activity                                               currently on medication for raised BP)
+                                                                                 0.8%              0.6%             1.0%
+Percentage with none of the above risk factors                               (0.5%-1.1%)       (0.3%-1.0%)      (0.52%-1.5%)
+Percentage with three or more of the above risk factors,                        12.2%             9.9%              14.4%
+aged 25 to 44 years                                                         (10.7%-13.6%)     (7.4%-12.4%)      (11.9%-16.8%)
+
+Percentage with three or more of the above risk factors,                        28.0%             27.4%             28.6%
+aged 45 to 64 years                                                         (22.9%-33.0%)     (20.8%-34.1%)     (24.1%-33.1%)
+
+Percentage with three or more of the above risk factors,                        16.6%             14.9%             18.2%
+aged 25 to 64 years                                                         (14.7%-18.4%)     (12.9%-16.9%)     (15.8%-20.7%)
+
+
+
+                                  For additional information, please contact:
+        STEPS survey country focal persons [Dr. Mary Mayige: mmayige@nimr.or.tz OR Gibson Kagaruki:
+                                            gkagaruki@nimr.or.tz]
+
+
+
+
+ WHO STEPS chronic disease risk factor surveillance                                                                   6-3C-1
+ www.who.int/chp/steps                                                                                              fact sheet
+
