@@ -1,0 +1,191 @@
+{
+  "batch": "06",
+  "countries": {
+    "CG": {
+      "status": "errors_found",
+      "corrections": {
+        "laborForceGap": 4.5,
+        "smokingRate": 15,
+        "englishSpeakingPercent": 10,
+        "exchangeRate": 606
+      },
+      "notes": [
+        "laborForceGap sign error: WB ILO modeled 2023 male LFPR 70.2% vs female 65.6% => gap +4.5pp, entry had -4.5.",
+        "smokingRate 8 inconsistent with sexed values (F8/M22 => ~15 combined); set 15.",
+        "englishSpeakingPercent 33 implausible: French is the official language; rough estimate ~10 (no reliable survey).",
+        "exchangeRate 1 wrong under USD->local convention; XAF pegged at ~606/USD.",
+        "population 6,484,437 vs WB 2023 6,182,885 (+4.9%) - borderline but within 5% tolerance; left unchanged with this note.",
+        "unemployment 19.9, internet 47.3, life expectancy (F67.7/M64.3), HDI 0.59, min wage ~EUR 70 (SMIG 50,400 XAF until Jan 2025) all verified correct."
+      ]
+    },
+    "CK": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 15040,
+        "currency": "NZD",
+        "exchangeRate": 1.64,
+        "unemploymentRate": 0.8,
+        "minimumWageEur": 850,
+        "costOfLivingIndex": 58,
+        "hdi": 0.75,
+        "income": {
+          "p10": 480,
+          "p25": 830,
+          "p50": 1340,
+          "p75": 1980,
+          "p90": 2860
+        },
+        "indicators.pretax_national": {
+          "p10": 490,
+          "p25": 860,
+          "p50": 1400,
+          "p75": 2150,
+          "p90": 3190
+        },
+        "indicators.posttax_national": {
+          "p10": 480,
+          "p25": 830,
+          "p50": 1340,
+          "p75": 1980,
+          "p90": 2860
+        },
+        "indicators.consumption": {
+          "p10": 440,
+          "p25": 680,
+          "p50": 1090,
+          "p75": 1520,
+          "p90": 2050
+        },
+        "indicators.wealth": {
+          "p10": 970,
+          "p25": 6640,
+          "p50": 33440,
+          "p75": 118990,
+          "p90": 428910
+        },
+        "indicators.labor_income": {
+          "p10": 290,
+          "p25": 580,
+          "p50": 1070,
+          "p75": 1690,
+          "p90": 2570
+        },
+        "femaleObesityRate": null,
+        "maleObesityRate": null,
+        "femaleBmi": null,
+        "maleBmi": null,
+        "femaleWeightKg": null,
+        "maleWeightKg": null,
+        "obesityRate": 60,
+        "smokingRate": 19,
+        "femaleSmokingRate": 15,
+        "maleSmokingRate": 23,
+        "englishSpeakingPercent": 86,
+        "mainIndustry": "Tourism"
+      },
+      "notes": [
+        "PLACEHOLDER ENTRY (pop=1,000,000 / p50=875 / col=38 template). Population corrected to 15,040 (2021 census; mid-2025 est ~13,300).",
+        "Currency: official currency is the New Zealand dollar (NZD, pegged Cook Islands dollar circulates 1:1 but has no ISO code); exchangeRate set to ~1.64 NZD/USD (2023 avg).",
+        "Income/indicators: no WID.world or survey distribution exists; DERIVED from NZ distribution (DB anchor) scaled by nominal GDP-per-capita ratio 0.46 (CK ~US$22,500 vs NZ US$48,787, IMF WEO 2023); rounded to 10s.",
+        "Sanity check: 2023-24 Labour Force Survey (SPC/CISO) average monthly wage NZD 1,807 (~US$1,500 PPP) - derived labor_income p50 ~1,070 and income p50 ~1,330 are consistent.",
+        "unemploymentRate 0.8% per Cook Islands 2023-24 LFS (was 5.5).",
+        "minimumWageEur ~850: statutory NZ$8.50-10/hr over 2021-2025; NZ$~8.95 (2023) x ~173h = NZ$1,550/mo = ~EUR 850 (was 450).",
+        "costOfLivingIndex 58: placeholder 38 replaced; derived as ~0.75x NZ (DB 78) - Rarotonga imports are expensive but housing/local food cheaper than NZ.",
+        "hdi 0.75: UNDP does not rank Cook Islands; derived from components (LE ~74.5, schooling ~10/13 yrs, GNI pc ~US$22.9k PPP) => ~0.78, set conservatively 0.75 (was 0.57).",
+        "Health block (162/66/25.3/22 F, 174/78/25.9/19.4 M) is the known fabricated template. Cook Islands has among the world's highest adult obesity (~60%, NCD-RisC/WHO); sexed obesity/BMI/weight nulled (no reliable split found - nulls as last resort), combined obesityRate set 60. Smoking from 2021 census: M 23.3%, F 14.6% => combined ~19.",
+        "englishSpeakingPercent 86 added (census: 86.4% speak English). mainIndustry Tourism added (~70% of GDP)."
+      ]
+    },
+    "CR": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 553,
+        "smokingRate": 15,
+        "englishSpeakingPercent": 10
+      },
+      "notes": [
+        "minimumWageEur 280 clearly wrong: 2023 lowest statutory monthly rate was CRC 352,165 = EUR 552.7 (countryeconomy/Ministerio de Trabajo); set 553.",
+        "smokingRate 8 inconsistent with sexed values (F8/M22 => ~15); set 15.",
+        "englishSpeakingPercent 65 far too high for Costa Rica; rough estimate ~10 (no widespread English competence).",
+        "Population, unemployment (WB 2024 6.9 vs entry 6.8), internet 87.2, LF gap -23.9 (2024), life expectancy, HDI ~0.81 all verified plausible; incomes plausible vs WID-style PPP figures - left unchanged."
+      ]
+    },
+    "HR": {
+      "status": "ok",
+      "corrections": {
+        "smokingRate": 23
+      },
+      "notes": [
+        "smokingRate 18 inconsistent with sexed values (F18/M28 => ~23 combined); set 23.",
+        "Population 3.88M (WB 2023 3.86M), unemployment 5.0 (WB 2024), internet 83.6, min wage EUR 840 gross (2024), HDI 0.88 (UNDP 0.878-0.889), life expectancy all verified.",
+        "childMarriagePercent 12 looks high for Croatia but no authoritative free source found; left unchanged with this caveat. Income distribution plausible vs WID-style EU figures."
+      ]
+    },
+    "CU": {
+      "status": "errors_found",
+      "corrections": {
+        "currency": "CUP",
+        "currencySymbol": "₱",
+        "exchangeRate": 24,
+        "hdi": 0.762,
+        "smokingRate": 15,
+        "englishSpeakingPercent": 10,
+        "minimumWageEur": 80
+      },
+      "notes": [
+        "Currency CUC was abolished Jan 2021; Cuba's only currency is the Cuban peso (CUP). exchangeRate set to official 24 CUP/USD (informal market far higher).",
+        "HDI 0.73 wrong: UNDP value 0.764 (HDR 2023/24, 2022) / 0.762 (2023); set 0.762.",
+        "smokingRate 8 inconsistent with sexed values (F8/M22 => ~15); set 15.",
+        "englishSpeakingPercent 64 absurd for Spanish-speaking Cuba; rough estimate ~10.",
+        "minimumWageEur 60 -> 80: statutory 2,100 CUP/month at official 24 CUP/USD = ~EUR 80 (at informal rates far less; noted).",
+        "Population, unemployment 1.7 (official ONEI/WB), internet 70.5 (WB 2024), LF gap -25.0, life expectancy all verified."
+      ]
+    },
+    "CW": {
+      "status": "errors_found",
+      "corrections": {
+        "unemploymentRate": 7.8,
+        "hdi": 0.82,
+        "obesityRate": 30,
+        "femaleObesityRate": 35,
+        "maleObesityRate": 24,
+        "femaleBmi": 28,
+        "maleBmi": 27,
+        "femaleWeightKg": 75,
+        "maleWeightKg": 84,
+        "smokingRate": 14
+      },
+      "notes": [
+        "unemploymentRate 5.5 wrong: CBS Curaçao LFS 2024 = 7.8% (13.1% in 2022); set 7.8. Population 156,263 matches CBS (156,115 on 1 Jan 2025) - correct.",
+        "hdi 0.63 implausibly low; UNDP does not rank Curaçao. Derived ~0.82 from components (LE ~78.5, schooling, GNI pc ~US$30k PPP) - comparable to Bahamas/Barbados.",
+        "Income/indicators: no WID.world coverage; checked against NL anchor (DB p50 3200) scaled by GDP-pc ratio ~0.39 (CW nominal ~US$21.4k, PPP ~US$30k vs NL US$79k PPP) => p50 ~1,250; entry 1,146 is consistent - left unchanged. minimumWageEur 900 consistent with ~ANG 10.5/hr x 173h = ~EUR 935.",
+        "Health block (162/66/25.3/22 F, 174/78/25.9/19.4 M) is the fabricated template. Curaçao Health Study found obesity 36% F / 19% M (1993) and prevalence has risen since; PAHO reports ~65% overweight+obese. Set F 35 / M 24 / combined 30; BMI/weight derived (F 28/75kg, M 27/84kg). Smoking: no reliable sexed source; combined set 14 (midpoint of template sexed values), sexed left unchanged.",
+        "englishSpeakingPercent and mainIndustry fields are missing entirely from the entry (noted; not added without a source for the former; mainIndustry would be Tourism)."
+      ]
+    },
+    "CY": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.913,
+        "smokingRate": 23
+      },
+      "notes": [
+        "HDI 0.87 wrong: UNDP HDR value 0.907 (2022) / 0.913 (2023, rank 32); set 0.913.",
+        "smokingRate 18 inconsistent with sexed values (F18/M28 => ~23); set 23.",
+        "Population 1.37M (whole-island estimate, WB 2023 1.34M gov-controlled), unemployment 4.9 (WB 2024), internet 89.6 (WB 2024), min wage EUR 924 (2023), englishSpeakingPercent 67 plausible (Eurobarometer ~70%+) - verified."
+      ]
+    },
+    "CZ": {
+      "status": "errors_found",
+      "corrections": {
+        "smokingRate": 23,
+        "exchangeRate": 22.6
+      },
+      "notes": [
+        "smokingRate 18 inconsistent with sexed values (F18/M28 => ~23); set 23.",
+        "exchangeRate 1 wrong under USD->local convention; ~22.6 CZK/USD (2023 avg).",
+        "Population 10.89M (WB 2023 10.86M), unemployment 2.6-2.8 (WB), internet 87.7, min wage entry EUR 725 consistent with hourly-based Czech MW (~EUR 680-775 over 2023-2025), HDI 0.90 (UNDP 0.895), LF gap -14.7 (2023) all verified; income distribution plausible - left unchanged."
+      ]
+    }
+  }
+}

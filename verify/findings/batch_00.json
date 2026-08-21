@@ -1,0 +1,191 @@
+{
+  "batch": "00",
+  "countries": {
+    "AF": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 72,
+        "minimumWageEur": 70,
+        "hdi": 0.496,
+        "englishSpeakingPercent": null
+      },
+      "notes": [
+        "exchangeRate was 1 but convention is local units per EUR (JPY=165, INR=90, USD=1.08 elsewhere in DB); ~72 AFN/EUR.",
+        "minimumWageEur 50 -> ~70: Afs 5,500/month public-sector minimum (~US$76). Note: no statutory minimum for permanent private-sector workers (Wikipedia list of minimum wages).",
+        "hdi 0.48 -> 0.496 (UNDP HDR 2025, rank 181).",
+        "englishSpeakingPercent 56 is absurd (no reliable estimate; English competence very low) -> null.",
+        "childMarriagePercent 28 confirmed by UNICEF ('28% of Afghan women 15-49 married before 18').",
+        "Population 43,844,111, internetPenetration 16.1, unemploymentRate 13.35->13.4, adolescentBirthRate 61.5, life expectancies (F 67.8 / M 64.7), laborForceGap -64.7 all match World Bank API (2024/2025).",
+        "Income/indicator percentiles are monotonic and plausibly low for Afghanistan; left unchanged."
+      ]
+    },
+    "AL": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 100,
+        "gender.childMarriagePercent": 12,
+        "hdi": 0.81,
+        "minimumWageEur": 500
+      },
+      "notes": [
+        "exchangeRate was 1 for ALL; ~100 ALL/EUR (2025).",
+        "childMarriagePercent 25 -> 12: UNICEF/UNFPA/DHS 2017-18 latest = ~11-12% of women 20-24 married before 18 (childmarriagedata.org, eeca.unfpa.org).",
+        "hdi 0.85 -> 0.810 (UNDP HDR 2025, rank 71).",
+        "minimumWageEur 450 -> ~500: national minimum wage 50,000 ALL/month since Jan 2025 (~EUR 500).",
+        "Population 2,349,580 matches World Bank 2025 exactly; internet 85.9, adoBirth 12.4, LE F 81.6/M 77.9, laborForceGap -11.7, unemployment 10.9 all match WB API."
+      ]
+    },
+    "DZ": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 145,
+        "hdi": 0.763,
+        "minimumWageEur": 165
+      },
+      "notes": [
+        "exchangeRate was 1 for DZD; ~145 DZD/EUR.",
+        "hdi 0.83 -> 0.763 (UNDP HDR 2025, rank 96) - stored value was far too high.",
+        "minimumWageEur 80 -> ~165: SNMG 24,000 DZD/month (~US$185) per Wikipedia minimum-wage list.",
+        "childMarriagePercent 3 plausible (UNICEF ~2-3%); contraceptiveUse 53.6 matches WB SP.DYN.CONU.ZS (2019); adoBirth 8.6, LE, internet 77.4, unemployment 11.6, laborForceGap -52.3 match WB API.",
+        "Internal inconsistency noted: smokingRate (combined)=8 equals femaleSmokingRate while maleSmokingRate=22 - the combined field appears to be a copy of the female value throughout this batch; WHO-based figures suggest Algerian male tobacco smoking near 42%, so sexed smoking values look understated, but no confident replacement found."
+      ]
+    },
+    "AS": {
+      "status": "errors_found",
+      "corrections": {
+        "income.p10": null,
+        "income.p25": null,
+        "income.p50": null,
+        "income.p75": null,
+        "income.p90": null,
+        "indicators.pretax_national.p10": null,
+        "indicators.pretax_national.p25": null,
+        "indicators.pretax_national.p50": null,
+        "indicators.pretax_national.p75": null,
+        "indicators.pretax_national.p90": null,
+        "indicators.posttax_national.p10": null,
+        "indicators.posttax_national.p25": null,
+        "indicators.posttax_national.p50": null,
+        "indicators.posttax_national.p75": null,
+        "indicators.posttax_national.p90": null,
+        "indicators.consumption.p10": null,
+        "indicators.consumption.p25": null,
+        "indicators.consumption.p50": null,
+        "indicators.consumption.p75": null,
+        "indicators.consumption.p90": null,
+        "indicators.wealth.p10": null,
+        "indicators.wealth.p25": null,
+        "indicators.wealth.p50": null,
+        "indicators.wealth.p75": null,
+        "indicators.wealth.p90": null,
+        "indicators.labor_income.p10": null,
+        "indicators.labor_income.p25": null,
+        "indicators.labor_income.p50": null,
+        "indicators.labor_income.p75": null,
+        "indicators.labor_income.p90": null,
+        "costOfLivingIndex": null,
+        "unemploymentRate": null,
+        "hdi": null,
+        "minimumWageEur": 990
+      },
+      "notes": [
+        "PLACEHOLDER COPY: dataSource 'REST Countries & World Bank API 2024' with income.p50 exactly 875 and costOfLivingIndex exactly 38, identical to the Anguilla entry - the whole income/indicators block is fabricated (no WID.world or survey distribution data exists for American Samoa). Set to null rather than invent values.",
+        "costOfLivingIndex 38 is part of the same placeholder pattern; no free Numbeo coverage -> null.",
+        "unemploymentRate 5.5 shared verbatim with AI/AG placeholder set; no reliable recent ILO figure -> null.",
+        "hdi 0.57: American Samoa is not ranked in UNDP HDR -> null.",
+        "minimumWageEur 450 -> ~990: industry-specific rates effective Sept 30 2024 range $5.78-$7.19/hr (US DOL / Wage Indicator); midpoint ~$6.36/hr x ~173 h/mo x ~0.92 EUR/USD.",
+        "Health block (162/66/25.3/22/8...) is byte-identical to AI and AG entries - template copy, suspect; Pacific obesity prevalence is known to be far higher (female adult obesity in American Samoa well above 50%) but no confident sourced replacement found in budget; left uncorrected, flagged.",
+        "population 46,029 plausible vs recent UN/census estimates (~45-50k); currency USD with exchangeRate 1.08 consistent with DB convention."
+      ]
+    },
+    "AD": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "Population 82,904 close to government/UN estimates (~80-84k).",
+        "exchangeRate 1 correct for EUR entry per DB convention.",
+        "minimumWageEur 1200 plausible: Andorra SMI ~EUR 1,197/month (2024).",
+        "hdi 0.88 matches UNDP (Andorra ~0.884); life expectancy F 86.2/M 82.3 among world's highest - correct.",
+        "Income percentiles plausible for one of Europe's highest GDP/capita states; monotonic throughout."
+      ]
+    },
+    "AO": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 985,
+        "hdi": 0.616
+      },
+      "notes": [
+        "exchangeRate was 1 for AOA; ~985 AOA/EUR (official rate ~912 AOA/USD since 2023 peg).",
+        "hdi 0.59 -> 0.616 (UNDP HDR 2025, rank 148).",
+        "minimumWageEur 50 OK: Kz 32,181/month (~US$61) per Wikipedia list.",
+        "Population 39,040,039, internet 40.7, unemployment 14.1, adoBirth 139.4, LE F 67.3/M 62.3, laborForceGap -5.2 all match World Bank API exactly.",
+        "Combined smokingRate/obesityRate again equal the female values while male values differ - see DZ note (systemic batch issue)."
+      ]
+    },
+    "AI": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 12025,
+        "income.p10": null,
+        "income.p25": null,
+        "income.p50": null,
+        "income.p75": null,
+        "income.p90": null,
+        "indicators.pretax_national.p10": null,
+        "indicators.pretax_national.p25": null,
+        "indicators.pretax_national.p50": null,
+        "indicators.pretax_national.p75": null,
+        "indicators.pretax_national.p90": null,
+        "indicators.posttax_national.p10": null,
+        "indicators.posttax_national.p25": null,
+        "indicators.posttax_national.p50": null,
+        "indicators.posttax_national.p75": null,
+        "indicators.posttax_national.p90": null,
+        "indicators.consumption.p10": null,
+        "indicators.consumption.p25": null,
+        "indicators.consumption.p50": null,
+        "indicators.consumption.p75": null,
+        "indicators.consumption.p90": null,
+        "indicators.wealth.p10": null,
+        "indicators.wealth.p25": null,
+        "indicators.wealth.p50": null,
+        "indicators.wealth.p75": null,
+        "indicators.wealth.p90": null,
+        "indicators.labor_income.p10": null,
+        "indicators.labor_income.p25": null,
+        "indicators.labor_income.p50": null,
+        "indicators.labor_income.p75": null,
+        "indicators.labor_income.p90": null,
+        "costOfLivingIndex": null,
+        "unemploymentRate": null,
+        "hdi": null,
+        "minimumWageEur": 955
+      },
+      "notes": [
+        "population 1,000,000 is the full placeholder signature and off by ~83x: preliminary January 2024 census puts Anguilla's population at 12,025 (anguillafocus.com / Anguilla Statistics).",
+        "PLACEHOLDER COPY: income.p50 exactly 875, costOfLivingIndex 38, unemployment 5.5, dataSource 'REST Countries & World Bank API 2024', entire distribution block byte-identical to the American Samoa entry -> nulled; no WID/survey distribution data exists for Anguilla.",
+        "hdi 0.57: Anguilla is not ranked in UNDP HDR -> null (informal estimates are far higher).",
+        "minimumWageEur 450 -> ~955: new national minimum wage EC$16.20/hour (~US$6.00) effective Jan 2024 per Anguilla Government announcement and Skuad 2025 guide; ~US$1,040/month. Some sources still cite prior rate EC$8.20/hr - moderate confidence.",
+        "currency XCD symbol $ correct; exchangeRate 1 wrong for XCD but no confident spot value entered - recommend 2.92 (XCD pegged at 2.70/USD)."
+      ]
+    },
+    "AG": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.851,
+        "exchangeRate": 2.92,
+        "minimumWageEur": 485
+      },
+      "notes": [
+        "hdi 0.65 -> 0.851 (UNDP HDR 2025, rank 53) - stored value drastically wrong.",
+        "exchangeRate 1 wrong for XCD; pegged at 2.70 XCD/USD => ~2.92/EUR.",
+        "minimumWageEur 900 -> ~485: statutory minimum EC$8.20/hour (~US$3.03) per Wikipedia minimum-wage list => ~US$525/month.",
+        "Population 94,209 matches World Bank 2025; adoBirth 32.1 and LE F 80.4/M 74.7 match WB API.",
+        "income p50 1254 differs from the placeholder signature and is plausible vs Antigua's ~$18k GDP/capita; left unchanged.",
+        "Health block byte-identical to AS/AI template entries - suspect (Caribbean female obesity typically well above 22%); flagged, not corrected for lack of a confident source.",
+        "unemploymentRate 5.5 identical to the AS/AI placeholder value; no confident ILO figure found - flagged."
+      ]
+    }
+  }
+}

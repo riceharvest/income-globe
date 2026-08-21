@@ -1,0 +1,113 @@
+{
+  "batch": "26",
+  "countries": {
+    "SE": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 0,
+        "femaleSmokingRate": 14.6,
+        "maleSmokingRate": 25.9,
+        "smokingRate": 20
+      },
+      "notes": [
+        "Sweden has NO statutory minimum wage (collective bargaining); dataset 1600 is wrong.",
+        "Smoking rates were templated (8/22 in every country); World Bank SH.PRV.SMOK 2024: female 14.6, male 25.9; combined ~20.",
+        "Population 10.60M vs WB 2024 10.57M - ok. Unemployment 8.7 matches WB 2025 (8.69). Internet 95.8 matches WB (95.77). Life expectancy 85.6/82.6 matches WB 2024 exactly. HDI 0.95 matches UNDP 0.952. Income distribution monotonic and plausible vs OECD/WID medians (~3300/mo PPP)."
+      ]
+    },
+    "CH": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 0,
+        "femaleSmokingRate": 22.3,
+        "maleSmokingRate": 24,
+        "smokingRate": 23
+      },
+      "notes": [
+        "Switzerland has NO national statutory minimum wage (only cantonal, e.g. Geneva ~CHF 24/h); dataset 1600 is wrong.",
+        "Smoking templated; WB 2024: female 22.3, male 24, combined ~23.",
+        "Population 9.09M vs WB 2024 9.01M ok. Unemployment 4.9 matches WB ILO-modeled 4.87 (registered rate is ~2.5% but dataset follows ILO convention). Life expectancy 86.2/82.7 exact WB match. HDI 0.97 vs UNDP 0.967 ok. Income p50 5200/mo PPP plausible."
+      ]
+    },
+    "SY": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.56,
+        "englishSpeakingPercent": 10,
+        "femaleSmokingRate": null,
+        "maleSmokingRate": null,
+        "smokingRate": null
+      },
+      "notes": [
+        "HDI 0.53 -> 0.557 (UNDP 2023/24 report, 2022 data).",
+        "English 57% is absurd for Syria (rough estimate ~10%); corrected conservatively.",
+        "Smoking rates templated (8/22); no WB data for Syria - set null rather than keep invented values.",
+        "Population 25.6M vs WB/UN 2024 ~24.7M (~4% off, within tolerance; post-conflict estimates volatile). Unemployment 13.6 matches WB. Life expectancy 74.9/70.2 exact match. Income p50 70/mo PPP is low but plausible for wartime Syria. Minimum wage 60 EUR not verifiable (SYP official vs parallel rate divergence huge) - left as-is."
+      ]
+    },
+    "ST": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.61,
+        "femaleSmokingRate": 2.1,
+        "maleSmokingRate": 14.5
+      },
+      "notes": [
+        "HDI 0.56 -> 0.613 (UNDP 2023/24).",
+        "Smoking templated; WB 2024: female 2.1, male 14.5. Combined smokingRate 8 is consistent with weighted average (~8) - left.",
+        "Population 240k vs WB 2024 235.5k ok. Unemployment 9.1 matches WB 9.13; internet 59.1 exact match; life expectancy 73.9/66.4 exact match. Income p50 130/mo PPP plausible for STP. Minimum wage 60 EUR unverified (STN figures vary by source) - left as-is."
+      ]
+    },
+    "TW": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 800
+      },
+      "notes": [
+        "Taiwan statutory minimum wage TWD 27,470/month (2024; 28,590 in 2025) = ~EUR 800/month, not 1000.",
+        "gender.* all null - Taiwan is not in UN/World Bank datasets; nulls acceptable.",
+        "Population 23.9M correct. Income p50 1900/mo PPP plausible vs WID Taiwan adult national income. HDI 0.93 consistent with Taiwan's own calculation (0.926). Not in WB API (not a WB member) - verified against national/WID figures."
+      ]
+    },
+    "TJ": {
+      "status": "errors_found",
+      "corrections": {
+        "englishSpeakingPercent": 5,
+        "femaleSmokingRate": null,
+        "maleSmokingRate": null,
+        "smokingRate": null
+      },
+      "notes": [
+        "English 51% is absurd for Tajikistan (rough estimate ~5%); corrected conservatively.",
+        "Smoking templated (8/22); no WB data - set null.",
+        "Population 10.79M vs WB 2024 10.59M (~2%, ok). Unemployment 6.9 matches WB 6.93; internet 55.8 matches WB 55.79; life expectancy 74.1/69.7 exact WB match. HDI 0.68 vs UNDP ~0.69 ok. Income p50 110/mo PPP plausible. Minimum wage 30 EUR not verifiable - left as-is."
+      ]
+    },
+    "TZ": {
+      "status": "errors_found",
+      "corrections": {
+        "femaleSmokingRate": 2.4,
+        "maleSmokingRate": 13.1
+      },
+      "notes": [
+        "Smoking templated; WB 2024: female 2.4, male 13.1. Combined smokingRate 8 ~ consistent with weighted average - left.",
+        "Population 70.5M vs WB 2024 68.6M (~3% high, within 5% tolerance but on the edge; national census 2022: 61.7M).",
+        "Unemployment 1.6 matches WB 1.57 (ILO modeled); internet 31.2 exact match; life expectancy 70/64.4 exact match. HDI 0.55 matches UNDP 0.549. Income p50 90/mo PPP plausible. Minimum wage is sectoral (TZS 40k-400k+/mo) so single 55 EUR figure is a rough midpoint - left as-is. English 46% high for practice but English is official - left."
+      ]
+    },
+    "TH": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 250,
+        "femaleSmokingRate": 1.3,
+        "maleSmokingRate": 34.2,
+        "smokingRate": 18
+      },
+      "notes": [
+        "Minimum wage THB 330-370/day = ~THB 9,000-13,000/month = ~EUR 250/month, not 200 (corrected conservatively to low-mid range).",
+        "Smoking templated; WB 2024: female 1.3, male 34.2; combined ~18 (dataset 8 wrong).",
+        "Population 71.6M matches WB. Unemployment 0.8 matches WB 0.78 (genuinely among world's lowest); internet 90.9 exact match; life expectancy 81/72.3 exact match. HDI 0.8 vs UNDP 0.803 ok. Income p50 470/mo PPP plausible. Adolescent birth rate 25, contraceptive use 72.8 plausible per WB/UNFPA."
+      ]
+    }
+  }
+}

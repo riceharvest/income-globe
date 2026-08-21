@@ -1,0 +1,158 @@
+{
+  "batch": "04",
+  "countries": {
+    "BF": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 605,
+        "minimumWageEur": 69,
+        "gender.laborForceGap": 12.1,
+        "femaleSmokingRate": 2.5,
+        "maleSmokingRate": 14.6,
+        "englishSpeakingPercent": 3
+      },
+      "notes": [
+        "exchangeRate=1 wrong: convention is USD->local units (cf. CA=1.48); XOF pegged 655.957/EUR ≈ 605/USD.",
+        "minimumWageEur: SMIG is 45,000 XOF/month (countryeconomy.com 2024) ≈ €69; batch 45 wrong.",
+        "laborForceGap sign flipped: World Bank 2024 LFPR male 76.2% - female 64.1% = +12.1 (brief defines gap as male minus female).",
+        "Smoking: batch 8%/22% is a copied placeholder (identical in all 8 batch countries). WHO GHO current tobacco use: female 2.5%, male 14.6%.",
+        "englishSpeakingPercent 22 absurd for francophone Burkina Faso; rough-corrected to ~3.",
+        "Verified OK: population (23.55M WB 2024, batch +2.2% within tolerance), unemployment 3.4~3.5, internet 28.3, life expectancy both sexes, adolescent birth rate 85.5, contraception 34 (2022), child marriage ~51% (UNICEF), HDI 0.44 (HDR 0.438), income percentiles plausible vs WID.world magnitudes."
+      ]
+    },
+    "BI": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 2900,
+        "minimumWageEur": null,
+        "gender.laborForceGap": -2.5,
+        "femaleSmokingRate": 3.3,
+        "maleSmokingRate": 11.6
+      },
+      "notes": [
+        "exchangeRate=1 wrong; BIF ≈ 2,900-3,000 per USD (2024).",
+        "No statutory national minimum wage (Wikipedia list of minimum wages) -> null.",
+        "laborForceGap sign flipped: WB 2024 female 79.7% > male 77.2%, so male-minus-female = -2.5 (batch had +2.5).",
+        "Smoking placeholder 8%/22% replaced with WHO GHO tobacco-use prevalence: female 3.3%, male 11.6%.",
+        "Verified OK: population (14.05M WB 2024, batch +2.4%), unemployment 0.9 (WB 2024 exact), internet 8.6 exact, life expectancy exact, adolescent fertility 52.5 exact, HDI 0.42 (HDR 0.420), income percentiles plausible (poorest country in batch)."
+      ]
+    },
+    "KH": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 4050,
+        "minimumWageEur": 190,
+        "gender.laborForceGap": 10.5,
+        "femaleSmokingRate": 4.1,
+        "maleSmokingRate": 26.5,
+        "englishSpeakingPercent": 10
+      },
+      "notes": [
+        "exchangeRate=1 wrong; KHR ≈ 4,050-4,100 per USD.",
+        "minimumWageEur: garment/textile sector minimum wage $208/month (2025, Ministry of Labour; $204 in 2024) ≈ €190; batch 80 far too low.",
+        "laborForceGap sign flipped: WB 2024 male 87.8% - female 77.3% = +10.5.",
+        "Smoking placeholder replaced with WHO GHO: female 4.1%, male 26.5% (male smoking in Cambodia is among the region's highest; 22% understates it).",
+        "englishSpeakingPercent 39 implausibly high (low-proficiency country); rough-corrected to ~10.",
+        "Verified OK: population (17.64M WB 2024, batch +1.2%), unemployment 0.3 exact, internet 68.5 exact, life expectancy exact, adolescent fertility 47.3 exact, contraception 61.9 (2022), HDI 0.60 exact, income percentiles plausible.",
+        "mainIndustry 'Agriculture' questionable: manufacturing (garments)/services now exceed agriculture in GDP share; left unchanged (not a clear error)."
+      ]
+    },
+    "CM": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 605,
+        "minimumWageEur": 55,
+        "hdi": 0.587,
+        "gender.laborForceGap": 17.0,
+        "femaleSmokingRate": 0.9,
+        "maleSmokingRate": 7.0
+      },
+      "notes": [
+        "exchangeRate=1 wrong; XAF pegged same as XOF ≈ 605/USD.",
+        "minimumWageEur: long-standing SMIG 36,270 XAF/month ≈ €55 (some secondary sources claim higher 2023 figures; used official SMIG). Batch 45 low.",
+        "hdi: UNDP HDR 2023/24 reports 0.587; batch 0.56 is stale.",
+        "laborForceGap sign flipped: WB 2024 male 74.1% - female 57.1% = +17.0 (batch magnitude 17.3 close but sign wrong).",
+        "Smoking placeholder replaced with WHO GHO: female 0.9%, male 7.0%.",
+        "Verified OK: population (29.12M WB 2024, batch +2.6%), unemployment 3.6 exact, internet 46.3 exact, life expectancy exact, adolescent fertility 105.4 exact, contraception 19.3 (2018), child marriage ~31% (UNICEF), income percentiles plausible."
+      ]
+    },
+    "CA": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 1.37,
+        "minimumWageEur": 1950,
+        "gender.laborForceGap": 8.8,
+        "femaleSmokingRate": 6.0,
+        "maleSmokingRate": 10.6
+      },
+      "notes": [
+        "exchangeRate 1.48 is stale (~2016 rate); 2024 average USD/CAD ≈ 1.37.",
+        "minimumWageEur: no federal general minimum; provincial rates CAD 15.00-17.20/hour in 2024 ≈ CAD 2,600-2,980/month ≈ €1,900-2,150. Batch 1350 too low; corrected to mid-range ~1950.",
+        "laborForceGap sign flipped: WB 2024 male 69.2% - female 60.4% = +8.8 (batch -8.7, right magnitude, wrong sign).",
+        "Smoking placeholder 8%/22% replaced with WHO GHO: female 6.0%, male 10.6%.",
+        "Verified OK: population 41.26M (WB 2024; StatCan ~41.5M+, <1% off), unemployment 6.9 within 2024 range (WB annual 6.4), income p50 3200 plausible vs OECD/WID median disposable income (~$38-40k/yr PPP), wealth/labor_income distributions plausible, HDI 0.94 (HDR 0.935), life expectancy exact, obesity ~30% female / ~26% male consistent with Canada health survey data, englishSpeakingPercent 75 reasonable."
+      ]
+    },
+    "CV": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 101.4,
+        "minimumWageEur": 136,
+        "gender.laborForceGap": 13.1,
+        "femaleSmokingRate": 4.0,
+        "maleSmokingRate": 13.8
+      },
+      "notes": [
+        "exchangeRate=1 wrong; CVE pegged at 110.265/EUR ≈ 101.3-101.4 per USD.",
+        "minimumWageEur: private-sector minimum wage 15,000 CVE/month in 2024 ≈ €136 (raised to 17,000 CVE ≈ €154 on 1 Jan 2025 per Wage Indicator). Batch 90 outdated.",
+        "laborForceGap sign flipped: WB 2024 male 63.5% - female 50.4% = +13.1 (batch -12.9).",
+        "Smoking placeholder replaced with WHO GHO: female 4.0%, male 13.8%.",
+        "Verified OK: population 524,877 (WB 2024; matches census-based figure), unemployment 11.9 exact, internet 74.7 exact, life expectancy exact (male 73.0 vs 73.1 trivial rounding), adolescent fertility 37.9 exact, contraception 55.8 (2018), child marriage ~14%, HDI 0.66 (HDR 0.661), income percentibles plausible for GDP/capita PPP ~$8k."
+      ]
+    },
+    "BQ": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 30397,
+        "income.p50": 1400,
+        "indicators.posttax_national.p50": 1400,
+        "costOfLivingIndex": null,
+        "minimumWageEur": 1650,
+        "exchangeRate": 1,
+        "femaleSmokingRate": null,
+        "maleSmokingRate": null,
+        "smokingRate": null
+      },
+      "notes": [
+        "CONFIRMED PLACEHOLDER: population exactly 1000000 / income.p50 exactly 875 / costOfLivingIndex exactly 38 matches the known fabrication pattern; entire income/health block is synthetic.",
+        "population: CBS reports 30,397 inhabitants of Caribbean Netherlands on 1 Jan 2024 (Bonaire 25,133 + St Eustatius 3,204 + Saba 2,060); ~32,000 by end-2024.",
+        "income.p50: CBS median personal gross income ≈ $21,400/year (2022 provisional) ≈ $1,780/month nominal; ~$1,400/month after PPP adjustment (local price level above US average). Remaining percentiles (p10/p25/p75/p90 and all indicators.*) are fabricated and should be re-derived, not patched individually.",
+        "costOfLivingIndex: no free Numbeo-style index covers the BES islands; set null rather than guess.",
+        "minimumWageEur: statutory minimum wage $10.35/hour on Bonaire from 1 Jan 2025 (Rijksdienst CN; $10.09 in 2024) ≈ $1,790/month full-time ≈ €1,650. Batch 450 wildly wrong.",
+        "exchangeRate: currency is USD so rate must be 1, not 1.08.",
+        "flag 🏳️ (white flag) inappropriate; BQ has no official flag — 🇳🇱 commonly used as public bodies of the Netherlands (left as suggestion, not applied).",
+        "Health fields (height/weight/BMI/obesity/smoking) are byte-identical copies of the KY entry — confirmed fabrication. Smoking set to null (no free sexed prevalence data for BES islands); other health fields left but flagged for re-sourcing.",
+        "hdi 0.57 implausible for a territory that is constitutionally part of the Netherlands (NL=0.946) and has no UNDP rating; unverifiable — noted, not corrected.",
+        "unemploymentRate 5.5 and internetPenetration 75 unverifiable from free sources; left as-is."
+      ]
+    },
+    "KY": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 1.22,
+        "femaleSmokingRate": null,
+        "maleSmokingRate": null,
+        "smokingRate": null
+      },
+      "notes": [
+        "exchangeRate=1 wrong; KYD pegged at 1.2196 per USD.",
+        "Smoking 8%/22% is the same copied placeholder as the rest of this batch (and identical to BQ's block); no free sexed smoking-prevalence source for Cayman Islands found -> null.",
+        "Population OK: 75,844 vs WB 74,457 (2024), +1.9%.",
+        "Income distribution plausible: GDP per capita PPP ~$90k; median post-tax adult income ~$3,200/month is consistent with Cayman household income statistics; ordering monotonic throughout.",
+        "minimumWageEur 1600: matches the Oct-2025 rise to KYD 8.50/hour (~€1,650/month); the 2024 rate (KYD 4.90/hour ≈ €950) is much lower — acceptable if dataset uses latest rate; noted, not corrected.",
+        "Life expectancy, obesity values plausible but from unofficial sources; HDI 0.96 is not an official UNDP figure (territory not rated) — plausible, left unchanged.",
+        "Unemployment 5.5 unverified (recent ESO figures nearer ~4%); left unchanged."
+      ]
+    }
+  }
+}

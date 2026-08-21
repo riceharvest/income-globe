@@ -1,0 +1,162 @@
+{
+  "batch": "07",
+  "countries": {
+    "CD": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 109276265,
+        "hdi": 0.52,
+        "minimumWageEur": 135,
+        "exchangeRate": 3100
+      },
+      "notes": [
+        "population 112,832,473 is +6.7% vs WB 2023 (105.8M); corrected to latest World Bank figure 109,276,265 (2024).",
+        "hdi 0.48 -> 0.52 (UNDP HDR 2025: DRC 0.522, rank 171).",
+        "minimumWageEur 30 too low even for the old SMIG (7,075 CDF/day 2018-2025 ~= EUR 50/mo). Decree 25/22 of 30 May 2025 phases SMIG to 14,500 CDF/day (May 2025) then 21,500 CDF/day (Jan 2026); 21,500 x ~20 working days = 430,000 CDF ~= USD 150 ~= EUR 138 at ~3,100 CDF/EUR.",
+        "exchangeRate was 1; convention elsewhere in DB is local units per EUR -> ~3,100 CDF/EUR (CDF highly volatile, approximate).",
+        "Verified OK vs World Bank API: life expectancy F64.0/M59.8 (entry 64.2/60), internetPenetration 19.7 (~18.97 2023), unemploymentRate 4.4 (WB ILO 4.47), adolescentBirthRate 105.2 (WB 106.9), laborForceGap -5 (WB 67.2-61.7 = -5.4), childMarriagePercent 37 matches UNICEF.",
+        "Income percentiles plausible vs WID-style levels (p50 $48 PPP/mo = ~33% of monthly GDP-pc-PPP); monotonic throughout; left unchanged."
+      ]
+    },
+    "DK": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 0,
+        "exchangeRate": 7.5
+      },
+      "notes": [
+        "Denmark has NO statutory minimum wage (wages set by collective agreements); 1600 is a filler value. Set 0 per brief convention (same fix as Finland in batch 09).",
+        "exchangeRate was 1 for a DKK entry; DB convention is local units per EUR -> ~7.5 DKK/EUR.",
+        "Verified OK vs World Bank API: population 6,009,169 vs 5,946,952 (<2%); femaleLifeExpectancy 84.2 and maleLifeExpectancy 80.4 match WB 2024 exactly; internetPenetration 99.8 matches WB 2024 99.77; unemploymentRate 5.5 vs 5.36; laborForceGap -8.4 matches WB 2024 exactly (69.29-60.90).",
+        "HDI 0.96 fine (HDR 2025: 0.962). costOfLivingIndex 80 close to Numbeo 78.6 - left unchanged. OECD income distribution plausible and monotonic."
+      ]
+    },
+    "DJ": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.childMarriagePercent": 7,
+        "minimumWageEur": 180,
+        "exchangeRate": 193
+      },
+      "notes": [
+        "childMarriagePercent filled with 7% (UNICEF/childmarriagedata.org: 7% of women 20-24 married before 18, 2019 MICS-PAMS value; was null).",
+        "minimumWageEur 120 -> 180: statutory minimum wage DJF 35,000/month (public AND private sector, since Jan 2018, wageindicator.org) ~= USD 197 ~= EUR 180.",
+        "exchangeRate was 1; DB convention local units per EUR -> ~193 DJF/EUR (DJF pegged to USD at ~178).",
+        "Verified OK vs World Bank API: population within 2.7%; LE F68.7/M63.7 exact match; internetPenetration 65.3 exact match; unemploymentRate 26 vs 26.07; adolescentBirthRate 19.1 exact; laborForceGap -25.2 vs WB -26.1 (close).",
+        "englishSpeakingPercent 52 flagged as implausible template value (Djibouti's languages are French/Arabic/Somali/Afar; English competence far below half) - no free authoritative estimate found, so left uncorrected.",
+        "Income percentiles plausible (p50 $140 PPP/mo ~ 23% of monthly GDP-pc-PPP); monotonic; unchanged."
+      ]
+    },
+    "DM": {
+      "status": "errors_found",
+      "corrections": {
+        "income.p10": 55,
+        "income.p25": 115,
+        "income.p50": 245,
+        "income.p75": 510,
+        "income.p90": 1020,
+        "indicators.pretax_national.p10": 55,
+        "indicators.pretax_national.p25": 120,
+        "indicators.pretax_national.p50": 260,
+        "indicators.pretax_national.p75": 560,
+        "indicators.pretax_national.p90": 1165,
+        "indicators.posttax_national.p10": 55,
+        "indicators.posttax_national.p25": 115,
+        "indicators.posttax_national.p50": 245,
+        "indicators.posttax_national.p75": 510,
+        "indicators.posttax_national.p90": 1020,
+        "indicators.consumption.p10": 50,
+        "indicators.consumption.p25": 90,
+        "indicators.consumption.p50": 195,
+        "indicators.consumption.p75": 390,
+        "indicators.consumption.p90": 725,
+        "indicators.wealth.p10": 110,
+        "indicators.wealth.p25": 910,
+        "indicators.wealth.p50": 6100,
+        "indicators.wealth.p75": 30600,
+        "indicators.wealth.p90": 153100,
+        "indicators.labor_income.p10": 35,
+        "indicators.labor_income.p25": 80,
+        "indicators.labor_income.p50": 195,
+        "indicators.labor_income.p75": 435,
+        "indicators.labor_income.p90": 920,
+        "costOfLivingIndex": 40,
+        "hdi": 0.76,
+        "exchangeRate": 2.9
+      },
+      "notes": [
+        "DERIVATION (no WID.world data for Dominica): all income/indicator distributions re-derived from the Dominican Republic anchor (WID.world, this dataset's DO entry) scaled by GDP-per-capita-PPP ratio 0.785 (World Bank 2023: DMA $20,303 vs DOM $25,861). Entry's old values (p50 795) implied a median adult at ~47% of monthly GDP-pc-PPP - far above the ~14-23% ratio every WID Caribbean/LatAm country in this dataset shows - clearly placeholder-inflated.",
+        "hdi 0.56 -> 0.76 (UNDP HDR 2025: Dominica 0.761, rank 98). The 0.56 was badly wrong.",
+        "costOfLivingIndex 38 is the placeholder smell; Numbeo has no Dominica coverage - set 40 anchored to regional peer DR (Numbeo 39.4).",
+        "minimumWageEur 450 VERIFIED correct: Dominica Minimum Wages Order 2021 general rate EC$7.50/hr x 173h = EC$1,300/mo ~= US$481 ~= EUR 443 (Invest Dominica Authority; new EC$9/hr rates only effective Dec 2025).",
+        "exchangeRate was 1; DB convention local units per EUR -> ~2.9 XCD/EUR (XCD pegged 2.70/USD).",
+        "Verified OK vs World Bank API: population 65,871 vs 66,205; life expectancy F74.7/M68.4 match WB exactly; internetPenetration 82 matches WB 82.05; adolescentBirthRate 34 exact.",
+        "unemploymentRate 5.5 unverifiable (no WB/ILO series for Dominica); left as-is. gender childMarriage/laborForceGap/contraceptiveUse nulls kept - no free country-level source found.",
+        "femaleSmokingRate 8 / maleSmokingRate 22 are identical across DJ/DM/DO/EC/EG/SV/CD entries (template smell) - flagged, not corrected for lack of a single sourced value."
+      ]
+    },
+    "DO": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.78,
+        "costOfLivingIndex": 39,
+        "exchangeRate": 65
+      },
+      "notes": [
+        "hdi 0.75 -> 0.78 (UNDP HDR 2025: Dominican Republic 0.776, rank 89).",
+        "costOfLivingIndex 42 -> 39 (Numbeo 2026 mid-year: Dominican Republic 39.4).",
+        "exchangeRate was 1; DB convention local units per EUR -> ~65 DOP/EUR (~60 DOP/USD).",
+        "Verified OK vs World Bank API: population within 1.7%; LE F77.1/M70.7 match; internetPenetration 91 matches WB 2024; unemployment 5.1 vs 5.56; adolescentBirthRate 50.2 vs 52.8; contraceptiveUse 62.8 plausible (ENHOGAR-era modern use); childMarriagePercent 32 close to UNICEF's ~36% (left as rough estimate).",
+        "minimumWageEur 220 plausible: DR sectoral minimums DOP 12,300-21,000/mo after Aug 2024 increase ~= EUR 190-320. Income percentiles plausible vs WID (p50 $310 PPP/mo); unchanged."
+      ]
+    },
+    "EC": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 430,
+        "costOfLivingIndex": 31,
+        "hdi": 0.78
+      },
+      "notes": [
+        "minimumWageEur 200 -> 430: Ecuador Salario Basico Unificado is USD 470/month (2025; $482 from Jan 2026) ~= EUR 430. 200 matched only the agricultural-rate era years ago.",
+        "costOfLivingIndex 38 -> 31 (Numbeo 2026 mid-year: Ecuador 31.0).",
+        "hdi 0.76 -> 0.78 (UNDP HDR 2025: Ecuador 0.777, rank 88).",
+        "Verified OK vs World Bank API: population within 1.7%; LE F80.3/M74.9 match; internetPenetration 77.2 matches WB 2024 exactly; unemployment 3.3 vs 3.51; laborForceGap -24.5 vs WB -24.4; exchangeRate 1.08 consistent with USD=1.08 convention.",
+        "Income percentiles plausible vs WID (p50 $280 PPP/mo ~ 21% of monthly GDP-pc-PPP); monotonic; unchanged."
+      ]
+    },
+    "EG": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 125,
+        "costOfLivingIndex": 22,
+        "hdi": 0.75,
+        "exchangeRate": 52
+      },
+      "notes": [
+        "minimumWageEur 95 -> 125: private-sector minimum wage EGP 7,000/month since 1 Mar 2025 (public sector aligned Jul 2025) ~= USD 130-140 ~= EUR 122.",
+        "costOfLivingIndex 28 -> 22 (Numbeo 2026 mid-year: Egypt 21.5).",
+        "hdi 0.73 -> 0.75 (UNDP HDR 2025: Egypt 0.754, rank 100).",
+        "exchangeRate was 1; DB convention local units per EUR -> ~52 EGP/EUR.",
+        "Verified OK vs World Bank API: population within 3.3%; LE F74.0/M69.7 match; internetPenetration 74.6 matches; unemployment 6.8 vs 6.75; laborForceGap -52.1 vs WB -52.2 (exact-quality match).",
+        "Income percentiles plausible vs WID (p50 $220 PPP/mo ~ 14% of monthly GDP-pc-PPP); monotonic; unchanged."
+      ]
+    },
+    "SV": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 375,
+        "costOfLivingIndex": 42,
+        "hdi": 0.68
+      },
+      "notes": [
+        "minimumWageEur 200 -> 375: El Salvador minimum wage raised 12% on 1 Jun 2025 to USD 408.80/month (commerce/services & industry; maquila $402.32, agriculture $305.23) ~= EUR 376.",
+        "costOfLivingIndex 38 -> 42 (Numbeo 2026 mid-year: El Salvador 41.6).",
+        "hdi 0.73 -> 0.68 (UNDP HDR 2025: El Salvador 0.678, rank 132). The 0.73 was materially overstated.",
+        "Verified OK vs World Bank API: population within 0.9%; LE F76.5/M67.8 match; internetPenetration 66.5 matches WB 2024 exactly; unemployment 3.3 vs 3.26; laborForceGap -28.2 matches WB exactly; contraceptiveUse 53.6 exact WB match; exchangeRate 1.08 consistent with USD convention.",
+        "englishSpeakingPercent 65 flagged as implausibly high for El Salvador (no authoritative free estimate; likely template value) - left uncorrected.",
+        "Income percentiles plausible vs WID (p50 $240 PPP/mo); monotonic; unchanged."
+      ]
+    }
+  }
+}

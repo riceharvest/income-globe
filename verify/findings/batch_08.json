@@ -1,0 +1,133 @@
+{
+  "batch": "08",
+  "countries": {
+    "GQ": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 190
+      },
+      "notes": [
+        "Population 1,938,431 matches World Bank SP.POP.TOTL exactly. Unemployment 8.3 matches WB (8.34, 2025). Internet 63.3 matches WB (63.30, 2024). Life expectancy F65.9/M62.2 match WB.",
+        "minimumWageEur corrected 80 -> 190: statutory minimum is FCFA 129,035/month (~USD 208) since 2011/2014 revision (wage.is, africa-hr.com; wageindicator lists FCFA 117,304 from 2011). Either way well above the recorded 80 EUR.",
+        "hdi 0.67 consistent with UNDP 0.674 (HDR 2025). Income p50 220 USD PPP/mo vs GDP pc PPP ~16.1k is plausible given extreme oil-driven inequality (WID-based); monotonic - left unchanged."
+      ]
+    },
+    "ER": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.503
+      },
+      "notes": [
+        "Population 3,607,003 matches World Bank exactly. Unemployment 6.0 matches WB SL.UEM.TOTL.ZS (5.98, 2025). Life expectancy F70.9/M66.8 match WB (70.94/66.76).",
+        "internetPenetration 22: WB latest is 14.3% (2020); ITU later estimates put Eritrea near 21-22%, so kept as a plausible newer estimate - flagged, not corrected.",
+        "minimumWageEur 30: statutory minimum is public-sector-only ERN 360/month (~USD 24, ~EUR 22) since Jan 2015 (wageindicator.org, minimum-wage.org, africa-hr.com). 30 EUR is within source range - kept, noted.",
+        "hdi corrected 0.49 -> 0.503 (UNDP HDR 2025, 2023 data, rank 178).",
+        "Income distribution p10..p90 = 15..280 USD PPP/mo, monotonic and consistent with very low GDP/capita (WB has no PPP series for ERI); left unchanged."
+      ]
+    },
+    "EE": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.905
+      },
+      "notes": [
+        "Population 1,366,475 matches World Bank exactly. Unemployment 8.3 matches WB (8.31, 2025). Internet 92.2 matches WB (92.24, 2024). Life expectancy F83.7/M75.1 match WB exactly.",
+        "Income p50 1350 EUR/mo PPP plausible vs OECD/WID Estonia adult median; ordering monotonic throughout - ok.",
+        "minimumWageEur 820 correct (statutory minimum wage 2024 = EUR 820/mo).",
+        "hdi corrected 0.89 -> 0.905 (UNDP HDR 2025, 2023 data, rank 36)."
+      ]
+    },
+    "SZ": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.695
+      },
+      "notes": [
+        "Population 1,256,174 matches World Bank exactly. Unemployment 34.2 matches WB (34.20, 2025). Internet 63.4 matches WB (63.40, 2024). Life expectancy F67.1/M61.3 match WB.",
+        "Income p50 165 USD PPP/mo plausible given GDP pc PPP ~12.5k and high inequality; monotonic - ok.",
+        "hdi corrected 0.71 -> 0.695 (UNDP HDR 2025, 2023 data, rank 126)."
+      ]
+    },
+    "ET": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "Population 135,472,051 matches World Bank exactly. Unemployment 3.3 matches WB (3.32, 2025). Internet 21.9 matches WB (21.94, 2024). Life expectancy F71.0/M64.4 match WB.",
+        "hdi 0.5 consistent with UNDP 0.497 (HDR 2025). Income p50 80 USD PPP/mo plausible (GDP pc PPP ~3.6k, subsistence agriculture); monotonic - ok."
+      ]
+    },
+    "FK": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 3662,
+        "dataSource": "FIG 2021 Census & Economic Snapshot; World Bank n/a",
+        "income.p10": 1860,
+        "income.p25": 2150,
+        "income.p50": 2600,
+        "income.p75": 3390,
+        "income.p90": 4380,
+        "indicators.pretax_national.p10": 1900,
+        "indicators.pretax_national.p25": 2240,
+        "indicators.pretax_national.p50": 2750,
+        "indicators.pretax_national.p75": 3710,
+        "indicators.pretax_national.p90": 4960,
+        "indicators.posttax_national.p10": 1860,
+        "indicators.posttax_national.p25": 2150,
+        "indicators.posttax_national.p50": 2600,
+        "indicators.posttax_national.p75": 3390,
+        "indicators.posttax_national.p90": 4380,
+        "indicators.consumption.p10": 1700,
+        "indicators.consumption.p25": 1750,
+        "indicators.consumption.p50": 2110,
+        "indicators.consumption.p75": 2580,
+        "indicators.consumption.p90": 3120,
+        "indicators.wealth.p10": 3700,
+        "indicators.wealth.p25": 17200,
+        "indicators.wealth.p50": 65000,
+        "indicators.wealth.p75": 203000,
+        "indicators.wealth.p90": 657000,
+        "indicators.labor_income.p10": 1120,
+        "indicators.labor_income.p25": 1510,
+        "indicators.labor_income.p50": 2080,
+        "indicators.labor_income.p75": 2880,
+        "indicators.labor_income.p90": 3940,
+        "minimumWageEur": 1640,
+        "costOfLivingIndex": 80,
+        "hdi": null,
+        "mainIndustry": "Fishing"
+      },
+      "notes": [
+        "FULL PLACEHOLDER ENTRY CONFIRMED: population exactly 1000000, income.p50 exactly 875, costOfLivingIndex 38 (the known fabricated template). World Bank has no data series for FLK at all.",
+        "population -> 3,662 (FIG 2021 Census, usually resident; latest official count).",
+        "Income DERIVED (no direct survey exists): 2021 census reports mean employee income GBP 30,000/yr (~GBP 2,500/mo gross; FIG/MercoPress). Anchored median adult post-tax income at USD PPP ~2600/mo, then rescaled the entry's existing internal percentile shape uniformly (x2.97) so all indicator series stay mutually consistent and monotonic. Treat as estimate, not survey data.",
+        "minimumWageEur -> 1640: national minimum wage GBP 9.19/hr (2025, FIG Economic Snapshot; GBP 8.57/hr in 2024) x ~152h/mo x ~1.19 EUR/GBP.",
+        "costOfLivingIndex -> 80 DERIVED: Numbeo has no coverage; UK-level prices (~63) plus remoteness/import premium for a 3,700-person settlement economy.",
+        "hdi -> null: UNDP does not compute HDI for the Falkland Islands (truly unsourceable; prior 0.57 was unsourced).",
+        "mainIndustry -> Fishing: fishing = 59% of economic output in 2023 (FIG Economic Snapshot).",
+        "unemploymentRate (5.5) and internetPenetration (75) unverifiable from free sources - left unchanged with this flag. Gender fields already null (no data exists)."
+      ]
+    },
+    "FO": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "Population 54,900 matches World Bank exactly. GDP pc PPP $82k (WB 2024) supports income p50 2873 EUR PPP/mo (~42% of GDP pc, normal personal-vs-GDP share). Hagstova (Statistics Faroe Islands): average gross wage DKK 34,278/mo (Sep 2024), men DKK 39,800 / women DKK 28,272 - post-tax median of 2873 EUR is fully consistent. Distribution monotonic - ok.",
+        "Life expectancy F84.9/M81.3 match WB exactly (84.91/81.34).",
+        "minimumWageEur 1600: Faroes have NO statutory minimum wage (collectively bargained; unskilled union rates ~DKK 14-15k/mo). Value is a reasonable estimate - kept, flagged.",
+        "unemploymentRate 5.5 equals the FK placeholder value and looks high vs Hagstova-reported registered unemployment (~2-3% recent years); not confidently sourced here so left unchanged with this flag rather than churned.",
+        "hdi 0.96: UNDP does not compute HDI for the Faroe Islands; value is an extrapolation that would sit between DNK 0.962 and ISL 0.972 - left as plausible proxy."
+      ]
+    },
+    "FJ": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.73
+      },
+      "notes": [
+        "Population 933,154 matches World Bank exactly. Unemployment 5.3 matches WB (5.35, 2025). Internet 74.7 matches WB (74.71, 2024). Life expectancy F69.5/M65.5 match WB.",
+        "Income p50 280 USD PPP/mo plausible (GDP pc PPP ~16.3k, WID-based); monotonic - ok.",
+        "hdi corrected 0.7 -> 0.73: Fiji ranks 112 in HDR 2025 (2023 data), between Botswana (0.731, rank 111) and Indonesia (0.728, rank 113), i.e. ~0.729-0.731."
+      ]
+    }
+  }
+}

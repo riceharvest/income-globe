@@ -1,0 +1,136 @@
+{
+  "batch": "02",
+  "countries": {
+    "BD": {
+      "status": "errors_found",
+      "corrections": {
+        "englishSpeakingPercent": 18,
+        "minimumWageEur": 100,
+        "exchangeRate": 110,
+        "smokingRate": 15
+      },
+      "notes": [
+        "Population/unemployment/internet/life-expectancy/adolescent-fertility/contraceptive values all match World Bank API exactly (pop 175,686,899; unemp 3.78; net 53.4; LE 76.67/73.3; ABR 70.81; CPR 64) - verified, keep.",
+        "childMarriagePercent 51 matches UNICEF (~51%).",
+        "englishSpeakingPercent 63 is absurd; Wikipedia 'List of countries by English-speaking population' gives 18%.",
+        "minimumWageEur: no universal statutory min wage; RMG (garment) minimum BDT 12,000/month since Dec 2023 = ~EUR 100. Old value 50 was half the real floor.",
+        "exchangeRate was 1; convention is local units per 1 USD -> BDT ~110 (2023 avg, floating).",
+        "Combined smokingRate 8 is inconsistent with sexed values (F8/M22 -> ~15 midpoint); corrected. Female smoking 8% itself looks high vs WHO (~1-2%) - left uncorrected, needs NCD-RisC pass.",
+        "Income percentiles monotonic and plausible vs WID.world magnitudes; left unchanged."
+      ]
+    },
+    "BB": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.809,
+        "minimumWageEur": 680,
+        "exchangeRate": 2,
+        "smokingRate": 15,
+        "englishSpeakingPercent": 98.6
+      },
+      "notes": [
+        "hdi 0.58 grossly wrong; UNDP HDR 2023-24 gives Barbados 0.809 (rank 62).",
+        "minimumWageEur 450 too low: national minimum wage BDS 8.50/hour (2021-Jan 2026 era, matches dataYear 2024) = BDS ~1,473/month = ~EUR 680; raised to BDS 10.71/hour from Jan 2026 (wageindicator.org).",
+        "exchangeRate was 1; BBD is pegged at 2.00 per USD.",
+        "dataSource string is the known placeholder-marker ('REST Countries & World Bank API 2024'), but population (282,623) and all WB-sourced fields check out against the live World Bank API - not an actual placeholder copy.",
+        "CAUTION: income/wealth/labor_income percentile tables share identical inter-percentile ratios with BLZ and BMU (e.g. wealth p25/p50/p75/p90 are always x2.65/x8.75/x31.2/x176.6 of p10) - these look generated from one template, not country-specific WID data. Values are plausible (p50 ~USD 900/mo PPP vs GDP pc PPP ~16k) but treat as synthetic estimates; no free percentile source exists for Barbados.",
+        "Health metrics are copied templates shared verbatim with BLZ/BMU (162cm/66kg/25.3 BMI female; 174/78/25.9 male). Combined smokingRate corrected to ~15 for internal consistency; sexed values unverified."
+      ]
+    },
+    "BY": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.801,
+        "englishSpeakingPercent": null,
+        "exchangeRate": 3.27,
+        "smokingRate": 23
+      },
+      "notes": [
+        "hdi 0.83 too high; UNDP HDR 2023-24 gives Belarus 0.801.",
+        "englishSpeakingPercent 67 is absurd for Belarus (EF EPI 'low' band, Russian-speaking); no reliable % source found -> set null rather than invent.",
+        "minimumWageEur 200 plausible: BYN 626/month (2024) ~= EUR 180; left unchanged.",
+        "exchangeRate was 1; BYN ~3.27 per USD (official, 2024 avg; floats).",
+        "All World Bank fields (pop 9,085,991; unemp 3.38; net 94.3; LE 79.22/69.74; ABR 8.17; CPR 52.6) match live API exactly.",
+        "Income table monotonic, p50 ~USD 580/mo PPP consistent with GDP pc PPP ~25k; kept."
+      ]
+    },
+    "BE": {
+      "status": "ok",
+      "corrections": {
+        "smokingRate": 23
+      },
+      "notes": [
+        "Everything checks out: pop 11,941,781, unemp 5.91, internet 95.8, LE 84.4/80.3, ABR 3.5, CPR 66.7 all match World Bank API exactly.",
+        "hdi 0.94 matches UNDP (0.942). minimumWageEur 1894 correct for 2023 (EUR 1,885.96; EUR 1,954.38 from Feb 2024). exchangeRate 1 correct (EUR).",
+        "englishSpeakingPercent 76 is on the high side (Eurobarometer-based lists say ~60) but not absurd for Belgium - left unchanged.",
+        "Only fix: combined smokingRate 18 inconsistent with F18/M28 -> ~23.",
+        "Income percentiles plausible for Belgium (posttax median ~EUR-equivalent 3,100/mo PPP); monotonic throughout."
+      ]
+    },
+    "BZ": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.700,
+        "minimumWageEur": 480,
+        "exchangeRate": 2,
+        "smokingRate": 15,
+        "englishSpeakingPercent": 81.7
+      },
+      "notes": [
+        "hdi 0.5 grossly wrong; UNDP HDR 2023-24 gives Belize 0.700 (rank 118).",
+        "minimumWageEur 200 wrong: national minimum wage BZD 5.00/hour effective 1 Jan 2023 (gov.bz press release; SI 169+170 of 2022) = BZD ~1,039/month = ~EUR 470-480.",
+        "exchangeRate was 1; BZD pegged at 2.00 per USD since 1978.",
+        "Placeholder-marker dataSource string, but population (422,924) and all WB fields match live API - real values, not placeholder copies.",
+        "Same templated income/wealth/health structure as BRB/BMU (identical inter-percentile ratios; verbatim-copied height/weight/BMI) - plausible but synthetic; no free percentile alternative for Belize.",
+        "Added englishSpeakingPercent 81.7 from the English-speaking-population list (field was missing while present for other countries)."
+      ]
+    },
+    "BJ": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 79,
+        "exchangeRate": 605,
+        "smokingRate": 15
+      },
+      "notes": [
+        "minimumWageEur 40 stale: SMIG raised to XOF 52,000/month by Decree 2022-692, effective Jan 2023 = ~EUR 79 (655.957 XOF/EUR).",
+        "exchangeRate was 1; XOF pegged at 655.957 per EUR = ~605 per USD.",
+        "All WB fields match live API exactly (pop 14,814,460; unemp 1.59; net 34; LE 62.42/59.52; ABR 76.41; CPR 22.4). childMarriagePercent 26 matches UNICEF.",
+        "hdi 0.54 vs UNDP 0.504 (2022) - slightly high but within rough-estimate tolerance; left unchanged, flagging in notes.",
+        "Income percentiles monotonic and plausible for Benin; kept. Female smoking 8% likely too high (WHO ~2%) - noted, not corrected."
+      ]
+    },
+    "BM": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 2600,
+        "smokingRate": 15,
+        "englishSpeakingPercent": 96.9
+      },
+      "notes": [
+        "This was flagged as the batch's placeholder suspect, but its population (64,555), life expectancy (85.87/79.06) and other WB fields match the live World Bank API exactly - the placeholder copy appears to have been partially repaired already. dataSource string still carries the placeholder marker.",
+        "minimumWageEur 1600 wrong: Bermuda's first statutory minimum wage took effect 1 Jun 2023 at USD 16.40/hour (= USD ~2,843/month, ~EUR 2,600); raised to USD 17.13/hour 1 Sep 2025 (gov.bm).",
+        "exchangeRate 1 correct (BMD pegged 1:1 to USD).",
+        "hdi 0.96: Bermuda is not UNDP-ranked; value unverifiable against a primary source - left as-is, do not trust.",
+        "unemploymentRate 5.5 has no WB/ILO backing (no data series) - unverified, left as-is.",
+        "internetPenetration 75 likely understated (~97% reported elsewhere) but no authoritative free source pulled - left as-is.",
+        "Same templated income/health structure as BRB/BLZ; income p50 ~USD 4,155/mo PPP is plausible given Bermuda's GDP pc PPP ~110k+. Combined smokingRate corrected to ~15 for internal consistency."
+      ]
+    },
+    "BT": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 84,
+        "smokingRate": 15
+      },
+      "notes": [
+        "Currency code BTN + symbol 'Nu.' are correct (ISO 4217 Ngultrum).",
+        "exchangeRate was 1; BTN pegged 1:1 to INR, INR ~83-84 per USD in 2023-24.",
+        "All WB fields match live API exactly (pop 796,682; unemp 3.23; net 91.3; LE 75.27/71.57; ABR 8.71). hdi 0.69 close to UNDP 0.681. minimumWageEur 60 plausible (Nu ~215/day).",
+        "Combined smokingRate 8 inconsistent with F8/M22 -> ~15; corrected. Sexed values themselves unverified (WHO puts Bhutanese male smoking higher, female lower).",
+        "mainIndustry 'Hydroelectric Power' acceptable (hydropower dominates exports/GDP contribution); kept.",
+        "Income percentiles monotonic and plausible; kept."
+      ]
+    }
+  }
+}

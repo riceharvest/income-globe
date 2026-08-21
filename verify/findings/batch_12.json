@@ -1,0 +1,153 @@
+{
+  "batch": "12",
+  "countries": {
+    "IS": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.97,
+        "minimumWageEur": 2900
+      },
+      "notes": [
+        "Everything else matches World Bank exactly: population 392,404 = WB 2025; unemployment 3.6 (WB 3.62); internet 98.2 (WB 98.21); life expectancy F84.5/M81.2 = WB 2024; adolescent birth rate 3.07~3.1; laborForceGap -9.6 = WB 2025 (M 79.61 - F 70.01 = 9.60).",
+        "HDI: UNDP HDR 2025 value 0.972 (world rank 1); batch 0.96 stale.",
+        "minimumWageEur 1600 too low: Iceland has NO statutory minimum wage; VR/SA collective agreements set the floor (2018 full-time minimum was ISK 300,000/month, raised repeatedly since; ~ISK 420,000+/month by 2024-25) ~ EUR 2,800-3,000 at ~143 ISK/EUR. Corrected to 2900 (collective-bargaining floor, not statutory).",
+        "Income distribution (p50=3800 int$/mo) plausible vs Iceland GDP pc PPP ~$83k (WB 2025); monotonic; OECD-sourced shape looks genuine."
+      ]
+    },
+    "IN": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.69,
+        "englishSpeakingPercent": 12
+      },
+      "notes": [
+        "Core fields match WB: population 1,463,865,525 = WB 2025; unemployment 4.22; internet 70; life expectancy F73.86/M70.73; adolescent birth rate 13.04; laborForceGap -45.2 = WB 2025 (M 77.62 - F 32.42 = 45.20).",
+        "HDI: UNDP HDR 2025 value 0.685; batch 0.64 is the older 2021/22-era figure.",
+        "childMarriagePercent 23 OK (WB SP.M18.2024.FE.ZS = 22.3, 2021).",
+        "contraceptiveUse 66.7 = WB 'contraceptive prevalence, any method (% married women 15-49)' exactly - dataset uses any-method convention, left as-is.",
+        "englishSpeakingPercent 60 absurd (Indian census ~10% claim any English competence; EF EPI moderate-low). Corrected to rough 12.",
+        "minimumWageEur 60 plausible (avg statutory daily minimum ~INR 176 ~ EUR 55-65/month); costOfLivingIndex 24 ~ Numbeo India; income p50=195 int$/mo plausible vs WID India."
+      ]
+    },
+    "ID": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.73,
+        "englishSpeakingPercent": 10
+      },
+      "notes": [
+        "Core fields match WB: population 285,721,236 = WB 2025; unemployment 3.24; internet 72.78; life expectancy F73.43/M69.16; adolescent birth rate 25.65; laborForceGap -28.6 = WB 2025 (M 82.28 - F 53.72 = 28.56).",
+        "HDI: UNDP HDR 2025 value 0.728; batch 0.71 stale.",
+        "childMarriagePercent 9 kept: recent national Susenas/SDKI figures are ~7-9%; the WB series (16.3) is a stale 2017 data point - batch value is the better current estimate.",
+        "contraceptiveUse 52.6 = WB any-method (married women) 2023 exactly - left.",
+        "englishSpeakingPercent 59 absurd (EF EPI low proficiency; surveys suggest single digits). Corrected to rough 10.",
+        "minimumWageEur 150 plausible (2025 provincial minimums IDR 2.1-5.4M/month, national average ~IDR 3M ~ EUR 165); costOfLivingIndex 35 ~ Numbeo Indonesia; income distribution plausible and monotonic."
+      ]
+    },
+    "IR": {
+      "status": "errors_found",
+      "corrections": {
+        "englishSpeakingPercent": 15
+      },
+      "notes": [
+        "Core fields match WB: population 92,417,681 = WB 2025; unemployment 8.3; internet 85.34; life expectancy F79.81/M76.0; adolescent birth rate 25.79; laborForceGap -53.2 = WB 2025 (M 67.24 - F 14.01 = 53.23).",
+        "HDI 0.80 OK (UNDP HDR 2025 = 0.799).",
+        "englishSpeakingPercent 62 absurd (EF EPI low band). Corrected to rough 15.",
+        "minimumWageEur 200: 2024 Iranian monthly minimum ~IRR 71.7M; converts to ~EUR 110-200 depending on official vs market exchange rate - ambiguous, left uncorrected, flagged.",
+        "contraceptiveUse 77.4 looks like an any-method figure; Iran modern-method prevalence is materially lower (~55-64%) - flagged, not corrected.",
+        "Income distribution (p50=350 int$/mo) plausible vs Iran GDP pc PPP ~$20k (WB 2025); monotonic."
+      ]
+    },
+    "IQ": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.childMarriagePercent": 27.9
+      },
+      "notes": [
+        "Core fields match WB exactly: population 47,020,774 = WB 2025; unemployment 15.48; internet 81.47; life expectancy F74.18/M70.5; adolescent birth rate 57.31; laborForceGap -61.6 = WB 2025 (M 72.58 - F 10.94 = 61.64).",
+        "childMarriagePercent 8 clearly wrong: WB SP.M18.2024.FE.ZS Iraq = 27.9 (% women 20-24 first married by 18, 2018 latest); corrected to 27.9.",
+        "contraceptiveUse 52.8 = WB any-method (married women) 2018 exactly - left.",
+        "minimumWageEur 350: ILO reports no statutory private-sector minimum wage in Iraq; value is roughly consistent with public-sector lowest-grade pay, left uncorrected but flagged.",
+        "HDI 0.69 consistent with UNDP HDR 2025 (Iraq sits between Eswatini 0.695 and Tajikistan 0.691, ~0.693).",
+        "Income distribution (p50=280 int$/mo) plausible vs Iraq GDP pc PPP ~$14.3k (WB 2025); monotonic."
+      ]
+    },
+    "IE": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "Verified against WB: population 5,484,367 = WB 2025 exactly; unemployment 4.63; internet 97.19; life expectancy F84.7/M81.4 = WB 2024; adolescent birth rate 4.01~4; laborForceGap -10.4 = WB 2025 (M 70.11 - F 59.76 = 10.35).",
+        "HDI 0.95 ~ UNDP HDR 2025 0.949 (rank 11).",
+        "minimumWageEur 2034 correct for dataYear 2023 (EUR 11.90/hour x ~171h); note 2025 rate is EUR 13.50 (~EUR 2,290).",
+        "Income distribution (p50=3200 int$/mo) plausible OECD-sourced; monotonic. costOfLivingIndex 90 fits dataset convention (GB=85).",
+        "combined obesityRate/smokingRate equal the female values (systemic dataset pattern seen across batches) - flagged, not corrected."
+      ]
+    },
+    "IM": {
+      "status": "errors_found",
+      "corrections": {
+        "income.p10": 1310,
+        "income.p25": 2190,
+        "income.p50": 3500,
+        "income.p75": 5130,
+        "income.p90": 7380,
+        "indicators.pretax_national.p10": 1335,
+        "indicators.pretax_national.p25": 2266,
+        "indicators.pretax_national.p50": 3684,
+        "indicators.pretax_national.p75": 5580,
+        "indicators.pretax_national.p90": 8280,
+        "indicators.posttax_national.p10": 1310,
+        "indicators.posttax_national.p25": 2190,
+        "indicators.posttax_national.p50": 3500,
+        "indicators.posttax_national.p75": 5130,
+        "indicators.posttax_national.p90": 7380,
+        "indicators.consumption.p10": 1201,
+        "indicators.consumption.p25": 1783,
+        "indicators.consumption.p50": 2853,
+        "indicators.consumption.p75": 3920,
+        "indicators.consumption.p90": 5270,
+        "indicators.wealth.p10": 2630,
+        "indicators.wealth.p25": 17500,
+        "indicators.wealth.p50": 87500,
+        "indicators.wealth.p75": 308000,
+        "indicators.wealth.p90": 1106000,
+        "indicators.labor_income.p10": 788,
+        "indicators.labor_income.p25": 1530,
+        "indicators.labor_income.p50": 2800,
+        "indicators.labor_income.p75": 4360,
+        "indicators.labor_income.p90": 6640,
+        "minimumWageEur": 2350,
+        "costOfLivingIndex": 88,
+        "unemploymentRate": 1.5,
+        "internetPenetration": 98,
+        "hdi": 0.95,
+        "gender.childMarriagePercent": 0
+      },
+      "notes": [
+        "CONFIRMED PLACEHOLDER: dataSource 'REST Countries & World Bank API 2024'; income.p50 exactly 875 and costOfLivingIndex 38 match the known fabricated template; wealth/consumption/labor_income blocks are the same template scaled (e.g. 21875 = template median wealth). No WID.world or OECD distribution exists for IoM.",
+        "NO-NULL DERIVATION: all income/indicator percentiles re-derived from the verified UK anchor distribution (batch_28 GB, WB/OECD-consistent) x 1.25 scaling factor, preserving the UK percentile shape. Rationale: raw nominal GDP-pc ratio (IoM $90,015 WB 2023 / UK $48,912 = 1.83x) was rejected because IoM GDP is inflated by offshore e-gaming/insurance GVA accruing largely to non-resident capital, while actual median earnings are close to UK levels (~GBP 36-37k/yr on the island vs ~GBP 37k UK); 1.25 conservatively reflects modestly higher Manx earnings plus a higher island cost premium. Values remain int$/month PPP estimates, monotonic ordering preserved.",
+        "minimumWageEur 450 absurd: Isle of Man statutory minimum GBP 12.25/hour from April 2025 (GBP 11.45 Jul 2024-Mar 2025; rising to GBP 12.86 April 2026, gov.im) ~ GBP 1,890-2,120/month full-time ~ EUR 2,230-2,500. Corrected to 2350.",
+        "costOfLivingIndex 38 is the template copy; IoM is documented as costing MORE than the UK average (island premium on housing/groceries); on this dataset's scale (GB=85) corrected to 88.",
+        "HDI 0.57 fabricated: UNDP does not compute HDI for IoM; anchored to UK (HDR 2025 = 0.946) -> 0.95.",
+        "unemploymentRate 5.5 and internetPenetration 75 are template values; replaced with approximate real figures (~1-1.5% unemployment per gov.im economic reports; near-universal fixed/broadband coverage ~98%) - approximate, flagged for confirmation.",
+        "gender.childMarriagePercent set 0 (minimum marriage age is 18 on the Isle of Man). laborForceGap/contraceptiveUse nulls kept - no reliable sex-split participation or survey data published for the island.",
+        "Verified OK: population 84,118 = WB 2025 exactly; life expectancy F83.2/M79.04 ~ WB 2024 (batch M79 fine); adolescent birth rate 8.5 = WB; health averages (F166/70, M179/83) plausible UK-like, kept; currency GBP/symbol/exchangeRate 0.85 consistent with GB entry."
+      ]
+    },
+    "IL": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 1440,
+        "gender.childMarriagePercent": 1
+      },
+      "notes": [
+        "Core fields match WB: population 10,122,800 = WB 2025 exactly; unemployment 3.49; internet 88.18; life expectancy F85.4/M81.1 = WB 2024; adolescent birth rate 5.7; laborForceGap -6.5 = WB 2025 (M 68.80 - F 62.28 = 6.52).",
+        "minimumWageEur 1200 too low: Israeli statutory minimum ILS 5,880/month since April 2024 (ILS 5,572 during 2023) ~ EUR 1,370-1,440. Corrected to 1440.",
+        "childMarriagePercent 5 high: WB SP.M18.2024.FE.ZS = 0.8 (2022); corrected to 1.",
+        "HDI 0.92 ~ UNDP HDR 2025 0.919 (rank 27).",
+        "costOfLivingIndex 85 fits dataset convention (high-income economy); income p50=2600 int$/mo plausible vs Israel GDP pc PPP ~$60k; monotonic.",
+        "obesityRate 26 equals the female value (systemic dataset pattern) - flagged, not corrected."
+      ]
+    }
+  }
+}

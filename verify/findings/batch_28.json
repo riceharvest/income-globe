@@ -1,0 +1,170 @@
+{
+  "batch": "28",
+  "countries": {
+    "TR": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 34,
+        "minimumWageEur": 490,
+        "hdi": 0.853,
+        "englishSpeakingPercent": 17,
+        "smokingRate": 27,
+        "mainIndustry": "Services"
+      },
+      "notes": [
+        "exchangeRate was 1 (meaningless for TRY); corrected to ~34 TRY per USD (2024 average; spot Aug 2026 ~48).",
+        "minimumWageEur 280 too low: 2024 statutory minimum TRY 20,002.50 gross (~EUR 573), net TRY 17,002 (~EUR 487). Set to 490 (net).",
+        "HDI 0.84 stale; UNDP HDR 2025 (2023 data): 0.853.",
+        "englishSpeakingPercent 61 absurd for Turkiye (EF EPI low-moderate; best estimates <20%); set 17.",
+        "smokingRate 8 equals femaleSmokingRate and contradicts male 22; WHO puts Turkish adult tobacco use ~27%.",
+        "mainIndustry 'Manufacturing' wrong: services are the largest sector by both GDP share and employment.",
+        "population 85.88M vs World Bank 2024 85.52M (+0.4%) - ok. Life expectancy, adolescentBirthRate (11.18), unemployment (WB 2024: 8.8), internetPenetration (87.3) all match WB 2024 - left as-is."
+      ]
+    },
+    "TV": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.689,
+        "smokingRate": 31
+      },
+      "notes": [
+        "dataSource 'REST Countries & World Bank API 2024' but NOT a placeholder copy (income.p50=237, col=25 differ from the known fake pattern); population 9,492 plausible vs WB 2024 9,646 (-1.6%).",
+        "HDI 0.45 badly wrong; Tuvalu is ranked in UNDP HDR 2025 at 0.689 (rank ~129).",
+        "smokingRate 8 far too low: WHO/GHO estimates Tuvalu tobacco use ~31% of adults (among Pacific-high); sexed values (M22/F8) also look understated but kept.",
+        "currency AUD, symbol $, exchangeRate 1.62 AUD/USD plausible (2024 avg ~1.52) - left.",
+        "unemploymentRate 5.5 and internetPenetration 75 appear generic: World Bank/ITU report no recent figures for Tuvalu; could not verify, left unchanged.",
+        "minimumWageEur 200 unverified (no reliable statutory figure found); left unchanged.",
+        "Life expectancy (F70.86/M63.91) and adolescentBirthRate (26.79) match WB 2024 exactly - ok."
+      ]
+    },
+    "UG": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 3730,
+        "minimumWageEur": 2,
+        "hdi": 0.584,
+        "gender.contraceptiveUse": 32
+      },
+      "notes": [
+        "exchangeRate was 1; corrected to ~3,730 UGX per USD (2024 average; spot ~3,690).",
+        "minimumWageEur 35 wrong: statutory minimum frozen at UGX 6,000/month since 1984 (~EUR 1.6, largely unenforced).",
+        "HDI 0.54 stale; UNDP HDR 2025 (2023 data): 0.584.",
+        "contraceptiveUse 43 is 'any method' (UDHS 2022); modern-method prevalence is ~32% per field definition.",
+        "internetPenetration 8.9 matches WB 2024 (8.95) despite looking dated - left. Unemployment 2.7 matches WB 2024 (2.74). Population 51.4M vs WB 2024 50.0M (+2.7%) within tolerance.",
+        "adolescentBirthRate 104.7 and life expectancy match WB 2024 exactly; childMarriagePercent 34 matches UNICEF."
+      ]
+    },
+    "UA": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 41,
+        "minimumWageEur": 190,
+        "englishSpeakingPercent": 20
+      },
+      "notes": [
+        "exchangeRate was 1; corrected to ~41 UAH per USD (2024 average; spot ~44.7).",
+        "minimumWageEur 130 too low: UAH 8,000/month since April 2024 (~EUR 185-195).",
+        "englishSpeakingPercent 66 implausibly high (EF EPI moderate; estimates ~20%); set 20.",
+        "HDI 0.77 vs UNDP 0.779 - close enough, left. Population 38.98M vs WB 2024 37.86M (+3%) within tolerance. Unemployment 9.8 matches WB (2021, last pre-war figure). Internet 82.5, life expectancy, adolescentBirthRate all match WB.",
+        "childMarriagePercent 15 looks high (UNICEF/MICS suggest well below that) but no firm free source found - left unverified."
+      ]
+    },
+    "AE": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 3.6725,
+        "minimumWageEur": 0,
+        "hdi": 0.94
+      },
+      "notes": [
+        "exchangeRate was 1; AED is pegged at 3.6725 per USD.",
+        "minimumWageEur 1100 wrong: UAE has no statutory national minimum wage; set null.",
+        "minimumWageEur 1100 wrong: UAE has no statutory national minimum wage; set 0.",
+        "Population 11.51M vs WB 2024 10.99M (+4.8%) - just inside 5% tolerance, left.",
+        "Life expectancy (F84.3/M82.2), adolescentBirthRate (2.82), internetPenetration 100, unemployment all match WB 2024 - initially looked inflated but confirmed correct."
+      ]
+    },
+    "GB": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "Core fields consistent with sources: population 69.49M vs WB 2024 69.28M (+0.3%); HDI 0.94 vs UNDP 0.946; unemployment 4.7 vs WB 2024 4.36 (minor, left); adolescentBirthRate 7.8 and life expectancy match WB exactly.",
+        "childMarriagePercent 0 correct (marriage under 18 banned in England & Wales since 2022).",
+        "minimumWageEur 1750 looks like the GBP figure rather than EUR: April-2024 National Living Wage GBP 11.44/h ~= GBP 1,860/month ~= EUR 2,200. Borderline; flagged but not corrected (depends on reference year).",
+        "combined obesityRate/smokingRate equal the female values (systemic dataset pattern); UK combined smoking ~12-14% vs listed 18 - borderline, left."
+      ]
+    },
+    "US": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "exchangeRate 1.08 is odd for a USD entry (USD->USD should be 1); appears to be an inverted EUR rate. Cosmetic since currency is USD - flagged, not corrected.",
+        "Population 341.8M vs WB 2024 340.0M (+0.5%) ok; HDI 0.93 vs UNDP 0.938 ok; unemployment 4.2 vs WB 4.02 ok; internet 94.7 matches WB; life expectancy and adolescentBirthRate (12.41) match WB exactly.",
+        "Income distribution plausible vs WID/OECD PPP medians; wealth percentiles plausible (US median net worth ~$193k household, per-adult p50 ~$93k consistent with SCF/WID).",
+        "obesityRate 41 (=female) roughly consistent with US adult obesity ~40%."
+      ]
+    },
+    "UM": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 0,
+        "income.p10": 1200,
+        "income.p25": 2200,
+        "income.p50": 3700,
+        "income.p75": 5800,
+        "income.p90": 8700,
+        "indicators.pretax_national.p10": 1223,
+        "indicators.pretax_national.p25": 2286,
+        "indicators.pretax_national.p50": 3916,
+        "indicators.pretax_national.p75": 6365,
+        "indicators.pretax_national.p90": 9888,
+        "indicators.posttax_national.p10": 1200,
+        "indicators.posttax_national.p25": 2200,
+        "indicators.posttax_national.p50": 3700,
+        "indicators.posttax_national.p75": 5800,
+        "indicators.posttax_national.p90": 8700,
+        "indicators.consumption.p10": 1093,
+        "indicators.consumption.p25": 1784,
+        "indicators.consumption.p50": 3001,
+        "indicators.consumption.p75": 4414,
+        "indicators.consumption.p90": 6186,
+        "indicators.wealth.p10": 2400,
+        "indicators.wealth.p25": 17600,
+        "indicators.wealth.p50": 92500,
+        "indicators.wealth.p75": 348000,
+        "indicators.wealth.p90": 1305000,
+        "indicators.labor_income.p10": 720,
+        "indicators.labor_income.p25": 1540,
+        "indicators.labor_income.p50": 2960,
+        "indicators.labor_income.p75": 4930,
+        "indicators.labor_income.p90": 7830,
+        "costOfLivingIndex": 100,
+        "unemploymentRate": 4.2,
+        "internetPenetration": 94.7,
+        "minimumWageEur": 1200,
+        "femaleHeightCm": 163,
+        "femaleWeightKg": 74,
+        "femaleBmi": 28,
+        "femaleObesityRate": 41,
+        "femaleSmokingRate": 8,
+        "femaleLifeExpectancy": 81.4,
+        "maleHeightCm": 176,
+        "maleWeightKg": 89,
+        "maleBmi": 28.7,
+        "maleObesityRate": 36.1,
+        "maleSmokingRate": 22,
+        "maleLifeExpectancy": 76.5,
+        "obesityRate": 41,
+        "smokingRate": 8,
+        "hdi": 0.93
+      },
+      "notes": [
+        "CONFIRMED PLACEHOLDER: population exactly 1,000,000, income.p50 exactly 875, costOfLivingIndex 38 - the known fabricated-copy pattern.",
+        "US Minor Outlying Islands have NO permanent population (World Bank, UN, restcountries report none). Population corrected to 0.",
+        "All income/indicator/health/economic values REPLACED with estimates derived from USA distribution, GDP-per-capita-PPP ratio 1.00 (no local economy; only rotating US military/contract personnel; territory uses USD and US federal minimum wage).",
+        "ISO fields verified correct: alpha2 UM, alpha3 UMI, numeric 581, flag emoji, name, currency USD.",
+        "Region 'North America' retained (restcountries classifies under Americas); exchangeRate 1.08 flagged - USD->USD should be 1."
+      ]
+    }
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "batch": "16",
+  "countries": {
+    "MY": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 4.7,
+        "minimumWageEur": 350,
+        "maleSmokingRate": 32.7,
+        "femaleSmokingRate": 0.4,
+        "smokingRate": 16.6,
+        "femaleObesityRate": 28.9,
+        "maleObesityRate": 18.3,
+        "obesityRate": 23.3
+      },
+      "notes": [
+        "Population 35977838, internetPenetration 98, unemploymentRate 3.8, adolescentBirthRate 5.7, contraceptiveUse 42.8, LFPR gap -27.6 (F 51.6 / M 79.2), life expectancy F 79.52 / M 74.45 all match World Bank API latest exactly.",
+        "exchangeRate convention inferred from DB (units per 1 EUR: US=1.08, GB=0.85, JP=165, IN=90): MYR should be ~4.7/EUR, not 1.",
+        "minimumWageEur: Minimum Wages Order 2024 sets RM1,700/month (Feb/Aug 2025) ~= EUR 350 at 4.85 MYR/EUR; dataset 230 was based on old RM1,500.",
+        "Smoking (WHO GHO M_Est_smk_curr_std age-standardized 2025): M 32.7 / F 0.4 / both 16.6; dataset 22/8/8 is a template default.",
+        "Obesity (WHO GHO NCD_BMI_30A age-standardized 2024): F 28.9 / M 18.3 / both 23.3; dataset 13/11.4/13 understates.",
+        "HDI 0.82 vs UNDP HDR 2025 value 0.812 - within rounding, left as-is.",
+        "laborForceGap stored as female-minus-male (matches WB magnitudes exactly); brief defines male-minus-female - sign convention inconsistency is DB-wide, flagged not corrected."
+      ]
+    },
+    "MV": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 16.7,
+        "minimumWageEur": 420,
+        "maleSmokingRate": 41.3,
+        "femaleSmokingRate": 3.0,
+        "smokingRate": 22.2,
+        "femaleObesityRate": 25.4,
+        "maleObesityRate": 13.4,
+        "obesityRate": 17.9
+      },
+      "notes": [
+        "Population 529676, internet 85.2, unemployment 4.5, adolescentBirthRate 5.0, LFPR gap -35.7 (F 40.7 / M 76.4), LE F 83.0 / M 79.95 all match World Bank API exactly.",
+        "exchangeRate: MVR pegged 15.42/USD -> ~16.7 per EUR; dataset 1 wrong under DB convention.",
+        "minimumWageEur: first statutory minimum wage (Jan 2022) tiered MVR 4,500 small / 7,000 medium+public+tourism / 8,000 large businesses; representative medium tier MVR 7,000 ~= EUR 420; dataset 180 wrong.",
+        "Smoking (WHO 2025): M 41.3 / F 3.0 / both 22.2; dataset 22/8/8 template default.",
+        "Obesity (WHO 2024): F 25.4 / M 13.4 / both 17.9; dataset 10/8.8/10 understates.",
+        "HDI 0.76 matches UNDP (0.760)."
+      ]
+    },
+    "ML": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 656,
+        "minimumWageEur": 61,
+        "hdi": 0.41,
+        "maleSmokingRate": 11.5,
+        "femaleSmokingRate": 0.5,
+        "smokingRate": 6.0,
+        "femaleObesityRate": 17.6,
+        "maleObesityRate": 9.0,
+        "obesityRate": 13.3
+      },
+      "notes": [
+        "Population 25198821, internet 36.8, unemployment 2.8, adolescentBirthRate 135.9, contraceptiveUse 17.2, LFPR gap -28.2 (F 52.8 / M 81.0), LE F 62.15 / M 59.25 all match World Bank API exactly.",
+        "exchangeRate: XOF pegged 655.957 per EUR; dataset 1 wrong under DB convention.",
+        "minimumWageEur: SMIG 40,000 XOF/month ~= EUR 61; dataset 45 low.",
+        "HDI: UNDP HDR 2023/24 Mali = 0.410; dataset 0.43 outdated.",
+        "Smoking (WHO 2025): M 11.5 / F 0.5 / both 6.0; dataset 22/8/8 template default.",
+        "Obesity (WHO 2024): F 17.6 / M 9.0 / both 13.3."
+      ]
+    },
+    "MT": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 841,
+        "maleSmokingRate": 25.6,
+        "femaleSmokingRate": 23.1,
+        "smokingRate": 24.3,
+        "femaleObesityRate": 27.6,
+        "maleObesityRate": 33.1,
+        "obesityRate": 30.6
+      },
+      "notes": [
+        "Population 579704, internet 93.9, unemployment 2.9, adolescentBirthRate 10, LFPR gap -15.8 (F 55.8 / M 71.5), LE F 84.8 / M 81.2 all match World Bank API exactly.",
+        "minimumWageEur: Malta statutory minimum 2025 = EUR 840.63/month gross; dataset 800 slightly stale.",
+        "Smoking (WHO 2025): M 25.6 / F 23.1 / both 24.3; dataset 28/18/18 off especially for females.",
+        "Obesity (WHO 2024): F 27.6 / M 33.1 / both 30.6; Malta among Europe's most obese - dataset 25/22/25 understates.",
+        "HDI 0.92 vs UNDP 0.915 - fine. Currency EUR, exchangeRate 1 correct."
+      ]
+    },
+    "MH": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.733,
+        "minimumWageEur": 670,
+        "femaleObesityRate": 51.9,
+        "maleObesityRate": 32.1,
+        "obesityRate": 42.0,
+        "femaleSmokingRate": 4.0,
+        "maleSmokingRate": 42.7,
+        "smokingRate": 23.3
+      },
+      "notes": [
+        "dataSource is the known placeholder source, BUT population 36282, internet 65.9, LE F 69.48 / M 65.03 match World Bank API exactly, and income p50=314 / costOfLivingIndex=25 are NOT the 1000000/875/38 placeholder pattern - core figures appear real.",
+        "HDI: UNDP HDR 2023/24 Marshall Islands = 0.733 (high human development); dataset 0.46 is badly wrong.",
+        "Obesity (WHO NCD_BMI_30A 2024): F 51.9 / M 32.1 / both 42.0 - RMI is among the world's most obese countries; dataset 26/22.9/26 is fabricated-level wrong.",
+        "Smoking (WHO 2025): F 4.0 / M 42.7 / both 23.3; dataset 8/22/8 wrong.",
+        "minimumWageEur: USD 3.00/hr since 2017, raised to USD 4.50/hr effective Oct 2025 (P.L. 2024-13) ~= USD 720-780/month ~= EUR 670; dataset 200 wrong.",
+        "unemploymentRate 5.5: no World Bank/ILO series exists for MHL - could not verify, left unchanged.",
+        "Heights 162/174 cm look like copied defaults (Pacific averages are shorter); no free sexed height source found - left unchanged, flagged.",
+        "exchangeRate 1.08 for USD entry is CORRECT under the DB convention (local units per 1 EUR)."
+      ]
+    },
+    "MQ": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 355000,
+        "hdi": 0.85,
+        "unemploymentRate": 12,
+        "minimumWageEur": 1800,
+        "costOfLivingIndex": 65,
+        "income.p10": 650,
+        "income.p25": 950,
+        "income.p50": 1550,
+        "income.p75": 2100,
+        "income.p90": 3000,
+        "indicators.pretax_national.p10": 680,
+        "indicators.pretax_national.p25": 1000,
+        "indicators.pretax_national.p50": 1650,
+        "indicators.pretax_national.p75": 2250,
+        "indicators.pretax_national.p90": 3200,
+        "indicators.posttax_national.p10": 650,
+        "indicators.posttax_national.p25": 950,
+        "indicators.posttax_national.p50": 1550,
+        "indicators.posttax_national.p75": 2100,
+        "indicators.posttax_national.p90": 3000,
+        "indicators.consumption.p10": 570,
+        "indicators.consumption.p25": 800,
+        "indicators.consumption.p50": 1250,
+        "indicators.consumption.p75": 1750,
+        "indicators.consumption.p90": 2400,
+        "indicators.wealth.p10": 2000,
+        "indicators.wealth.p25": 15000,
+        "indicators.wealth.p50": 65000,
+        "indicators.wealth.p75": 180000,
+        "indicators.wealth.p90": 500000,
+        "indicators.labor_income.p10": 400,
+        "indicators.labor_income.p25": 650,
+        "indicators.labor_income.p50": 1050,
+        "indicators.labor_income.p75": 1600,
+        "indicators.labor_income.p90": 2400
+      },
+      "notes": [
+        "CONFIRMED PLACEHOLDER: population exactly 1000000, income.p50 exactly 875, costOfLivingIndex exactly 38, dataSource 'REST Countries & World Bank API 2024' - all fabricated.",
+        "population: INSEE census shows ~355,000 (population des menages 2022 = 355054, declining ~0.6%/yr); Martinique has never had 1 million residents.",
+        "unemploymentRate: Insee Bilan economique 2024 - unemployment rose to 12% of active population; dataset 5.5 wrong.",
+        "hdi: no official UNDP figure for territories; local statistical syntheses estimate IDH ~0.85 ('au meme niveau que l'Hexagone', Antilla/GDC chiffres cles 2023-24); Atlas Caraibe confirms >0.8. Dataset 0.57 absurdly low.",
+        "minimumWageEur: French SMIC applies fully in Martinique = EUR 1,801.80/month gross (Nov 2024 rate); dataset 450 wrong.",
+        "costOfLivingIndex: prices ~10% above mainland France (imported goods, 'vie chere' protests 2024); Numbeo-style France ~60 -> MQ ~65; dataset 38 is the placeholder value.",
+        "Income/wealth percentiles DERIVED from France distribution scaled by GDP-per-capita ratio ~0.6 (Martinique nominal GDPpc ~EUR 26,000 vs France ~EUR 40,000, adjusted for ~10% higher price level), rounded sensibly. No WID.world subnational data exists for Martinique.",
+        "gender.* left null: no reliable free territorial estimates found (INSEE reports only 20 births to minor mothers in 2024, 0.7% of births).",
+        "internetPenetration 75 left unchanged (plausible but unverified; household access ~87% per INSEE barometers)."
+      ]
+    },
+    "MR": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.54,
+        "exchangeRate": 42,
+        "maleSmokingRate": 15.7,
+        "femaleSmokingRate": 1.9,
+        "smokingRate": 8.8,
+        "femaleObesityRate": 37.4,
+        "maleObesityRate": 9.0,
+        "obesityRate": 24.1
+      },
+      "notes": [
+        "Population 5315065, internet 45.8, unemployment 10.3, adolescentBirthRate 87.6, contraceptiveUse 14.3, LFPR gap -30.4 (F 26.2 / M 56.6), LE F 70.73 / M 66.7 all match World Bank API exactly.",
+        "HDI: UNDP HDR 2023/24 Mauritania = 0.540; dataset 0.56 slightly high.",
+        "exchangeRate: MRU ~39-40 per USD -> ~42 per EUR; dataset 1 wrong under DB convention.",
+        "Smoking (WHO 2025): M 15.7 / F 1.9 / both 8.8; dataset 22/8/8 template default.",
+        "Obesity (WHO 2024): F 37.4 / M 9.0 / both 24.1 - strong female skew typical of the Sahel; dataset 12/10.6/12 badly understates women.",
+        "minimumWageEur 45: sources conflict (SMIG cited as 30,000 MRU/month legacy figure vs 4,000 MRU in a 2026 payroll guide); could not establish a reliable current figure - left unchanged, flagged."
+      ]
+    },
+    "MU": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 49,
+        "minimumWageEur": 340,
+        "maleSmokingRate": 32.3,
+        "femaleSmokingRate": 2.4,
+        "smokingRate": 17.3,
+        "femaleObesityRate": 26.2,
+        "maleObesityRate": 16.0,
+        "obesityRate": 21.1
+      },
+      "notes": [
+        "Population 1243741, internet 73.3, unemployment 5.6, adolescentBirthRate 19.2, contraceptiveUse 63.8, LFPR gap -22.2 (F 47.5 / M 69.7), LE F 77.4 / M 70.35 all match World Bank API exactly.",
+        "exchangeRate: MUR ~45-46 per USD -> ~49 per EUR; dataset 1 wrong under DB convention.",
+        "minimumWageEur: national minimum wage Rs 17,745/month from Jan 2026 (Rs 17,110 in 2025) ~= EUR 340; dataset 280 stale.",
+        "Smoking (WHO 2025): M 32.3 / F 2.4 / both 17.3; dataset 22/8/8 template default.",
+        "Obesity (WHO 2024): F 26.2 / M 16.0 / both 21.1; dataset 10/8.8/10 understates.",
+        "HDI 0.80 vs UNDP 0.796 - fine."
+      ]
+    }
+  }
+}

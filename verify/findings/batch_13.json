@@ -1,0 +1,152 @@
+{
+  "batch": "13",
+  "countries": {
+    "IT": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 0
+      },
+      "notes": [
+        "Italy has NO statutory national minimum wage; listed 760 is fabricated. Set to 0 per brief convention.",
+        "Population 58915656 = World Bank 2025 exactly; unemployment 6.4 (WB 2025: 6.39); internet 89.2 (WB 2024: 89.22); adolescentBirthRate 2.9 (WB 2024: 2.87); LE F/M 86/82 (WB 2024 exact); laborForceGap -17.5 matches WB 2025 LFP (58.3-40.8). All verified.",
+        "HDI 0.91 ok (HDR 2025/2023: 0.913). ContraceptiveUse 65.1 matches WB SP.DYN.CONU.ZS (2013).",
+        "Income percentiles plausible vs WID Italy adult median posttax (~EUR 1,650-2,000/mo PPP); monotonic ordering fine throughout."
+      ]
+    },
+    "CI": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 562,
+        "minimumWageEur": 114,
+        "hdi": 0.58
+      },
+      "notes": [
+        "exchangeRate was 1 but convention is USD->local units (JP=165, GB=0.85): XOF is EUR-pegged at 655.957/USD-pair; current market USD->XOF ~562 (open.er-api.com).",
+        "Minimum wage: SMIG 75,000 XOF/month = EUR 114 at the fixed peg (655.957 XOF/EUR); listed 60 too low.",
+        "HDI: HDR 2025 (2023 data) Ivory Coast = 0.582; listed 0.54 stale.",
+        "Population 32711547 = WB 2025 exact; adoBirth 90.6, LE 64.3/60.2, LFP gap -15, unemployment 2.3, internet 41.4 all match WB; contraceptiveUse 32.0 matches WB 2022 exactly."
+      ]
+    },
+    "JM": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.72,
+        "exchangeRate": 158,
+        "minimumWageEur": 380
+      },
+      "notes": [
+        "HDI 0.49 grossly wrong: Jamaica HDR 2025 (2023 data) = 0.720 (rank 117).",
+        "exchangeRate was 1; USD->JMD ~158 (open.er-api.com).",
+        "Minimum wage J$15,000/week since 1 Jun 2024 (JIS) = J$65,000/month ~= USD 411 ~= EUR 380; listed 200 too low.",
+        "childMarriagePercent 18 left as-is: sources conflict (UNICEF childmarriagedata.org 27% in 2022 incl. informal unions; older Girls Not Brides ~9%) - 18 is within published range.",
+        "Population, unemployment 3.3, internet 90.1, adoBirth 36.1, LE 74.1/69.1, LFP gap -13.3, contraceptiveUse 60.6 all match WB exactly. Income percentiles plausible for PPP-adjusted adult distribution."
+      ]
+    },
+    "JP": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "All WB-derived fields match: population 123366734 (WB 2025 exact), unemployment 2.5, internet 85.5, adoBirth 1.6, LE 87.1/81.1, LFP gap -15.6.",
+        "HDI 0.92 ok (HDR 2025: 0.925). exchangeRate 165 close to current USD->JPY ~159 - acceptable.",
+        "No national statutory minimum wage (prefectural rates); 1100 EUR/mo consistent with avg ~JPY 1,055/hr x 173h / 159 - plausible, not churned.",
+        "Income percentiles plausible vs WID Japan median adult posttax (~USD 2,600/mo PPP); ordering monotonic everywhere."
+      ]
+    },
+    "JE": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 104540,
+        "income.p10": 1300,
+        "income.p25": 2200,
+        "income.p50": 3500,
+        "income.p75": 5100,
+        "income.p90": 7400,
+        "indicators.pretax_national.p10": 1340,
+        "indicators.pretax_national.p25": 2260,
+        "indicators.pretax_national.p50": 3690,
+        "indicators.pretax_national.p75": 5570,
+        "indicators.pretax_national.p90": 8280,
+        "indicators.posttax_national.p10": 1300,
+        "indicators.posttax_national.p25": 2200,
+        "indicators.posttax_national.p50": 3500,
+        "indicators.posttax_national.p75": 5100,
+        "indicators.posttax_national.p90": 7400,
+        "indicators.consumption.p10": 1200,
+        "indicators.consumption.p25": 1780,
+        "indicators.consumption.p50": 2850,
+        "indicators.consumption.p75": 3920,
+        "indicators.consumption.p90": 5270,
+        "indicators.wealth.p10": 2600,
+        "indicators.wealth.p25": 17500,
+        "indicators.wealth.p50": 87500,
+        "indicators.wealth.p75": 308000,
+        "indicators.wealth.p90": 1100000,
+        "indicators.labor_income.p10": 790,
+        "indicators.labor_income.p25": 1530,
+        "indicators.labor_income.p50": 2800,
+        "indicators.labor_income.p75": 4360,
+        "indicators.labor_income.p90": 6640,
+        "hdi": 0.94,
+        "costOfLivingIndex": 95,
+        "minimumWageEur": 2650,
+        "unemploymentRate": 1.5,
+        "internetPenetration": 93,
+        "englishSpeakingPercent": 95,
+        "mainIndustry": "Finance"
+      },
+      "notes": [
+        "PLACEHOLDER ENTRY confirmed (pop=1000000, p50=875, CoL=38, HDI=0.57 all fabricated).",
+        "Population: Statistics Jersey end-2024 estimate = 104,540 (gov.je), not 1,000,000.",
+        "Income/wealth distributions DERIVED from repo's GB entry scaled x1.25 (Jersey median FTE earnings GBP 890/wk ~= GBP 46k/yr vs UK ~GBP 37k => ratio ~1.25; Jersey GDPpc PPP ratio vs UK is higher ~1.6 but median earnings only ~1.25x, so 1.25 used as conservative anchor). No WID.world coverage for Jersey.",
+        "HDI derived estimate 0.94: UNDP does not compute HDI for Jersey; components (LE ~83, high schooling, GNIpc ~USD 90k PPP) put it alongside UK (0.946). Placeholder 0.57 impossible for a high-income jurisdiction.",
+        "costOfLivingIndex estimated 95: Numbeo has no Jersey listing; costs comparable to or above London (GB entry uses 85), housing markedly dearer. Derived, not measured.",
+        "Minimum wage: GBP 13.00/hour from 1 Apr 2025 (gov.je) x ~173h = GBP 2,250/mo / 0.85 (repo GBP rate) ~= EUR 2,650; listed 450 far too low.",
+        "Unemployment ~1.5% (Statistics Jersey reports minimal unemployment, ~1-2%); internetPenetration 93% (DataReportal Digital 2024: Jersey).",
+        "englishSpeakingPercent 95 and mainIndustry Finance added (English official language; financial services largest sector ~40% of GVA).",
+        "exchangeRate 0.85 kept - consistent with repo's GB entry (stale vs current 0.73 but matches dataset-wide GBP convention).",
+        "gender.* nulls left (no reliable Jersey-specific sources); health metrics are generic European averages - plausible but unverifiable, noted only."
+      ]
+    },
+    "JO": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.75,
+        "exchangeRate": 0.709,
+        "minimumWageEur": 340
+      },
+      "notes": [
+        "HDI 0.80 too high: Jordan HDR 2025 (2023 data) = 0.753 (rank 101, between Egypt 0.754 and Lebanon 0.752).",
+        "exchangeRate was 1; JOD is pegged at 0.709 JD/USD.",
+        "Minimum wage JD 260/month (since 2020) ~= USD 367 ~= EUR 340; listed 220 reflects the pre-2020 rate.",
+        "laborForceGap -46.4 matches WB 2025 exactly (62.5-16.0); population, unemployment 16.5, internet 95.6, adoBirth 17.7, LE 80.3/75.9 all match WB."
+      ]
+    },
+    "KZ": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 457,
+        "minimumWageEur": 170
+      },
+      "notes": [
+        "exchangeRate was 1; USD->KZT ~457 (open.er-api.com).",
+        "Minimum wage KZT 85,000/month (2024, Republican Budget Law) ~= USD 186 ~= EUR 170; listed 130 too low.",
+        "HDI 0.84 ok (HDR 2025: 0.835). Population 20843754 = WB 2025 exact; unemployment 4.8, internet 93.4, adoBirth 17.4, LE 78.5/70.3, LFP gap ~-11 all match WB.",
+        "Income percentiles plausible (median ~USD 520/mo PPP vs GNIpc PPP ~USD 30k/yr); ordering monotonic."
+      ]
+    },
+    "KE": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 129,
+        "minimumWageEur": 105,
+        "hdi": 0.62
+      },
+      "notes": [
+        "exchangeRate was 1; USD->KES ~129 (open.er-api.com).",
+        "Minimum wage: lowest statutory tier ~KES 14,700-15,120/month (2022 Wage Order + 2024 uplift) ~= USD 115 ~= EUR 105; listed 60 too low.",
+        "HDI 0.58 stale: Kenya HDR 2025 (2023 data) ~= 0.625 (rank 144, between Ghana 0.628 and Nepal 0.622).",
+        "Population 57532493 = WB 2025 exact; unemployment 5.4, internet 35.0, adoBirth 54.5, LE 66.1/61.6, LFP gap -8.8 all match WB exactly."
+      ]
+    }
+  }
+}

@@ -1,0 +1,194 @@
+{
+ "batch": "09",
+ "countries": {
+  "FI": {
+   "status": "errors_found",
+   "corrections": {
+    "minimumWageEur": 0,
+    "hdi": 0.948
+   },
+   "notes": [
+    "Finland has NO statutory minimum wage (agreed via collective bargaining); 1600 is a filler value. Set 0 per brief convention.",
+    "hdi corrected to 0.948 (UNDP HDR 2025, 2023 data); was 0.96.",
+    "Verified OK vs World Bank API 2024: population 5,646,436 vs WB 5,619,911 (<1% off); internetPenetration 93.7 vs 93.72; femaleLifeExpectancy 85 vs 85.0; maleLifeExpectancy 79.8 vs 79.8.",
+    "unemploymentRate 9.5 left as-is: WB 2024 ILO is 8.4 but Finnish national monthly rate reached ~9.3-9.5% during 2025, so plausibly a 2025 national figure.",
+    "maleSmokingRate 28 is identical across FI/FR/DE entries (template smell); WHO/NCD-RisC puts Finnish male smoking near ~15-17% - flagged, not corrected for lack of a single sourced value.",
+    "income percentiles are plausible vs OECD/WID PPP levels (p50 ~3100 USD PPP/mo); monotonic; left unchanged."
+   ]
+  },
+  "FR": {
+   "status": "ok",
+   "corrections": {
+    "hdi": 0.92
+   },
+   "notes": [
+    "Population 68,720,337 vs WB 2024 68,551,653 - OK. Unemployment 7.5 vs WB 7.4 - OK. Internet 88.7 vs 88.65. Life expectancy F/M 85.9/80.2 exactly match WB 2024. Adolescent birth rate 3.3 matches WB 3.3.",
+    "minimumWageEur 1801 = gross monthly SMIC (Jan 2025, 1801.80 EUR) - OK.",
+    "hdi 0.91 -> 0.92 (UNDP HDR 2025: France 0.920, rank 26). Minor refinement."
+   ]
+  },
+  "GF": {
+   "status": "errors_found",
+   "corrections": {
+    "population": 298554,
+    "unemploymentRate": 16.9,
+    "minimumWageEur": 1801,
+    "costOfLivingIndex": 75,
+    "hdi": 0.82,
+    "income.p10": 400,
+    "income.p25": 680,
+    "income.p50": 1080,
+    "income.p75": 1560,
+    "income.p90": 2200,
+    "indicators.pretax_national.p10": 406,
+    "indicators.pretax_national.p25": 702,
+    "indicators.pretax_national.p50": 1132,
+    "indicators.pretax_national.p75": 1685,
+    "indicators.pretax_national.p90": 2446,
+    "indicators.posttax_national.p10": 400,
+    "indicators.posttax_national.p25": 680,
+    "indicators.posttax_national.p50": 1080,
+    "indicators.posttax_national.p75": 1560,
+    "indicators.posttax_national.p90": 2200,
+    "indicators.consumption.p10": 367,
+    "indicators.consumption.p25": 556,
+    "indicators.consumption.p50": 884,
+    "indicators.consumption.p75": 1198,
+    "indicators.consumption.p90": 1580,
+    "indicators.wealth.p10": 800,
+    "indicators.wealth.p25": 5440,
+    "indicators.wealth.p50": 27000,
+    "indicators.wealth.p75": 93600,
+    "indicators.wealth.p90": 330000,
+    "indicators.labor_income.p10": 240,
+    "indicators.labor_income.p25": 476,
+    "indicators.labor_income.p50": 864,
+    "indicators.labor_income.p75": 1326,
+    "indicators.labor_income.p90": 1980
+   },
+   "notes": [
+    "CONFIRMED PLACEHOLDER: pop=1000000 / income.p50=875 / col=38 template row replaced with derived values.",
+    "population 1,000,000 -> 298,554 (INSEE legal population, Jan 2026 estimate; 293,996 at 1 Jan 2023).",
+    "unemploymentRate 5.5 -> 16.9 (INSEE ILO unemployment rate, annual average 2024; was 19.3% in 2019).",
+    "minimumWageEur 450 -> 1801: French Guiana is a French departement, French SMIC applies (same value as FR entry), not a reduced rate.",
+    "hdi 0.57 -> 0.82 (Wikipedia 'List of French regions by Human Development Index': French Guiana 0.820, ahead of only Mayotte among French regions).",
+    "Income/indicator distributions DERIVED from France distribution scaled by GDP-per-capita-PPP ratio 0.40 (GF GDP/cap ~USD 17k nominal x France PPP factor ~1.37 = ~USD 24k PPP vs France 60.9k PPP, World Bank 2023); cross-checked against INSEE median living standard (~EUR 13,500/yr per consumption unit in 2021, lowest French region after Mayotte). All series kept monotonic; inequality likely understated vs actual Guyane distribution.",
+    "costOfLivingIndex 38 -> 75 (estimate): prices track metropolitan France (index ~78) with an import premium; no free Numbeo-style index exists for Cayenne.",
+    "gender.* were already null (kept); life expectancy, heights, BMI values are plausible for the territory and were left unchanged."
+   ]
+  },
+  "PF": {
+   "status": "errors_found",
+   "corrections": {
+    "exchangeRate": 119.33,
+    "minimumWageEur": 1451,
+    "costOfLivingIndex": 80,
+    "hdi": 0.78,
+    "income.p10": 386,
+    "income.p25": 646,
+    "income.p50": 1026,
+    "income.p75": 1482,
+    "income.p90": 2090,
+    "indicators.pretax_national.p10": 386,
+    "indicators.pretax_national.p25": 666,
+    "indicators.pretax_national.p50": 1075,
+    "indicators.pretax_national.p75": 1600,
+    "indicators.pretax_national.p90": 2324,
+    "indicators.posttax_national.p10": 380,
+    "indicators.posttax_national.p25": 646,
+    "indicators.posttax_national.p50": 1026,
+    "indicators.posttax_national.p75": 1482,
+    "indicators.posttax_national.p90": 2090,
+    "indicators.consumption.p10": 349,
+    "indicators.consumption.p25": 529,
+    "indicators.consumption.p50": 839,
+    "indicators.consumption.p75": 1138,
+    "indicators.consumption.p90": 1501,
+    "indicators.wealth.p10": 760,
+    "indicators.wealth.p25": 5170,
+    "indicators.wealth.p50": 25650,
+    "indicators.wealth.p75": 88900,
+    "indicators.wealth.p90": 313500,
+    "indicators.labor_income.p10": 228,
+    "indicators.labor_income.p25": 452,
+    "indicators.labor_income.p50": 821,
+    "indicators.labor_income.p75": 1260,
+    "indicators.labor_income.p90": 1881
+   },
+   "notes": [
+    "CONFIRMED PLACEHOLDER income block (p50=875, col=38 identical to GF row) even though other scalar fields look real.",
+    "exchangeRate 1 -> 119.33: XPF is pegged at 1000 XPF = 8.38 EUR (EUR->XPF = 119.33); DB convention is EUR->local units per 1 EUR (US=1.08, GB=0.85 confirm).",
+    "population 282,465 vs ISPF Sept 2025 count 282,596 / WB 2024 281,807 - OK, unchanged.",
+    "unemploymentRate 11.7 matches WB 2024 ILO 11.61; life expectancy F/M 86.6/81.9 and adolescentBirthRate 23.8 match WB 2024 exactly - these rows were real, only income/COL/min-wage were templated.",
+    "minimumWageEur 450 -> 1451: local SMIG = XPF 173,181/month gross (effective 1 May 2024, WageIndicator; ISPF indexes it to CPI) / 119.33 = EUR 1451.",
+    "hdi 0.57 -> 0.78 (estimate): no official UNDP value for PF; IEOM reports HDI ranking 75 worldwide in 2010 (~0.76 equivalent) and income/health profile sits between Hawaii-tier Pacific territories and Chile; 0.57 would place PF below Vietnam despite GDP/cap PPP ~USD 23k - clearly wrong.",
+    "Income/indicator distributions DERIVED from France distribution scaled by GDP-per-capita-PPP ratio 0.38 (PF GDP/cap PPP ~USD 23.3k vs France 60.9k, World Bank/Factbook 2022-2023). Monotonic throughout.",
+    "costOfLivingIndex 38 -> 80 (estimate): Papeete is more expensive than metropolitan Paris for food/fuel/rent ('vie chere' is the territory's core political issue per ISPF); 38 implausible for a pure-import economy."
+   ]
+  },
+  "GA": {
+   "status": "errors_found",
+   "corrections": {
+    "exchangeRate": 655.96,
+    "hdi": 0.732,
+    "englishSpeakingPercent": null
+   },
+   "notes": [
+    "exchangeRate 1 -> 655.96: XAF pegged to EUR at 655.957 fixed parity; DB convention is EUR->local per 1 EUR.",
+    "hdi 0.71 -> 0.732 (UNDP HDR 2025: Gabon 0.732, between Bolivia 0.733 and Botswana 0.731).",
+    "englishSpeakingPercent 35 -> null: Gabon is a Francophone CFA country (joined the Commonwealth in 2022 but English competence remains low); 35% is clearly overstated and no reliable free estimate exists.",
+    "population 2,593,130 vs WB 2024 2,538,952 (+2%) - within tolerance, unchanged. Unemployment 20.2 vs WB 20.09 OK. Internet 68.7 vs 68.72 OK. ABR 89.5 vs WB 89.47 OK. Income percentiles plausible for Gabon's oil-economy inequality profile (p50 ~310 USD PPP/mo); monotonic; unchanged."
+   ]
+  },
+  "GM": {
+   "status": "errors_found",
+   "corrections": {
+    "exchangeRate": 87.25,
+    "hdi": 0.524
+   },
+   "notes": [
+    "exchangeRate 1 -> 87.25 GMD per EUR (open.er-api.com live mid-rate, Aug 2026).",
+    "hdi 0.50 -> 0.524 (UNDP HDR 2025: Gambia 0.524, rank 170).",
+    "Population 2,822,093 vs WB 2024 2,759,988 (+2%) OK. Unemployment 6.5 vs WB 6.48 OK. Internet 49.5 vs 49.49 OK. ABR 56.1 vs 56.14 OK. Life expectancy F/M 67.8/64.4 vs WB 67.75/64.35 OK. Income percentiles low but plausible and monotonic; unchanged."
+   ]
+  },
+  "GE": {
+   "status": "errors_found",
+   "corrections": {
+    "exchangeRate": 3.05,
+    "hdi": 0.844
+   },
+   "notes": [
+    "exchangeRate 1 -> 3.05 GEL per EUR (open.er-api.com live mid-rate, Aug 2026).",
+    "hdi 0.85 -> 0.844 (UNDP HDR 2025: Georgia 0.844, rank 57).",
+    "Region 'Middle East & North Africa' is CONSISTENT with this DB's own taxonomy (Armenia/Azerbaijan/Turkey/Israel are also MENA here), so not flagged as an error.",
+    "Population 3,935,766 vs WB 2024 3,812,518 (+3.2%) - inside the 5% tolerance, noted only. Unemployment 12.1 vs WB 11.56 OK. Internet 83.8 exact match. ABR 19.4 vs 19.37 OK. Life expectancy F/M 79.2/69.7 vs 79.23/69.75 exact. Income percentiles plausible and monotonic; unchanged."
+   ]
+  },
+  "DE": {
+   "status": "ok",
+   "corrections": {
+    "hdi": 0.959
+   },
+   "notes": [
+    "Population 83,491,249 vs WB 2024 83,516,593 - OK. Unemployment 3.7 vs WB 3.4 (close, national definition runs higher than ILO harmonized - acceptable). Internet 93.5 exact. Life expectancy F/M 83.2/78.5 exactly WB 2024. ABR 5.2 vs 5.24.",
+    "minimumWageEur 2007 = 12.41 EUR/h statutory minimum x ~162h/month (2024 level) - plausible, unchanged.",
+    "hdi 0.95 -> 0.959 (UNDP HDR 2025: Germany 0.959, rank 5).",
+    "Same template-smell maleSmokingRate 28 shared with FI/FR noted, not corrected."
+   ]
+  }
+ },
+ "_meta": {
+  "sources": [
+   "World Bank API v2 (SP.POP.TOTL, SL.UEM.TOTL.ZS, IT.NET.USER.ZS, SP.ADO.TFRT, SP.DYN.LE00.MA/FE.IN, NY.GDP.PCAP.PP.CD), retrieved 2026-08-21",
+   "UNDP HDR 2025 HDI values via Wikipedia List of countries by HDI",
+   "INSEE (Guyane population, ILO unemployment 2024, median living standard, Filosofi)",
+   "ISPF / WageIndicator (French Polynesia SMIG XPF 173,181/month, May 2024)",
+   "Wikipedia List of French regions by HDI (French Guiana 0.820)",
+   "IEOM Panorama Polynesie francaise 2024",
+   "open.er-api.com FX mids (EUR base); XAF/XPF fixed EUR pegs"
+  ],
+  "convention_note": "exchangeRate in this DB is EUR->local currency units per 1 EUR (US=1.08, GB=0.85, JPY=165), not USD-based as the brief guessed.",
+  "derivation_note": "GF/PF income+indicator distributions are France-distribution scalings (ratios 0.40 and 0.38 by GDP-per-capita-PPP) per parent instruction; they replace confirmed placeholder copies and should be treated as best-available estimates."
+ }
+}

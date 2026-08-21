@@ -1,0 +1,176 @@
+{
+  "batch": "22",
+  "countries": {
+    "RE": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 889679,
+        "unemploymentRate": 17.3,
+        "income.p50": 1850,
+        "minimumWageEur": 1767,
+        "femaleLifeExpectancy": 84.5,
+        "maleLifeExpectancy": 78.2,
+        "costOfLivingIndex": null,
+        "internetPenetration": null,
+        "hdi": null,
+        "femaleHeightCm": null,
+        "femaleWeightKg": null,
+        "femaleBmi": null,
+        "femaleObesityRate": null,
+        "femaleSmokingRate": null,
+        "maleHeightCm": null,
+        "maleWeightKg": null,
+        "maleBmi": null,
+        "maleObesityRate": null,
+        "maleSmokingRate": null,
+        "obesityRate": null,
+        "smokingRate": null,
+        "indicators": null
+      },
+      "notes": [
+        "Placeholder entry (pop=1000000, p50=875, CoL=38, dataSource 'REST Countries & World Bank API 2024') — all distribution and health data were template copies, not real.",
+        "Population 889,679 = INSEE 'Population 2023' (insee.fr/fr/statistiques/4482473).",
+        "Unemployment 17.3% = INSEE 2024 annual average (ILO definition); placeholder 5.5 was wildly wrong.",
+        "income.p50: INSEE median living standard €1,420/month (2021, annual €17,070) converted at French PPP (~0.77 EUR/USD PPP) ≈ $1,850/mo. Other percentiles left null — no free percentile distribution found.",
+        "Minimum wage: French SMIC applies in Réunion — €1,767 gross/month (Jan 2024 rate); placeholder 450 wrong.",
+        "Life expectancy: F 84.5 / M 78.2 (INSEE, 2024-2025 publication via la1ere.franceinfo.fr).",
+        "Anthropometric/smoking/obesity fields were identical template copies across RE/BL/SH/KN/LC — nulled; no reliable territory-level data found.",
+        "HDI: no official UNDP value for Réunion; placeholder 0.57 fabricated — nulled.",
+        "Region 'Sub-Saharan Africa' is a debatable classification for a French outermost region (EUR currency, French institutions) but left as-is; ISO codes 638/REU/flag correct."
+      ]
+    },
+    "RO": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "Population 19,020,271 matches World Bank SP.POP.TOTL (2025) exactly.",
+        "Unemployment 6.0 matches WB modeled ILO estimate (5.99, 2025); internet 91.3 matches WB IT.NET.USER.ZS (91.29, 2024).",
+        "HDI 0.82 ≈ UNDP HDR 2023/24 value 0.827.",
+        "minimumWageEur 670 ≈ RON 3,300 gross/month (Jan 2024) ≈ €663 — plausible for the 2024 rate (RON 4,050 ≈ €813 from July 2024).",
+        "income.p50 1000/mo PPP plausible vs WID.world Romania post-tax national income per adult (~€12k/yr PPP).",
+        "englishSpeakingPercent 76 is implausibly high (Eurostat language data suggests ~30% with English competence); no authoritative single figure — flagged, not corrected.",
+        "Gender fields (adolescentBirthRate 32.8, childMarriage 15%, laborForceGap -19.9, contraceptiveUse 69.8) all plausible vs World Bank/UNICEF ranges."
+      ]
+    },
+    "RU": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "Population 143,513,328 matches World Bank SP.POP.TOTL (2025) exactly.",
+        "Unemployment 2.1 matches WB modeled ILO estimate (2.13, 2025); internet 94.4 matches WB (94.36, 2024).",
+        "HDI 0.82 ≈ UNDP 0.821; minimumWageEur 180 ≈ RUB 19,242/month (2024) ≈ €185.",
+        "income.p50 650/mo PPP plausible vs WID.world Russia.",
+        "maleSmokingRate 28 looks low vs WHO (~35-40% age-standardized for Russian men) but no single verified figure — noted, not corrected.",
+        "Life expectancy F 78.9 / M 68.3 consistent with Rosstat/WB 2023 values."
+      ]
+    },
+    "RW": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "Population 14,569,341 matches World Bank SP.POP.TOTL (2025) exactly.",
+        "Unemployment 11.4 matches WB modeled ILO estimate (11.36, 2025); internet 31.7 matches WB (31.70, 2024).",
+        "HDI 0.54 ≈ UNDP 2023 value 0.548.",
+        "income.p50 82/mo PPP plausible for Rwanda (GDP/capita PPP ~$2,700/yr).",
+        "minimumWageEur 40 is questionable: Rwanda's statutory minimum wage is RWF 100/day (set 1974, effectively unenforced) ≈ €2/month; no better verified figure — noted, not corrected.",
+        "Gender and health fields plausible vs WB/WHO ranges."
+      ]
+    },
+    "BL": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 10660,
+        "income": null,
+        "indicators": null,
+        "minimumWageEur": 1767,
+        "costOfLivingIndex": null,
+        "unemploymentRate": null,
+        "internetPenetration": null,
+        "hdi": null,
+        "femaleHeightCm": null,
+        "femaleWeightKg": null,
+        "femaleBmi": null,
+        "femaleObesityRate": null,
+        "femaleSmokingRate": null,
+        "maleHeightCm": null,
+        "maleWeightKg": null,
+        "maleBmi": null,
+        "maleObesityRate": null,
+        "maleSmokingRate": null,
+        "obesityRate": null,
+        "smokingRate": null
+      },
+      "notes": [
+        "Placeholder entry (pop=1000000, p50=875, CoL=38) — all income/health values template copies, fabricated.",
+        "Population 10,660 = INSEE populations des collectivités d'outre-mer, Jan 2023 (cited on Wikipedia Saint Barthélemy infobox, source insee.fr/fr/statistiques/8680667).",
+        "No free income-distribution data exists; GDP per capita €90,103 (CEROM study, pop 10,660) — one of the richest territories in the Americas, so the placeholder p50 of $875/mo PPP was absurd. Income/indicators nulled rather than invented.",
+        "Minimum wage: French SMIC (€1,767 gross, Jan 2024) applies as an overseas collectivity of France; placeholder 450 wrong.",
+        "CostOfLivingIndex nulled — no Numbeo coverage; St Barth is far more expensive than the placeholder 38 implies.",
+        "HDI: not computed by UNDP — nulled. ISO codes 652/BLM/flag correct; currency EUR correct."
+      ]
+    },
+    "SH": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 5633,
+        "currency": "SHP",
+        "income": null,
+        "indicators": null,
+        "minimumWageEur": null,
+        "costOfLivingIndex": null,
+        "unemploymentRate": null,
+        "internetPenetration": null,
+        "hdi": null,
+        "femaleHeightCm": null,
+        "femaleWeightKg": null,
+        "femaleBmi": null,
+        "femaleObesityRate": null,
+        "femaleSmokingRate": null,
+        "maleHeightCm": null,
+        "maleWeightKg": null,
+        "maleBmi": null,
+        "maleObesityRate": null,
+        "maleSmokingRate": null,
+        "obesityRate": null,
+        "smokingRate": null
+      },
+      "notes": [
+        "Placeholder entry (pop=1000000, p50=875, CoL=38) — all fabricated template data.",
+        "Population 5,633 = last full-territory census (2016, St Helena Government Census 2016 summary report, p.9); 2021 census counted 4,439 on St Helena island alone, so the true current figure is ~5,400-5,600.",
+        "Currency corrected GBP -> SHP (St Helena pound, pegged 1:1 to GBP); symbol £ unchanged. exchangeRate 0.85 (USD->local) consistent with the GBP peg — left as-is.",
+        "Income distribution: no free data; GDP per capita ~$8-9k and island wages are modest, so placeholder p50 $875/mo PPP was implausible — nulled rather than invented.",
+        "Minimum wage nulled: statutory rate was £2.30/hr (2013, St Helena 'in Figures'), current rate unverified; placeholder 450 was fabricated.",
+        "Unemployment nulled (essentially full employment, no ILO figure). Internet penetration ~30-40% per secondary estimates — nulled pending an authoritative source.",
+        "HDI not computed; all anthropometric/smoking fields were template copies — nulled. ISO codes 654/SHN/flag correct."
+      ]
+    },
+    "KN": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.84,
+        "minimumWageEur": 600
+      },
+      "notes": [
+        "Population 46,922 matches World Bank SP.POP.TOTL (2025) exactly; internet 76.9 matches WB (76.88, 2024).",
+        "HDI corrected 0.65 -> 0.84: UNDP Human Development Report 2023/24 gives 0.840 (very high, rank 58) — the placeholder 0.65 was far off.",
+        "minimumWageEur corrected 900 -> 600: EC$10.75/hour from Jan 2024 (remotepeople.com; raised from EC$9.00 in 2023) ≈ EC$1,862/month ≈ US$689 ≈ €595. Rate rose again to EC$12.50/hr (July 2025, ~€690/mo) — dataset dataYear is 2024.",
+        "Health block (162/66/25.3/22/8 female, 174/78/25.9/19.4/22 male) is byte-identical to the RE/BL/SH template — suspected fabricated; real Caribbean obesity rates are much higher. Not corrected for lack of a single verified KN-specific source.",
+        "adolescentBirthRate 36.4 plausible vs World Bank KNA values; unemployment 5.5 plausible (no WB modeled value available for KNA)."
+      ]
+    },
+    "LC": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.748,
+        "minimumWageEur": 385
+      },
+      "notes": [
+        "Population 180,149 matches World Bank SP.POP.TOTL (2025) exactly; unemployment 9.5 matches WB modeled ILO (9.45, 2025); internet 68.2 matches WB (68.21, 2024).",
+        "HDI corrected 0.6 -> 0.748: UNDP Human Development Report 2023/24 gives 0.748 (rank 103, per Wikipedia infobox citing hdr.undp.org/countries/LCA).",
+        "minimumWageEur corrected 450 -> 385: Saint Lucia's first national minimum wage, effective Oct 1 2024, is EC$6.52/hour = EC$1,131/month (govt.lc) ≈ US$419 ≈ €385.",
+        "Health block identical to the shared template (see KN note) — suspected fabricated, not corrected for lack of a verified LC-specific source.",
+        "adolescentBirthRate 27.2 and laborForceGap -12.8 plausible vs WB values; income.p50 1004/mo PPP plausible for an upper-middle-income island."
+      ]
+    }
+  }
+}

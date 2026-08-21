@@ -1,0 +1,142 @@
+{
+  "batch": "21",
+  "countries": {
+    "PY": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 346,
+        "unemploymentRate": 5.8,
+        "hdi": 0.756
+      },
+      "notes": [
+        "Minimum wage PYG 2,798,309/month (Jul 2023 decree, in force 2024) = ~EUR 346 (countryeconomy.com; wageindicator.org). Dataset 200 was too low.",
+        "Unemployment 5.8% ILO 2023 (World Bank API SL.UEM.TOTL.ZS); dataset 4.8 low.",
+        "HDI 0.756 (UNDP HDR 2025, 2023 data; rank 99). Dataset 0.73 stale.",
+        "Population WB 2023 = 6,844,146 vs dataset 7,013,078 (+2.5%) — within 5% tolerance, left as-is.",
+        "Income/indicators distributions plausible vs GDP pc PPP $17.6k (WB 2023); monotonic; left unchanged. Life expectancy, internet ~78% (dataset 81.6) close enough."
+      ]
+    },
+    "PE": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 280
+      },
+      "notes": [
+        "Minimum wage S/1,130/month from Jan 2025 (Reuters, 27 Dec 2024: '1,130 soles ($301.90)') = ~EUR 280. Dataset 180 clearly stale (pre-2016 rate).",
+        "Population WB 2023 = 33,845,617 vs dataset 34,576,665 (+2.2%) — within tolerance.",
+        "Unemployment 4.9% (WB 2023) vs dataset 5.1 ok; internet 79.5% vs 82 ok; LE 80.1/75.4 vs 80.3/75.6 ok; HDI 0.762 vs 0.76 ok.",
+        "Income p50 $320/mo PPP plausible vs GDP pc PPP $17.0k; all indicator series monotonic; left unchanged."
+      ]
+    },
+    "PH": {
+      "status": "errors_found",
+      "corrections": {
+        "internetPenetration": 77.9,
+        "minimumWageEur": 270
+      },
+      "notes": [
+        "Internet users 77.9% (ITU/WB IT.NET.USER.ZS 2023); dataset 67.3 was a ~2017 figure.",
+        "Minimum wage: NCR non-agriculture PHP 645/day (Jul 2024 wage order) ~ PHP 16,770/month ~ EUR 270; provincial rates lower. Dataset 160 too low.",
+        "Unemployment 2.2% matches WB ILO 2023 exactly (dataset correct).",
+        "Population WB 2023 = 114,891,199 vs dataset 116,786,962 (+1.6%) — within tolerance.",
+        "LE 72.8/66.9 (WB 2023) matches dataset 73/67; HDI 0.710 vs 0.72 ok; income p50 $260/mo plausible vs GDP pc PPP $11.0k; monotonic."
+      ]
+    },
+    "PN": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 35,
+        "dataSource": "Derived: New Zealand distribution scaled by GDP-per-capita-PPP ratio (~0.12); population from Wikipedia/Pitcairn gov 2023",
+        "income.p10": 70,
+        "income.p25": 130,
+        "income.p50": 230,
+        "income.p75": 350,
+        "income.p90": 540,
+        "indicators.pretax_national.p10": 80,
+        "indicators.pretax_national.p25": 150,
+        "indicators.pretax_national.p50": 265,
+        "indicators.pretax_national.p75": 400,
+        "indicators.pretax_national.p90": 620,
+        "indicators.posttax_national.p10": 70,
+        "indicators.posttax_national.p25": 130,
+        "indicators.posttax_national.p50": 230,
+        "indicators.posttax_national.p75": 350,
+        "indicators.posttax_national.p90": 540,
+        "indicators.consumption.p10": 60,
+        "indicators.consumption.p25": 110,
+        "indicators.consumption.p50": 195,
+        "indicators.consumption.p75": 300,
+        "indicators.consumption.p90": 460,
+        "indicators.wealth.p10": 400,
+        "indicators.wealth.p25": 4200,
+        "indicators.wealth.p50": 19000,
+        "indicators.wealth.p75": 47000,
+        "indicators.wealth.p90": 115000,
+        "indicators.labor_income.p10": 55,
+        "indicators.labor_income.p25": 105,
+        "indicators.labor_income.p50": 185,
+        "indicators.labor_income.p75": 280,
+        "indicators.labor_income.p90": 430,
+        "minimumWageEur": 0,
+        "costOfLivingIndex": 55,
+        "hdi": 0.70,
+        "unemploymentRate": null
+      },
+      "notes": [
+        "PLACEHOLDER ENTRY CONFIRMED: population 1,000,000 / income.p50 875 / COL 38 are the fabricated REST-Countries pattern. Real population 35 permanent residents (2023, smallest territory in the world; Wikipedia/Pitcairn government).",
+        "No WID/OECD/World Bank income data exists. Per brief, all income/indicator percentiles DERIVED: NZ adult income distribution (WID-style posttax monthly USD PPP p10~600 p25~1100 p50~1900 p75~2900 p90~4500; wealth per adult p10~3k p25~35k p50~160k p75~390k p90~950k) scaled by GDP-per-capita ratio Pitcairn/NZ ~0.12 (Pitcairn GDP pc NZ$4,617 2005 est, Wikipedia, ~US$6-7k PPP 2023 vs NZ ~$54k PPP). All series monotonic.",
+        "Currency NZD confirmed correct (Wikipedia). UK Overseas Territory, heavy UK/NZ subsidy of food, housing, power — cash incomes very low.",
+        "No statutory minimum wage on Pitcairn -> 0 per brief convention.",
+        "No Numbeo/price data; costOfLivingIndex 38 was placeholder. Derived ~55 from NZ anchor (~62) net of subsidized housing/food but NZ-level import prices.",
+        "No official UNDP HDI (not ranked); estimated 0.70 anchored to comparable Pacific small states (Samoa 0.70, Tonga 0.74) given UK-provided health/education and low cash income.",
+        "unemploymentRate set null: no labor statistics exist for 35 residents; dataset 5.5 was fabricated.",
+        "Health/anthropometric fields (162/66/25.3, 174/78/25.9, LE 78.5/72.8) are byte-identical to the Puerto Rico placeholder copy — invented, no source; left in place but treat as unknown. Gender fields already null, kept."
+      ]
+    },
+    "PL": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "Population WB 2023 = 36,687,353 vs dataset 36,435,861 (-0.7%) ok.",
+        "Minimum wage EUR 814 matches the 2023 statutory PLN 3,600/month (dataYear 2023); note 2024 rose to PLN 4,242/4,300 (~EUR 990) — dataset consistent with its stated year.",
+        "HDI 0.881 (UNDP) vs 0.88 ok; unemployment 2.7% ILO 2023 vs dataset 3 ok; internet 86.4% vs 88.6 close.",
+        "Income p50 $1,350/mo PPP plausible vs GDP pc PPP $48.5k; all indicator series monotonic; wealth p50 33,750 plausible (Credit Suisse/UBS Poland median ~$25-35k). No corrections."
+      ]
+    },
+    "PT": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "Population WB 2023 = 10,578,174 vs dataset 10,804,871 (+2.2%) within tolerance.",
+        "Minimum wage EUR 915 sits between 2023 (EUR 760 x14/12 = 887) and 2024 (EUR 820 x14/12 = 957) statutory values — acceptable.",
+        "HDI 0.874 (UNDP 2023) vs dataset 0.89 — slightly rounded up, within 0.02, left per conservative rule.",
+        "Unemployment 6.5% ILO 2023 vs dataset 6.2 ok; internet 85.8% vs 88.5 close; LE 85.3/79.5 vs 85.2/79.7 match WB.",
+        "Income p50 $1,400/mo PPP plausible vs GDP pc PPP $49.8k; series monotonic; no corrections."
+      ]
+    },
+    "PR": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "dataSource string is the placeholder label, but values are NOT the fabricated pattern (pop 3,184,835 vs WB 2023 3,203,794, -0.6%; income.p50 1827 not 875). Income/indicator distributions are already consistent with the USA anchor scaled by GDP-per-capita-PPP ratio (PR $47.6k / USA ~$82.7k = 0.575; US posttax p50 ~$3,180/mo x 0.575 ~ 1,830 = dataset 1827). No-NULL rule satisfied: no nulls in income/indicators/minimumWageEur/costOfLivingIndex/hdi.",
+        "Minimum wage EUR 1,600: PR statutory $10.50/hr since Jul 2024 (Act 41-2023 step) ~ $1,820/mo ~ EUR 1,680 — dataset within ~5%, left.",
+        "LE female 85.4 / male 78.3 match WB 2023 (85.2/78.0); unemployment 5.7% vs dataset 6 ok; internet 87.3% matches WB 2022 (87.29).",
+        "gender.childMarriagePercent / contraceptiveUse nulls kept: no UNICEF/UNFPA series for PR; under-18 marriage banned in PR (2020).",
+        "No HDI in UNDP tables for territories; dataset 0.76 plausible (between USA 0.92 and its income ratio) — left, unverified."
+      ]
+    },
+    "QA": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 2656032,
+        "minimumWageEur": 455
+      },
+      "notes": [
+        "Population WB 2023 = 2,656,032; dataset 2,972,215 was the ~2019 WB figure (+11.7% vs latest) — corrected per >5% rule. Note: Qatar's own PSA counts ~2.7M mid-2023 (excl. some groups); WB used as brief's preferred source.",
+        "Minimum wage: Law No.17/2020 (effective Mar 2021) QAR 1,000 basic + QAR 500 housing + QAR 300 food = QAR 1,800/month total (~USD 494) = ~EUR 455. Dataset 900 ~2x too high.",
+        "Unemployment 0.13% (WB ILO 2023) vs dataset 0.1 ok; internet 98.2% matches 98.1; LE 83.4/81.6 vs 83.5/81.8 ok; HDI 0.875 vs 0.87 ok.",
+        "Income p50 $2,800/mo PPP plausible: huge expat share keeps median adult income far below GDP pc PPP $129k; WID-style distribution monotonic; wealth p50 70,000 plausible for citizen-weighted net worth. Left unchanged."
+      ]
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "batch": "30",
+  "countries": {
+    "AX": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 30654,
+        "income.p10": null,
+        "income.p25": null,
+        "income.p50": null,
+        "income.p75": null,
+        "income.p90": null,
+        "indicators.pretax_national.p10": null,
+        "indicators.pretax_national.p25": null,
+        "indicators.pretax_national.p50": null,
+        "indicators.pretax_national.p75": null,
+        "indicators.pretax_national.p90": null,
+        "indicators.posttax_national.p10": null,
+        "indicators.posttax_national.p25": null,
+        "indicators.posttax_national.p50": null,
+        "indicators.posttax_national.p75": null,
+        "indicators.posttax_national.p90": null,
+        "indicators.consumption.p10": null,
+        "indicators.consumption.p25": null,
+        "indicators.consumption.p50": null,
+        "indicators.consumption.p75": null,
+        "indicators.consumption.p90": null,
+        "indicators.wealth.p10": null,
+        "indicators.wealth.p25": null,
+        "indicators.wealth.p50": null,
+        "indicators.wealth.p75": null,
+        "indicators.wealth.p90": null,
+        "indicators.labor_income.p10": null,
+        "indicators.labor_income.p25": null,
+        "indicators.labor_income.p50": null,
+        "indicators.labor_income.p75": null,
+        "indicators.labor_income.p90": null,
+        "minimumWageEur": null,
+        "costOfLivingIndex": null,
+        "internetPenetration": 93.7,
+        "femaleLifeExpectancy": 85.0,
+        "maleLifeExpectancy": 79.8,
+        "hdi": null
+      },
+      "notes": [
+        "Placeholder copy confirmed: population exactly 1000000, income.p50 exactly 875, costOfLivingIndex 38, dataSource 'REST Countries & World Bank API 2024'.",
+        "Population corrected to 30654 (Wikipedia/Statistics and Research Åland; World Bank has no ALA record).",
+        "Income and all indicator percentile blocks are fabricated template values - WID.world has no Åland series; nulled rather than invented.",
+        "minimumWageEur nulled: Finland (incl. Åland) has no statutory national minimum wage.",
+        "internetPenetration corrected using Finland World Bank IT.NET.USER.ZS 2024 = 93.72 as proxy (batch said 75).",
+        "female/male life expectancy corrected using Finland World Bank 2024 values (85.0 / 79.8) as proxy; batch values 78.5/72.8 are implausible for a Finnish territory and match the placeholder template.",
+        "hdi nulled: Åland is not separately ranked by UNDP; Finland-level value would be ~0.94, batch's 0.57 is template data.",
+        "UnemploymentRate 5.5 is plausible for Åland (~5-6%) and left unchanged; height/weight/BMI/obesity/smoking values match the placeholder template but no Åland-specific source exists - left unchanged, flagged as suspect."
+      ]
+    },
+    "EH": {
+      "status": "errors_found",
+      "corrections": {
+        "currency": "MAD",
+        "currencySymbol": "د.م.",
+        "exchangeRate": 9.25,
+        "population": 600000,
+        "income.p10": null,
+        "income.p25": null,
+        "income.p50": null,
+        "income.p75": null,
+        "income.p90": null,
+        "indicators.pretax_national.p10": null,
+        "indicators.pretax_national.p25": null,
+        "indicators.pretax_national.p50": null,
+        "indicators.pretax_national.p75": null,
+        "indicators.pretax_national.p90": null,
+        "indicators.posttax_national.p10": null,
+        "indicators.posttax_national.p25": null,
+        "indicators.posttax_national.p50": null,
+        "indicators.posttax_national.p75": null,
+        "indicators.posttax_national.p90": null,
+        "indicators.consumption.p10": null,
+        "indicators.consumption.p25": null,
+        "indicators.consumption.p50": null,
+        "indicators.consumption.p75": null,
+        "indicators.consumption.p90": null,
+        "indicators.wealth.p10": null,
+        "indicators.wealth.p25": null,
+        "indicators.wealth.p50": null,
+        "indicators.wealth.p75": null,
+        "indicators.wealth.p90": null,
+        "indicators.labor_income.p10": null,
+        "indicators.labor_income.p25": null,
+        "indicators.labor_income.p50": null,
+        "indicators.labor_income.p75": null,
+        "indicators.labor_income.p90": null,
+        "minimumWageEur": 310,
+        "costOfLivingIndex": null,
+        "unemploymentRate": null,
+        "internetPenetration": null,
+        "femaleLifeExpectancy": null,
+        "maleLifeExpectancy": null,
+        "hdi": null
+      },
+      "notes": [
+        "Placeholder copy confirmed: population 1000000, income.p50 875, costOfLivingIndex 38, same dataSource string as other template entries.",
+        "Currency DZD (Algerian dinar) is wrong - Western Sahara uses the Moroccan dirham (MAD); exchangeRate set to ~9.25 MAD per USD (open.er-api.com live rate 9.247).",
+        "Population ~600,000 (Wikipedia estimate; UN estimates 500k-600k range). World Bank does not report ESH.",
+        "Income/indicator percentile blocks are fabricated template values; no WID.world or household-survey distribution exists for ESH - nulled.",
+        "minimumWageEur corrected to ~310: Moroccan labor-law SMIG applies de facto, 3,111 MAD/month since Sept 2024, converted at market rates.",
+        "hdi nulled: UNDP does not rank Western Sahara ('accurate HDI cannot be determined' due to contested administration); batch 0.57 is template data.",
+        "costOfLivingIndex, unemploymentRate, internetPenetration and sex-specific life expectancy have no reliable free-source figures for this territory and were template copies - nulled rather than invented.",
+        "Height/weight/BMI/obesity/smoking values are byte-similar to the placeholder template and unverifiable for ESH - left unchanged, flagged as suspect."
+      ]
+    },
+    "YE": {
+      "status": "ok",
+      "corrections": {
+        "hdi": 0.47,
+        "englishSpeakingPercent": null
+      },
+      "notes": [
+        "Population 41,773,878 matches World Bank SP.POP.TOTL 2025 exactly - verified.",
+        "UnemploymentRate 17.3 matches World Bank SL.UEM.TOTL.ZS 2025 (17.32).",
+        "femaleLifeExpectancy 71.5 / maleLifeExpectancy 67.4 match World Bank 2024 (71.55 / 67.37).",
+        "hdi corrected 0.46 -> 0.47 (UNDP HDR 2025, 2023 data: 0.470, rank 184).",
+        "englishSpeakingPercent 50 is absurd for Yemen (very low English competence, unranked on EF EPI) - nulled; no reliable estimate found.",
+        "exchangeRate=1 is implausible for YER but Yemen has chaotic dual exchange rates (CBY-Aden official vs Sana'a legacy rate differ several-fold); no single authoritative figure, left unchanged with this flag.",
+        "internetPenetration 35 is above the latest World Bank figure (17.5%, 2019); newer unofficial estimates run ~27%; kept unchanged as within rough-estimate tolerance but flagged.",
+        "Income percentiles (p50=$55/mo PPP post-tax) are low but consistent with Yemen's collapsed GDP p.c. PPP (~$1,800/yr, BTI/WDI); distributions are monotonic; left unchanged."
+      ]
+    },
+    "ZM": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.595
+      },
+      "notes": [
+        "Population 21,913,874 matches World Bank SP.POP.TOTL 2025 exactly - verified.",
+        "UnemploymentRate 5.9 matches World Bank SL.UEM.TOTL.ZS 2025 (5.92).",
+        "InternetPenetration 17.1 matches World Bank IT.NET.USER.ZS 2024 (17.10).",
+        "femaleLifeExpectancy 68.9 / maleLifeExpectancy 64.1 match World Bank 2024 (68.87 / 64.10).",
+        "hdi corrected 0.55 -> 0.595 (UNDP HDR 2025, 2023 data: 0.595, rank 154; also BTI 2026 country sheet).",
+        "Gender block plausible: adolescentBirthRate 115.5, childMarriage 29%, contraceptiveUse 49.6% are in line with UNFPA/UNICEF Zambia figures - unchanged.",
+        "Currency ZMW correct; exchangeRate=1 inconsistent with ~18.8 ZMW/USD (open.er-api.com) - appears to be a systemic unfilled field across the dataset, noted only.",
+        "Income percentiles monotonic and plausible against WID.world Zambia (p50 ~$90/mo post-tax); mainIndustry 'Mining & Quarrying' correct for Zambia's export base."
+      ]
+    },
+    "ZW": {
+      "status": "errors_found",
+      "corrections": {
+        "currency": "ZWG",
+        "currencySymbol": "ZiG",
+        "exchangeRate": 26.6,
+        "hdi": 0.598
+      },
+      "notes": [
+        "Population 16,950,795 matches World Bank SP.POP.TOTL 2025 exactly - verified.",
+        "Currency BWP is Botswana's pula - clear error. Zimbabwe Gold (ZiG, ISO ZWG, numeric 924) is the legal tender since April 2024; symbol corrected to 'ZiG'; exchangeRate set to ~26.6 ZWG/USD (open.er-api.com 26.63; RBZ official avg ~25.96 Aug 2025). USD remains widely used in practice.",
+        "UnemploymentRate 9.3 matches World Bank SL.UEM.TOTL.ZS 2025 (9.29).",
+        "InternetPenetration 41.6 matches World Bank IT.NET.USER.ZS 2024 (41.64).",
+        "femaleLifeExpectancy 65.3 / maleLifeExpectancy 60.5 match World Bank 2024 (65.31 / 60.49).",
+        "hdi corrected 0.59 -> 0.598 (UNDP HDR 2025, 2023 data: 0.598, rank 153).",
+        "Income percentiles monotonic and plausible against WID.world Zimbabwe; gender block values in line with UNICEF/UNFPA Zimbabwe figures - unchanged.",
+        "mainIndustry 'Mining & Quarrying' reasonable (largest export earner); englishSpeakingPercent 75 is a high but defensible rough estimate for Zimbabwe - unchanged."
+      ]
+    }
+  }
+}

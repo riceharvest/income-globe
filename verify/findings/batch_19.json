@@ -1,0 +1,199 @@
+{
+  "batch": "19",
+  "countries": {
+    "NZ": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 2200
+      },
+      "notes": [
+        "Population 5,324,700 matches World Bank latest figure exactly (data.worldbank.org SP.POP.TOTL).",
+        "minimumWageEur was 1500; NZ adult minimum wage is NZ$23.50/hr from 1 April 2025 (Minimum Wage Order 2025, legislation.govt.nz) = NZ$940/wk = ~NZ$4,073/month = ~EUR 2,200.",
+        "Unemployment 5.1% consistent with Stats NZ 2025 underutilised-era rate; income distribution monotonic and plausible vs WID.world NZ adult income levels; HDI 0.94 in range of HDR values (~0.93)."
+      ]
+    },
+    "NI": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 225
+      },
+      "notes": [
+        "minimumWageEur was 150; Nicaraguan sectoral monthly minimum wages effective March 2025 average C$8,936 (~US$244, official rate C$36.62/USD) = ~EUR 225 (latinalliance.co, nica-biz.com). Range C$5,959-C$13,316.",
+        "Other fields verified plausible: adolescentBirthRate ~93 (WB), contraceptiveUse 80.4 (high but consistent with ENDESA modern-CPR figures), laborForceGap ~-30 (WB participation M~79/F~49), HDI 0.73 (HDR ~0.729), life expectancy F77.6/M72.5 (WB), internet 61.4% (WB ~60%)."
+      ]
+    },
+    "NE": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 64
+      },
+      "notes": [
+        "minimumWageEur was 30; Niger SMIG raised from FCFA 30,047 to FCFA 42,000/month effective 01 January 2024 (wageindicator.org). XOF pegged at 655.957/EUR -> EUR 64/month.",
+        "unemploymentRate 0.4 is genuinely correct: Niger's ILO-defined unemployment rate is famously <1% due to subsistence agriculture (World Bank SL.UEM.TOTL.ZS ~0.4-0.7%). Do not 'fix' upward.",
+        "childMarriagePercent 76 matches UNICEF (highest in world); HDI 0.40 matches HDR (~0.394-0.421); other gender/health values plausible."
+      ]
+    },
+    "NG": {
+      "status": "errors_found",
+      "corrections": {
+        "unemploymentRate": 4.7
+      },
+      "notes": [
+        "unemploymentRate 3.1 is stale/low; NBS new ILO-aligned methodology gives 4.3% Q2-2024 and ILOSTAT reports 4.7% for 2024.",
+        "Population 237,527,782 sits above WB 2023 (~223.8M) but close to UN WPP projections (~233M 2024 rising through 237M by mid-decade); left unchanged given source spread, flagged as borderline.",
+        "HDI 0.54 (HDR ~0.548), childMarriagePercent 30 (recent UNICEF estimate; older 43%), life expectancy and income percentiles all plausible."
+      ]
+    },
+    "NU": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 1817,
+        "income.p10": null,
+        "income.p25": null,
+        "income.p50": null,
+        "income.p75": null,
+        "income.p90": null,
+        "indicators.pretax_national.p10": null,
+        "indicators.pretax_national.p25": null,
+        "indicators.pretax_national.p50": null,
+        "indicators.pretax_national.p75": null,
+        "indicators.pretax_national.p90": null,
+        "indicators.posttax_national.p10": null,
+        "indicators.posttax_national.p25": null,
+        "indicators.posttax_national.p50": null,
+        "indicators.posttax_national.p75": null,
+        "indicators.posttax_national.p90": null,
+        "indicators.consumption.p10": null,
+        "indicators.consumption.p25": null,
+        "indicators.consumption.p50": null,
+        "indicators.consumption.p75": null,
+        "indicators.consumption.p90": null,
+        "indicators.wealth.p10": null,
+        "indicators.wealth.p25": null,
+        "indicators.wealth.p50": null,
+        "indicators.wealth.p75": null,
+        "indicators.wealth.p90": null,
+        "indicators.labor_income.p10": null,
+        "indicators.labor_income.p25": null,
+        "indicators.labor_income.p50": null,
+        "indicators.labor_income.p75": null,
+        "indicators.labor_income.p90": null,
+        "minimumWageEur": null,
+        "costOfLivingIndex": null,
+        "unemploymentRate": null,
+        "internetPenetration": null,
+        "femaleHeightCm": null,
+        "femaleWeightKg": null,
+        "femaleBmi": null,
+        "femaleObesityRate": null,
+        "femaleSmokingRate": null,
+        "femaleLifeExpectancy": null,
+        "maleHeightCm": null,
+        "maleWeightKg": null,
+        "maleBmi": null,
+        "maleObesityRate": null,
+        "maleSmokingRate": null,
+        "maleLifeExpectancy": null,
+        "obesityRate": null,
+        "smokingRate": null,
+        "hdi": null
+      },
+      "notes": [
+        "PLACEHOLDER ENTRY confirmed: population was 1000000, income.p50 exactly 875, costOfLivingIndex 38, dataSource 'REST Countries & World Bank API 2024' - byte-identical copy of the Norfolk Island record.",
+        "Real population: 1,817 (WHO 2023, data.who.int/countries/570); OWID/UN estimate 1,841 (2023).",
+        "No free source exists for Niue income/wealth/consumption distributions (absent from WID.world, World Bank microdata, Numbeo, ITU series, UNDP HDI tables). All copied placeholder values set to null rather than replaced with invented numbers; economy runs on NZD public-sector wages and aid, so any future fill should anchor on NZ levels."
+      ]
+    },
+    "NF": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 2188,
+        "income.p10": null,
+        "income.p25": null,
+        "income.p50": null,
+        "income.p75": null,
+        "income.p90": null,
+        "indicators.pretax_national.p10": null,
+        "indicators.pretax_national.p25": null,
+        "indicators.pretax_national.p50": null,
+        "indicators.pretax_national.p75": null,
+        "indicators.pretax_national.p90": null,
+        "indicators.posttax_national.p10": null,
+        "indicators.posttax_national.p25": null,
+        "indicators.posttax_national.p50": null,
+        "indicators.posttax_national.p75": null,
+        "indicators.posttax_national.p90": null,
+        "indicators.consumption.p10": null,
+        "indicators.consumption.p25": null,
+        "indicators.consumption.p50": null,
+        "indicators.consumption.p75": null,
+        "indicators.consumption.p90": null,
+        "indicators.wealth.p10": null,
+        "indicators.wealth.p25": null,
+        "indicators.wealth.p50": null,
+        "indicators.wealth.p75": null,
+        "indicators.wealth.p90": null,
+        "indicators.labor_income.p10": null,
+        "indicators.labor_income.p25": null,
+        "indicators.labor_income.p50": null,
+        "indicators.labor_income.p75": null,
+        "indicators.labor_income.p90": null,
+        "minimumWageEur": 2600,
+        "costOfLivingIndex": null,
+        "unemploymentRate": null,
+        "internetPenetration": null,
+        "femaleHeightCm": null,
+        "femaleWeightKg": null,
+        "femaleBmi": null,
+        "femaleObesityRate": null,
+        "femaleSmokingRate": null,
+        "femaleLifeExpectancy": null,
+        "maleHeightCm": null,
+        "maleWeightKg": null,
+        "maleBmi": null,
+        "maleObesityRate": null,
+        "maleSmokingRate": null,
+        "maleLifeExpectancy": null,
+        "obesityRate": null,
+        "smokingRate": null,
+        "hdi": null
+      },
+      "notes": [
+        "PLACEHOLDER ENTRY confirmed: population was 1000000, income.p50 875, costOfLivingIndex 38 - identical copy of the Niue record.",
+        "Real population: 2,188 (ABS 2021 Census QuickStats, SAL90004).",
+        "Australian Fair Work system applies fully to Norfolk Island (national minimum wage since 1 July 2017, awards since July 2018 - fairwork.gov.au / ANAO audit). Current national minimum wage A$1,004.90/wk = ~A$4,355/month = ~EUR 2,600, replacing fabricated 450.",
+        "Context: median weekly household income A$1,184 (ABS 2021). No island-specific PPP income distribution, Numbeo COL index, ITU internet series, or UNDP HDI exists; copied placeholder values set to null. Currency AUD/$ and exchangeRate 1.62 (AUD per USD) are plausible and kept."
+      ]
+    },
+    "KP": {
+      "status": "errors_found",
+      "corrections": {
+        "internetPenetration": 0,
+        "maleSmokingRate": 36,
+        "smokingRate": 20,
+        "minimumWageEur": null,
+        "hdi": null
+      },
+      "notes": [
+        "internetPenetration 30 was clearly wrong: the general public has no access to the global internet, only the domestic Kwangmyong intranet; external estimates are effectively 0% (ITU publishes no meaningful figure).",
+        "maleSmokingRate 22 too low: GSTHR records 36.4% male current smoking (2020); Wikipedia/WHO cite 43.6% of men smoking daily (2019). Corrected to ~36. Combined smokingRate recomputed to ~20 (male-dominant prevalence, female ~4.5%); femaleSmokingRate 8 left as borderline-high.",
+        "minimumWageEur 30 removed (null): North Korea has no meaningful statutory minimum wage; wages are nominal state allocations.",
+        "hdi set to null: UNDP Human Development Reports do not publish an HDI for DPRK; 0.42 was an unofficial estimate.",
+        "Income/wealth percentile blocks have no verifiable source (DPRK absent from WID.world); magnitudes are at least plausible vs GDP-per-capita-PPP so left uncorrected. unemploymentRate 3.5 and adolescentBirthRate 0.5 / contraceptiveUse 70.2 are near UNFPA/ILO ballpark figures but unverifiable; left with caution."
+      ]
+    },
+    "MK": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "HDI 0.81 verified: UNDP Country Insights gives North Macedonia HDI 0.815 (2023, rank 68).",
+        "internetPenetration 93.1 verified against ITU-based Wikipedia list (93.1%, 2025).",
+        "unemploymentRate 12.3 close to SSB/ILOSTAT (~13% 2024); minimumWageEur 370 plausible vs MKD 20,583 net (~EUR 335) / higher gross 2025 rate; income percentiles monotonic and consistent with WID.world MK medians; englishSpeakingPercent 74 is on the high side but within rough-estimate tolerance."
+      ]
+    }
+  },
+  "batch_notes": [
+    "exchangeRate equals 1 for every country in this batch (including NIO, XOF, NGN, MKD, NZD), which contradicts the brief's USD->local-units convention. Looks like a dataset-wide unset default rather than a per-country error; no per-country numeric corrections made because no as-of date is defined.",
+    "Placeholder fingerprint (population=1000000 + income.p50=875 + costOfLivingIndex=38) found in NU and NF; both corrected/null-filled above."
+  ]
+}

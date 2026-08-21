@@ -1,0 +1,136 @@
+{
+  "batch": "27",
+  "countries": {
+    "TL": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 105,
+        "smokingRate": 39.2
+      },
+      "notes": [
+        "Minimum wage: statutory US$115/month (Min. of Commerce via wage.is, globalwages.top); 115/1.08 = ~EUR 106, batch said 50.",
+        "smokingRate: batch 8% is a template value. WHO age-standardized tobacco use (2020, Wikipedia 'Prevalence of tobacco use') = 39.2% for Timor-Leste.",
+        "Verified OK vs World Bank API (2024): population 1,400,638 (batch 1,418,517, +1.3%), unemployment 1.52, internet 35.0 (2021), LE f69.67/m66.27, adolescent fertility 26.78, laborForceGap f61.5-m72.0=-10.5, HDI 0.634 (HDR 2025).",
+        "female/male smokingRate (8/22) look like template copies (Timor male tobacco use is far higher in national surveys); no sexed source pulled - flagged, not corrected.",
+        "income.p50 90/mo PPP plausible vs GDPpc PPP $4,429/yr (WB 2024)."
+      ]
+    },
+    "TG": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 655.96,
+        "minimumWageEur": 80,
+        "hdi": 0.571
+      },
+      "notes": [
+        "exchangeRate convention in DB is local units per 1 EUR (US=1.08, GB=0.85, JPY=165); XOF is pegged at 655.957/EUR, batch had 1.",
+        "Minimum wage: SMIG XOF 52,500/month (wage.is: CFA 302.88/hr x 173h/mo); 52500/655.957 = EUR 80, batch said 40.",
+        "HDI 0.571 (UNDP HDR 2025, 2023 data; Wikipedia HDI list rank 161), batch said 0.50.",
+        "Verified OK vs World Bank API (2024): population 8,406,558 (batch +2.2%), unemployment 1.95, internet 39.48, LE f63.15/m62.70, adolescent fertility 76.38, HDI-checked, income.p50 95 plausible vs GDPpc PPP $3,815/yr.",
+        "englishSpeakingPercent 39 flagged: Togo is francophone; 39% English competence is implausibly high (no reliable free source to set a value)."
+      ]
+    },
+    "TK": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 2453,
+        "exchangeRate": 1.79,
+        "income": { "p10": 120, "p25": 200, "p50": 325, "p75": 485, "p90": 700 },
+        "indicators.pretax_national": { "p10": 120, "p25": 210, "p50": 340, "p75": 525, "p90": 780 },
+        "indicators.posttax_national": { "p10": 120, "p25": 200, "p50": 325, "p75": 485, "p90": 700 },
+        "indicators.consumption": { "p10": 110, "p25": 165, "p50": 265, "p75": 370, "p90": 500 },
+        "indicators.wealth": { "p10": 250, "p25": 1600, "p50": 8200, "p75": 29000, "p90": 105000 },
+        "indicators.labor_income": { "p10": 70, "p25": 140, "p50": 260, "p75": 410, "p90": 630 },
+        "minimumWageEur": 170,
+        "costOfLivingIndex": 38,
+        "hdi": 0.65
+      },
+      "notes": [
+        "PLACEHOLDER entry (pop=1000000, p50=875, CoL=38). Real population: CIA World Factbook 2024 est. 2,453; UN WPP ~2,500 (Worldometer 2024: 2,506); last census 2016: 1,499. Batch 1,000,000 is ~400x off.",
+        "Income/indicator distributions derived from New Zealand anchor (NZD currency) scaled by GDP-per-capita ratio 0.1125 (Tokelau GDPpc nominal US$6,275, 2017 est., Wikipedia / NZ GDPpc PPP US$55,794, WB 2024). Tokelau is a subsistence economy; WID.world has no data.",
+        "minimumWageEur: no statutory minimum wage exists in Tokelau; 170 = NZ minimum (1500) x 0.1125 per derivation rule.",
+        "costOfLivingIndex 38: no Numbeo data for Tokelau; coincidentally matches the small-Pacific-island comparable already used in DB (TO/WS/SB/VU all 38) - kept at 38.",
+        "HDI 0.65: UNDP does not publish HDI for Tokelau; derived from components (LE ~69, near-universal NZ-curriculum schooling, GNIpc ~US$6.3k -> ~0.65-0.70); batch 0.57 revised to 0.65.",
+        "exchangeRate: NZD per 1 EUR ~1.79 (mid-2026); batch had 1.",
+        "Health/gender/unemployment/internet values are template copies (identical to TT/TC entries); no free source exists for Tokelau - left as-is, flagged as unreliable."
+      ]
+    },
+    "TO": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 2.5,
+        "hdi": 0.769,
+        "smokingRate": 31
+      },
+      "notes": [
+        "exchangeRate: TOP per 1 EUR ~2.5 (TOP/USD ~2.3); batch had 1.",
+        "HDI 0.769 (UNDP HDR 2025, rank 92), batch said 0.70.",
+        "smokingRate: WHO 2020 tobacco use 31% (Wikipedia table), batch 8%.",
+        "Verified OK vs World Bank API (2024): population 104,175, unemployment 1.97, internet 67.44, LE f76.54/m69.50, adolescent fertility 25.07, laborForceGap f42.5-m~59=-16.5.",
+        "Obesity rates (f52/m45.8) plausible for Tonga (among world's highest per NCD-RisC) though possibly understated; income.p50 220 plausible vs GDPpc PPP $8,675 (WB 2025).",
+        "minimumWageEur 80 unverified (no reliable free source found for Tonga statutory minimum)."
+      ]
+    },
+    "TT": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 7.32,
+        "minimumWageEur": 485,
+        "hdi": 0.807
+      },
+      "notes": [
+        "exchangeRate: TTD per 1 EUR ~7.32 (TTD/USD ~6.78 x 1.08); batch had 1.",
+        "Minimum wage: TTD 20.50/hr effective 1 Jan 2024 = TTD 3,553.33/month (official Ministry statement via Trinidad Guardian; trinidadlaw.com); 3553/7.32 = ~EUR 485, batch said 900.",
+        "HDI 0.807 (UNDP HDR 2025, rank 72, 'very high human development'), batch said 0.66 - clearly wrong.",
+        "Despite stale 'REST Countries & World Bank API 2024' dataSource label, core fields verified OK vs World Bank API (2024): population 1,368,333, unemployment 3.32, internet 82.16, LE f76.83/m70.51, adolescent fertility 36.03, contraceptive use 36.5 (2022), laborForceGap 48.1-68.5=-20.4, income.p50 1299 plausible vs GDPpc PPP $36,381.",
+        "Health block (female/male height/weight/BMI/obesity/smoking) is byte-identical to the TC entry - one was copied from the other; sexed smoking 8/22 flagged as template values (no sexed source pulled)."
+      ]
+    },
+    "TN": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 3.35,
+        "hdi": 0.746,
+        "smokingRate": 24.6
+      },
+      "notes": [
+        "exchangeRate: TND per 1 EUR ~3.35; batch had 1.",
+        "HDI 0.746 (UNDP HDR 2025, rank 105), batch said 0.77.",
+        "smokingRate: WHO 2020 tobacco use 24.6% (Wikipedia table), batch 8%. femaleSmokingRate 8 especially implausible (female smoking in Tunisia is ~1-2%).",
+        "Verified OK vs World Bank API (2024): population 12,277,109, unemployment 15.34, internet 76.5, LE f79.33/m74.13, adolescent fertility 4.21, contraceptive use 54 (2023), laborForceGap 26.6-65.3=-38.6.",
+        "minimumWageEur 150 consistent with SMIG ~TND 490/month (~EUR 145); left unchanged. income.p50 340 plausible vs GDPpc PPP $14,542. englishSpeakingPercent 38 flagged as likely too high for a francophone country (rough field, not corrected)."
+      ]
+    },
+    "TM": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 3.8,
+        "internetPenetration": 38
+      },
+      "notes": [
+        "exchangeRate: official rate TMT 3.50/USD -> ~3.80/EUR; batch had 1. (Gray-market rate is far higher; official rate used for consistency.)",
+        "internetPenetration: batch 65% is far too high. ITU/DataReportal: 38.2% (Jan 2023), ~35% (2025); WB has no data. Corrected to 38.",
+        "Verified OK vs World Bank API (2024): population 7,494,498 (batch +1.7%), unemployment 4.02, LE f73.01/m67.00, adolescent fertility 20.15, laborForceGap 38.35-46.28=-7.9, HDI 0.764 (batch 0.76 fine).",
+        "income.p50 240/mo PPP is low relative to GDPpc PPP $21,026 but plausible given Turkmenistan's suppressed household incomes and large informal sector; WID has no Turkmenistan data - kept, noted.",
+        "smokingRate 8 close to WHO 5.5% - left. maleSmokingRate 22 flagged (likely too high, actual ~11-13% per WHO estimates; no sexed source pulled). minimumWageEur 100 unverified."
+      ]
+    },
+    "TC": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 1280,
+        "hdi": 0.83,
+        "mainIndustry": "Tourism"
+      },
+      "notes": [
+        "Population 46,855 verified: matches UN WPP 2025 exactly (Worldometer); Wikipedia/Dept. of Statistics 2022: 47,720. No correction.",
+        "Minimum wage: US$8.00/hour (TC Weekly News via wage.is, still current 2026) = $1,387/month = ~EUR 1,280; batch said 900.",
+        "HDI: UNDP does not rate TCI. 0.66 clearly too low; derived 0.83 from components (LE ~78-80, good schooling, GDPpc nominal US$34,331 2024) and Bahamas/Barbados comparables (0.82/0.81).",
+        "Income/indicator distributions are consistent with a UK-anchor scaling: p50 1330 = UK p50 2800 x 0.475, matching TCI-vs-UK GDP-per-capita ratio (~0.48, TCI nominal $34.3k vs UK PPP $62.8k, TCI price level above US). Left unchanged.",
+        "Health block byte-identical to TT entry (copied); sexed smoking 8/22 flagged as template values. costOfLivingIndex 58 plausible for a high-cost tourism economy (Bahamas=63 in DB) - left.",
+        "mainIndustry was missing; set to 'Tourism' (Wikipedia: 'known primarily for tourism and as an offshore financial centre').",
+        "englishSpeakingPercent and mainIndustry absent from entry; englishSpeakingPercent left out (English is the official language, near-universal - no numeric source)."
+      ]
+    }
+  }
+}

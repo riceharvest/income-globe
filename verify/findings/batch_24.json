@@ -1,0 +1,126 @@
+{
+ "batch": "24",
+ "countries": {
+  "SC": {
+   "status": "errors_found",
+   "corrections": {
+    "exchangeRate": 16.63,
+    "minimumWageEur": 370,
+    "unemploymentRate": 2.6,
+    "smokingRate": 15
+   },
+   "notes": [
+    "exchangeRate convention is local units per 1 EUR (DB: EUR=1, USD=1.08, GBP=0.85, JPY=165); SCR 16.63/EUR (open.er-api.com, Aug 2026), batch had 1.",
+    "minimumWageEur: SCR 6,210.75/month (SCR 40.95/hr, 35h week, since Apr 2025; Seychelles statehouse.gov.sc) = ~EUR 373; batch 200 wrong.",
+    "unemploymentRate: ILO/WB ~2.6% (2025); batch 15% clearly wrong (World Bank country page: 'unemployment remains low at 2.6%').",
+    "smokingRate (combined) 8 equals femaleSmokingRate; F8/M22 implies ~15. Systematic error across whole batch.",
+    "Verified OK: population 122730 vs WB 119773 (2023)/121354 (2024, <5%); life expectancy F80.7/M72.1 = WB 2024; internet 87.8 = WB 2024 (87.82); adolescentBirthRate 53.5 ~ WB (53.5-54.5); HDI 0.802 (HDR) ~ 0.8; income distribution plausible vs WID adult national income; percentile arrays monotonic."
+   ]
+  },
+  "SL": {
+   "status": "errors_found",
+   "corrections": {
+    "exchangeRate": 28.73,
+    "smokingRate": 15
+   },
+   "notes": [
+    "exchangeRate: new leone 28.73/EUR (open.er-api.com); batch 1 wrong.",
+    "smokingRate combined 8 = female value; F8/M22 implies ~15 (systematic batch error).",
+    "Verified OK: currency SLE/Le correct; minimumWageEur 30 ~ Le 800/month since Apr 2023 (wageindicator) = ~EUR 28; unemployment 3.1 ~ WB 3.09 (2023); internet 25.1 = WB; adolescentBirthRate 91 ~ WB 91.2; life expectancy F63.7/M60.2 = WB; HDI 0.458 (HDR 2025) ~ 0.45; population 8819794 vs WB 8460512 (2023) = +4.2%, borderline but within 5%; childMarriagePercent 39 ~ UNICEF ~40%; income percentiles plausible and monotonic."
+   ]
+  },
+  "SG": {
+   "status": "errors_found",
+   "corrections": {
+    "exchangeRate": 1.49,
+    "minimumWageEur": null,
+    "smokingRate": 15
+   },
+   "notes": [
+    "Singapore has NO statutory national minimum wage (sectoral Progressive Wage Model / Local Qualifying Salary only); minimumWageEur 1600 is wrong, set null.",
+    "exchangeRate: SGD 1.49/EUR (open.er-api.com); batch 1 wrong.",
+    "smokingRate combined 8 = female value; F8/M22 implies ~15 (systematic batch error).",
+    "Verified OK: population 6111175 ~ WB 6036860 (2024); life expectancy F85.6/M81.2 = WB; unemployment 2.8 ~ WB 2.74; internet 94.4 = WB; adolescentBirthRate 2.2 = WB; HDI 0.949 ~ 0.94; income p50 2800/mo PPP plausible vs WID Singapore adult income; costOfLivingIndex 95 plausible for Numbeo-style scale."
+   ]
+  },
+  "SX": {
+   "status": "errors_found",
+   "corrections": {
+    "exchangeRate": 2.09,
+    "minimumWageEur": 900,
+    "smokingRate": 15
+   },
+   "notes": [
+    "dataSource 'REST Countries & World Bank API 2024' is the placeholder source label, but this entry does NOT carry the fabricated marker values (pop 43923 not 1M, income.p50 1977 not 875, costOfLivingIndex 87 not 38) — values look individually plausible.",
+    "exchangeRate: ANG (Caribbean guilder, USD-pegged 1.79) 2.09/EUR; batch 1 wrong.",
+    "minimumWageEur: NAf 10.86/hr from Jan 2025 (~NAf 1,882/month) = ~EUR 900; batch 1600 wrong (Apr 2024 rate NAf 10.40 = NAf 1,801/month ~ EUR 860).",
+    "smokingRate combined 8 = female value; F8/M22 implies ~15 (systematic batch error).",
+    "Verified OK: population 43923 vs WB 42749 (2023)/43350 (2024, <5%); life expectancy F79.7/M73.8 = WB; adolescentBirthRate 16.6 = WB. Not verifiable: income percentiles (WID has no Sint Maarten series — plausible vs ~USD 33k GDP pc), unemploymentRate 5.5, internetPenetration 75 (no WB/ITU series)."
+   ]
+  },
+  "SK": {
+   "status": "errors_found",
+   "corrections": {
+    "minimumWageEur": 816,
+    "englishSpeakingPercent": 26,
+    "smokingRate": 23
+   },
+   "notes": [
+    "minimumWageEur 780 matches no statutory year (2023: EUR 645, 2024: EUR 750, 2025: EUR 816); set to current 816.",
+    "englishSpeakingPercent 76 absurd; Special Eurobarometer 386: ~26% of Slovaks can hold a conversation in English.",
+    "smokingRate combined 18 = female value; F18/M28 implies ~23 (systematic batch error).",
+    "exchangeRate 1 correct (EUR entry, convention EUR=1).",
+    "Verified OK: population 5413813 ~ WB; life expectancy F81.7/M75.2 = WB 2024; unemployment 5.4 ~ WB 5.84 (2023)/5.3 (2024); internet 89.8 = WB; adolescentBirthRate 24.5 = WB; HDI 0.861 ~ 0.86; income p50 1250/mo PPP plausible; monotonic."
+   ]
+  },
+  "SI": {
+   "status": "errors_found",
+   "corrections": {
+    "minimumWageEur": 1278,
+    "unemploymentRate": 3.7,
+    "smokingRate": 23
+   },
+   "notes": [
+    "minimumWageEur 940 wrong: statutory minimum is EUR 1,253.90 (2023) / EUR 1,277.72 from Jan 2025 (KPMG/Eurostat); set to current 1278.",
+    "unemploymentRate 3.2 slightly low; WB/ILO 3.7 (2024).",
+    "smokingRate combined 18 = female value; F18/M28 implies ~23 (systematic batch error).",
+    "exchangeRate 1 correct (EUR entry).",
+    "englishSpeakingPercent 74 suspiciously high (likely ~40-60%); no solid source found, left as-is — flag for review.",
+    "Verified OK: population 2130986 ~ WB 2120461 (2023); life expectancy F85/M79.7 = WB 2024; internet 90.8 = WB; adolescentBirthRate 3.4 = WB; HDI 0.926 ~ 0.92; income p50 1700/mo PPP plausible; monotonic."
+   ]
+  },
+  "SB": {
+   "status": "errors_found",
+   "corrections": {
+    "exchangeRate": 9.24,
+    "minimumWageEur": 180,
+    "hdi": 0.584,
+    "smokingRate": 15
+   },
+   "notes": [
+    "hdi 0.70 clearly wrong: UNDP HDI 2023 = 0.584 (HDR 2025; theglobaleconomy.com/UNDP).",
+    "minimumWageEur 80 too low: SI$8.00/hr (non-agricultural, since Aug 2019; wageindicator) ~ SI$1,664/month ~ USD 199 ~ EUR 180 (countryeconomy.com).",
+    "exchangeRate: SBD 9.24/EUR (open.er-api.com); batch 1 wrong.",
+    "costOfLivingIndex 38 matches the placeholder-marker value but the rest of the entry is NOT placeholder data (pop/p50/col pattern absent); Numbeo has no reliable Solomon Islands country index — left as-is, flagged.",
+    "smokingRate combined 8 = female value; F8/M22 implies ~15 (systematic batch error).",
+    "Verified OK: population 838645 vs WB 800005 (2023) = +4.8%, borderline within 5%; life expectancy F72.2/M69.4 = WB; unemployment 1.4 = WB (1.44); internet 29 = WB (29.04); adolescentBirthRate 49.4 = WB; income p50 90/mo PPP plausible vs ~USD 2,700 GDP pc PPP; monotonic."
+   ]
+  },
+  "SO": {
+   "status": "errors_found",
+   "corrections": {
+    "exchangeRate": 667,
+    "minimumWageEur": null,
+    "smokingRate": 15
+   },
+   "notes": [
+    "Somalia has no statutory national minimum wage; minimumWageEur 30 wrong, set null.",
+    "exchangeRate: SOS 667/EUR (open.er-api.com); batch 1 wrong.",
+    "smokingRate combined 8 = female value; F8/M22 implies ~15 (systematic batch error).",
+    "population 19654739 vs WB 19009151 (2024) = +3.4% ok (vs 2023 = +7%, but latest WB year is within 5%).",
+    "hdi 0.36: UNDP does not publish a ranked Somalia HDI; ~0.36 appears in older UNDP estimates — left as-is, flagged.",
+    "Verified OK: unemployment 18.9 = WB (18.95); internet 27.9 = WB; adolescentBirthRate 115.4 = WB; life expectancy F61.6/M56.5 ~ WB 2024 (61.6/56.5); childMarriagePercent 45 ~ UNICEF; income percentiles plausible vs ~USD 1,600 GDP pc PPP; monotonic."
+   ]
+  }
+ }
+}

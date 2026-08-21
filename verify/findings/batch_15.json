@@ -1,0 +1,130 @@
+{
+  "batch": "15",
+  "countries": {
+    "LR": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.51,
+        "femaleObesityRate": 21.9,
+        "obesityRate": 17.6,
+        "exchangeRate": 194
+      },
+      "notes": [
+        "Population 5.73M vs World Bank 2024 5,612,817 (+2%, within tolerance). Unemployment 2.9=WB 2.91; internet 32.2=32.23; adolescentBirthRate 124.7=124.74; life expectancy 63.6/61 matches WB 63.4/60.9.",
+        "laborForceGap -9.2 exactly matches WB modeled female-male participation gap 2025 (72.0-81.2). DB convention confirmed as female-minus-male.",
+        "HDI: batch 0.52 -> 0.51 (UNDP HDR 2025, 2023 data: Liberia 0.510).",
+        "Female obesity 14 -> 21.9 (WHO GHO NCD_BMI_30A age-standardized, F 21.9 / M 13.4); combined obesityRate adjusted to implied ~17.6.",
+        "minimumWageEur 40 kept: L$15/hr unskilled (~EUR 25-30/mo) to L$5,600 civil-servant monthly (~EUR 105); 40 is inside the range.",
+        "exchangeRate 1 is wrong under USD->local convention; ~194 LRD/USD (2024). Note: DB-wide convention inconsistent (US=1.08, GB=0.85 look like units-per-EUR), so rescale if base currency differs."
+      ]
+    },
+    "LY": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.72,
+        "femaleObesityRate": 41.9,
+        "obesityRate": 34,
+        "minimumWageEur": 300,
+        "exchangeRate": 4.9
+      },
+      "notes": [
+        "Population 7.46M vs WB 2024 7,381,023 (+1%). Unemployment 18.8 vs WB 19.09 ok; internet 82 vs 81.95; ABR 5.8=5.83; laborForceGap -29.6 matches WB 2025 (33.0-62.5) exactly.",
+        "HDI: batch 0.82 clearly wrong -> 0.72 (UNDP HDR 2025, 2023 data: Libya 0.721).",
+        "Female obesity 30 -> 41.9 (WHO GHO NCD_BMI_30A: F 41.9 / M 25.3); combined adjusted to ~34.",
+        "Minimum wage: LYD 450/month = ~US$325 = ~EUR 300 (Wikipedia list of minimum wages); batch 150 too low.",
+        "Male smoking 22 flagged: WHO GHO current-tobacco-use male age-standardized estimate ~44.6 for Libya; batch value likely too low but indicator definitions differ, so not corrected.",
+        "exchangeRate 1 wrong; ~4.9 LYD/USD official rate (parallel market higher)."
+      ]
+    },
+    "LI": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": null
+      },
+      "notes": [
+        "Liechtenstein has NO statutory national minimum wage (Wikipedia 'None'; multiple payroll guides confirm wages set by collective agreements). The Jan-2023 CHF 22-25/hr rule applies only to specific secondary-job cases, not a general minimum. Batch 1600 replaced with null.",
+        "Population 41,024 vs WB 2024 40,450 ok. Life expectancy 86.3/82.2 vs WB 86.9/82.4 ok. Internet 98.3=98.26. ABR 1.8=1.8.",
+        "hdi 0.94: UNDP does not compute an HDI for Liechtenstein; value is an external estimate, left unchanged but unverifiable against UNDP.",
+        "costOfLivingIndex 125: Liechtenstein absent from Numbeo; sits above Switzerland (Numbeo ~107-112, DB CH=120). Plausible for Vaduz but unverifiable; left unchanged.",
+        "Income p50 6000/mo PPP plausible for the world's richest country per adult (mean national income far higher); ordering monotonic; kept.",
+        "exchangeRate 1 wrong for CHF; ~0.88 CHF/USD (2024)."
+      ]
+    },
+    "LT": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 1153
+      },
+      "notes": [
+        "All core fields verified: population 2.889M vs WB 2,888,278; unemployment 6.7 vs 6.85; internet 89.2=89.16; ABR 5.5=5.52; LE 81.6/73 vs 81.9/72.9; HDI 0.88 matches 0.879; laborForceGap -11.3 matches WB 2025 (57.7-69.0) exactly.",
+        "Minimum wage: batch 730 was the 2022 rate; EUR 1,153/month since Jan 2025 (Wikipedia list of minimum wages).",
+        "Income distribution monotonic and plausible for Lithuania (p50 1200 PPP-adjusted); kept."
+      ]
+    },
+    "LU": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 2508
+      },
+      "notes": [
+        "Core fields verified: population 686,970 vs WB 2024 677,012 (+1.5%); unemployment 6.3 vs 6.4; internet 99.1 vs 98.76; ABR 4.0=4.0; LE 85.5/81 vs 85.0/81.7; HDI 0.93 matches 0.927; laborForceGap -8 matches WB 2025 (57.5-65.5) exactly.",
+        "Minimum wage: batch 2364 outdated; EUR 2,508.24/month unqualified since Apr 2023 indexation (Wikipedia list of minimum wages)."
+      ]
+    },
+    "MO": {
+      "status": "errors_found",
+      "corrections": {
+        "costOfLivingIndex": 56,
+        "minimumWageEur": 770,
+        "exchangeRate": 8.03
+      },
+      "notes": [
+        "dataSource string is the known placeholder source label, but this entry does NOT carry the placeholder pattern (population 685,900 = WB 2024 687,000; p50 4796; COL 130). Values appear real except those corrected here.",
+        "costOfLivingIndex 130 is absurd (above Switzerland-level): Numbeo Macao city index 55.5 (mid-2025), country index 56.8. Corrected to 56.",
+        "Minimum wage MOP 6,656/month = ~US$833 = ~EUR 770 (Wikipedia list of minimum wages); batch 1600 nearly 2x too high.",
+        "Life expectancy 86.2/80.6 matches WB 86.1/80.4; unemployment 2.3=2.26; internet 89.8=89.83; ABR 0.5=0.48.",
+        "hdi 0.96: UNDP does not publish an HDI for Macau; unverifiable, left unchanged.",
+        "Income distribution monotonic and plausible given Macau's very high GDP per adult (casino-rent-heavy capital income); kept.",
+        "exchangeRate 1 wrong; 8.03 MOP/USD (pegged)."
+      ]
+    },
+    "MG": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.49,
+        "femaleObesityRate": 4.4,
+        "maleObesityRate": 4.7,
+        "obesityRate": 4.5,
+        "exchangeRate": 4500
+      },
+      "notes": [
+        "FABRICATION PATTERN: income.*, indicators.pretax/posttax/consumption/wealth/labor_income are IDENTICAL to Liberia's (LR) entry down to every percentile including wealth p50=1375/p90=42000. Almost certainly copied. Values are monotonic and broadly plausible for one of the world's poorest countries, but WID.world API could not be queried to supply replacements - treat all MG income/wealth percentiles as suspect and re-derive from WID.world.",
+        "Verified fields: population 32.74M vs WB 2024 31,964,956 (+2.4%); unemployment 3=3.05; internet 18.7=18.68; ABR 128.7=128.69; LE 65.6/62.1 vs 65.4/61.9; laborForceGap -5.2 matches WB 2025 (82.9-88.1) exactly.",
+        "contraceptiveUse 49.7 confirmed = WB SP.DYN.CONU.ZS (any method, women 15-49, 2021) - NOT an error despite looking high vs DHS modern-method figures.",
+        "childMarriagePercent 39 consistent with UNICEF Madagascar (~40%).",
+        "HDI 0.47 -> 0.487 (UNDP HDR 2025, 2023 data: Madagascar 0.487).",
+        "Obesity: WHO GHO NCD_BMI_30A F 4.4 / M 4.7; batch F 10 / M 8.8 clearly too high; combined 10 -> ~4.5.",
+        "minimumWageEur 30 CONFIRMED: Ar 133,013/month = ~US$31 (Wikipedia list of minimum wages).",
+        "exchangeRate 1 wrong; ~4,500 MGA/USD (2023-24)."
+      ]
+    },
+    "MW": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.52,
+        "femaleObesityRate": 12.1,
+        "maleObesityRate": 3.3,
+        "exchangeRate": 1735
+      },
+      "notes": [
+        "Verified fields: population 22.22M vs WB 2024 21,655,286 (+2.6%); unemployment 5.1=5.05; internet 19=18.96; ABR 113.3=113.32; LE 70.8/64.3 vs 70.6/64.1; laborForceGap -9.2 matches WB 2025 (58.2-67.3) exactly.",
+        "contraceptiveUse 65.6 confirmed = WB SP.DYN.CONU.ZS (any method, 2020) - sourced, not an error.",
+        "childMarriagePercent 38 consistent with UNICEF Malawi.",
+        "HDI 0.49 -> 0.517 (UNDP HDR 2025, 2023 data: Malawi 0.517).",
+        "Obesity: WHO GHO NCD_BMI_30A F 12.1 / M 3.3; batch F 7 / M 6.2 wrong in opposite directions; combined 7 roughly consistent with implied ~7.7, left unchanged.",
+        "minimumWageEur 30: Wikipedia row (2016, MWK 687.7/day ~US$0.40/day) implies ~EUR 10/mo, but Malawi raised sectoral minimums substantially since (order MWK 50-90k/month ~EUR 25-50); 30 kept as plausible, low confidence.",
+        "exchangeRate 1 wrong; ~1,735 MWK/USD after the Nov-2023 devaluation (was ~1,030 earlier in 2023)."
+      ]
+    }
+  }
+}

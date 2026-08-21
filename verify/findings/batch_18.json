@@ -1,0 +1,135 @@
+{
+  "batch": "18",
+  "countries": {
+    "MA": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 9.25,
+        "unemploymentRate": 13.0,
+        "minimumWageEur": 300,
+        "hdi": 0.71,
+        "femaleSmokingRate": 2,
+        "smokingRate": 12
+      },
+      "notes": [
+        "exchangeRate convention is USD->local units (NL EUR=1, NR AUD=1.62 confirm); MAD was 1 with no basis. Spot ~9.25 (open.er-api.com); 2023 avg ~9.9.",
+        "unemploymentRate 9 -> 13.0: HCP via Reuters, Morocco unemployment 13.0% in 2023, 13.3% in 2024.",
+        "minimumWageEur 100 -> ~300: SMIG Jan 2024 = MAD 3,111.39/month gross (~EUR 290-310).",
+        "hdi 0.69 -> 0.71: UNDP HDR 2025 report (2023 data), Morocco rank 120, HDI 0.710.",
+        "femaleSmokingRate 8 -> ~2 and combined smokingRate 8 -> ~12: female tobacco use in Morocco is ~1-3% per WHO/GHO; the batch-wide template of F=8/M=22 is fabricated for MA (M=22 is plausible).",
+        "population 38,430,770 vs World Bank 2023 37,840,044 (+1.6%) - within tolerance, kept.",
+        "income/indicators percentiles monotonic and plausible vs WID.world PPP levels; left unchanged.",
+        "englishSpeakingPercent 38 looks too high for a Francophone country but no free source to correct; flagged not corrected."
+      ]
+    },
+    "MZ": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 33897354,
+        "exchangeRate": 63.74,
+        "minimumWageEur": 75,
+        "hdi": 0.49
+      },
+      "notes": [
+        "population 35,631,653 is +5.1% above World Bank 2023 figure 33,897,354 - corrected.",
+        "exchangeRate 1 -> 63.74 MZN per USD (open.er-api.com spot; ~60 in 2024).",
+        "minimumWageEur 40 -> ~75: sectoral statutory minimum wages 2023-24 lowest (agriculture) ~MZN 4,700-5,500/month (wageindicator.org) ~EUR 70-80.",
+        "hdi 0.45 -> 0.493: UNDP HDR 2025 report (2023 data), Mozambique 0.493.",
+        "Gender fields plausible (ABR 151.9, child marriage 53%, contraceptive 26.4% match UNICEF/WB ranges); income distribution monotonic and plausibly very low; left unchanged."
+      ]
+    },
+    "MM": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 2101.72
+      },
+      "notes": [
+        "exchangeRate 1 -> 2101.72 MMK per USD official rate (open.er-api.com); post-coup parallel-market rate is far higher (~4,000+), official rate used as the verifiable figure.",
+        "englishSpeakingPercent 56 is implausibly high for Myanmar - flagged, no reliable free source to set a replacement.",
+        "maleSmokingRate 22 matches the batch-wide template value; actual male tobacco use in Myanmar is well above 30% (WHO) - flagged, not corrected without a fetched source.",
+        "Population (54.85M vs WB ~54.58M 2023), HDI 0.6, life expectancy, internet 45% all plausible; minimum wage MMK 124,800/month (~EUR 50-60 at official FX) consistent with entry 60."
+      ]
+    },
+    "NA": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.665,
+        "exchangeRate": 16.12
+      },
+      "notes": [
+        "hdi 0.75 -> 0.665: UNDP HDR 2025 report (2023 data), Namibia rank 136, HDI 0.665 (earlier reports ~0.61-0.72; 0.75 matches none).",
+        "exchangeRate 1 -> 16.12 NAD per USD (open.er-api.com; NAD pegged to ZAR).",
+        "population 3,092,816 vs 2023 census 3,022,401 (+2.3%) - within tolerance, kept.",
+        "unemploymentRate 19.3 consistent with Namibia Statistics Agency (~20% 2023).",
+        "minimumWageEur 110 left: no general statutory minimum wage existed at dataYear 2023 (sectoral minima only, roughly N$1,800-2,000/mo ~ EUR 90-110); national N$18/hour minimum only introduced March 2025.",
+        "Income percentiles monotonic and plausible given extreme inequality (p90/p50 ratio high); left unchanged."
+      ]
+    },
+    "NR": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.7,
+        "femaleObesityRate": 65.6,
+        "maleObesityRate": 61.4,
+        "obesityRate": 63
+      },
+      "notes": [
+        "dataSource 'REST Countries & World Bank API 2024' placeholder family - checked all fields individually rather than trusting them.",
+        "hdi 0.5 -> 0.703: UNDP HDR ranks Nauru 124th with HDI 0.703 (2023 data); entry 0.5 far off.",
+        "Obesity entries (F 26 / M 22.9) are wildly wrong: Global Nutrition Report / World Obesity Federation give 65.6% of adult women and 61.4% of adult men living with obesity - Nauru has among the highest obesity prevalence worldwide. Combined set to ~63.",
+        "femaleBmi/maleBmi (25.9/26.5) also implausible - Nauru mean adult BMI is ~34-35 per NCD-RisC (world's highest); approximate, so noted instead of corrected.",
+        "income.p50=497 does NOT carry the exact p50=875 placeholder signature and is broadly consistent with GDP per capita PPP ~USD 12-14k; left unchanged as unverifiable-but-plausible.",
+        "costOfLivingIndex 25 almost certainly understated (fully import-dependent economy, Numbeo has no coverage) - unverifiable precisely, left with flag.",
+        "Smoking rates (8/22) match the batch template; Nauru tobacco use is very high in reality - flagged, not corrected without a fetched source.",
+        "Population 12,025 vs WB ~11,900-12,000 fine; exchangeRate AUD 1.62 correct under USD->local convention; currency AUD/symbol $ correct."
+      ]
+    },
+    "NP": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 153.24,
+        "minimumWageEur": 100,
+        "hdi": 0.62
+      },
+      "notes": [
+        "exchangeRate 1 -> 153.24 NPR per USD (open.er-api.com; pegged to INR).",
+        "minimumWageEur 55 -> ~100: NPR 17,300/month statutory minimum from 2023 (~USD 113 ~ EUR 97 at data-year rates); raised to NPR 19,550 (~EUR 110) effective 2025.",
+        "hdi 0.67 -> 0.622: UNDP HDR 2025 report, Nepal rank 145, HDI 0.622 (2023 data; 0.605 in 2022). Entry 0.67 too high.",
+        "internetPenetration 46.3 slightly below ITU ~52% (2023) but same ballpark - kept.",
+        "englishSpeakingPercent 64 implausibly high - flagged, no source-based replacement.",
+        "childMarriagePercent 35 close to UNICEF ~37%; adolescentBirthRate 66.5 within WB range; population 29.6M close to 2021 census 29.16M; left unchanged."
+      ]
+    },
+    "NL": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "Verified against multiple sources; no corrections needed.",
+        "population 18.09M consistent with CBS 2024-25 (~18.0-18.1M).",
+        "minimumWageEur 1936 matches 2023 statutory minimum for 21+ (EUR 1,934.40/month).",
+        "exchangeRate EUR=1 consistent with dataset convention (EUR entries priced directly).",
+        "HDI 0.95 (UNDP 0.946-0.955), life expectancy F 83.4/M 80.6, unemployment 3.9% (2023 CBS 3.6-3.9%), costOfLivingIndex 82 (Numbeo NL ~75-80) all check out.",
+        "Income percentiles plausible vs OECD/WID Dutch median adult disposable income ~PPP EUR 3,000+/month; wealth distribution shape plausible."
+      ]
+    },
+    "NC": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 268510,
+        "costOfLivingIndex": 70,
+        "minimumWageEur": 1300,
+        "exchangeRate": 102.15
+      },
+      "notes": [
+        "PLACEHOLDER ENTRY: dataSource 'REST Countries & World Bank API 2024' with the exact signature income.p50=875 + costOfLivingIndex=38 defined in AGENT_BRIEF.md - those values are fabricated.",
+        "population 295,333 -> 268,510: ISEE-NC estimate 2023 (peak 271,285 in 2019, falling since); April 2025 census ~264,600. UN-sourced figures (~292-296k) are outdated by ~10%.",
+        "costOfLivingIndex 38 -> ~70: Numbeo shows New Caledonia prices at France level or slightly above ('Prices in France are 2.1% lower than in New Caledonia'), i.e. ~70 on the NYC=100 scale - nowhere near 38.",
+        "minimumWageEur 450 -> ~1300: New Caledonia SMG ~157,000 XPF/month in 2024 ~ EUR 1,315 at the fixed peg (119.33 XPF/EUR); ILO notes SMG rose progressively toward 150,000+ XPF (~EUR 1,260+) already years ago.",
+        "exchangeRate 1 -> 102.15 XPF per USD (XPF pegged to EUR at 119.33/EUR).",
+        "income/indicators percentiles retain the placeholder signature but NO free authoritative distribution source exists for New Caledonia (not covered by World Bank poverty data or WID.world) - left unchanged deliberately rather than inventing replacements; needs a proper source before publication.",
+        "hdi 0.57 not from UNDP (territory unranked); independent estimates put NC around 0.80 (very high) - flagged, no correction without a solid source.",
+        "unemploymentRate 11.2 plausible (ISEE ~11-12%); life expectancy and internetPenetration plausible."
+      ]
+    }
+  }
+}

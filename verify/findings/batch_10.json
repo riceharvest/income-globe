@@ -1,0 +1,209 @@
+{
+  "batch": "10",
+  "countries": {
+    "GH": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 15.4,
+        "minimumWageEur": 35
+      },
+      "notes": [
+        "WID-sourced row, largely accurate: population 35,064,272 = WB SP.POP.TOTL 2025 exact; unemployment 3 = 2.98; internet 72.2 = 72.18; adolescentBirthRate 57.4 = 57.45; LE F/M 68.2/63.3 = 68.16/63.31; laborForceGap -6.6 = 55.27-61.84; contraceptiveUse 36.3 = WB SP.DYN.CONU.ZS 2022 - all match.",
+        "hdi 0.63 confirmed: UNDP HDR 2025 Ghana = 0.628 (rank 143/193).",
+        "exchangeRate 1 wrong: DB convention is local units per 1 EUR (GB 0.85, US 1.08, INR 90, BRL 6 confirm); EUR->GHS ~15.4 (approx, cedi has been volatile).",
+        "minimumWageEur 55 too high: 2025 statutory daily minimum GHS 21.15 ~ GHS 571/month ~ EUR 35; set 35.",
+        "Income percentiles plausible vs GDP pc PPP $8,610/yr (WB 2025); monotonic throughout; not churned.",
+        "Sexed smoking 8/22 and combined smokingRate 8 match the known placeholder template pair (identical in GT/GL/GD/GP/GU); actual Ghana smoking is ~<2% women / ~8% men (WHO). Flagged; left uncorrected without a fetched source.",
+        "obesityRate 18 vs sexed 18/15.8 slightly inconsistent but plausible; left."
+      ]
+    },
+    "GI": {
+      "status": "errors_found",
+      "corrections": {
+        "income": {"p10": 1160, "p25": 1930, "p50": 3080, "p75": 4510, "p90": 6490},
+        "indicators.pretax_national": {"p10": 1175, "p25": 1990, "p50": 3240, "p75": 4900, "p90": 7290},
+        "indicators.posttax_national": {"p10": 1160, "p25": 1930, "p50": 3080, "p75": 4510, "p90": 6490},
+        "indicators.consumption": {"p10": 1060, "p25": 1570, "p50": 2510, "p75": 3450, "p90": 4640},
+        "indicators.wealth": {"p10": 2310, "p25": 15400, "p50": 77000, "p75": 271000, "p90": 973000},
+        "indicators.labor_income": {"p10": 690, "p25": 1350, "p50": 2460, "p75": 3830, "p90": 5840},
+        "costOfLivingIndex": 90,
+        "hdi": 0.961,
+        "unemploymentRate": 1,
+        "minimumWageEur": 1920
+      },
+      "notes": [
+        "CONFIRMED PLACEHOLDER (dataSource 'REST Countries & World Bank API 2024', income.p50=875, CoL=38, hdi=0.57 template).",
+        "population 40,126 VERIFIED CORRECT: equals UN WPP 2025 estimate for Gibraltar (Olive Press/UN, Dec 2024); 2021 census 34,003 - kept.",
+        "Income/indicator distributions DERIVED from DB's GBR (United Kingdom) distribution scaled by ratio 1.10: Gibraltar GDP pc ~GBP 85,600 nominal (Wikipedia infobox, 2023) is inflated by ~15k Spanish cross-border commuters; median-earnings comparison puts resident adult incomes near UK levels, so a modest 1.10 uplift on the UK anchor was used. Monotonic throughout.",
+        "hdi 0.57 -> 0.961: Wikipedia infobox HDI (2018) 0.961, 'very high, 3rd' - UNDP does not rank territories but this is the standard cited estimate.",
+        "costOfLivingIndex 38 -> 90 (derived): Numbeo has no Gibraltar listing; prices at/above UK (DB GB=85) given import dependence and housing scarcity.",
+        "minimumWageEur 450 -> 1920: statutory minimum wage GBP 9.50/hour from 1 July 2025 (Conditions of Employment (Standard Minimum Wage) (Amendment) Order 2025; PwC Tax Summaries) x ~173h = GBP 1,644/mo ~ EUR 1,920.",
+        "unemploymentRate 5.5 -> 1: Gibraltar has among the world's lowest unemployment (Wikipedia; Gibraltar govt reports ~1%).",
+        "internetPenetration 75 left (template value, no free Gibraltar-specific source found - flagged); gender.* already null (correct); health metrics plausible European-level values, left unchanged.",
+        "Currency GIP/GBP at par with symbol GBP correct; exchangeRate 1 consistent with GBP-at-par convention."
+      ]
+    },
+    "GR": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "All WB-derived fields verified: population 10,413,962 = WB 2025 exact; unemployment 8.5 = 8.54; internet 86.3 = 86.27; adolescentBirthRate 6.8 = 6.85; LE F/M 84.4/79.4 = WB 2024 exact; laborForceGap -15.2 = 44.67-59.86.",
+        "hdi 0.89 plausible (HDR 2025 Greece ~0.89-0.91 depending on vintage) - not churned.",
+        "minimumWageEur 832 correct: Greek national minimum wage EUR 830/month (April 2025).",
+        "Income percentiles plausible vs GDP pc PPP $45,264 (WB 2025) and WID Greece adult distribution; monotonic throughout.",
+        "englishSpeakingPercent 74 looks very high for Greece (EF EPI rates it moderate) - flagged, not corrected (rough field).",
+        "childMarriagePercent 14 slightly above UNICEF's ~11% for Greece - within tolerance of the estimate, left."
+      ]
+    },
+    "GL": {
+      "status": "errors_found",
+      "corrections": {
+        "income": {"p10": 1320, "p25": 2160, "p50": 3290, "p75": 4510, "p90": 6110},
+        "indicators.pretax_national": {"p10": 1340, "p25": 2220, "p50": 3430, "p75": 4830, "p90": 6710},
+        "indicators.posttax_national": {"p10": 1320, "p25": 2160, "p50": 3290, "p75": 4510, "p90": 6110},
+        "indicators.consumption": {"p10": 1210, "p25": 1780, "p50": 2700, "p75": 3480, "p90": 4410},
+        "indicators.wealth": {"p10": 2630, "p25": 17300, "p50": 82000, "p75": 271000, "p90": 916000},
+        "indicators.labor_income": {"p10": 790, "p25": 1510, "p50": 2630, "p75": 3840, "p90": 5500},
+        "exchangeRate": 7.46,
+        "hdi": 0.786,
+        "unemploymentRate": 2.9,
+        "femaleObesityRate": null,
+        "maleObesityRate": null,
+        "obesityRate": null,
+        "femaleSmokingRate": null,
+        "maleSmokingRate": null,
+        "smokingRate": null
+      },
+      "notes": [
+        "PARTIAL PLACEHOLDER: dataSource is the fabricated-template source and the whole income/indicator block is the p50=875 template copy, though population and costOfLivingIndex were already real.",
+        "population 56,831 plausible (Statistics Greenland ~56,700 in 2025) - kept.",
+        "Income/indicator distributions DERIVED from DB's DNK (Denmark) distribution scaled by GDP-per-capita-PPP ratio 0.94 (Greenland $78,840 PPP vs Denmark $83,218, Wikipedia Economy of Greenland / WB 2023-2025). Monotonic throughout.",
+        "hdi 0.94 implausible (would beat Denmark's 0.96 anchor at Greenland's health levels); corrected to 0.786 - the standard cited estimate (Wikipedia Economy of Greenland infobox, 2010, latest available; UNDP does not rank Greenland).",
+        "unemploymentRate 5.5 -> 2.9 (2023 est., CIA Factbook/Wikipedia Economy of Greenland).",
+        "exchangeRate 1 -> 7.46 (DKK pegged to EUR; note DB's own DK row also carries the wrong 1 - outside this batch).",
+        "minimumWageEur 1600 kept: Greenland has no statutory minimum wage (Danish-model collective agreements set floors at Danish levels, same as DB DK row).",
+        "costOfLivingIndex 121 kept (non-template; Nuuk is among the most expensive places in the Americas - plausible).",
+        "Life expectancy F72.2/M68.4 and heights plausible for Greenland (Statistics Greenland LE ~72/68) - kept. Sexed/combined obesity and smoking (22/19.4, 8/22) are the fabricated template pair; actual Greenland adult smoking ~40-50% and obesity far above template - no reliable free sexed source found, so nulled per last-resort rule.",
+        "internetPenetration 75 left (template; no verified free source) - flagged. gender.* already null (correct)."
+      ]
+    },
+    "GD": {
+      "status": "errors_found",
+      "corrections": {
+        "income": {"p10": 340, "p25": 560, "p50": 900, "p75": 1310, "p90": 1890},
+        "indicators.pretax_national": {"p10": 340, "p25": 580, "p50": 940, "p75": 1430, "p90": 2120},
+        "indicators.posttax_national": {"p10": 340, "p25": 560, "p50": 900, "p75": 1310, "p90": 1890},
+        "indicators.consumption": {"p10": 310, "p25": 460, "p50": 730, "p75": 1000, "p90": 1350},
+        "indicators.wealth": {"p10": 670, "p25": 4480, "p50": 22400, "p75": 78700, "p90": 283000},
+        "indicators.labor_income": {"p10": 200, "p25": 390, "p50": 720, "p75": 1120, "p90": 1700},
+        "exchangeRate": 2.92,
+        "costOfLivingIndex": 55,
+        "hdi": 0.79,
+        "unemploymentRate": 3.8,
+        "obesityRate": 30.2,
+        "femaleObesityRate": null,
+        "maleObesityRate": null,
+        "femaleSmokingRate": null,
+        "maleSmokingRate": null,
+        "smokingRate": null
+      },
+      "notes": [
+        "PARTIAL PLACEHOLDER: scalar fields are real (population 117,303 = WB 2025 exact; internet 70.2 = 70.16; adolescentBirthRate 28.6 = 28.62; LE F/M 78.5/72.5 = 78.5/72.52) but the income/indicator block is the p50=875/CoL=38 template copy.",
+        "Income/indicator distributions DERIVED from DB's GBR (United Kingdom) distribution scaled by GDP-per-capita-PPP ratio 0.32 (Grenada $20,430 PPP vs UK $64,606, IMF/WB 2024-2025). Monotonic throughout; p50 ~$900 PPP/mo plausible for Grenada's service/tourism economy.",
+        "hdi 0.55 -> 0.793: UNDP HDR value (2022, rank 73/193; countryeconomy/HDR).",
+        "unemploymentRate 5.5 -> 3.8: ILOSTAT Grenada Labour Force Survey 2024 Q1 national figure (via countryeconomy); some secondary reports cite ~8.5% - value flagged as uncertain.",
+        "minimumWageEur 450 CONFIRMED plausible: Grenada NMW ~US$444/month (2023, countryeconomy) ~ EUR 410 - kept.",
+        "costOfLivingIndex 33 -> 55 (derived): import-dependent Caribbean economy between Jamaica (~40) and Bahamas (~63); anchor UK 85 x 0.65.",
+        "exchangeRate 1 -> 2.92: XCD pegged at 2.70/USD = ~2.92/EUR (DB convention local-per-EUR).",
+        "obesityRate 22 (template) -> 30.2: WHO obesity prevalence BMI>=30, 2022 (Destatis country profile). Sexed obesity/smoking are template copies (22/19.4, 8/22) - nulled, no free sexed source found.",
+        "gender.* already null (correct); englishSpeakingPercent/mainIndustry absent from entry - noted, not added."
+      ]
+    },
+    "GP": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 383187,
+        "income": {"p10": 600, "p25": 1020, "p50": 1620, "p75": 2340, "p90": 3300},
+        "indicators.pretax_national": {"p10": 610, "p25": 1050, "p50": 1700, "p75": 2530, "p90": 3670},
+        "indicators.posttax_national": {"p10": 600, "p25": 1020, "p50": 1620, "p75": 2340, "p90": 3300},
+        "indicators.consumption": {"p10": 550, "p25": 835, "p50": 1330, "p75": 1800, "p90": 2370},
+        "indicators.wealth": {"p10": 1200, "p25": 8160, "p50": 40500, "p75": 140000, "p90": 495000},
+        "indicators.labor_income": {"p10": 360, "p25": 710, "p50": 1300, "p75": 1990, "p90": 2970},
+        "costOfLivingIndex": 70,
+        "hdi": 0.83,
+        "unemploymentRate": 17.2,
+        "minimumWageEur": 1802,
+        "femaleLifeExpectancy": 85,
+        "maleLifeExpectancy": 78,
+        "femaleObesityRate": null,
+        "maleObesityRate": null,
+        "obesityRate": null,
+        "femaleSmokingRate": null,
+        "maleSmokingRate": null,
+        "smokingRate": null
+      },
+      "notes": [
+        "CONFIRMED FULL PLACEHOLDER: population exactly 1,000,000, income.p50=875, CoL=38, hdi=0.57 - all fabricated.",
+        "population 1,000,000 -> 383,187: INSEE population estimates for Guadeloupe, 2025 provisional (series 001760176; 2022 = 383,569).",
+        "Income/indicator distributions DERIVED from DB's FRA (France) distribution scaled by GDP-per-capita ratio 0.60 (Guadeloupe nominal GDP pc ~EUR 25k vs France ~EUR 41k; consistent with the 0.6 used for Martinique in batch 16). Monotonic throughout.",
+        "unemploymentRate 5.5 -> 17.2: INSEE ILO unemployment rate, CVS Q4 2025 (was 19% in the 2023 emploi survey).",
+        "minimumWageEur 450 -> 1802: French SMIC applies fully in Guadeloupe (EUR 1,801.80/month gross, Nov 2024 rate - same as DB FR entry).",
+        "hdi 0.57 -> 0.83 (derived estimate): UNDP does not rank territories; Wikipedia 'List of French regions by HDI' puts Guadeloupe well above 0.80, below metropolitan France.",
+        "costOfLivingIndex 38 -> 70 (derived): prices track metropolitan France (DB 78) with local variation; consistent with Martinique's 65.",
+        "femaleLifeExpectancy 78.5 / maleLifeExpectancy 72.8 were copied from the Grenada template row; replaced with INSEE-approximate Guadeloupe values (~85 F / ~78 M).",
+        "Sexed/combined obesity and smoking (22/19.4, 8/22) are the fabricated template pair - nulled, no reliable free sexed source for the territory.",
+        "gender.* already null (correct); internetPenetration 75 left (template, unverified - flagged); currency EUR/exchangeRate 1 correct; ISO fields correct."
+      ]
+    },
+    "GU": {
+      "status": "errors_found",
+      "corrections": {
+        "income": {"p10": 550, "p25": 1010, "p50": 1700, "p75": 2670, "p90": 4000},
+        "indicators.pretax_national": {"p10": 560, "p25": 1050, "p50": 1800, "p75": 2930, "p90": 4550},
+        "indicators.posttax_national": {"p10": 550, "p25": 1010, "p50": 1700, "p75": 2670, "p90": 4000},
+        "indicators.consumption": {"p10": 500, "p25": 820, "p50": 1380, "p75": 2030, "p90": 2850},
+        "indicators.wealth": {"p10": 1100, "p25": 8100, "p50": 42500, "p75": 160000, "p90": 600000},
+        "indicators.labor_income": {"p10": 330, "p25": 710, "p50": 1360, "p75": 2270, "p90": 3600},
+        "costOfLivingIndex": 80,
+        "hdi": 0.86,
+        "internetPenetration": 80.5,
+        "minimumWageEur": 1480,
+        "femaleObesityRate": null,
+        "maleObesityRate": null,
+        "obesityRate": null,
+        "femaleSmokingRate": null,
+        "maleSmokingRate": null,
+        "smokingRate": null
+      },
+      "notes": [
+        "PARTIAL PLACEHOLDER: scalar fields real (population 168,999 = WB 2025 exact; unemployment 5.6 = 5.57; adolescentBirthRate 31.5 = 31.51; LE F/M 81.6/73.7 = 81.59/73.66; laborForceGap -11.4 = 56.52-67.95) but the income/indicator block is the p50=875/CoL=38 template copy.",
+        "Income/indicator distributions DERIVED from DB's USA distribution scaled by GDP-per-capita ratio 0.46 (Guam $41,833 nominal vs US $90,300 PPP, WB 2022-2025; Guam price level near US average so PPP~nominal). Cross-check: ACS median household income Guam ~$58k supports p50 ~$1,700/mo per adult posttax. Monotonic throughout.",
+        "minimumWageEur 450 -> 1480: Guam territorial minimum wage $9.25/hour (Public Law 36-1, 2021; still current Jan 2025 per FRED/BLS) x 173h = $1,600/mo ~ EUR 1,480.",
+        "internetPenetration 75 (template) -> 80.5: DataReportal Digital 2025 Guam (136k users, Jan 2025).",
+        "hdi 0.57 -> 0.86 (derived estimate): UNDP does not rank Guam; components (LE ~77.6 avg, high schooling, GDP pc $41.8k) sit near 'very high' tier.",
+        "costOfLivingIndex 38 -> 80 (derived): Numbeo has no Guam entry; prices well above US average (Hawaii-tier imports, DB US=100).",
+        "exchangeRate 1.08 kept - matches DB's US row convention (local-per-EUR, USD entry).",
+        "Sexed/combined obesity and smoking (22/19.4, 8/22) are the fabricated template pair; Guam obesity is actually among the highest in the US (~30%+) - nulled, no free sexed source found. Life expectancy/heights plausible, kept.",
+        "gender.childMarriagePercent/contraceptiveUse already null (correct)."
+      ]
+    },
+    "GT": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 8.4,
+        "minimumWageEur": 552,
+        "hdi": 0.66
+      },
+      "notes": [
+        "WID-sourced row, scalar fields accurate: population 18,687,881 = WB 2025 exact; unemployment 2.6 exact; internet 60.2 exact; adolescentBirthRate 67.9 = 67.86; LE F/M 75/70.4 = 75.04/70.44; laborForceGap -43.4 = 38.32-81.71 - all match.",
+        "hdi 0.73 -> 0.662: UNDP HDR 2025 Guatemala = 0.662 (rank 137/193; BTI 2026 country report citing HDR 2025).",
+        "minimumWageEur 200 far too low: 2026 statutory non-agricultural CE1 minimum Q4,252.28/month incl Q250 bonus (Acuerdo Gubernativo 256-2025, effective 1 Jan 2026; 2025 was Q3,922) ~ EUR 552 at ~7.7 GTQ/EUR; set 552.",
+        "exchangeRate 1 -> 8.4: EUR->GTQ (DB convention local-per-EUR; USDGTQ ~7.7 x 1.08).",
+        "Income percentiles plausible vs GDP pc PPP $15,197 (WB 2025): median $220/mo PPP reflects Guatemala's extreme inequality (WID median far below mean); monotonic throughout.",
+        "contraceptiveUse 60.6 plausible (WHO/UN any-method estimates ~60%); childMarriagePercent 30 consistent with UNICEF Guatemala (~30%).",
+        "Sexed smoking 8/22 matches the placeholder template pair seen across the batch; actual Guatemala smoking ~2-3% women / ~15-17% men (WHO) - flagged, left uncorrected without a fetched source.",
+        "englishSpeakingPercent 64 looks very high for Guatemala - flagged, not corrected (rough field)."
+      ]
+    }
+  }
+}

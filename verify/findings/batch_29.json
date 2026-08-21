@@ -1,0 +1,181 @@
+{
+ "batch": "29",
+ "countries": {
+  "VI": {
+   "status": "errors_found",
+   "corrections": {
+    "population": 84905,
+    "exchangeRate": 1,
+    "obesityRate": 35,
+    "femaleObesityRate": null,
+    "maleObesityRate": null
+   },
+   "notes": [
+    "Population: entry said 103,792; US Census Bureau estimates ~84,905 (2024), 2020 census 87,146 - off by >18%. World Bank does not report USVI.",
+    "exchangeRate was 1.08 but currency is USD, so units-per-USD must be 1.",
+    "Health block (162cm/66kg/22%/8% female, 174/78/19.4/22 male) is byte-identical to the WF placeholder template - fabricated. CDC BRFSS puts USVI adult obesity at ~35%, far above the stated 22%; no reliable sexed split found so sexed obesity nulled and combined set to 35 (CDC Adult Obesity Prevalence Maps).",
+    "Income distribution not covered by WID.world or World Bank; values are unsourced estimates but not obviously implausible for a high-income US territory - left as-is with this caveat.",
+    "unemploymentRate 11.4 and life expectancy are roughly consistent with published USVI figures; left unchanged."
+   ]
+  },
+  "UY": {
+   "status": "errors_found",
+   "corrections": {
+    "hdi": 0.862,
+    "minimumWageEur": 525,
+    "englishSpeakingPercent": 5
+   },
+   "notes": [
+    "HDI: UNDP 2023 value is 0.862 (rank 48); entry had 0.73 - a large error.",
+    "Minimum wage: Salario Minimo Nacional Jan-2024 = UYU 22,268/month (~USD 571) per Wikipedia/gub.uy, i.e. ~EUR 525; entry said EUR 350.",
+    "englishSpeakingPercent 68 is absurd for Uruguay (no widespread English competence); rough estimate ~5.",
+    "childMarriagePercent 25 is plausible (Uruguay among highest in LatAm per Girls Not Brides/MICS-type surveys); left unchanged. Population, income percentiles, unemployment ~7.5 all plausible."
+   ]
+  },
+  "UZ": {
+   "status": "errors_found",
+   "corrections": {
+    "englishSpeakingPercent": 10
+   },
+   "notes": [
+    "HDI 0.74 confirmed correct (UNDP 2023: 0.740, rank 107).",
+    "englishSpeakingPercent 55 is far too high; rough estimate ~10 (Russian, not English, is the main second language).",
+    "Population 37.05M consistent with official/WB figures; income percentiles plausible for WID-style PPP adult distribution; other fields plausible - left unchanged."
+   ]
+  },
+  "VU": {
+   "status": "errors_found",
+   "corrections": {
+    "hdi": 0.621
+   },
+   "notes": [
+    "HDI: UNDP 2023 value is 0.621 (rank 146); entry had 0.70.",
+    "Population 335k and internetPenetration ~30% match ITU/census-era figures. Income percentiles plausible for a low-income Pacific economy. Note costOfLivingIndex=38 coincides with the placeholder value but other fields are genuine; Numbeo has no Vanuatu coverage so left as-is."
+   ]
+  },
+  "VA": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.childMarriagePercent": null,
+    "minimumWageEur": null,
+    "unemploymentRate": null,
+    "internetPenetration": null,
+    "femaleHeightCm": null,
+    "femaleWeightKg": null,
+    "femaleBmi": null,
+    "femaleObesityRate": null,
+    "femaleSmokingRate": null,
+    "femaleLifeExpectancy": null,
+    "maleHeightCm": null,
+    "maleWeightKg": null,
+    "maleBmi": null,
+    "maleObesityRate": null,
+    "maleSmokingRate": null,
+    "maleLifeExpectancy": null,
+    "obesityRate": null,
+    "smokingRate": null,
+    "hdi": null
+   },
+   "notes": [
+    "Microstate with invented data: WHO/NCD-RisC publish no Vatican anthropometric/smoking/life-expectancy data; UNDP does not rank Vatican City in the HDI; no statutory minimum wage exists; no ITU internet statistic and no meaningful unemployment series exist. All such values nulled rather than kept as fabrications.",
+    "Population ~800 matches official figures. Income distribution has no source (500 residents) but is kept as an Italy-like estimate; flagged here as unsourced.",
+    "gender.adolescentBirthRate and contraceptiveUse were already null - appropriate."
+   ]
+  },
+  "VE": {
+   "status": "errors_found",
+   "corrections": {
+    "hdi": 0.709,
+    "englishSpeakingPercent": 5
+   },
+   "notes": [
+    "HDI: UNDP 2023 value is 0.709 (rank 121); entry had 0.73.",
+    "englishSpeakingPercent 65 is absurd for Venezuela; rough estimate ~5.",
+    "Population 28.5M consistent with World Bank 2023 (~28.4M). Currency VES/Bs.S. correct. Minimum wage officially ~130 VES/month (near worthless post-hyperinflation); EUR 60 sits within the range of effective dollarized earnings - left as-is with caveat. Income percentiles plausible given dollarization."
+   ]
+  },
+  "VN": {
+   "status": "errors_found",
+   "corrections": {
+    "hdi": 0.766,
+    "maleSmokingRate": 45,
+    "femaleSmokingRate": 2,
+    "smokingRate": 23,
+    "internetPenetration": 79,
+    "englishSpeakingPercent": 10
+   },
+   "notes": [
+    "HDI: UNDP 2023 value is 0.766 (rank 93, High human development); entry had 0.69.",
+    "Smoking: WHO/GATStR - ~45% of men smoke vs ~1-2% of women; entry had male 22 / female 8 / combined 8, badly wrong on all three. Corrected male 45, female 2, combined ~23.",
+    "Internet: World Bank/ITU 2023 ~79% of individuals using the internet; entry 84.2 slightly high.",
+    "englishSpeakingPercent 63 absurd; rough estimate ~10 (EF EPI moderate score but small tested share).",
+    "Population 101.6M and income percentiles (p50 ~280 PPP/month) plausible; unemployment 1.5% close to ILO ~2% - left unchanged."
+   ]
+  },
+  "WF": {
+   "status": "errors_found",
+   "corrections": {
+    "population": 11151,
+    "exchangeRate": 110,
+    "income.p10": null,
+    "income.p25": null,
+    "income.p50": null,
+    "income.p75": null,
+    "income.p90": null,
+    "indicators.pretax_national.p10": null,
+    "indicators.pretax_national.p25": null,
+    "indicators.pretax_national.p50": null,
+    "indicators.pretax_national.p75": null,
+    "indicators.pretax_national.p90": null,
+    "indicators.posttax_national.p10": null,
+    "indicators.posttax_national.p25": null,
+    "indicators.posttax_national.p50": null,
+    "indicators.posttax_national.p75": null,
+    "indicators.posttax_national.p90": null,
+    "indicators.consumption.p10": null,
+    "indicators.consumption.p25": null,
+    "indicators.consumption.p50": null,
+    "indicators.consumption.p75": null,
+    "indicators.consumption.p90": null,
+    "indicators.wealth.p10": null,
+    "indicators.wealth.p25": null,
+    "indicators.wealth.p50": null,
+    "indicators.wealth.p75": null,
+    "indicators.wealth.p90": null,
+    "indicators.labor_income.p10": null,
+    "indicators.labor_income.p25": null,
+    "indicators.labor_income.p50": null,
+    "indicators.labor_income.p75": null,
+    "indicators.labor_income.p90": null,
+    "costOfLivingIndex": null,
+    "minimumWageEur": 1802,
+    "internetPenetration": null,
+    "unemploymentRate": null,
+    "femaleHeightCm": null,
+    "femaleWeightKg": null,
+    "femaleBmi": null,
+    "femaleObesityRate": null,
+    "femaleSmokingRate": null,
+    "femaleLifeExpectancy": null,
+    "maleHeightCm": null,
+    "maleWeightKg": null,
+    "maleBmi": null,
+    "maleObesityRate": null,
+    "maleSmokingRate": null,
+    "maleLifeExpectancy": null,
+    "obesityRate": null,
+    "smokingRate": null
+   },
+   "notes": [
+    "Confirmed PLACEHOLDER entry: population exactly 1000000, income.p50 exactly 875, costOfLivingIndex 38, dataSource 'REST Countries & World Bank API 2024'.",
+    "Population: INSEE 2023 census = 11,151 (down 25% since 2003).",
+    "Exchange rate: XPF is pegged at 119.33 XPF/EUR, giving ~110 XPF per USD; entry had 1.",
+    "No income/wealth distribution exists for Wallis and Futuna in WID.world, World Bank, or national sources - all income/indicator percentile arrays nulled per brief rule against inventing numbers. Real-world context: economy dominated by French public-sector transfers and subsistence agriculture; median incomes would be far below the fabricated p50=875.",
+    "Minimum wage: as a French overseas territory the SMIC applies (~EUR 1,802 gross/month in 2024), replacing the fabricated 450.",
+    "Health block byte-identical to the VI placeholder template - fabricated; nulled (no WHO/NCD-RisC coverage; literature reports extreme obesity levels but no usable sexed averages).",
+    "internetPenetration 75, unemploymentRate 5.5, costOfLivingIndex 38 have no source coverage - nulled.",
+    "hdi 0.57 retained: it is an unofficial estimate (UNDP does not rank WF) but is the commonly cited figure and not obviously wrong."
+   ]
+  }
+ }
+}

@@ -1,0 +1,153 @@
+{
+  "batch": "14",
+  "countries": {
+    "KI": {
+      "status": "errors_found",
+      "corrections": {
+        "dataSource": "Derived (placeholder-pattern source string; original entry fabricated)",
+        "income.p10": 15,
+        "income.p25": 31,
+        "income.p50": 64,
+        "income.p75": 132,
+        "income.p90": 251,
+        "indicators.pretax_national.p10": 15,
+        "indicators.pretax_national.p25": 32,
+        "indicators.pretax_national.p50": 67,
+        "indicators.pretax_national.p75": 144,
+        "indicators.pretax_national.p90": 283,
+        "indicators.posttax_national.p10": 15,
+        "indicators.posttax_national.p25": 31,
+        "indicators.posttax_national.p50": 64,
+        "indicators.posttax_national.p75": 132,
+        "indicators.posttax_national.p90": 251,
+        "indicators.consumption.p10": 13,
+        "indicators.consumption.p25": 25,
+        "indicators.consumption.p50": 52,
+        "indicators.consumption.p75": 101,
+        "indicators.consumption.p90": 179,
+        "indicators.wealth.p10": 30,
+        "indicators.wealth.p25": 246,
+        "indicators.wealth.p50": 1595,
+        "indicators.wealth.p75": 7929,
+        "indicators.wealth.p90": 37595,
+        "indicators.labor_income.p10": 9,
+        "indicators.labor_income.p25": 22,
+        "indicators.labor_income.p50": 51,
+        "indicators.labor_income.p75": 112,
+        "indicators.labor_income.p90": 226,
+        "exchangeRate": 1.41,
+        "hdi": 0.644,
+        "internetPenetration": 54.4,
+        "minimumWageEur": 165
+      },
+      "notes": [
+        "Entry carried placeholder dataSource 'REST Countries & World Bank API 2024' - income/indicator distribution treated as fabricated per brief.",
+        "derived: Fiji anchor distribution scaled by GDP-per-capita-PPP ratio (Kiribati $3,921 / Fiji $17,209, IMF via Wikipedia) = 0.228",
+        "Original indicators.consumption had p10 (104) > p25 (102): inverted ordering, confirming fabrication.",
+        "Population 136488 plausible (WB ~133k-136k recent); kept.",
+        "Currency AUD/$ correct; exchangeRate corrected 1.62 -> 1.41 AUD per USD (open.er-api.com, Aug 2026).",
+        "HDI 0.45 -> 0.644 (UNDP HDR 2025, data year 2023; Wikipedia HDI list rank 140).",
+        "Internet penetration 89.4% -> 54.4% (DataReportal Digital 2024 Kiribati; ITU-consistent ~50%+; ts2.tech confirms ~55% online).",
+        "Minimum wage: AUD 270/month statutory (countryeconomy.com NMW 2024) ~= EUR 165; replaced fabricated 80.",
+        "NOT corrected for lack of fetched source: health metrics look Pacific-atypical (Kiribati obesity is among world's highest; NCD-RisC/STEPS suggest adult obesity ~40-50%, far above stored 19-22%) and gender.adolescentBirthRate 44 likely understated (WB SP.ADO.TFRT estimates ~80+). Flagged for follow-up."
+      ]
+    },
+    "XK": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 1602515,
+        "minimumWageEur": 264,
+        "englishSpeakingPercent": 30
+      },
+      "notes": [
+        "Population 1.8M was the 2011-era figure; Kosovo Agency of Statistics 2024 census final count 1,602,515 (-11%).",
+        "Minimum wage raised to EUR 264 gross in 2024 (GAP Institute timeline: 2023 EUR 130 -> 2024 EUR 264 -> 2026 planned 425/500); replaced 250.",
+        "englishSpeakingPercent 55 implausible for Albanian-speaking population; set rough estimate ~30% (no UNDP HDI for Kosovo; stored 0.78 left as-is).",
+        "Income distribution (WID-style) plausible vs Kosovo GDP pc PPP ~$21,800; monotonic; kept."
+      ]
+    },
+    "KW": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 0.308,
+        "minimumWageEur": 222
+      },
+      "notes": [
+        "Exchange rate convention is local units per 1 USD: KWD 0.308 (open.er-api.com); stored value 1 was wrong.",
+        "Statutory minimum wage KWD 75/month (expatriate private-sector floor; KWD 125 for Kuwaiti nationals) ~= EUR 222 (countryeconomy.com 2024); replaced 700.",
+        "Income distribution plausible for high-income petrostate (median adult ~$2.1k/mo PPP); unemployment 2.2%, CoL ~60, HDI 0.85~0.852 all check out; kept."
+      ]
+    },
+    "KG": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 87.46,
+        "minimumWageEur": 33,
+        "englishSpeakingPercent": 10
+      },
+      "notes": [
+        "Exchange rate: KGS 87.46 per USD (open.er-api.com); stored value 1 wrong.",
+        "Minimum wage KGS 2,863/month in 2025 ~= USD 33 ~= EUR 30-33 (wagecentre.com; lowest in post-Soviet space; frozen for 2026 review); replaced 40.",
+        "englishSpeakingPercent 55 implausible (Russian/Kyrgyz speaking country); rough estimate ~10%.",
+        "Unemployment 3.5% matches registered-rate statistics; ILO-modeled rate is higher (~9-10%) - flagged, not corrected.",
+        "Income distribution plausible vs GDP pc PPP ~$10k; monotonic; kept."
+      ]
+    },
+    "LA": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 22296,
+        "minimumWageEur": 96,
+        "englishSpeakingPercent": 20
+      },
+      "notes": [
+        "Exchange rate: LAK 22,296 per USD (open.er-api.com, Aug 2026); stored value 1 wrong.",
+        "Minimum wage raised to LAK 2,500,000/month (Oct 2024 decree, from 1.6M) ~= EUR 96 at ~26,000 LAK/EUR; replaced 50.",
+        "englishSpeakingPercent 58 implausible for Laos; rough estimate ~20%.",
+        "Unemployment 1.2% is national-estimate style; ILO modeled ~2-3%; flagged not corrected.",
+        "Income distribution plausible vs GDP pc PPP ~$11k; monotonic; HDI 0.62 matches HDR 2025 (0.617); kept."
+      ]
+    },
+    "LV": {
+      "status": "errors_found",
+      "corrections": {
+        "englishSpeakingPercent": 47
+      },
+      "notes": [
+        "Mostly clean OECD-sourced entry: population 1.85M, EUR currency, min wage EUR 700 (2024 rate, now 780 in 2026), HDI ~0.87-0.89, unemployment 6.6% all consistent.",
+        "englishSpeakingPercent 75 implausible (Latvian/Russian speaking; Eurobarometer-style English competence ~40-50%); rough estimate 47%.",
+        "Note: smoking fields match the batch-wide template (female 8/male 22 everywhere) and are certainly not real for Latvia (women ~20%); flagged for dedicated pass."
+      ]
+    },
+    "LB": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 89500,
+        "minimumWageEur": 185,
+        "hdi": 0.752
+      },
+      "notes": [
+        "Exchange rate: LBP 89,500 per USD (official peg since 2023, open.er-api.com); stored value 1 wrong.",
+        "Statutory minimum wage LBP 18,000,000/month (April 2024 raise) = ~USD 201 = ~EUR 185 at 89,500/USD (countryeconomy lists $1,200 only because it uses the obsolete 15,000 peg); replaced 300.",
+        "HDI 0.71 -> 0.752 (UNDP HDR 2025, data year 2023; Wikipedia HDI list rank 102).",
+        "Income distribution plausible for post-crisis Lebanon (steep p90 tail); monotonic; kept.",
+        "Smoking fields templated (female 8) and unrealistic for Lebanon (women ~25-30%); flagged."
+      ]
+    },
+    "LS": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 16.12,
+        "minimumWageEur": 95,
+        "hdi": 0.55
+      },
+      "notes": [
+        "Exchange rate: LSL 16.12 per USD (open.er-api.com); stored value 1 wrong.",
+        "Sectoral minimum wages average LSL 1,881/month = ~USD 102 = ~EUR 94 (countryeconomy.com 2024); replaced 50.",
+        "HDI 0.58 -> 0.550 (UNDP HDR 2025, data year 2023, rank 167); replaced rounded/stale 0.58.",
+        "childMarriagePercent 30 slightly above UNICEF MICS-based figures (~19-23%) - flagged, not corrected.",
+        "Income distribution plausible vs GDP pc PPP ~$3,300; monotonic; kept."
+      ]
+    }
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "batch": "11",
+  "countries": {
+    "GG": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 64687,
+        "income.p10": null,
+        "income.p25": null,
+        "income.p50": null,
+        "income.p75": null,
+        "income.p90": null,
+        "indicators.pretax_national.p10": null,
+        "indicators.pretax_national.p25": null,
+        "indicators.pretax_national.p50": null,
+        "indicators.pretax_national.p75": null,
+        "indicators.pretax_national.p90": null,
+        "indicators.posttax_national.p10": null,
+        "indicators.posttax_national.p25": null,
+        "indicators.posttax_national.p50": null,
+        "indicators.posttax_national.p75": null,
+        "indicators.posttax_national.p90": null,
+        "indicators.consumption.p10": null,
+        "indicators.consumption.p25": null,
+        "indicators.consumption.p50": null,
+        "indicators.consumption.p75": null,
+        "indicators.consumption.p90": null,
+        "indicators.wealth.p10": null,
+        "indicators.wealth.p25": null,
+        "indicators.wealth.p50": null,
+        "indicators.wealth.p75": null,
+        "indicators.wealth.p90": null,
+        "indicators.labor_income.p10": null,
+        "indicators.labor_income.p25": null,
+        "indicators.labor_income.p50": null,
+        "indicators.labor_income.p75": null,
+        "indicators.labor_income.p90": null,
+        "minimumWageEur": 2300,
+        "costOfLivingIndex": 73,
+        "femaleLifeExpectancy": 85.6,
+        "maleLifeExpectancy": 81.0,
+        "hdi": null
+      },
+      "notes": [
+        "Confirmed placeholder: population=1000000, income.p50=875, costOfLivingIndex=38 match the known fabricated template exactly; all income/indicator percentiles are template copies, not Guernsey data (WID.world has no Guernsey distribution). Nulls mean 're-source or drop', not verified zeros.",
+        "Population 64,687 = March 2023 Guernsey census (gov.gg); ~64,700 est. 2024.",
+        "Minimum wage: GBP 11.55/hour (Oct 2024 rate, gov.gg) ~ GBP 2,000/month full-time ~ EUR 2,300.",
+        "Cost of living: Numbeo country index Guernsey 72.8 (2026 mid-year).",
+        "Life expectancy UN 2023: female 85.58, male 81.01 (Wikipedia/UN). Batch values (78.5/72.8) are template copies.",
+        "HDI: UNDP does not compute HDI for Guernsey; batch value 0.57 is fabricated. Set null.",
+        "All female/male height/weight/BMI/obesity/smoking values are template copies (identical to GY/HT placeholders) and could not be verified - left as-is, flagged for re-sourcing. UK-like averages would be expected.",
+        "internetPenetration 75 and unemploymentRate 5.5 are template values; Guernsey internet use is ~95%+ and unemployment ~1% per gov.gg reports, but exact figures not verified - left uncorrected, flagged.",
+        "Currency: batch GBP. ISO 4217 code for Guernsey pound is GGP (pegged 1:1 to GBP, both circulate) - acceptable but GGP is the precise code.",
+        "exchangeRate 0.85 (USD->GBP) inconsistent with other entries in batch which all use 1 - convention unclear, flagged for dataset owner."
+      ]
+    },
+    "GN": {
+      "status": "ok",
+      "corrections": {
+        "hdi": 0.5
+      },
+      "notes": [
+        "Population 15,099,727 matches World Bank 2025 exactly; unemployment 5.2 (WB 5.16), internet 33.3, life expectancy F62.1/M59.7, adolescent birth rate 116.8 all match WB 2024.",
+        "laborForceGap -20.5 matches WB 2024 participation (M 63.3 - F 42.9 = 20.4).",
+        "Income distribution (p50=82 int$/mo) plausible vs Guinea GDP pc PPP ~$4,400/yr; monotonic ordering fine; WID-consistent.",
+        "HDI: UNDP HDR 2025 value 0.500 (batch 0.47 stale).",
+        "childMarriagePercent 47 consistent with UNICEF estimates for Guinea (~47%).",
+        "englishSpeakingPercent 15 seems high for francophone Guinea - flagged, not corrected."
+      ]
+    },
+    "GW": {
+      "status": "ok",
+      "corrections": {
+        "hdi": 0.51
+      },
+      "notes": [
+        "Population 2,249,515 matches WB 2025 exactly; unemployment 2.7, internet 29.8, life expectancy F66.5/M61.8, adolescent birth rate 80.3 match WB 2024.",
+        "laborForceGap -9.3 matches WB 2024 (M 69.6 - F 60.2 = 9.4).",
+        "Income distribution (p50=68) plausible for Guinea-Bissau; monotonic.",
+        "HDI: UNDP HDR 2025 value 0.514 (batch 0.48 stale).",
+        "childMarriagePercent 15 looks low vs UNICEF (~24%) and contraceptiveUse 21.2 unverified - flagged, not corrected (no solid source pulled)."
+      ]
+    },
+    "GY": {
+      "status": "errors_found",
+      "corrections": {
+        "income.p10": null,
+        "income.p25": null,
+        "income.p50": null,
+        "income.p75": null,
+        "income.p90": null,
+        "indicators.pretax_national.p10": null,
+        "indicators.pretax_national.p25": null,
+        "indicators.pretax_national.p50": null,
+        "indicators.pretax_national.p75": null,
+        "indicators.pretax_national.p90": null,
+        "indicators.posttax_national.p10": null,
+        "indicators.posttax_national.p25": null,
+        "indicators.posttax_national.p50": null,
+        "indicators.posttax_national.p75": null,
+        "indicators.posttax_national.p90": null,
+        "indicators.consumption.p10": null,
+        "indicators.consumption.p25": null,
+        "indicators.consumption.p50": null,
+        "indicators.consumption.p75": null,
+        "indicators.consumption.p90": null,
+        "indicators.wealth.p10": null,
+        "indicators.wealth.p25": null,
+        "indicators.wealth.p50": null,
+        "indicators.wealth.p75": null,
+        "indicators.wealth.p90": null,
+        "indicators.labor_income.p10": null,
+        "indicators.labor_income.p25": null,
+        "indicators.labor_income.p50": null,
+        "indicators.labor_income.p75": null,
+        "indicators.labor_income.p90": null,
+        "minimumWageEur": 280,
+        "costOfLivingIndex": 53,
+        "hdi": 0.78,
+        "gender.childMarriagePercent": 32.3
+      },
+      "notes": [
+        "DISGUISED PLACEHOLDER: entire income + indicators block is the GG placeholder template scaled by exactly 3.914x (e.g. 2450/626 = 3426/875 = 85650/21875 = 3.914). dataSource 'REST Countries & World Bank API 2024'. Median adult income of int$41k/yr PPP with p10 of int$29k/yr is absurd for Guyana. Nulls = re-source from WID.world.",
+        "minimumWageEur 1600 absurd: statutory national minimum wage ~GYD 60,000-70,000/month (~US$285-330, ~EUR 260-300). Corrected to 280.",
+        "costOfLivingIndex 130 absurd (would rank Guyana above Switzerland): Numbeo country index Guyana 53.0 (2026 mid-year).",
+        "HDI: UNDP HDR 2025 value 0.776 (rank 89); batch 0.96 is fabricated.",
+        "childMarriagePercent: World Bank SP.M18.2024.FE.ZS = 32.3 (2020, % women 20-24 married before 18).",
+        "Everything else verified OK: population 835,986 = WB 2025; unemployment 12 (WB 11.96); internet 83; life expectancy F74.1/M66.6; adolescent birth rate 68.5; laborForceGap -16 (M 63.6 - F 47.4 = 16.2).",
+        "femaleHeightCm 162/166-type health values match the shared placeholder template shape - suspicious but not individually verified, flagged."
+      ]
+    },
+    "HT": {
+      "status": "errors_found",
+      "corrections": {
+        "income.p10": null,
+        "income.p25": null,
+        "income.p50": null,
+        "income.p75": null,
+        "income.p90": null,
+        "indicators.pretax_national.p10": null,
+        "indicators.pretax_national.p25": null,
+        "indicators.pretax_national.p50": null,
+        "indicators.pretax_national.p75": null,
+        "indicators.pretax_national.p90": null,
+        "indicators.posttax_national.p10": null,
+        "indicators.posttax_national.p25": null,
+        "indicators.posttax_national.p50": null,
+        "indicators.posttax_national.p75": null,
+        "indicators.posttax_national.p90": null,
+        "indicators.consumption.p10": null,
+        "indicators.consumption.p25": null,
+        "indicators.consumption.p50": null,
+        "indicators.consumption.p75": null,
+        "indicators.consumption.p90": null,
+        "indicators.wealth.p10": null,
+        "indicators.wealth.p25": null,
+        "indicators.wealth.p50": null,
+        "indicators.wealth.p75": null,
+        "indicators.wealth.p90": null,
+        "indicators.labor_income.p10": null,
+        "indicators.labor_income.p25": null,
+        "indicators.labor_income.p50": null,
+        "indicators.labor_income.p75": null,
+        "indicators.labor_income.p90": null,
+        "hdi": 0.55
+      },
+      "notes": [
+        "DISGUISED PLACEHOLDER: income + indicators block is the GG placeholder template scaled by exactly 0.1257x (110/875 = 2750/21875 = 0.1257). dataSource 'REST Countries & World Bank API 2024'. Note: p50=110 int$/mo is coincidentally in a plausible range for Haiti (GDP pc PPP ~$3,000/yr), but the distribution shape (p10/p50 = 0.72, far too compressed vs real WID distributions) betrays the template. Nulls = re-source from WID.world.",
+        "HDI: UNDP HDR 2025 value 0.554 (rank 139); batch 0.45 is off.",
+        "Verified OK: population 11,906,095 = WB 2025; unemployment 14.9 (WB 14.94); internet 47.9; life expectancy F68.5/M61.9; adolescent birth rate 49.3; laborForceGap -11.4 (M 69.8 - F 58.3 = 11.5).",
+        "minimumWageEur 80: Haiti daily minimum wage ~500 HTG (~HTG 15,000/month ~ EUR 105) - batch slightly low but not verified this session, left uncorrected.",
+        "costOfLivingIndex 25: Haiti not ranked in Numbeo top-152; unverified, left.",
+        "gender.contraceptiveUse null is appropriate (no recent national survey data).",
+        "Health values (F 162/66, M 174/78) match shared placeholder template - suspicious, flagged."
+      ]
+    },
+    "HN": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.65,
+        "minimumWageEur": 500
+      },
+      "notes": [
+        "Verified OK: population 11,005,850 = WB 2025; unemployment 4.9 (WB 4.91, 2024); internet 58.6; life expectancy F75.7/M70.5; adolescent birth rate 81.3; laborForceGap -34 (M 73.6 - F 39.6 = 34.0).",
+        "Income distribution (p50=185 int$/mo) plausible for Honduras; monotonic; WID-sourced shape looks genuine.",
+        "HDI: UNDP HDR 2025 value 0.645 (rank 139); batch 0.73 too high.",
+        "minimumWageEur 200 too low: Honduras statutory monthly minimum wage 2024/2025 ranges ~HNL 12,459-17,397 by sector/firm size (~EUR 470-650); corrected to ~500 midpoint.",
+        "gender.contraceptiveUse 69.4 looks like 'demand satisfied' rather than modern contraceptive prevalence (~47-56% per DHS/UNFPA) - flagged, not corrected.",
+        "englishSpeakingPercent 69 seems high for Honduras - flagged."
+      ]
+    },
+    "HK": {
+      "status": "errors_found",
+      "corrections": {
+        "costOfLivingIndex": 76
+      },
+      "notes": [
+        "Verified OK: population 7,498,900 = WB 2025; unemployment 2.8 (WB 2.99); internet 95.8; life expectancy F88.2/M82.7 (world-leading, matches WB 2024); adolescent birth rate 1.2; laborForceGap -10.3 (M 62.6 - F 52.3 = 10.3); HDI 0.95 ~ UNDP 0.955 (rank 8).",
+        "Income distribution (p50=2400 int$/mo) plausible vs HK median earnings ~HK$20k/month; monotonic.",
+        "costOfLivingIndex 98 too high: Numbeo country index Hong Kong 76.4 (2026 mid-year, rank 15, below Singapore/Jersey). Corrected to 76.",
+        "minimumWageEur 600: HK statutory HK$40/hr (May 2023, HK$42.1 from May 2025) ~ HK$8,300-8,800/month ~ EUR 950-1,000 - batch somewhat low; not corrected (no direct source pulled this session), flagged.",
+        "englishSpeakingPercent 67 plausible-ish for HK (bilingual territory) - left."
+      ]
+    },
+    "HU": {
+      "status": "ok",
+      "corrections": {
+        "hdi": 0.87
+      },
+      "notes": [
+        "Verified OK: population 9,514,251 = WB 2025; unemployment 4.5 (WB 4.50); internet 93.8; life expectancy F79.9/M73.7; adolescent birth rate 17.4; laborForceGap -13.2 (M 67.6 - F 54.4 = 13.2).",
+        "Income distribution (p50=1150 int$/mo) plausible vs Hungarian net average salary ~HUF 450k-500k/month; monotonic; OECD-sourced.",
+        "HDI: UNDP HDR 2025 value 0.870 (rank 46); batch 0.86 within rounding, updated to 0.87.",
+        "costOfLivingIndex 48 ~ Numbeo Hungary 49.8 - fine.",
+        "minimumWageEur 610 plausible (2025 gross HUF 290,800 ~ EUR 720 gross; net lower).",
+        "englishSpeakingPercent 74 is implausible for Hungary (EF EPI ~ moderate; surveys suggest ~20-30% speak English) - flagged, not corrected (no source pulled).",
+        "femaleBmi 28 / maleBmi 28.7 slightly high vs WHO Hungary estimates (~27) - within tolerance, left."
+      ]
+    }
+  }
+}

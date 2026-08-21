@@ -1,0 +1,115 @@
+{
+  "batch": "23",
+  "countries": {
+    "MF": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "Skipped per batch instructions - Saint Martin (French part) is handled by another agent.",
+        "For the record: its entry also carries the placeholder signature (income.p50=875, costOfLivingIndex=38) and a suspicious hdi=0.57 (French territories are ~0.88+)."
+      ]
+    },
+    "PM": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 5819,
+        "income": null,
+        "indicators": null,
+        "costOfLivingIndex": null,
+        "hdi": null,
+        "unemploymentRate": null,
+        "internetPenetration": null,
+        "minimumWageEur": 1800
+      },
+      "notes": [
+        "Full placeholder copy: population=1000000, income.p50=875, costOfLivingIndex=38 - all fabricated. Real population 5,819 (2022 INSEE census; Wikipedia/Wikiwand infobox, Grokipedia demographics page).",
+        "No income/wealth distribution data exists for SPM in WID.world or World Bank (SPM is not even a valid World Bank API country code). Set income and indicators to null rather than inventing percentiles.",
+        "costOfLivingIndex: Numbeo has no SPM entry; territory is known to be very expensive (nearly all goods imported), so 38 is certainly wrong -> null.",
+        "hdi: UNDP does not compute HDI for SPM; 0.57 is invented -> null.",
+        "minimumWageEur corrected to ~1800: French labor law and the French SMIC apply (SMIC gross EUR 1,801.80/month, Nov 2024). Listed 450 was part of the placeholder copy.",
+        "unemploymentRate/internetPenetration: no reliable free source (not in WB/ITU); listed 5.5/75 unverifiable -> null.",
+        "Health fields (life expectancy 78.5/72.8, BMI etc.) look like placeholder copies and are implausibly low for a French territory with French healthcare (metropolitan France: ~85.6 F / ~79.7 M), but no SPM-specific source found - left uncorrected, flagged here."
+      ]
+    },
+    "VC": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.798,
+        "exchangeRate": 2.7
+      },
+      "notes": [
+        "hdi 0.56 is clearly wrong: UNDP HDR 2025 (2023 data) gives Saint Vincent and the Grenadines HDI 0.798, rank ~76/193 (worldpopulationreview, whndn.org country profile, citizenofnowhere rankings).",
+        "exchangeRate: convention is local units per 1 EUR (US=1.08, GB=0.85 in main DB). XCD is pegged at 2.676 per USD -> ~2.70 per EUR; 1 is wrong.",
+        "Verified OK vs World Bank API 2024: population 100,616 (listed 99,924, -0.7%), unemployment 18.09 (listed 18), internet 76.19 (listed 76.2), adolescent birth rate 40.77 (listed 40.8), LE female 74.48 / male 68.78 (listed 74.5/68.8), laborForceGap -17.2 (listed -17.1).",
+        "income.p50 798/mo PPP plausible vs GDP per capita PPP $21,303/yr (WB 2024); distribution monotonic."
+      ]
+    },
+    "WS": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 2.95,
+        "internetPenetration": 75.3,
+        "minimumWageEur": 230
+      },
+      "notes": [
+        "exchangeRate: WST floats (~2.7/USD) -> ~2.95 per EUR; 1 is wrong.",
+        "internetPenetration 45 is outdated: ITU via UNdata gives 75.29% for 2022 (69.96 in 2020, 61.2 in 2019).",
+        "minimumWageEur 80 too low: Samoa raised the statutory minimum to WST 4.00/hour on 1 Jul 2024 (MCIL Cabinet Directive FK(24)25; talanei.com, pina.com.fj, samoaglobalnews.com). At 40h/wk (~173 h/month) that is ~WST 692/month ~= EUR 230.",
+        "Verified OK vs World Bank API 2024: population 218,019 (listed 219,306, +0.6%), unemployment 4.86 (listed 5), adolescent birth rate 43.53 (listed 43.5), LE female 73.82 / male 69.96 (listed 73.8/70), laborForceGap -24.1 (listed -23.8), HDI 0.702 (listed 0.7).",
+        "income.p50 180/mo PPP is low vs GDP per capita PPP $8,751/yr (mean ~$730/mo per capita) but not clearly >2x off for a bottom-90% adult median; left as-is.",
+        "Female obesity 47% / male 41.4% are likely understated (NCD-RisC puts Samoa among the world's highest, female >60%) but no single free figure to substitute confidently - flagged, not corrected."
+      ]
+    },
+    "SM": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "Population 34,109 vs World Bank 33,977 (2024) - within 0.4%, fine.",
+        "exchangeRate 1 is correct for EUR entries (per NL convention in main DB).",
+        "income.p50 3200/mo PPP plausible vs very high GDP per capita; distribution monotonic.",
+        "hdi 0.92: UNDP does not publish an HDI for San Marino; value is an external estimate - left as-is.",
+        "minimumWageEur 1600: no single statutory national minimum wage; sectoral collective agreements set minimums around EUR 1,600-2,000/month - listed value plausible.",
+        "Unemployment listed 4%: WB/ILO data sparse for SMR; plausible, left as-is."
+      ]
+    },
+    "SA": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 35300280,
+        "exchangeRate": 4.05
+      },
+      "notes": [
+        "population 36,973,555 is the pre-revision estimate; Saudi Arabia's 2022 census cut official counts sharply and World Bank now shows 35,302,280 (2024), 33,702,731 (2023), 32,175,224 (2022). Off by >5% vs current official figure.",
+        "exchangeRate: SAR pegged at 3.75/USD -> ~4.05 per EUR; 1 is wrong.",
+        "Verified OK vs World Bank API 2024: unemployment 3.52 (listed 3, close), internet 100 (listed 100), adolescent birth rate 11.08 (listed 11.1), LE female 81.33 / male 77.33 (listed 81.3/77.3), laborForceGap -50.2 (listed -49.8), HDI 0.875 (listed 0.88).",
+        "income.p50 1500/mo PPP plausible vs GDP per capita PPP $71,936/yr (WB 2024); distribution monotonic."
+      ]
+    },
+    "SN": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 656,
+        "minimumWageEur": 95
+      },
+      "notes": [
+        "exchangeRate: XOF pegged at 655.957 per EUR -> 656; 1 is wrong.",
+        "minimumWageEur 50 too low: Senegal SMIG is ~60,000-64,220 XOF/month (sources: papayaglobal.com ~64,220 XOF 2026; sahel-express.com 60,239 XOF/month; swivelt.com ~52,604 XOF/month) = EUR ~92-98 at the 656 peg. Corrected to 95 (mid-range).",
+        "Verified OK vs World Bank API 2024: population 18,501,984 (listed 18,931,966, +2.3%, within 5%), unemployment 2.79 (listed 2.7), internet 60.12 (listed 60.1), adolescent birth rate 59.14 (listed 59.1), LE female 71.01 / male 67.01 (listed 71/67), laborForceGap -27.6 (listed -27.5), HDI 0.517 (listed 0.52).",
+        "income.p50 125/mo PPP plausible vs GDP per capita PPP $5,097/yr; distribution monotonic."
+      ]
+    },
+    "RS": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 117
+      },
+      "notes": [
+        "exchangeRate: RSD floats ~117 per EUR (2024-2026 range ~116.5-117.5); 1 is wrong.",
+        "Verified OK vs World Bank API 2024: population 6,586,476 (listed 6,549,143, -0.6%), unemployment 7.24 (listed 7.1), internet 87.69 (listed 87.7), adolescent birth rate 13.11 (listed 13.1), LE female 78.35 / male 73.70 (listed 78.4/73.7), laborForceGap -13.9 (exact).",
+        "hdi 0.8: consistent with UNDP HDR 2023/24 value for 2023 vintage (0.805); latest HDR 2025 shows 0.833 - left as-is given stated dataYear 2023.",
+        "income.p50 700/mo PPP plausible vs GDP per capita PPP $32,832/yr (median well below mean); distribution monotonic.",
+        "englishSpeakingPercent 72 seems high (EF EPI rates Serbia only 'moderate'); rough field, flagged not corrected."
+      ]
+    }
+  }
+}

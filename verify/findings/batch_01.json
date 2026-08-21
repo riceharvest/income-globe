@@ -1,0 +1,154 @@
+{
+  "batch": "01",
+  "countries": {
+    "AR": {
+      "status": "errors_found",
+      "corrections": {
+        "femaleSmokingRate": 19.9,
+        "maleSmokingRate": 27.1,
+        "smokingRate": 23.5,
+        "hdi": 0.865,
+        "mainIndustry": "Services"
+      },
+      "notes": [
+        "Population/LE/internet/unemployment/adolescent-fertility/laborForceGap all match World Bank 2024 API closely (pop 45.70M vs 45.85M; LE F 80.02/M 74.98; unemp 7.15; adol fert 25.56; LFP gap -19.49).",
+        "Smoking rates were fabricated constants (F=8/M=22 identical across whole batch). WHO GHO M_Est_smk_curr_std 2024 estimates: F 19.9%, M 27.1%; combined ~23.5.",
+        "hdi 0.85 -> 0.865 (UNDP HDR 2025, 2023 data, via Wikipedia HDI list).",
+        "mainIndustry 'Agriculture' wrong: agriculture is ~7% of GDP; services ~55% is the largest sector.",
+        "englishSpeakingPercent 72 is absurd for Argentina (realistic share with any competence is low-teens percent); no reliable free source for an exact figure, left uncorrected.",
+        "exchangeRate=1 for ARS looks like a placeholder under the inferred convention (local units per 1 USD; AUD=1.62 and EUR=1 fit it). ARS too volatile to pin one number (~300 avg official 2023, >1000 during late-2023 devaluation); needs app-owner decision."
+      ]
+    },
+    "AM": {
+      "status": "errors_found",
+      "corrections": {
+        "region": "Western Asia",
+        "minimumWageEur": 179,
+        "femaleSmokingRate": 1.7,
+        "maleSmokingRate": 50.5,
+        "smokingRate": 26,
+        "hdi": 0.811
+      },
+      "notes": [
+        "region listed as 'Middle East & North Africa'; Armenia is Western Asia (UN geoscheme) / Europe & Central Asia (World Bank). Corrected to Western Asia.",
+        "minimumWageEur 120 -> ~179: statutory minimum is AMD 75,000/month since Jan 2023 (= EUR 178.6, countryeconomy.com).",
+        "Smoking was fabricated constant; WHO GHO 2024: F 1.7%, M 50.5%, combined ~26.",
+        "hdi 0.8 -> 0.811 (HDR 2025, 2023 data).",
+        "All WB-checked fields match well: pop 3.03M (batch 3.087M, within 5%), LE F 81.7/M 75.1, internet 81.34, unemp 12.4, adol fert 12.82, LFP gap -18.46.",
+        "englishSpeakingPercent 64 implausibly high for Armenia; left uncorrected (no solid free source).",
+        "exchangeRate=1 for AMD appears placeholder under inferred USD->local convention (~AMD 390-410 per USD 2023-25); left uncorrected pending convention confirmation."
+      ]
+    },
+    "AW": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 1020
+      },
+      "notes": [
+        "minimumWageEur 1600 -> ~1020: legal minimum AWG 1,986.20/month for 18+ from Jan 2024 (wageindicator.org/atlasaruba.com); AWG pegged 1.79/USD => ~$1,110 => ~EUR 1,020.",
+        "Population 108,785 matches World Bank 2024 (107,995); life expectancy F 78.92/M 73.84 match 78.9/73.8.",
+        "dataSource carries the placeholder family label ('REST Countries & World Bank API 2024') but values do not match the known placeholder signature (pop 1000000 / p50 875 / CoL 38), so not treated as placeholder.",
+        "Income/wealth distribution has no free primary source (Aruba absent from WID.world and most WB indicators); figures are plausible given ~$36k GDP/capita but unverifiable.",
+        "Smoking rates (8/22) are the same fabricated constants found across the batch; WHO GHO has no Aruba estimate, so no correction possible - flagged as suspect.",
+        "internetPenetration 75 is suspiciously low (island-wide surveys suggest ~90%); no authoritative free figure, left uncorrected.",
+        "No UNDP HDI exists for Aruba; hdi 0.76 unverifiable.",
+        "exchangeRate=1 for AWG appears placeholder under inferred USD->local convention (peg is 1.79)."
+      ]
+    },
+    "AU": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.958,
+        "femaleSmokingRate": 9.9,
+        "maleSmokingRate": 13.4,
+        "smokingRate": 11.7
+      },
+      "notes": [
+        "Excellent agreement with World Bank/OECD: pop 27.19M (batch 27.61M within 5%), LE F 85.1/M 81.1 exact, internet 96.13, unemp 3.94, adol fert 6.42, LFP gap -8.27 vs -8.2, minWageEur ~1830 (AUD 3,032.6/mo 2023) vs 1800 OK.",
+        "hdi 0.95 -> 0.958 (HDR 2025, 2023 data; Australia rank 7).",
+        "Smoking was the batch-wide fabricated constant; WHO GHO 2024: F 9.9%, M 13.4%, combined ~11.7 (data said 8).",
+        "Income p50 3400/mo PPP consistent with OECD median disposable income; distribution monotonic."
+      ]
+    },
+    "AT": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": null,
+        "hdi": 0.93,
+        "internetPenetration": 94.9,
+        "femaleSmokingRate": 23.5,
+        "maleSmokingRate": 24,
+        "smokingRate": 23.7
+      },
+      "notes": [
+        "minimumWageEur 1600 -> null: Austria has NO statutory national minimum wage; wages set by sectoral collective agreements.",
+        "hdi 0.95 -> 0.930 (HDR 2025, 2023 data; Austria rank 22).",
+        "internetPenetration 91.9 -> 94.9 (World Bank IT.NET.USER.ZS 2024).",
+        "Smoking was the batch-wide fabricated constant; WHO GHO 2024: F 23.5%, M 24.0%, combined ~23.7.",
+        "Other WB checks match: pop 9.18M, LE F 84.3/M 79.8 exact, unemp 5.2 (2024), adol fert 3.6, LFP gap -10.43 vs -10.4.",
+        "childMarriagePercent 4 could not be verified against a free source; left as-is."
+      ]
+    },
+    "AZ": {
+      "status": "errors_found",
+      "corrections": {
+        "region": "Western Asia",
+        "minimumWageEur": 190,
+        "hdi": 0.789,
+        "femaleSmokingRate": 0.1,
+        "maleSmokingRate": 37.2,
+        "smokingRate": 18.7
+      },
+      "notes": [
+        "region 'Middle East & North Africa' nonstandard: Azerbaijan is Western Asia (UN geoscheme) / Europe & Central Asia (World Bank).",
+        "minimumWageEur 150 -> ~190: minimum wage AZN 345/month from Jan 2023 (= EUR 190.5, countryeconomy.com/wageindicator.org).",
+        "hdi 0.83 -> 0.789 (HDR 2025, 2023 data) - significant error.",
+        "Smoking badly wrong (fabricated constant): WHO GHO 2024 gives F 0.1%, M 37.2%; combined ~18.7.",
+        "All other WB checks match closely: pop 10.20M, LE F 77.28/M 71.71 exact, internet 90.44, unemp 5.65, adol fert 34.86, LFP gap -5.31 vs -5.3.",
+        "exchangeRate=1 for AZN appears placeholder under inferred USD->local convention (~AZN 1.70/USD)."
+      ]
+    },
+    "BS": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.82,
+        "femaleSmokingRate": 2.3,
+        "maleSmokingRate": 24.9,
+        "smokingRate": 13.6
+      },
+      "notes": [
+        "hdi 0.68 -> 0.820 (HDR 2025, 2023 data; Bahamas rank 66). Large error.",
+        "Smoking was the batch-wide fabricated constant; WHO GHO 2024: F 2.3%, M 24.9%; combined ~13.6.",
+        "WB checks match: pop 401k (batch 403k), LE F 78.33/M 71.06, internet 92.47, unemp 9.05, adol fert 24.52, LFP gap -6.42 vs -6.5.",
+        "minWageEur 900 slightly low: minimum is B$260/week since Jan 2023 (~B$1,130/month ~= EUR 1,030); difference within conversion-date noise, left uncorrected.",
+        "dataSource carries the placeholder family label but values are not the known placeholder signature; income distribution plausible vs ~$34k GDP/capita but no WID/Bahamas household-survey source to verify percentiles.",
+        "currency BSD symbol $ and peg 1:1 USD verified correct."
+      ]
+    },
+    "BH": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.899,
+        "exchangeRate": 0.376,
+        "femaleSmokingRate": 5.9,
+        "maleSmokingRate": 24.9,
+        "smokingRate": 15.4
+      },
+      "notes": [
+        "hdi 0.88 -> 0.899 (HDR 2025, 2023 data; Bahrain rank 38).",
+        "exchangeRate=1 -> 0.376: BHD is pegged at US$1 = BD0.376; under the inferred local-units-per-USD convention (EUR=1, AUD=1.62 fit it) 1 is impossible.",
+        "Smoking was the batch-wide fabricated constant; WHO GHO 2024: F 5.9%, M 24.9%; combined ~15.4.",
+        "WB checks match: pop 1.589M vs 1.600M, LE F 82.13/M 80.86, internet 100, unemp 1.08, adol fert 7.22, LFP gap -43.60 exact.",
+        "englishSpeakingPercent 5 is far too low (English is widely used in Bahraini business/public life, rough estimates run much higher); no reliable percentage source, left uncorrected.",
+        "income.p50 1400/mo PPP plausible vs ~$57k GDP/capita PPP; WID.world does have Gulf coverage but percentile-level verification was out of budget."
+      ]
+    }
+  },
+  "systemic_findings": [
+    "femaleSmokingRate=8 / maleSmokingRate=22 is a fabricated constant repeated across ALL 8 countries in this batch; replaced with WHO GHO 'Estimate of current tobacco smoking prevalence (age-standardized)' 2024 estimates everywhere a country-level estimate exists (all except Aruba).",
+    "Combined obesityRate/smokingRate fields were internally inconsistent with their own sexed components in several entries; corrected smokingRate to the mean of corrected sexed values.",
+    "The dataSource='REST Countries & World Bank API 2024' placeholder signature (pop 1000000 / income.p50 875 / costOfLivingIndex 38) did NOT occur in this batch; AW and BS carry that dataSource label but have distinct, mostly plausible values.",
+    "Most demographic/economic fields (population, life expectancy, unemployment, internet, adolescent fertility, labor-force gap) match World Bank API 2024 almost exactly - the batch was largely machine-generated from WB with fabricated smoking/HDI/minimum-wage sprinkled in.",
+    "Caucasus countries (AM, AZ) misfiled under 'Middle East & North Africa'."
+  ]
+}

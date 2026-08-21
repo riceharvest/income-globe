@@ -1,0 +1,186 @@
+{
+  "batch": "25",
+  "countries": {
+    "ZA": {
+      "status": "errors_found",
+      "corrections": {
+        "smokingRate": 15
+      },
+      "notes": [
+        "Population 64,747,319 = World Bank SP.POP.TOTL 2025 exactly; unemployment 32.39 (2025), internet 78.36 (2024), ado fertility 51.84 (SP.ADO.TFRT), LE F69.79/M62.78 (2024) all match WB API.",
+        "HDI 0.71 ok (UNDP 0.717, 2022). minimumWageEur 280 plausible: NMW R28.79/hr (Mar 2025) x 45h week = R5,614/mo ~ EUR277 at 2024-25 FX.",
+        "exchangeRate 19.5 close to USDZAR of data vintage (18.5-19 in 2023-24); current spot 16.1 - acceptable.",
+        "smokingRate 8 equals femaleSmokingRate exactly (systemic: combined field copies female value); corrected to rounded sexed midpoint (F8/M22 -> 15)."
+      ]
+    },
+    "KR": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 1395,
+        "minimumWageEur": 1420,
+        "smokingRate": 15
+      },
+      "notes": [
+        "Population/unemployment(2.68)/internet(97.9)/LE(F86.6 M80.8)/adoBirth(0.53)/HDI(0.93~UNDP 0.929) all verified against WB/UNDP - correct.",
+        "exchangeRate was 1 but convention elsewhere is USD->local units per USD (ZA=19.5); KRW is ~1,350-1,395 per USD. Set to current open.er-api.com spot 1395.",
+        "minimumWageEur 1050 too low: statutory 2024 monthly minimum is KRW 2,060,740 (~USD1,625, Xinhua/Ministry of Employment and Labor) ~ EUR1,420 at 2024 avg KRW/EUR ~1450.",
+        "income p50 2100/mo PPP plausible vs OECD/WID Korea median adult income; left unchanged.",
+        "smokingRate 8 = femaleSmokingRate; corrected to sexed midpoint (F8/M22 -> 15)."
+      ]
+    },
+    "SS": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 5640,
+        "smokingRate": 15
+      },
+      "notes": [
+        "Population 12,188,788 = WB 2025 exactly; unemployment 12.37 (ILO modeled, 2023); LE F60.75/M54.76; adoBirth 96.28 - all match WB API.",
+        "exchangeRate 1 wrong under USD->local convention: SSP trades ~5,600/USD official (open.er-api.com Aug 2026); rate highly volatile/devalued, parallel market far higher.",
+        "dataSource 'ILO' + full percentile set implausible for South Sudan (no credible household income distribution exists post-2011); figures unverifiable but not obviously absurd given GDPpc PPP ~USD1-2k - left unchanged, flagged.",
+        "minimumWageEur 30 could not be verified from a free source; left unchanged.",
+        "internetPenetration 20 has no WB datapoint (null); rough estimates range 12-30%; left unchanged.",
+        "childMarriagePercent 52 consistent with UNICEF estimates for South Sudan."
+      ]
+    },
+    "ES": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 1134,
+        "englishSpeakingPercent": 25,
+        "smokingRate": 23
+      },
+      "notes": [
+        "Population 49,355,143 = WB 2025 exactly; unemployment 10.38 (2025); internet 95.76 (2024); LE F86.5/M81.4; adoBirth 4.85; HDI 0.91 (UNDP 0.911) all verified correct.",
+        "minimumWageEur 1258 matches no official figure: SMI 2024 = EUR1,134/month x14 pagas (= EUR1,323 if prorated over 12). Corrected to EUR1,134 (statutory monthly rate).",
+        "englishSpeakingPercent 68 far too high: INE 2021 survey = 24.6% of residents speak English; Eurobarometer ~22%. Corrected to 25.",
+        "income p50 1850/mo PPP plausible vs OECD median disposable income; unchanged.",
+        "smokingRate 18 = femaleSmokingRate; corrected to sexed midpoint (F18/M28 -> 23)."
+      ]
+    },
+    "LK": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 330,
+        "minimumWageEur": 84,
+        "smokingRate": 15
+      },
+      "notes": [
+        "Population 21,756,000 = WB 2025 exactly; unemployment 4.01 (2025); internet 54.59 (2024); LE F80.7/M74.4; adoBirth 14.72; HDI 0.78 (UNDP 0.780) all verified correct.",
+        "exchangeRate 1 wrong under USD->local convention: LKR ~300-330 per USD (current spot 330, open.er-api.com).",
+        "minimumWageEur 35 too low: national minimum monthly wage raised to LKR 17,500 by Act No. 48 of 2024 (~EUR84 at ~208 LKR/EUR; countryeconomy lists EUR83.9/mo for 2024; Rs21,000 incl. allowances ~EUR100). Corrected to 84.",
+        "income distribution plausible vs GDPpc PPP ~USD14.5k; unchanged."
+      ]
+    },
+    "SD": {
+      "status": "errors_found",
+      "corrections": {
+        "exchangeRate": 512,
+        "smokingRate": 15
+      },
+      "notes": [
+        "Population 51,662,147 = WB 2025 exactly; unemployment 7.53 (ILO modeled, 2022 - latest available); LE F69.8/M63.4; adoBirth 64.5; HDI 0.52 (UNDP 0.516) all verified correct.",
+        "exchangeRate 1 wrong under USD->local convention: SDG ~512/USD official (open.er-api.com); wartime parallel rate much weaker.",
+        "minimumWageEur 50 unverified from free sources; left unchanged.",
+        "income p50 82/mo PPP plausible vs GDPpc PPP ~USD2.2k; unchanged.",
+        "currencySymbol 'PT' (piastre, the subdivision) is unusual - ISO shows no official symbol; noted, not corrected."
+      ]
+    },
+    "SR": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.72,
+        "minimumWageEur": 115,
+        "exchangeRate": 38,
+        "smokingRate": 15
+      },
+      "notes": [
+        "Population 639,850 = WB 2025 exactly (not the 1,000,000 placeholder); unemployment 7.83; internet 87.4 (2023); LE F77.0/M70.6; adoBirth 46.86 - all match WB API.",
+        "hdi 0.56 clearly wrong: UNDP HDI Suriname = 0.690 (2022, HDR 2023/24) and 0.722 (2023, latest HDR). Corrected to 0.72 (latest report value).",
+        "minimumWageEur 450 clearly wrong: statutory minimum hourly wage SRD 49.12 since Apr 2024; ILOSTAT minimum monthly wage 2024 ~USD125 ~ EUR115. Corrected to 115.",
+        "exchangeRate 1 wrong: SRD ~38/USD after July-2024 FX unification (open.er-api.com spot 38).",
+        "dataSource string ('REST Countries & World Bank API 2024') belongs to the known placeholder family; however population/p50/COL do NOT match the placeholder signature (1,000,000 / 875 / 38). Income percentiles unverifiable for Suriname (no WID distribution tables) and not obviously absurd vs GDPpc PPP ~USD16-18k; left unchanged but flagged.",
+        "consumption p25 (529) nearly equals p10 (510) - odd flat segment, flagged but within monotonic order."
+      ]
+    },
+    "SJ": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 2600,
+        "exchangeRate": 10.6,
+        "income.p10": 1800,
+        "income.p25": 2600,
+        "income.p50": 3600,
+        "income.p75": 4900,
+        "income.p90": 6800,
+        "indicators.pretax_national.p10": 1950,
+        "indicators.pretax_national.p25": 2800,
+        "indicators.pretax_national.p50": 3900,
+        "indicators.pretax_national.p75": 5300,
+        "indicators.pretax_national.p90": 7350,
+        "indicators.posttax_national.p10": 1800,
+        "indicators.posttax_national.p25": 2600,
+        "indicators.posttax_national.p50": 3600,
+        "indicators.posttax_national.p75": 4900,
+        "indicators.posttax_national.p90": 6800,
+        "indicators.consumption.p10": 1300,
+        "indicators.consumption.p25": 1870,
+        "indicators.consumption.p50": 2590,
+        "indicators.consumption.p75": 3530,
+        "indicators.consumption.p90": 4900,
+        "indicators.labor_income.p10": 1400,
+        "indicators.labor_income.p25": 2100,
+        "indicators.labor_income.p50": 3050,
+        "indicators.labor_income.p75": 4200,
+        "indicators.labor_income.p90": 6000,
+        "indicators.wealth.p10": 5000,
+        "indicators.wealth.p25": 45000,
+        "indicators.wealth.p50": 120000,
+        "indicators.wealth.p75": 290000,
+        "indicators.wealth.p90": 650000,
+        "gender.adolescentBirthRate": 1.6,
+        "gender.childMarriagePercent": 0,
+        "gender.laborForceGap": -5,
+        "gender.contraceptiveUse": 62,
+        "minimumWageEur": 2800,
+        "costOfLivingIndex": 85,
+        "unemploymentRate": 1,
+        "internetPenetration": 98,
+        "femaleHeightCm": 167,
+        "femaleWeightKg": 72,
+        "femaleBmi": 25.6,
+        "femaleObesityRate": 23,
+        "femaleSmokingRate": 12,
+        "femaleLifeExpectancy": 84.6,
+        "maleHeightCm": 180,
+        "maleWeightKg": 89,
+        "maleBmi": 27.5,
+        "maleObesityRate": 26,
+        "maleSmokingRate": 13,
+        "maleLifeExpectancy": 82,
+        "obesityRate": 24,
+        "smokingRate": 13,
+        "hdi": 0.97,
+        "englishSpeakingPercent": 90,
+        "mainIndustry": "Tourism & Research",
+        "dataYear": 2024
+      },
+      "notes": [
+        "CONFIRMED PLACEHOLDER: population exactly 1000000, income.p50 exactly 875, costOfLivingIndex 38 - all fabricated. Replaced with derived Norway-anchored estimates.",
+        "Population: Svalbard had 2,595 residents Sept 2024 (Statistics Norway / Wikipedia 'Svalbard and Jan Mayen'); Jan Mayen has no permanent population. Rounded to 2600.",
+        "Derivation anchor: Norwegian mainland levels (Svalbard wages/prices are set at Norwegian level). GDP-pc ratio: SJ GDP ~USD277M (UN estimate, Wikipedia) over 2,600 pop ~ USD107k nominal pc vs Norway ~USD87k nominal / ~USD114k PPP -> ratio taken as 1.0; no PPP deflator exists for SJ.",
+        "Income/posttax distribution anchored on OECD/WID-style Norway adult post-tax national income (median equivalised disposable income NOK ~548k/yr ~ USD4,700/mo PPP; WID API/bulk CSV unreachable so thresholds approximated from published OECD/SSB figures): p10 1800 / p25 2600 / p50 3600 / p75 4900 / p90 6800 monthly USD PPP.",
+        "pretax_national = posttax x1.08 (matches pretax/posttax spread pattern used across this dataset); consumption = posttax x0.72; labor_income scaled slightly below posttax bottom-heavy; wealth net worth per adult anchored on UBS/CS Global Wealth Report Norway (median ~USD120k, mean ~USD390k). All monotonic.",
+        "Health metrics anchored to Norway (NCD-RisC 2019 heights: women 167cm, men 180cm; SSB life expectancy 2023: F84.6, M82.0; WHO/NCD-RisC obesity & smoking).",
+        "minimumWageEur 2800 derived: Norway/Svalbard have NO statutory minimum wage; de-facto floor from Norwegian collectively agreed minima (cleaning/services ~NOK 197-220/hr ~ NOK 34-38k/month ~ EUR2,800).",
+        "costOfLivingIndex 85 estimated: Numbeo has no Svalbard entry; Longyearbyen prices exceed Oslo (Norway country index ~70-75) plus Arctic logistics premium.",
+        "unemploymentRate 1 estimated: no official series exists; Longyearbyen labour market is near-full employment.",
+        "internetPenetration 98: near-universal fiber via Svalbard Undersea Cable System.",
+        "hdi 0.97: SJ is not ranked in HDR; anchored to Norway 0.966 (HDR 2023/24).",
+        "exchangeRate 10.6 = 2024 avg USDNOK (current spot 9.3).",
+        "mainIndustry changed: Svalbard coal mining is winding down; tourism and research/education are now the largest sectors (Governor of Svalbard / Wikipedia).",
+        "englishSpeakingPercent 90 rough estimate: near-universal English in the international Longyearbyen community; official language is Norwegian."
+      ]
+    }
+  }
+}

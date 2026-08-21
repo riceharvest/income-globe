@@ -1,0 +1,126 @@
+{
+  "batch": "20",
+  "countries": {
+    "MP": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 46100,
+        "unemploymentRate": 11.0,
+        "internetPenetration": 60,
+        "minimumWageEur": 1155,
+        "hdi": null
+      },
+      "notes": [
+        "Population: World Bank mid-year estimate ~46,100 (2022); 2020 census 47,329; batch value 43,541 is ~6% low.",
+        "Unemployment: World Bank ILO-modeled rate for MNP is ~11% (2023), not 5.5.",
+        "Internet: DataReportal Digital 2025 puts penetration at ~60%; CIA Factbook (2016) only ~31%; batch 75 is too high and unsupported.",
+        "Minimum wage: CNMI is at federal US parity, $7.25/hr ≈ $1,256/mo ≈ €1,155/month; batch 450 is wrong.",
+        "HDI: UNDP does not publish an HDI for Northern Mariana Islands; the batch value 0.57 is fabricated for a US commonwealth (comparable US-affiliated Pacific territories score far higher). Set to null.",
+        "PLACEHOLDER FINGERPRINT: income.p50 = 875 exactly matches the known fabricated placeholder pattern, and costOfLivingIndex = 38 also matches. The whole income/indicators percentile set appears synthesized (WID.world has no data for MNP). No free authoritative distribution exists — values left uncorrected but flagged as unverifiable/fabricated.",
+        "Health fields (smoking 8%/22%, obesity 22%) are implausibly low for CNMI, which has among the highest obesity rates in the US-affiliated Pacific (CDC BRFSS), but no precise free citable figure was obtained in budget; flagged as suspect."
+      ]
+    },
+    "NO": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": null,
+        "exchangeRate": 11.5,
+        "femaleSmokingRate": 10,
+        "maleSmokingRate": 9,
+        "smokingRate": 9
+      },
+      "notes": [
+        "Minimum wage: Norway has no statutory national minimum wage (wages set by collective agreements; only sectoral extension since 2016). minimumWageEur must be null, not 2200.",
+        "ExchangeRate convention inferred from NL=1 / USD=1.08 entries: units of local currency per 1 EUR. NOK should be ~11.5 (2023 average ~11.66), batch has 1.",
+        "Smoking: SSB daily smoking is ~9-10% female and ~8-9% male (2022-23); batch 18/28 reflects outdated 2000s levels.",
+        "Population 5,610,870 corresponds to ~2025, slightly ahead of the stated dataYear 2023 (~5.51M) but within tolerance.",
+        "Income/wealth percentiles plausible vs WID/OECD (median post-tax national income ~$3,800/mo PPP is consistent). HDI 0.97 correct. adolescentBirthRate 1.3 correct. childMarriagePercent 2 likely overstated (effectively ~0) but minor."
+      ]
+    },
+    "OM": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 775,
+        "exchangeRate": 0.42,
+        "hdi": 0.82
+      },
+      "notes": [
+        "Minimum wage: OMR 325/month for Omani nationals (unchanged since 2013) ≈ $845 ≈ €775; no legal minimum for expatriates. Batch 450 too low.",
+        "ExchangeRate: OMR pegged at 0.3845/USD → ~0.42/EUR; batch 1 wrong.",
+        "HDI: HDR 2023/24 gives Oman 0.819 (2022 data); the newest HDR edition revised it to ~0.858. Batch 0.88 exceeds both series — corrected to 0.82 per the report matching dataYear 2023.",
+        "Population 5,494,691 is near the national NCSI count including expatriates; UN/World-Bank-style estimates run lower (~4.6M). Left as-is given source ambiguity.",
+        "Income percentiles plausible for a high-middle-income Gulf state (median $1,200/mo PPP reasonable vs ~$30k GDP pc PPP with high inequality)."
+      ]
+    },
+    "PK": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 240486649,
+        "minimumWageEur": 105,
+        "exchangeRate": 310
+      },
+      "notes": [
+        "Population: 2023 national census counted 241.5M; World Bank 2023 figure ~240.5M. Batch 255.2M is ~6% high (>5% threshold).",
+        "Minimum wage: PKR 32,000/month unskilled from FY2024 (later 37k→40k) ≈ €105/month at 2023 rates; batch 65 too low.",
+        "ExchangeRate: PKR averaged ~286/USD in 2023 → ~310/EUR; batch 1 wrong.",
+        "Income percentiles monotonic and plausible vs WID Pakistan (GDP pc PPP ~$6,400/yr; p50 $165/mo reasonable for bottom-90% adult distribution).",
+        "internetPenetration 57.3 likely overstated (ITU/WB ~33-45% depending on methodology) — noted, not corrected due to source spread.",
+        "HDI 0.54 correct (HDR: 0.540). Gender fields plausible (child marriage ~21%, contraceptive use ~34%)."
+      ]
+    },
+    "PW": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 560,
+        "hdi": 0.826
+      },
+      "notes": [
+        "Minimum wage: Palau's national minimum wage was $3.50/hr through Sep 2024 ($4.25 from Oct 2024) ≈ $607/mo ≈ €560; batch 450 wrong.",
+        "HDI: Palau is not in current HDR tables but latest UNDP-based estimates give ~0.826 (2020); batch 0.56 is clearly fabricated for a Compact-of-Free-Association state with US-level health/education indicators.",
+        "PLACEHOLDER SUSPICION: costOfLivingIndex = 35 and income percentiles look like rescaled placeholder output (Palau's actual cost of living is high, comparable to the US, given import dependence). WID.world has no PLW data; distributions left uncorrected but flagged unverifiable.",
+        "Population 17,663 correct (2020 census; WB ~18k). Life expectancy values plausible."
+      ]
+    },
+    "PS": {
+      "status": "errors_found",
+      "corrections": {
+        "currency": "ILS",
+        "currencySymbol": "₪",
+        "exchangeRate": 3.9,
+        "minimumWageEur": 480
+      },
+      "notes": [
+        "Currency: Palestine uses the Israeli new shekel (ILS, ₪), not EGP — clear error.",
+        "ExchangeRate: ILS averaged ~3.9/EUR in 2023.",
+        "Minimum wage: Palestinian minimum wage NIS 1,880/month (MAWPS decision, unchanged) ≈ €480; batch 150 too low.",
+        "Unemployment 24.4% matches 2023 PCBS/ILO figures. HDI 0.72 correct (~0.716). Income percentiles plausible vs WID Palestine (GDP pc PPP ~$6,000/yr). Gender fields plausible (contraceptive use ~57%, child marriage ~13-18%)."
+      ]
+    },
+    "PA": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 590,
+        "exchangeRate": 1.08
+      },
+      "notes": [
+        "Minimum wage: Executive Decree No.1 of 10 Jan 2024 sets minimum wages from B/. 636.80/month (varies by region/sector, domestic workers lower) ≈ €590; batch 400 too low.",
+        "ExchangeRate: PAB is pegged 1:1 to USD → ~1.08 per EUR under the dataset's EUR-base convention; batch 1 inconsistent with the USD entries elsewhere in the same file.",
+        "Population 4.57M within ~2% of WB estimate. HDI 0.82 correct (0.820). Unemployment 8.4% plausible. Income percentiles plausible for Panama's unequal distribution (p50 $420/mo PPP consistent with WID)."
+      ]
+    },
+    "PG": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.568,
+        "exchangeRate": 4.0
+      },
+      "notes": [
+        "HDI: UNDP HDR 2023/24 gives PNG 0.568 for 2022 (rank 154/193; 0.576 for 2023). Batch 0.70 is far too high — major error.",
+        "ExchangeRate: PGK traded ~3.6-3.9/USD in 2023 → ~4.0/EUR; batch 1 wrong.",
+        "costOfLivingIndex = 38 exactly matches the known placeholder fingerprint; Numbeo has no Port Moresby coverage to verify against — flagged suspect, not corrected.",
+        "Income percentiles monotonic and plausible for one of the poorest states in the region (p50 $75/mo PPP consistent with GDP pc PPP ~$4,300/yr and heavy subsistence economy).",
+        "Unemployment 2.6% plausible on ILO definition (subsistence agriculture counts as employment). internetPenetration ~19% plausible-low end. EnglishSpeakingPercent 5 rough but defensible (Tok Pisin/Hiri Motu dominant). mainIndustry 'Mining & Quarrying' debatable (services larger by GDP share; agriculture dominates employment) — noted, not corrected."
+      ]
+    }
+  }
+}

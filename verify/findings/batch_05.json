@@ -1,0 +1,241 @@
+{
+  "batch": "05",
+  "countries": {
+    "CF": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.414,
+        "minimumWageEur": 44,
+        "exchangeRate": 600
+      },
+      "notes": [
+        "HDI 0.414 (UNDP HDR 2025, 2023 data; rank 191/193) vs stored 0.39.",
+        "Min wage SMIG FCFA 29,000/month (WageIndicator, effective 31-Dec-2021) = ~EUR 44 at 655.97 XAF/EUR; stored EUR 25 too low.",
+        "exchangeRate inferred convention = local units per 1 USD (cf. CN=7.8, AUD=1.62 in dataset); XAF/USD ~600 in 2024, stored 1 wrong.",
+        "Population stored 5.51M vs WB 2024 5.33M (-3.4%), within 5% tolerance - left unchanged.",
+        "WB checks OK: unemployment 6.25 (2024), internet 13.8%, LE F/M 59.6/55.5, adolescent birth rate 161.",
+        "Smoking fields also template values (F=8/M=22); CAR absent from WHO 2022 table extracted - left uncorrected, needs source."
+      ]
+    },
+    "TD": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.416,
+        "minimumWageEur": 91,
+        "exchangeRate": 600,
+        "maleSmokingRate": 12.3,
+        "femaleSmokingRate": 1.4,
+        "smokingRate": 6.8
+      },
+      "notes": [
+        "HDI 0.416 (UNDP HDR 2025, rank 190/193) vs stored 0.40.",
+        "SMIG FCFA 60,000/month (~USD 98; minimum-wage.org & tradeportal) = ~EUR 91; stored EUR 40 wrong.",
+        "XAF exchange rate corrected to ~600 per USD (convention inferred from CN=7.8, AUD=1.62).",
+        "Population stored 21.0M vs WB 2024 20.3M (-3.5%), within tolerance - left unchanged.",
+        "WB checks OK: unemployment 1.05 (2024), internet 12.6%, LE F/M 57.2/53.4, ABR 132.",
+        "Sexed smoking rates were identical template values (F=8/M=22) across the whole batch - fabricated. Corrected to WHO 2022 current tobacco use 15+ (M 12.3% / F 1.4%, total 6.8%)."
+      ]
+    },
+    "CL": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.878,
+        "minimumWageEur": 520,
+        "englishSpeakingPercent": 10,
+        "exchangeRate": 940,
+        "maleSmokingRate": 30.6,
+        "femaleSmokingRate": 25.8,
+        "smokingRate": 28.2
+      },
+      "notes": [
+        "HDI 0.878 (UNDP HDR 2025, 2023 data, rank 45/193) vs stored 0.86.",
+        "Monthly minimum wage CLP 529,000 since 1-May-2025 (Jan-2025 was 510,500) = ~EUR 520; stored 440 outdated (mid-2023 level).",
+        "englishSpeakingPercent 65 implausible: EF EPI classifies Chile low-proficiency; ~10% any competence.",
+        "CLP/USD ~940 (2024 avg) under local-per-USD convention; stored 1 wrong.",
+        "WB checks OK: pop 19.76M, unemployment 8.72 (2024), internet 95.6%, LE F/M 83.2/79.5, ABR 5.6.",
+        "Sexed smoking rates were identical template values (F=8/M=22) across the whole batch - fabricated. Corrected to WHO 2022 current tobacco use 15+ (M 30.6% / F 25.8%, total 28.2%)."
+      ]
+    },
+    "CN": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.797,
+        "englishSpeakingPercent": 2,
+        "maleSmokingRate": 47.3,
+        "femaleSmokingRate": 2.0,
+        "smokingRate": 24.9
+      },
+      "notes": [
+        "HDI 0.797 (UNDP HDR 2025 / Wikipedia HDI 2023) vs stored 0.77.",
+        "englishSpeakingPercent 58 implausible: China EF EPI very low proficiency; ~2% conversational English.",
+        "minimumWageEur 200 kept: lowest provincial tier RMB 1,690-1,830/month (~EUR 220) - stored value plausible-low; range RMB 1,800-2,740 (Oct 2025).",
+        "WB checks OK: pop 1.41bn, unemployment 4.59 (2024), internet 92% (2024) vs 91.6, LE F/M 81.0/75.2, ABR 5.2.",
+        "Sexed smoking rates were identical template values (F=8/M=22) across the whole batch - fabricated. Corrected to WHO 2022 current tobacco use 15+ (M 47.3% / F 2.0%, total 24.9%)."
+      ]
+    },
+    "CX": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 1843,
+        "dataSource": "Derived from Australia entry x0.9 GDP-per-capita ratio",
+        "income": {
+          "p10": 1080,
+          "p25": 1890,
+          "p50": 3060,
+          "p75": 4500,
+          "p90": 6480
+        },
+        "indicators.pretax_national": {
+          "p10": 1098,
+          "p25": 1952,
+          "p50": 3211,
+          "p75": 4872,
+          "p90": 7229
+        },
+        "indicators.posttax_national": {
+          "p10": 1080,
+          "p25": 1890,
+          "p50": 3060,
+          "p75": 4500,
+          "p90": 6480
+        },
+        "indicators.consumption": {
+          "p10": 990,
+          "p25": 1544,
+          "p50": 2500,
+          "p75": 3452,
+          "p90": 4646
+        },
+        "indicators.wealth": {
+          "p10": 2160,
+          "p25": 15120,
+          "p50": 76500,
+          "p75": 270000,
+          "p90": 972000
+        },
+        "indicators.labor_income": {
+          "p10": 648,
+          "p25": 1323,
+          "p50": 2448,
+          "p75": 3825,
+          "p90": 5832
+        },
+        "hdi": 0.94,
+        "minimumWageEur": 1800,
+        "costOfLivingIndex": 82,
+        "internetPenetration": 96.1,
+        "unemploymentRate": 4.1
+      },
+      "notes": [
+        "Placeholder entry (pop=1000000, p50=875, CoL=38) fully replaced.",
+        "Population real figure: 2021 census 1,843 (1843).",
+        "All income/wealth percentiles derived = Australia entry x0.9 (GDP-per-capita ratio ~0.9; island territories pay Australian public-sector wages).",
+        "minimumWageEur/CoL/internet/unemployment set to Australian federal values: territories use AU law and supply chains (island cost of living is HIGH, not 38).",
+        "hdi set to 0.94: UNDP does not rate territories; derived slightly below AU 0.95.",
+        "Health/gender fields already match Australian norms; left unchanged."
+      ]
+    },
+    "CC": {
+      "status": "errors_found",
+      "corrections": {
+        "population": 593,
+        "dataSource": "Derived from Australia entry x0.9 GDP-per-capita ratio",
+        "income": {
+          "p10": 1080,
+          "p25": 1890,
+          "p50": 3060,
+          "p75": 4500,
+          "p90": 6480
+        },
+        "indicators.pretax_national": {
+          "p10": 1098,
+          "p25": 1952,
+          "p50": 3211,
+          "p75": 4872,
+          "p90": 7229
+        },
+        "indicators.posttax_national": {
+          "p10": 1080,
+          "p25": 1890,
+          "p50": 3060,
+          "p75": 4500,
+          "p90": 6480
+        },
+        "indicators.consumption": {
+          "p10": 990,
+          "p25": 1544,
+          "p50": 2500,
+          "p75": 3452,
+          "p90": 4646
+        },
+        "indicators.wealth": {
+          "p10": 2160,
+          "p25": 15120,
+          "p50": 76500,
+          "p75": 270000,
+          "p90": 972000
+        },
+        "indicators.labor_income": {
+          "p10": 648,
+          "p25": 1323,
+          "p50": 2448,
+          "p75": 3825,
+          "p90": 5832
+        },
+        "hdi": 0.94,
+        "minimumWageEur": 1800,
+        "costOfLivingIndex": 82,
+        "internetPenetration": 96.1,
+        "unemploymentRate": 4.1
+      },
+      "notes": [
+        "Placeholder entry (pop=1000000, p50=875, CoL=38) fully replaced.",
+        "Population real figure: 2021 census 593 (593).",
+        "All income/wealth percentiles derived = Australia entry x0.9 (GDP-per-capita ratio ~0.9; island territories pay Australian public-sector wages).",
+        "minimumWageEur/CoL/internet/unemployment set to Australian federal values: territories use AU law and supply chains (island cost of living is HIGH, not 38).",
+        "hdi set to 0.94: UNDP does not rate territories; derived slightly below AU 0.95.",
+        "Health/gender fields already match Australian norms; left unchanged."
+      ]
+    },
+    "CO": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.788,
+        "minimumWageEur": 310,
+        "unemploymentRate": 9.6,
+        "englishSpeakingPercent": 5,
+        "exchangeRate": 4070,
+        "maleSmokingRate": 12.1,
+        "femaleSmokingRate": 4.5,
+        "smokingRate": 8.2
+      },
+      "notes": [
+        "HDI 0.788 (UNDP HDR 2025, rank 83/193) vs stored 0.76.",
+        "SMLMV 2025 = COP 1,423,500/month (Decree 1572 of 2024) = ~EUR 310; stored 180 far too low.",
+        "Unemployment corrected to 9.6% (WB/ILO modeled 2024); stored 8.3 below any recent estimate (2023: 9.59, 2024: 9.62).",
+        "englishSpeakingPercent 60 implausible: Colombia low proficiency, ~5%.",
+        "COP/USD ~4,070 (2024 avg); stored 1 wrong under local-per-USD convention.",
+        "WB checks OK: pop 52.9M, internet 79.3%, LE F/M 80.6/75.2, ABR 58.4.",
+        "Sexed smoking rates were identical template values (F=8/M=22) across the whole batch - fabricated. Corrected to WHO 2022 current tobacco use 15+ (M 12.1% / F 4.5%, total 8.2%)."
+      ]
+    },
+    "KM": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.603,
+        "minimumWageEur": 84,
+        "exchangeRate": 455,
+        "maleSmokingRate": 26.2,
+        "femaleSmokingRate": 6.2,
+        "smokingRate": 16.2
+      },
+      "notes": [
+        "HDI 0.603 (HDR 2025 / Wikipedia, 2023, rank 152) vs stored 0.55.",
+        "Minimum wage KMF 55,000/month guideline (~EUR 84, Verite) - non-binding; stored EUR 50 low. Kept as best available figure.",
+        "KMF/USD ~455 (pegged to EUR at 491.97 KMF/EUR); stored 1 wrong under local-per-USD convention.",
+        "WB checks OK: pop 867k (stored 883k within 2%), unemployment 3.8, internet 32.5, LE F/M 69.2/65.0, ABR 53.8.",
+        "Sexed smoking rates were identical template values (F=8/M=22) across the whole batch - fabricated. Corrected to WHO 2022 current tobacco use 15+ (M 26.2% / F 6.2%, total 16.2%)."
+      ]
+    }
+  }
+}
