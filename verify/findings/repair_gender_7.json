@@ -1,0 +1,95 @@
+{
+  "batch": "repair_gender_7",
+  "countries": {
+    "IS": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.contraceptiveUse": 77.1
+      },
+      "notes": [
+        "contraceptiveUse: Iceland is ABSENT from UN DESA Estimates and Projections of Family Planning Indicators 2024 (checked full Data_FamilyPlanningIndicators_2024.zip, 258 locations); World Bank SP.DYN.CONU.ZS empty for ISL; WHO GHO cpmt/MDG_0000000005 returned no rows. Derived from nearest comparable Nordic country: Denmark CPAnyP (% women 15-49, any method) 2022 model-based estimate = 77.10 (Nordic peers: DK 77.1, NO 85.4, FI 82.4, SE 70.3)."
+      ]
+    },
+    "XK": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.laborForceGap": -33.6
+      },
+      "notes": [
+        "laborForceGap: Kosovo Agency of Statistics Labour Force Survey 2023: labour force participation rate 40.7% overall - men 57.8%, women 24.2%. Gap = 24.2 - 57.8 = -33.6 pp. Corroborated by Solidar SRM Kosovo profile citing the same KAS figures (33.6-pp gap). World Bank API has no SL.TLF.CACT data for XKX."
+      ]
+    },
+    "LU": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.contraceptiveUse": 70.9
+      },
+      "notes": [
+        "contraceptiveUse: Luxembourg ABSENT from UN DESA Family Planning Indicators 2024 dataset; World Bank SP.DYN.CONU.ZS empty for LUX. Derived as mean of three bordering countries' CPAnyP 2022 model-based estimates (UN DESA): Belgium 66.7, Germany 67.8, France 78.2 -> mean 70.9."
+      ]
+    },
+    "MU": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.childMarriagePercent": 2.2
+      },
+      "notes": [
+        "childMarriagePercent: No UNICEF global-database estimate exists for Mauritius (absent from WB mirror SP.M18.2024.FE.ZS); no DHS/MICS ever fielded. Derived from nearest comparable small-island upper-middle-income country with data: Trinidad & Tobago 4.2% (2022), scaled by adolescent-birth-rate ratio (MU 19.2 / TTO 36.0 per 1000) = 2.24 -> 2.2. Regional comparables with data run far higher (JAM 26.9, BRB 29.2, DOM 31.5); Mauritius min marriage age is 18 (16-17 by parental consent), so a low single-digit value is defensible. Rejected unsourced web claims of '10%'/'23%' from SEO content farms."
+      ]
+    },
+    "NZ": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.childMarriagePercent": 1
+      },
+      "notes": [
+        "childMarriagePercent: No UNICEF/WB estimate for NZL (high-income countries not covered). Small real estimate = 1%: NZ legal minimum marriage age is 18, with 16-17 permitted only by Family Court order (a handful of cases per year per Stats NZ marriage statistics), so prevalence of women 20-24 married before 18 is well under 1%; rounded to 1 to stay conservative and non-zero."
+      ]
+    },
+    "MK": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.childMarriagePercent": 7.5
+      },
+      "notes": [
+        "childMarriagePercent: World Bank SP.M18.2024.FE.ZS (Women who were first married by age 18, % of women ages 20-24; source UNICEF global databases / MICS): North Macedonia 7.5% in 2019 (MICS 2018-2019 round)."
+      ]
+    },
+    "SK": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.contraceptiveUse": 78.4
+      },
+      "notes": [
+        "contraceptiveUse: UN DESA Population Division, Estimates and Projections of Family Planning Indicators 2024 (Data_FamilyPlanningIndicators_2024.zip), indicator CPAnyP (Contraceptive prevalence, any method, % women 15-49), Slovakia locId 703, VariantId 4 (model-based estimates), year 2022 = 78.40. World Bank SP.DYN.CONU.ZS has no data for SVK; WHO GHO cpmt returned empty."
+      ]
+    },
+    "SE": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.contraceptiveUse": 70.3
+      },
+      "notes": [
+        "contraceptiveUse: UN DESA Population Division, Estimates and Projections of Family Planning Indicators 2024, indicator CPAnyP (% women 15-49 any method), Sweden locId 752, model-based estimate, year 2022 = 70.30. World Bank SP.DYN.CONU.ZS empty for SWE."
+      ]
+    },
+    "TT": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.childMarriagePercent": 4.2
+      },
+      "notes": [
+        "childMarriagePercent: World Bank SP.M18.2024.FE.ZS (Women who were first married by age 18, % of women ages 20-24; source UNICEF global databases): Trinidad and Tobago 4.2% in 2022 (down from 34.4% in the 1987 benchmark)."
+      ]
+    },
+    "US": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.childMarriagePercent": 1
+      },
+      "notes": [
+        "childMarriagePercent: No UNICEF/WB estimate for USA (not covered by MICS/DHS). Small real estimate = 1%: peer-reviewed analysis of US National Survey of Family Growth data estimates nearly 1% of surveyed 15-17-year-olds had ever been married (Syrett/Koslov studies on US child marriage; tens of thousands of minor marriages documented in state vital-records investigations by Unchained At Last). Legal exceptions persist in many states, so non-zero but low single digit."
+      ]
+    }
+  }
+}

@@ -1,0 +1,160 @@
+{
+ "batch": "repair_gender_0",
+ "countries": {
+  "AX": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 3,
+    "gender.childMarriagePercent": 2,
+    "gender.laborForceGap": -6.5,
+    "gender.contraceptiveUse": 85.5
+   },
+   "notes": [
+    "All four gender fields null -> filled from verified anchor FI (\u00c5land is an autonomous, demographically near-identical region of Finland).",
+    "World Bank API has no ALA data for SP.ADO.TFRT / SL.TLF.CACT.FE.ZS / MA.ZS / SP.DYN.CONU.ZS; WHO GHO has no ALA rows either.",
+    "childMarriagePercent 2 mirrors FI anchor; marriage under 18 prohibited in Finland (since 2019), so real incidence ~0-2%."
+   ]
+  },
+  "AI": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 28.0,
+    "gender.childMarriagePercent": 0,
+    "gender.laborForceGap": -8.3,
+    "gender.contraceptiveUse": 76.1
+   },
+   "notes": [
+    "adolescentBirthRate 28.0 = REAL value: PAHO Health in the Americas+ Anguilla profile reports adolescent fertility fell from 55.0 (2000) to 28.0 live births per 1000 women 15-19 in 2024. GB anchor (7.8) NOT used for this field - Caribbean norm is far higher.",
+    "World Bank has no AIA data for any of the four indicators; WHO GHO has no AIA rows.",
+    "childMarriagePercent/laborForceGap/contraceptiveUse derived from verified anchor GB (marriage under 18 not permitted without exceptional consent; UNICEF shows no Anguilla child-marriage estimate)."
+   ]
+  },
+  "IO": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 7.8,
+    "gender.childMarriagePercent": 0,
+    "gender.laborForceGap": -8.3,
+    "gender.contraceptiveUse": 76.1
+   },
+   "notes": [
+    "No resident civilian population: only ~2-3k transient US/UK military personnel and contractors on Diego Garcia; no births registered and no demographic surveys exist.",
+    "World Bank (IOT) and WHO GHO have no data for any of the four indicators.",
+    "All four fields derived from verified anchor GB per ladder rule; values are nominal placeholders for a non-resident territory."
+   ]
+  },
+  "BQ": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 1.7,
+    "gender.childMarriagePercent": 5,
+    "gender.laborForceGap": -9.2,
+    "gender.contraceptiveUse": 73
+   },
+   "notes": [
+    "All four gender fields null -> filled from verified anchor NL (Bonaire/Sint Eustatius/Saba are special municipalities of the Netherlands).",
+    "World Bank has no BES data for SP.ADO.TFRT / SL.TLF.CACT / SP.DYN.CONU.ZS; WHO GHO has no BES rows.",
+    "CBS Netherlands does publish Caribbean-Netherlands birth figures but not as a 15-19 rate; teenage motherhood is rare there so NL's low ABR (1.7) is the defensible proxy."
+   ]
+  },
+  "CX": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 6.4,
+    "gender.childMarriagePercent": 1,
+    "gender.laborForceGap": -8.2,
+    "gender.contraceptiveUse": 66.9
+   },
+   "notes": [
+    "All four gender fields null -> filled from verified anchor AU (external Australian territory).",
+    "World Bank (CXR) and WHO GHO have no data for any of the four indicators; ABS does not publish these series for the territory (~1,700 pop).",
+    "childMarriagePercent 1 is a small real estimate (AU anchor null): marriage under 18 in Australia requires court authorisation and is extremely rare (<0.5% of women)."
+   ]
+  },
+  "CC": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 6.4,
+    "gender.childMarriagePercent": 1,
+    "gender.laborForceGap": -8.2,
+    "gender.contraceptiveUse": 66.9
+   },
+   "notes": [
+    "All four gender fields null -> filled from verified anchor AU (external Australian territory, ~600 pop).",
+    "World Bank (CCK) and WHO GHO have no data for any of the four indicators.",
+    "childMarriagePercent 1: same small real estimate as CX (AU anchor null; under-18 marriage requires court order, vanishingly rare)."
+   ]
+  },
+  "CK": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 31.0,
+    "gender.childMarriagePercent": 1,
+    "gender.laborForceGap": -8.7,
+    "gender.contraceptiveUse": 74.3
+   },
+   "notes": [
+    "adolescentBirthRate 31.0 = REAL value: WHO GHO MDG_0000000003 (adolescent fertility rate, SEX_FMLE), Cook Islands 2023. NZ anchor (10.3) NOT used - Cook Islands teenage fertility is ~3x NZ's.",
+    "contraceptiveUse derived from verified anchor NZ (74.3). GHO WHS4_543 shows COK at 95-99% but that series is inconsistent with accepted national values (it also gives Finland 98% vs DB's verified 85.5), so it was rejected.",
+    "childMarriagePercent 1 is a small real estimate (NZ/AU anchors null): under-18 marriage in the Cook Islands requires court consent and is very rare.",
+    "laborForceGap derived from verified anchor NZ; no sex-disaggregated participation series published for CK."
+   ]
+  },
+  "FK": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 1.1,
+    "gender.childMarriagePercent": 2,
+    "gender.laborForceGap": -8.4,
+    "gender.contraceptiveUse": 76.5
+   },
+   "notes": [
+    "All four gender fields null -> filled from verified anchor DK per ladder (Falklands society/demographics closest to Nordic-norm high-income; FIG Statistics publishes births but not these gender series).",
+    "World Bank (FLK) and WHO GHO have no data for any of the four indicators.",
+    "Teenage births in the Falklands are extremely rare (0-2/yr among ~25 births/yr total), consistent with the low DK ABR proxy."
+   ]
+  },
+  "GF": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 55,
+    "gender.childMarriagePercent": 5,
+    "gender.laborForceGap": -7.6,
+    "gender.contraceptiveUse": 78.4
+   },
+   "notes": [
+    "laborForceGap -7.6 = REAL value from INSEE 2022 census (EMP T2, dept 973): activity rate 15-64 female 59.8% vs male 67.4%.",
+    "adolescentBirthRate 55 is a derived estimate: Guyane has France's highest teenage fertility - INSEE reports 4.9% of 2024 births to mothers under 18 (vs 0.33% in metropolitan France). Computation: ~9-10% of ~7,500 births to mothers under 20 (~700) over ~11,400 women 15-19 (INSEE POP T3 2022) gives ~60; set conservatively at 55. FR anchor (3.3) NOT used for this field.",
+    "childMarriagePercent/contraceptiveUse from verified anchor FR; marriage under 18 prohibited in France since 2006 so FR's 5 likely reflects early-union data rather than formal marriage."
+   ]
+  },
+  "GP": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 11,
+    "gender.childMarriagePercent": 5,
+    "gender.laborForceGap": -0.4,
+    "gender.contraceptiveUse": 78.4
+   },
+   "notes": [
+    "laborForceGap -0.4 = REAL value from INSEE 2022 census (EMP T2, dept 971): activity rate 15-64 female 70.4% vs male 70.8% - near parity.",
+    "adolescentBirthRate 11 is a derived estimate: PMC12548610 reports Guadeloupe's births-to-minors rate at ~3x mainland France (29 births to under-18 mothers in 2021); scaling FR anchor 3.3 by ~3x and adding 18-19-yo mothers gives ~10-12.",
+    "childMarriagePercent/contraceptiveUse from verified anchor FR."
+   ]
+  },
+  "GG": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 7.8,
+    "gender.childMarriagePercent": 0,
+    "gender.laborForceGap": -8.3,
+    "gender.contraceptiveUse": 76.1
+   },
+   "notes": [
+    "All four gender fields null -> filled from verified anchor GB (Crown Dependency).",
+    "World Bank (GGY) and WHO GHO have no data for any of the four indicators; Guernsey annual Public Health reports give birth counts but no sex-disaggregated participation or contraceptive-prevalence series.",
+    "Guernsey's age structure and wealth match the UK; teenage births are rare (0-2/yr), consistent with GB ABR proxy. childMarriagePercent 0 mirrors GB anchor (marriage under 18 prohibited in England/Wales since 2022; not practised in Guernsey)."
+   ]
+  }
+ }
+}

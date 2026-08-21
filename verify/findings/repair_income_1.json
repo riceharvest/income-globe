@@ -1,0 +1,101 @@
+{
+ "batch": "repair_income_1",
+ "countries": {
+  "GF": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 360,
+    "income.p25": 510,
+    "income.p50": 920,
+    "income.p75": 1840,
+    "income.p90": 2810
+   },
+   "notes": [
+    "PRIMARY DATA FOUND - no derivation needed: INSEE Filosofi publishes full decile stats for Guyane as a French region. Edition 2024 ('Revenus et patrimoine des menages', insee.fr/fr/statistiques/7941411), year 2021: D1 = EUR 4,320/yr, median = EUR 11,040/yr, D9 = EUR 33,720/yr, interdecile ratio 7.8, poverty rate 52.9%.",
+    "Old set (400/680/1080/1560/2200) was FR x 0.40 GDP-ratio derivation; first pass itself noted 'inequality likely understated'. Actual Filosofi data confirms: ratio D9/D1 = 7.8 vs implied ~5.5 in old set, and median EUR 920/mo vs old 1080 (+17% too high).",
+    "Converted annual->monthly (/12): p10 360, p50 920, p90 2810. p25/p75 log-linearly interpolated between published deciles (Guyane distribution strongly right-skewed, so geometric interpolation): p25 ~ EUR 6,116/yr -> 510/mo, p75 ~ EUR 22,120/yr -> 1840/mo.",
+    "Values are 'niveau de vie' (household disposable income per consumption unit) in EUR/month - matches the DB's income percentile concept and unit."
+   ]
+  },
+  "FK": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 1230,
+    "income.p25": 1720,
+    "income.p50": 2210,
+    "income.p75": 2700,
+    "income.p90": 4660
+   },
+   "notes": [
+    "PRIMARY DATA FOUND: Falkland Islands 2021 Census full report (FIG, published 2023) Table 19d gives the actual annual income distribution for ALL individuals 16+ (incl. non-workers, excluding MPC military) in GBP 5,000 bands, n=2,617.",
+    "Percentiles computed from the census band counts using each band's midpoint (the FIG's own method): p10 GBP 12,500/yr, p25 GBP 17,500, p50 GBP 22,500, p75 GBP 27,500, p90 GBP 47,500. Cross-checks: census-stated median GBP 24,000 and mean GBP 26,700 confirm the level; implied mean from bands = GBP 25,400 (top open band truncated).",
+    "Converted to EUR/month at 0.85 GBP/EUR: p10 1230, p25 1720, p50 2210, p75 2700, p90 4660.",
+    "Old set (1860/2150/2600/3390/4380) was anchored on MEAN EMPLOYEE income (GBP 30k) and overstated the typical resident: median all-individuals income is GBP 24,000 vs mean-in-employment GBP 29,900; bottom half compressed too high (old p10-p25 gap only 290/mo vs actual ~490), top tail too light."
+   ]
+  },
+  "GD": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 137,
+    "income.p25": 285,
+    "income.p50": 424,
+    "income.p75": 765,
+    "income.p90": 2163
+   },
+   "notes": [
+    "PRIMARY DATA FOUND - no UK-anchor derivation needed: World Bank PIP carries Grenada SLCHB 2018 (Survey of Living Conditions and Household Budgets, national consumption): mean $21.11/day PPP, median $13.92/day, gini 0.438, with full decile shares.",
+    "Old set (340/560/900/1310/1890) was GBR x 0.32 GDP-ratio derivation; its implied gini ~0.33 badly understated actual inequality (0.438) - top decile holds 33.7% of income in the survey.",
+    "Rebuilt from PIP decile shares x mean (decile average = share x mean x 10): bottom decile avg $4.50/day -> p10, 3rd decile $9.37 -> p25, PIP median $13.92 -> p50, 8th decile $25.12 -> p75, top decile avg $71.07 -> p90; daily->monthly x30.44 (same method as repair_income_5 batches).",
+    "Result is much more unequal than the old set at both tails (p10 137 vs 340; p90 2163 vs 1890) with a lower median (424 vs 900) - the old derivation inherited the UK's compressed shape. Caveat: PIP values are household CONSUMPTION per capita in 2017 PPP$, whereas DB percentiles elsewhere mix income/consumption concepts; kept consistent with the other PIP-based repairs."
+   ]
+  },
+  "PF": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 300,
+    "income.p25": 450,
+    "income.p50": 900,
+    "income.p75": 1790,
+    "income.p90": 2700
+   },
+   "notes": [
+    "PRIMARY DATA FOUND: ISPF 'Budget des familles 2014-2015' (the latest completed household budget survey; a new one runs Apr 2025-Apr 2026) publishes the niveau-de-vie decile distribution for the Iles du Vent (~88% of population): D1 <= 36,000 XPF/month per consumption unit, D9 >= 322,000 XPF/month - exactly 9x, vs ~4x in metropole (reported by Tahiti-Infos 2 Sep 2019 from ISPF tables; poverty rate 20% in 2015).",
+    "Converted at the official peg 1,000 XPF = 8.38 EUR: p10 = EUR 302/mo, p90 = EUR 2,698/mo.",
+    "ISPF does not publish the median level directly in accessible sources; p50 estimated as the geometric mean of D1/D9 (log-normal interpolation): sqrt(36,000 x 322,000) = 107,700 XPF = EUR 902/mo. Consistency checks: implied poverty threshold (median/2 ~ 53,800 XPF) vs ISPF-reported average for poor families 45,700 XPF/CU implies ~16% poverty intensity - plausible; median gross salary 185,000 XPF/mo (~EUR 1,551) sits above the per-CU household median as expected. p25/p75 log-interpolated: 450 / 1790.",
+    "Old set (386/646/1026/1482/2090) was FR x 0.38 GDP-ratio derivation; it inherited France's compressed shape (implied D9/D1 ~5.5) badly understating actual Polynesian inequality (D9/D1 = 9, no income tax, weak redistribution)."
+   ]
+  },
+  "GI": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 1130,
+    "income.p25": 1720,
+    "income.p50": 2590,
+    "income.p75": 4200,
+    "income.p90": 6530
+   },
+   "notes": [
+    "PRIMARY DATA FOUND: Gibraltar Stats Office 'Employment Survey Report 2023' (laid before Parliament, 2024), Table 13.3 gives the full distribution of gross annual earnings across ALL 31,523 employee jobs in GBP bands. Percentiles interpolated within bands: p10 GBP 11,518/yr, p25 17,578, p50 26,394, p75 42,824, p90 66,598 (top open band 60k+ capped at 100k; implied mean GBP 32,951 vs survey mean GBP 36,033 - p90 marginally understated).",
+    "Converted at 0.85 GBP/EUR to EUR/month: p10 1130, p25 1720, p50 2590, p75 4200, p90 6530.",
+    "Caveats: this is JOB earnings, not resident household income - 13,844 of 31,634 jobs (44%, Oct 2024 survey) are Spanish cross-frontier workers who skew lower, so the resident distribution sits somewhat higher; conversely these are GROSS earnings while other entries mix net concepts. Kept unadjusted - no defensible resident-only split is published.",
+    "Old set (1160/1930/3080/4510/6490) was GBR x 1.10 derivation. New official data confirms the tails but cuts the median ~16% (2,590 vs 3,080) and widens the middle: actual p50-p75 spread (GBP 26k->43k) is steeper than the UK-shaped copy."
+   ]
+  },
+  "GL": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 500,
+    "income.p25": 1110,
+    "income.p50": 2050,
+    "income.p75": 3400,
+    "income.p90": 4850
+   },
+   "notes": [
+    "PRIMARY DATA FOUND: Statistics Greenland (bank.stat.gl) table INEFI401 'Decile distribution of income for families', All Greenland, all families, DISPOSABLE income, 2024: decile upper thresholds DKK 82,754 (p20), 119,335 (p30), 146,799 (p40), 183,712 (p50=MEDIAN), 223,713 (p60), 273,052 (p70), 341,170 (p80), 433,682 (p90); top-decile average DKK 797,458. Decile-1 cells suppressed (small numbers); p10 estimated ~DKK 45,000 from the Greenland-in-Figures 2024 factsheet (1st-decile average PRE-TAX household income DKK 46,230, 2022) scaled to disposable.",
+    "Converted at Statistics Greenland's own rate (EUR 100 = DKK 745.89) to EUR/month: p10 500, p25 1110 (geometric midpoint p20-p30), p50 2050 (= published median), p75 3400 (geometric midpoint p70-p80), p90 4850.",
+    "Old set (1320/2160/3290/4510/6110) was DNK x 0.94 GDP-per-capita-PPP derivation - it overstated the actual median by ~60% (3,290 vs 2,050). Greenland's GDP pc PPP is inflated by fish-export profits that do not reach households; Wikipedia/WB note Greenland's per-capita DISPOSABLE income is the Arctic's lowest outside Russia despite near-Danish GDP pc. Actual inequality also exceeds Denmark's (p90/p10 ~ 9.7 vs DK ~4.6), consistent with Statistics Greenland's own statement that 'income inequality in Greenland is higher than the Nordic average'.",
+    "Concept note: values are family-level (household) disposable income, not equivalised per-consumption-unit; Statistics Greenland publishes no equivalised percentile distribution."
+   ]
+  }
+ }
+}

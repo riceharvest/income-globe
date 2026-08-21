@@ -1,0 +1,140 @@
+{
+  "batch": "repair_gender_4",
+  "countries": {
+    "SC": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.laborForceGap": -3.4,
+        "gender.childMarriagePercent": 7,
+        "gender.contraceptiveUse": 58
+      },
+      "notes": [
+        "laborForceGap: WB/ILOSTAT national estimates SL.TLF.CACT.FE.NE.ZS 64.29 minus SL.TLF.CACT.MA.NE.ZS 67.69 (% ages 15+, 2020) = -3.40. Modeled WB series (SL.TLF.CACT.*.ZS) have no Seychelles data; the national-estimate variant does.",
+        "childMarriagePercent: no DHS/MICS exists; UNSD Demographic Yearbook census 2002 shows 6.6% of women 15-19 ever married -> set 7 as before-18 prevalence proxy (slightly higher than the 15-19 stock).",
+        "contraceptiveUse: no national survey (CIA Factbook NA, WB/OWID empty). Derived from nearest comparable small-island state Barbados 59.2% (2012, WB SP.DYN.CONU.ZS); set 58."
+      ]
+    },
+    "MP": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.laborForceGap": -11.1,
+        "gender.childMarriagePercent": 5,
+        "gender.contraceptiveUse": 45
+      },
+      "notes": [
+        "laborForceGap: WB/ILOSTAT census-based national estimates SL.TLF.CACT.FE.NE.ZS 66.564 minus MA.NE.ZS 77.628 (% ages 15+, 2010, latest year available for CNMI) = -11.06.",
+        "childMarriagePercent: no CNMI survey data; set 5 from US anchor (US child-marriage prevalence ~5-6%, UNICEF/OWID), consistent with absence of CNMI census evidence of under-18 marriage.",
+        "contraceptiveUse: no CNMI survey (CIA Factbook NA, WB empty). Derived from Marshall Islands 44.6% (2007, WB SP.DYN.CONU.ZS) as nearest comparable US-affiliated Micronesian jurisdiction; actual CNMI prevalence likely between this and the US anchor (73.9%)."
+      ]
+    },
+    "PW": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.laborForceGap": -11.7,
+        "gender.childMarriagePercent": 4,
+        "gender.contraceptiveUse": 45
+      },
+      "notes": [
+        "laborForceGap: WB/ILOSTAT national estimates SL.TLF.CACT.FE.NE.ZS 60.692 minus MA.NE.ZS 72.379 (% ages 15+, 2023) = -11.69.",
+        "childMarriagePercent: Palau 2005 census (UNSD): 3.6% of women 15-19 ever married -> set 4 as before-18 proxy.",
+        "contraceptiveUse: no Palau survey in WB/OWID/Factbook; Pacific SRH literature confirms none recent. Derived from Marshall Islands 44.6% (2007, WB), nearest comparable US-affiliated Micronesian Compact state."
+      ]
+    },
+    "KN": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.laborForceGap": -8.6,
+        "gender.childMarriagePercent": 2,
+        "gender.contraceptiveUse": 40.6
+      },
+      "notes": [
+        "laborForceGap: WB/ILOSTAT census-based national estimates SL.TLF.CACT.FE.NE.ZS 64.415 minus MA.NE.ZS 73.048 (% ages 15+, 2001 census, latest available for KNA) = -8.63. Older vintage noted; no more recent sex-disaggregated series exists in WB/ILOSTAT/OWID.",
+        "childMarriagePercent: KN 1980 census shows 0.5% of women 15-19 ever married (UNSD); Eastern Caribbean censuses range 0.5-3.9%. Set 2 as a real-range estimate; no modern survey exists.",
+        "contraceptiveUse: only source is the 1984 Contraceptive Prevalence Survey via WB SP.DYN.CONU.ZS = 40.6% (any method). Old but real; flagged as dated."
+      ]
+    },
+    "MF": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.laborForceGap": -8.1,
+        "gender.childMarriagePercent": 1,
+        "gender.contraceptiveUse": 78
+      },
+      "notes": [
+        "laborForceGap: no sex-disaggregated participation data for Saint-Martin in WB/ILOSTAT/INSEE short of special publications; derived from anchor France WB modeled gap 51.48-59.55 = -8.07 (% ages 15+, 2025).",
+        "childMarriagePercent: no data; French anchor <1% (marriage below 18 is rare and legally restricted in France); set 1.",
+        "contraceptiveUse: no local survey (CIA Factbook NA); derived from anchor France 78.4% (2010, WB SP.DYN.CONU.ZS any method)."
+      ]
+    },
+    "SX": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.laborForceGap": -9.2,
+        "gender.childMarriagePercent": 1,
+        "gender.contraceptiveUse": 73
+      },
+      "notes": [
+        "laborForceGap: WB has only a total national-estimate series for Sint Maarten (no FE/MA split); last full LFS was 2018 with no published sex-disaggregated participation rates found. Derived from anchor Netherlands WB modeled gap 62.71-71.89 = -9.18 (% ages 15+, 2025).",
+        "childMarriagePercent: no data; Dutch anchor <1%; set 1.",
+        "contraceptiveUse: no local survey (CIA Factbook NA); derived from anchor Netherlands 73% (2013, WB SP.DYN.CONU.ZS any method)."
+      ]
+    },
+    "AD": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.laborForceGap": -5.2,
+        "gender.childMarriagePercent": 1,
+        "gender.contraceptiveUse": 78
+      },
+      "notes": [
+        "laborForceGap: Andorra Departament d'Estadistica LFS Q1 2026 - inactivity rate ages 15-64: women 19.4%, men 14.2% -> activity rates 80.6% vs 85.8% -> gap -5.2 pp. Cross-check: employment rates women 79.7% vs men 84.3% in the same survey.",
+        "childMarriagePercent: no data; European anchor level <1%; set 1 (Andorra minimum marriage age 16 with consent, very few cases).",
+        "contraceptiveUse: no national survey (CIA Factbook NA, WB empty); derived from anchor France 78.4% (2010, WB any method), consistent with Spain 62-71% range for the region."
+      ]
+    },
+    "BS": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.childMarriagePercent": 3.1,
+        "gender.contraceptiveUse": 61.7
+      },
+      "notes": [
+        "childMarriagePercent: Bahamas 2000 census (UNSD): 3.1% of women 15-19 ever married -> used directly as conservative before-18 proxy. No MICS/DHS exists.",
+        "contraceptiveUse: 1988 Contraceptive Prevalence Survey via WB SP.DYN.CONU.ZS = 61.7% (any method, married women 15-49). Only source; flagged as dated."
+      ]
+    },
+    "BB": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.childMarriagePercent": 29.2,
+        "gender.contraceptiveUse": 59.2
+      },
+      "notes": [
+        "childMarriagePercent: UNICEF/OWID series 'women first married by age 18 (% women 20-24)' = 29.2% (2012). High vs census ever-married figures because the Caribbean definition includes consensual unions.",
+        "contraceptiveUse: WB SP.DYN.CONU.ZS any method = 59.2% (2012, married women 15-49)."
+      ]
+    },
+    "BZ": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.childMarriagePercent": 33.5,
+        "gender.contraceptiveUse": 51.4
+      },
+      "notes": [
+        "childMarriagePercent: UNICEF/OWID series = 33.5% (2016, women 20-24 first married/in union before 18).",
+        "contraceptiveUse: WB SP.DYN.CONU.ZS any method = 51.36% (2016, married women 15-49)."
+      ]
+    },
+    "BN": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.childMarriagePercent": 7,
+        "gender.contraceptiveUse": 43
+      },
+      "notes": [
+        "childMarriagePercent: Brunei 2001 census (UNSD): 6.6% of women 15-19 ever married -> set 7 as before-18 proxy. No DHS/MICS exists.",
+        "contraceptiveUse: no Brunei survey (CIA Factbook 'N/A'); derived from nearest comparable Malaysia 42.8% (2022, WB SP.DYN.CONU.ZS any method)."
+      ]
+    }
+  }
+}

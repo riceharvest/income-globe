@@ -1,0 +1,259 @@
+{
+ "batch": "repair_income_6",
+ "countries": {
+  "ST": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 80,
+    "income.p25": 118,
+    "income.p50": 182,
+    "income.p75": 281,
+    "income.p90": 593,
+    "indicators.pretax_national": {
+     "p10": 84,
+     "p25": 123,
+     "p50": 190,
+     "p75": 294,
+     "p90": 620
+    },
+    "indicators.posttax_national": {
+     "p10": 80,
+     "p25": 118,
+     "p50": 182,
+     "p75": 281,
+     "p90": 593
+    },
+    "indicators.consumption": {
+     "p10": 80,
+     "p25": 118,
+     "p50": 182,
+     "p75": 281,
+     "p90": 593
+    },
+    "indicators.labor_income": {
+     "p10": 64,
+     "p25": 94,
+     "p50": 146,
+     "p75": 225,
+     "p90": 474
+    },
+    "dataSource": "World Bank PIP API (pip-grp deciles + median, consumption aggregate)",
+    "dataYear": 2017
+   },
+   "notes": [
+    "ST: World Bank PIP national consumption distribution (IOF 2017, gini 0.4073, mean $248/mo PPP) used to rebuild percentiles.",
+    "Method: decile means = decile share x mean x 10 (PPP $/person/day), converted x30.44 to monthly; p50 = PIP reported median; p10/p25/p75/p90 linearly interpolated between decile midpoints.",
+    "Old entry claimed WID.world 2023 but understated the lower half badly (e.g. p10 30 vs PIP-derived 80); upper tail was roughly right.",
+    "PIP welfare type for this country is household consumption per capita - applied to income/posttax/consumption blocks; pretax and labor_income scaled by the entry's own prior block ratios (x1.046, x0.80) to keep internal structure.",
+    "wealth block left unchanged - no free wealth-distribution source for this country.",
+    "dataYear corrected to PIP survey reporting year 2017."
+   ]
+  },
+  "TJ": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 102,
+    "income.p25": 152,
+    "income.p50": 232,
+    "income.p75": 351,
+    "income.p90": 628,
+    "indicators.pretax_national": {
+     "p10": 108,
+     "p25": 160,
+     "p50": 245,
+     "p75": 370,
+     "p90": 662
+    },
+    "indicators.posttax_national": {
+     "p10": 102,
+     "p25": 152,
+     "p50": 232,
+     "p75": 351,
+     "p90": 628
+    },
+    "indicators.consumption": {
+     "p10": 102,
+     "p25": 152,
+     "p50": 232,
+     "p75": 351,
+     "p90": 628
+    },
+    "indicators.labor_income": {
+     "p10": 82,
+     "p25": 122,
+     "p50": 186,
+     "p75": 281,
+     "p90": 502
+    },
+    "dataSource": "World Bank PIP API (pip-grp deciles + median, consumption aggregate)",
+    "dataYear": 2024
+   },
+   "notes": [
+    "TJ: World Bank PIP national consumption distribution (HBS 2024, gini 0.3611, mean $291/mo PPP) used to rebuild percentiles.",
+    "Method: decile means = decile share x mean x 10 (PPP $/person/day), converted x30.44 to monthly; p50 = PIP reported median; p10/p25/p75/p90 linearly interpolated between decile midpoints.",
+    "Old entry claimed WID.world 2023 but understated the lower half badly (e.g. p10 25 vs PIP-derived 102); upper tail was roughly right.",
+    "PIP welfare type for this country is household consumption per capita - applied to income/posttax/consumption blocks; pretax and labor_income scaled by the entry's own prior block ratios (x1.055, x0.80) to keep internal structure.",
+    "wealth block left unchanged - no free wealth-distribution source for this country.",
+    "dataYear corrected to PIP survey reporting year 2024."
+   ]
+  },
+  "TZ": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 44,
+    "income.p25": 61,
+    "income.p50": 90,
+    "income.p75": 144,
+    "income.p90": 306,
+    "indicators.pretax_national": {
+     "p10": 47,
+     "p25": 65,
+     "p50": 96,
+     "p75": 154,
+     "p90": 326
+    },
+    "indicators.posttax_national": {
+     "p10": 44,
+     "p25": 61,
+     "p50": 90,
+     "p75": 144,
+     "p90": 306
+    },
+    "indicators.consumption": {
+     "p10": 44,
+     "p25": 61,
+     "p50": 90,
+     "p75": 144,
+     "p90": 306
+    },
+    "indicators.labor_income": {
+     "p10": 35,
+     "p25": 49,
+     "p50": 72,
+     "p75": 115,
+     "p90": 245
+    },
+    "dataSource": "World Bank PIP API (pip-grp deciles + median, consumption aggregate)",
+    "dataYear": 2018
+   },
+   "notes": [
+    "TZ: World Bank PIP national consumption distribution (HBS 2018, gini 0.4049, mean $127/mo PPP) used to rebuild percentiles.",
+    "Method: decile means = decile share x mean x 10 (PPP $/person/day), converted x30.44 to monthly; p50 = PIP reported median; p10/p25/p75/p90 linearly interpolated between decile midpoints.",
+    "Old entry claimed WID.world 2023; p50 was 90 vs PIP-derived 90 and the tails were mis-shaped (old p90 480 vs 306).",
+    "PIP welfare type for this country is household consumption per capita - applied to income/posttax/consumption blocks; pretax and labor_income scaled by the entry's own prior block ratios (x1.067, x0.80) to keep internal structure.",
+    "wealth block left unchanged - no free wealth-distribution source for this country.",
+    "dataYear corrected to PIP survey reporting year 2018."
+   ]
+  },
+  "TN": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 185,
+    "income.p25": 273,
+    "income.p50": 397,
+    "income.p75": 572,
+    "income.p90": 1007,
+    "indicators.pretax_national": {
+     "p10": 194,
+     "p25": 287,
+     "p50": 417,
+     "p75": 601,
+     "p90": 1057
+    },
+    "indicators.posttax_national": {
+     "p10": 185,
+     "p25": 273,
+     "p50": 397,
+     "p75": 572,
+     "p90": 1007
+    },
+    "indicators.consumption": {
+     "p10": 185,
+     "p25": 273,
+     "p50": 397,
+     "p75": 572,
+     "p90": 1007
+    },
+    "indicators.labor_income": {
+     "p10": 148,
+     "p25": 218,
+     "p50": 318,
+     "p75": 458,
+     "p90": 806
+    },
+    "dataSource": "World Bank PIP API (pip-grp deciles + median, consumption aggregate)",
+    "dataYear": 2021
+   },
+   "notes": [
+    "TN: World Bank PIP national consumption distribution (NSHBCSL 2021, gini 0.3372, mean $484/mo PPP) used to rebuild percentiles.",
+    "Method: decile means = decile share x mean x 10 (PPP $/person/day), converted x30.44 to monthly; p50 = PIP reported median; p10/p25/p75/p90 linearly interpolated between decile midpoints.",
+    "Old entry claimed WID.world 2023; p50 was 340 vs PIP-derived 397 and the tails were mis-shaped (old p90 1250 vs 1007).",
+    "PIP welfare type for this country is household consumption per capita - applied to income/posttax/consumption blocks; pretax and labor_income scaled by the entry's own prior block ratios (x1.050, x0.80) to keep internal structure.",
+    "wealth block left unchanged - no free wealth-distribution source for this country.",
+    "dataYear corrected to PIP survey reporting year 2021."
+   ]
+  },
+  "UM": {
+   "status": "errors_found",
+   "corrections": {
+    "dataSource": "Derived from US anchor distribution - territory has no permanent resident population",
+    "costOfLivingIndex": 100
+   },
+   "notes": [
+    "UM (US Minor Outlying Islands) has no permanent population (~0 residents; only transient military/contractor and FWS staff) - DB population 0 set in first pass is correct.",
+    "No income survey exists or can exist for a zero-population territory; keeping the US anchor distribution (income block identical to US entry) is the defensible choice per brief.",
+    "Original dataSource 'REST Countries & World Bank API 2024' was the known placeholder template string - replaced with an honest derivation label.",
+    "costOfLivingIndex 100 (= US baseline) retained: any actual costs incurred there are US-military/import priced."
+   ]
+  },
+  "VI": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 618,
+    "income.p25": 1332,
+    "income.p50": 2241,
+    "income.p75": 3513,
+    "income.p90": 5269,
+    "indicators.pretax_national": {
+     "p10": 653,
+     "p25": 1408,
+     "p50": 2368,
+     "p75": 3713,
+     "p90": 5568
+    },
+    "indicators.posttax_national": {
+     "p10": 618,
+     "p25": 1332,
+     "p50": 2241,
+     "p75": 3513,
+     "p90": 5269
+    },
+    "indicators.consumption": {
+     "p10": 502,
+     "p25": 1082,
+     "p50": 1820,
+     "p75": 2854,
+     "p90": 4280
+    },
+    "indicators.labor_income": {
+     "p10": 495,
+     "p25": 1066,
+     "p50": 1793,
+     "p75": 2811,
+     "p90": 4216
+    },
+    "dataSource": "US Census Bureau 2020 Island Areas Census (income year 2019); shape from US anchor",
+    "dataYear": 2020
+   },
+   "notes": [
+    "VI (USVI): previous income block was byte-identical to the PR template copy (p50 1742). Rebuilt from real Census data.",
+    "2020 Island Areas Census (income year 2019): per capita income $26,897/yr -> p50 = $2,241/mo nominal USD; median household income $40,408; mean household $57,599; poverty rate 22.8% (census.gov press releases CB22-CN.22 / CB23-CN.18 / CB24-CN.08).",
+    "Consistency check: mean household income / avg household size (57,599 / 2.14 = 26,916) matches the published per-capita figure.",
+    "Non-median percentiles follow the verified US anchor shape (p10/p50 0.324, p25/p50 0.595, p75/p50 1.568, p90/p50 2.351); p10 additionally x0.85 because USVI poverty rate (22.8%) is roughly double the US rate, implying a fatter lower tail.",
+    "Values are nominal USD (VI uses USD); price-level difference is carried separately by costOfLivingIndex 77.",
+    "pretax/consumption/labor_income blocks scaled by the entry's own prior block ratios (x1.057/x0.812/x0.800); wealth block left unchanged (no free source).",
+    "dataYear set to 2020 census year (income reference year 2019) - Island Areas income data is collected once per decade, no newer source exists."
+   ]
+  }
+ }
+}

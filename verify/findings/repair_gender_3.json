@@ -1,0 +1,148 @@
+{
+  "batch": "repair_gender_3",
+  "countries": {
+    "KY": {
+      "status": "errors_found",
+      "corrections": {
+        "laborForceGap": -7.2,
+        "contraceptiveUse": 76,
+        "childMarriagePercent": 0.5
+      },
+      "notes": [
+        "laborForceGap -7.2pp: ESO (Economics & Statistics Office) Labour Force Survey Fall 2025 - male participation 87.1%, female 79.9%. Corroborated by WB national estimate SL.TLF.CACT.FE.NE.ZS/MA.NE.ZS 2015: F 81.0 vs M 84.6 (-3.6pp).",
+        "contraceptiveUse ~76 derived from UK anchor (GBR SP.DYN.CONU.ZS 76.1, UN WCU); no territory-level survey exists.",
+        "childMarriagePercent set to 0.5 real estimate: legal minimum marriage age 18 (Marriage Act), under-18 marriages vanishingly rare (<1% of women 20-24); no published UNICEF estimate."
+      ]
+    },
+    "CW": {
+      "status": "errors_found",
+      "corrections": {
+        "laborForceGap": -5.4,
+        "contraceptiveUse": 39,
+        "childMarriagePercent": 0.5
+      },
+      "notes": [
+        "laborForceGap -5.4pp: WB national estimates SL.TLF.CACT.FE.NE.ZS/MA.NE.ZS 2020 (CBS Cura\u00e7ao LFS): F 54.0% vs M 59.4%.",
+        "contraceptiveUse 39% is REAL data: UN World Contraceptive Use 2024 survey-based dataset lists Cura\u00e7ao, 2013 survey (CBS Cura\u00e7ao), women 18-50, any method.",
+        "childMarriagePercent set to 0.5 real estimate: Dutch law applies (min age 18), under-18 marriages extremely rare; no published UNICEF estimate."
+      ]
+    },
+    "DM": {
+      "status": "errors_found",
+      "corrections": {
+        "laborForceGap": -25.2,
+        "contraceptiveUse": 49.8,
+        "childMarriagePercent": 6
+      },
+      "notes": [
+        "laborForceGap -25.2pp: WB national estimates SL.TLF.CACT.FE.NE.ZS/MA.NE.ZS 2001 (census): F 45.1% vs M 70.2%.",
+        "contraceptiveUse 49.8% real: 1987 Contraceptive Prevalence Survey (WB SP.DYN.CONU.ZS = UN WCU 2024 survey-based entry); latest available measurement.",
+        "childMarriagePercent ~6 derived estimate: no country-specific UNICEF/DHS estimate exists; based on OECS/LAC small-island comparators with published data (Jamaica ~8%, Trinidad ~5%) and Dominica's adolescent birth rate (34/1000)."
+      ]
+    },
+    "FO": {
+      "status": "errors_found",
+      "corrections": {
+        "laborForceGap": -6.6,
+        "contraceptiveUse": 77,
+        "childMarriagePercent": 0.5
+      },
+      "notes": [
+        "laborForceGap -6.6pp: WB national estimates SL.TLF.CACT.FE.NE.ZS/MA.NE.ZS 2013 (Hagstova F\u00f8roya): F 79.4% vs M 86.0%.",
+        "contraceptiveUse ~77 derived from Danish anchor (DNK SP.DYN.CONU.ZS 76.5, UN WCU); no Faroese survey exists.",
+        "childMarriagePercent set to 0.5 real estimate: Danish-style law (min age 18, rare dispensation), under-18 marriages extremely rare; no published UNICEF estimate."
+      ]
+    },
+    "GI": {
+      "status": "errors_found",
+      "corrections": {
+        "laborForceGap": -21.3,
+        "contraceptiveUse": 76,
+        "childMarriagePercent": 0.5
+      },
+      "notes": [
+        "laborForceGap -21.3pp: WB national estimates SL.TLF.CACT.FE.NE.ZS/MA.NE.ZS 2001 (census): F 57.5% vs M 78.8%; female participation has risen sharply since (ratio F/M was 73.0 in 2001 vs 61.7 in 1994).",
+        "contraceptiveUse ~76 derived from UK anchor (GBR SP.DYN.CONU.ZS 76.1, UN WCU); no Gibraltar survey exists.",
+        "childMarriagePercent set to 0.5 real estimate: Marriage Act min age 18, under-18 marriages extremely rare; no published UNICEF estimate."
+      ]
+    },
+    "GL": {
+      "status": "errors_found",
+      "corrections": {
+        "laborForceGap": -4.8,
+        "contraceptiveUse": 76,
+        "childMarriagePercent": 0.5
+      },
+      "notes": [
+        "laborForceGap -4.8pp: WB national estimates SL.TLF.CACT.FE.NE.ZS/MA.NE.ZS 2015 (Statistics Greenland): F 71.5% vs M 76.3%.",
+        "contraceptiveUse ~76 derived from Danish anchor (DNK SP.DYN.CONU.ZS 76.5); a Nuuk-vs-Denmark comparative study found broadly similar contraceptive use (Kjaer et al., Contraception 1989).",
+        "childMarriagePercent set to 0.5 real estimate: Danish law (min age 18), under-18 marriages extremely rare; no published UNICEF estimate."
+      ]
+    },
+    "GD": {
+      "status": "errors_found",
+      "corrections": {
+        "laborForceGap": -8.8,
+        "contraceptiveUse": 54.3,
+        "childMarriagePercent": 6
+      },
+      "notes": [
+        "laborForceGap -8.8pp: WB national estimates SL.TLF.CACT.FE.NE.ZS/MA.NE.ZS 2023: F 57.9% vs M 66.7%.",
+        "contraceptiveUse 54.3% real: 1990 Contraceptive Prevalence Survey (WB SP.DYN.CONU.ZS = UN WCU 2024 survey-based entry); latest available measurement.",
+        "childMarriagePercent ~6 derived estimate: no country-specific UNICEF/DHS estimate exists; based on OECS/LAC small-island comparators (Jamaica ~8%, Trinidad ~5%) and Grenada's adolescent birth rate (28.6/1000)."
+      ]
+    },
+    "KI": {
+      "status": "errors_found",
+      "corrections": {
+        "laborForceGap": -16.4,
+        "contraceptiveUse": 33.6,
+        "childMarriagePercent": 18.4
+      },
+      "notes": [
+        "laborForceGap -16.4pp: WB national estimates SL.TLF.CACT.FE.NE.ZS/MA.NE.ZS 2023: F 46.8% vs M 63.1%.",
+        "contraceptiveUse 33.6% real: 2019 DHS (WB SP.DYN.CONU.ZS / UN WCU).",
+        "childMarriagePercent 18.4% real: UNICEF global child-marriage database (women 20-24 married before 18, 2019 estimate; via OWID women-married-by-age-18)."
+      ]
+    },
+    "MH": {
+      "status": "errors_found",
+      "corrections": {
+        "laborForceGap": -23.9,
+        "contraceptiveUse": 44.6,
+        "childMarriagePercent": 26.3
+      },
+      "notes": [
+        "laborForceGap -23.9pp: WB national estimates SL.TLF.CACT.FE.NE.ZS/MA.NE.ZS 2021 (census): F 37.3% vs M 61.2%.",
+        "contraceptiveUse 44.6% real: 2007 survey (WB SP.DYN.CONU.ZS / UN WCU); latest available measurement.",
+        "childMarriagePercent 26.3% real: UNICEF global child-marriage database (women 20-24 married before 18, 2007 estimate)."
+      ]
+    },
+    "FM": {
+      "status": "errors_found",
+      "corrections": {
+        "laborForceGap": -21.7,
+        "contraceptiveUse": 38,
+        "childMarriagePercent": 20
+      },
+      "notes": [
+        "laborForceGap -21.7pp: WB national estimates SL.TLF.CACT.FE.NE.ZS/MA.NE.ZS 2014: F 46.2% vs M 67.8%.",
+        "contraceptiveUse ~38 derived: FSM absent from UN WCU 2024 and WB; averaged from directly comparable Pacific microstates with data (Kiribati 33.6 in 2019, Nauru 35.6 in 2007, Marshall Islands 44.6 in 2007 -> mean 37.9).",
+        "childMarriagePercent ~20 derived: no FSM-specific UNICEF estimate published; scaled from Pacific neighbors with data (Kiribati 18.4, Nauru 18.2, Marshall Islands 26.3) and FSM adolescent birth rate (43.7/1000)."
+      ]
+    },
+    "NR": {
+      "status": "errors_found",
+      "corrections": {
+        "laborForceGap": -2.7,
+        "contraceptiveUse": 35.6,
+        "childMarriagePercent": 18.2
+      },
+      "notes": [
+        "laborForceGap -2.7pp: WB national estimates SL.TLF.CACT.FE.NE.ZS/MA.NE.ZS 2024: F 34.4% vs M 37.1%.",
+        "contraceptiveUse 35.6% real: 2007 survey (WB SP.DYN.CONU.ZS / UN WCU); latest available measurement.",
+        "childMarriagePercent 18.2% real: UNICEF global child-marriage database (women 20-24 married before 18, 2023 estimate)."
+      ]
+    }
+  }
+}

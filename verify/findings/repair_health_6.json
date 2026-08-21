@@ -1,0 +1,67 @@
+{
+ "batch": "repair_health_6",
+ "countries": {
+  "VA": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleHeightCm": 161,
+    "femaleWeightKg": 65,
+    "femaleBmi": 25,
+    "femaleObesityRate": 21,
+    "femaleSmokingRate": 18,
+    "femaleLifeExpectancy": 86,
+    "maleHeightCm": 173,
+    "maleWeightKg": 77,
+    "maleBmi": 25.6,
+    "maleObesityRate": 18.5,
+    "maleSmokingRate": 28,
+    "maleLifeExpectancy": 82,
+    "obesityRate": 21,
+    "smokingRate": 18
+   },
+   "notes": [
+    "Vatican City publishes no health/anthropometric statistics for its ~800 residents (clergy, religious and lay officials, predominantly older males); WHO GHO has no VAT rows for NCD_BMI_30C/NCD_BMI_30A or smoking indicators (checked via API filter SpatialDim eq 'VAT').",
+    "All health fields derived from anchor Italy (IT) values as verified in countries-database.json: residents are Italian citizens living in Rome with equivalent healthcare, diet and lifestyle.",
+    "Derived values = Italy's: F height 161 cm / weight 65 kg / BMI 25 / obesity 21% / smoking 18% / LE 86 y; M height 173 cm / weight 77 kg / BMI 25.6 / obesity 18.5% / smoking 28% / LE 82 y; obesityRate 21%, smokingRate 18%."
+   ]
+  },
+  "WF": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleHeightCm": 166,
+    "femaleWeightKg": 96,
+    "femaleBmi": 34.8,
+    "femaleObesityRate": 73.7,
+    "femaleSmokingRate": 29.4,
+    "maleHeightCm": 177,
+    "maleWeightKg": 104,
+    "maleBmi": 33.0,
+    "maleObesityRate": 66.7,
+    "maleSmokingRate": 53.6,
+    "obesityRate": 70.4,
+    "smokingRate": 40.7,
+    "femaleLifeExpectancy": 81.0,
+    "maleLifeExpectancy": 76.2
+   },
+   "notes": [
+    "Anthropometrics and obesity from the national measured survey: Wallis & Futuna STEPS 2019 (WHO/ADSWF, N=1136 measured adults 18-69) - mean height F 165.5 cm / M 176.8 cm; mean weight F 95.9 kg / M 103.8 kg; mean BMI F 34.8 / M 33.0 kg/m2; obesity (BMI>=30) F 73.7% / M 66.7%, both sexes 70.4%.",
+    "Smoking (current tobacco use, STEPS 2019): men 53.6%, women 29.4%, overall 40.7% - among the highest tobacco prevalences in the Pacific.",
+    "Life expectancy: UN WPP 2023 via OWID grapher gives total e0 = 78.6 for WLF (no WHO GHO rows exist for WLF). Sex split derived using the female-male gap of French Pacific territories in the DB (French Polynesia 4.7 y, New Caledonia 4.9 y): F ~81.0 / M ~76.2.",
+    "Values are far above metropolitan France's (anchor FR); real territorial survey data used instead of French derivation because Wallisian health profile matches neighbouring Polynesian populations (Samoa/Tonga obesity 40-50%+)."
+   ]
+  },
+  "EH": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleLifeExpectancy": 73.7,
+    "maleLifeExpectancy": 69.2
+   },
+   "notes": [
+    "Only life expectancies were missing; all other health fields (heights, weights, BMI, obesity, smoking) already populated and consistent with Morocco.",
+    "No WHO GHO or World Bank rows exist for ESH (checked GHO filter SpatialDim eq 'ESH' for WHOSIS_000001, NCD_BMI_30C/A and smoking indicators - zero rows).",
+    "Life expectancy: UN WPP 2023 via OWID grapher gives total e0 = 71.4 for Western Sahara. Sex split derived from anchor Morocco's gap in the DB (F 77.8 / M 73.3, gap 4.5 y): F ~73.7 / M ~69.2, i.e. total 71.4 +/- half the Moroccan sex gap.",
+    "Scaled-from-Morocco approach per repair brief anchor rule 'Western Sahara -> MA'; territory has no separate civil health registry."
+   ]
+  }
+ }
+}

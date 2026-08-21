@@ -1,0 +1,97 @@
+{
+  "batch": "repair_health_3",
+  "countries": {
+    "NU": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.adolescentBirthRate": 0,
+        "gender.childMarriagePercent": 0,
+        "gender.laborForceGap": -8.7,
+        "gender.contraceptiveUse": 74.3,
+        "femaleHeightCm": 164,
+        "femaleWeightKg": 87,
+        "femaleBmi": 32.5,
+        "femaleObesityRate": 69.2,
+        "femaleSmokingRate": 13,
+        "femaleLifeExpectancy": 75.7,
+        "maleHeightCm": 177,
+        "maleWeightKg": 97,
+        "maleBmi": 31.1,
+        "maleObesityRate": 63,
+        "maleSmokingRate": 22.6,
+        "maleLifeExpectancy": 71.8,
+        "obesityRate": 66.2,
+        "smokingRate": 17.7
+      },
+      "notes": [
+        "Obesity: WHO GHO NCD_BMI_30C (age-standardised, BMI>=30) gives Niue 66.2% both sexes, 63.0% male, 69.2% female (2024) - real WHO modelled estimates, used in preference to CIA Factbook's '50% (2016)' which cites an older figure.",
+        "Mean BMI and smoking: WHO STEPS Survey Niue 2011 fact sheet (n=916, census-based, measured): current tobacco smoking 22.6% male / 13.0% female / 17.7% both; mean BMI 31.1 male / 32.5 female. Note: Niue STEPS 2025 (n=726) reports combined 'tobacco use and smoking' at 38% but no sex split published yet.",
+        "Weight derived from STEPS mean BMI applied to NZ-anchor heights (BMI x height^2): female 32.5x1.64^2=87kg, male 31.1x1.77^2=97kg. No Niue-specific height data exists (NCD-RisC does not cover Niue); NZ anchor heights retained.",
+        "Life expectancy: CIA Factbook (factbook.json archive) male 71.8 years (2016), female 75.7 years (2016). Total-population value not published; ~73.7 implied by near-equal sex ratio.",
+        "adolescentBirthRate: UN WPP via OWID grapher 'adolescent-birth-rate' shows 0 births per 1,000 women 15-19 for Niue in all recent years (2014-2022).",
+        "childMarriagePercent set to 0: high-income NZ-associated territory, no recorded under-18 marriages; consistent with GB anchor convention.",
+        "laborForceGap (-8.7) and contraceptiveUse (74.3) derived from NZ anchor (ladder exhausted: World Bank, WHO GHO and Factbook carry no Niue LFS-by-sex or contraceptive prevalence data)."
+      ]
+    },
+    "MS": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.adolescentBirthRate": 0,
+        "gender.childMarriagePercent": 0,
+        "gender.laborForceGap": -8.3,
+        "gender.contraceptiveUse": 76.1,
+        "femaleHeightCm": 164,
+        "femaleWeightKg": 70,
+        "femaleBmi": 26,
+        "femaleObesityRate": 38,
+        "femaleSmokingRate": 2,
+        "femaleLifeExpectancy": 75.3,
+        "maleHeightCm": 177,
+        "maleWeightKg": 84,
+        "maleBmi": 26.7,
+        "maleObesityRate": 31,
+        "maleSmokingRate": 10,
+        "maleLifeExpectancy": 76.9,
+        "obesityRate": 35,
+        "smokingRate": 5
+      },
+      "notes": [
+        "Life expectancy: CIA Factbook (factbook.json archive, 2024 est.) total 76.1 years, male 76.9, female 75.3 - the male>female pattern is as published by the source.",
+        "Smoking: Montserrat Ministry of Health/UKHSA Morbidity and Risk Factor Prevalence Survey (Feb-Mar 2022, n=304) found 13.5% ever-regular smokers (23.6% male, 6.2% female); of the 41 ever-smokers only 16 had smoked in the last 7 days (13 male, 3 female), i.e. current smoking ~10% male / ~2% female / ~5% overall. Those current values are used.",
+        "Obesity: no measured obesity data exists for Montserrat (World Obesity Observatory has no adult data; WHO GHO NCD_BMI_30C EMPTY; Factbook has no field). Derived: combined 35% from nearest comparable Caribbean territory (USVI 35%, CDC via batch_29); sexed split F38/M31 applies GB anchor's female-minus-male differential (+3.4pp) to that total. Flagged as estimate.",
+        "Heights/weights/BMI derived from GB anchor values unchanged - no territory-specific anthropometric source exists (NCD-RisC does not cover Montserrat).",
+        "adolescentBirthRate: UN WPP via OWID grapher 'adolescent-birth-rate' shows 0 births per 1,000 women 15-19 for Montserrat in recent years (2016-2020).",
+        "childMarriagePercent set to 0: UK overseas territory with no recorded under-18 marriages; consistent with GB anchor convention.",
+        "laborForceGap (-8.3) and contraceptiveUse (76.1) derived from GB anchor (ladder exhausted: World Bank and WHO GHO carry no Montserrat LFS-by-sex or contraceptive prevalence data)."
+      ]
+    },
+    "NF": {
+      "status": "errors_found",
+      "corrections": {
+        "gender.adolescentBirthRate": 6.4,
+        "gender.childMarriagePercent": 0,
+        "gender.laborForceGap": -8.2,
+        "gender.contraceptiveUse": 66.9,
+        "femaleHeightCm": 162,
+        "femaleWeightKg": 71,
+        "femaleBmi": 27,
+        "femaleObesityRate": 29,
+        "femaleSmokingRate": 9.9,
+        "femaleLifeExpectancy": 85.1,
+        "maleHeightCm": 174,
+        "maleWeightKg": 84,
+        "maleBmi": 27.7,
+        "maleObesityRate": 25.5,
+        "maleSmokingRate": 13.4,
+        "maleLifeExpectancy": 81.1,
+        "obesityRate": 29,
+        "smokingRate": 11.7
+      },
+      "notes": [
+        "All health fields derived from AU anchor - ladder exhausted for Norfolk Island: World Bank has no NFK data; WHO GHO NCD_BMI_30C and tobacco indicators EMPTY for NFK; CIA Factbook entry (factbook.json) carries no People-and-Society health fields at all; UN WPP via OWID has no Norfolk Island rows; World Obesity Observatory does not list the territory.",
+        "Norfolk Island is a full Australian territory (services delivered via NSW/QLD/ACT since 2016), population ~1,800-2,200 with predominantly Australian/English ancestry, so anchor values without adjustment are the most defensible derivation.",
+        "childMarriagePercent set to 0: Australian territory, no recorded under-18 marriages; consistent with GB anchor convention for developed economies."
+      ]
+    }
+  }
+}

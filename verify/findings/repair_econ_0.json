@@ -1,0 +1,49 @@
+{
+ "batch": "repair_econ_0",
+ "countries": {
+  "AX": {
+   "status": "errors_found",
+   "corrections": {
+    "minimumWageEur": 0
+   },
+   "notes": [
+    "minimumWageEur=0: Finland (anchor country for Aland) has NO statutory national minimum wage; pay floors are set exclusively by sectoral collective agreements. Aland follows the Finnish labour-law system. Set to 0 consistent with FI anchor entry (minimumWageEur=0).",
+    "Other economic fields already populated and verified in first pass: costOfLivingIndex=78, unemploymentRate=5.1, internetPenetration=99, hdi=0.937, life expectancy F85.0/M79.8."
+   ]
+  },
+  "AT": {
+   "status": "errors_found",
+   "corrections": {
+    "minimumWageEur": 0
+   },
+   "notes": [
+    "minimumWageEur=0: CONFIRMED via Austrian Federal Ministry of Social Affairs (sozialministerium.at): 'In contrast to other EU member states, there is no statutory minimum wage in Austria.' Minimum pay is set by 800+ sectoral collective agreements (Kollektivvertraege) covering ~95-98% of employees, with typical CBA floors of EUR 1,700-2,000 gross/month, but there is no single statutory rate. Set to 0 per convention for no-statutory-minimum countries.",
+    "Other economic fields already populated and verified in first pass: costOfLivingIndex=75, unemploymentRate=5.6, internetPenetration=94.9, hdi=0.93, life expectancy F84.3/M79.8."
+   ]
+  },
+  "IO": {
+   "status": "errors_found",
+   "corrections": {
+    "unemploymentRate": 2.0,
+    "internetPenetration": 95.5
+   },
+   "notes": [
+    "BIOT has no permanent civilian population: only inhabited island is Diego Garcia, hosting ~2,000 US/UK military personnel and supporting contractors on the joint UK-US base (Wikipedia/CIA Factbook; CIA Factbook BIOT entry now redirects - no standalone page). No labour-market or household ICT survey exists for the territory.",
+    "unemploymentRate=2.0 DERIVED from GB anchor (4.7) scaled down (~x0.4): the entire resident population consists of contractually employed military personnel and base contractors, so effective unemployment is far below the UK rate; small residual allows for transition gaps between contracts.",
+    "internetPenetration=95.5 DERIVED from GB anchor (95.5), i.e. anchor value carried over unchanged: all Diego Garcia residents have access to the base's military network infrastructure, so actual penetration is likely near-universal; conservative GB-anchor value used.",
+    "Other economic fields already populated in first pass: minimumWageEur=1070, costOfLivingIndex=85, hdi=0.94, life expectancy F78.5/M72.8."
+   ]
+  },
+  "BI": {
+   "status": "errors_found",
+   "corrections": {
+    "minimumWageEur": 1.4
+   },
+   "notes": [
+    "TASK ASSUMPTION CORRECTED: Burundi DOES have a statutory minimum wage, contrary to the assignment brief. Per Labour Code 2020 and Ministerial Order n.630/116 (1979), the legal daily minimum is BIF 160/day in urban areas (Bujumbura, Gitega) and BIF 105/day in rural areas, unchanged since 1 May 1988 (sources: WageIndicator Labour Rights Index country profile; Playroll/Global People Strategist payroll guides).",
+    "minimumWageEur=1.4 computed from urban statutory rate: BIF 160/day x 26 working days = BIF 4,160/month / 2900 BIF per EUR (DB exchangeRate) = EUR 1.43 -> 1.4. Rural rate would be EUR 0.94/month. Rate is nominal only - unenforced in the largely informal economy and eroded by inflation since 1988.",
+    "Other economic fields already populated and verified in first pass: costOfLivingIndex=24, unemploymentRate=0.9, internetPenetration=8.6, hdi=0.42, life expectancy F65.9/M61.8."
+   ]
+  }
+ }
+}

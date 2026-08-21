@@ -1,0 +1,47 @@
+{
+ "batch": "repair_econ_3",
+ "countries": {
+  "KP": {
+   "status": "errors_found",
+   "corrections": {
+    "minimumWageEur": 0.63,
+    "hdi": 0.62
+   },
+   "notes": [
+    "KP minimumWageEur: North Korea has no statutory minimum wage in the market sense. The official state wage is nominal, on the order of 5,000 KPW/month at the official scale. Converted at the DB's market exchange rate of 8,000 KPW/EUR this is ~0.63 EUR/month. REALITY NOTE: this figure is essentially symbolic - most state-enterprise workers are paid irregularly and real compensation comes via rations, work-unit distributions and company-store scrip; the actual average cash income derives overwhelmingly from informal/jangmadang market activity (median household income in DB already reflects this). Value kept tiny rather than 0 because an official wage scale does exist.",
+    "KP hdi: UNDP does not calculate HDI for DPRK (one of only two UN member states excluded, along with Monaco). Derived from HDI formula components: life expectancy 73.6 yrs (BTI 2026 / UN estimates) -> health index 0.825; education: near-universal literacy, ~11-yr compulsory schooling -> est. mean years 10, expected years 11 -> education index ~0.65; income: Bank of Korea / external estimates put GNI p.c. around USD 1,700-2,500 PPP -> income index ~0.43-0.47. Geometric mean gives ~0.60-0.64; midpoint 0.62 used. Third-party estimates generally range 0.55-0.65."
+   ]
+  },
+  "MP": {
+   "status": "errors_found",
+   "corrections": {
+    "hdi": 0.875,
+    "mainIndustry": "Tourism"
+   },
+   "notes": [
+    "MP hdi: 0.875 ('very high'), Northern Mariana Islands HDI 2017 estimate as given in the English Wikipedia infobox (sourced to UNDP Pacific subnational estimation). UNDP HDR does not list CNMI separately, so this is the standard cited value.",
+    "MP mainIndustry: Tourism is the dominant sector of the CNMI economy (Saipan/Tinian/Rota tourism, mainly from Korea/Japan/China), followed by other services and construction; garment manufacturing collapsed after 2005-2009 (federal minimum-wage phase-in and WTO quota end). Set 'Tourism' consistent with CIA World Factbook economy overview."
+   ]
+  },
+  "NO": {
+   "status": "errors_found",
+   "corrections": {
+    "minimumWageEur": 0
+   },
+   "notes": [
+    "NO minimumWageEur: Norway has NO statutory national minimum wage - wages are set exclusively by collective agreements (allmenngjort tariffavtaler extend some sector minima, but there is no legislated national floor; Lovdata arbeidsmiljoloven chapter 14 has no minimum-wage provision). Set to 0 per repair-brief convention for 'no statutory national minimum wage'. For context: collectively agreed full-time wages are high (median full-time gross salary ~NOK 55,000/mo ~ EUR 4,800, SSB 2024), so 0 here must not be read as 'no wage floor in practice'."
+   ]
+  },
+  "PN": {
+   "status": "errors_found",
+   "corrections": {
+    "unemploymentRate": 0,
+    "mainIndustry": "Subsistence fishing and agriculture"
+   },
+   "notes": [
+    "PN unemploymentRate: CIA World Factbook lists 'NA' - Pitcairn has no formal labor market or statistical office. The ~35-40 residents work in community/public-sector rotations, subsistence farming and fishing; open unemployment is effectively nonexistent. Set to 0 rather than scaling the NZ anchor value (~4%), because a standard survey-unemployment rate is meaningless for a subsistence economy of <50 people.",
+    "PN mainIndustry: Economy consists of fishing, subsistence farming, handicrafts (miro wood carvings) and sale of postage stamps/coins to collectors (CIA World Factbook economy overview). Set 'Subsistence fishing and agriculture' as the dominant livelihood."
+   ]
+  }
+ }
+}

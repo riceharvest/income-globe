@@ -1,0 +1,81 @@
+{
+ "batch": "repair_health_2",
+ "countries": {
+  "GU": {
+   "status": "errors_found",
+   "corrections": {
+    "childMarriagePercent": 0.5,
+    "contraceptiveUse": 73.9,
+    "femaleObesityRate": 35.4,
+    "maleObesityRate": 35.4,
+    "obesityRate": 35.4,
+    "femaleSmokingRate": 17.0,
+    "maleSmokingRate": 19.1,
+    "smokingRate": 18.0
+   },
+   "notes": [
+    "Obesity (BMI>=30): CDC BRFSS Prevalence & Trends Data 2023, Guam crude prevalence, self-reported height/weight (data.cdc.gov dataset dttw-5yxu): overall 35.4%, male 35.4%, female 35.4%. BRFSS publishes identical M/F/overall values for Guam 2023 due to small sample; 2022 was M 35.2/F 29.9/overall 32.6.",
+    "Smoking (current smokers): CDC BRFSS 2023 Guam crude prevalence: male 19.1%, female 17.0%, overall 18.0%.",
+    "contraceptiveUse: no territory-specific survey; set to US anchor value 73.9% per ladder rule (anchor US verified in DB).",
+    "childMarriagePercent: no survey data for Guam; set 0.5% as small real estimate derived from US anchor context (marriage under 18 is rare and requires court order in most US jurisdictions); UNICEF does not cover the US/Guam."
+   ]
+  },
+  "YT": {
+   "status": "errors_found",
+   "corrections": {
+    "adolescentBirthRate": 42,
+    "childMarriagePercent": 1,
+    "laborForceGap": -19,
+    "contraceptiveUse": 78.4,
+    "femaleHeightCm": 162,
+    "femaleWeightKg": 66,
+    "femaleBmi": 25,
+    "maleHeightCm": 174,
+    "maleWeightKg": 78,
+    "maleBmi": 25.6,
+    "femaleObesityRate": 39.0,
+    "maleObesityRate": 14.2,
+    "obesityRate": 27.8,
+    "femaleSmokingRate": 2,
+    "maleSmokingRate": 21,
+    "smokingRate": 11,
+    "femaleLifeExpectancy": 73.9,
+    "maleLifeExpectancy": 72.5
+   },
+   "notes": [
+    "Smoking (daily, adults 18-69): Unono Wa Maore 2019 health survey (Sante publique France/ARS Mayotte, n=4770): men 21%, women 2%, overall 11%.",
+    "Obesity (BMI>=30, adults 15+): Unono Wa Maore 2019 measured: men 14.2%, women 39.0%, overall 27.8% (overweight+obesity 55.9%).",
+    "Life expectancy at birth: Atlas des soins palliatifs et de la fin de vie (CNSPFV, Insee/Drees 2021 data): men 72.5 yrs, women 73.9 yrs. Consistent with ORS Mayotte reporting LE 5y (men) / 9y (women) below mainland France in 2016.",
+    "laborForceGap: Insee Flash Mayotte n.193 (Enquete Emploi 2024): employment rate 15-64 women 23% vs men 42% -> -19 pts. Used as proxy for labor-force participation gap (participation rates not published separately in the renovated 2024 survey).",
+    "adolescentBirthRate: derived estimate 42/1000. Basis: Insee Flash Mayotte n.187 (bilan demographique 2024): 8910 births, of which 100 to mothers <16 and 320 to mothers 16-17 (420 minor mothers, 4.5% of births); estimated ~1000 births to mothers <20 including 18-19 y.o.; divided by estimated female 15-19 population ~24,000 (Insee: 46% of 320,901 pop aged 0-14, half of pop under 18).",
+    "childMarriagePercent: set 1% small real estimate - French civil law sets minimum marriage age at 18 so registered child marriage is near-zero; early informal unions exist but are not captured in marriage statistics.",
+    "contraceptiveUse: no territory-specific survey published (Unono Wa Maore did not cover it); set to FR anchor value 78.4% per ladder rule.",
+    "female/male HeightCm, WeightKg, Bmi: no measured anthropometric dataset covers Mayotte (NCD-RisC does not include territories); set to FR anchor values per ladder rule. Caveat noted: with a majority-Comorian population these likely overstate height and understate BMI relative to the obesity figures above."
+   ]
+  },
+  "FM": {
+   "status": "errors_found",
+   "corrections": {
+    "childMarriagePercent": 2,
+    "laborForceGap": -17.7,
+    "contraceptiveUse": 31.6,
+    "femaleHeightCm": 159,
+    "femaleWeightKg": 83,
+    "femaleBmi": 32.7,
+    "maleHeightCm": 169,
+    "maleWeightKg": 81,
+    "maleBmi": 28.2,
+    "femaleSmokingRate": 25.4,
+    "maleSmokingRate": 39.8,
+    "smokingRate": 35.4
+   },
+   "notes": [
+    "Heights/weights/BMI: WHO STEPS 2006 measured survey (FSM/Chuuk NCD Risk Factors STEPS Report, 2012), adults 25-64: mean height men 169.2 cm / women 158.9 cm; mean weight men 80.9 kg / women 82.8 kg; mean BMI men 28.2 / women 32.7 kg/m2. Chuuk is the largest state (~48% of pop); these are the same figures Wikipedia's average-height table lists for FSM.",
+    "Smoking (daily): WHO Report on the Global Tobacco Epidemic 2025 / MPOWER country profile FSM, reporting the National Outcome Measures Survey 2012 (also cited by GSTHR): daily smoking men 39.8%, women 25.4%, overall 35.4%. Cross-check: Chuuk STEPS 2006 current-smoking M 51.0% / F 14.0% / all 32.4%.",
+    "laborForceGap: FSM 2010 Census of Population and Housing, Summary Analysis of Key Indicators (SBOC): labor force participation rate males 66.1%, females 48.4% -> gap -17.7 pts.",
+    "contraceptiveUse: only sub-national survey available - Pohnpei Family Planning Utilization Study 2019 (n=570, BMC Women's Health 2023): 31.6% of reproductive-age women (18-49) not trying to conceive used contraception at last intercourse. World Bank SP.DYN.CONU.ZS has no FSM data point despite the indicator page existing.",
+    "childMarriagePercent: set 2% small real estimate - no DHS/MICS or UNICEF coverage for FSM; marriage law sets minimum age at 16-18 depending on state; estimate derived from regional Pacific comparators where measured."
+   ]
+  }
+ }
+}

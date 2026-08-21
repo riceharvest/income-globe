@@ -1,0 +1,170 @@
+{
+ "batch": "repair_gender_1",
+ "countries": {
+  "JE": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 4,
+    "gender.childMarriagePercent": 0.1,
+    "gender.laborForceGap": -8.3,
+    "gender.contraceptiveUse": 83
+   },
+   "notes": [
+    "ABR derived: Public Health Jersey Births & Breastfeeding Profile 2025 reports births to mothers aged <18 consistently <1% of all births over two decades (711 births in 2025, mean maternal age 33); scaled to women 15-19 gives ~4 per 1000, below England & Wales (GB WB 7.8).",
+    "childMarriage: Jersey law allows marriage at 16 with consent; under-18 marriages statistically negligible -> small real estimate 0.1%.",
+    "laborForceGap: no sex-split labour force series published for Jersey; derived from verified GB anchor (57.5% F vs 65.8% M, WB SL.TLF.CACT 2024 = -8.3), Jersey labour structure comparable to UK.",
+    "contraceptiveUse: no Jersey-specific survey; applied GB anchor value from WB SP.DYN.CONU.ZS (83, 1998 - latest available year for GBR)."
+   ]
+  },
+  "MQ": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 5,
+    "gender.childMarriagePercent": 0.1,
+    "gender.laborForceGap": -5,
+    "gender.contraceptiveUse": 74.6
+   },
+   "notes": [
+    "ABR derived: INSEE Martinique has the lowest adolescent fertility of the French DOM; estimated as FR anchor (WB SP.ADO.TFRT 2024 = 3.3) x ~1.5 overseas-context ratio = 5.",
+    "childMarriage: French law sets minimum marriage age 18 (15 only with prosecutor consent, extremely rare); under-18 marriage negligible -> 0.1%.",
+    "laborForceGap derived from INSEE: DOM employment-rate gaps by sex (Insee Focus 8278271, avg 2021-2023) show Martinique closest to Hexagone; adjusted for sex-specific unemployment (INSEE, 14.5% F vs 10.5% M) gives participation gap ~ -5 pts.",
+    "contraceptiveUse: applied FR anchor from WB SP.DYN.CONU.ZS (74.6, 1994 - latest available year for FRA); no territory-specific survey exists."
+   ]
+  },
+  "YT": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 60,
+    "gender.childMarriagePercent": 2.5,
+    "gender.laborForceGap": -20,
+    "gender.contraceptiveUse": 74.6
+   },
+   "notes": [
+    "ABR derived from INSEE Bilan demographique 2025 Mayotte (insee.fr/fr/statistiques/8743599): 9,070 births, 4.5% (410) to mothers under 18 incl. 100 to mothers under 16; INSEE reports cumulative fertility 15-24 of 1.1 children/woman vs 0.2 in Hexagone. Applying the observed ~15x amplification of teen vs metropolitan fertility gives ASF 15-19 ~60/1000; cross-check: ~480 teen births on ~8,000 women 15-19 is consistent with the 4.5% under-18 share.",
+    "childMarriage: legal under-18 marriages are rare (French law), but Mayotte's large Comorian-origin population (75% of mothers foreign-born, mostly Comorian) sustains documented customary/religious early unions; no official statistic exists -> real estimate 2.5%.",
+    "laborForceGap derived from INSEE Enquete Emploi Mayotte 2024 (insee.fr/fr/statistiques/8586371): employment rate 15-64 is 23% for women vs 42% for men (19-pt gap); adjusting for unemployment (29% overall, higher among women) gives labor-force participation gap ~ -20 pts.",
+    "contraceptiveUse: applied FR anchor from WB SP.DYN.CONU.ZS (74.6, 1994); NOTE actual prevalence in Mayotte is likely substantially lower than mainland France due to documented access barriers (PMI understaffing, large uninsured population) - no territory survey available."
+   ]
+  },
+  "MS": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 12,
+    "gender.childMarriagePercent": 0.1,
+    "gender.laborForceGap": -8.3,
+    "gender.contraceptiveUse": 83
+   },
+   "notes": [
+    "ABR derived: GB anchor (WB SP.ADO.TFRT 2024 = 7.8) scaled x1.5 for Caribbean small-island context (regional rates sit well above UK but Montserrat's TFR ~1.4 and tiny birth volume argue against full regional average) = 12.",
+    "childMarriage: England & Wales raised minimum marriage age to 18 in 2022, extended to Montserrat; under-18 marriage negligible -> 0.1%.",
+    "laborForceGap: no sex-split participation data published for Montserrat; derived from verified GB anchor (57.5% F vs 65.8% M, WB 2024 = -8.3).",
+    "contraceptiveUse: applied GB anchor from WB SP.DYN.CONU.ZS (83, 1998)."
+   ]
+  },
+  "NU": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 15,
+    "gender.childMarriagePercent": 0.5,
+    "gender.laborForceGap": -8.7,
+    "gender.contraceptiveUse": 74.3
+   },
+   "notes": [
+    "ABR derived: NZ anchor (WB SP.ADO.TFRT 2024 = 10.3) scaled x1.5 for Pacific islands context (Cook Islands and regional Pacific rates run above NZ) = 15; Niue's population ~1,600 with very few births annually makes precise measurement impossible.",
+    "childMarriage: Niue follows NZ marriage law (minimum 18; 16 with court consent, rare); slight Pacific-context uplift -> 0.5%.",
+    "laborForceGap: no sex-split participation data published for Niue; derived from verified NZ anchor (66.3% F vs 75.0% M, WB 2024 = -8.7).",
+    "contraceptiveUse: applied NZ anchor from WB SP.DYN.CONU.ZS (74.3, 1995)."
+   ]
+  },
+  "NF": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 6.4,
+    "gender.childMarriagePercent": 0.1,
+    "gender.laborForceGap": -8.2,
+    "gender.contraceptiveUse": 62
+   },
+   "notes": [
+    "ABR: Australian anchor value taken directly (WB SP.ADO.TFRT 2024 = 6.4); Norfolk Island administers NSW law and uses Australian health services, no separate series exists.",
+    "childMarriage: Australian Marriage Act 1961 sets minimum 18 (16 only by court order, rare) -> 0.1%.",
+    "laborForceGap: derived from verified AU anchor (62.6% F vs 70.9% M, WB SL.TLF.CACT 2024 = -8.2); no separate Norfolk series.",
+    "contraceptiveUse: applied AU anchor from WB SP.DYN.CONU.ZS (62.0, 2009)."
+   ]
+  },
+  "PN": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 0,
+    "gender.childMarriagePercent": 0.1,
+    "gender.laborForceGap": -8.3,
+    "gender.contraceptiveUse": 83
+   },
+   "notes": [
+    "ABR set to 0: Pitcairn population is ~35 residents; no birth has been recorded since 2017, so the adolescent birth rate is effectively zero (not missing).",
+    "childMarriage: UK law (marriage age 18 since 2022) applies; negligible -> 0.1%.",
+    "laborForceGap: derived from verified GB anchor (57.5% F vs 65.8% M, WB 2024 = -8.3); no territory data exists for a 35-person community.",
+    "contraceptiveUse: applied GB anchor from WB SP.DYN.CONU.ZS (83, 1998)."
+   ]
+  },
+  "RE": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 18,
+    "gender.childMarriagePercent": 0.1,
+    "gender.laborForceGap": -6,
+    "gender.contraceptiveUse": 74.6
+   },
+   "notes": [
+    "ABR derived from INSEE Bilan demographique Mayotte comparisons (insee.fr/fr/statistiques/8560541): births to mothers under 18 are 1.6-1.7% of all Reunion births vs 0.3% in Hexagone (~5.5x amplification); applying to FR anchor ABR (WB 2024 = 3.3) gives ~18 per 1000, consistent with Reunion's historically elevated teen fertility.",
+    "childMarriage: French law minimum 18 (15 with prosecutor consent, extremely rare) -> 0.1%.",
+    "laborForceGap derived from INSEE (Focus 8278271, avg 2021-2023 + Enquete Emploi 2025): employment rate 15-64 is 46% F vs 53% M; with sex-specific unemployment (18.9% F vs 15.7% M, INSEE 2024) participation gap computes to ~ -6 pts.",
+    "contraceptiveUse: applied FR anchor from WB SP.DYN.CONU.ZS (74.6, 1994)."
+   ]
+  },
+  "BL": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 3,
+    "gender.childMarriagePercent": 0.1,
+    "gender.laborForceGap": -8.1,
+    "gender.contraceptiveUse": 74.6
+   },
+   "notes": [
+    "ABR: FR anchor applied directly (WB SP.ADO.TFRT 2024 = 3.3, rounded 3); Saint Barthelemy is a high-income French overseas collectivity with ~700 residents and near-zero teen births.",
+    "childMarriage: French law minimum 18 (15 with prosecutor consent, extremely rare) -> 0.1%.",
+    "laborForceGap: derived from verified FR anchor (51.8% F vs 59.9% M, WB SL.TLF.CACT 2024 = -8.1); INSEE publishes no separate sex-split labour series for St Barth.",
+    "contraceptiveUse: applied FR anchor from WB SP.DYN.CONU.ZS (74.6, 1994)."
+   ]
+  },
+  "SH": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 8,
+    "gender.childMarriagePercent": 0.1,
+    "gender.laborForceGap": -8.3,
+    "gender.contraceptiveUse": 83
+   },
+   "notes": [
+    "ABR: GB anchor applied (WB SP.ADO.TFRT 2024 = 7.8, rounded 8); St Helena records only ~10 births/year and teen births are rare per SHG vital statistics.",
+    "childMarriage: UK-style marriage law (18 since 2022 reform) applies as a British Overseas Territory -> 0.1%.",
+    "laborForceGap: derived from verified GB anchor (57.5% F vs 65.8% M, WB 2024 = -8.3); 2021 census publishes employment but not comparable sex-split participation rates.",
+    "contraceptiveUse: applied GB anchor from WB SP.DYN.CONU.ZS (83, 1998)."
+   ]
+  },
+  "PM": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 3,
+    "gender.childMarriagePercent": 0.1,
+    "gender.laborForceGap": -8.1,
+    "gender.contraceptiveUse": 74.6
+   },
+   "notes": [
+    "ABR: FR anchor applied directly (WB SP.ADO.TFRT 2024 = 3.3, rounded 3); Saint Pierre et Miquelon is an overseas collectivity with ~6,000 residents and very few annual births.",
+    "childMarriage: French law minimum 18 (15 with prosecutor consent, extremely rare) -> 0.1%.",
+    "laborForceGap: derived from verified FR anchor (51.8% F vs 59.9% M, WB SL.TLF.CACT 2024 = -8.1).",
+    "contraceptiveUse: applied FR anchor from WB SP.DYN.CONU.ZS (74.6, 1994)."
+   ]
+  }
+ }
+}

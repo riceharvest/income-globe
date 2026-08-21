@@ -1,0 +1,87 @@
+{
+ "batch": "repair_income_4",
+ "countries": {
+  "RE": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 955,
+    "income.p25": 1260,
+    "income.p50": 1850,
+    "income.p75": 2715,
+    "income.p90": 4105,
+    "dataSource": "INSEE Filosofi 2021 (Revenus et pauvreté par région, insee.fr/fr/statistiques/7941411); EUR->intl-$ at 0.77 EUR/USD PPP"
+   },
+   "notes": [
+    "Re-verified with REAL INSEE Filosofi 2021 deciles for Réunion (published for DOM): D1 €8,820/yr, median €17,070/yr, D9 €37,890/yr, D9/D1 = 4.3 (insee.fr/fr/statistiques/7941411 and Insee Flash Réunion 7767624: bottom 10% <=€740/mo, top 10% >=€3,160/mo).",
+    "Previous distribution was FR shape scaled by a single p50 ratio (implied D9/D1 ~3.4 like Hexagone); real Réunion inequality is markedly higher (4.3), so p10 (+270) and p90 (+335) corrected; p25/p75 lognormal-interpolated from the published D1/median/D9.",
+    "p50 €1,422/mo x 1.30 (PPP 0.77 EUR/USD, same convention as first pass) = $1,850 — unchanged, confirms earlier value.",
+    "Median monthly net salary private sector 2023: €1,780 (INSEE, half of employees below) — consistent with the living-standard median after pensions/transfers."
+   ]
+  },
+  "PR": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 305,
+    "income.p25": 585,
+    "income.p50": 1195,
+    "income.p75": 2450,
+    "income.p90": 4670,
+    "dataSource": "US Census Bureau PRCS 2023 1-year (ACS Brief ACSBR-023): median household income $25,106, Gini 0.548"
+   },
+   "notes": [
+    "Real Census data replaces US-anchor derivation: Puerto Rico Community Survey 2023 median household income $25,106 (MOE 602), Gini index 0.548 (ACSBR-023 Table 1, census.gov).",
+    "Per-adult median derived with the same household->adult ratio implied by the verified US anchor ($44,400/yr adult median / $77,719 US median household = 0.571): $14,340/yr = $1,195/mo.",
+    "Spread from PR Gini 0.548 via lognormal (sigma=1.064): p10 $305, p25 $585, p75 $2,450, p90 $4,670 per month.",
+    "Old values (p50 $1,827/mo = $21.9k/yr) were ~52% too high vs real data; old spread far too flat for a Gini-0.548 economy.",
+    "Cross-check: ACS 2019-2023 household bins (censusdepth/Census) put household p90 near $91k/yr and p10 near $4.5k/yr — consistent with derived adult percentiles."
+   ]
+  },
+  "SH": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 420,
+    "income.p25": 625,
+    "income.p50": 1015,
+    "income.p75": 1520,
+    "income.p90": 2145,
+    "dataSource": "St Helena Government Statistics Office, Statistical Update: Employment Incomes 2024/25 (sainthelena.gov.sh); GBP->intl-$ at UK PPP ~0.69 GBP/USD"
+   },
+   "notes": [
+    "REAL official data found (first pass said 'no free data'): St Helena Gov Statistics Office publishes full wage distribution from PAYE records. Full-time gross wages 2024/25: lower quartile £9,240/yr, median £11,250/yr (£937/mo), upper quartile £14,920/yr; half of all FT employees earned between £9,240 and £14,920.",
+    "Wage figures cover only the 1,472 full-time employees (~45% of adults). Population-wide distribution blended: non-FT adults on Basic Island Pension (~£92/wk ≈ £400/mo), part-time/informal earnings below FT quartiles. Estimated population percentiles in GBP/month: p10 £290, p25 £430, p50 £700, p75 £1,050, p90 £1,480.",
+    "Converted at UK PPP factor (~0.69 GBP per intl-$; SHP pegged 1:1 to GBP): $420 / $625 / $1,015 / $1,520 / $2,145 per month. Market-rate conversion (1.28 USD/GBP) would give ~20% less; no SH-specific PPP deflator exists.",
+    "Previous GB-scaled values (p50 $700) were nominal-GBP-like and too flat; real measured wage spread (Q3/Q1 = 1.61) is now reflected.",
+    "Median FT wage grew +2.2% real in 2024/25; female median wage reached 97.5% of male median (2024/25) — largest sex gap data point available for the territory."
+   ]
+  },
+  "PM": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "Re-verified against FR anchor with territory evidence: GDP per capita €39,778 (2015, INSEE/IEDOM via Wikipedia infobox) — essentially at French metropolitan level; IEDOM 'Le coût de la vie à Saint-Pierre-et-Miquelon' (Mars 2026) states salaries are generally HIGHER than Hexagone; unemployment only 3.3% (2022, IEDOM).",
+    "Current distribution is exactly the verified FR distribution (p50 $2,700/mo) — appropriate given GDP-per-capita parity; no change needed.",
+    "No household income distribution exists for SPM: INSEE Filosofi covers only metropolitan France + DOM (confirmed in INSEE documentation and empty Comparateur de territoires tables for COM-97501/97502); IEDOM publishes only growth rates of declared incomes (+19.8% 2018-2024 vs inflation +23.7%).",
+    "IEDOM 2026 note documents cost of living ~structurally higher than Hexagone (energy bills 1.8x France) — PPP-adjusted real incomes somewhat below the nominal-equal-to-FR figure shown."
+   ]
+  },
+  "PN": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "Re-verified NZ-anchor derivation (NZ distribution scaled by GDP-per-capita ratio ~0.12, p50 $230/mo). Plausibility confirmed against available real figures: GDP per capita NZ$4,617 (2005 est., Wikipedia/gov sources; latest official estimate), i.e. ~US$3,000/yr nominal — current p50 $230/mo = $2,760/yr sits right at it.",
+    "Government.pn Pitcairn Economic Report exists but contains fiscal (revenue/expenditure) not household-income distribution data; with 35 residents no statistical office publishes income percentiles. Average government salary cited at ~NZ$1,600/mo (2025, secondary source) covers the ~30 part-time government employees; most residents also receive land/dividend sales and UK/NZ budget support.",
+    "Distribution kept as-is: anchor-derived values are consistent with every checkable aggregate; inventing finer percentiles for 35 people is not defensible."
+   ]
+  },
+  "BL": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "Re-verified FR-scaled distribution against territory evidence. No direct income-distribution data exists: INSEE Filosofi explicitly covers only metropolitan France + DOM (INSEE documentation), and the Comparateur de territoires returns empty tables for COM-97701 due to statistical secrecy.",
+    "GDP per capita US$97,454 / €90,103 (2023, IEDOM/CEROM via Wikipedia infobox) — among the highest in the Americas. Current p50 $3,105/mo implies median/mean ratio ~0.38, plausible for an extremely unequal luxury-tourism economy with many low-wage service workers alongside very high incomes.",
+    "Current values are a modest uplift of the verified FR distribution (+15.5% across all percentiles); kept unchanged — any stronger scaling would require distribution data that does not exist publicly.",
+    "Cost-of-living context: St Barth is far more expensive than Hexagone (IEDOM portraits), so PPP-adjusted real incomes are lower than these nominal-PPP figures suggest."
+   ]
+  }
+ }
+}

@@ -1,0 +1,166 @@
+{
+ "batch": "repair_gender_2",
+ "countries": {
+  "TW": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 3,
+    "gender.childMarriagePercent": 1,
+    "gender.laborForceGap": -15,
+    "gender.contraceptiveUse": 75
+   },
+   "notes": [
+    "adolescentBirthRate 3: UN WPP/National Statistics Taiwan - ~3 births per 1,000 women 15-19 (georank.org citing UN WPP 2023); Taiwan has among the world's lowest teen fertility.",
+    "laborForceGap -15: DGBAS 2024 labour force participation ~52% women vs ~67% men aged 15+.",
+    "childMarriagePercent 1: estimate - minimum marriage age raised to 18 (both sexes) in 2023; under-18 marriage now vanishingly rare; no UNICEF MICS exists for Taiwan.",
+    "contraceptiveUse 75: estimate from Taiwanese KAP (Knowledge-Attitude-Practice) survey tradition (~75-80% historically); Taiwan not covered by UN World Contraceptive Use tables."
+   ]
+  },
+  "TK": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.childMarriagePercent": 14.7,
+    "gender.laborForceGap": -10,
+    "gender.contraceptiveUse": 59.6,
+    "gender.adolescentBirthRate": 20
+   },
+   "notes": [
+    "childMarriagePercent 14.7: CIA World Factbook field 'Women married by age 18' = 14.7% (2018) for Tokelau.",
+    "contraceptiveUse 59.6: CIA World Factbook contraceptive prevalence, married women 15-49, 59.6% (2021 est.).",
+    "adolescentBirthRate 20: estimate - no published series; Tokelau (~1,500 people, CBR ~25/1000, SPC statistics) follows the elevated Polynesian atoll pattern, above NZ's 10.3 (NZ Pacific-peoples ABR ~16).",
+    "laborForceGap -10: derived from NZ anchor (-8.7) widened slightly for a subsistence/public-sector atoll economy where paid work skews male."
+   ]
+  },
+  "UM": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 12.4,
+    "gender.childMarriagePercent": 6,
+    "gender.laborForceGap": -10.7,
+    "gender.contraceptiveUse": 73.9
+   },
+   "notes": [
+    "US Minor Outlying Islands have NO permanent population (transient refuge staff/researchers only), so no demographic statistics exist.",
+    "All four values are nominal US anchors per the brief's US-territory rule: ABR 12.4 and laborForceGap -10.7 are the verified US values; childMarriagePercent 6 (US ~5-6% of women married before 18) and contraceptiveUse 73.9 (UN WCU US any-method).",
+    "Values should be treated as placeholders, not measurements of the territory itself."
+   ]
+  },
+  "VA": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 2,
+    "gender.childMarriagePercent": 0,
+    "gender.laborForceGap": -17.5,
+    "gender.contraceptiveUse": 65
+   },
+   "notes": [
+    "Italy-anchored derivation (batch_29 had nulled these; this repair pass fills with defensible estimates per brief). Vatican City's ~500-800 residents are celibate clergy/religious, so true rates are effectively 0/undefined.",
+    "adolescentBirthRate 2 and contraceptiveUse 65: Italy values (IT ABR 2.9; UN WCU any-method 65.1) rounded down; childMarriagePercent 0 (Italian law min age 18, effectively zero).",
+    "laborForceGap -17.5: Italy's verified gap; the Vatican workforce is overwhelmingly male clergy/Swiss Guard, so the true gap is more male-skewed, but -17.5 is the defensible anchor.",
+    "No statistical office exists for the Holy See; these are nominal Italy-anchored estimates."
+   ]
+  },
+  "WF": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 25,
+    "gender.childMarriagePercent": 1,
+    "gender.laborForceGap": -10,
+    "gender.contraceptiveUse": 57.2
+   },
+   "notes": [
+    "contraceptiveUse 57.2: CIA World Factbook contraceptive prevalence, married women 15-49, 57.2% (2018 est.) for Wallis & Futuna.",
+    "adolescentBirthRate 25: estimate - INSEE/IEOM show elevated teen fertility across the French Pacific (New Caledonia ~22, French Polynesia ~35 per 1,000 women 15-19) vs metropolitan France's 3.3; Wallis & Futuna sits between them.",
+    "childMarriagePercent 1: French civil law sets minimum marriage age at 18; under-18 marriage is near-zero in the territory.",
+    "laborForceGap -10: derived from FR anchor (-8.1) widened slightly - the WF economy is subsistence agriculture plus public administration, with paid employment skewing male."
+   ]
+  },
+  "EH": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.adolescentBirthRate": 28,
+    "gender.childMarriagePercent": 16,
+    "gender.laborForceGap": -45,
+    "gender.contraceptiveUse": 62
+   },
+   "notes": [
+    "No international series covers Western Sahara separately (not a WB member; no DHS/MICS); all four values are Morocco-anchored derivations per brief.",
+    "adolescentBirthRate 28: Morocco verified 24.8, scaled up for EH's younger age structure and higher total fertility (CIA est. TFR ~4.3 vs Morocco ~2.1).",
+    "childMarriagePercent 16: anchored on Morocco's verified 16%; no EH-specific survey exists.",
+    "laborForceGap -45: Morocco verified -48.4, moderated slightly by settler/public-sector employment of women in Laayoune.",
+    "contraceptiveUse 62: Morocco verified 70.8, scaled down for weaker health-service coverage outside main towns."
+   ]
+  },
+  "AS": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.childMarriagePercent": 7.4,
+    "gender.laborForceGap": -10,
+    "gender.contraceptiveUse": 62
+   },
+   "notes": [
+    "childMarriagePercent 7.4: CIA World Factbook 'Women married by age 18' = 7.4% (2020) for American Samoa.",
+    "contraceptiveUse 62: CIA World Factbook contraceptive prevalence, married women 15-49, 62% (2020 est.).",
+    "laborForceGap -10: derived from US anchor (-10.7); 2020 Census Island Areas data show female participation slightly below male in the cannery/public-sector economy.",
+    "adolescentBirthRate 34.7 already present and confirmed against WB SP.ADO.TFRT (2024: 34.7) - left unchanged."
+   ]
+  },
+  "AG": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.laborForceGap": -7,
+    "gender.childMarriagePercent": 4,
+    "gender.contraceptiveUse": 53
+   },
+   "notes": [
+    "laborForceGap -7: World Bank Country Gender Scorecard for Antigua & Barbuda - 2018 Labour Force Survey participation 69% women vs 76% men.",
+    "contraceptiveUse 53: WB SP.DYN.CONU.ZS / UN World Contraceptive Use, any method, 53% (1998 survey - latest available for Antigua & Barbuda).",
+    "childMarriagePercent 4: estimate - no national survey; legal minimum marriage age 18; small-island Caribbean prevalence is low (regional LAC average well under 10%).",
+    "adolescentBirthRate 32.1 already present and confirmed against WB API (2024: 32.1) - left unchanged."
+   ]
+  },
+  "AW": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.laborForceGap": -12,
+    "gender.childMarriagePercent": 1,
+    "gender.contraceptiveUse": 46.8
+   },
+   "notes": [
+    "contraceptiveUse 46.8: CIA World Factbook contraceptive prevalence, married women 15-49, 46.8% (2020 est.) for Aruba.",
+    "laborForceGap -12: CBS Aruba/DAO Labour Force Survey 2023 shows women's unemployment above men's (3.9% vs 4.0%) and lower participation; NL anchor (-9.2) widened for the tourism/part-time employment structure that pulls women out of the measured labour force.",
+    "childMarriagePercent 1: Dutch civil law minimum marriage age 18; under-18 marriage effectively nonexistent.",
+    "adolescentBirthRate 18 already present and confirmed against WB API (2024: 18.0) - left unchanged."
+   ]
+  },
+  "BM": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.laborForceGap": -5,
+    "gender.childMarriagePercent": 1,
+    "gender.contraceptiveUse": 49.7
+   },
+   "notes": [
+    "contraceptiveUse 49.7: CIA World Factbook contraceptive prevalence, married women 15-49, 49.7% (2016 est.) for Bermuda.",
+    "laborForceGap -5: Bermuda Census 2000 labour-force chapter - female LFPR reached 80% vs ~85% male (16-64); recent gov.bm LFS shows overall participation 83.5%, among the world's highest, with a persistently small gap.",
+    "childMarriagePercent 1: estimate - marriage age 18 under Bermuda law; under-18 marriage rare.",
+    "adolescentBirthRate 1.5 already present and confirmed against WB API (2024: 1.5) - left unchanged."
+   ]
+  },
+  "VG": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.laborForceGap": -10,
+    "gender.childMarriagePercent": 2,
+    "gender.contraceptiveUse": 55
+   },
+   "notes": [
+    "No official sex-disaggregated series exists for the BVI; values derived per brief from UK-territory/Eastern Caribbean comparators.",
+    "laborForceGap -10: GB anchor (-8.3) widened slightly for the Eastern Caribbean small-island pattern where female participation drops more during childbearing years.",
+    "contraceptiveUse 55: estimate anchored on nearest surveyed Eastern Caribbean territories (Barbados 59.2, St Lucia 55.5, St Kitts & Nevis 54 - WB SP.DYN.CONU.ZS).",
+    "childMarriagePercent 2: estimate - legal minimum marriage age 18; prevalence near-zero in comparable OECS territories.",
+    "adolescentBirthRate 15.1 already present and confirmed against WB API (2024: 15.1) - left unchanged."
+   ]
+  }
+ }
+}

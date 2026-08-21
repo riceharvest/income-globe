@@ -1,0 +1,51 @@
+{
+ "batch": "repair_econ_5",
+ "countries": {
+  "SG": {
+   "status": "errors_found",
+   "corrections": {
+    "minimumWageEur": 0
+   },
+   "notes": [
+    "Singapore has NO statutory national minimum wage (Ministry of Manpower; Wikipedia 'None'). Lower-wage protection comes instead from sectoral instruments: the Progressive Wage Model (cleaning, security, landscape, retail, etc.) and the Local Qualification Salary floor (~SGD 1,600/month from Jul 2024) that applies only to work-pass holders - neither is a statutory national minimum.",
+    "Set 0 per DB convention already applied to IT and LI (no statutory national minimum wage). All other SG economic scalars verified: unemploymentRate 2.8 matches MOM/MAS 2024 (~2.8-2.9 seasonally adjusted year-end); internetPenetration 94.4 plausible (IMD/DataReportal ~96%); HDI 0.94 ok (HDR 2023/24: 0.949)."
+   ]
+  },
+  "SO": {
+   "status": "errors_found",
+   "corrections": {
+    "minimumWageEur": 0
+   },
+   "notes": [
+    "Somalia has NO effective statutory national minimum wage. The 1972 Labour Code mentions minimum wages but sets no amount and is unenforced; the federal government has not legislated one since (ILO NATLEX, Wikipedia 'None', wage-indicator country guides). Private-sector pay is set informally by market/customary arrangements.",
+    "Set 0 per brief instruction and DB convention for countries without an enforceable statutory minimum. Other SO economic scalars verified: unemploymentRate 18.9 plausible (WB ILO modeled est. ~19%); internetPenetration 27.9 plausible (DataReportal 2024 ~28%); HDI 0.36 ok (HDR: 0.380 for 2021/22 era)."
+   ]
+  },
+  "VA": {
+   "status": "errors_found",
+   "corrections": {
+    "minimumWageEur": 0,
+    "unemploymentRate": 0,
+    "internetPenetration": 75,
+    "hdi": 0.91
+   },
+   "notes": [
+    "minimumWageEur derived from IT anchor: Vatican City has no statutory minimum wage of its own; lay employees (~4,800 total workforce incl. commuters, CIA Factbook labor force 4,822 in 2016) are paid per Vatican personnel regulations with salaries aligned to comparable Italian CCNL collective-agreement levels. Since anchor Italy has no statutory national minimum (DB value IT = 0), VA set to 0 for consistency; actual pay is Italian-collective-agreement-comparable, not zero.",
+    "unemploymentRate: no rate is published by any source (CIA Factbook omits it; UN/ILO have no series). Ladder exhausted -> derived as 0: the entire workforce consists of salaried Holy See/Vatican employees and clergy; there is no private labor market or measurable open unemployment.",
+    "internetPenetration 75 = CIA World Factbook (archived 2024 edition): 'Internet users: percent of population: 75% (2021 est.)'. Real sourced value, not derived.",
+    "hdi 0.91 derived from IT anchor: UNDP does not compute HDI for the Holy See/Vatican City. Residents are salaried clergy/officials in an enclave of Rome with Italian-level services and above-Italian income; Italy's verified HDI 0.91 used unchanged as the conservative proxy.",
+    "Population note: DB has 800; CIA Factbook 2022 est. is ~1,000 citizens+residents combined. Within range for this volatile micro-population; left untouched (out of scope)."
+   ]
+  },
+  "WF": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "WF has NO missing economic scalar fields - all econ values already populated and verified against sources: minimumWageEur 1802 matches French SMIC gross monthly EUR 1,801.80 (Wallis and Futuna is a French overseas collectivity; French labor law including SMIC applies - anchor FR verified at 1801).",
+    "unemploymentRate 30 plausible: ISPF (Institut de la statistique de Wallis-et-Futuna) census-based estimates put unemployment in the ~25-30% range given a subsistence-dominated economy dependent on French public-sector salaries; some secondary estimates run ~15% but the higher figure reflects the broader underutilization definition.",
+    "internetPenetration 40 plausible: CIA Factbook (archived) gives internet users 45.8% (2021 est.); DataReportal 2026 shows ~13.4k mobile connections (~120% of population). 40 sits within the credible band; no correction warranted.",
+    "hdi 0.7 plausible: UNDP does not publish a standalone WF HDI; estimates derived from income/education/health proxies place it near French Polynesia-adjacent Pacific French territories (0.70-0.75). Left as-is."
+   ]
+  }
+ }
+}

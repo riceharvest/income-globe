@@ -1,0 +1,580 @@
+{
+ "AF": [
+  "englishSpeakingPercent 56 is absurd (no reliable estimate; English competence very low) -> null."
+ ],
+ "AS": [
+  "PLACEHOLDER COPY: dataSource 'REST Countries & World Bank API 2024' with income.p50 exactly 875 and costOfLivingIndex exactly 38, identical to the Anguilla entry - the whole income/indicators block is",
+  "unemploymentRate 5.5 shared verbatim with AI/AG placeholder set; no reliable recent ILO figure -> null.",
+  "Health block (162/66/25.3/22/8...) is byte-identical to AI and AG entries - template copy, suspect; Pacific obesity prevalence is known to be far higher (female adult obesity in American Samoa well ab"
+ ],
+ "AG": [
+  "Health block byte-identical to AS/AI template entries - suspect (Caribbean female obesity typically well above 22%); flagged, not corrected for lack of a confident source.",
+  "unemploymentRate 5.5 identical to the AS/AI placeholder value; no confident ILO figure found - flagged."
+ ],
+ "AR": [
+  "Smoking rates were fabricated constants (F=8/M=22 identical across whole batch). WHO GHO M_Est_smk_curr_std 2024 estimates: F 19.9%, M 27.1%; combined ~23.5.",
+  "englishSpeakingPercent 72 is absurd for Argentina (realistic share with any competence is low-teens percent); no reliable free source for an exact figure, left uncorrected."
+ ],
+ "AM": [
+  "Smoking was fabricated constant; WHO GHO 2024: F 1.7%, M 50.5%, combined ~26."
+ ],
+ "AW": [
+  "Smoking rates (8/22) are the same fabricated constants found across the batch; WHO GHO has no Aruba estimate, so no correction possible - flagged as suspect."
+ ],
+ "AU": [
+  "Smoking was the batch-wide fabricated constant; WHO GHO 2024: F 9.9%, M 13.4%, combined ~11.7 (data said 8)."
+ ],
+ "AT": [
+  "Smoking was the batch-wide fabricated constant; WHO GHO 2024: F 23.5%, M 24.0%, combined ~23.7.",
+  "childMarriagePercent 4 could not be verified against a free source; left as-is."
+ ],
+ "AZ": [
+  "Smoking badly wrong (fabricated constant): WHO GHO 2024 gives F 0.1%, M 37.2%; combined ~18.7."
+ ],
+ "BS": [
+  "Smoking was the batch-wide fabricated constant; WHO GHO 2024: F 2.3%, M 24.9%; combined ~13.6."
+ ],
+ "BH": [
+  "Smoking was the batch-wide fabricated constant; WHO GHO 2024: F 5.9%, M 24.9%; combined ~15.4.",
+  "englishSpeakingPercent 5 is far too low (English is widely used in Bahraini business/public life, rough estimates run much higher); no reliable percentage source, left uncorrected."
+ ],
+ "BB": [
+  "CAUTION: income/wealth/labor_income percentile tables share identical inter-percentile ratios with BLZ and BMU (e.g. wealth p25/p50/p75/p90 are always x2.65/x8.75/x31.2/x176.6 of p10) - these look gen",
+  "Health metrics are copied templates shared verbatim with BLZ/BMU (162cm/66kg/25.3 BMI female; 174/78/25.9 male). Combined smokingRate corrected to ~15 for internal consistency; sexed values unverified"
+ ],
+ "BY": [
+  "englishSpeakingPercent 67 is absurd for Belarus (EF EPI 'low' band, Russian-speaking); no reliable % source found -> set null rather than invent."
+ ],
+ "BZ": [
+  "Same templated income/wealth/health structure as BRB/BMU (identical inter-percentile ratios; verbatim-copied height/weight/BMI) - plausible but synthetic; no free percentile alternative for Belize."
+ ],
+ "BJ": [
+  "Income percentiles monotonic and plausible for Benin; kept. Female smoking 8% likely too high (WHO ~2%) - noted, not corrected."
+ ],
+ "BM": [
+  "This was flagged as the batch's placeholder suspect, but its population (64,555), life expectancy (85.87/79.06) and other WB fields match the live World Bank API exactly - the placeholder copy appears",
+  "hdi 0.96: Bermuda is not UNDP-ranked; value unverifiable against a primary source - left as-is, do not trust.",
+  "unemploymentRate 5.5 has no WB/ILO backing (no data series) - unverified, left as-is.",
+  "internetPenetration 75 likely understated (~97% reported elsewhere) but no authoritative free source pulled - left as-is.",
+  "Same templated income/health structure as BRB/BLZ; income p50 ~USD 4,155/mo PPP is plausible given Bermuda's GDP pc PPP ~110k+. Combined smokingRate corrected to ~15 for internal consistency."
+ ],
+ "BT": [
+  "Combined smokingRate 8 inconsistent with F8/M22 -> ~15; corrected. Sexed values themselves unverified (WHO puts Bhutanese male smoking higher, female lower)."
+ ],
+ "BW": [
+  "contraceptiveUse 67.4 = WB any-method 2017 exactly. childMarriagePercent 22 looks high vs commonly cited ~11% (UNICEF/Girls Not Brides) but no primary source pulled; left unchanged, flagged."
+ ],
+ "IO": [
+  "PLACEHOLDER ENTRY (dataSource 'REST Countries & World Bank API 2024', pop=1000000, p50=875, CoL=38): all economic figures were fabricated template copies.",
+  "unemploymentRate and internetPenetration set to null: military-base economy with no civilian labor market and no ITU coverage; prior 5.5/75 were template fabrications.",
+  "gender.* were already null (correct - no data). Health metrics (height/BMI/smoking etc.) are unsourced template values; population is non-permanent military so no real averages exist - left unchanged,"
+ ],
+ "VG": [
+  "PLACEHOLDER COPY: dataSource 'REST Countries & World Bank API 2024' with the identical IO template block (p50=875, CoL=38, hdi=0.57) - all economic figures fabricated.",
+  "costOfLivingIndex 73 = UK index 85 x 0.86 (Numbeo has no BVI coverage). hdi 0.87 derived from UNDP-style components: LE ~79.7 (BVI), UK-level education proxy, GNIpc PPP ~$34,200 (Wikipedia 2017 est.) ",
+  "unemploymentRate 5.5 and internetPenetration 75 are template values with no free source found; left unchanged, flagged. gender.adolescentBirthRate 15.1 likewise unverified. Health metrics are unsource"
+ ],
+ "BG": [
+  "contraceptiveUse 70.1 could not be verified (no WB data for BGR; UN sources suggest lower modern-method prevalence) - left unchanged, flagged. childMarriagePercent 15 unverified, plausible for EU-high"
+ ],
+ "BQ": [
+  "CONFIRMED PLACEHOLDER: population exactly 1000000 / income.p50 exactly 875 / costOfLivingIndex exactly 38 matches the known fabrication pattern; entire income/health block is synthetic.",
+  "income.p50: CBS median personal gross income \u2248 $21,400/year (2022 provisional) \u2248 $1,780/month nominal; ~$1,400/month after PPP adjustment (local price level above US average). Remaining percentiles (p",
+  "Health fields (height/weight/BMI/obesity/smoking) are byte-identical copies of the KY entry \u2014 confirmed fabrication. Smoking set to null (no free sexed prevalence data for BES islands); other health f",
+  "hdi 0.57 implausible for a territory that is constitutionally part of the Netherlands (NL=0.946) and has no UNDP rating; unverifiable \u2014 noted, not corrected.",
+  "unemploymentRate 5.5 and internetPenetration 75 unverifiable from free sources; left as-is."
+ ],
+ "KY": [
+  "minimumWageEur 1600: matches the Oct-2025 rise to KYD 8.50/hour (~\u20ac1,650/month); the 2024 rate (KYD 4.90/hour \u2248 \u20ac950) is much lower \u2014 acceptable if dataset uses latest rate; noted, not corrected.",
+  "Unemployment 5.5 unverified (recent ESO figures nearer ~4%); left unchanged."
+ ],
+ "CF": [
+  "Smoking fields also template values (F=8/M=22); CAR absent from WHO 2022 table extracted - left uncorrected, needs source."
+ ],
+ "TD": [
+  "Sexed smoking rates were identical template values (F=8/M=22) across the whole batch - fabricated. Corrected to WHO 2022 current tobacco use 15+ (M 12.3% / F 1.4%, total 6.8%)."
+ ],
+ "CL": [
+  "englishSpeakingPercent 65 implausible: EF EPI classifies Chile low-proficiency; ~10% any competence.",
+  "Sexed smoking rates were identical template values (F=8/M=22) across the whole batch - fabricated. Corrected to WHO 2022 current tobacco use 15+ (M 30.6% / F 25.8%, total 28.2%)."
+ ],
+ "CN": [
+  "englishSpeakingPercent 58 implausible: China EF EPI very low proficiency; ~2% conversational English.",
+  "Sexed smoking rates were identical template values (F=8/M=22) across the whole batch - fabricated. Corrected to WHO 2022 current tobacco use 15+ (M 47.3% / F 2.0%, total 24.9%)."
+ ],
+ "CO": [
+  "englishSpeakingPercent 60 implausible: Colombia low proficiency, ~5%.",
+  "Sexed smoking rates were identical template values (F=8/M=22) across the whole batch - fabricated. Corrected to WHO 2022 current tobacco use 15+ (M 12.1% / F 4.5%, total 8.2%)."
+ ],
+ "KM": [
+  "Sexed smoking rates were identical template values (F=8/M=22) across the whole batch - fabricated. Corrected to WHO 2022 current tobacco use 15+ (M 26.2% / F 6.2%, total 16.2%)."
+ ],
+ "CG": [
+  "englishSpeakingPercent 33 implausible: French is the official language; rough estimate ~10 (no reliable survey)."
+ ],
+ "CK": [
+  "PLACEHOLDER ENTRY (pop=1,000,000 / p50=875 / col=38 template). Population corrected to 15,040 (2021 census; mid-2025 est ~13,300).",
+  "Health block (162/66/25.3/22 F, 174/78/25.9/19.4 M) is the known fabricated template. Cook Islands has among the world's highest adult obesity (~60%, NCD-RisC/WHO); sexed obesity/BMI/weight nulled (no"
+ ],
+ "CW": [
+  "Health block (162/66/25.3/22 F, 174/78/25.9/19.4 M) is the fabricated template. Cura\u00e7ao Health Study found obesity 36% F / 19% M (1993) and prevalence has risen since; PAHO reports ~65% overweight+obe"
+ ],
+ "DJ": [
+  "englishSpeakingPercent 52 flagged as implausible template value (Djibouti's languages are French/Arabic/Somali/Afar; English competence far below half) - no free authoritative estimate found, so left "
+ ],
+ "DM": [
+  "unemploymentRate 5.5 unverifiable (no WB/ILO series for Dominica); left as-is. gender childMarriage/laborForceGap/contraceptiveUse nulls kept - no free country-level source found.",
+  "femaleSmokingRate 8 / maleSmokingRate 22 are identical across DJ/DM/DO/EC/EG/SV/CD entries (template smell) - flagged, not corrected for lack of a single sourced value."
+ ],
+ "SV": [
+  "englishSpeakingPercent 65 flagged as implausibly high for El Salvador (no authoritative free estimate; likely template value) - left uncorrected."
+ ],
+ "ER": [
+  "internetPenetration 22: WB latest is 14.3% (2020); ITU later estimates put Eritrea near 21-22%, so kept as a plausible newer estimate - flagged, not corrected."
+ ],
+ "FK": [
+  "FULL PLACEHOLDER ENTRY CONFIRMED: population exactly 1000000, income.p50 exactly 875, costOfLivingIndex 38 (the known fabricated template). World Bank has no data series for FLK at all.",
+  "hdi -> null: UNDP does not compute HDI for the Falkland Islands (truly unsourceable; prior 0.57 was unsourced)."
+ ],
+ "FO": [
+  "minimumWageEur 1600: Faroes have NO statutory minimum wage (collectively bargained; unskilled union rates ~DKK 14-15k/mo). Value is a reasonable estimate - kept, flagged."
+ ],
+ "FI": [
+  "unemploymentRate 9.5 left as-is: WB 2024 ILO is 8.4 but Finnish national monthly rate reached ~9.3-9.5% during 2025, so plausibly a 2025 national figure.",
+  "maleSmokingRate 28 is identical across FI/FR/DE entries (template smell); WHO/NCD-RisC puts Finnish male smoking near ~15-17% - flagged, not corrected for lack of a single sourced value."
+ ],
+ "GF": [
+  "CONFIRMED PLACEHOLDER: pop=1000000 / income.p50=875 / col=38 template row replaced with derived values."
+ ],
+ "PF": [
+  "unemploymentRate 11.7 matches WB 2024 ILO 11.61; life expectancy F/M 86.6/81.9 and adolescentBirthRate 23.8 match WB 2024 exactly - these rows were real, only income/COL/min-wage were templated.",
+  "costOfLivingIndex 38 -> 80 (estimate): Papeete is more expensive than metropolitan Paris for food/fuel/rent ('vie chere' is the territory's core political issue per ISPF); 38 implausible for a pure-im"
+ ],
+ "GA": [
+  "englishSpeakingPercent 35 -> null: Gabon is a Francophone CFA country (joined the Commonwealth in 2022 but English competence remains low); 35% is clearly overstated and no reliable free estimate exis"
+ ],
+ "GE": [
+  "Region 'Middle East & North Africa' is CONSISTENT with this DB's own taxonomy (Armenia/Azerbaijan/Turkey/Israel are also MENA here), so not flagged as an error."
+ ],
+ "DE": [
+  "Same template-smell maleSmokingRate 28 shared with FI/FR noted, not corrected."
+ ],
+ "GH": [
+  "Sexed smoking 8/22 and combined smokingRate 8 match the known placeholder template pair (identical in GT/GL/GD/GP/GU); actual Ghana smoking is ~<2% women / ~8% men (WHO). Flagged; left uncorrected wit"
+ ],
+ "GI": [
+  "CONFIRMED PLACEHOLDER (dataSource 'REST Countries & World Bank API 2024', income.p50=875, CoL=38, hdi=0.57 template).",
+  "internetPenetration 75 left (template value, no free Gibraltar-specific source found - flagged); gender.* already null (correct); health metrics plausible European-level values, left unchanged."
+ ],
+ "GR": [
+  "englishSpeakingPercent 74 looks very high for Greece (EF EPI rates it moderate) - flagged, not corrected (rough field)."
+ ],
+ "GL": [
+  "PARTIAL PLACEHOLDER: dataSource is the fabricated-template source and the whole income/indicator block is the p50=875 template copy, though population and costOfLivingIndex were already real.",
+  "hdi 0.94 implausible (would beat Denmark's 0.96 anchor at Greenland's health levels); corrected to 0.786 - the standard cited estimate (Wikipedia Economy of Greenland infobox, 2010, latest available; ",
+  "costOfLivingIndex 121 kept (non-template; Nuuk is among the most expensive places in the Americas - plausible).",
+  "Life expectancy F72.2/M68.4 and heights plausible for Greenland (Statistics Greenland LE ~72/68) - kept. Sexed/combined obesity and smoking (22/19.4, 8/22) are the fabricated template pair; actual Gre",
+  "internetPenetration 75 left (template; no verified free source) - flagged. gender.* already null (correct)."
+ ],
+ "GD": [
+  "PARTIAL PLACEHOLDER: scalar fields are real (population 117,303 = WB 2025 exact; internet 70.2 = 70.16; adolescentBirthRate 28.6 = 28.62; LE F/M 78.5/72.5 = 78.5/72.52) but the income/indicator block ",
+  "unemploymentRate 5.5 -> 3.8: ILOSTAT Grenada Labour Force Survey 2024 Q1 national figure (via countryeconomy); some secondary reports cite ~8.5% - value flagged as uncertain.",
+  "obesityRate 22 (template) -> 30.2: WHO obesity prevalence BMI>=30, 2022 (Destatis country profile). Sexed obesity/smoking are template copies (22/19.4, 8/22) - nulled, no free sexed source found."
+ ],
+ "GP": [
+  "CONFIRMED FULL PLACEHOLDER: population exactly 1,000,000, income.p50=875, CoL=38, hdi=0.57 - all fabricated.",
+  "femaleLifeExpectancy 78.5 / maleLifeExpectancy 72.8 were copied from the Grenada template row; replaced with INSEE-approximate Guadeloupe values (~85 F / ~78 M).",
+  "Sexed/combined obesity and smoking (22/19.4, 8/22) are the fabricated template pair - nulled, no reliable free sexed source for the territory.",
+  "gender.* already null (correct); internetPenetration 75 left (template, unverified - flagged); currency EUR/exchangeRate 1 correct; ISO fields correct."
+ ],
+ "GU": [
+  "PARTIAL PLACEHOLDER: scalar fields real (population 168,999 = WB 2025 exact; unemployment 5.6 = 5.57; adolescentBirthRate 31.5 = 31.51; LE F/M 81.6/73.7 = 81.59/73.66; laborForceGap -11.4 = 56.52-67.9",
+  "internetPenetration 75 (template) -> 80.5: DataReportal Digital 2025 Guam (136k users, Jan 2025).",
+  "Sexed/combined obesity and smoking (22/19.4, 8/22) are the fabricated template pair; Guam obesity is actually among the highest in the US (~30%+) - nulled, no free sexed source found. Life expectancy/"
+ ],
+ "GT": [
+  "Sexed smoking 8/22 matches the placeholder template pair seen across the batch; actual Guatemala smoking ~2-3% women / ~15-17% men (WHO) - flagged, left uncorrected without a fetched source.",
+  "englishSpeakingPercent 64 looks very high for Guatemala - flagged, not corrected (rough field)."
+ ],
+ "GG": [
+  "Confirmed placeholder: population=1000000, income.p50=875, costOfLivingIndex=38 match the known fabricated template exactly; all income/indicator percentiles are template copies, not Guernsey data (WI",
+  "Life expectancy UN 2023: female 85.58, male 81.01 (Wikipedia/UN). Batch values (78.5/72.8) are template copies.",
+  "HDI: UNDP does not compute HDI for Guernsey; batch value 0.57 is fabricated. Set null.",
+  "All female/male height/weight/BMI/obesity/smoking values are template copies (identical to GY/HT placeholders) and could not be verified - left as-is, flagged for re-sourcing. UK-like averages would b",
+  "internetPenetration 75 and unemploymentRate 5.5 are template values; Guernsey internet use is ~95%+ and unemployment ~1% per gov.gg reports, but exact figures not verified - left uncorrected, flagged.",
+  "exchangeRate 0.85 (USD->GBP) inconsistent with other entries in batch which all use 1 - convention unclear, flagged for dataset owner."
+ ],
+ "GN": [
+  "englishSpeakingPercent 15 seems high for francophone Guinea - flagged, not corrected."
+ ],
+ "GW": [
+  "childMarriagePercent 15 looks low vs UNICEF (~24%) and contraceptiveUse 21.2 unverified - flagged, not corrected (no solid source pulled)."
+ ],
+ "GY": [
+  "DISGUISED PLACEHOLDER: entire income + indicators block is the GG placeholder template scaled by exactly 3.914x (e.g. 2450/626 = 3426/875 = 85650/21875 = 3.914). dataSource 'REST Countries & World Ban",
+  "HDI: UNDP HDR 2025 value 0.776 (rank 89); batch 0.96 is fabricated.",
+  "femaleHeightCm 162/166-type health values match the shared placeholder template shape - suspicious but not individually verified, flagged."
+ ],
+ "HT": [
+  "DISGUISED PLACEHOLDER: income + indicators block is the GG placeholder template scaled by exactly 0.1257x (110/875 = 2750/21875 = 0.1257). dataSource 'REST Countries & World Bank API 2024'. Note: p50=",
+  "costOfLivingIndex 25: Haiti not ranked in Numbeo top-152; unverified, left.",
+  "Health values (F 162/66, M 174/78) match shared placeholder template - suspicious, flagged."
+ ],
+ "HN": [
+  "gender.contraceptiveUse 69.4 looks like 'demand satisfied' rather than modern contraceptive prevalence (~47-56% per DHS/UNFPA) - flagged, not corrected.",
+  "englishSpeakingPercent 69 seems high for Honduras - flagged."
+ ],
+ "HK": [
+  "minimumWageEur 600: HK statutory HK$40/hr (May 2023, HK$42.1 from May 2025) ~ HK$8,300-8,800/month ~ EUR 950-1,000 - batch somewhat low; not corrected (no direct source pulled this session), flagged."
+ ],
+ "HU": [
+  "englishSpeakingPercent 74 is implausible for Hungary (EF EPI ~ moderate; surveys suggest ~20-30% speak English) - flagged, not corrected (no source pulled)."
+ ],
+ "IN": [
+  "contraceptiveUse 66.7 = WB 'contraceptive prevalence, any method (% married women 15-49)' exactly - dataset uses any-method convention, left as-is."
+ ],
+ "IR": [
+  "minimumWageEur 200: 2024 Iranian monthly minimum ~IRR 71.7M; converts to ~EUR 110-200 depending on official vs market exchange rate - ambiguous, left uncorrected, flagged.",
+  "contraceptiveUse 77.4 looks like an any-method figure; Iran modern-method prevalence is materially lower (~55-64%) - flagged, not corrected."
+ ],
+ "IQ": [
+  "minimumWageEur 350: ILO reports no statutory private-sector minimum wage in Iraq; value is roughly consistent with public-sector lowest-grade pay, left uncorrected but flagged."
+ ],
+ "IE": [
+  "combined obesityRate/smokingRate equal the female values (systemic dataset pattern seen across batches) - flagged, not corrected."
+ ],
+ "IM": [
+  "CONFIRMED PLACEHOLDER: dataSource 'REST Countries & World Bank API 2024'; income.p50 exactly 875 and costOfLivingIndex 38 match the known fabricated template; wealth/consumption/labor_income blocks ar",
+  "costOfLivingIndex 38 is the template copy; IoM is documented as costing MORE than the UK average (island premium on housing/groceries); on this dataset's scale (GB=85) corrected to 88.",
+  "HDI 0.57 fabricated: UNDP does not compute HDI for IoM; anchored to UK (HDR 2025 = 0.946) -> 0.95.",
+  "unemploymentRate 5.5 and internetPenetration 75 are template values; replaced with approximate real figures (~1-1.5% unemployment per gov.im economic reports; near-universal fixed/broadband coverage ~",
+  "gender.childMarriagePercent set 0 (minimum marriage age is 18 on the Isle of Man). laborForceGap/contraceptiveUse nulls kept - no reliable sex-split participation or survey data published for the isla"
+ ],
+ "IL": [
+  "obesityRate 26 equals the female value (systemic dataset pattern) - flagged, not corrected."
+ ],
+ "IT": [
+  "Italy has NO statutory national minimum wage; listed 760 is fabricated. Set to 0 per brief convention."
+ ],
+ "JM": [
+  "childMarriagePercent 18 left as-is: sources conflict (UNICEF childmarriagedata.org 27% in 2022 incl. informal unions; older Girls Not Brides ~9%) - 18 is within published range."
+ ],
+ "JE": [
+  "PLACEHOLDER ENTRY confirmed (pop=1000000, p50=875, CoL=38, HDI=0.57 all fabricated).",
+  "gender.* nulls left (no reliable Jersey-specific sources); health metrics are generic European averages - plausible but unverifiable, noted only."
+ ],
+ "KI": [
+  "Entry carried placeholder dataSource 'REST Countries & World Bank API 2024' - income/indicator distribution treated as fabricated per brief.",
+  "Original indicators.consumption had p10 (104) > p25 (102): inverted ordering, confirming fabrication.",
+  "Minimum wage: AUD 270/month statutory (countryeconomy.com NMW 2024) ~= EUR 165; replaced fabricated 80.",
+  "NOT corrected for lack of fetched source: health metrics look Pacific-atypical (Kiribati obesity is among world's highest; NCD-RisC/STEPS suggest adult obesity ~40-50%, far above stored 19-22%) and ge"
+ ],
+ "XK": [
+  "englishSpeakingPercent 55 implausible for Albanian-speaking population; set rough estimate ~30% (no UNDP HDI for Kosovo; stored 0.78 left as-is)."
+ ],
+ "KG": [
+  "englishSpeakingPercent 55 implausible (Russian/Kyrgyz speaking country); rough estimate ~10%.",
+  "Unemployment 3.5% matches registered-rate statistics; ILO-modeled rate is higher (~9-10%) - flagged, not corrected."
+ ],
+ "LA": [
+  "englishSpeakingPercent 58 implausible for Laos; rough estimate ~20%.",
+  "Unemployment 1.2% is national-estimate style; ILO modeled ~2-3%; flagged not corrected."
+ ],
+ "LV": [
+  "englishSpeakingPercent 75 implausible (Latvian/Russian speaking; Eurobarometer-style English competence ~40-50%); rough estimate 47%.",
+  "Note: smoking fields match the batch-wide template (female 8/male 22 everywhere) and are certainly not real for Latvia (women ~20%); flagged for dedicated pass."
+ ],
+ "LB": [
+  "Smoking fields templated (female 8) and unrealistic for Lebanon (women ~25-30%); flagged."
+ ],
+ "LS": [
+  "childMarriagePercent 30 slightly above UNICEF MICS-based figures (~19-23%) - flagged, not corrected."
+ ],
+ "LY": [
+  "Male smoking 22 flagged: WHO GHO current-tobacco-use male age-standardized estimate ~44.6 for Libya; batch value likely too low but indicator definitions differ, so not corrected."
+ ],
+ "MG": [
+  "FABRICATION PATTERN: income.*, indicators.pretax/posttax/consumption/wealth/labor_income are IDENTICAL to Liberia's (LR) entry down to every percentile including wealth p50=1375/p90=42000. Almost cert"
+ ],
+ "MY": [
+  "Smoking (WHO GHO M_Est_smk_curr_std age-standardized 2025): M 32.7 / F 0.4 / both 16.6; dataset 22/8/8 is a template default.",
+  "HDI 0.82 vs UNDP HDR 2025 value 0.812 - within rounding, left as-is.",
+  "laborForceGap stored as female-minus-male (matches WB magnitudes exactly); brief defines male-minus-female - sign convention inconsistency is DB-wide, flagged not corrected."
+ ],
+ "MV": [
+  "Smoking (WHO 2025): M 41.3 / F 3.0 / both 22.2; dataset 22/8/8 template default."
+ ],
+ "ML": [
+  "Smoking (WHO 2025): M 11.5 / F 0.5 / both 6.0; dataset 22/8/8 template default."
+ ],
+ "MH": [
+  "Obesity (WHO NCD_BMI_30A 2024): F 51.9 / M 32.1 / both 42.0 - RMI is among the world's most obese countries; dataset 26/22.9/26 is fabricated-level wrong.",
+  "Heights 162/174 cm look like copied defaults (Pacific averages are shorter); no free sexed height source found - left unchanged, flagged."
+ ],
+ "MQ": [
+  "CONFIRMED PLACEHOLDER: population exactly 1000000, income.p50 exactly 875, costOfLivingIndex exactly 38, dataSource 'REST Countries & World Bank API 2024' - all fabricated.",
+  "gender.* left null: no reliable free territorial estimates found (INSEE reports only 20 births to minor mothers in 2024, 0.7% of births).",
+  "internetPenetration 75 left unchanged (plausible but unverified; household access ~87% per INSEE barometers)."
+ ],
+ "MR": [
+  "Smoking (WHO 2025): M 15.7 / F 1.9 / both 8.8; dataset 22/8/8 template default.",
+  "minimumWageEur 45: sources conflict (SMIG cited as 30,000 MRU/month legacy figure vs 4,000 MRU in a 2026 payroll guide); could not establish a reliable current figure - left unchanged, flagged."
+ ],
+ "MU": [
+  "Smoking (WHO 2025): M 32.3 / F 2.4 / both 17.3; dataset 22/8/8 template default."
+ ],
+ "YT": [
+  "Sex-specific anthropometrics/smoking/life-expectancy: no reliable published sex-split data found for Mayotte; nulled rather than invented (last-resort nulls)."
+ ],
+ "FM": [
+  "Obesity: WHO modelled estimates (Global Nutrition Report) 55.2% women / 44.4% men - among world's highest; batch's 22/19.4 were placeholder-template values. Combined ~50.",
+  "Minimum wage ~USD 2.65/hour (FSM state rates; foreign-contractor floor USD 2.50/hr per Senate Bill CB 22-41) ~= USD 459/month ~= EUR 425; batch 80 implausible.",
+  "No reliable ILO unemployment series (World Bank returns none) - left null.",
+  "Anthropometrics and smoking rates matched the YT/MS placeholder template exactly -> no reliable source found; nulled (last-resort nulls)."
+ ],
+ "MD": [
+  "englishSpeakingPercent 66 implausible for Moldova; rough estimate ~15%. Income distribution plausible vs Moldova PPP levels; left unchanged."
+ ],
+ "MC": [
+  "HDI ~0.92 unofficial but commonly cited; left as-is."
+ ],
+ "MS": [
+  "Unemployment, internet penetration and the sex-specific health block had no verifiable free-source values; templated placeholder numbers were nulled (last-resort nulls)."
+ ],
+ "MA": [
+  "femaleSmokingRate 8 -> ~2 and combined smokingRate 8 -> ~12: female tobacco use in Morocco is ~1-3% per WHO/GHO; the batch-wide template of F=8/M=22 is fabricated for MA (M=22 is plausible).",
+  "englishSpeakingPercent 38 looks too high for a Francophone country but no free source to correct; flagged not corrected."
+ ],
+ "MM": [
+  "englishSpeakingPercent 56 is implausibly high for Myanmar - flagged, no reliable free source to set a replacement.",
+  "maleSmokingRate 22 matches the batch-wide template value; actual male tobacco use in Myanmar is well above 30% (WHO) - flagged, not corrected without a fetched source."
+ ],
+ "NR": [
+  "femaleBmi/maleBmi (25.9/26.5) also implausible - Nauru mean adult BMI is ~34-35 per NCD-RisC (world's highest); approximate, so noted instead of corrected.",
+  "Smoking rates (8/22) match the batch template; Nauru tobacco use is very high in reality - flagged, not corrected without a fetched source."
+ ],
+ "NP": [
+  "englishSpeakingPercent 64 implausibly high - flagged, no source-based replacement."
+ ],
+ "NC": [
+  "PLACEHOLDER ENTRY: dataSource 'REST Countries & World Bank API 2024' with the exact signature income.p50=875 + costOfLivingIndex=38 defined in AGENT_BRIEF.md - those values are fabricated.",
+  "hdi 0.57 not from UNDP (territory unranked); independent estimates put NC around 0.80 (very high) - flagged, no correction without a solid source."
+ ],
+ "NG": [
+  "Population 237,527,782 sits above WB 2023 (~223.8M) but close to UN WPP projections (~233M 2024 rising through 237M by mid-decade); left unchanged given source spread, flagged as borderline."
+ ],
+ "NF": [
+  "Australian Fair Work system applies fully to Norfolk Island (national minimum wage since 1 July 2017, awards since July 2018 - fairwork.gov.au / ANAO audit). Current national minimum wage A$1,004.90/w"
+ ],
+ "MP": [
+  "HDI: UNDP does not publish an HDI for Northern Mariana Islands; the batch value 0.57 is fabricated for a US commonwealth (comparable US-affiliated Pacific territories score far higher). Set to null.",
+  "PLACEHOLDER FINGERPRINT: income.p50 = 875 exactly matches the known fabricated placeholder pattern, and costOfLivingIndex = 38 also matches. The whole income/indicators percentile set appears synthesi",
+  "Health fields (smoking 8%/22%, obesity 22%) are implausibly low for CNMI, which has among the highest obesity rates in the US-affiliated Pacific (CDC BRFSS), but no precise free citable figure was obt"
+ ],
+ "OM": [
+  "Population 5,494,691 is near the national NCSI count including expatriates; UN/World-Bank-style estimates run lower (~4.6M). Left as-is given source ambiguity."
+ ],
+ "PK": [
+  "internetPenetration 57.3 likely overstated (ITU/WB ~33-45% depending on methodology) \u2014 noted, not corrected due to source spread."
+ ],
+ "PW": [
+  "HDI: Palau is not in current HDR tables but latest UNDP-based estimates give ~0.826 (2020); batch 0.56 is clearly fabricated for a Compact-of-Free-Association state with US-level health/education indi",
+  "PLACEHOLDER SUSPICION: costOfLivingIndex = 35 and income percentiles look like rescaled placeholder output (Palau's actual cost of living is high, comparable to the US, given import dependence). WID.w"
+ ],
+ "PG": [
+  "costOfLivingIndex = 38 exactly matches the known placeholder fingerprint; Numbeo has no Port Moresby coverage to verify against \u2014 flagged suspect, not corrected.",
+  "Unemployment 2.6% plausible on ILO definition (subsistence agriculture counts as employment). internetPenetration ~19% plausible-low end. EnglishSpeakingPercent 5 rough but defensible (Tok Pisin/Hiri "
+ ],
+ "PY": [
+  "Population WB 2023 = 6,844,146 vs dataset 7,013,078 (+2.5%) \u2014 within 5% tolerance, left as-is."
+ ],
+ "PN": [
+  "PLACEHOLDER ENTRY CONFIRMED: population 1,000,000 / income.p50 875 / COL 38 are the fabricated REST-Countries pattern. Real population 35 permanent residents (2023, smallest territory in the world; Wi",
+  "unemploymentRate set null: no labor statistics exist for 35 residents; dataset 5.5 was fabricated."
+ ],
+ "PR": [
+  "dataSource string is the placeholder label, but values are NOT the fabricated pattern (pop 3,184,835 vs WB 2023 3,203,794, -0.6%; income.p50 1827 not 875). Income/indicator distributions are already c",
+  "No HDI in UNDP tables for territories; dataset 0.76 plausible (between USA 0.92 and its income ratio) \u2014 left, unverified."
+ ],
+ "RE": [
+  "Placeholder entry (pop=1000000, p50=875, CoL=38, dataSource 'REST Countries & World Bank API 2024') \u2014 all distribution and health data were template copies, not real.",
+  "Anthropometric/smoking/obesity fields were identical template copies across RE/BL/SH/KN/LC \u2014 nulled; no reliable territory-level data found.",
+  "HDI: no official UNDP value for R\u00e9union; placeholder 0.57 fabricated \u2014 nulled.",
+  "Region 'Sub-Saharan Africa' is a debatable classification for a French outermost region (EUR currency, French institutions) but left as-is; ISO codes 638/REU/flag correct."
+ ],
+ "RO": [
+  "englishSpeakingPercent 76 is implausibly high (Eurostat language data suggests ~30% with English competence); no authoritative single figure \u2014 flagged, not corrected."
+ ],
+ "RU": [
+  "maleSmokingRate 28 looks low vs WHO (~35-40% age-standardized for Russian men) but no single verified figure \u2014 noted, not corrected."
+ ],
+ "RW": [
+  "minimumWageEur 40 is questionable: Rwanda's statutory minimum wage is RWF 100/day (set 1974, effectively unenforced) \u2248 \u20ac2/month; no better verified figure \u2014 noted, not corrected."
+ ],
+ "BL": [
+  "Placeholder entry (pop=1000000, p50=875, CoL=38) \u2014 all income/health values template copies, fabricated."
+ ],
+ "SH": [
+  "Placeholder entry (pop=1000000, p50=875, CoL=38) \u2014 all fabricated template data.",
+  "Currency corrected GBP -> SHP (St Helena pound, pegged 1:1 to GBP); symbol \u00a3 unchanged. exchangeRate 0.85 (USD->local) consistent with the GBP peg \u2014 left as-is.",
+  "Income distribution: no free data; GDP per capita ~$8-9k and island wages are modest, so placeholder p50 $875/mo PPP was implausible \u2014 nulled rather than invented.",
+  "Minimum wage nulled: statutory rate was \u00a32.30/hr (2013, St Helena 'in Figures'), current rate unverified; placeholder 450 was fabricated.",
+  "HDI not computed; all anthropometric/smoking fields were template copies \u2014 nulled. ISO codes 654/SHN/flag correct."
+ ],
+ "KN": [
+  "Health block (162/66/25.3/22/8 female, 174/78/25.9/19.4/22 male) is byte-identical to the RE/BL/SH template \u2014 suspected fabricated; real Caribbean obesity rates are much higher. Not corrected for lack"
+ ],
+ "LC": [
+  "Health block identical to the shared template (see KN note) \u2014 suspected fabricated, not corrected for lack of a verified LC-specific source."
+ ],
+ "PM": [
+  "Full placeholder copy: population=1000000, income.p50=875, costOfLivingIndex=38 - all fabricated. Real population 5,819 (2022 INSEE census; Wikipedia/Wikiwand infobox, Grokipedia demographics page).",
+  "unemploymentRate/internetPenetration: no reliable free source (not in WB/ITU); listed 5.5/75 unverifiable -> null.",
+  "Health fields (life expectancy 78.5/72.8, BMI etc.) look like placeholder copies and are implausibly low for a French territory with French healthcare (metropolitan France: ~85.6 F / ~79.7 M), but no "
+ ],
+ "WS": [
+  "income.p50 180/mo PPP is low vs GDP per capita PPP $8,751/yr (mean ~$730/mo per capita) but not clearly >2x off for a bottom-90% adult median; left as-is.",
+  "Female obesity 47% / male 41.4% are likely understated (NCD-RisC puts Samoa among the world's highest, female >60%) but no single free figure to substitute confidently - flagged, not corrected."
+ ],
+ "SM": [
+  "hdi 0.92: UNDP does not publish an HDI for San Marino; value is an external estimate - left as-is.",
+  "Unemployment listed 4%: WB/ILO data sparse for SMR; plausible, left as-is."
+ ],
+ "RS": [
+  "hdi 0.8: consistent with UNDP HDR 2023/24 value for 2023 vintage (0.805); latest HDR 2025 shows 0.833 - left as-is given stated dataYear 2023.",
+  "englishSpeakingPercent 72 seems high (EF EPI rates Serbia only 'moderate'); rough field, flagged not corrected."
+ ],
+ "SX": [
+  "dataSource 'REST Countries & World Bank API 2024' is the placeholder source label, but this entry does NOT carry the fabricated marker values (pop 43923 not 1M, income.p50 1977 not 875, costOfLivingIn"
+ ],
+ "SI": [
+  "englishSpeakingPercent 74 suspiciously high (likely ~40-60%); no solid source found, left as-is \u2014 flag for review."
+ ],
+ "SB": [
+  "costOfLivingIndex 38 matches the placeholder-marker value but the rest of the entry is NOT placeholder data (pop/p50/col pattern absent); Numbeo has no reliable Solomon Islands country index \u2014 left as"
+ ],
+ "SO": [
+  "hdi 0.36: UNDP does not publish a ranked Somalia HDI; ~0.36 appears in older UNDP estimates \u2014 left as-is, flagged."
+ ],
+ "SS": [
+  "dataSource 'ILO' + full percentile set implausible for South Sudan (no credible household income distribution exists post-2011); figures unverifiable but not obviously absurd given GDPpc PPP ~USD1-2k "
+ ],
+ "SD": [
+  "minimumWageEur 50 unverified from free sources; left unchanged.",
+  "currencySymbol 'PT' (piastre, the subdivision) is unusual - ISO shows no official symbol; noted, not corrected."
+ ],
+ "SR": [
+  "dataSource string ('REST Countries & World Bank API 2024') belongs to the known placeholder family; however population/p50/COL do NOT match the placeholder signature (1,000,000 / 875 / 38). Income per",
+  "consumption p25 (529) nearly equals p10 (510) - odd flat segment, flagged but within monotonic order."
+ ],
+ "SJ": [
+  "CONFIRMED PLACEHOLDER: population exactly 1000000, income.p50 exactly 875, costOfLivingIndex 38 - all fabricated. Replaced with derived Norway-anchored estimates."
+ ],
+ "SE": [
+  "Smoking rates were templated (8/22 in every country); World Bank SH.PRV.SMOK 2024: female 14.6, male 25.9; combined ~20."
+ ],
+ "CH": [
+  "Smoking templated; WB 2024: female 22.3, male 24, combined ~23."
+ ],
+ "SY": [
+  "Smoking rates templated (8/22); no WB data for Syria - set null rather than keep invented values.",
+  "Population 25.6M vs WB/UN 2024 ~24.7M (~4% off, within tolerance; post-conflict estimates volatile). Unemployment 13.6 matches WB. Life expectancy 74.9/70.2 exact match. Income p50 70/mo PPP is low bu"
+ ],
+ "ST": [
+  "Smoking templated; WB 2024: female 2.1, male 14.5. Combined smokingRate 8 is consistent with weighted average (~8) - left.",
+  "Population 240k vs WB 2024 235.5k ok. Unemployment 9.1 matches WB 9.13; internet 59.1 exact match; life expectancy 73.9/66.4 exact match. Income p50 130/mo PPP plausible for STP. Minimum wage 60 EUR u"
+ ],
+ "TJ": [
+  "Smoking templated (8/22); no WB data - set null.",
+  "Population 10.79M vs WB 2024 10.59M (~2%, ok). Unemployment 6.9 matches WB 6.93; internet 55.8 matches WB 55.79; life expectancy 74.1/69.7 exact WB match. HDI 0.68 vs UNDP ~0.69 ok. Income p50 110/mo "
+ ],
+ "TZ": [
+  "Smoking templated; WB 2024: female 2.4, male 13.1. Combined smokingRate 8 ~ consistent with weighted average - left.",
+  "Unemployment 1.6 matches WB 1.57 (ILO modeled); internet 31.2 exact match; life expectancy 70/64.4 exact match. HDI 0.55 matches UNDP 0.549. Income p50 90/mo PPP plausible. Minimum wage is sectoral (T"
+ ],
+ "TH": [
+  "Smoking templated; WB 2024: female 1.3, male 34.2; combined ~18 (dataset 8 wrong)."
+ ],
+ "TL": [
+  "smokingRate: batch 8% is a template value. WHO age-standardized tobacco use (2020, Wikipedia 'Prevalence of tobacco use') = 39.2% for Timor-Leste.",
+  "female/male smokingRate (8/22) look like template copies (Timor male tobacco use is far higher in national surveys); no sexed source pulled - flagged, not corrected."
+ ],
+ "TG": [
+  "englishSpeakingPercent 39 flagged: Togo is francophone; 39% English competence is implausibly high (no reliable free source to set a value)."
+ ],
+ "TK": [
+  "Health/gender/unemployment/internet values are template copies (identical to TT/TC entries); no free source exists for Tokelau - left as-is, flagged as unreliable."
+ ],
+ "TO": [
+  "minimumWageEur 80 unverified (no reliable free source found for Tonga statutory minimum)."
+ ],
+ "TT": [
+  "Health block (female/male height/weight/BMI/obesity/smoking) is byte-identical to the TC entry - one was copied from the other; sexed smoking 8/22 flagged as template values (no sexed source pulled)."
+ ],
+ "TN": [
+  "smokingRate: WHO 2020 tobacco use 24.6% (Wikipedia table), batch 8%. femaleSmokingRate 8 especially implausible (female smoking in Tunisia is ~1-2%).",
+  "minimumWageEur 150 consistent with SMIG ~TND 490/month (~EUR 145); left unchanged. income.p50 340 plausible vs GDPpc PPP $14,542. englishSpeakingPercent 38 flagged as likely too high for a francophone"
+ ],
+ "TM": [
+  "smokingRate 8 close to WHO 5.5% - left. maleSmokingRate 22 flagged (likely too high, actual ~11-13% per WHO estimates; no sexed source pulled). minimumWageEur 100 unverified."
+ ],
+ "TC": [
+  "Health block byte-identical to TT entry (copied); sexed smoking 8/22 flagged as template values. costOfLivingIndex 58 plausible for a high-cost tourism economy (Bahamas=63 in DB) - left."
+ ],
+ "TR": [
+  "population 85.88M vs World Bank 2024 85.52M (+0.4%) - ok. Life expectancy, adolescentBirthRate (11.18), unemployment (WB 2024: 8.8), internetPenetration (87.3) all match WB 2024 - left as-is."
+ ],
+ "TV": [
+  "minimumWageEur 200 unverified (no reliable statutory figure found); left unchanged."
+ ],
+ "UA": [
+  "childMarriagePercent 15 looks high (UNICEF/MICS suggest well below that) but no firm free source found - left unverified."
+ ],
+ "GB": [
+  "minimumWageEur 1750 looks like the GBP figure rather than EUR: April-2024 National Living Wage GBP 11.44/h ~= GBP 1,860/month ~= EUR 2,200. Borderline; flagged but not corrected (depends on reference "
+ ],
+ "US": [
+  "exchangeRate 1.08 is odd for a USD entry (USD->USD should be 1); appears to be an inverted EUR rate. Cosmetic since currency is USD - flagged, not corrected."
+ ],
+ "UM": [
+  "CONFIRMED PLACEHOLDER: population exactly 1,000,000, income.p50 exactly 875, costOfLivingIndex 38 - the known fabricated-copy pattern.",
+  "Region 'North America' retained (restcountries classifies under Americas); exchangeRate 1.08 flagged - USD->USD should be 1."
+ ],
+ "VI": [
+  "Health block (162cm/66kg/22%/8% female, 174/78/19.4/22 male) is byte-identical to the WF placeholder template - fabricated. CDC BRFSS puts USVI adult obesity at ~35%, far above the stated 22%; no reli",
+  "Income distribution not covered by WID.world or World Bank; values are unsourced estimates but not obviously implausible for a high-income US territory - left as-is with this caveat."
+ ],
+ "VU": [
+  "Population 335k and internetPenetration ~30% match ITU/census-era figures. Income percentiles plausible for a low-income Pacific economy. Note costOfLivingIndex=38 coincides with the placeholder value"
+ ],
+ "VA": [
+  "Microstate with invented data: WHO/NCD-RisC publish no Vatican anthropometric/smoking/life-expectancy data; UNDP does not rank Vatican City in the HDI; no statutory minimum wage exists; no ITU interne",
+  "Population ~800 matches official figures. Income distribution has no source (500 residents) but is kept as an Italy-like estimate; flagged here as unsourced."
+ ],
+ "VE": [
+  "Population 28.5M consistent with World Bank 2023 (~28.4M). Currency VES/Bs.S. correct. Minimum wage officially ~130 VES/month (near worthless post-hyperinflation); EUR 60 sits within the range of effe"
+ ],
+ "WF": [
+  "No income/wealth distribution exists for Wallis and Futuna in WID.world, World Bank, or national sources - all income/indicator percentile arrays nulled per brief rule against inventing numbers. Real-",
+  "Minimum wage: as a French overseas territory the SMIC applies (~EUR 1,802 gross/month in 2024), replacing the fabricated 450.",
+  "Health block byte-identical to the VI placeholder template - fabricated; nulled (no WHO/NCD-RisC coverage; literature reports extreme obesity levels but no usable sexed averages)."
+ ],
+ "AX": [
+  "Income and all indicator percentile blocks are fabricated template values - WID.world has no \u00c5land series; nulled rather than invented.",
+  "female/male life expectancy corrected using Finland World Bank 2024 values (85.0 / 79.8) as proxy; batch values 78.5/72.8 are implausible for a Finnish territory and match the placeholder template.",
+  "hdi nulled: \u00c5land is not separately ranked by UNDP; Finland-level value would be ~0.94, batch's 0.57 is template data.",
+  "UnemploymentRate 5.5 is plausible for \u00c5land (~5-6%) and left unchanged; height/weight/BMI/obesity/smoking values match the placeholder template but no \u00c5land-specific source exists - left unchanged, fl"
+ ],
+ "EH": [
+  "Placeholder copy confirmed: population 1000000, income.p50 875, costOfLivingIndex 38, same dataSource string as other template entries.",
+  "Income/indicator percentile blocks are fabricated template values; no WID.world or household-survey distribution exists for ESH - nulled.",
+  "hdi nulled: UNDP does not rank Western Sahara ('accurate HDI cannot be determined' due to contested administration); batch 0.57 is template data.",
+  "costOfLivingIndex, unemploymentRate, internetPenetration and sex-specific life expectancy have no reliable free-source figures for this territory and were template copies - nulled rather than invented",
+  "Height/weight/BMI/obesity/smoking values are byte-similar to the placeholder template and unverifiable for ESH - left unchanged, flagged as suspect."
+ ],
+ "YE": [
+  "englishSpeakingPercent 50 is absurd for Yemen (very low English competence, unranked on EF EPI) - nulled; no reliable estimate found.",
+  "exchangeRate=1 is implausible for YER but Yemen has chaotic dual exchange rates (CBY-Aden official vs Sana'a legacy rate differ several-fold); no single authoritative figure, left unchanged with this ",
+  "internetPenetration 35 is above the latest World Bank figure (17.5%, 2019); newer unofficial estimates run ~27%; kept unchanged as within rough-estimate tolerance but flagged."
+ ]
+}

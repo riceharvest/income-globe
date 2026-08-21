@@ -1,0 +1,653 @@
+{
+ "AF": [
+  "englishSpeakingPercent"
+ ],
+ "AX": [
+  "minimumWageEur",
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "AS": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "AD": [
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "AI": [
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "AG": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "AM": [
+  "gender.childMarriagePercent"
+ ],
+ "AW": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "AU": [
+  "gender.childMarriagePercent"
+ ],
+ "AT": [
+  "minimumWageEur"
+ ],
+ "BS": [
+  "gender.childMarriagePercent",
+  "gender.contraceptiveUse"
+ ],
+ "BB": [
+  "gender.childMarriagePercent",
+  "gender.contraceptiveUse"
+ ],
+ "BY": [
+  "englishSpeakingPercent"
+ ],
+ "BZ": [
+  "gender.childMarriagePercent",
+  "gender.contraceptiveUse"
+ ],
+ "BM": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "IO": [
+  "unemploymentRate",
+  "internetPenetration",
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "VG": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "BN": [
+  "gender.childMarriagePercent",
+  "gender.contraceptiveUse"
+ ],
+ "BI": [
+  "minimumWageEur"
+ ],
+ "CA": [
+  "gender.childMarriagePercent"
+ ],
+ "BQ": [
+  "costOfLivingIndex",
+  "femaleSmokingRate",
+  "maleSmokingRate",
+  "smokingRate",
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "KY": [
+  "femaleSmokingRate",
+  "maleSmokingRate",
+  "smokingRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "CX": [
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "CC": [
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "KM": [
+  "gender.childMarriagePercent"
+ ],
+ "CK": [
+  "femaleWeightKg",
+  "femaleBmi",
+  "femaleObesityRate",
+  "maleWeightKg",
+  "maleBmi",
+  "maleObesityRate",
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "HR": [
+  "gender.contraceptiveUse"
+ ],
+ "CW": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "CY": [
+  "gender.contraceptiveUse"
+ ],
+ "DM": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "FK": [
+  "hdi",
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "FO": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "GF": [
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "PF": [
+  "gender.childMarriagePercent",
+  "gender.contraceptiveUse"
+ ],
+ "GA": [
+  "englishSpeakingPercent"
+ ],
+ "GI": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "GL": [
+  "femaleObesityRate",
+  "femaleSmokingRate",
+  "maleObesityRate",
+  "maleSmokingRate",
+  "obesityRate",
+  "smokingRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "GD": [
+  "femaleObesityRate",
+  "femaleSmokingRate",
+  "maleObesityRate",
+  "maleSmokingRate",
+  "smokingRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "GP": [
+  "femaleObesityRate",
+  "femaleSmokingRate",
+  "maleObesityRate",
+  "maleSmokingRate",
+  "obesityRate",
+  "smokingRate",
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "GU": [
+  "femaleObesityRate",
+  "femaleSmokingRate",
+  "maleObesityRate",
+  "maleSmokingRate",
+  "obesityRate",
+  "smokingRate",
+  "gender.childMarriagePercent",
+  "gender.contraceptiveUse"
+ ],
+ "GG": [
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "HT": [
+  "gender.contraceptiveUse"
+ ],
+ "IS": [
+  "gender.contraceptiveUse"
+ ],
+ "IM": [
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "JE": [
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "KI": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "XK": [
+  "gender.laborForceGap"
+ ],
+ "LI": [
+  "minimumWageEur",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "LU": [
+  "gender.contraceptiveUse"
+ ],
+ "MO": [
+  "gender.childMarriagePercent",
+  "gender.contraceptiveUse"
+ ],
+ "MH": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "MQ": [
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "MU": [
+  "gender.childMarriagePercent"
+ ],
+ "YT": [
+  "femaleHeightCm",
+  "femaleWeightKg",
+  "femaleBmi",
+  "femaleObesityRate",
+  "femaleSmokingRate",
+  "femaleLifeExpectancy",
+  "maleHeightCm",
+  "maleWeightKg",
+  "maleBmi",
+  "maleObesityRate",
+  "maleSmokingRate",
+  "maleLifeExpectancy",
+  "obesityRate",
+  "smokingRate",
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "FM": [
+  "unemploymentRate",
+  "femaleHeightCm",
+  "femaleWeightKg",
+  "femaleBmi",
+  "femaleSmokingRate",
+  "maleHeightCm",
+  "maleWeightKg",
+  "maleBmi",
+  "maleSmokingRate",
+  "smokingRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "MC": [
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "MS": [
+  "minimumWageEur",
+  "unemploymentRate",
+  "internetPenetration",
+  "femaleHeightCm",
+  "femaleWeightKg",
+  "femaleBmi",
+  "femaleObesityRate",
+  "femaleSmokingRate",
+  "femaleLifeExpectancy",
+  "maleHeightCm",
+  "maleWeightKg",
+  "maleBmi",
+  "maleObesityRate",
+  "maleSmokingRate",
+  "maleLifeExpectancy",
+  "obesityRate",
+  "smokingRate",
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "NR": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "NC": [
+  "gender.childMarriagePercent",
+  "gender.contraceptiveUse"
+ ],
+ "NZ": [
+  "gender.childMarriagePercent"
+ ],
+ "NU": [
+  "minimumWageEur",
+  "femaleHeightCm",
+  "femaleWeightKg",
+  "femaleBmi",
+  "femaleObesityRate",
+  "femaleSmokingRate",
+  "femaleLifeExpectancy",
+  "maleHeightCm",
+  "maleWeightKg",
+  "maleBmi",
+  "maleObesityRate",
+  "maleSmokingRate",
+  "maleLifeExpectancy",
+  "obesityRate",
+  "smokingRate",
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "NF": [
+  "femaleHeightCm",
+  "femaleWeightKg",
+  "femaleBmi",
+  "femaleObesityRate",
+  "femaleSmokingRate",
+  "femaleLifeExpectancy",
+  "maleHeightCm",
+  "maleWeightKg",
+  "maleBmi",
+  "maleObesityRate",
+  "maleSmokingRate",
+  "maleLifeExpectancy",
+  "obesityRate",
+  "smokingRate",
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "KP": [
+  "minimumWageEur",
+  "hdi"
+ ],
+ "MK": [
+  "gender.childMarriagePercent"
+ ],
+ "MP": [
+  "hdi",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "NO": [
+  "minimumWageEur"
+ ],
+ "PW": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "PN": [
+  "unemploymentRate",
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "PR": [
+  "gender.childMarriagePercent",
+  "gender.contraceptiveUse"
+ ],
+ "RE": [
+  "costOfLivingIndex",
+  "internetPenetration",
+  "femaleHeightCm",
+  "femaleWeightKg",
+  "femaleBmi",
+  "femaleObesityRate",
+  "femaleSmokingRate",
+  "maleHeightCm",
+  "maleWeightKg",
+  "maleBmi",
+  "maleObesityRate",
+  "maleSmokingRate",
+  "obesityRate",
+  "smokingRate",
+  "hdi",
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "BL": [
+  "costOfLivingIndex",
+  "unemploymentRate",
+  "internetPenetration",
+  "femaleHeightCm",
+  "femaleWeightKg",
+  "femaleBmi",
+  "femaleObesityRate",
+  "femaleSmokingRate",
+  "maleHeightCm",
+  "maleWeightKg",
+  "maleBmi",
+  "maleObesityRate",
+  "maleSmokingRate",
+  "obesityRate",
+  "smokingRate",
+  "hdi",
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "SH": [
+  "minimumWageEur",
+  "costOfLivingIndex",
+  "unemploymentRate",
+  "internetPenetration",
+  "femaleHeightCm",
+  "femaleWeightKg",
+  "femaleBmi",
+  "femaleObesityRate",
+  "femaleSmokingRate",
+  "maleHeightCm",
+  "maleWeightKg",
+  "maleBmi",
+  "maleObesityRate",
+  "maleSmokingRate",
+  "obesityRate",
+  "smokingRate",
+  "hdi",
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "KN": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "LC": [
+  "gender.childMarriagePercent",
+  "gender.contraceptiveUse"
+ ],
+ "MF": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "PM": [
+  "costOfLivingIndex",
+  "unemploymentRate",
+  "internetPenetration",
+  "hdi",
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "VC": [
+  "gender.childMarriagePercent",
+  "gender.contraceptiveUse"
+ ],
+ "SM": [
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "SC": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "SG": [
+  "minimumWageEur"
+ ],
+ "SX": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "SK": [
+  "gender.contraceptiveUse"
+ ],
+ "SO": [
+  "minimumWageEur"
+ ],
+ "SR": [
+  "gender.childMarriagePercent",
+  "gender.contraceptiveUse"
+ ],
+ "SE": [
+  "gender.contraceptiveUse"
+ ],
+ "SY": [
+  "femaleSmokingRate",
+  "maleSmokingRate",
+  "smokingRate"
+ ],
+ "TW": [
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "TJ": [
+  "femaleSmokingRate",
+  "maleSmokingRate",
+  "smokingRate"
+ ],
+ "TK": [
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "TT": [
+  "gender.childMarriagePercent"
+ ],
+ "TC": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap"
+ ],
+ "TV": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap"
+ ],
+ "US": [
+  "gender.childMarriagePercent"
+ ],
+ "UM": [
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "VI": [
+  "femaleObesityRate",
+  "maleObesityRate",
+  "gender.childMarriagePercent",
+  "gender.contraceptiveUse"
+ ],
+ "VA": [
+  "minimumWageEur",
+  "unemploymentRate",
+  "internetPenetration",
+  "femaleHeightCm",
+  "femaleWeightKg",
+  "femaleBmi",
+  "femaleObesityRate",
+  "femaleSmokingRate",
+  "femaleLifeExpectancy",
+  "maleHeightCm",
+  "maleWeightKg",
+  "maleBmi",
+  "maleObesityRate",
+  "maleSmokingRate",
+  "maleLifeExpectancy",
+  "obesityRate",
+  "smokingRate",
+  "hdi",
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "WF": [
+  "femaleHeightCm",
+  "femaleWeightKg",
+  "femaleBmi",
+  "femaleObesityRate",
+  "femaleSmokingRate",
+  "femaleLifeExpectancy",
+  "maleHeightCm",
+  "maleWeightKg",
+  "maleBmi",
+  "maleObesityRate",
+  "maleSmokingRate",
+  "maleLifeExpectancy",
+  "obesityRate",
+  "smokingRate",
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "EH": [
+  "femaleLifeExpectancy",
+  "maleLifeExpectancy",
+  "gender.adolescentBirthRate",
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "YE": [
+  "englishSpeakingPercent"
+ ]
+}

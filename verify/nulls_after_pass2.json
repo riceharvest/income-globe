@@ -1,0 +1,82 @@
+{
+ "AF": [
+  "englishSpeakingPercent"
+ ],
+ "BY": [
+  "englishSpeakingPercent"
+ ],
+ "KY": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "CW": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "DM": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "FO": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "GA": [
+  "englishSpeakingPercent"
+ ],
+ "GI": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "GL": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "GD": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "HT": [
+  "gender.contraceptiveUse"
+ ],
+ "IM": [
+  "gender.contraceptiveUse"
+ ],
+ "KI": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "MH": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "FM": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "MC": [
+  "gender.contraceptiveUse"
+ ],
+ "NR": [
+  "gender.childMarriagePercent",
+  "gender.laborForceGap",
+  "gender.contraceptiveUse"
+ ],
+ "VI": [
+  "femaleObesityRate",
+  "maleObesityRate"
+ ],
+ "YE": [
+  "englishSpeakingPercent"
+ ]
+}

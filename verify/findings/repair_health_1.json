@@ -1,0 +1,70 @@
+{
+ "batch": "repair_health_1",
+ "countries": {
+  "GD": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleObesityRate": 32.4,
+    "maleObesityRate": 15.6,
+    "femaleSmokingRate": 2.8,
+    "maleSmokingRate": 19.4,
+    "smokingRate": 11.2,
+    "laborForceGap": -13.9,
+    "contraceptiveUse": 54.0,
+    "childMarriagePercent": 7
+   },
+   "notes": [
+    "Sexed obesity from NCD-RisC estimates via Global Nutrition Report country profile: 32.4% of adult women and 15.6% of adult men living with obesity. Consistent with Grenada STEPS Survey 2010/11 and Grenada Heart Project (obesity markedly higher in women).",
+    "Smoking: WHO global tobacco epidemic estimates (via GSTHR Grenada profile): women 2.8%, men 19.4%, total 11.2% (2017 or earlier). Underlying Grenada STEPS 2010-11 (ages 25-64): F 6.5%, M 30.7%, total 18.7%. Used WHO estimates as more recent.",
+    "laborForceGap: UN Women Caribbean Gender Portal (Country Gender Assessment 2014, 2011 data): female labour force participation 53.5% vs male 67.4% -> gap -13.9 pp.",
+    "contraceptiveUse: World Bank SP.DYN.CONU.ZS / UN World Contraceptive Use: Grenada 54.0% (2006 survey year).",
+    "childMarriagePercent: No government/UNICEF data exists (UNICEF country profile 'Not available'; Girls Not Brides confirms no publicly available data). Derived estimate ~7% of women 20-24 married/in union before 18: Grenada's adolescent birth rate (28.6/1000) is well below the LAC average (~61), and UNICEF puts LAC regional prevalence at 23% with Eastern Caribbean islands at the low end; scaled accordingly."
+   ]
+  },
+  "GL": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleObesityRate": 29.6,
+    "maleObesityRate": 22.2,
+    "obesityRate": 26,
+    "femaleSmokingRate": 60,
+    "maleSmokingRate": 60,
+    "smokingRate": 60,
+    "laborForceGap": -1.0,
+    "contraceptiveUse": 76.5,
+    "childMarriagePercent": 0.2
+   },
+   "notes": [
+    "Sexed obesity: Greenland Population Health Survey 2018 (Int J Circumpolar Health 2026, PMID 42287270): women 29.6% (95% CI 25.0-34.2), men 22.2% (95% CI 18.5-26.0), BMI>=30, measured. Combined ~26%.",
+    "Smoking: Bjerregaard & Larsen, Public Health Rev 2018 (PMC5901873), reviewing Greenland population health surveys: 'about 60% of both men and women smoke on a daily basis' (2014 survey); decline since 1999 negligible. WHO GHO has no Greenland rows for M_Est_smk_curr_std/F_Est_smk_curr_std (API returns empty).",
+    "laborForceGap: Statistics Greenland equality page (stat.gl): in 2023 an average of 68% of men and 67% of women (permanent residents 14+) were employed -> gap ~ -1 pp. Consistent with discontinued ILO national estimates (2015: F LFP 71.49, F/M ratio 93.67 -> M ~76.3, gap -4.8).",
+    "contraceptiveUse: No Greenland- or Denmark-level value in current World Bank SP.DYN.CONU.ZS. Derived from anchor Denmark: WB/UN World Contraceptive Use value 76.5% used as-is per ladder rule; note Greenland prevalence is plausibly somewhat lower (health services thinner outside Nuuk).",
+    "childMarriagePercent: Marriage under 18 is essentially nonexistent in Greenland/Denmark (Danish law requires individual dispensation for minors; virtually never granted). Set to 0.2% as a small real estimate consistent with Nordic levels."
+   ]
+  },
+  "GP": {
+   "status": "errors_found",
+   "corrections": {
+    "adolescentBirthRate": 16,
+    "childMarriagePercent": 0.2,
+    "laborForceGap": -5.0,
+    "contraceptiveUse": 78.4,
+    "femaleObesityRate": 23.0,
+    "maleObesityRate": 13.6,
+    "obesityRate": 19.0,
+    "femaleSmokingRate": 7,
+    "maleSmokingRate": 18,
+    "smokingRate": 12.5
+   },
+   "notes": [
+    "World Bank API does not cover Guadeloupe (not a WB economy); used INSEE / DREES / Sant\u00e9 publique France per ladder.",
+    "Obesity (INSEE Analyses Guadeloupe n\u00b050, European Health Interview Survey 2019, age 15+): women 23.0%, men 13.6%, overall 19.0%. Matches DREES EHIS 2019 press release (women 23%).",
+    "Smoking: EHIS 2019 (DREES): 7% of women 15+ smoke daily in Guadeloupe (vs 16% mainland). No sexed male figure published; derived male daily smoking ~18% from overall daily prevalence ~12.5% (Sant\u00e9 publique France Bulletin de sant\u00e9 publique Guadeloupe 2019 / ESPS 2019: ~12.5% regular smokers) minus the 7% female share. Barom\u00e8tre Sant\u00e9 DOM 2014 (FWI, PMC6822355) corroborates the sex ratio: current smoking 23% men vs 13% women.",
+    "adolescentBirthRate: No direct 15-19 rate published. Derived: teenage pregnancies (<20y) are 3.2% of Guadeloupe births (Sant\u00e9 publique France perinatal bulletin 2024) vs ~1% in mainland France; scaled from WB SP.ADO.TFRT France (~5/1000) -> ~16 births per 1000 women 15-19.",
+    "laborForceGap: INSEE Focus n\u00b0212 (Emploi et ch\u00f4mage dans les DOM, 2018 data): Guadeloupe activity rate 15-64 women 60% vs men 65% -> gap -5 pp. INSEE's 2019 Flash publications cite an 8-point activity gap; used the dedicated DOM analysis figure.",
+    "contraceptiveUse: Derived from anchor France: World Bank SP.DYN.CONU.ZS / UN World Contraceptive Use value 78.4% (2011); no Guadeloupe-specific survey exists.",
+    "childMarriagePercent: Marriage before 18 is essentially nonexistent in France/Guadeloupe (French law requires prosecutorial dispensation for minors, rarely granted). Set 0.2% as a small real estimate consistent with the French anchor."
+   ]
+  }
+ }
+}

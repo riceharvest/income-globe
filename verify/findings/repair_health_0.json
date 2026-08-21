@@ -1,0 +1,49 @@
+{
+ "batch": "repair_health_0",
+ "countries": {
+  "BQ": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleSmokingRate": 7,
+    "maleSmokingRate": 17,
+    "smokingRate": 12
+   },
+   "notes": [
+    "CBS (Statistics Netherlands) Omnibus health survey Caribbean Netherlands 2021, population 15+: smokers Bonaire 12.7% total / 17.5% men / 7.6% women; St Eustatius 7.5/11.4/3.4; Saba 14.1/18.2/10.1 (cbs.nl longread 'How many people on Bonaire, Saba and St Eustatius smoke?', table 82292ENG).",
+    "Values written are population-weighted across the three islands (Bonaire ~83% of BQ population): total ~12%, men ~17%, women ~7%.",
+    "Note: CBS 2021 also reports obesity F 36% / M 26% in Caribbean Netherlands, higher than the DB's stored sexed obesity (22/19.4); left unchanged as out of assignment scope."
+   ]
+  },
+  "KY": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleSmokingRate": 6.7,
+    "maleSmokingRate": 18.2,
+    "smokingRate": 12.5
+   },
+   "notes": [
+    "Cayman Islands STEPS 2023 National Health Survey Report (Ministry of Health & Wellness, published Dec 2024), Table 11: current smokers age 18-69 - Men 18.2% (95% CI 15.4-21), Women 6.7% (4.9-8.4), Both sexes 12.5% (10.9-14.2). PDF: gov.ky/documents/35692/0/STEPS_23_Report_Digital_compressed.pdf",
+    "Matches reported headline figure of 12.5% current tobacco use (down from 15% in 2012 STEPS)."
+   ]
+  },
+  "CK": {
+   "status": "errors_found",
+   "corrections": {
+    "femaleBmi": 33.1,
+    "femaleWeightKg": 86.9,
+    "femaleObesityRate": 72.7,
+    "maleBmi": 32.7,
+    "maleWeightKg": 99.0,
+    "maleObesityRate": 68.8,
+    "obesityRate": 70.9
+   },
+   "notes": [
+    "Mean BMI (age-standardized, WHO GHO NCD_BMI_MEAN / NCD-RisC), Cook Islands 2016 (latest year in series): women 33.1, men 32.7 kg/m2.",
+    "WeightKg derived as BMI x height^2 using the record's existing heights (F 162 cm -> 86.9 kg; M 174 cm -> 99.0 kg).",
+    "Sexed obesity (WHO GHO NCD_BMI_30A age-standardized, 2022 = last NCD-RisC published data year): women 72.7%, men 68.8%, both sexes 70.9%.",
+    "Consistency fix: overall obesityRate corrected 60 -> 70.9 to match the same WHO/NCD-RisC source series as the new sexed values.",
+    "Heights already present in DB (162/174) are consistent with NCD-RisC/OWID height series for Cook Islands (~163 cm women, ~175 cm men, 1996 birth cohort); left unchanged."
+   ]
+  }
+ }
+}

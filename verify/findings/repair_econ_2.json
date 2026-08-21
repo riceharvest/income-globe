@@ -1,0 +1,45 @@
+{
+ "batch": "repair_econ_2",
+ "countries": {
+  "FM": {
+   "status": "errors_found",
+   "corrections": {
+    "unemploymentRate": 16.2
+   },
+   "notes": [
+    "FM unemploymentRate 16.2% (2010): FSM 2010 Census figure carried in the Economy of the Federated States of Micronesia infobox (Wikipedia) and originally from CIA World Factbook. World Bank has no SL.UEM.TOTL.ZS series for FSM; current CIA WFB edition no longer lists an unemployment rate for FSM, so the 2010 census value is the most recent authoritative estimate.",
+    "All other economic scalars already populated and verified: minimumWageEur 425 (FSM state minimum wages $1.25-$2.00/hr blended), costOfLivingIndex 25, internetPenetration 39.5."
+   ]
+  },
+  "MS": {
+   "status": "errors_found",
+   "corrections": {
+    "minimumWageEur": 800,
+    "unemploymentRate": 6,
+    "internetPenetration": 57.2
+   },
+   "notes": [
+    "MS minimumWageEur 800: Montserrat's Labour Advisory Board completed its first minimum-wage review and recommended EC$12.50/hour (Jan 2025, Montserrat Focus / local labour ministry announcement); as of mid-2026 formal gazetting is not confirmed (wage.is still lists 'no statutory minimum wage'). Converted at DB convention: EC$12.50 x 40 h x 4.33 wk = EC$2,166/month / exchangeRate 2.7 = ~EUR 802 -> 800. Flagged in notes as a recommended (pending-enactment) rate rather than an enacted one.",
+    "MS unemploymentRate 6.0: CIA World Factbook archive (2015 edition, geos/mh.html) 'Unemployment rate: 6% (1998 est.)' - the only official-style estimate ever published for Montserrat; no newer census/labor-force survey figure found. Old but sourced; kept over a derived guess.",
+    "MS internetPenetration 57.2: DataReportal Digital 2026 Montserrat - 2,491 internet users in October 2025 = 57.2% of population (Kepios/ITU methodology). Consistent with Internet Society Pulse (~55%)."
+   ]
+  },
+  "NU": {
+   "status": "errors_found",
+   "corrections": {
+    "minimumWageEur": 620
+   },
+   "notes": [
+    "NU minimumWageEur 620: Niue has no statutory national minimum wage law (lawgratis employment-law review; wage.is citing SPC Pacific Community statistics). Prevailing/indicative rate ~NZD 7.00/hour (SPC-sourced, 2025). Converted at DB convention: NZD 7.00 x 40 h x 4.33 wk = NZD 1,212/month / exchangeRate 1.964 = ~EUR 617 -> 620. Flagged as a prevailing-rate estimate, not an enacted statutory wage; far below anchor NZ (NZ$23.50/hr -> EUR 2200 in DB), consistent with Niue's aid-dependent micro-economy.",
+    "All other economic scalars already populated: costOfLivingIndex 88, unemploymentRate 5, internetPenetration 98."
+   ]
+  },
+  "NF": {
+   "status": "ok",
+   "corrections": {},
+   "notes": [
+    "NF Norfolk Island: no missing economic scalar fields. minimumWageEur 2600, costOfLivingIndex 110, unemploymentRate 10, internetPenetration 57.1 all already populated and plausible against the AU anchor (AU national minimum wage AUD 24.10/hr ~= EUR 2600/month at DB exchangeRate 1.62). No corrections required."
+   ]
+  }
+ }
+}

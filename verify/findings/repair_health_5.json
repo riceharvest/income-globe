@@ -1,0 +1,46 @@
+{
+ "batch": "repair_health_5",
+ "countries": {
+  "SY": {
+   "status": "errors_found",
+   "corrections": {
+    "maleSmokingRate": 48,
+    "femaleSmokingRate": 9,
+    "smokingRate": 25
+   },
+   "notes": [
+    "WHO GHO M_Est_smk_curr_std / F_Est_smk_curr_std pulled in full (5511 rows, 167 countries): Syria is genuinely ABSENT from the current WHO estimate series (also absent from M_Est_tob_curr_std and from OWID's WHO-derived share-of-adults-who-smoke), so escalated to WHO report on the global tobacco epidemic 2023 country profile PDF (cdn.who.int tobacco-2023-syr.pdf).",
+    "WHO GTCR 2023 profile, latest adult survey = National Survey on NCDs and their risk factors, 2002-03, national ages 15-65: DAILY tobacco smoking M 48.0% / F 8.9% / both sexes 24.7% (cigarettes ~0% in that survey - waterpipe dominant). Set male 48, female 9, combined 25.",
+    "Corroboration: Syria's official WHO FCTC 2023 core questionnaire report (period Jan 2021 - Jan 2022) reports current smoking prevalence M 51% / F 10% / total 29% - consistent with the survey-based pair, so the values are not stale-looking outliers even though the underlying survey is dated (no newer national adult survey exists; GYTS 2010 adolescents M 31.6 / F 17.4 any tobacco)."
+   ]
+  },
+  "TJ": {
+   "status": "errors_found",
+   "corrections": {
+    "maleSmokingRate": 20,
+    "femaleSmokingRate": 0.5,
+    "smokingRate": 10
+   },
+   "notes": [
+    "WHO GHO M/F_Est_smk_curr_std pulled in full: Tajikistan genuinely ABSENT from the current WHO estimate series (filter query returns empty), so escalated to WHO report on the global tobacco epidemic 2023 country profile PDF (tobacco-2023-tjk.pdf).",
+    "WHO GTCR 2023 profile, latest adult survey = Demographic and Health Survey 2017, national ages 15-49: current CIGARETTE smoking M 19.71% / F 0.5% / both sexes 10.31% (current tobacco smoking reported only for F 0.5%). Set male 20, female 0.5, combined 10.",
+    "Corroboration: WHO/Europe Tobacco Control Fact Sheet Tajikistan gives smoking prevalence M 17.0% / F 0.3% (Zerkalo survey / Statistical Agency); Tajikistan statistics-agency GATS-style 2016 survey: men 12.9% rural / 19.6% urban, women 0.2-0.6%. All sources agree on the extreme male-dominated pattern; STEPS 2016-17 puts total tobacco use (incl. smokeless nasvay) at only 4.8% smoked + 10.3% smokeless.",
+    "femaleSmokingRate 0.5 kept non-integer deliberately - rounding to 0 would erase the only real signal; DB convention is integers but 0 would be misleading here."
+   ]
+  },
+  "VI": {
+   "status": "errors_found",
+   "corrections": {
+    "maleSmokingRate": 8,
+    "femaleSmokingRate": 2,
+    "smokingRate": 5
+   },
+   "notes": [
+    "DB had VI smoking copied verbatim from the US placeholder template (F 8 / M 22 / combined 8 - identical pair in GT/GL/GD/GP/GU). Real USVI BRFSS rates are far lower.",
+    "CDC BRFSS Prevalence & Trends Data (data.cdc.gov dataset dttw-5yxu), US Virgin Islands, 'Adults who are current smokers', crude prevalence: 2023 Overall 4.9% [2.8-7.1], Male 7.7% [3.7-11.8]; Female suppressed in every survey year (n=21-27, below CDC suppression threshold). 2016: Overall 6.6%, Male 10.5%. Set male 8, combined 5 from the latest (2023) round.",
+    "femaleSmokingRate derived per ladder rule: with ~50/50 adult sex ratio, F = 2*4.9 - 7.7 = 2.1 -> set 2; flagged as derived-from-overall-and-male because CDC suppresses the direct female estimate for small sample size.",
+    "Context check: USVI overall smoking is roughly a third of the US national rate (US 2023 BRFSS overall 12.1%), consistent with MMWR Vol.59 (2009) where USVI had the lowest state/territory smoking prevalence in the nation (6.4%)."
+   ]
+  }
+ }
+}

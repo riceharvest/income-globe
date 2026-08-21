@@ -1,0 +1,45 @@
+{
+  "batch": "repair_econ_1",
+  "countries": {
+    "BQ": {
+      "status": "errors_found",
+      "corrections": {
+        "costOfLivingIndex": 82
+      },
+      "notes": [
+        "costOfLivingIndex was null after first pass removed the placeholder (38). Numbeo has partial Bonaire data but publishes no index ('Not enough data to calculate difference in Cost of Living' vs Netherlands).",
+        "Derived from anchor NL (COL 82) using the actual Numbeo NL-vs-Bonaire comparison that does have data: restaurant prices +2.4% vs NL, rent -27.7% vs NL; groceries per CBS price surveys are roughly at Dutch level in Caribbean Netherlands. Ex-rent COL therefore ~= NL's index -> 82.",
+        "Sanity check vs peer islands in DB: Aruba 80, Sint Maarten 87, USVI 77, Anguilla 92, Curacao 50. Bonaire (USD-pegged, US-import dependent, very high utilities ~$567/mo Numbeo) sits with the Dutch-Caribbean high band; 82 is consistent."
+      ]
+    },
+    "FK": {
+      "status": "errors_found",
+      "corrections": {
+        "hdi": 0.874
+      },
+      "notes": [
+        "hdi was null because UNDP does not rank the Falkland Islands. However a published estimate exists: Wikipedia infobox 'HDI (2010): 0.874, very high' (subnational UNDP-methodology estimate), used verbatim.",
+        "Cross-check: GDP per capita FKP 86,050 (~US$110k nominal, 2024 est.), life expectancy ~81y, UK-standard education system -> very-high-HDI band is plausible; sits sensibly below GB (0.94) given the 2010 vintage and smaller education index."
+      ]
+    },
+    "LI": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 0
+      },
+      "notes": [
+        "CONFIRMED: Liechtenstein has NO statutory national minimum wage. Wikipedia lists none; current payroll/compliance guides (PIO hiring guide 2026: 'No statutory minimum wage; wages set by CBAs or contracts'; Remote People EOR guide) confirm remuneration floors come from Gesamtarbeitsvertrage (sectoral collective agreements) and individual contracts.",
+        "The Jan-2023 CHF 22/hr (CHF 25/hr for certain qualifications) rule applies ONLY to domestic workers/farm workers employed in a secondary job alongside their main employment - not a general minimum.",
+        "Coded 0 rather than null per brief's no-nulls rule and to match the existing DB convention for no-statutory-minimum countries (DK, SE, FI, CH all use 0). Deriving a positive number from an anchor would fabricate a law that does not exist; 0 here means 'no statutory minimum', not 'zero wage'."
+      ]
+    },
+    "YT": {
+      "status": "ok",
+      "corrections": {},
+      "notes": [
+        "No missing economic scalar fields found: minimumWageEur=1767 (French SMIC applies in Mayotte), costOfLivingIndex=60 (derived from FR anchor in first pass), unemploymentRate=37 (INSEE), internetPenetration=56.3 (DataReportal 2025), hdi=0.64 were all filled by batch_17 and verified against its cited sources.",
+        "Only remaining nulls on YT are sex-specific anthropometric/smoking/life-expectancy fields - health, not economic, and first pass already documented them as genuinely unpublished (last-resort nulls)."
+      ]
+    }
+  }
+}

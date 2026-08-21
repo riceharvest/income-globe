@@ -1,0 +1,96 @@
+{
+ "batch": "repair_income_5",
+ "countries": {
+  "WS": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 120,
+    "income.p25": 175,
+    "income.p50": 255,
+    "income.p75": 395,
+    "income.p90": 800
+   },
+   "notes": [
+    "CODE DISCREPANCY: task context called WS \"Western Sahara\", but in this database WS is Samoa (ISO 3166-1); Western Sahara is EH and was assigned to a different repair batch. Verified as Samoa.",
+    "Samoa DOES have survey data - World Bank PIP has Samoa HIES 2002/2008/2013 (api.worldbank.org/pip/v1). Latest 2013 national consumption: mean $11.28/day, median $8.38/day, gini 0.387. No MA-anchor derivation needed.",
+    "Old values (40/85/180/380/720) understated the bottom half: p50 180 vs PIP median $8.38/day x30.44 = 255/mo (-29%). Corrected set derived from PIP decile shares: p10/p90 from bottom/top decile averages ($3.86/$26.14 per day), p25/p75 from 3rd/8th decile averages, p50 = PIP median directly; daily->monthly x30.44.",
+    "First-pass flag (\"p50 low vs GDP pc PPP\") confirmed and now fixed with primary data."
+   ]
+  },
+  "SX": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 800,
+    "income.p25": 1350,
+    "income.p50": 2060,
+    "income.p75": 2900,
+    "income.p90": 3920
+   },
+   "notes": [
+    "No household survey exists for Sint Maarten (not in WB PIP; no WID.world entry); old dataSource was the placeholder family label.",
+    "Derived from verified NL anchor x PPP GDP-per-capita ratio 0.643 (WB 2023: SXM $51,729 vs NLD $80,392 - Sint Maarten HAS an ICP PPP figure): {\"p10\": 800, \"p25\": 1350, \"p50\": 2060, \"p75\": 2900, \"p90\": 3920}",
+    "Old p50 1977 was within 4% of derived 2050 - central value essentially confirmed; tails were too compressed (old p10 1414 vs derived ~800), so full set harmonized to anchor shape."
+   ]
+  },
+  "SS": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 17,
+    "income.p25": 30,
+    "income.p50": 50,
+    "income.p75": 88,
+    "income.p90": 175
+   },
+   "notes": [
+    "World Bank PIP has South Sudan NBHS 2009 and HIES 2016 (national consumption). Latest 2016: mean $2.34/day, median $1.65/day, gini 0.4405.",
+    "Old set (8/18/40/90/210) was flagged unverifiable (dataSource ILO, no credible post-2011 income distribution). Replaced with PIP 2016 decile-derived values: p10/p90 from bottom/top decile averages ($0.57/$5.79 per day), p25/p75 from 3rd/8th decile averages ($0.99/$2.88), p50 = PIP median; daily->monthly x30.44.",
+    "Note: PIP 2016 is pre-inflation-crisis; current living standards are likely lower still, but 2016 is the newest primary survey - kept as best available evidence."
+   ]
+  },
+  "SR": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 170,
+    "income.p25": 285,
+    "income.p50": 440,
+    "income.p75": 690,
+    "income.p90": 1300
+   },
+   "notes": [
+    "World Bank PIP now carries Suriname 2022 national household survey (consumption): mean $18.70/day, median $14.44/day, gini 0.3918. Old entry carried the placeholder-family dataSource with unverifiable values.",
+    "Old set (560/653/793/1042/1353) is ~80% above the PIP median at p50 (793 vs 439) and nearly flat p10-p25 (the odd 510/529 segment flagged in pass 1). Replaced with PIP 2022 decile-derived values: p10/p90 from bottom/top decile averages ($5.55/$42.62 per day), p25/p75 from 3rd/8th decile averages ($9.40/$22.73), p50 = PIP median; daily->monthly x30.44.",
+    "2022 survey captures the post-2020 currency/inflation crisis - low level vs old values is real, not an error."
+   ]
+  },
+  "SJ": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 1600,
+    "income.p25": 2600,
+    "income.p50": 4000,
+    "income.p75": 5600,
+    "income.p90": 7600
+   },
+   "notes": [
+    "No household income/consumption survey exists for Svalbard (not in WB PIP, no WID.world entry). Statistics Norway (SSB) does run wage/tax statistics covering Svalbard, but publishes no public percentile distribution.",
+    "SSB report \"Svalbard: Population, economy and living conditions\" (ssb.no, 2024 data) states Longyearbyen finances/living conditions are \"somewhat above average for a Norwegian local community\"; Svalbard wages historically carry a small premium over the mainland (harsh-condition allowances; ~50% private-sector employment incl. tourism/logistics).",
+    "Old set was NO-derived at ~0.95x mainland - direction contradicted by SSB evidence. Re-derived from verified NO anchor x 1.05: p10 1600, p25 2600, p50 4000, p75 5600, p90 7600. Shape preserved from Norway; level adjusted for the documented premium."
+   ]
+  },
+  "SY": {
+   "status": "errors_found",
+   "corrections": {
+    "income.p10": 75,
+    "income.p25": 100,
+    "income.p50": 140,
+    "income.p75": 200,
+    "income.p90": 275
+   },
+   "notes": [
+    "World Bank PIP added Syria HBS 2022 (national consumption) - first Syrian survey since 2009: mean $5.16/day, median $4.61/day, gini 0.2637 (extremely compressed distribution after 12 years of conflict and currency collapse).",
+    "Old set (15/32/70/155/340) had a plausible median-ish level but a far too unequal shape (implied gini ~0.45+ vs actual 0.26). Replaced with PIP 2022 decile-derived values: p10/p90 from bottom/top decile averages ($2.39/$9.06 per day), p25/p75 from 3rd/8th decile averages ($3.36/$6.67), p50 = PIP median; daily->monthly x30.44.",
+    "Caveat noted: 2022 fieldwork predates the Dec-2024 regime change; no newer survey exists as of Aug 2026."
+   ]
+  }
+ }
+}

@@ -1,0 +1,72 @@
+{
+ "batch": "repair_econ_4",
+ "countries": {
+  "RE": {
+   "status": "errors_found",
+   "corrections": {
+    "minimumWageEur": 1801,
+    "costOfLivingIndex": 85,
+    "internetPenetration": 82,
+    "hdi": 0.86
+   },
+   "notes": [
+    "RE minimumWageEur: SMIC applies in full in Réunion; national SMIC as of Jan 2025 is EUR 1801 gross/month (matches verified FR anchor value 1801). Old value 1767 was the 2024 rate.",
+    "RE costOfLivingIndex: INSEE price comparison (Insee Analyses Réunion n°7647041, published Jul 2023): consumer prices in Réunion are +8.9% vs metropolitan France in 2022 (Fisher index; +12.3% on a metropolitan basket). Derived: FR anchor 78 x 1.089 = 84.9 -> 85.",
+    "RE internetPenetration: no current direct figure. INSEE (2017 TIC survey): 78% of Reunionnais 15+ had home internet vs 85% metropole (ratio 0.918). Derived: FR anchor 88.7 x 0.918 = 81.4 -> 82. Fibre rollout since 2017 has narrowed but not closed the gap.",
+    "RE hdi: fr.wikipedia 'Liste des regions francaises classees par IDH' (2023, new UNDP method): Réunion HDI = 0.856 -> rounded to DB convention 0.86 (FR itself stored as 0.92 = 0.920).",
+    "unemploymentRate 17.3 already present and consistent with INSEE census; left unchanged."
+   ]
+  },
+  "BL": {
+   "status": "errors_found",
+   "corrections": {
+    "minimumWageEur": 1801,
+    "unemploymentRate": 8,
+    "internetPenetration": 71.3,
+    "costOfLivingIndex": 105,
+    "hdi": 0.95
+   },
+   "notes": [
+    "BL minimumWageEur: French labour law incl. SMIC applies in Saint-Barthelemy; updated 1767 -> 1801 (SMIC Jan 2025, matches FR anchor).",
+    "BL unemploymentRate: IEDOM Rapport annuel economique Saint-Barthelemy 2023 infographic: 'Un taux de chomage faible' - 8% of active persons in 2021 (census-based). Set 8.",
+    "BL internetPenetration: CIA World Factbook (theworldfactbook.org/country/saint-barthelemy.html): Internet users 71.3% of population (2022 est.).",
+    "BL costOfLivingIndex: no official price-level survey exists for St Barth. Derived: FR anchor 78 x 1.35 = 105. Ratio reflects import dependence plus the island's luxury tourism market (IEDOM reports repeatedly flag very high housing/consumer prices); stated as derivation per brief rules.",
+    "BL hdi: no official subnational HDI computed for Saint-Barthelemy. Derived from FR anchor 0.92 adjusted upward: GDP per capita EUR 90,103 nominal in 2023 (Wikipedia/INSEE-sourced infobox) is ~2x metropolitan France, life expectancy ~81y and full French schooling imply HDI at least at FR level -> 0.95. Stated as derivation per brief rules."
+   ]
+  },
+  "SH": {
+   "status": "errors_found",
+   "corrections": {
+    "minimumWageEur": 856,
+    "unemploymentRate": 5.0,
+    "internetPenetration": 37.6,
+    "costOfLivingIndex": 64,
+    "hdi": 0.76
+   },
+   "notes": [
+    "SH minimumWageEur: St Helena Government, Minimum Wage Determination in force from 01 Jul 2025 (sainthelena.gov.sh, LN 2 of 2025): GBP 4.50/hour for ages 18+. Full-time week on St Helena is 37.5h (per SHG minimum-wage press release), so GBP 4.50 x 37.5 x 52/12 = GBP 731.25/month; at ~1.17 EUR/GBP (2025 avg) = EUR 856.",
+    "SH unemploymentRate: no ILO-style rate is published; Unemployment Allowance was discontinued Sep 2021 and SHG now counts only 'registered job-ready' unemployed (~tens of people, an undercount). Derived from GB anchor 4.7 scaled x1.06 for the island's small private sector and government-dominated labour market -> 5.0. Stated as derivation per brief rules.",
+    "SH internetPenetration: CIA World Factbook change log for Saint Helena, Ascension and Tristan da Cunha: Internet users 37.6% of population (2021 est.).",
+    "SH hdi: official estimate by the St Helena Government Statistics Office (HDI Statistical Bulletin/data file, May 2019): St Helena HDI = 0.756 in 2017 -> rounded to DB convention 0.76.",
+    "SH costOfLivingIndex: no published price-level index comparable to Numbeo. Derived from GB anchor 85 scaled down ~25% (x0.75 = 64): imported food/fuel are expensive relative to local wages, but housing and services cost far less than UK levels. Stated as derivation per brief rules."
+   ]
+  },
+  "PM": {
+   "status": "errors_found",
+   "corrections": {
+    "minimumWageEur": 1801,
+    "unemploymentRate": 2.9,
+    "internetPenetration": 88.7,
+    "costOfLivingIndex": 101,
+    "hdi": 0.92
+   },
+   "notes": [
+    "PM minimumWageEur: French SMIC applies in Saint-Pierre-et-Miquelon; corrected 1800 -> 1801 (SMIC Jan 2025, matches FR anchor).",
+    "PM unemploymentRate: Wikipedia infobox (CIA-sourced est.) 2.9% (2023); consistent with IEDOM reporting 3.3% in 2022 vs 7.3% nationally. Set 2.9.",
+    "PM internetPenetration: CIA World Factbook (theworldfactbook.org/country/saint-pierre-and-miquelon.html): Internet users 88.7% of population (2022 est.).",
+    "PM costOfLivingIndex: no recent official price-level survey for SPM. Derived: FR anchor 78 x 1.30 = 101. Ratio reflects near-total import dependence via Canada plus IEDOM commentary on structurally higher consumer prices (inflation 5% in 2023 after 9.3% in 2022). Stated as derivation per brief rules.",
+    "PM hdi: no official subnational HDI computed. Derived from FR anchor 0.92: GDP per capita ~USD 46,200 PPP (Wikipedia est.), life expectancy 81.8y and identical French education/health systems put it at metropolitan-France level -> 0.92. Stated as derivation per brief rules."
+   ]
+  }
+ }
+}

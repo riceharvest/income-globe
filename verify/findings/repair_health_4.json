@@ -1,0 +1,75 @@
+{
+  "batch": "repair_health_4",
+  "countries": {
+    "RE": {
+      "status": "errors_found",
+      "corrections": {
+        "femaleHeightCm": 162,
+        "femaleWeightKg": 68,
+        "femaleBmi": 26,
+        "femaleObesityRate": 20,
+        "femaleSmokingRate": 16,
+        "maleHeightCm": 174,
+        "maleWeightKg": 81,
+        "maleBmi": 26.7,
+        "maleObesityRate": 13,
+        "maleSmokingRate": 26,
+        "obesityRate": 16,
+        "smokingRate": 19
+      },
+      "notes": [
+        "Smoking rates are real territory-level data: Santé publique France Baromètre DROM 2021 age-standardized daily smoking, La Réunion = 18.7% overall, 26.2% men (BEH 2024 n°11 'Analyse régionale du tabagisme quotidien des adultes en France en 2021', via CNCT summary). Women: EHIS/DREES 2019 gives 13% (15+) but notes the métropole gap is NOT significant for Réunion women (métropole 16%); Baromètre 2021 DROM female range tops out at 15.9% which is Réunion. Used 16% F / 26% M / 19% overall.",
+        "femaleObesityRate 20% is real: DREES EHIS 2019 press release ('Les femmes de 15 ans ou plus sont ... 20 % à La Réunion' obèses), corroborated by Insee Analyses Réunion n°58 (2021): 'Les Réunionnaises sont davantage concernées que les Réunionnais par l'obésité (20 %)'.",
+        "maleObesityRate 13 is a DERIVED estimate: EHIS 2019 states obesity is higher among women than men in every DROM (métropole F15/M14) but does not print the Réunion male figure; set to 13% (below métropole male 14%, consistent with the DROM pattern where only women exceed métropole levels). Self-reported basis.",
+        "obesityRate 16 = population-weighted midpoint of F20/M13, consistent with World Obesity Observatory report card for Réunion (EHIS 2019, self-reported, 15+).",
+        "Heights/weights/BMI: no territory-level anthropometry exists for Réunion (NCD-RisC does not cover it). Derived from verified France anchor (F162cm/66kg/BMI25, M174cm/78kg/BMI25.6) with +2 kg both sexes to reflect Réunion's measurably higher obesity prevalence -> F BMI 26, M BMI 26.7."
+      ]
+    },
+    "BL": {
+      "status": "errors_found",
+      "corrections": {
+        "femaleHeightCm": 162,
+        "femaleWeightKg": 66,
+        "femaleBmi": 25,
+        "femaleObesityRate": 23,
+        "femaleSmokingRate": 18,
+        "maleHeightCm": 174,
+        "maleWeightKg": 78,
+        "maleBmi": 25.6,
+        "maleObesityRate": 20.2,
+        "maleSmokingRate": 28,
+        "obesityRate": 23,
+        "smokingRate": 18
+      },
+      "notes": [
+        "Ladder exhausted for direct sources: no health survey of Saint Barthélemy exists (population ~11k; not covered by Baromètre DROM/EHIS, WHO GHO, World Bank, World Obesity Observatory or CIA Factbook).",
+        "All values DERIVED from the verified France anchor (RE's French-territory sibling uses the same anchor): heights/weights/BMI copied unchanged; smoking F18/M28 and obesity F23/M20.2 from FR.",
+        "Defensibility note: St Barth is a wealthy, tourism-based collectivity with a predominantly metropolitan-French demographic profile, so mainland-France values are the closest comparable; if anything its obesity would sit at or slightly below métropole levels, so these are conservative upper-bound estimates."
+      ]
+    },
+    "SH": {
+      "status": "errors_found",
+      "corrections": {
+        "femaleHeightCm": 164,
+        "femaleWeightKg": 73,
+        "femaleBmi": 27,
+        "femaleObesityRate": 35,
+        "femaleSmokingRate": 20,
+        "maleHeightCm": 177,
+        "maleWeightKg": 88,
+        "maleBmi": 28,
+        "maleObesityRate": 31,
+        "maleSmokingRate": 30,
+        "obesityRate": 33,
+        "smokingRate": 25
+      },
+      "notes": [
+        "smokingRate 25 is real territory-level data: St Helena Government health statistics cited in The NSMC 'Saints Together' behaviour-change case study (thensmc.com): adult smoking ~25%, >70% of adults overweight or obese, >20% diabetic. Corroborated by BMC Public Health 2024 (whole-systems approach to obesity on St Helena) describing high NCD burden.",
+        "Sexed smoking split not published; derived by scaling verified GB anchor rates (F18/M28, avg ~23) to the island's measured 25% overall -> F20/M30.",
+        "obesityRate 33 is an ESTIMATE: only combined overweight+obese (~70%) is published, exact adult BMI/obesity prevalence is explicitly unavailable (BMC Public Health 2024: 'BMI data for the general adult population is not available'). Set obesity = 33% (~half of the 70% overweight-or-obese figure, typical split for small-island populations).",
+        "Sexed obesity derived by scaling GB anchor pattern (F28/M24.6) to that 33% overall -> F35/M31.",
+        "Heights/weights/BMI: no anthropometry exists for St Helena residents; derived from verified GB anchor (F164cm/70kg/BMI26, M177cm/84kg/BMI26.7) with +3/+4 kg reflecting the island's substantially higher obesity burden -> F BMI 27, M BMI 28."
+      ]
+    }
+  }
+}

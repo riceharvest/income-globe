@@ -1,0 +1,135 @@
+{
+ "batch": "repair_gender_5",
+ "countries": {
+  "PF": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.childMarriagePercent": 0,
+    "gender.contraceptiveUse": 73.7
+   },
+   "notes": [
+    "contraceptiveUse null -> 73.7: UN DESA 'Estimates and Projections of Family Planning Indicators 2024' (POP/DB/MW/Rev2024) covers French Polynesia; weighted (by number of women) contraceptive prevalence, any method, married/in-union women 15-49 = 73.7% (latest estimate year 2017).",
+    "childMarriagePercent null -> 0: French Civil Code art. 144 sets minimum marriage age at 18 with no exceptions, and it applies in French Polynesia; marriage under 18 is legally impossible, so prevalence is ~0 (same treatment as IM=0 in batch_12). Note: DB anchor FR carries 5, which overstates post-2006-law reality; flagged for a future pass.",
+    "adolescentBirthRate 23.8 confirmed = WB SP.ADO.TFRT 2024 (23.844); laborForceGap -11.4 consistent with WB 2024 (F 46.98 - M 58.54 = -11.6)."
+   ]
+  },
+  "GU": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.childMarriagePercent": 1,
+    "gender.contraceptiveUse": 55.6
+   },
+   "notes": [
+    "contraceptiveUse null -> 55.6: UN DESA 'Estimates and Projections of Family Planning Indicators 2024' covers Guam; weighted any-method prevalence, married/in-union women 15-49 = 55.6% (latest estimate year 2020).",
+    "childMarriagePercent null -> 1 (small real estimate): Guam law allows marriage at 16-17 with parental consent, so child marriage is legal but rare; no territory-level survey exists (UNICEF: not available) and US anchor has no value; ~1% of women 20-24 is consistent with US-scale rarity (Unchained At Last counts ~167k US minors married 2000-2010, overwhelmingly 16-17).",
+    "adolescentBirthRate 31.5 confirmed = WB SP.ADO.TFRT 2024 (31.509); laborForceGap -11.4 consistent with WB 2024 (F 56.47 - M 67.99 = -11.5)."
+   ]
+  },
+  "IM": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.laborForceGap": -8.3
+   },
+   "notes": [
+    "laborForceGap null -> -8.3 derived from anchor GB (-8.3): Isle of Man is absent from World Bank SL.TLF.CACT series, ILOSTAT modelled estimates (EAP_2WAP_SEX_AGE_RT returns 0 rows for IMN), and Eurostat LFS; UK is the anchor economy and its participation structure is the closest comparable.",
+    "contraceptiveUse left null: Isle of Man is not covered by UN WCU 2024 (225-area file checked by name), World Bank SP.DYN.CONU.ZS, or OWID; no national survey published.",
+    "childMarriagePercent 0 stands (minimum marriage age 18 on the Isle of Man, per batch_12)."
+   ]
+  },
+  "LI": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.laborForceGap": -9.2,
+    "gender.contraceptiveUse": 76.3
+   },
+   "notes": [
+    "laborForceGap null -> -9.2 derived from anchor CH (-9.2): Liechtenstein has no data in World Bank SL.TLF.CACT, ILOSTAT modelled estimates (0 rows for LIE), or Eurostat LFS (LI does not participate in the EU-LFS; lfsa_argan empty); Switzerland is the nearest comparable labour market.",
+    "contraceptiveUse null -> 76.3: UN DESA 'Estimates and Projections of Family Planning Indicators 2024' covers Liechtenstein; weighted any-method prevalence, married/in-union women 15-49 = 76.3% (latest estimate year 2020), close to anchor CH (71.6).",
+    "childMarriagePercent 2 stands (consistent with CH anchor 2)."
+   ]
+  },
+  "MO": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.childMarriagePercent": 1,
+    "gender.contraceptiveUse": 69.0
+   },
+   "notes": [
+    "contraceptiveUse null -> 69.0: UN DESA 'Estimates and Projections of Family Planning Indicators 2024' covers China, Macao SAR; weighted any-method prevalence, married/in-union women 15-49 = 69.0% (latest estimate year 2021).",
+    "childMarriagePercent null -> 1 (small real estimate): Macau Civil Code permits marriage at 16-17 only with parental/judicial consent and such marriages are rare in DSEC marriage statistics; no published prevalence exists, so a small estimate below the CN (3) and HK (5) anchors is used.",
+    "laborForceGap -10.5 plausible vs WB 2024 Macao (F 63.51 - M 74.06 = -10.5 exact); adolescentBirthRate 0.5 = WB 2024 (0.478)."
+   ]
+  },
+  "MC": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.laborForceGap": -8.1
+   },
+   "notes": [
+    "laborForceGap null -> -8.1 derived from anchor FR (-8.1): Monaco is absent from World Bank SL.TLF.CACT, ILOSTAT modelled estimates (0 rows for MCO), and Eurostat; IMSEE publishes employment counts (dominated by cross-border workers) but no sex-split resident participation rates; France is the anchor economy.",
+    "contraceptiveUse left null: Monaco is not covered by UN WCU 2024 (checked by name), World Bank, or OWID; no national survey published.",
+    "childMarriagePercent 2 stands (French-law framework, min age 18)."
+   ]
+  },
+  "NC": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.childMarriagePercent": 0,
+    "gender.contraceptiveUse": 60.2
+   },
+   "notes": [
+    "contraceptiveUse null -> 60.2: UN DESA 'Estimates and Projections of Family Planning Indicators 2024' covers New Caledonia; weighted any-method prevalence, married/in-union women 15-49 = 60.2% (latest estimate year 2019).",
+    "childMarriagePercent null -> 0: French Civil Code minimum marriage age 18 with no exceptions applies in New Caledonia; marriage under 18 is legally impossible, so prevalence is ~0 (same treatment as IM=0 in batch_12). Same FR-anchor caveat as PF.",
+    "adolescentBirthRate 11.7 confirmed = WB SP.ADO.TFRT 2024 (11.70); laborForceGap -10.9 consistent with WB 2024 (F 51.61 - M 62.40 = -10.8)."
+   ]
+  },
+  "PR": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.childMarriagePercent": 0,
+    "gender.contraceptiveUse": 47.6
+   },
+   "notes": [
+    "contraceptiveUse null -> 47.6: UN DESA 'Estimates and Projections of Family Planning Indicators 2024' covers Puerto Rico; weighted any-method prevalence, married/in-union women 15-49 = 47.6% (latest estimate year 2022).",
+    "childMarriagePercent null -> 0: Puerto Rico banned child marriage in 2020 (Ley 22-2020) setting a flat minimum age of 18 with no exceptions; no pre-ban retrospective survey exists (UNICEF: not available), so current prevalence among women 20-24 is ~0.",
+    "adolescentBirthRate 13.3 confirmed = WB SP.ADO.TFRT 2024 (13.295); laborForceGap -12.7 consistent with WB 2024 (F 36.68 - M 49.44 = -12.8)."
+   ]
+  },
+  "LC": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.childMarriagePercent": 24,
+    "gender.contraceptiveUse": 65.2
+   },
+   "notes": [
+    "childMarriagePercent null -> 24: childmarriagedata.org (Girls Not Brides data portal) Saint Lucia profile: 24% of women 20-24 were married or in union before 18 (2012, latest available value; up from 13% in 1987). Marriage under 18 remains legal with parental consent in Saint Lucia.",
+    "contraceptiveUse null -> 65.2: UN DESA 'Estimates and Projections of Family Planning Indicators 2024' covers Saint Lucia; weighted any-method prevalence, married/in-union women 15-49 = 65.2% (latest estimate year 2012).",
+    "adolescentBirthRate 27.2 confirmed = WB SP.ADO.TFRT 2024 (27.167); laborForceGap -12.8 consistent with WB 2024 (F 61.89 - M 74.81 = -12.9)."
+   ]
+  },
+  "VC": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.childMarriagePercent": 24,
+    "gender.contraceptiveUse": 58.1
+   },
+   "notes": [
+    "contraceptiveUse null -> 58.1: UN DESA 'Estimates and Projections of Family Planning Indicators 2024' covers Saint Vincent and the Grenadines; weighted any-method prevalence, married/in-union women 15-49 = 58.1% (latest estimate year 2012).",
+    "childMarriagePercent null -> 24 (regional proxy): no national survey exists (UNICEF country profile: 'Not available'; WB SP.M18.2024.FE.ZS: no data) and SVG's Marriage Act still legalises marriage under 18 with parental consent; anchored to the Caribbean regional prevalence of 24% (childmarriagedata.org, 2025) which equals sourced neighbour Saint Lucia (24%). Flagged as proxy, not a direct measurement.",
+    "adolescentBirthRate 40.8 confirmed = WB SP.ADO.TFRT 2024 (40.774); laborForceGap -17.1 consistent with WB 2024 (F 59.25 - M 76.49 = -17.2)."
+   ]
+  },
+  "SM": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.laborForceGap": -17.5,
+    "gender.contraceptiveUse": 70.8
+   },
+   "notes": [
+    "laborForceGap null -> -17.5 derived from anchor IT (-17.5): San Marino is absent from World Bank SL.TLF.CACT and ILOSTAT modelled estimates (0 rows for SMR); statistica.sm publishes employment/unemployment counts but no sex-split participation rates; Italy is the anchor labour market and Sammarinese press reporting confirms a large (~18pp) employment gender gap.",
+    "contraceptiveUse null -> 70.8: UN DESA 'Estimates and Projections of Family Planning Indicators 2024' covers San Marino; weighted any-method prevalence, married/in-union women 15-49 = 70.8% (latest estimate year 2013), close to anchor IT (65.1).",
+    "childMarriagePercent 2 stands (Italian-framework min age 18)."
+   ]
+  }
+ }
+}

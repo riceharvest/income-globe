@@ -1,0 +1,25 @@
+{
+  "batch": "repair_econ_6",
+  "countries": {
+    "EH": {
+      "status": "errors_found",
+      "corrections": {
+        "minimumWageEur": 310,
+        "costOfLivingIndex": 31,
+        "hdi": 0.66,
+        "unemploymentRate": 13,
+        "internetPenetration": 67,
+        "gender.laborForceGap": -48.4
+      },
+      "notes": [
+        "minimumWageEur=310 CONFIRMED (unchanged): Moroccan SMIG applies de facto in Western Sahara; SMIG is MAD 3,111.12/month gross (17.10 MAD/h, 182h/mo, industry/commerce/services, effective since Jan 2025 per wafir.ma/legalpro.ma); at ~10 MAD/EUR this is ~EUR 310, matching the existing DB value.",
+        "costOfLivingIndex corrected 35 -> 31: Numbeo has no Western Sahara entry; brief states CoL vs Morocco slightly lower. Anchor MA=33 (verified), so EH set to 31 (~0.94x anchor) reflecting Laayoune/Dakhla prices slightly below Casablanca/Rabat.",
+        "hdi corrected 0.65 -> 0.66: EH is not UNDP-ranked. Global Data Lab Subnational HDI v6.0 (retrieved via web.archive.org capture of globaldatalab.org/assets/2023/02/SHDI-SGDI-Total 6.0.csv) gives the Moroccan 'South' macro-region (covering the southern provinces = Western Sahara territory) SHDI 2021 = 0.666 vs national 0.683; rounded to 0.66. Newer GDL v8+/v10 region-level files return HTTP 403 to non-browser clients, so the archived v6.0 South-region value was used.",
+        "unemploymentRate corrected 15 -> 13: CIA World Factbook lists unemployment for EH as NA in every edition (worldfactbookarchive.org field time-series shows NA% for all 31 years). No WB/ILO/Moroccan HCP series exists for EH specifically. Derived from verified anchor MA=13.0; HCP regional data (RGPH 2024 coverage, lavieeco/lebrief) shows the southern regions (Dakhla-Oued Ed-Dahab highest labor-force participation in Morocco at 59.2%, Laayoune-Sakia El Hamra also above national average participation) with unemployment at or below the national average, so anchor value without upward adjustment is defensible.",
+        "internetPenetration corrected 55 -> 67: DataReportal 'Digital 2024: Western Sahara' reports 398.0 thousand internet users in early 2024, penetration 67.1%. Rounded to 67.",
+        "gender.laborForceGap filled as null -> -48.4: no WB SL.TLF.CACT series exists for EH. Derived from verified anchor MA (-48.4 = female minus male labor-force participation, WB). Southern provinces actually show above-average female participation (HCP), so this is a conservative anchor-derived value.",
+        "Out of scope left untouched: gender.adolescentBirthRate, gender.childMarriagePercent, gender.contraceptiveUse, femaleLifeExpectancy, maleLifeExpectancy remain null (demographic/health fields, not economic scalars)."
+      ]
+    }
+  }
+}

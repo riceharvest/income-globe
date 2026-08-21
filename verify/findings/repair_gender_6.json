@@ -1,0 +1,103 @@
+{
+ "batch": "repair_gender_6",
+ "countries": {
+  "SR": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.childMarriagePercent": 36,
+    "gender.contraceptiveUse": 39.1
+   },
+   "notes": [
+    "childMarriagePercent null -> 36: World Bank SP.M18.2024.FE.ZS (UNICEF), 2018 = 36% of women 20-24 first married/in union before 18 (childmarriagedata.org country profile confirms; up from 24% in 1993).",
+    "contraceptiveUse null -> 39.1: WB/UN Population Division series (OWID grapher mdg5b-contraceptives), Suriname 2018 = 39.12% married women 15-49 any method (MICS 2018). UNFPA World Population Dashboard UNPD-2025 model estimate is 49 for the same definition; kept the survey-based value."
+   ]
+  },
+  "TC": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.childMarriagePercent": 23,
+    "gender.laborForceGap": -6.0
+   },
+   "notes": [
+    "childMarriagePercent null -> 23: World Bank SP.M18.2024.FE.ZS (UNICEF), 2020 = 23.3% of women 20-24 married/in union before 18 (UNFPA dashboard rounds to 23).",
+    "laborForceGap null -> -6.0: no WB/ILO participation data exist for TCA. Derived as midpoint of GB anchor gap (-8.3, WB SL.TLF.CACT FE/MA.ZS 2025) and regional tourism-economy comparable USVI (-3.4, verified in DB/WB 2025); TCA's service/tourism economy sits between the two."
+   ]
+  },
+  "TV": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.childMarriagePercent": 2,
+    "gender.laborForceGap": -9.0
+   },
+   "notes": [
+    "childMarriagePercent null -> 2: World Bank SP.M18.2024.FE.ZS (UNICEF), 2020 = 1.8% of women 20-24 married/in union before 18 (UNFPA dashboard rounds to 2).",
+    "laborForceGap null -> -9.0: no WB/ILO participation data exist for TUV. Derived from NZ anchor gap (-8.7, WB SL.TLF.CACT FE/MA.ZS 2025); sits inside the Pacific peer range (VUT -9.6, SLB -3.9, TON -16.6)."
+   ]
+  },
+  "VI": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.childMarriagePercent": 5,
+    "gender.contraceptiveUse": 75
+   },
+   "notes": [
+    "childMarriagePercent null -> 5: no UNICEF/WB estimate exists for USVI (WB SP.M18.2024.FE.ZS empty; UNFPA dashboard '-'). Derived from US anchor per brief: US under-18 marriage is rare and concentrated at 16-17 (Unchained At Last: ~300k minors married 2000-2018, i.e. low single-digit prevalence), set at the same small real estimate used for rich anchors FR/NL/MT (5).",
+    "contraceptiveUse null -> 75: UN Population Division 2025 estimates via UNFPA World Population Dashboard \u2014 contraceptive prevalence, married or in-union women 15-49, any method = 75% (all-women 15-49 = 53%). Same definition as WB SP.DYN.CONU.ZS used elsewhere in DB."
+   ]
+  },
+  "AM": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.childMarriagePercent": 5
+   },
+   "notes": [
+    "childMarriagePercent null -> 5: World Bank SP.M18.2024.FE.ZS (UNICEF), 2016 = 5.3% of women 20-24 married/in union before 18 (down from 7.2 in 2010); UNFPA dashboard rounds to 5."
+   ]
+  },
+  "AU": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.childMarriagePercent": 1
+   },
+   "notes": [
+    "childMarriagePercent null -> 1: no UNICEF/WB prevalence estimate exists for Australia (WB SP.M18.2024.FE.ZS empty; Girls Not Brides notes Australia publishes no prevalence rate). ABS registered marriages of minors are rare \u2014 a few hundred per year, almost all 16-17 with court authorisation, and the 16-19 female marriage rate halved after forced marriage was criminalised in 2013 \u2014 implying prevalence well under 1%. Set to 1 as a small real estimate per brief rule for rich countries."
+   ]
+  },
+  "CA": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.childMarriagePercent": 1
+   },
+   "notes": [
+    "childMarriagePercent null -> 1: no UNICEF/WB prevalence estimate exists for Canada (WB SP.M18.2024.FE.ZS empty). Under-18 marriage is legal in parts of Canada only with parental/court consent and Statistics Canada vital-statistics data show it is extremely rare (well under 0.5% of women 20-24). Set to 1 as a small real estimate per brief rule for rich countries, consistent with AU/GB treatment."
+   ]
+  },
+  "KM": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.childMarriagePercent": 21
+   },
+   "notes": [
+    "childMarriagePercent null -> 21: World Bank SP.M18.2024.FE.ZS (UNICEF), 2022 = 20.7% of women 20-24 married/in union before 18 (down from 31.6 in 2012); UNFPA dashboard rounds to 21."
+   ]
+  },
+  "HR": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.contraceptiveUse": 71
+   },
+   "notes": [
+    "contraceptiveUse null -> 71: WB SP.DYN.CONU.ZS has no Croatia data and WHO GHO contraceptive indicators are empty for HRV. Value taken from UN Population Division 2025 estimates via UNFPA World Population Dashboard \u2014 contraceptive prevalence, married or in-union women 15-49, any method = 71% (all-women 15-49 = 46%, modern method married = 47%). Same definition as the rest of the DB."
+   ]
+  },
+  "CY": {
+   "status": "errors_found",
+   "corrections": {
+    "gender.contraceptiveUse": 70
+   },
+   "notes": [
+    "contraceptiveUse null -> 70: whole ladder exhausted for direct data \u2014 WB SP.DYN.CONU.ZS empty for CYP, WHO GHO (cpmo/cpmt/MDG_0000000005) empty, UNFPA dashboard '-'. Derived from nearest-comparable anchors: Greece 74 (UNPD 2025, UNFPA dashboard; WB 1999 survey = 61.3), Malta 80, Israel 73 \u2014 all married women 15-49 any method. Set to 70 as a conservative estimate for a high-income EU Mediterranean country; flagged as derived."
+   ]
+  }
+ }
+}
