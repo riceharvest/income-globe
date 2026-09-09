@@ -24,16 +24,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node 20
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
-      - name: Enable Corepack
-        run: corepack enable
+      - name: Setup PATH for global tools
+        run: |
+          mkdir -p "$HOME/.npm-global/bin"
+          echo "$HOME/.npm-global/bin" >> "$GITHUB_PATH"
 
-      - name: Install Vercel CLI
-        run: npm install --global vercel@51.5.0
+      - name: Install pnpm & Vercel CLI
+        run: npm install --global pnpm@9 vercel@51.5.0
 
       - name: Pull Vercel environment
         run: vercel pull --yes --environment=production --token "$VERCEL_TOKEN"
