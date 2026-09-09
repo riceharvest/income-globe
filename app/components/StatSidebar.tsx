@@ -6,6 +6,7 @@ import {
   histogram,
   percentileTicks,
   valueExtent,
+  type DataScope,
   type Mode,
   type StatDef,
 } from "~/lib/stats";
@@ -18,12 +19,14 @@ export function StatSidebar({
   region,
   onSelect,
   formatTick,
+  scope = "world",
 }: {
   activeStat: StatDef;
   mode: Mode;
   region?: string | null;
   onSelect: (s: StatDef) => void;
   formatTick: (v: number) => string;
+  scope?: DataScope;
 }) {
   const [query, setQuery] = useState("");
   const [infoStat, setInfoStat] = useState<StatDef | null>(null);
@@ -140,7 +143,7 @@ export function StatSidebar({
       </div>
 
       <div className="border-t border-zinc-800/80 px-4 py-3">
-        <Distribution stat={activeStat} mode={mode} region={region} formatTick={formatTick} />
+        <Distribution stat={activeStat} mode={mode} region={region} formatTick={formatTick} scope={scope} />
       </div>
 
       {/* Info Modal / Dialog for responsive compatibility */}
@@ -206,15 +209,17 @@ function Distribution({
   mode,
   region,
   formatTick,
+  scope = "world",
 }: {
   stat: StatDef;
   mode: Mode;
   region?: string | null;
   formatTick: (v: number) => string;
+  scope?: DataScope;
 }) {
-  const extent = useMemo(() => valueExtent(stat, mode, region), [stat, mode, region]);
-  const hist = useMemo(() => histogram(stat, mode, 24, region), [stat, mode, region]);
-  const [p25, p50, p75] = useMemo(() => percentileTicks(stat, mode, region), [stat, mode, region]);
+  const extent = useMemo(() => valueExtent(stat, mode, region, scope), [stat, mode, region, scope]);
+  const hist = useMemo(() => histogram(stat, mode, 24, region, scope), [stat, mode, region, scope]);
+  const [p25, p50, p75] = useMemo(() => percentileTicks(stat, mode, region, scope), [stat, mode, region, scope]);
   const ramp = rampFor(stat);
   const [hoveredBin, setHoveredBin] = useState<{ count: number; min: number; max: number } | null>(null);
 
@@ -224,10 +229,10 @@ function Distribution({
   return (
     <div className="relative">
       <div className="flex items-center justify-between text-[11px] font-medium text-zinc-400 mb-1.5">
-        <span>Global Distribution</span>
+        <span>{scope === "us" ? "US States Distribution" : "Global Distribution"}</span>
         {hoveredBin ? (
           <span className="text-[10px] text-cyan-300 font-mono">
-            {hoveredBin.count} countries ({formatTick(hoveredBin.min)}–{formatTick(hoveredBin.max)})
+            {hoveredBin.count} {scope === "us" ? "states" : "countries"} ({formatTick(hoveredBin.min)}–{formatTick(hoveredBin.max)})
           </span>
         ) : (
           <span className="text-[10px] text-zinc-500 font-mono">

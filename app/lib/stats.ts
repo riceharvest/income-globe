@@ -22,6 +22,7 @@ import {
   getWhiteMalePerception,
   whiteMalePerceptionByCountry,
 } from "~/data/white-male-perception-map";
+import { usStates, type USStateData } from "~/data/us-states";
 
 export type Sex = "male" | "female";
 /** Display mode: one sex, or the male−female gap (sexed stats only). */
@@ -51,6 +52,7 @@ export interface StatDef {
 }
 
 export type StatGroup =
+  | "Politics"
   | "Income & Economy"
   | "Body"
   | "Health"
@@ -59,6 +61,7 @@ export type StatGroup =
   | "Society";
 
 export const statGroups: StatGroup[] = [
+  "Politics",
   "Income & Economy",
   "Body",
   "Health",
@@ -147,6 +150,68 @@ const incomeIndicators: { ind: IncomeIndicatorType; info: string }[] = [
 ];
 
 export const stats: StatDef[] = [
+  // ── Politics ──
+  scalar(
+    "partisanLean",
+    "2024 Presidential Margin",
+    "Politics",
+    "pp",
+    1,
+    "Democratic (Harris) minus Republican (Trump) vote percentage margin in the 2024 presidential election. Positive values indicate a Democratic lead, negative values indicate a Republican lead.",
+    "Percentage points margin. Blue (>0) = Kamala Harris won; Red (<0) = Donald Trump won. California was +20.3 pp, Texas was -13.8 pp. US national popular vote was -1.5 pp.",
+    (c) => (c as any).politics?.presidential2024?.margin ?? (c.code === "US" ? -1.5 : null),
+  ),
+  scalar(
+    "demPresidentialVote",
+    "Democratic Vote Share (2024)",
+    "Politics",
+    "%",
+    1,
+    "Share of votes cast for Kamala Harris in the 2024 US Presidential Election.",
+    "Percent of total votes. DC tops at 92.5%, Vermont 64.0%, Maryland 62.5%. Wyoming is lowest at 25.9%. US national popular vote was 48.3%.",
+    (c) => (c as any).politics?.presidential2024?.demPercent ?? (c.code === "US" ? 48.3 : null),
+  ),
+  scalar(
+    "repPresidentialVote",
+    "Republican Vote Share (2024)",
+    "Politics",
+    "%",
+    1,
+    "Share of votes cast for Donald Trump in the 2024 US Presidential Election.",
+    "Percent of total votes. Wyoming tops at 71.6%, West Virginia 70.0%, North Dakota 67.0%. DC is lowest at 6.7%. US national popular vote was 49.8%.",
+    (c) => (c as any).politics?.presidential2024?.repPercent ?? (c.code === "US" ? 49.8 : null),
+  ),
+  scalar(
+    "conservativeIdeology",
+    "Conservative Ideology",
+    "Politics",
+    "%",
+    0,
+    "Share of adult residents self-identifying as politically conservative (Pew Research / Gallup).",
+    "Percent. Peaks across Deep South and Mountain West (Wyoming 50%, Alabama 49%, Mississippi 48%) and lowest in DC (15%) and New England. US national average ≈ 36%.",
+    (c) => (c as any).politics?.ideology?.conservative ?? (c.code === "US" ? 36 : null),
+  ),
+  scalar(
+    "liberalIdeology",
+    "Liberal Ideology",
+    "Politics",
+    "%",
+    0,
+    "Share of adult residents self-identifying as politically liberal (Pew Research / Gallup).",
+    "Percent. Highest in Washington DC (45%), Vermont (37%), Massachusetts (35%), California/New York (32%). US national average ≈ 25%.",
+    (c) => (c as any).politics?.ideology?.liberal ?? (c.code === "US" ? 25 : null),
+  ),
+  scalar(
+    "moderateIdeology",
+    "Moderate Ideology",
+    "Politics",
+    "%",
+    0,
+    "Share of adult residents self-identifying as politically moderate (Pew Research / Gallup).",
+    "Percent. Typically the largest political cohort in swing states (33–43%). US national average ≈ 37%.",
+    (c) => (c as any).politics?.ideology?.moderate ?? (c.code === "US" ? 37 : null),
+  ),
+
   // ── Income & Economy ──
   ...incomeIndicators.map(({ ind, info }) =>
     scalar(
@@ -267,7 +332,7 @@ export const stats: StatDef[] = [
   scalar("hivPrevalence", "HIV prevalence", "Health", "%", 2,
     "Share of adults (15–49) living with HIV (UNAIDS).",
     "Percent. Under 0.5% is typical outside Africa; southern Africa runs 10–25%.",
-    (c) => hivByCountry[c.code]),
+    (c) => (c as any).hivRate ?? hivByCountry[c.code]),
 
   // ── Phenotype ──
   scalar("hairBlonde", "Blonde hair", "Phenotype", "%", 1,
@@ -309,11 +374,11 @@ export const stats: StatDef[] = [
   scalar("breastSize", "Average cup size (1=AA … 6=DD)", "Phenotype", undefined, 1,
     "Average bra cup letter per country, cup only (not band). Compiled from lingerie-market and survey estimates.",
     "Scale: 1 = AA, 2 = A, 3 = B, 4 = C, 5 = D, 6 = DD. Nordic countries and Russia average D (5); East and Southeast Asia average A–AA.",
-    (c) => breastSizeByCountry[c.code], "female"),
+    (c) => (c as any).breastSize ?? breastSizeByCountry[c.code], "female"),
   scalar("religionPct", "Main religion adherence", "Phenotype", "%", 1,
     "Share of the population identifying with the country's largest religion.",
     "Percent. High values = religiously homogeneous (e.g. 99% Muslim in Morocco); low values = religiously diverse.",
-    (c) => religionByCountry[c.code]?.pct),
+    (c) => (c as any).religionPct ?? religionByCountry[c.code]?.pct),
 
   // ── Attraction & Dimorphism ──
   pair("facialSymmetryPercent", "Facial symmetry", "Attraction & Dimorphism", "%", 1,
@@ -346,29 +411,29 @@ export const stats: StatDef[] = [
   scalar("whiteMalePerceptionIndex", "White male perception index", "Attraction & Dimorphism", "/100", 1,
     "Composite empirical index (0–100) quantifying how favorably White men are perceived in dating and mate selection markets. Sourced from revealed-preference dating app telemetry audit studies (right-swipe, match, and message reply rates from OkCupid, Tinder, Match Group audit datasets), cross-national census exogamy registries, and World Values Survey intercultural marriage openness data.",
     "Scale 0–100. Global baseline ≈ 50. High scores (>70, e.g. Southeast Asia, Eastern Europe, Latin America) reflect strong relative inbound response rates, match likelihood, and exogamous openness. Lower scores (<40, e.g. parts of MENA, South Asia) reflect high in-group ethnic homophily or strict traditional/religious endogamy.",
-    (c) => c.whiteMalePerceptionIndex ?? getWhiteMalePerception(c.code), "male"),
+    (c) => (c as any).whiteMalePerceptionIndex ?? getWhiteMalePerception(c.code), "male"),
 
   // ── Society ──
   scalar("adolescentBirthRate", "Adolescent birth rate", "Society", "per 1k", 1,
     "Births per 1,000 girls aged 15–19 per year (UN).",
     "Per 1,000. Under 10 = Western Europe/East Asia levels; above 100 = parts of sub-Saharan Africa and Latin America.",
-    (c) => adolescentBirthRateByCountry[c.code] ?? c.gender?.adolescentBirthRate, "female"),
+    (c) => (c as any).adolescentBirthRate ?? adolescentBirthRateByCountry[c.code] ?? c.gender?.adolescentBirthRate, "female"),
   scalar("childMarriage", "Child marriage", "Society", "%", 1,
     "Share of women aged 20–24 who were married or in union before age 18 (UNICEF).",
     "Percent. Under 5% in rich countries; above 40% in Niger, Bangladesh, Chad.",
-    (c) => childMarriageByCountry[c.code] ?? c.gender?.childMarriagePercent, "female"),
+    (c) => (c as any).childMarriagePercent ?? childMarriageByCountry[c.code] ?? c.gender?.childMarriagePercent, "female"),
   scalar("laborForceGap", "Labor force gender gap", "Society", "pp", 1,
     "Male minus female labor force participation rate, in percentage points.",
     "Percentage points. Near 0 = equal participation (Nordics); above 30 pp = women largely out of the formal workforce (Middle East, South Asia).",
-    (c) => laborForceGapByCountry[c.code] ?? c.gender?.laborForceGap),
+    (c) => (c as any).laborForceGap ?? laborForceGapByCountry[c.code] ?? c.gender?.laborForceGap),
   scalar("contraceptiveUse", "Contraceptive use", "Society", "%", 1,
     "Share of women aged 15–49 (married or in union) using any contraceptive method (UN).",
     "Percent. Above 70% = near-universal use (Europe, China); below 30% = limited access or cultural barriers.",
-    (c) => contraceptiveUseByCountry[c.code] ?? c.gender?.contraceptiveUse, "female"),
+    (c) => (c as any).contraceptiveUse ?? contraceptiveUseByCountry[c.code] ?? c.gender?.contraceptiveUse, "female"),
   scalar("educationYears", "Mean years of schooling (women)", "Society", "yrs", 1,
     "Average years of formal education completed by adult women (25+).",
     "Years. 12+ = most women finish secondary school (Europe, North America); under 5 = most women left school early.",
-    (c) => educationByCountry[c.code], "female"),
+    (c) => (c as any).bachelorsPercent ? (c as any).bachelorsPercent / 3 : educationByCountry[c.code], "female"),
   scalar("englishSpeaking", "English speaking", "Society", "%", 1,
     "Estimated share of the population that can hold a conversation in English.",
     "Percent. 95%+ in native-speaker countries and the Nordics/Netherlands; under 10% in much of Latin America, Central Asia, the Sahel.",
@@ -376,15 +441,15 @@ export const stats: StatDef[] = [
   scalar("femaleObesity", "Female obesity rate", "Society", "%", 1,
     "Share of adult women with BMI ≥ 30 (WHO). Duplicated here from Health for convenience.",
     "Percent. Under 10% = lean (East Asia); above 40% = severe (Pacific islands, Egypt, South Africa).",
-    (c) => femaleObesityByCountry[c.code], "female"),
+    (c) => (c as any).femaleObesityRate ?? femaleObesityByCountry[c.code], "female"),
   scalar("outOfWedlock", "Births out of wedlock", "Society", "%", 1,
     "Share of births to unmarried mothers.",
     "Percent. Over 50% in Scandinavia, France, much of Latin America; under 5% in most of Asia and the Middle East (often legal/social prohibition).",
-    (c) => outOfWedlockByCountry[c.code]),
+    (c) => (c as any).outOfWedlockPct ?? outOfWedlockByCountry[c.code]),
   scalar("urbanPopulation", "Urban population", "Society", "%", 1,
     "Share of the population living in urban areas (UN definition, national criteria).",
     "Percent. Above 80% = highly urbanized (Western Europe, Gulf); under 40% = predominantly rural (much of Africa, South Asia).",
-    (c) => urbanByCountry[c.code]),
+    (c) => (c as any).urbanPct ?? urbanByCountry[c.code]),
 ];
 
 export const statsById = new Map(stats.map((s) => [s.id, s]));
@@ -402,8 +467,14 @@ export interface RankedEntry {
   rank: number;
 }
 
+export type DataScope = "world" | "us";
+
+export function getEntitiesForScope(scope: DataScope = "world"): CountryData[] {
+  return scope === "us" ? (usStates as unknown as CountryData[]) : countries;
+}
+
 /**
- * Value of a stat for a country in a display mode.
+ * Value of a stat for a country/state in a display mode.
  * "gap" = male − female (sexed stats only; null otherwise).
  * fixedSex stats ignore the sex part of the mode.
  */
@@ -417,9 +488,14 @@ export function statValue(stat: StatDef, c: CountryData, mode: Mode): number | n
   return stat.get(c, stat.fixedSex ?? mode);
 }
 
-function allValues(stat: StatDef, mode: Mode, region?: string | null): number[] {
+export function allValues(
+  stat: StatDef,
+  mode: Mode,
+  region?: string | null,
+  scope: DataScope = "world",
+): number[] {
   const out: number[] = [];
-  for (const c of countries) {
+  for (const c of getEntitiesForScope(scope)) {
     if (region && c.region !== region) continue;
     const v = statValue(stat, c, mode);
     if (v != null) out.push(v);
@@ -427,10 +503,14 @@ function allValues(stat: StatDef, mode: Mode, region?: string | null): number[] 
   return out;
 }
 
-/** All countries with a value for stat+mode, sorted descending. */
-export function rankCountries(stat: StatDef, mode: Mode): RankedEntry[] {
+/** All countries or states with a value for stat+mode, sorted descending. */
+export function rankCountries(
+  stat: StatDef,
+  mode: Mode,
+  scope: DataScope = "world",
+): RankedEntry[] {
   const rows: { country: CountryData; value: number }[] = [];
-  for (const c of countries) {
+  for (const c of getEntitiesForScope(scope)) {
     const v = statValue(stat, c, mode);
     if (v != null) rows.push({ country: c, value: v });
   }
@@ -438,10 +518,15 @@ export function rankCountries(stat: StatDef, mode: Mode): RankedEntry[] {
   return rows.map((r, i) => ({ ...r, rank: i + 1 }));
 }
 
-export function valueExtent(stat: StatDef, mode: Mode, region?: string | null): [number, number] {
+export function valueExtent(
+  stat: StatDef,
+  mode: Mode,
+  region?: string | null,
+  scope: DataScope = "world",
+): [number, number] {
   let min = Infinity;
   let max = -Infinity;
-  for (const v of allValues(stat, mode, region)) {
+  for (const v of allValues(stat, mode, region, scope)) {
     if (v < min) min = v;
     if (v > max) max = v;
   }
@@ -458,8 +543,13 @@ function quantile(sorted: number[], q: number): number {
 }
 
 /** 25th / 50th / 75th percentile of the current values. */
-export function percentileTicks(stat: StatDef, mode: Mode, region?: string | null): [number, number, number] {
-  const vals = allValues(stat, mode, region).sort((a, b) => a - b);
+export function percentileTicks(
+  stat: StatDef,
+  mode: Mode,
+  region?: string | null,
+  scope: DataScope = "world",
+): [number, number, number] {
+  const vals = allValues(stat, mode, region, scope).sort((a, b) => a - b);
   if (vals.length === 0) return [0, 0, 0];
   return [quantile(vals, 0.25), quantile(vals, 0.5), quantile(vals, 0.75)];
 }
@@ -472,9 +562,15 @@ export interface Histogram {
 }
 
 /** Distribution of values across equal-width bins. */
-export function histogram(stat: StatDef, mode: Mode, bins = 24, region?: string | null): Histogram {
-  const vals = allValues(stat, mode, region);
-  const [min, max] = valueExtent(stat, mode, region);
+export function histogram(
+  stat: StatDef,
+  mode: Mode,
+  bins = 24,
+  region?: string | null,
+  scope: DataScope = "world",
+): Histogram {
+  const vals = allValues(stat, mode, region, scope);
+  const [min, max] = valueExtent(stat, mode, region, scope);
   const binWidth = (max - min) / bins || 1;
   const counts = new Array<number>(bins).fill(0);
   for (const v of vals) {

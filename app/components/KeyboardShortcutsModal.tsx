@@ -20,7 +20,7 @@ export function KeyboardShortcutsModal({ isOpen, onClose }: KeyboardShortcutsMod
 
   const shortcuts = [
     { key: "⌘K / /", label: "Open search & command palette" },
-    { key: "↑ / ↓", label: "Navigate up / down through country rankings" },
+    { key: "↑ / ↓", label: "Navigate through country or state rankings" },
     { key: "M", label: "Switch view mode to Male values" },
     { key: "F", label: "Switch view mode to Female values" },
     { key: "G", label: "Switch view mode to M−F Gap" },

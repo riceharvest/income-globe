@@ -4,6 +4,7 @@ import {
   rankCountries,
   formatValue,
   modeLabels,
+  type DataScope,
   type Mode,
   type StatDef,
 } from "~/lib/stats";
@@ -17,14 +18,16 @@ export function RankingsPanel({
   region,
   selectedCode,
   onSelect,
+  scope = "world",
 }: {
   stat: StatDef;
   mode: Mode;
   region: string | null;
   selectedCode: string | null;
   onSelect: (c: CountryData) => void;
+  scope?: DataScope;
 }) {
-  const rows = useMemo(() => rankCountries(stat, mode), [stat, mode]);
+  const rows = useMemo(() => rankCountries(stat, mode, scope), [stat, mode, scope]);
   const [asc, setAsc] = useState(false);
   const [query, setQuery] = useState("");
   const itemRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
@@ -82,7 +85,7 @@ export function RankingsPanel({
           <div className="text-xs font-semibold text-zinc-200">Rankings</div>
           <div className="mt-0.5 truncate text-[11px] text-zinc-500">
             {stat.label} · {modeLabels[mode]}
-            {region ? ` · ${region}` : ""} · {filtered.length} countries
+            {region ? ` · ${region}` : ""} · {filtered.length} {scope === "us" ? "states" : "countries"}
           </div>
         </div>
         <div className="mt-0.5 flex shrink-0 gap-1">
@@ -115,7 +118,7 @@ export function RankingsPanel({
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Find a country…"
+            placeholder={scope === "us" ? "Find a state…" : "Find a country…"}
             className="w-full rounded-md border border-zinc-800 bg-zinc-900/60 py-1.5 pl-8 pr-7 text-xs text-zinc-200 placeholder:text-zinc-600 focus:border-zinc-700 focus:outline-none"
           />
           {query && (

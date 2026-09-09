@@ -25,10 +25,31 @@ export const palettes: Record<string, Ramp> = {
   green: mk("#12211a", "#4ade80"), // green eyes
   hazel: mk("#1b1810", "#b2a04e"), // hazel eyes
   skin: mk("#241a12", "#f2d5b8"), // ITA° — literal skin tones
+  // Politics
+  democrat: mk("#0f1b2b", "#38bdf8"), // Harris/Democrat blue
+  republican: mk("#2b0f12", "#f87171"), // Trump/Republican red
+  partisan: (t: number) => {
+    // 0 = strong Republican Red (#ef4444), 0.5 = neutral slate/purple (#3f3f46), 1 = strong Democrat Blue (#38bdf8)
+    if (t <= 0.5) {
+      return interpolateRgb("#ef4444", "#3f3f46")(t * 2);
+    } else {
+      return interpolateRgb("#3f3f46", "#38bdf8")((t - 0.5) * 2);
+    }
+  },
+  conservative: mk("#2b0f12", "#f87171"),
+  liberal: mk("#0f1b2b", "#38bdf8"),
+  moderate: mk("#1d152b", "#c084fc"),
 };
 
 /** Palette overrides for specific stats; everything else falls back to its group palette. */
 const statPalette: Record<string, string> = {
+  // Politics
+  partisanLean: "partisan",
+  demPresidentialVote: "democrat",
+  repPresidentialVote: "republican",
+  conservativeIdeology: "conservative",
+  liberalIdeology: "liberal",
+  moderateIdeology: "moderate",
   // Income & Economy
   unemploymentRate: "rose",
   costOfLivingIndex: "amber",
@@ -66,6 +87,7 @@ const statPalette: Record<string, string> = {
 };
 
 const groupPalette: Record<string, string> = {
+  Politics: "democrat",
   "Income & Economy": "emerald",
   Body: "amber",
   Health: "emerald",
@@ -87,7 +109,14 @@ export function colorScaleFor(
   domain: [number, number],
 ): (v: number) => string {
   const ramp = rampFor(stat);
-  const scale = scaleLinear().domain(domain).range([0, 1]).clamp(true);
+  let effectiveDomain = domain;
+  if (stat.id === "partisanLean") {
+    const maxAbs = Math.max(Math.abs(domain[0]), Math.abs(domain[1]), 10);
+    // Republican is negative (margin < 0) -> maps to 0..0.5
+    // Democrat is positive (margin > 0) -> maps to 0.5..1.0
+    effectiveDomain = [-maxAbs, maxAbs];
+  }
+  const scale = scaleLinear().domain(effectiveDomain).range([0, 1]).clamp(true);
   return (v) => ramp(scale(v));
 }
 

@@ -1,28 +1,34 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Search, BarChart2, Compass, X } from "lucide-react";
+import { Search, BarChart2, Compass, Globe, Flag, X } from "lucide-react";
 import { countries, type CountryData } from "~/data/countries";
-import { stats, type StatDef, type Mode } from "~/lib/stats";
+import { usStates, type USStateData } from "~/data/us-states";
+import { stats, type StatDef, type Mode, type DataScope } from "~/lib/stats";
 import { cn } from "~/lib/utils";
 
 interface CommandPaletteProps {
   isOpen: boolean;
   onClose: () => void;
   onSelectCountry: (c: CountryData) => void;
+  onSelectState?: (s: USStateData) => void;
   onSelectStat: (s: StatDef) => void;
   onSetMode: (m: Mode) => void;
+  onSetScope?: (scope: DataScope) => void;
 }
 
 type PaletteItem =
-  | { type: "action"; id: string; label: string; mode: Mode; icon: React.ReactNode }
+  | { type: "action"; id: string; label: string; mode?: Mode; scope?: DataScope; icon: React.ReactNode }
   | { type: "stat"; id: string; label: string; group: string; stat: StatDef }
-  | { type: "country"; id: string; label: string; region: string; flag: string; country: CountryData };
+  | { type: "country"; id: string; label: string; region: string; flag: string; country: CountryData }
+  | { type: "state"; id: string; label: string; region: string; state: USStateData };
 
 export function CommandPalette({
   isOpen,
   onClose,
   onSelectCountry,
+  onSelectState,
   onSelectStat,
   onSetMode,
+  onSetScope,
 }: CommandPaletteProps) {
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -40,6 +46,26 @@ export function CommandPalette({
   const items = useMemo<PaletteItem[]>(() => {
     const q = query.trim().toLowerCase();
     const result: PaletteItem[] = [];
+
+    // Scope switch actions
+    if (!q || "united states".includes(q) || "usa".includes(q) || "states".includes(q) || "scope".includes(q)) {
+      result.push({
+        type: "action",
+        id: "act-scope-us",
+        label: "Switch to US States view (50 States & DC)",
+        scope: "us",
+        icon: <Flag className="h-3.5 w-3.5 text-cyan-400" />,
+      });
+    }
+    if (!q || "world".includes(q) || "global".includes(q) || "countries".includes(q)) {
+      result.push({
+        type: "action",
+        id: "act-scope-world",
+        label: "Switch to World Countries view",
+        scope: "world",
+        icon: <Globe className="h-3.5 w-3.5 text-cyan-400" />,
+      });
+    }
 
     // Quick mode actions
     if (!q || "male".includes(q) || "female".includes(q) || "gap".includes(q)) {
@@ -92,6 +118,26 @@ export function CommandPalette({
       });
     });
 
+    // US States
+    const matchingStates = q
+      ? usStates.filter(
+          (s) =>
+            s.name.toLowerCase().includes(q) ||
+            s.code.toLowerCase() === q ||
+            s.region.toLowerCase().includes(q),
+        )
+      : usStates.slice(0, 6);
+
+    matchingStates.forEach((s) => {
+      result.push({
+        type: "state",
+        id: `s-${s.code}`,
+        label: `${s.name} (${s.code})`,
+        region: `${s.region} · ${s.electoralVotes} EV`,
+        state: s,
+      });
+    });
+
     // Countries
     const matchingCountries = q
       ? countries.filter(
@@ -100,7 +146,7 @@ export function CommandPalette({
             c.code.toLowerCase().includes(q) ||
             c.region.toLowerCase().includes(q),
         )
-      : countries.slice(0, 10);
+      : countries.slice(0, 8);
 
     matchingCountries.forEach((c) => {
       result.push({
@@ -123,11 +169,14 @@ export function CommandPalette({
 
   const handleSelect = (item: PaletteItem) => {
     if (item.type === "action") {
-      onSetMode(item.mode);
+      if (item.mode) onSetMode(item.mode);
+      if (item.scope && onSetScope) onSetScope(item.scope);
     } else if (item.type === "stat") {
       onSelectStat(item.stat);
     } else if (item.type === "country") {
       onSelectCountry(item.country);
+    } else if (item.type === "state" && onSelectState) {
+      onSelectState(item.state);
     }
     onClose();
   };

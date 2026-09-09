@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { type StatDef, type Mode, valueExtent, percentileTicks } from "~/lib/stats";
+import { type StatDef, type Mode, type DataScope, valueExtent, percentileTicks } from "~/lib/stats";
 import { legendGradient, accentFor } from "~/lib/color";
 
 interface MapLegendOverlayProps {
@@ -7,11 +7,12 @@ interface MapLegendOverlayProps {
   mode: Mode;
   region: string | null;
   formatTick: (v: number) => string;
+  scope?: DataScope;
 }
 
-export function MapLegendOverlay({ stat, mode, region, formatTick }: MapLegendOverlayProps) {
-  const extent = useMemo(() => valueExtent(stat, mode, region), [stat, mode, region]);
-  const [, p50] = useMemo(() => percentileTicks(stat, mode, region), [stat, mode, region]);
+export function MapLegendOverlay({ stat, mode, region, formatTick, scope = "world" }: MapLegendOverlayProps) {
+  const extent = useMemo(() => valueExtent(stat, mode, region, scope), [stat, mode, region, scope]);
+  const [, p50] = useMemo(() => percentileTicks(stat, mode, region, scope), [stat, mode, region, scope]);
   const gradientStops = useMemo(() => legendGradient(stat), [stat]);
   const accent = useMemo(() => accentFor(stat), [stat]);
 

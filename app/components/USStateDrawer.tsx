@@ -1,29 +1,30 @@
 import { useEffect } from "react";
-import { MapPin, Pin, PinOff, X } from "lucide-react";
-import type { CountryData } from "~/data/countries";
+import { MapPin, Pin, PinOff, X, Vote } from "lucide-react";
+import type { USStateData } from "~/data/us-states";
 import {
   formatValue,
   statGroups,
   stats,
   statValue,
+  rankCountries,
   type Mode,
   type StatDef,
 } from "~/lib/stats";
 import { accentFor } from "~/lib/color";
 import { cn } from "~/lib/utils";
 
-function ComparisonStatRow({
+function StateStatRow({
   stat,
-  country,
+  state,
   pinned,
   mode,
 }: {
   stat: StatDef;
-  country: CountryData;
-  pinned: CountryData | null;
+  state: USStateData;
+  pinned: USStateData | null;
   mode: Mode;
 }) {
-  const curVal = statValue(stat, country, mode);
+  const curVal = statValue(stat, state, mode);
   const pinVal = pinned ? statValue(stat, pinned, mode) : null;
   const delta = curVal != null && pinVal != null ? curVal - pinVal : null;
 
@@ -59,8 +60,8 @@ function ComparisonStatRow({
   }
 
   if (stat.sexed) {
-    const m = stat.get(country, "male");
-    const f = stat.get(country, "female");
+    const m = stat.get(state, "male");
+    const f = stat.get(state, "female");
     return (
       <div className="grid grid-cols-[1fr_auto_auto] items-center gap-3 py-1 text-xs">
         <span className="truncate text-zinc-400 font-medium">{stat.label}</span>
@@ -91,24 +92,22 @@ function ComparisonStatRow({
   );
 }
 
-export function CountryDrawer({
-  country,
+export function USStateDrawer({
+  state,
   activeStat,
   mode,
   pinned,
   onPin,
   onClose,
   onSelectStat,
-  onExploreUS,
 }: {
-  country: CountryData | null;
+  state: USStateData | null;
   activeStat: StatDef;
   mode: Mode;
-  pinned: CountryData | null;
-  onPin: (c: CountryData | null) => void;
+  pinned: USStateData | null;
+  onPin: (s: USStateData | null) => void;
   onClose: () => void;
   onSelectStat: (s: StatDef) => void;
-  onExploreUS?: () => void;
 }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -118,13 +117,20 @@ export function CountryDrawer({
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
-  if (!country) return null;
+  if (!state) return null;
 
-  const isPinned = pinned?.code === country.code;
+  const isPinned = pinned?.code === state.code;
   const comparing = pinned != null && !isPinned;
-  const cur = statValue(activeStat, country, mode);
+  const cur = statValue(activeStat, state, mode);
   const pinVal = comparing ? statValue(activeStat, pinned, mode) : null;
   const delta = cur != null && pinVal != null ? cur - pinVal : null;
+
+  const rankedStates = rankCountries(activeStat, mode, "us");
+  const rank = rankedStates.findIndex((r) => r.country.code === state.code) + 1;
+
+  const pres = state.politics.presidential2024;
+  const ideo = state.politics.ideology;
+  const lean = state.politics.partyLean;
 
   return (
     <div className="absolute inset-y-0 right-0 z-20 flex w-[28rem] max-w-[92vw] flex-col border-l border-zinc-800/90 bg-zinc-950/98 shadow-2xl backdrop-blur-md animate-drawer-in">
@@ -132,22 +138,31 @@ export function CountryDrawer({
       <div className="flex items-start justify-between border-b border-zinc-800/90 px-5 py-4">
         <div>
           <div className="text-base font-semibold text-zinc-100 flex items-center gap-2">
-            <span>{country.flag}</span>
-            <span>{country.name}</span>
+            <span className="rounded bg-zinc-800 px-1.5 py-0.5 text-xs font-mono font-bold text-cyan-300">
+              {state.code}
+            </span>
+            <span>{state.name}</span>
           </div>
-          <div className="mt-0.5 text-[11px] text-zinc-500">
-            {country.region} · pop. {(country.population / 1e6).toFixed(1)}M ·{" "}
-            {country.dataSource} {country.dataYear}
+          <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-zinc-400">
+            <span>Capital: <span className="text-zinc-300">{state.capital}</span></span>
+            <span>·</span>
+            <span>{state.region} ({state.division})</span>
+            <span>·</span>
+            <span>pop. {(state.population / 1e6).toFixed(1)}M</span>
+            <span>·</span>
+            <span className="text-amber-400 font-medium">{state.electoralVotes} EVs</span>
           </div>
         </div>
         <div className="flex items-center gap-1">
           <button
-            onClick={() => onPin(isPinned ? null : country)}
-            title={isPinned ? "Unpin country" : "Pin country to compare against others"}
-            aria-label={isPinned ? "Unpin country" : "Pin to compare"}
+            onClick={() => onPin(isPinned ? null : state)}
+            title={isPinned ? "Unpin state" : "Pin state to compare against others"}
+            aria-label={isPinned ? "Unpin state" : "Pin to compare"}
             className={cn(
               "rounded-md p-1.5 transition-colors hover:bg-zinc-800",
-              isPinned ? "text-cyan-400 bg-cyan-950/50 border border-cyan-800/50" : "text-zinc-500 hover:text-zinc-200",
+              isPinned
+                ? "text-cyan-400 bg-cyan-950/50 border border-cyan-800/50"
+                : "text-zinc-500 hover:text-zinc-200",
             )}
           >
             {isPinned ? <PinOff className="h-4 w-4" /> : <Pin className="h-4 w-4" />}
@@ -155,40 +170,115 @@ export function CountryDrawer({
           <button
             onClick={onClose}
             className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-800 hover:text-zinc-200 transition-colors"
-            aria-label="Close country drawer"
+            aria-label="Close state drawer"
           >
             <X className="h-4 w-4" />
           </button>
         </div>
       </div>
 
-      {/* Drill-down banner for USA */}
-      {country.code === "US" && onExploreUS && (
-        <div className="border-b border-cyan-800/60 bg-gradient-to-r from-cyan-950/80 via-blue-950/60 to-zinc-900 px-5 py-3">
-          <div className="flex items-center justify-between gap-3">
-            <div className="min-w-0">
-              <div className="text-xs font-semibold text-cyan-200 flex items-center gap-1.5">
-                <span>🇺🇸</span>
-                <span>Explore 50 US States & DC</span>
-              </div>
-              <div className="text-[11px] text-zinc-400 mt-0.5 truncate">
-                State political views split, income, health & phenotype data
-              </div>
-            </div>
-            <button
-              onClick={onExploreUS}
-              className="shrink-0 rounded-md border border-cyan-700/70 bg-cyan-900/80 px-2.5 py-1 text-xs font-medium text-cyan-200 hover:bg-cyan-800 transition-colors shadow-sm"
+      {/* Featured Political Views Split Card */}
+      <div className="border-b border-zinc-800/80 bg-zinc-900/60 p-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-zinc-200">
+            <Vote className="h-3.5 w-3.5 text-cyan-400" />
+            <span>2024 Political Views Split</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span
+              className={cn(
+                "rounded px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider",
+                pres.winner === "Democrat"
+                  ? "bg-sky-950 text-sky-300 border border-sky-800/60"
+                  : "bg-rose-950 text-rose-300 border border-rose-800/60",
+              )}
             >
-              View States →
-            </button>
+              {pres.winner === "Democrat" ? "🔵 Harris" : "🔴 Trump"} +{Math.abs(pres.margin).toFixed(1)}%
+            </span>
+            <span className="rounded bg-zinc-800 px-1.5 py-0.5 text-[10px] font-mono text-zinc-400">
+              PVI {state.politics.cookPVI}
+            </span>
           </div>
         </div>
-      )}
 
-      {/* Selected stat card */}
+        {/* 2024 Presidential Vote Bar */}
+        <div className="mt-3">
+          <div className="flex items-center justify-between text-[11px] mb-1">
+            <span className="font-semibold text-sky-400 flex items-center gap-1">
+              <span>Harris (Dem)</span>
+              <span className="font-mono">{pres.demPercent.toFixed(1)}%</span>
+            </span>
+            <span className="text-[10px] text-zinc-500">
+              {pres.otherPercent > 0 ? `Other ${pres.otherPercent.toFixed(1)}%` : ""}
+            </span>
+            <span className="font-semibold text-rose-400 flex items-center gap-1">
+              <span className="font-mono">{pres.repPercent.toFixed(1)}%</span>
+              <span>Trump (Rep)</span>
+            </span>
+          </div>
+
+          <div className="flex h-2.5 w-full overflow-hidden rounded-full bg-zinc-800">
+            <div
+              style={{ width: `${pres.demPercent}%` }}
+              className="bg-sky-500 transition-all duration-300"
+              title={`Democrat (Harris): ${pres.demPercent}%`}
+            />
+            {pres.otherPercent > 0 && (
+              <div
+                style={{ width: `${pres.otherPercent}%` }}
+                className="bg-zinc-600 transition-all duration-300"
+                title={`Other: ${pres.otherPercent}%`}
+              />
+            )}
+            <div
+              style={{ width: `${pres.repPercent}%` }}
+              className="bg-rose-500 transition-all duration-300"
+              title={`Republican (Trump): ${pres.repPercent}%`}
+            />
+          </div>
+        </div>
+
+        {/* Political Ideology Breakdown */}
+        <div className="mt-3.5 pt-3 border-t border-zinc-800/60">
+          <div className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">
+            Self-Identified Ideology (Pew / Gallup)
+          </div>
+          <div className="grid grid-cols-3 gap-2 text-center text-xs">
+            <div className="rounded border border-rose-950/80 bg-rose-950/30 p-1.5">
+              <div className="text-[10px] text-rose-300/80 font-medium">Conservative</div>
+              <div className="text-sm font-bold text-rose-400 font-mono mt-0.5">{ideo.conservative}%</div>
+            </div>
+            <div className="rounded border border-purple-950/80 bg-purple-950/30 p-1.5">
+              <div className="text-[10px] text-purple-300/80 font-medium">Moderate</div>
+              <div className="text-sm font-bold text-purple-400 font-mono mt-0.5">{ideo.moderate}%</div>
+            </div>
+            <div className="rounded border border-sky-950/80 bg-sky-950/30 p-1.5">
+              <div className="text-[10px] text-sky-300/80 font-medium">Liberal</div>
+              <div className="text-sm font-bold text-sky-400 font-mono mt-0.5">{ideo.liberal}%</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Party Lean */}
+        <div className="mt-2.5 flex items-center justify-between text-[11px] text-zinc-400">
+          <span>Party Lean:</span>
+          <div className="flex gap-2 text-[11px] font-mono">
+            <span className="text-sky-400">Dem {lean.democrat}%</span>
+            <span className="text-zinc-500">·</span>
+            <span className="text-rose-400">Rep {lean.republican}%</span>
+            <span className="text-zinc-500">·</span>
+            <span className="text-zinc-400">Ind {lean.independent}%</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Selected Map Stat Card */}
       <div className="border-b border-zinc-800/80 bg-zinc-900/40 px-5 py-3.5">
-        <div className="text-[10px] font-semibold uppercase tracking-widest text-zinc-500">
-          Active Map Statistic
+        <div className="text-[10px] font-semibold uppercase tracking-widest text-zinc-500 flex items-center justify-between">
+          <span>Active Map Statistic</span>
+          {rank > 0 && (
+            <span className="font-mono text-cyan-400">Rank #{rank} of 51</span>
+          )}
         </div>
         <div className="mt-1 flex items-baseline justify-between">
           <span className="text-sm font-medium text-zinc-200">{activeStat.label}</span>
@@ -200,7 +290,7 @@ export function CountryDrawer({
           <div className="mt-0.5 text-[11px] text-zinc-500">
             Showing {mode} · {mode === "male" ? "Female" : "Male"}:{" "}
             <span className="text-zinc-300">
-              {formatValue(activeStat, activeStat.get(country, mode === "male" ? "female" : "male"))}
+              {formatValue(activeStat, activeStat.get(state, mode === "male" ? "female" : "male"))}
             </span>
           </div>
         )}
@@ -218,7 +308,7 @@ export function CountryDrawer({
             </div>
             {delta != null && (
               <div className="mt-1 text-right text-[11px] tabular-nums text-zinc-400">
-                {country.name} difference:{" "}
+                {state.name} difference:{" "}
                 <span className={cn("font-semibold", delta >= 0 ? "text-emerald-400" : "text-rose-400")}>
                   {delta >= 0 ? "+" : ""}
                   {formatValue(activeStat, delta)}
@@ -243,7 +333,7 @@ export function CountryDrawer({
                 </span>
                 {comparing ? (
                   <div className="grid grid-cols-3 gap-2 text-[9px] font-semibold uppercase text-zinc-500 text-right w-48">
-                    <span>{country.code}</span>
+                    <span>{state.code}</span>
                     <span>{pinned.code}</span>
                     <span>Δ</span>
                   </div>
@@ -261,7 +351,7 @@ export function CountryDrawer({
                     <button
                       key={s.id}
                       onClick={() => onSelectStat(s)}
-                      title={`Click to map "${s.label}" across the globe`}
+                      title={`Click to map "${s.label}" across all US states`}
                       className={cn(
                         "group block w-full text-left transition-colors px-1 rounded-sm",
                         isActive
@@ -271,9 +361,9 @@ export function CountryDrawer({
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex-1 min-w-0 pr-2">
-                          <ComparisonStatRow
+                          <StateStatRow
                             stat={s}
-                            country={country}
+                            state={state}
                             pinned={pinned}
                             mode={mode}
                           />
