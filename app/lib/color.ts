@@ -50,6 +50,9 @@ const statPalette: Record<string, string> = {
   conservativeIdeology: "conservative",
   liberalIdeology: "liberal",
   moderateIdeology: "moderate",
+  cannabisLegality: "green",
+  gunLawStrength: "blue",
+  firearmMortalityRate: "rose",
   // Income & Economy
   unemploymentRate: "rose",
   costOfLivingIndex: "amber",

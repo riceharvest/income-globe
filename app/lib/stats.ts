@@ -211,6 +211,36 @@ export const stats: StatDef[] = [
     "Percent. Typically the largest political cohort in swing states (33–43%). US national average ≈ 37%.",
     (c) => (c as any).politics?.ideology?.moderate ?? (c.code === "US" ? 37 : null),
   ),
+  scalar(
+    "cannabisLegality",
+    "Cannabis Legality Tier",
+    "Politics",
+    "tier",
+    0,
+    "State cannabis legalization policy tier (NORML / NCSL). Tier 4 = Adult-Use Recreational & Medical; Tier 3 = Comprehensive Medical only; Tier 2 = CBD / Low-THC medical only; Tier 1 = Full prohibition.",
+    "Scale 1–4. Tier 4 = Recreational (24 states + DC); Tier 3 = Comprehensive Medical (13 states); Tier 2 = CBD or low-THC medical only (11 states); Tier 1 = Full prohibition (Idaho, Kansas). US federal baseline = Tier 2 (CBD descheduled, THC prohibited Schedule I).",
+    (c) => (c as any).cannabisLaw?.tier ?? (c.code === "US" ? 2 : null),
+  ),
+  scalar(
+    "gunLawStrength",
+    "Gun Law Strength Score",
+    "Politics",
+    "pts",
+    1,
+    "Gun law strength score from Giffords Law Center Gun Law Scorecard (0–100 scale). Evaluates universal background checks, red flag extreme risk protection orders, assault weapon bans, waiting periods, and permitless carry.",
+    "Points out of 100. Higher = stricter firearm safety regulations (California 89.5, New Jersey 84.5, Connecticut 83.0). Lower = more permissive firearm laws and constitutional carry (Arkansas 4.0, Wyoming 4.5, Mississippi 5.5). US national average ≈ 32.0 pts.",
+    (c) => (c as any).gunLaw?.score ?? (c.code === "US" ? 32.0 : null),
+  ),
+  scalar(
+    "firearmMortalityRate",
+    "Firearm Mortality Rate",
+    "Politics",
+    "/100k",
+    1,
+    "Annual firearm-related deaths per 100,000 residents from CDC National Center for Health Statistics (suicide, homicide, unintentional).",
+    "Deaths per 100,000 residents. Lowest rates: Massachusetts (3.7), Hawaii (4.5), Rhode Island (4.6), New Jersey (4.7). Highest rates: Mississippi (29.6), Louisiana (28.2), New Mexico (27.3), Wyoming (26.1). US national average ≈ 14.5 per 100k.",
+    (c) => (c as any).gunLaw?.firearmMortalityRate ?? (c.code === "US" ? 14.5 : null),
+  ),
 
   // ── Income & Economy ──
   ...incomeIndicators.map(({ ind, info }) =>
@@ -458,6 +488,12 @@ export const defaultStatId = "heightCm";
 
 export function formatValue(stat: StatDef, v: number | null): string {
   if (v == null) return "—";
+  if (stat.id === "cannabisLegality") {
+    if (v >= 4) return "Tier 4 · Recreational";
+    if (v >= 3) return "Tier 3 · Medical";
+    if (v >= 2) return "Tier 2 · CBD/Low-THC";
+    return "Tier 1 · Prohibited";
+  }
   return `${v.toFixed(stat.decimals)}${stat.unit ? ` ${stat.unit}` : ""}`;
 }
 

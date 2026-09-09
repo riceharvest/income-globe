@@ -1,5 +1,7 @@
 // Auto-generated US State dataset
 import type { CountryData } from "./countries";
+import { usStateLaws, type StateCannabisLaw, type StateGunLaw } from "./us-laws";
+export type { StateCannabisLaw, StateGunLaw };
 
 export interface StatePolitics {
   presidential2024: {
@@ -38,12 +40,14 @@ export interface USStateData extends CountryData {
   outOfWedlockPct: number;
   educationYears: number;
   politics: StatePolitics;
+  cannabisLaw: StateCannabisLaw;
+  gunLaw: StateGunLaw;
 }
 
 export const usRegions = ["All States", "Northeast", "Midwest", "South", "West"] as const;
 export type USRegion = (typeof usRegions)[number];
 
-export const usStatesData: USStateData[] = [
+const rawUSStatesData: Omit<USStateData, "cannabisLaw" | "gunLaw">[] = [
   {
     "code": "AL",
     "alpha2": "AL",
@@ -7491,6 +7495,12 @@ export const usStatesData: USStateData[] = [
     "educationYears": 13.1
   }
 ];
+
+export const usStatesData: USStateData[] = rawUSStatesData.map((s) => ({
+  ...s,
+  cannabisLaw: usStateLaws[s.code]?.cannabis,
+  gunLaw: usStateLaws[s.code]?.gun,
+}));
 
 export { usStatesData as usStates };
 

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { MapPin, Pin, PinOff, X, Vote } from "lucide-react";
+import { MapPin, Pin, PinOff, X, Vote, Scale, Cannabis, Shield } from "lucide-react";
 import type { USStateData } from "~/data/us-states";
 import {
   formatValue,
@@ -268,6 +268,116 @@ export function USStateDrawer({
             <span className="text-rose-400">Rep {lean.republican}%</span>
             <span className="text-zinc-500">·</span>
             <span className="text-zinc-400">Ind {lean.independent}%</span>
+          </div>
+        </div>
+      </div>
+
+      {/* State Laws & Policy: Cannabis & Firearms */}
+      <div className="border-b border-zinc-800/80 bg-zinc-900/40 p-4">
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-zinc-200">
+            <Scale className="h-3.5 w-3.5 text-emerald-400" />
+            <span>State Laws: Cannabis & Firearms</span>
+          </div>
+          <span className="text-[10px] text-zinc-500 font-mono">NORML / Giffords</span>
+        </div>
+
+        <div className="grid grid-cols-2 gap-2.5">
+          {/* Cannabis Law Box */}
+          <div className="rounded-lg border border-zinc-800/80 bg-zinc-950/40 p-2.5">
+            <div className="flex items-center justify-between text-[11px]">
+              <span className="font-semibold text-zinc-300 flex items-center gap-1.5">
+                <Cannabis className="h-3.5 w-3.5 text-emerald-400" />
+                <span>Cannabis</span>
+              </span>
+              <span
+                className={cn(
+                  "rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider",
+                  state.cannabisLaw.tier === 4
+                    ? "bg-emerald-950 text-emerald-300 border border-emerald-800/60"
+                    : state.cannabisLaw.tier === 3
+                    ? "bg-sky-950 text-sky-300 border border-sky-800/60"
+                    : state.cannabisLaw.tier === 2
+                    ? "bg-amber-950 text-amber-300 border border-amber-800/60"
+                    : "bg-rose-950 text-rose-300 border border-rose-800/60"
+                )}
+              >
+                Tier {state.cannabisLaw.tier}
+              </span>
+            </div>
+            <div className="mt-1.5 text-xs font-semibold text-zinc-100">
+              {state.cannabisLaw.statusLabel}
+            </div>
+            <div className="mt-2 space-y-1 text-[10px] text-zinc-400">
+              <div className="flex items-center justify-between">
+                <span>Home Grow:</span>
+                <span className={state.cannabisLaw.homeCultivation ? "text-emerald-400 font-medium" : "text-zinc-500"}>
+                  {state.cannabisLaw.homeCultivation ? "Permitted" : "Prohibited"}
+                </span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Decriminalized:</span>
+                <span className={state.cannabisLaw.decriminalized ? "text-emerald-400 font-medium" : "text-zinc-500"}>
+                  {state.cannabisLaw.decriminalized ? "Yes" : "No"}
+                </span>
+              </div>
+            </div>
+            <p className="mt-2 border-t border-zinc-800/60 pt-1.5 text-[10px] text-zinc-400 leading-tight">
+              {state.cannabisLaw.summary}
+            </p>
+          </div>
+
+          {/* Gun Law Box */}
+          <div className="rounded-lg border border-zinc-800/80 bg-zinc-950/40 p-2.5">
+            <div className="flex items-center justify-between text-[11px]">
+              <span className="font-semibold text-zinc-300 flex items-center gap-1.5">
+                <Shield className="h-3.5 w-3.5 text-sky-400" />
+                <span>Gun Laws</span>
+              </span>
+              <span
+                className={cn(
+                  "rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider",
+                  state.gunLaw.grade.startsWith("A")
+                    ? "bg-sky-950 text-sky-300 border border-sky-800/60"
+                    : state.gunLaw.grade.startsWith("B")
+                    ? "bg-teal-950 text-teal-300 border border-teal-800/60"
+                    : state.gunLaw.grade.startsWith("C")
+                    ? "bg-amber-950 text-amber-300 border border-amber-800/60"
+                    : state.gunLaw.grade.startsWith("D")
+                    ? "bg-orange-950 text-orange-300 border border-orange-800/60"
+                    : "bg-rose-950 text-rose-300 border border-rose-800/60"
+                )}
+              >
+                Grade {state.gunLaw.grade}
+              </span>
+            </div>
+            <div className="mt-1.5 flex items-baseline justify-between text-xs">
+              <span className="font-semibold text-zinc-100">{state.gunLaw.carryLaw}</span>
+              <span className="font-mono text-[11px] text-zinc-400">{state.gunLaw.score} pts</span>
+            </div>
+            <div className="mt-2 space-y-1 text-[10px] text-zinc-400">
+              <div className="flex items-center justify-between">
+                <span>Background Checks:</span>
+                <span className={state.gunLaw.backgroundChecks ? "text-sky-400 font-medium" : "text-zinc-500"}>
+                  {state.gunLaw.backgroundChecks ? "Universal" : "Exempt"}
+                </span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Red Flag Law:</span>
+                <span className={state.gunLaw.redFlagLaw ? "text-sky-400 font-medium" : "text-zinc-500"}>
+                  {state.gunLaw.redFlagLaw ? "Enacted" : "None"}
+                </span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Gun Death Rate:</span>
+                <span className="font-mono text-zinc-300 font-medium">
+                  {state.gunLaw.firearmMortalityRate}/100k
+                </span>
+              </div>
+            </div>
+            <p className="mt-2 border-t border-zinc-800/60 pt-1.5 text-[10px] text-zinc-400 leading-tight">
+              {state.gunLaw.summary}
+            </p>
           </div>
         </div>
       </div>
