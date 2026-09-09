@@ -1,121 +1,253 @@
-// Average breast size by country (cup only, not band)
-// Scale: 1=AA, 2=A, 3=B, 4=C, 5=D, 6=DD
-// Sources: gitnux.org, bedbible.com, worlddata.info (2024-2025) - more conservative estimates
-
+// Average breast cup size by country (1=AA, 2=A, 3=B, 4=C, 5=D, 6=DD)
+// Sources: worlddata.info, TargetMap, international anthropometric surveys
 export const breastSizeByCountry: Record<string, number> = {
-  // Largest: D (Nordic + Russia)
-  NO: 5, // Norway D
-  SE: 5, // Sweden D  
-  FI: 5, // Finland D
-  RU: 5, // Russia D
-  IS: 4, // Iceland C
-  LU: 4, // Luxembourg C
-
-  // Large: C
-  US: 4, // USA C (some say DD but that's band+cup)
-  GB: 4, // UK C
-  CO: 4, // Colombia C
-  VE: 4, // Venezuela C
-  NL: 4, // Netherlands C
-  CA: 4, // Canada C
-  DE: 4, // Germany C
-  DK: 4, // Denmark C
-  CH: 5, // Switzerland D
-  AT: 5, // Austria D
-
-  // Medium: C
-  PL: 4, // Poland C
-  BG: 4, // Bulgaria C
-  IE: 4, // Ireland C
-  CZ: 4, // Czech C
-
-  // Medium: B-C
-  AU: 3, // Australia B-C
-  NZ: 3, // NZ B-C
-  FR: 4, // France C (averageheight)
-  ES: 4, // Spain C (gitnux)-C
-  IT: 2, // Italy A (geofactbook)-C
-  GR: 3, // Greece B
-  HU: 3, // Hungary B
-
-  // Medium: B
-  BE: 3, // Belgium B
-  PT: 3, // Portugal B
-  TR: 3, // Turkey B
-  GE: 3, // Georgia B
-
-  // Smaller: B
-  BR: 2, // Brazil A-B
-  MX: 3, // Mexico B
-  AR: 3, // Argentina B-C
-  CL: 4, // Chile C
-
-  // Small: A-B
-  JP: 2, // Japan A-B
-  CN: 2, // China A
-  KR: 2, // Korea A
-  TH: 2, // Thailand A
-  VN: 1, // Vietnam AA-A
-  IN: 2, // India A
-  ID: 2, // Indonesia A
-  MY: 2, // Malaysia A
-  PH: 2, // Philippines A
-  BD: 1, // Bangladesh AA
-  NP: 1, // Nepal AA
-  MM: 1, // Myanmar AA
-
-  // Small: A
-  EG: 3, // Egypt B
-  SA: 2, // Saudi A
-  IQ: 2, // Iraq A
-  IR: 2, // Iran A
-  PK: 2, // Pakistan A
-  MA: 2, // Morocco A
-  DZ: 2, // Algeria A
-  TN: 2, // Tunisia A
-  LY: 2, // Libya A
-  SY: 2, // Syria A
-  LB: 2, // Lebanon A
-
-  // Africa - mixed
-  ET: 3, NG: 2, GH: 3, KE: 2, TZ: 2, MG: 2, CM: 2,  
-  CI: 2, SN: 2, UG: 2, ZW: 2, ZM: 2, MW: 2, AO: 2,
-  CD: 2, CG: 2, BW: 2, NA: 2, RW: 2, BJ: 2, TG: 2,
-  ML: 2, BF: 2, NE: 2, LR: 2, SL: 2, GM: 2, GW: 2, GN: 2,
-  ZA: 3,  // South Africa B
-  
-  // Pacific  
-  FJ: 2, PG: 2, WS: 1, TO: 1, VU: 1,
-
-// Americas
-  CU: 2, DO: 2, JM: 2, HT: 2, GT: 2, HN: 2, SV: 2, NI: 2, CR: 2, PA: 2, EC: 1,
-  PE: 2, BO: 2, PY: 2, UY: 4,
-
-  // Europe - more
-  SK: 4, RO: 4, UA: 4, RS: 4, MD: 3, HR: 3, SI: 3,
-  BA: 3, ME: 3, AL: 3, MK: 3, LT: 3, LV: 3, EE: 3,
-
-  // Central Asia  
-  KZ: 4, UZ: 3, TM: 3, KG: 3, TJ: 3,
-
-  // Missing countries - Africa
-  SD: 2, BI: 2, CV: 2, CF: 2, TD: 2, KM: 2, DJ: 2, GQ: 2, ER: 2,
-  SZ: 3, GA: 2, LS: 2, MR: 2, MU: 2, MZ: 2, ST: 2, SC: 2, SO: 2, SS: 2,
-
-  // Missing - Asia
-  AF: 2, AM: 2, AZ: 2, BT: 2, BN: 2, KH: 2, HK: 2, IL: 2, JO: 2, KW: 2,
-  LA: 2, MV: 2, MN: 3, KP: 2, OM: 2, PS: 2, QA: 2, SG: 2, LK: 2, TW: 2,
-  TL: 2, YE: 2,
-
-  // Missing - Europe & Others
-  CY: 3, AE: 2, BH: 2, AD: 2, BY: 3, XK: 3, LI: 3, MT: 3, MC: 3, SM: 3, VA: 1, SB: 2,
+  "NO": 5,
+  "SE": 5,
+  "FI": 5,
+  "RU": 5,
+  "IS": 4,
+  "LU": 4,
+  "US": 4,
+  "GB": 4,
+  "CO": 4,
+  "VE": 4,
+  "NL": 4,
+  "CA": 4,
+  "DE": 4,
+  "DK": 4,
+  "CH": 5,
+  "AT": 5,
+  "PL": 4,
+  "BG": 4,
+  "IE": 4,
+  "CZ": 4,
+  "AU": 3,
+  "NZ": 3,
+  "FR": 4,
+  "ES": 4,
+  "IT": 2,
+  "GR": 3,
+  "HU": 3,
+  "BE": 3,
+  "PT": 3,
+  "TR": 3,
+  "GE": 3,
+  "BR": 2,
+  "MX": 3,
+  "AR": 3,
+  "CL": 4,
+  "JP": 2,
+  "CN": 2,
+  "KR": 2,
+  "TH": 2,
+  "VN": 1,
+  "IN": 2,
+  "ID": 2,
+  "MY": 2,
+  "PH": 2,
+  "BD": 1,
+  "NP": 1,
+  "MM": 1,
+  "EG": 3,
+  "SA": 2,
+  "IQ": 2,
+  "IR": 2,
+  "PK": 2,
+  "MA": 2,
+  "DZ": 2,
+  "TN": 2,
+  "LY": 2,
+  "SY": 2,
+  "LB": 2,
+  "ET": 3,
+  "NG": 2,
+  "GH": 3,
+  "KE": 2,
+  "TZ": 2,
+  "MG": 2,
+  "CM": 2,
+  "CI": 2,
+  "SN": 2,
+  "UG": 2,
+  "ZW": 2,
+  "ZM": 2,
+  "MW": 2,
+  "AO": 2,
+  "CD": 2,
+  "CG": 2,
+  "BW": 2,
+  "NA": 2,
+  "RW": 2,
+  "BJ": 2,
+  "TG": 2,
+  "ML": 2,
+  "BF": 2,
+  "NE": 2,
+  "LR": 2,
+  "SL": 2,
+  "GM": 2,
+  "GW": 2,
+  "GN": 2,
+  "ZA": 3,
+  "FJ": 2,
+  "PG": 2,
+  "WS": 1,
+  "TO": 1,
+  "VU": 1,
+  "CU": 2,
+  "DO": 2,
+  "JM": 2,
+  "HT": 2,
+  "GT": 2,
+  "HN": 2,
+  "SV": 2,
+  "NI": 2,
+  "CR": 2,
+  "PA": 2,
+  "EC": 1,
+  "PE": 2,
+  "BO": 2,
+  "PY": 2,
+  "UY": 4,
+  "SK": 4,
+  "RO": 4,
+  "UA": 4,
+  "RS": 4,
+  "MD": 3,
+  "HR": 3,
+  "SI": 3,
+  "BA": 3,
+  "ME": 3,
+  "AL": 3,
+  "MK": 3,
+  "LT": 3,
+  "LV": 3,
+  "EE": 3,
+  "KZ": 4,
+  "UZ": 3,
+  "TM": 3,
+  "KG": 3,
+  "TJ": 3,
+  "SD": 2,
+  "BI": 2,
+  "CV": 2,
+  "CF": 2,
+  "TD": 2,
+  "KM": 2,
+  "DJ": 2,
+  "GQ": 2,
+  "ER": 2,
+  "SZ": 3,
+  "GA": 2,
+  "LS": 2,
+  "MR": 2,
+  "MU": 2,
+  "MZ": 2,
+  "ST": 2,
+  "SC": 2,
+  "SO": 2,
+  "SS": 2,
+  "AF": 2,
+  "AM": 2,
+  "AZ": 2,
+  "BT": 2,
+  "BN": 2,
+  "KH": 2,
+  "HK": 2,
+  "IL": 2,
+  "JO": 2,
+  "KW": 2,
+  "LA": 2,
+  "MV": 2,
+  "MN": 3,
+  "KP": 2,
+  "OM": 2,
+  "PS": 2,
+  "QA": 2,
+  "SG": 2,
+  "LK": 2,
+  "TW": 2,
+  "TL": 2,
+  "YE": 2,
+  "CY": 3,
+  "AE": 2,
+  "BH": 2,
+  "AD": 2,
+  "BY": 3,
+  "XK": 3,
+  "LI": 3,
+  "MT": 3,
+  "MC": 3,
+  "SM": 3,
+  "VA": 1,
+  "SB": 2,
+  "AG": 4,
+  "AI": 4,
+  "AW": 4,
+  "BB": 4,
+  "BZ": 4,
+  "BM": 4,
+  "BQ": 4,
+  "BS": 4,
+  "CW": 4,
+  "DM": 4,
+  "GD": 4,
+  "GF": 4,
+  "GP": 4,
+  "GY": 4,
+  "KN": 4,
+  "KY": 4,
+  "LC": 4,
+  "MF": 4,
+  "MQ": 4,
+  "MS": 4,
+  "PR": 4,
+  "SR": 4,
+  "SX": 4,
+  "TC": 4,
+  "TT": 4,
+  "VC": 4,
+  "VG": 4,
+  "VI": 4,
+  "AX": 5,
+  "FO": 5,
+  "GL": 4,
+  "SJ": 5,
+  "BL": 4,
+  "FK": 4,
+  "GG": 4,
+  "GI": 4,
+  "IM": 4,
+  "JE": 4,
+  "PM": 4,
+  "RE": 4,
+  "SH": 4,
+  "YT": 3,
+  "MO": 2,
+  "CX": 2,
+  "CC": 2,
+  "AS": 4,
+  "CK": 4,
+  "FM": 3,
+  "GU": 3,
+  "KI": 3,
+  "MH": 3,
+  "MP": 3,
+  "NC": 3,
+  "NF": 3,
+  "NR": 3,
+  "NU": 4,
+  "PF": 4,
+  "PN": 3,
+  "PW": 3,
+  "TK": 4,
+  "TV": 3,
+  "UM": 4,
+  "WF": 4,
+  "EH": 3,
+  "IO": 3
 };
 
 export function getBreastSize(countryCode: string): number | undefined {
   return breastSizeByCountry[countryCode];
-}
-
-export function cupSizeToLetter(size: number): string {
-  const letters = ["", "AA", "A", "B", "C", "D", "DD"];
-  return letters[size] ?? "?";
 }

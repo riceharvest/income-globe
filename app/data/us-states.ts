@@ -33,6 +33,10 @@ export interface USStateData extends CountryData {
   bachelorsPercent: number;
   breastSize?: number;
   religionPct?: number;
+  urbanPct: number;
+  hivPrevalence: number;
+  outOfWedlockPct: number;
+  educationYears: number;
   politics: StatePolitics;
 }
 
@@ -180,7 +184,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 77,
     "bachelorsPercent": 27.4,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 95.1
+    "englishSpeakingPercent": 95.1,
+    "urbanPct": 57.7,
+    "outOfWedlockPct": 44.9,
+    "hivPrevalence": 0.38,
+    "educationYears": 12.9
   },
   {
     "code": "AK",
@@ -322,7 +330,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 45,
     "bachelorsPercent": 31.5,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 84.2
+    "englishSpeakingPercent": 84.2,
+    "urbanPct": 64.9,
+    "outOfWedlockPct": 36.5,
+    "hivPrevalence": 0.11,
+    "educationYears": 13.2
   },
   {
     "code": "AZ",
@@ -464,7 +476,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 53,
     "bachelorsPercent": 32.4,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 73.5
+    "englishSpeakingPercent": 73.5,
+    "urbanPct": 89.3,
+    "outOfWedlockPct": 45.4,
+    "hivPrevalence": 0.28,
+    "educationYears": 13.2
   },
   {
     "code": "AR",
@@ -606,7 +622,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 70,
     "bachelorsPercent": 25.3,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 92.4
+    "englishSpeakingPercent": 92.4,
+    "urbanPct": 55.5,
+    "outOfWedlockPct": 44.4,
+    "hivPrevalence": 0.28,
+    "educationYears": 12.9
   },
   {
     "code": "CA",
@@ -748,7 +768,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 49,
     "bachelorsPercent": 36.6,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 56.1
+    "englishSpeakingPercent": 56.1,
+    "urbanPct": 94.2,
+    "outOfWedlockPct": 37.9,
+    "hivPrevalence": 0.41,
+    "educationYears": 13.3
   },
   {
     "code": "CO",
@@ -890,7 +914,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 47,
     "bachelorsPercent": 44.4,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 83.1
+    "englishSpeakingPercent": 83.1,
+    "urbanPct": 86,
+    "outOfWedlockPct": 24,
+    "hivPrevalence": 0.24,
+    "educationYears": 14.1
   },
   {
     "code": "CT",
@@ -1032,7 +1060,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 43,
     "bachelorsPercent": 41.8,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 77.8
+    "englishSpeakingPercent": 77.8,
+    "urbanPct": 86.3,
+    "outOfWedlockPct": 36.6,
+    "hivPrevalence": 0.33,
+    "educationYears": 14
   },
   {
     "code": "DE",
@@ -1174,7 +1206,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 52,
     "bachelorsPercent": 35.6,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 86.4
+    "englishSpeakingPercent": 86.4,
+    "urbanPct": 82.6,
+    "outOfWedlockPct": 47.3,
+    "hivPrevalence": 0.41,
+    "educationYears": 13.4
   },
   {
     "code": "DC",
@@ -1316,7 +1352,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 53,
     "bachelorsPercent": 63.2,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 82.5
+    "englishSpeakingPercent": 82.5,
+    "urbanPct": 100,
+    "outOfWedlockPct": 45.2,
+    "hivPrevalence": 2.45,
+    "educationYears": 14.8
   },
   {
     "code": "FL",
@@ -1458,7 +1498,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 56,
     "bachelorsPercent": 33.2,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 69.8
+    "englishSpeakingPercent": 69.8,
+    "urbanPct": 91.5,
+    "outOfWedlockPct": 46.8,
+    "hivPrevalence": 0.62,
+    "educationYears": 13.2
   },
   {
     "code": "GA",
@@ -1600,7 +1644,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 66,
     "bachelorsPercent": 34.7,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 84.8
+    "englishSpeakingPercent": 84.8,
+    "urbanPct": 74.1,
+    "outOfWedlockPct": 46,
+    "hivPrevalence": 0.65,
+    "educationYears": 13.3
   },
   {
     "code": "HI",
@@ -1742,7 +1790,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 47,
     "bachelorsPercent": 34.8,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 72.6
+    "englishSpeakingPercent": 72.6,
+    "urbanPct": 86.1,
+    "outOfWedlockPct": 41,
+    "hivPrevalence": 0.22,
+    "educationYears": 13.6
   },
   {
     "code": "ID",
@@ -1884,7 +1936,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 59,
     "bachelorsPercent": 30.1,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 89.2
+    "englishSpeakingPercent": 89.2,
+    "urbanPct": 69.2,
+    "outOfWedlockPct": 26.5,
+    "hivPrevalence": 0.08,
+    "educationYears": 13.2
   },
   {
     "code": "IL",
@@ -2026,7 +2082,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 51,
     "bachelorsPercent": 37.1,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 76.5
+    "englishSpeakingPercent": 76.5,
+    "urbanPct": 86.9,
+    "outOfWedlockPct": 39.6,
+    "hivPrevalence": 0.35,
+    "educationYears": 13.7
   },
   {
     "code": "IN",
@@ -2168,7 +2228,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 54,
     "bachelorsPercent": 28.9,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 91.5
+    "englishSpeakingPercent": 91.5,
+    "urbanPct": 71.2,
+    "outOfWedlockPct": 42.3,
+    "hivPrevalence": 0.21,
+    "educationYears": 13
   },
   {
     "code": "IA",
@@ -2310,7 +2374,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 55,
     "bachelorsPercent": 30.5,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 91.8
+    "englishSpeakingPercent": 91.8,
+    "urbanPct": 63.2,
+    "outOfWedlockPct": 35.4,
+    "hivPrevalence": 0.11,
+    "educationYears": 13.4
   },
   {
     "code": "KS",
@@ -2452,7 +2520,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 55,
     "bachelorsPercent": 34.4,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 87.5
+    "englishSpeakingPercent": 87.5,
+    "urbanPct": 64.6,
+    "outOfWedlockPct": 37.2,
+    "hivPrevalence": 0.15,
+    "educationYears": 13.5
   },
   {
     "code": "KY",
@@ -2594,7 +2666,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 63,
     "bachelorsPercent": 27,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 93.8
+    "englishSpeakingPercent": 93.8,
+    "urbanPct": 58.7,
+    "outOfWedlockPct": 43.1,
+    "hivPrevalence": 0.19,
+    "educationYears": 12.8
   },
   {
     "code": "LA",
@@ -2736,7 +2812,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 71,
     "bachelorsPercent": 26.4,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 91.2
+    "englishSpeakingPercent": 91.2,
+    "urbanPct": 72.6,
+    "outOfWedlockPct": 54.9,
+    "hivPrevalence": 0.54,
+    "educationYears": 12.8
   },
   {
     "code": "ME",
@@ -2878,7 +2958,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 34,
     "bachelorsPercent": 36,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 94.6
+    "englishSpeakingPercent": 94.6,
+    "urbanPct": 38.6,
+    "outOfWedlockPct": 41.2,
+    "hivPrevalence": 0.11,
+    "educationYears": 13.5
   },
   {
     "code": "MD",
@@ -3020,7 +3104,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 54,
     "bachelorsPercent": 42.5,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 80.2
+    "englishSpeakingPercent": 80.2,
+    "urbanPct": 86.1,
+    "outOfWedlockPct": 42.8,
+    "hivPrevalence": 0.58,
+    "educationYears": 14
   },
   {
     "code": "MA",
@@ -3162,7 +3250,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 33,
     "bachelorsPercent": 46.6,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 76.5
+    "englishSpeakingPercent": 76.5,
+    "urbanPct": 92,
+    "outOfWedlockPct": 32.5,
+    "hivPrevalence": 0.3,
+    "educationYears": 14.4
   },
   {
     "code": "MI",
@@ -3304,7 +3396,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 53,
     "bachelorsPercent": 31.7,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 89.5
+    "englishSpeakingPercent": 89.5,
+    "urbanPct": 74.6,
+    "outOfWedlockPct": 41.5,
+    "hivPrevalence": 0.2,
+    "educationYears": 13.3
   },
   {
     "code": "MN",
@@ -3446,7 +3542,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 49,
     "bachelorsPercent": 38.9,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 88.4
+    "englishSpeakingPercent": 88.4,
+    "urbanPct": 73.3,
+    "outOfWedlockPct": 31.8,
+    "hivPrevalence": 0.18,
+    "educationYears": 13.8
   },
   {
     "code": "MS",
@@ -3588,7 +3688,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 77,
     "bachelorsPercent": 24.8,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 95.8
+    "englishSpeakingPercent": 95.8,
+    "urbanPct": 46.3,
+    "outOfWedlockPct": 54.7,
+    "hivPrevalence": 0.45,
+    "educationYears": 12.8
   },
   {
     "code": "MO",
@@ -3730,7 +3834,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 60,
     "bachelorsPercent": 31.8,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 92.5
+    "englishSpeakingPercent": 92.5,
+    "urbanPct": 69.5,
+    "outOfWedlockPct": 39.5,
+    "hivPrevalence": 0.23,
+    "educationYears": 13.3
   },
   {
     "code": "MT",
@@ -3872,7 +3980,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 48,
     "bachelorsPercent": 34.6,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 94.2
+    "englishSpeakingPercent": 94.2,
+    "urbanPct": 53.4,
+    "outOfWedlockPct": 36.8,
+    "hivPrevalence": 0.09,
+    "educationYears": 13.4
   },
   {
     "code": "NE",
@@ -4014,7 +4126,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 54,
     "bachelorsPercent": 34.2,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 87.8
+    "englishSpeakingPercent": 87.8,
+    "urbanPct": 73,
+    "outOfWedlockPct": 33.5,
+    "hivPrevalence": 0.14,
+    "educationYears": 13.5
   },
   {
     "code": "NV",
@@ -4156,7 +4272,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 49,
     "bachelorsPercent": 27.6,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 69.8
+    "englishSpeakingPercent": 69.8,
+    "urbanPct": 94.2,
+    "outOfWedlockPct": 48.2,
+    "hivPrevalence": 0.38,
+    "educationYears": 13
   },
   {
     "code": "NH",
@@ -4298,7 +4418,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 33,
     "bachelorsPercent": 39.8,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 91.8
+    "englishSpeakingPercent": 91.8,
+    "urbanPct": 58.3,
+    "outOfWedlockPct": 32.8,
+    "hivPrevalence": 0.11,
+    "educationYears": 13.8
   },
   {
     "code": "NJ",
@@ -4440,7 +4564,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 51,
     "bachelorsPercent": 42.1,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 67.2
+    "englishSpeakingPercent": 67.2,
+    "urbanPct": 94.7,
+    "outOfWedlockPct": 34.5,
+    "hivPrevalence": 0.4,
+    "educationYears": 13.9
   },
   {
     "code": "NM",
@@ -4582,7 +4710,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 57,
     "bachelorsPercent": 29.8,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 66.8
+    "englishSpeakingPercent": 66.8,
+    "urbanPct": 74.5,
+    "outOfWedlockPct": 52.7,
+    "hivPrevalence": 0.19,
+    "educationYears": 13.1
   },
   {
     "code": "NY",
@@ -4724,7 +4856,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 51,
     "bachelorsPercent": 39.5,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 69.5
+    "englishSpeakingPercent": 69.5,
+    "urbanPct": 87.4,
+    "outOfWedlockPct": 39.2,
+    "hivPrevalence": 0.6,
+    "educationYears": 13.7
   },
   {
     "code": "NC",
@@ -4866,7 +5002,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 62,
     "bachelorsPercent": 34.1,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 87.2
+    "englishSpeakingPercent": 87.2,
+    "urbanPct": 66.7,
+    "outOfWedlockPct": 42.1,
+    "hivPrevalence": 0.38,
+    "educationYears": 13.4
   },
   {
     "code": "ND",
@@ -5008,7 +5148,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 53,
     "bachelorsPercent": 32.1,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 92.5
+    "englishSpeakingPercent": 92.5,
+    "urbanPct": 61,
+    "outOfWedlockPct": 33.2,
+    "hivPrevalence": 0.08,
+    "educationYears": 13.3
   },
   {
     "code": "OH",
@@ -5150,7 +5294,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 58,
     "bachelorsPercent": 30.7,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 92.4
+    "englishSpeakingPercent": 92.4,
+    "urbanPct": 76.3,
+    "outOfWedlockPct": 43.5,
+    "hivPrevalence": 0.22,
+    "educationYears": 13.2
   },
   {
     "code": "OK",
@@ -5292,7 +5440,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 66,
     "bachelorsPercent": 27.9,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 89.2
+    "englishSpeakingPercent": 89.2,
+    "urbanPct": 64.6,
+    "outOfWedlockPct": 44.8,
+    "hivPrevalence": 0.2,
+    "educationYears": 13
   },
   {
     "code": "OR",
@@ -5434,7 +5586,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 36,
     "bachelorsPercent": 36.3,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 84.5
+    "englishSpeakingPercent": 84.5,
+    "urbanPct": 80.5,
+    "outOfWedlockPct": 33.5,
+    "hivPrevalence": 0.18,
+    "educationYears": 13.6
   },
   {
     "code": "PA",
@@ -5576,7 +5732,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 53,
     "bachelorsPercent": 34.5,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 88.5
+    "englishSpeakingPercent": 88.5,
+    "urbanPct": 76.5,
+    "outOfWedlockPct": 41.2,
+    "hivPrevalence": 0.32,
+    "educationYears": 13.4
   },
   {
     "code": "RI",
@@ -5718,7 +5878,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 46,
     "bachelorsPercent": 36.5,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 78.2
+    "englishSpeakingPercent": 78.2,
+    "urbanPct": 91.1,
+    "outOfWedlockPct": 43.5,
+    "hivPrevalence": 0.26,
+    "educationYears": 13.6
   },
   {
     "code": "SC",
@@ -5860,7 +6024,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 67,
     "bachelorsPercent": 30.8,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 91.5
+    "englishSpeakingPercent": 91.5,
+    "urbanPct": 67.9,
+    "outOfWedlockPct": 47.2,
+    "hivPrevalence": 0.44,
+    "educationYears": 13.1
   },
   {
     "code": "SD",
@@ -6002,7 +6170,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 57,
     "bachelorsPercent": 30.8,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 91.8
+    "englishSpeakingPercent": 91.8,
+    "urbanPct": 57.2,
+    "outOfWedlockPct": 37.5,
+    "hivPrevalence": 0.09,
+    "educationYears": 13.1
   },
   {
     "code": "TN",
@@ -6144,7 +6316,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 73,
     "bachelorsPercent": 30.5,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 91.8
+    "englishSpeakingPercent": 91.8,
+    "urbanPct": 66.2,
+    "outOfWedlockPct": 44.8,
+    "hivPrevalence": 0.35,
+    "educationYears": 13
   },
   {
     "code": "TX",
@@ -6286,7 +6462,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 64,
     "bachelorsPercent": 33.1,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 64.2
+    "englishSpeakingPercent": 64.2,
+    "urbanPct": 83.7,
+    "outOfWedlockPct": 41.5,
+    "hivPrevalence": 0.42,
+    "educationYears": 13.1
   },
   {
     "code": "UT",
@@ -6428,7 +6608,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 64,
     "bachelorsPercent": 36.8,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 85
+    "englishSpeakingPercent": 85,
+    "urbanPct": 89.8,
+    "outOfWedlockPct": 20.4,
+    "hivPrevalence": 0.12,
+    "educationYears": 13.7
   },
   {
     "code": "VT",
@@ -6570,7 +6754,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 32,
     "bachelorsPercent": 41.5,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 94.8
+    "englishSpeakingPercent": 94.8,
+    "urbanPct": 35.1,
+    "outOfWedlockPct": 37.5,
+    "hivPrevalence": 0.09,
+    "educationYears": 13.9
   },
   {
     "code": "VA",
@@ -6712,7 +6900,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 60,
     "bachelorsPercent": 40.3,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 83.2
+    "englishSpeakingPercent": 83.2,
+    "urbanPct": 75.5,
+    "outOfWedlockPct": 34.8,
+    "hivPrevalence": 0.31,
+    "educationYears": 13.8
   },
   {
     "code": "WA",
@@ -6854,7 +7046,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 43,
     "bachelorsPercent": 38,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 78.5
+    "englishSpeakingPercent": 78.5,
+    "urbanPct": 84.1,
+    "outOfWedlockPct": 31.5,
+    "hivPrevalence": 0.21,
+    "educationYears": 13.9
   },
   {
     "code": "WV",
@@ -6996,7 +7192,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 69,
     "bachelorsPercent": 24.1,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 96.8
+    "englishSpeakingPercent": 96.8,
+    "urbanPct": 48.7,
+    "outOfWedlockPct": 42.5,
+    "hivPrevalence": 0.13,
+    "educationYears": 12.7
   },
   {
     "code": "WI",
@@ -7138,7 +7338,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 48,
     "bachelorsPercent": 33.2,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 91.5
+    "englishSpeakingPercent": 91.5,
+    "urbanPct": 70.2,
+    "outOfWedlockPct": 37.2,
+    "hivPrevalence": 0.15,
+    "educationYears": 13.5
   },
   {
     "code": "WY",
@@ -7280,7 +7484,11 @@ export const usStatesData: USStateData[] = [
     "religionPct": 54,
     "bachelorsPercent": 29.8,
     "whiteMalePerceptionIndex": 65,
-    "englishSpeakingPercent": 93.2
+    "englishSpeakingPercent": 93.2,
+    "urbanPct": 62,
+    "outOfWedlockPct": 38.2,
+    "hivPrevalence": 0.08,
+    "educationYears": 13.1
   }
 ];
 

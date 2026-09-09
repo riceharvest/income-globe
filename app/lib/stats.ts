@@ -330,9 +330,9 @@ export const stats: StatDef[] = [
     "Average daily calorie supply/consumption per person, for the selected sex.",
     "kcal per day. Reference needs: ≈ 2,000 (women) / 2,500 (men). Above 3,000 signals an energy-surplus food environment."),
   scalar("hivPrevalence", "HIV prevalence", "Health", "%", 2,
-    "Share of adults (15–49) living with HIV (UNAIDS).",
-    "Percent. Under 0.5% is typical outside Africa; southern Africa runs 10–25%.",
-    (c) => (c as any).hivRate ?? hivByCountry[c.code]),
+    "Share of adults (15–49) living with HIV (UNAIDS / CDC).",
+    "Percent. Under 0.5% is typical outside Africa; southern Africa runs 10–25%. In the US, national prevalence is ≈ 0.37%, with DC highest at 2.45%.",
+    (c) => (c as any).hivPrevalence ?? hivByCountry[c.code]),
 
   // ── Phenotype ──
   scalar("hairBlonde", "Blonde hair", "Phenotype", "%", 1,
@@ -433,7 +433,7 @@ export const stats: StatDef[] = [
   scalar("educationYears", "Mean years of schooling (women)", "Society", "yrs", 1,
     "Average years of formal education completed by adult women (25+).",
     "Years. 12+ = most women finish secondary school (Europe, North America); under 5 = most women left school early.",
-    (c) => (c as any).bachelorsPercent ? (c as any).bachelorsPercent / 3 : educationByCountry[c.code], "female"),
+    (c) => (c as any).educationYears ?? educationByCountry[c.code], "female"),
   scalar("englishSpeaking", "English speaking", "Society", "%", 1,
     "Estimated share of the population that can hold a conversation in English.",
     "Percent. 95%+ in native-speaker countries and the Nordics/Netherlands; under 10% in much of Latin America, Central Asia, the Sahel.",
