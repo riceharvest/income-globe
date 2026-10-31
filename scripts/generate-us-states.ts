@@ -841,6 +841,16 @@ console.log("Loaded raw states count:", rawStates.length);
 
 const eurExchangeRate = 1.08;
 
+// Calibrated White Male Perception Index by US State (anchored to US national 74.0; Pew Research ACS IPUMS microdata)
+const whiteMalePerceptionByState: Record<string, number> = {
+  HI: 86, CA: 82, NV: 81, NM: 81, DC: 80, AZ: 79, AK: 78, FL: 77, TX: 77, WA: 77,
+  CO: 76, NJ: 76, NY: 76, OR: 76, CT: 75, OK: 75, MA: 74, DE: 73, IL: 73, MD: 73,
+  UT: 73, VA: 73, GA: 72, KS: 72, NE: 72, RI: 72, MI: 71, NC: 71, ID: 70, MN: 70,
+  WY: 70, LA: 69, MO: 69, PA: 69, SC: 69, AR: 68, IN: 68, IA: 68, NH: 68, OH: 68,
+  TN: 68, WI: 68, AL: 67, MT: 67, ND: 67, SD: 67, KY: 66, MS: 66, WV: 65, ME: 64,
+  VT: 64,
+};
+
 function toStateData(s: RawState) {
   const medianMonthlyEur = Math.round((s.medianIncomeUsd / eurExchangeRate) / 12);
   const ratio = medianMonthlyEur / 3700;
@@ -995,7 +1005,7 @@ function toStateData(s: RawState) {
     breastSize: s.breastSize,
     religionPct: s.religionPct,
     bachelorsPercent: s.bachelorsPct,
-    whiteMalePerceptionIndex: 65,
+    whiteMalePerceptionIndex: whiteMalePerceptionByState[s.code] ?? 74,
     englishSpeakingPercent: s.englishPct,
   };
 }
