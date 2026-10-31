@@ -45,7 +45,7 @@ jobs:
 
       - name: Deploy prebuilt artifact
         run: |
-          url=$(vercel deploy --prebuilt --prod --token "$VERCEL_TOKEN")
+          url=$(vercel deploy --prebuilt --prod --yes --token "$VERCEL_TOKEN")
           echo "deployed_url<<EOF" >> "$GITHUB_OUTPUT"
           echo "$url" >> "$GITHUB_OUTPUT"
           echo "EOF" >> "$GITHUB_OUTPUT"
