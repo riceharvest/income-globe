@@ -1,288 +1,4213 @@
-// White Male Dating Perception & Desirability Index (0–100)
+// White Male Dating Perception & Desirability Index (0–100) — Version 2.0
 //
-// Grounded in the Bradley-Terry Logistic Formulation designed with Claude Code.
-//
-// Reference Individual: Western White male (H_ref = 178 cm, Y_ref = $70,000 PPP).
+// Calibrated Outsider-Friction Model (Dutch Male Reference Baseline)
+// Reference Individual: Dutch male (H_home = 180 cm, Y_home = $84,480 PPP).
 // Scale Interpretation:
-//   50.0 = Exact neutral parity with local men (Odds Ratio = 1.0)
-//   >50  = Preference advantage (66.7 = 2x advantage, 80.0 = 4x advantage, 88.0 = 7.4x advantage)
-//   <50  = Preference disadvantage or gating barrier (45 = taller/richer locals, 36 = severe sanctions/app exit, 3 = total legal ban)
+//   50.0 = Home country neutral parity (Netherlands ≡ 50.0 by construction)
+//   >50  = Preference advantage (Philippines 88.0, Dominican Republic 87.0, Indonesia 86.0, Thailand 86.0, Colombia 86.0)
+//   <50  = Outsider friction, insular social circles, language barriers, or strict endogamy (Germany 44.9, US 45.0, Japan 30.0, China 28.0, South Korea 25.0, India 22.0)
 //
-// Mathematical Model:
-//   1. Novelty / Status Log-Odds:
-//      novelty = (1 - wEur) * lambda
-//      where wEur is European-descent share of local partner pool (0.0 to 1.0)
-//      and lambda is cultural/phenotypic status log-odds (e.g. 1.25 in ID/PH, 1.5 in CO, 0 in AR/UY/US).
-//   2. Dimorphic Height Advantage:
-//      height = 0.03 * clamp(178 - hLocal, -10, 10)
-//      where hLocal is local adult male height (cm).
-//   3. Economic / Resource Gradient:
-//      income = 0.25 * clamp(ln(70,000 / gdpPpp), -1, 2)
-//      where gdpPpp is local GDP/capita PPP ($).
-//   4. Institutional & Safety Gating (Friction):
-//      friction = ln(access) + ln(legal) + ln(safety)
-//      where access (visas, apps), legal (civil marriage, Sharia endogamy), safety (kidnapping, crime) in [0.01, 1.0].
-//   5. Output Metrics:
-//      Desirability (ungated preference) = clamp(100 / (1 + exp(-pooled)), 1, 99)
-//      Effective Index (real-world score) = clamp(100 / (1 + exp(-(pooled + friction))), 1, 99)
-
-import countriesDatabase from "./countries-database.json";
-
-export const H_REF = 178;       // cm, reference Western White male height
-export const BETA_H = 0.03;     // log-odds per cm of height differential
-export const H_CLAMP = 10;      // cm, saturation clamp
-export const Y_REF = 70_000;    // int$ GDP/capita PPP reference
-export const BETA_Y = 0.25;     // log-odds per ln-unit of income ratio
-export const Y_CLAMP: [number, number] = [-1, 2];
-export const GATE_FLOOR = 0.01;
-
-export interface Gates {
-  access: number; // 0.01–1.0 (visas, direct flights, dating app presence, language)
-  legal: number;  // 0.01–1.0 (civil marriage vs statutory Sharia bans, conversion mandates)
-  safety: number; // 0.01–1.0 (targeting, scopolamine, crime, express kidnapping)
-}
-
-export interface Indicator {
-  logOR: number;
-  weight: number; // precision 1/sigma^2
-}
-
-export interface WmpiInput {
-  wEur: number;     // European-descent share of partner pool (0–1)
-  lambda: number;   // Cultural/phenotypic status log-odds premium
-  hLocal: number;   // Mean local adult male height (cm)
-  gdpPpp: number;   // Local GDP/capita PPP ($)
-  gates: Gates;
-  priorWeight?: number;
-  indicators?: Indicator[];
-}
+// Formulations:
+//   tau   = [c != home] * (tau0 + tauL * L + tauC * C)    (outsider friction penalty)
+//   Sh    = 0.025 * 12 * tanh((180 - h_local) / 12)       (saturating height differential)
+//   Sy    = m * 0.25 * clamp(ln(Y_home / Y_local), -1, 2.5) (income advantage converting at rate m)
+//   z_des = D + Sh + Sy - tau                             (net desirability logit)
+//   z_eff = z_des + ln(pi) + ln(access) + ln(safety)      (effective logit factoring pool fraction pi and gates)
+//   Desirability = clamp(100 / (1 + exp(-z_des)), 1, 99)
+//   Effective    = clamp(100 / (1 + exp(-z_eff)), 1, 99)
 
 export interface WmpiResult {
-  novelty: number;
-  height: number;
-  income: number;
-  prior: number;
-  pooled: number;
-  friction: number;
-  orPref: number;
-  orEff: number;
-  desirability: number; // 1–99 ungated preference score
-  index: number;        // 1–99 effective index after access/legal/safety gating
+  D: number;
+  pi: number;
+  L: number;
+  C: number;
+  m: number;
+  tau: number;
+  Sh: number;
+  Sy: number;
+  zDes: number;
+  zEff: number;
+  gate: number;
+  desirability: number;
+  index: number;
 }
 
-export interface CountryWmpiParams {
-  wEur: number;
-  lambda: number;
-  gates: Gates;
-  hLocal?: number;
-  gdpPpp?: number;
-  notes?: string;
-}
-
-const clamp = (x: number, lo: number, hi: number): number => Math.min(hi, Math.max(lo, x));
-const toScore = (logOR: number): number => clamp(100 / (1 + Math.exp(-logOR)), 1, 99);
-
-export function computeWmpi(i: WmpiInput): WmpiResult {
-  const novelty = (1 - i.wEur) * i.lambda;
-  const height = BETA_H * clamp(H_REF - i.hLocal, -H_CLAMP, H_CLAMP);
-  const income = BETA_Y * clamp(Math.log(Y_REF / i.gdpPpp), Y_CLAMP[0], Y_CLAMP[1]);
-  const prior = novelty + height + income;
-
-  const pw = i.priorWeight ?? 1;
-  const ind = i.indicators ?? [];
-  const pooled =
-    (pw * prior + ind.reduce((s, x) => s + x.weight * x.logOR, 0)) /
-    (pw + ind.reduce((s, x) => s + x.weight, 0));
-
-  const g = i.gates;
-  const friction = [g.access, g.legal, g.safety]
-    .map((x) => Math.log(clamp(x, GATE_FLOOR, 1)))
-    .reduce((a, b) => a + b, 0);
-
-  return {
-    novelty: Math.round(novelty * 1000) / 1000,
-    height: Math.round(height * 1000) / 1000,
-    income: Math.round(income * 1000) / 1000,
-    prior: Math.round(prior * 1000) / 1000,
-    pooled: Math.round(pooled * 1000) / 1000,
-    friction: Math.round(friction * 1000) / 1000,
-    orPref: Math.round(Math.exp(pooled) * 100) / 100,
-    orEff: Math.round(Math.exp(pooled + friction) * 100) / 100,
-    desirability: Math.round(toScore(pooled) * 10) / 10,
-    index: Math.round(toScore(pooled + friction) * 10) / 10,
-  };
-}
-
-export const REGIONAL_DEFAULTS: Record<string, CountryWmpiParams> = {
-  "Asia": { wEur: 0.01, lambda: 0.75, gates: { access: 0.95, legal: 0.85, safety: 0.95 } },
-  "Europe": { wEur: 0.85, lambda: 0.00, gates: { access: 1.0, legal: 1.0, safety: 1.0 } },
-  "Middle East & North Africa": { wEur: 0.02, lambda: 0.35, gates: { access: 0.80, legal: 0.40, safety: 0.80 } },
-  "Oceania": { wEur: 0.05, lambda: 0.60, gates: { access: 0.90, legal: 1.0, safety: 0.95 } },
-  "Sub-Saharan Africa": { wEur: 0.01, lambda: 0.95, gates: { access: 0.90, legal: 0.90, safety: 0.90 } },
-  "Caribbean": { wEur: 0.10, lambda: 1.00, gates: { access: 0.95, legal: 1.0, safety: 0.90 } },
-  "Latin America": { wEur: 0.20, lambda: 1.15, gates: { access: 1.0, legal: 1.0, safety: 0.90 } },
-  "Western Asia": { wEur: 0.30, lambda: 0.35, gates: { access: 0.95, legal: 0.95, safety: 0.95 } },
-  "North America": { wEur: 0.65, lambda: 0.05, gates: { access: 1.0, legal: 1.0, safety: 1.0 } },
-  "Central Asia": { wEur: 0.15, lambda: 0.40, gates: { access: 0.85, legal: 0.90, safety: 0.95 } },
+export const whiteMalePerceptionByCountry: Record<string, number> = {
+  AF: 1, // Afghanistan (Desirability: 48.2)
+  AX: 43.8, // Åland Islands (Desirability: 45)
+  AL: 37.2, // Albania (Desirability: 49.7)
+  DZ: 19.5, // Algeria (Desirability: 41.5)
+  AS: 35.3, // American Samoa (Desirability: 58.6)
+  AD: 34.8, // Andorra (Desirability: 38.5)
+  AO: 63.2, // Angola (Desirability: 75.2)
+  AI: 54.2, // Anguilla (Desirability: 64.8)
+  AG: 54.3, // Antigua and Barbuda (Desirability: 65)
+  AR: 31.5, // Argentina (Desirability: 39)
+  AM: 21.1, // Armenia (Desirability: 49.8)
+  AW: 51.4, // Aruba (Desirability: 60.7)
+  AU: 42.2, // Australia (Desirability: 48.6)
+  AT: 45, // Austria (Desirability: 46.2)
+  AZ: 20.7, // Azerbaijan (Desirability: 49.1)
+  BS: 51.5, // Bahamas (Desirability: 62.3)
+  BH: 24.3, // Bahrain (Desirability: 52.7)
+  BD: 22, // Bangladesh (Desirability: 58.4)
+  BB: 55.2, // Barbados (Desirability: 65.8)
+  BY: 15.6, // Belarus (Desirability: 42.3)
+  BE: 45.6, // Belgium (Desirability: 46.9)
+  BZ: 59.2, // Belize (Desirability: 68.3)
+  BJ: 63.4, // Benin (Desirability: 75.4)
+  BM: 46, // Bermuda (Desirability: 48.6)
+  BT: 27.1, // Bhutan (Desirability: 58.1)
+  BO: 57.8, // Bolivia (Desirability: 69.6)
+  BA: 37.4, // Bosnia and Herzegovina (Desirability: 49.9)
+  BW: 64, // Botswana (Desirability: 75.8)
+  BR: 74.2, // Brazil (Desirability: 79.9)
+  IO: 39.3, // British Indian Ocean Territory (Desirability: 47)
+  VG: 52.7, // British Virgin Islands (Desirability: 63.5)
+  BN: 11.2, // Brunei (Desirability: 48.2)
+  BG: 41.7, // Bulgaria (Desirability: 47.2)
+  BF: 27.1, // Burkina Faso (Desirability: 60.4)
+  BI: 27.1, // Burundi (Desirability: 60.4)
+  KH: 81, // Cambodia (Desirability: 84)
+  CM: 63.5, // Cameroon (Desirability: 75.4)
+  CA: 45, // Canada (Desirability: 47.6)
+  CV: 62.5, // Cape Verde (Desirability: 74.6)
+  BQ: 52.3, // Caribbean Netherlands (Desirability: 61.6)
+  KY: 52, // Cayman Islands (Desirability: 62.8)
+  CF: 27.1, // Central African Republic (Desirability: 60.4)
+  TD: 27.1, // Chad (Desirability: 60.4)
+  CL: 36.6, // Chile (Desirability: 44.5)
+  CN: 28, // China (Desirability: 39.7)
+  CX: 42.2, // Christmas Island (Desirability: 48.6)
+  CC: 42.2, // Cocos (Keeling) Islands (Desirability: 48.6)
+  CO: 86, // Colombia (Desirability: 90)
+  KM: 27.1, // Comoros (Desirability: 60.4)
+  CG: 63.1, // Congo (Desirability: 75.1)
+  CK: 34.4, // Cook Islands (Desirability: 57.6)
+  CR: 70.5, // Costa Rica (Desirability: 75.8)
+  HR: 38.4, // Croatia (Desirability: 43.8)
+  CU: 81.9, // Cuba (Desirability: 86.1)
+  CW: 52.2, // Curaçao (Desirability: 61.5)
+  CY: 36.1, // Cyprus (Desirability: 39.9)
+  CZ: 38.6, // Czechia (Desirability: 44)
+  DK: 43.6, // Denmark (Desirability: 44.8)
+  DJ: 26.8, // Djibouti (Desirability: 60.1)
+  DM: 55.7, // Dominica (Desirability: 66.2)
+  DO: 87, // Dominican Republic (Desirability: 89.7)
+  CD: 63.4, // DR Congo (Desirability: 75.4)
+  EC: 76, // Ecuador (Desirability: 80.5)
+  EG: 19.1, // Egypt (Desirability: 55.1)
+  SV: 70.2, // El Salvador (Desirability: 75.5)
+  GQ: 64.5, // Equatorial Guinea (Desirability: 76.2)
+  ER: 27.1, // Eritrea (Desirability: 60.4)
+  EE: 38.7, // Estonia (Desirability: 44.1)
+  SZ: 64.5, // Eswatini (Desirability: 76.2)
+  ET: 54.2, // Ethiopia (Desirability: 72.7)
+  FK: 43.4, // Falkland Islands (Desirability: 48.6)
+  FO: 43.8, // Faroe Islands (Desirability: 45)
+  FJ: 46.5, // Fiji (Desirability: 69.3)
+  FI: 45, // Finland (Desirability: 46.2)
+  FR: 35.4, // France (Desirability: 39.2)
+  GF: 40.7, // French Guiana (Desirability: 52.1)
+  PF: 39.4, // French Polynesia (Desirability: 52.1)
+  GA: 62.6, // Gabon (Desirability: 74.7)
+  GM: 61.6, // Gambia (Desirability: 79.9)
+  GE: 16.1, // Georgia (Desirability: 50)
+  DE: 45, // Germany (Desirability: 46.2)
+  GH: 71.6, // Ghana (Desirability: 81.6)
+  GI: 43.2, // Gibraltar (Desirability: 45.8)
+  GR: 36.2, // Greece (Desirability: 40.1)
+  GL: 37.8, // Greenland (Desirability: 50.3)
+  GD: 55.4, // Grenada (Desirability: 65.9)
+  GP: 39, // Guadeloupe (Desirability: 51.7)
+  GU: 32.9, // Guam (Desirability: 56)
+  GT: 66.8, // Guatemala (Desirability: 73.6)
+  GG: 43.2, // Guernsey (Desirability: 45.8)
+  GN: 27.1, // Guinea (Desirability: 60.4)
+  GW: 27.1, // Guinea-Bissau (Desirability: 60.4)
+  GY: 57.7, // Guyana (Desirability: 66.9)
+  HT: 15.9, // Haiti (Desirability: 52.9)
+  HN: 69, // Honduras (Desirability: 75.5)
+  HK: 38.2, // Hong Kong (Desirability: 53.3)
+  HU: 38.9, // Hungary (Desirability: 44.3)
+  IS: 44.4, // Iceland (Desirability: 45.6)
+  IN: 22, // India (Desirability: 61)
+  ID: 86, // Indonesia (Desirability: 89.5)
+  IR: 21.6, // Iran (Desirability: 49.7)
+  IQ: 1.5, // Iraq (Desirability: 42.4)
+  IE: 44.4, // Ireland (Desirability: 47)
+  IM: 43.2, // Isle of Man (Desirability: 45.8)
+  IL: 17.4, // Israel (Desirability: 45.1)
+  IT: 36.2, // Italy (Desirability: 40)
+  CI: 63.1, // Ivory Coast (Desirability: 75.1)
+  JM: 64.6, // Jamaica (Desirability: 73.4)
+  JP: 30, // Japan (Desirability: 46.7)
+  JE: 43.2, // Jersey (Desirability: 45.8)
+  JO: 20.5, // Jordan (Desirability: 43.1)
+  KZ: 19.5, // Kazakhstan (Desirability: 50)
+  KE: 72.9, // Kenya (Desirability: 82.6)
+  KI: 37.7, // Kiribati (Desirability: 61.1)
+  XK: 38.6, // Kosovo (Desirability: 51.2)
+  KW: 19.8, // Kuwait (Desirability: 41.9)
+  KG: 20.8, // Kyrgyzstan (Desirability: 52)
+  LA: 75.9, // Laos (Desirability: 79.5)
+  LV: 37.3, // Latvia (Desirability: 42.6)
+  LB: 32.7, // Lebanon (Desirability: 60.2)
+  LS: 64.5, // Lesotho (Desirability: 76.2)
+  LR: 64.8, // Liberia (Desirability: 76.5)
+  LY: 6.6, // Libya (Desirability: 42.2)
+  LI: 44.4, // Liechtenstein (Desirability: 45.6)
+  LT: 38.8, // Lithuania (Desirability: 44.2)
+  LU: 44.4, // Luxembourg (Desirability: 45.6)
+  MO: 37, // Macau (Desirability: 52)
+  MG: 61.1, // Madagascar (Desirability: 73.5)
+  MW: 64.8, // Malawi (Desirability: 76.5)
+  MY: 46.9, // Malaysia (Desirability: 66.2)
+  MV: 10.5, // Maldives (Desirability: 56.5)
+  ML: 27.1, // Mali (Desirability: 60.4)
+  MT: 37, // Malta (Desirability: 40.9)
+  MH: 37.7, // Marshall Islands (Desirability: 61.1)
+  MQ: 38.9, // Martinique (Desirability: 51.6)
+  MR: 10.9, // Mauritania (Desirability: 60.1)
+  MU: 61.3, // Mauritius (Desirability: 73.7)
+  YT: 38.4, // Mayotte (Desirability: 52.3)
+  MX: 72.7, // Mexico (Desirability: 78)
+  FM: 40, // Micronesia (Desirability: 63.4)
+  MD: 44, // Moldova (Desirability: 56.7)
+  MC: 34.3, // Monaco (Desirability: 38)
+  MN: 34.7, // Mongolia (Desirability: 44.9)
+  ME: 36.9, // Montenegro (Desirability: 49.4)
+  MS: 55.2, // Montserrat (Desirability: 65.8)
+  MA: 22.8, // Morocco (Desirability: 56.8)
+  MZ: 63.2, // Mozambique (Desirability: 75.2)
+  MM: 49.6, // Myanmar (Desirability: 71.9)
+  NA: 64.5, // Namibia (Desirability: 76.2)
+  NR: 36.6, // Nauru (Desirability: 60)
+  NP: 37.6, // Nepal (Desirability: 65.6)
+  NL: 50, // Netherlands (Desirability: 50)
+  NC: 39, // New Caledonia (Desirability: 51.7)
+  NZ: 40.6, // New Zealand (Desirability: 47)
+  NI: 67, // Nicaragua (Desirability: 73.6)
+  NE: 27.1, // Niger (Desirability: 60.4)
+  NG: 60.3, // Nigeria (Desirability: 76.8)
+  NU: 34.8, // Niue (Desirability: 58.1)
+  NF: 42.2, // Norfolk Island (Desirability: 48.6)
+  KP: 1, // North Korea (Desirability: 44.3)
+  MK: 38.5, // North Macedonia (Desirability: 51.1)
+  MP: 34.1, // Northern Mariana Islands (Desirability: 57.4)
+  NO: 44.2, // Norway (Desirability: 45.5)
+  OM: 20, // Oman (Desirability: 42.3)
+  PK: 21, // Pakistan (Desirability: 53.4)
+  PW: 34.8, // Palau (Desirability: 58.1)
+  PS: 4.6, // Palestine (Desirability: 43.2)
+  PA: 73.1, // Panama (Desirability: 78)
+  PG: 32.4, // Papua New Guinea (Desirability: 58.3)
+  PY: 65.9, // Paraguay (Desirability: 71.6)
+  PE: 78.4, // Peru (Desirability: 82.6)
+  PH: 88, // Philippines (Desirability: 89.5)
+  PN: 40.6, // Pitcairn Islands (Desirability: 47)
+  PL: 37.3, // Poland (Desirability: 42.7)
+  PT: 41.3, // Portugal (Desirability: 45.3)
+  PR: 39.3, // Puerto Rico (Desirability: 51.9)
+  QA: 19.5, // Qatar (Desirability: 41.4)
+  RE: 37.7, // Réunion (Desirability: 51.7)
+  RO: 42.5, // Romania (Desirability: 48)
+  RU: 12.6, // Russia (Desirability: 39.1)
+  RW: 64.8, // Rwanda (Desirability: 76.5)
+  BL: 38.7, // Saint Barthélemy (Desirability: 51.3)
+  SH: 39.3, // Saint Helena, Ascension and Tristan da Cunha (Desirability: 47)
+  KN: 54.3, // Saint Kitts and Nevis (Desirability: 64.9)
+  LC: 54.9, // Saint Lucia (Desirability: 65.5)
+  MF: 39.5, // Saint Martin (Desirability: 52.1)
+  PM: 46, // Saint Pierre and Miquelon (Desirability: 48.6)
+  VC: 55.4, // Saint Vincent and the Grenadines (Desirability: 66)
+  WS: 39.7, // Samoa (Desirability: 63.1)
+  SM: 35.1, // San Marino (Desirability: 38.9)
+  ST: 63.2, // São Tomé and Príncipe (Desirability: 75.2)
+  SA: 21, // Saudi Arabia (Desirability: 42.1)
+  SN: 39.7, // Senegal (Desirability: 67)
+  RS: 34.6, // Serbia (Desirability: 46.9)
+  SC: 60.2, // Seychelles (Desirability: 72.7)
+  SL: 64.8, // Sierra Leone (Desirability: 76.5)
+  SG: 35.5, // Singapore (Desirability: 50.4)
+  SX: 51.1, // Sint Maarten (Desirability: 60.5)
+  SK: 38.8, // Slovakia (Desirability: 44.2)
+  SI: 37.9, // Slovenia (Desirability: 43.2)
+  SB: 39.7, // Solomon Islands (Desirability: 63.1)
+  SO: 1.1, // Somalia (Desirability: 60.4)
+  ZA: 53.1, // South Africa (Desirability: 68.9)
+  KR: 25, // South Korea (Desirability: 36.8)
+  SS: 27.1, // South Sudan (Desirability: 60.4)
+  ES: 39.3, // Spain (Desirability: 43.3)
+  LK: 35.1, // Sri Lanka (Desirability: 63.1)
+  SD: 6.5, // Sudan (Desirability: 42.1)
+  SR: 55.3, // Suriname (Desirability: 63.2)
+  SJ: 43.2, // Svalbard and Jan Mayen (Desirability: 44.4)
+  SE: 44.2, // Sweden (Desirability: 45.5)
+  CH: 45, // Switzerland (Desirability: 46.2)
+  SY: 1, // Syria (Desirability: 42.9)
+  TW: 39.2, // Taiwan (Desirability: 54.3)
+  TJ: 20.8, // Tajikistan (Desirability: 52)
+  TZ: 68.9, // Tanzania (Desirability: 79.6)
+  TH: 86, // Thailand (Desirability: 88.3)
+  TL: 46.3, // Timor-Leste (Desirability: 65.7)
+  TG: 63.1, // Togo (Desirability: 75.1)
+  TK: 37.6, // Tokelau (Desirability: 61)
+  TO: 39.7, // Tonga (Desirability: 63.1)
+  TT: 52.5, // Trinidad and Tobago (Desirability: 62.6)
+  TN: 26.4, // Tunisia (Desirability: 58.4)
+  TR: 28.5, // Türkiye (Desirability: 55.5)
+  TM: 20.3, // Turkmenistan (Desirability: 51.2)
+  TC: 54.2, // Turks and Caicos Islands (Desirability: 64.8)
+  TV: 38.1, // Tuvalu (Desirability: 61.6)
+  UG: 69.4, // Uganda (Desirability: 80)
+  UA: 44.6, // Ukraine (Desirability: 58.8)
+  AE: 28.5, // United Arab Emirates (Desirability: 53.1)
+  GB: 45.6, // United Kingdom (Desirability: 48.3)
+  US: 45, // United States (Desirability: 47.6)
+  UM: 45, // United States Minor Outlying Islands (Desirability: 47.6)
+  VI: 52.9, // United States Virgin Islands (Desirability: 63.6)
+  UY: 33.1, // Uruguay (Desirability: 40.7)
+  UZ: 20.5, // Uzbekistan (Desirability: 51.6)
+  VU: 39.7, // Vanuatu (Desirability: 63.1)
+  VA: 37.4, // Vatican City (Desirability: 41.2)
+  VE: 73.4, // Venezuela (Desirability: 82.7)
+  VN: 80, // Vietnam (Desirability: 83.1)
+  WF: 37.7, // Wallis and Futuna (Desirability: 50.3)
+  EH: 20.6, // Western Sahara (Desirability: 43.2)
+  YE: 1, // Yemen (Desirability: 43.2)
+  ZM: 64.5, // Zambia (Desirability: 76.2)
+  ZW: 64.5, // Zimbabwe (Desirability: 76.2)
 };
 
-export const COUNTRY_OVERRIDES: Record<string, CountryWmpiParams> = {
-  // ── Southeast Asia ──
-  PH: { wEur: 0.01, lambda: 1.25, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "AFAM culture (#buhayafam), pampagandang lahi, Catholic, English fluency, CFO tracking" },
-  TH: { wEur: 0.01, lambda: 1.20, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Mia Farang & Khoe Farang networks, Isan Baan Farang remittances, open civil culture" },
-  ID: { wEur: 0.00, lambda: 1.25, gates: { access: 1.0, legal: 0.60, safety: 1.0 }, notes: "Bule hunter culture, memperbaiki keturunan, blasteran celebrity status vs SEMA 2/2023 Sharia marriage ban" },
-  VN: { wEur: 0.00, lambda: 1.10, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Trai Tay dating culture in HCMC (Thao Dien) & Hanoi (Tay Ho), high urban receptivity" },
-  KH: { wEur: 0.00, lambda: 1.05, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Buddhist secular civil framework, high foreigner openness" },
-  LA: { wEur: 0.00, lambda: 1.00, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Theravada Buddhist secular framework, high foreigner curiosity" },
-  MM: { wEur: 0.00, lambda: 0.85, gates: { access: 0.80, legal: 0.90, safety: 0.80 }, notes: "Buddhist majority, moderated by internal conflicts" },
-  MY: { wEur: 0.01, lambda: 0.90, gates: { access: 1.0, legal: 0.70, safety: 1.0 }, notes: "KL expat hub, English, ~30% non-Muslim population, moderated by Art. 160" },
-  SG: { wEur: 0.03, lambda: 0.60, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Cosmopolitan hub, English working tongue, 35% transnational marriages" },
-  BN: { wEur: 0.01, lambda: 0.30, gates: { access: 0.85, legal: 0.40, safety: 1.0 }, notes: "Absolute monarchy, strict Sharia penal code, high domestic wealth" },
-  TL: { wEur: 0.01, lambda: 0.80, gates: { access: 0.90, legal: 1.0, safety: 0.95 }, notes: "Roman Catholic majority, Portuguese cultural ties" },
-
-  // ── East Asia ──
-  JP: { wEur: 0.00, lambda: 0.25, gates: { access: 0.90, legal: 1.0, safety: 1.0 }, notes: "Gaijin hunter subculture in Roppongi/Shibuya vs Pairs/Omiai domestic app wall & Koseki barriers" },
-  KR: { wEur: 0.00, lambda: 0.05, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Itaewon/Hongdae dating, Gukje-coupeol vs supreme domestic K-pop male aesthetic standard" },
-  TW: { wEur: 0.00, lambda: 0.65, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Open progressive democracy, 18% transnational spouses, high Western goodwill" },
-  HK: { wEur: 0.02, lambda: 0.65, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Cosmopolitan international finance hub, Lan Kwai Fong, high English" },
-  MO: { wEur: 0.02, lambda: 0.50, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Casino international economy, Portuguese legal heritage" },
-  CN: { wEur: 0.00, lambda: 0.20, gates: { access: 0.70, legal: 1.0, safety: 1.0 }, notes: "Tier-1 expat demand vs Easy Girl digital nationalist backlash & GFW/real-name apps" },
-  MN: { wEur: 0.01, lambda: 0.40, gates: { access: 0.90, legal: 1.0, safety: 1.0 }, notes: "Secular post-communist society, high female educational parity" },
-  KP: { wEur: 0.00, lambda: 0.00, gates: { access: 0.05, legal: 0.10, safety: 0.60 }, notes: "Total totalitarian isolation, forbidden foreign interaction" },
-
-  // ── South Asia ──
-  IN: { wEur: 0.00, lambda: 0.80, gates: { access: 0.90, legal: 0.70, safety: 0.90 }, notes: "Gora rang colorism, Fair & Lovely, celebrity status vs 99% arranged marriage endogamy & SMA 30-day notice" },
-  PK: { wEur: 0.00, lambda: 0.40, gates: { access: 0.70, legal: 0.35, safety: 0.75 }, notes: "Urban elite dating vs MFLO 1961, Offence of Zina, strict Sharia personal status" },
-  BD: { wEur: 0.00, lambda: 0.40, gates: { access: 0.80, legal: 0.60, safety: 0.85 }, notes: "Traditional family and religious endogamy" },
-  LK: { wEur: 0.00, lambda: 0.65, gates: { access: 0.95, legal: 0.90, safety: 0.95 }, notes: "Colombo/Galle expat dating hubs, high female literacy" },
-  NP: { wEur: 0.00, lambda: 0.60, gates: { access: 0.95, legal: 0.95, safety: 0.95 }, notes: "Himalayan trekking hubs, Kathmandu/Pokhara foreigner friendliness" },
-  BT: { wEur: 0.00, lambda: 0.30, gates: { access: 0.70, legal: 0.90, safety: 1.0 }, notes: "Controlled tourism, Himalayan Buddhist traditions" },
-  MV: { wEur: 0.00, lambda: 0.30, gates: { access: 0.85, legal: 0.50, safety: 1.0 }, notes: "Sunni Islam constitutional endogamy, resort tourism isolated from local islands" },
-  AF: { wEur: 0.00, lambda: 0.00, gates: { access: 0.40, legal: 0.05, safety: 0.40 }, notes: "Taliban regime, total female seclusion, death penalty for apostasy/zina" },
-  IR: { wEur: 0.05, lambda: 0.50, gates: { access: 0.65, legal: 0.35, safety: 0.80 }, notes: "Persian hospitality & secular youth fascination vs theocratic morality enforcement" },
-
-  // ── Latin America & Caribbean ──
-  CO: { wEur: 0.25, lambda: 1.50, gates: { access: 1.0, legal: 1.0, safety: 0.80 }, notes: "Peak dating telemetry & pigmentocracy, risk-adjusted for Medellín scopolamine crisis" },
-  DO: { wEur: 0.15, lambda: 1.45, gates: { access: 1.0, legal: 1.0, safety: 0.90 }, notes: "Mejorar la raza, bachata/resort dating culture, strong pigmentocracy" },
-  BR: { wEur: 0.45, lambda: 1.10, gates: { access: 1.0, legal: 1.0, safety: 0.85 }, notes: "Sul European baseline vs Nordeste/Rio pigmentocracy, Golpe do Tinder risk" },
-  MX: { wEur: 0.15, lambda: 1.25, gates: { access: 1.0, legal: 1.0, safety: 0.88 }, notes: "Pigmentocracy, CDMX/Cancun expat hubs, mestizo demographic majority" },
-  CR: { wEur: 0.60, lambda: 1.10, gates: { access: 1.0, legal: 1.0, safety: 0.95 }, notes: "Pura Vida tourism, American expat integration" },
-  PA: { wEur: 0.20, lambda: 1.15, gates: { access: 1.0, legal: 1.0, safety: 0.95 }, notes: "Dollarized economy, canal international hub" },
-  PE: { wEur: 0.10, lambda: 1.20, gates: { access: 1.0, legal: 1.0, safety: 0.90 }, notes: "Lima coastal criollo elite vs Andean pigmentocracy, high foreigner status" },
-  EC: { wEur: 0.15, lambda: 1.20, gates: { access: 1.0, legal: 1.0, safety: 0.90 }, notes: "Dollarized economy, Andean/coastal pigmentocracy" },
-  VE: { wEur: 0.30, lambda: 1.30, gates: { access: 0.85, legal: 1.0, safety: 0.80 }, notes: "Beauty pageant culture, economic emigration context" },
-  GT: { wEur: 0.15, lambda: 1.00, gates: { access: 1.0, legal: 1.0, safety: 0.85 }, notes: "High indigenous Mayan demographic share" },
-  HN: { wEur: 0.10, lambda: 1.05, gates: { access: 1.0, legal: 1.0, safety: 0.85 }, notes: "Central American mestizo society" },
-  SV: { wEur: 0.12, lambda: 1.05, gates: { access: 1.0, legal: 1.0, safety: 0.90 }, notes: "Improved security under territorial control" },
-  NI: { wEur: 0.15, lambda: 1.00, gates: { access: 0.95, legal: 1.0, safety: 0.90 }, notes: "Central American mestizo society" },
-  BO: { wEur: 0.10, lambda: 0.95, gates: { access: 0.95, legal: 1.0, safety: 0.90 }, notes: "Indigenous majority population (Aymara, Quechua)" },
-  PY: { wEur: 0.35, lambda: 0.90, gates: { access: 1.0, legal: 1.0, safety: 0.95 }, notes: "Mestizo Guaraní/Spanish culture" },
-  CU: { wEur: 0.40, lambda: 1.20, gates: { access: 0.85, legal: 1.0, safety: 0.95 }, notes: "Tourism dating economy, Latin music and nightlife" },
-  JM: { wEur: 0.05, lambda: 0.95, gates: { access: 1.0, legal: 1.0, safety: 0.88 }, notes: "Romance tourism in Montego Bay/Negril" },
-  BS: { wEur: 0.10, lambda: 0.90, gates: { access: 1.0, legal: 1.0, safety: 0.95 }, notes: "Caribbean tourism hub, English official" },
-  BB: { wEur: 0.08, lambda: 0.90, gates: { access: 1.0, legal: 1.0, safety: 0.95 }, notes: "High human development Caribbean society" },
-  TT: { wEur: 0.05, lambda: 0.85, gates: { access: 1.0, legal: 1.0, safety: 0.88 }, notes: "Afro/Indo demographic split, carnival culture" },
-  HT: { wEur: 0.01, lambda: 1.00, gates: { access: 0.60, legal: 1.0, safety: 0.40 }, notes: "Severe humanitarian crisis, extreme physical security barrier" },
-  PR: { wEur: 0.70, lambda: 0.80, gates: { access: 1.0, legal: 1.0, safety: 0.95 }, notes: "US Commonwealth, Caribbean bilingual culture" },
-  AR: { wEur: 0.85, lambda: 0.00, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "85–90%+ European ancestral baseline, zero phenotypic novelty, chamuyo verbal gatekeeping" },
-  UY: { wEur: 0.88, lambda: 0.00, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "88%+ European baseline, high living costs, stable cosmopolitan society" },
-  CL: { wEur: 0.55, lambda: 0.40, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "High GDP/capita, stable institutional framework" },
-
-  // ── Europe ──
-  NL: { wEur: 0.85, lambda: 0.00, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "World tallest male height (183.8cm), high domestic wealth ($80k PPP), baseline parity" },
-  SE: { wEur: 0.85, lambda: -0.15, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Tall Nordic male baseline (181.5cm), strong gender egalitarianism" },
-  NO: { wEur: 0.85, lambda: -0.15, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Tall Nordic male baseline, highest sovereign wealth" },
-  DK: { wEur: 0.85, lambda: -0.15, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Tall Nordic baseline, reserved egalitarian dating" },
-  FI: { wEur: 0.90, lambda: -0.10, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Nordic egalitarian baseline" },
-  IS: { wEur: 0.90, lambda: -0.10, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Nordic insular baseline" },
-  GB: { wEur: 0.80, lambda: 0.00, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Baseline domestic European dating market" },
-  DE: { wEur: 0.85, lambda: 0.00, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Central European baseline, rational egalitarian dating" },
-  FR: { wEur: 0.80, lambda: 0.00, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Domestic baseline, cultural/linguistic fluency primacy" },
-  IT: { wEur: 0.90, lambda: 0.00, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Domestic baseline, high local male grooming" },
-  ES: { wEur: 0.85, lambda: 0.05, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Mediterranean nightlife, cosmopolitan tourism" },
-  PT: { wEur: 0.90, lambda: 0.05, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Expat/digital nomad hub (Lisbon/Porto), warm social reception" },
-  IE: { wEur: 0.88, lambda: 0.00, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "English official, tech expat center" },
-  CH: { wEur: 0.80, lambda: 0.00, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "High domestic wealth, reserved dating culture" },
-  AT: { wEur: 0.85, lambda: 0.00, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Central European Germanic baseline" },
-  BE: { wEur: 0.80, lambda: 0.00, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Cosmopolitan EU diplomatic hub" },
-  PL: { wEur: 0.95, lambda: 0.05, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "GDP PPS 85% of EU; 20-yr EU citizenship, 180cm local men, parity" },
-  CZ: { wEur: 0.95, lambda: 0.05, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "GDP PPS 91% of EU; local male economic parity" },
-  UA: { wEur: 0.95, lambda: 0.30, gates: { access: 0.95, legal: 1.0, safety: 0.85 }, notes: "High Western goodwill, wartime diaspora, martial law" },
-  RU: { wEur: 0.80, lambda: 0.00, gates: { access: 0.60, legal: 1.0, safety: 0.75 }, notes: "Tinder/Bumble 100% exit June 2023, SWIFT/Visa/Mastercard ban, FSB device forensics" },
-  BY: { wEur: 0.85, lambda: 0.00, gates: { access: 0.60, legal: 1.0, safety: 0.70 }, notes: "Tinder exit Feb 2024, Level 4 travel advisory" },
-
-  // ── Middle East & North Africa ──
-  TR: { wEur: 0.15, lambda: 0.60, gates: { access: 1.0, legal: 1.0, safety: 0.95 }, notes: "Secular Swiss civil code model, Mediterranean/Aegean expat and tourism dating" },
-  LB: { wEur: 0.10, lambda: 0.75, gates: { access: 0.90, legal: 0.85, safety: 0.85 }, notes: "Beirut cosmopolitanism, Cyprus civil marriage pipeline" },
-  AE: { wEur: 0.08, lambda: 0.60, gates: { access: 1.0, legal: 0.80, safety: 1.0 }, notes: "88% expat demographic, Abu Dhabi civil family court vs local citizen endogamy" },
-  IL: { wEur: 0.50, lambda: 0.20, gates: { access: 1.0, legal: 0.70, safety: 0.90 }, notes: "Tel Aviv secular beach dating vs Orthodox Rabbinate marriage monopoly" },
-  MA: { wEur: 0.02, lambda: 0.70, gates: { access: 0.95, legal: 0.55, safety: 0.95 }, notes: "Tourism hubs Marrakech/Tangier vs Mudawwana conversion mandate" },
-  TN: { wEur: 0.02, lambda: 0.65, gates: { access: 0.95, legal: 0.60, safety: 0.95 }, notes: "Secular Personal Status Code history, Mediterranean tourism" },
-  SA: { wEur: 0.01, lambda: 0.10, gates: { access: 0.75, legal: 0.35, safety: 0.95 }, notes: "Vision 2030 modernization vs strict Islamic personal status laws" },
-  EG: { wEur: 0.01, lambda: 0.50, gates: { access: 0.95, legal: 0.45, safety: 0.90 }, notes: "Red Sea resort hubs, Cairo cosmopolitan elite vs traditional majority" },
-  JO: { wEur: 0.01, lambda: 0.45, gates: { access: 0.95, legal: 0.45, safety: 0.90 }, notes: "Amman urban elite vs traditional bedouin tribal endogamy" },
-  DZ: { wEur: 0.01, lambda: 0.40, gates: { access: 0.85, legal: 0.40, safety: 0.90 }, notes: "Code de la Famille Art. 31 mandatory conversion, conservative society" },
-  QA: { wEur: 0.02, lambda: 0.20, gates: { access: 0.85, legal: 0.45, safety: 1.0 }, notes: "Wealthy conservative monarchy, expatriate isolation" },
-  KW: { wEur: 0.02, lambda: 0.20, gates: { access: 0.85, legal: 0.45, safety: 1.0 }, notes: "Conservative family law, high wealth" },
-  OM: { wEur: 0.02, lambda: 0.20, gates: { access: 0.85, legal: 0.50, safety: 1.0 }, notes: "Ibadi Islam, quiet conservative society" },
-  BH: { wEur: 0.02, lambda: 0.30, gates: { access: 0.90, legal: 0.55, safety: 1.0 }, notes: "Relatively liberal Gulf hub, nightlife" },
-  IQ: { wEur: 0.01, lambda: 0.20, gates: { access: 0.50, legal: 0.25, safety: 0.40 }, notes: "Sectarian conflict, conservative tribal society" },
-  SY: { wEur: 0.01, lambda: 0.20, gates: { access: 0.40, legal: 0.25, safety: 0.35 }, notes: "War devastation, conservative endogamy" },
-  YE: { wEur: 0.01, lambda: 0.10, gates: { access: 0.40, legal: 0.15, safety: 0.30 }, notes: "Houthi control, conservative tribal society" },
-
-  // ── Sub-Saharan Africa ──
-  KE: { wEur: 0.00, lambda: 1.20, gates: { access: 1.0, legal: 1.0, safety: 0.95 }, notes: "Nairobi expat capital, Mzungu status, coastal romance tourism" },
-  GH: { wEur: 0.00, lambda: 1.15, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Accra diaspora hub, Obroni status, Year of Return, high English" },
-  NG: { wEur: 0.00, lambda: 1.10, gates: { access: 0.90, legal: 0.90, safety: 0.85 }, notes: "Lagos/Abuja cosmopolitan hubs, Oyinbo status, high celebrity interest" },
-  UG: { wEur: 0.00, lambda: 1.10, gates: { access: 0.95, legal: 1.0, safety: 0.95 }, notes: "Kampala nightlife, high English, foreigner friendliness" },
-  TZ: { wEur: 0.00, lambda: 1.05, gates: { access: 0.95, legal: 1.0, safety: 0.95 }, notes: "Zanzibar/Dar es Salaam expat and tourism dating" },
-  RW: { wEur: 0.00, lambda: 1.05, gates: { access: 0.95, legal: 1.0, safety: 0.95 }, notes: "Kigali tech/expat hub, high safety and openness" },
-  ZA: { wEur: 0.08, lambda: 0.80, gates: { access: 1.0, legal: 1.0, safety: 0.85 }, notes: "Diverse multi-ethnic market, Cape Town/Joburg, Roman-Dutch law" },
-  SN: { wEur: 0.00, lambda: 0.70, gates: { access: 0.95, legal: 0.85, safety: 0.95 }, notes: "Toubab status, Teranga hospitality, secular Sufi culture" },
-  SO: { wEur: 0.00, lambda: 0.00, gates: { access: 0.40, legal: 0.10, safety: 0.35 }, notes: "100% Muslim, clan-based endogamy, Sharia enforcement" },
-  MR: { wEur: 0.00, lambda: 0.10, gates: { access: 0.60, legal: 0.15, safety: 0.80 }, notes: "Islamic Republic, strict tribal endogamy" },
-
-  // ── North America & Oceania ──
-  US: { wEur: 0.58, lambda: 0.10, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Domestic national reference anchor" },
-  CA: { wEur: 0.70, lambda: 0.05, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Multicultural Canadian baseline" },
-  AU: { wEur: 0.75, lambda: 0.00, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Multi-ethnic dating capital, high Asian out-marriage" },
-  NZ: { wEur: 0.70, lambda: 0.00, gates: { access: 1.0, legal: 1.0, safety: 1.0 }, notes: "Multi-ethnic, Māori/Pākehā/Asian integration" },
+export const whiteMaleDesirabilityByCountry: Record<string, number> = {
+  AF: 48.2, // Afghanistan
+  AX: 45, // Åland Islands
+  AL: 49.7, // Albania
+  DZ: 41.5, // Algeria
+  AS: 58.6, // American Samoa
+  AD: 38.5, // Andorra
+  AO: 75.2, // Angola
+  AI: 64.8, // Anguilla
+  AG: 65, // Antigua and Barbuda
+  AR: 39, // Argentina
+  AM: 49.8, // Armenia
+  AW: 60.7, // Aruba
+  AU: 48.6, // Australia
+  AT: 46.2, // Austria
+  AZ: 49.1, // Azerbaijan
+  BS: 62.3, // Bahamas
+  BH: 52.7, // Bahrain
+  BD: 58.4, // Bangladesh
+  BB: 65.8, // Barbados
+  BY: 42.3, // Belarus
+  BE: 46.9, // Belgium
+  BZ: 68.3, // Belize
+  BJ: 75.4, // Benin
+  BM: 48.6, // Bermuda
+  BT: 58.1, // Bhutan
+  BO: 69.6, // Bolivia
+  BA: 49.9, // Bosnia and Herzegovina
+  BW: 75.8, // Botswana
+  BR: 79.9, // Brazil
+  IO: 47, // British Indian Ocean Territory
+  VG: 63.5, // British Virgin Islands
+  BN: 48.2, // Brunei
+  BG: 47.2, // Bulgaria
+  BF: 60.4, // Burkina Faso
+  BI: 60.4, // Burundi
+  KH: 84, // Cambodia
+  CM: 75.4, // Cameroon
+  CA: 47.6, // Canada
+  CV: 74.6, // Cape Verde
+  BQ: 61.6, // Caribbean Netherlands
+  KY: 62.8, // Cayman Islands
+  CF: 60.4, // Central African Republic
+  TD: 60.4, // Chad
+  CL: 44.5, // Chile
+  CN: 39.7, // China
+  CX: 48.6, // Christmas Island
+  CC: 48.6, // Cocos (Keeling) Islands
+  CO: 90, // Colombia
+  KM: 60.4, // Comoros
+  CG: 75.1, // Congo
+  CK: 57.6, // Cook Islands
+  CR: 75.8, // Costa Rica
+  HR: 43.8, // Croatia
+  CU: 86.1, // Cuba
+  CW: 61.5, // Curaçao
+  CY: 39.9, // Cyprus
+  CZ: 44, // Czechia
+  DK: 44.8, // Denmark
+  DJ: 60.1, // Djibouti
+  DM: 66.2, // Dominica
+  DO: 89.7, // Dominican Republic
+  CD: 75.4, // DR Congo
+  EC: 80.5, // Ecuador
+  EG: 55.1, // Egypt
+  SV: 75.5, // El Salvador
+  GQ: 76.2, // Equatorial Guinea
+  ER: 60.4, // Eritrea
+  EE: 44.1, // Estonia
+  SZ: 76.2, // Eswatini
+  ET: 72.7, // Ethiopia
+  FK: 48.6, // Falkland Islands
+  FO: 45, // Faroe Islands
+  FJ: 69.3, // Fiji
+  FI: 46.2, // Finland
+  FR: 39.2, // France
+  GF: 52.1, // French Guiana
+  PF: 52.1, // French Polynesia
+  GA: 74.7, // Gabon
+  GM: 79.9, // Gambia
+  GE: 50, // Georgia
+  DE: 46.2, // Germany
+  GH: 81.6, // Ghana
+  GI: 45.8, // Gibraltar
+  GR: 40.1, // Greece
+  GL: 50.3, // Greenland
+  GD: 65.9, // Grenada
+  GP: 51.7, // Guadeloupe
+  GU: 56, // Guam
+  GT: 73.6, // Guatemala
+  GG: 45.8, // Guernsey
+  GN: 60.4, // Guinea
+  GW: 60.4, // Guinea-Bissau
+  GY: 66.9, // Guyana
+  HT: 52.9, // Haiti
+  HN: 75.5, // Honduras
+  HK: 53.3, // Hong Kong
+  HU: 44.3, // Hungary
+  IS: 45.6, // Iceland
+  IN: 61, // India
+  ID: 89.5, // Indonesia
+  IR: 49.7, // Iran
+  IQ: 42.4, // Iraq
+  IE: 47, // Ireland
+  IM: 45.8, // Isle of Man
+  IL: 45.1, // Israel
+  IT: 40, // Italy
+  CI: 75.1, // Ivory Coast
+  JM: 73.4, // Jamaica
+  JP: 46.7, // Japan
+  JE: 45.8, // Jersey
+  JO: 43.1, // Jordan
+  KZ: 50, // Kazakhstan
+  KE: 82.6, // Kenya
+  KI: 61.1, // Kiribati
+  XK: 51.2, // Kosovo
+  KW: 41.9, // Kuwait
+  KG: 52, // Kyrgyzstan
+  LA: 79.5, // Laos
+  LV: 42.6, // Latvia
+  LB: 60.2, // Lebanon
+  LS: 76.2, // Lesotho
+  LR: 76.5, // Liberia
+  LY: 42.2, // Libya
+  LI: 45.6, // Liechtenstein
+  LT: 44.2, // Lithuania
+  LU: 45.6, // Luxembourg
+  MO: 52, // Macau
+  MG: 73.5, // Madagascar
+  MW: 76.5, // Malawi
+  MY: 66.2, // Malaysia
+  MV: 56.5, // Maldives
+  ML: 60.4, // Mali
+  MT: 40.9, // Malta
+  MH: 61.1, // Marshall Islands
+  MQ: 51.6, // Martinique
+  MR: 60.1, // Mauritania
+  MU: 73.7, // Mauritius
+  YT: 52.3, // Mayotte
+  MX: 78, // Mexico
+  FM: 63.4, // Micronesia
+  MD: 56.7, // Moldova
+  MC: 38, // Monaco
+  MN: 44.9, // Mongolia
+  ME: 49.4, // Montenegro
+  MS: 65.8, // Montserrat
+  MA: 56.8, // Morocco
+  MZ: 75.2, // Mozambique
+  MM: 71.9, // Myanmar
+  NA: 76.2, // Namibia
+  NR: 60, // Nauru
+  NP: 65.6, // Nepal
+  NL: 50, // Netherlands
+  NC: 51.7, // New Caledonia
+  NZ: 47, // New Zealand
+  NI: 73.6, // Nicaragua
+  NE: 60.4, // Niger
+  NG: 76.8, // Nigeria
+  NU: 58.1, // Niue
+  NF: 48.6, // Norfolk Island
+  KP: 44.3, // North Korea
+  MK: 51.1, // North Macedonia
+  MP: 57.4, // Northern Mariana Islands
+  NO: 45.5, // Norway
+  OM: 42.3, // Oman
+  PK: 53.4, // Pakistan
+  PW: 58.1, // Palau
+  PS: 43.2, // Palestine
+  PA: 78, // Panama
+  PG: 58.3, // Papua New Guinea
+  PY: 71.6, // Paraguay
+  PE: 82.6, // Peru
+  PH: 89.5, // Philippines
+  PN: 47, // Pitcairn Islands
+  PL: 42.7, // Poland
+  PT: 45.3, // Portugal
+  PR: 51.9, // Puerto Rico
+  QA: 41.4, // Qatar
+  RE: 51.7, // Réunion
+  RO: 48, // Romania
+  RU: 39.1, // Russia
+  RW: 76.5, // Rwanda
+  BL: 51.3, // Saint Barthélemy
+  SH: 47, // Saint Helena, Ascension and Tristan da Cunha
+  KN: 64.9, // Saint Kitts and Nevis
+  LC: 65.5, // Saint Lucia
+  MF: 52.1, // Saint Martin
+  PM: 48.6, // Saint Pierre and Miquelon
+  VC: 66, // Saint Vincent and the Grenadines
+  WS: 63.1, // Samoa
+  SM: 38.9, // San Marino
+  ST: 75.2, // São Tomé and Príncipe
+  SA: 42.1, // Saudi Arabia
+  SN: 67, // Senegal
+  RS: 46.9, // Serbia
+  SC: 72.7, // Seychelles
+  SL: 76.5, // Sierra Leone
+  SG: 50.4, // Singapore
+  SX: 60.5, // Sint Maarten
+  SK: 44.2, // Slovakia
+  SI: 43.2, // Slovenia
+  SB: 63.1, // Solomon Islands
+  SO: 60.4, // Somalia
+  ZA: 68.9, // South Africa
+  KR: 36.8, // South Korea
+  SS: 60.4, // South Sudan
+  ES: 43.3, // Spain
+  LK: 63.1, // Sri Lanka
+  SD: 42.1, // Sudan
+  SR: 63.2, // Suriname
+  SJ: 44.4, // Svalbard and Jan Mayen
+  SE: 45.5, // Sweden
+  CH: 46.2, // Switzerland
+  SY: 42.9, // Syria
+  TW: 54.3, // Taiwan
+  TJ: 52, // Tajikistan
+  TZ: 79.6, // Tanzania
+  TH: 88.3, // Thailand
+  TL: 65.7, // Timor-Leste
+  TG: 75.1, // Togo
+  TK: 61, // Tokelau
+  TO: 63.1, // Tonga
+  TT: 62.6, // Trinidad and Tobago
+  TN: 58.4, // Tunisia
+  TR: 55.5, // Türkiye
+  TM: 51.2, // Turkmenistan
+  TC: 64.8, // Turks and Caicos Islands
+  TV: 61.6, // Tuvalu
+  UG: 80, // Uganda
+  UA: 58.8, // Ukraine
+  AE: 53.1, // United Arab Emirates
+  GB: 48.3, // United Kingdom
+  US: 47.6, // United States
+  UM: 47.6, // United States Minor Outlying Islands
+  VI: 63.6, // United States Virgin Islands
+  UY: 40.7, // Uruguay
+  UZ: 51.6, // Uzbekistan
+  VU: 63.1, // Vanuatu
+  VA: 41.2, // Vatican City
+  VE: 82.7, // Venezuela
+  VN: 83.1, // Vietnam
+  WF: 50.3, // Wallis and Futuna
+  EH: 43.2, // Western Sahara
+  YE: 43.2, // Yemen
+  ZM: 76.2, // Zambia
+  ZW: 76.2, // Zimbabwe
 };
 
-// Map containers populated dynamically on load
-export const whiteMalePerceptionByCountry: Record<string, number> = {};
-export const whiteMaleDesirabilityByCountry: Record<string, number> = {};
-export const whiteMalePerceptionDetails: Record<string, WmpiResult> = {};
-
-// Evaluate dynamically for all 245 countries in countries-database.json
-for (const country of countriesDatabase) {
-  const code = country.code.toUpperCase();
-  const override = COUNTRY_OVERRIDES[code];
-  const regDef = REGIONAL_DEFAULTS[country.region] ?? REGIONAL_DEFAULTS["Europe"];
-
-  const wEur = override?.wEur ?? regDef.wEur;
-  const lambda = override?.lambda ?? regDef.lambda;
-  const gates = override?.gates ?? regDef.gates;
-  const hLocal = override?.hLocal ?? country.maleHeightCm ?? 175;
-  const gdpPpp = override?.gdpPpp ?? (country.income.p50 * 12 * 2.2);
-
-  const res = computeWmpi({
-    wEur,
-    lambda,
-    hLocal,
-    gdpPpp,
-    gates,
-  });
-
-  whiteMalePerceptionByCountry[code] = res.index;
-  whiteMaleDesirabilityByCountry[code] = res.desirability;
-  whiteMalePerceptionDetails[code] = res;
-}
+export const whiteMalePerceptionDetails: Record<string, WmpiResult> = {
+  AF: {
+    D: 0,
+    pi: 0.03,
+    L: 0.55,
+    C: 1,
+    m: 0.3,
+    tau: 0.497,
+    Sh: 0.238,
+    Sy: 0.188,
+    zDes: -0.071,
+    zEff: -5.411,
+    gate: -5.339,
+    desirability: 48.2,
+    index: 1,
+  },
+  AX: {
+    D: 0,
+    pi: 0.95,
+    L: 0.15,
+    C: 0.15,
+    m: 0,
+    tau: 0.224,
+    Sh: 0.025,
+    Sy: 0,
+    zDes: -0.199,
+    zEff: -0.25,
+    gate: -0.051,
+    desirability: 45,
+    index: 43.8,
+  },
+  AL: {
+    D: 0.2,
+    pi: 0.6,
+    L: 0.75,
+    C: 0.6,
+    m: 0.3,
+    tau: 0.436,
+    Sh: 0.096,
+    Sy: 0.128,
+    zDes: -0.011,
+    zEff: -0.522,
+    gate: -0.511,
+    desirability: 49.7,
+    index: 37.2,
+  },
+  DZ: {
+    D: 0,
+    pi: 0.53,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.139,
+    Sy: 0.058,
+    zDes: -0.344,
+    zEff: -1.418,
+    gate: -1.073,
+    desirability: 41.5,
+    index: 19.5,
+  },
+  AS: {
+    D: 0.5,
+    pi: 0.45,
+    L: 0.3,
+    C: 0.85,
+    m: 0.4,
+    tau: 0.418,
+    Sh: 0.139,
+    Sy: 0.128,
+    zDes: 0.349,
+    zEff: -0.607,
+    gate: -0.955,
+    desirability: 58.6,
+    index: 35.3,
+  },
+  AD: {
+    D: -0.15,
+    pi: 0.85,
+    L: 0.6,
+    C: 0.45,
+    m: 0.1,
+    tau: 0.374,
+    Sh: 0.05,
+    Sy: 0.007,
+    zDes: -0.467,
+    zEff: -0.63,
+    gate: -0.163,
+    desirability: 38.5,
+    index: 34.8,
+  },
+  AO: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.75,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.508,
+    Sh: 0.205,
+    Sy: 0.313,
+    zDes: 1.109,
+    zEff: 0.542,
+    gate: -0.567,
+    desirability: 75.2,
+    index: 63.2,
+  },
+  AI: {
+    D: 0.7,
+    pi: 0.75,
+    L: 0.05,
+    C: 0.6,
+    m: 0.4,
+    tau: 0.315,
+    Sh: 0.139,
+    Sy: 0.089,
+    zDes: 0.612,
+    zEff: 0.168,
+    gate: -0.444,
+    desirability: 64.8,
+    index: 54.2,
+  },
+  AG: {
+    D: 0.7,
+    pi: 0.75,
+    L: 0.05,
+    C: 0.6,
+    m: 0.4,
+    tau: 0.315,
+    Sh: 0.139,
+    Sy: 0.094,
+    zDes: 0.618,
+    zEff: 0.173,
+    gate: -0.444,
+    desirability: 65,
+    index: 54.3,
+  },
+  AR: {
+    D: -0.2,
+    pi: 0.8,
+    L: 0.85,
+    C: 0.6,
+    m: 0.1,
+    tau: 0.453,
+    Sh: 0.158,
+    Sy: 0.047,
+    zDes: -0.448,
+    zEff: -0.777,
+    gate: -0.329,
+    desirability: 39,
+    index: 31.5,
+  },
+  AM: {
+    D: 0.1,
+    pi: 0.3,
+    L: 0.75,
+    C: 0.7,
+    m: 0.3,
+    tau: 0.46,
+    Sh: 0.191,
+    Sy: 0.16,
+    zDes: -0.009,
+    zEff: -1.316,
+    gate: -1.307,
+    desirability: 49.8,
+    index: 21.1,
+  },
+  AW: {
+    D: 0.5,
+    pi: 0.8,
+    L: 0,
+    C: 0.35,
+    m: 0.3,
+    tau: 0.246,
+    Sh: 0.139,
+    Sy: 0.043,
+    zDes: 0.435,
+    zEff: 0.055,
+    gate: -0.38,
+    desirability: 60.7,
+    index: 51.4,
+  },
+  AU: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.139,
+    Sy: 0,
+    zDes: -0.054,
+    zEff: -0.316,
+    gate: -0.262,
+    desirability: 48.6,
+    index: 42.2,
+  },
+  AT: {
+    D: 0,
+    pi: 0.95,
+    L: 0.15,
+    C: 0.15,
+    m: 0,
+    tau: 0.224,
+    Sh: 0.073,
+    Sy: 0,
+    zDes: -0.151,
+    zEff: -0.202,
+    gate: -0.051,
+    desirability: 46.2,
+    index: 45,
+  },
+  AZ: {
+    D: 0.1,
+    pi: 0.3,
+    L: 0.75,
+    C: 0.7,
+    m: 0.3,
+    tau: 0.46,
+    Sh: 0.158,
+    Sy: 0.168,
+    zDes: -0.034,
+    zEff: -1.341,
+    gate: -1.307,
+    desirability: 49.1,
+    index: 20.7,
+  },
+  BS: {
+    D: 0.6,
+    pi: 0.75,
+    L: 0.05,
+    C: 0.6,
+    m: 0.4,
+    tau: 0.315,
+    Sh: 0.139,
+    Sy: 0.08,
+    zDes: 0.503,
+    zEff: 0.059,
+    gate: -0.444,
+    desirability: 62.3,
+    index: 51.5,
+  },
+  BH: {
+    D: 0.3,
+    pi: 0.45,
+    L: 0.6,
+    C: 0.8,
+    m: 0.3,
+    tau: 0.458,
+    Sh: 0.205,
+    Sy: 0.062,
+    zDes: 0.109,
+    zEff: -1.136,
+    gate: -1.245,
+    desirability: 52.7,
+    index: 24.3,
+  },
+  BD: {
+    D: 0.4,
+    pi: 0.3,
+    L: 0.55,
+    C: 1,
+    m: 0.3,
+    tau: 0.497,
+    Sh: 0.247,
+    Sy: 0.188,
+    zDes: 0.337,
+    zEff: -1.266,
+    gate: -1.603,
+    desirability: 58.4,
+    index: 22,
+  },
+  BB: {
+    D: 0.7,
+    pi: 0.75,
+    L: 0.05,
+    C: 0.6,
+    m: 0.4,
+    tau: 0.315,
+    Sh: 0.096,
+    Sy: 0.173,
+    zDes: 0.654,
+    zEff: 0.21,
+    gate: -0.444,
+    desirability: 65.8,
+    index: 55.2,
+  },
+  BY: {
+    D: -0.1,
+    pi: 0.6,
+    L: 0.75,
+    C: 0.6,
+    m: 0.3,
+    tau: 0.436,
+    Sh: 0.096,
+    Sy: 0.128,
+    zDes: -0.311,
+    zEff: -1.69,
+    gate: -1.378,
+    desirability: 42.3,
+    index: 15.6,
+  },
+  BE: {
+    D: 0,
+    pi: 0.95,
+    L: 0,
+    C: 0.15,
+    m: 0,
+    tau: 0.198,
+    Sh: 0.073,
+    Sy: 0,
+    zDes: -0.125,
+    zEff: -0.176,
+    gate: -0.051,
+    desirability: 46.9,
+    index: 45.6,
+  },
+  BZ: {
+    D: 0.7,
+    pi: 0.75,
+    L: 0.05,
+    C: 0.6,
+    m: 0.4,
+    tau: 0.315,
+    Sh: 0.217,
+    Sy: 0.164,
+    zDes: 0.767,
+    zEff: 0.374,
+    gate: -0.393,
+    desirability: 68.3,
+    index: 59.2,
+  },
+  BJ: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.7,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.499,
+    Sh: 0.205,
+    Sy: 0.313,
+    zDes: 1.118,
+    zEff: 0.551,
+    gate: -0.567,
+    desirability: 75.4,
+    index: 63.4,
+  },
+  BM: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.139,
+    Sy: 0,
+    zDes: -0.054,
+    zEff: -0.159,
+    gate: -0.105,
+    desirability: 48.6,
+    index: 46,
+  },
+  BT: {
+    D: 0.4,
+    pi: 0.3,
+    L: 0.55,
+    C: 1,
+    m: 0.3,
+    tau: 0.497,
+    Sh: 0.238,
+    Sy: 0.188,
+    zDes: 0.329,
+    zEff: -0.992,
+    gate: -1.32,
+    desirability: 58.1,
+    index: 27.1,
+  },
+  BO: {
+    D: 0.8,
+    pi: 0.7,
+    L: 0.85,
+    C: 0.7,
+    m: 0.5,
+    tau: 0.477,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 0.826,
+    zEff: 0.313,
+    gate: -0.513,
+    desirability: 69.6,
+    index: 57.8,
+  },
+  BA: {
+    D: 0.2,
+    pi: 0.6,
+    L: 0.75,
+    C: 0.6,
+    m: 0.3,
+    tau: 0.436,
+    Sh: 0.096,
+    Sy: 0.133,
+    zDes: -0.006,
+    zEff: -0.517,
+    gate: -0.511,
+    desirability: 49.9,
+    index: 37.4,
+  },
+  BW: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.35,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.439,
+    Sh: 0.191,
+    Sy: 0.292,
+    zDes: 1.144,
+    zEff: 0.576,
+    gate: -0.567,
+    desirability: 75.8,
+    index: 64,
+  },
+  BR: {
+    D: 1.4,
+    pi: 0.85,
+    L: 0.9,
+    C: 0.7,
+    m: 0.5,
+    tau: 0.486,
+    Sh: 0.191,
+    Sy: 0.277,
+    zDes: 1.381,
+    zEff: 1.056,
+    gate: -0.325,
+    desirability: 79.9,
+    index: 74.2,
+  },
+  IO: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.073,
+    Sy: 0,
+    zDes: -0.119,
+    zEff: -0.435,
+    gate: -0.316,
+    desirability: 47,
+    index: 39.3,
+  },
+  VG: {
+    D: 0.7,
+    pi: 0.75,
+    L: 0.05,
+    C: 0.6,
+    m: 0.4,
+    tau: 0.315,
+    Sh: 0.139,
+    Sy: 0.028,
+    zDes: 0.552,
+    zEff: 0.108,
+    gate: -0.444,
+    desirability: 63.5,
+    index: 52.7,
+  },
+  BN: {
+    D: 0.1,
+    pi: 0.15,
+    L: 0.45,
+    C: 0.9,
+    m: 0.4,
+    tau: 0.456,
+    Sh: 0.238,
+    Sy: 0.047,
+    zDes: -0.071,
+    zEff: -2.07,
+    gate: -2,
+    desirability: 48.2,
+    index: 11.2,
+  },
+  BG: {
+    D: 0.1,
+    pi: 0.8,
+    L: 0.55,
+    C: 0.5,
+    m: 0.2,
+    tau: 0.377,
+    Sh: 0.096,
+    Sy: 0.069,
+    zDes: -0.111,
+    zEff: -0.335,
+    gate: -0.223,
+    desirability: 47.2,
+    index: 41.7,
+  },
+  BF: {
+    D: 0.5,
+    pi: 0.3,
+    L: 0.75,
+    C: 1,
+    m: 0.4,
+    tau: 0.532,
+    Sh: 0.205,
+    Sy: 0.25,
+    zDes: 0.423,
+    zEff: -0.992,
+    gate: -1.415,
+    desirability: 60.4,
+    index: 27.1,
+  },
+  BI: {
+    D: 0.5,
+    pi: 0.3,
+    L: 0.75,
+    C: 1,
+    m: 0.4,
+    tau: 0.532,
+    Sh: 0.205,
+    Sy: 0.25,
+    zDes: 0.423,
+    zEff: -0.992,
+    gate: -1.415,
+    desirability: 60.4,
+    index: 27.1,
+  },
+  KH: {
+    D: 1.5,
+    pi: 0.9,
+    L: 0.5,
+    C: 0.9,
+    m: 0.6,
+    tau: 0.465,
+    Sh: 0.247,
+    Sy: 0.375,
+    zDes: 1.657,
+    zEff: 1.449,
+    gate: -0.208,
+    desirability: 84,
+    index: 81,
+  },
+  CM: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.6,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.482,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 1.121,
+    zEff: 0.554,
+    gate: -0.567,
+    desirability: 75.4,
+    index: 63.5,
+  },
+  CA: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.096,
+    Sy: 0,
+    zDes: -0.096,
+    zEff: -0.202,
+    gate: -0.105,
+    desirability: 47.6,
+    index: 45,
+  },
+  CV: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.7,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.499,
+    Sh: 0.191,
+    Sy: 0.288,
+    zDes: 1.079,
+    zEff: 0.512,
+    gate: -0.567,
+    desirability: 74.6,
+    index: 62.5,
+  },
+  BQ: {
+    D: 0.5,
+    pi: 0.8,
+    L: 0,
+    C: 0.35,
+    m: 0.3,
+    tau: 0.246,
+    Sh: 0.139,
+    Sy: 0.078,
+    zDes: 0.471,
+    zEff: 0.091,
+    gate: -0.38,
+    desirability: 61.6,
+    index: 52.3,
+  },
+  KY: {
+    D: 0.7,
+    pi: 0.75,
+    L: 0.05,
+    C: 0.6,
+    m: 0.4,
+    tau: 0.315,
+    Sh: 0.139,
+    Sy: -0.001,
+    zDes: 0.523,
+    zEff: 0.079,
+    gate: -0.444,
+    desirability: 62.8,
+    index: 52,
+  },
+  CF: {
+    D: 0.5,
+    pi: 0.3,
+    L: 0.75,
+    C: 1,
+    m: 0.4,
+    tau: 0.532,
+    Sh: 0.205,
+    Sy: 0.25,
+    zDes: 0.423,
+    zEff: -0.992,
+    gate: -1.415,
+    desirability: 60.4,
+    index: 27.1,
+  },
+  TD: {
+    D: 0.5,
+    pi: 0.3,
+    L: 0.75,
+    C: 1,
+    m: 0.4,
+    tau: 0.532,
+    Sh: 0.205,
+    Sy: 0.25,
+    zDes: 0.423,
+    zEff: -0.992,
+    gate: -1.415,
+    desirability: 60.4,
+    index: 27.1,
+  },
+  CL: {
+    D: 0,
+    pi: 0.8,
+    L: 0.85,
+    C: 0.6,
+    m: 0.1,
+    tau: 0.453,
+    Sh: 0.191,
+    Sy: 0.04,
+    zDes: -0.223,
+    zEff: -0.551,
+    gate: -0.329,
+    desirability: 44.5,
+    index: 36.6,
+  },
+  CN: {
+    D: -0.1,
+    pi: 0.84,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.175,
+    Sy: 0.047,
+    zDes: -0.418,
+    zEff: -0.944,
+    gate: -0.526,
+    desirability: 39.7,
+    index: 28,
+  },
+  CX: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.139,
+    Sy: 0,
+    zDes: -0.054,
+    zEff: -0.316,
+    gate: -0.262,
+    desirability: 48.6,
+    index: 42.2,
+  },
+  CC: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.139,
+    Sy: 0,
+    zDes: -0.054,
+    zEff: -0.316,
+    gate: -0.262,
+    desirability: 48.6,
+    index: 42.2,
+  },
+  CO: {
+    D: 2.16,
+    pi: 0.85,
+    L: 0.85,
+    C: 0.7,
+    m: 0.5,
+    tau: 0.477,
+    Sh: 0.217,
+    Sy: 0.296,
+    zDes: 2.201,
+    zEff: 1.815,
+    gate: -0.386,
+    desirability: 90,
+    index: 86,
+  },
+  KM: {
+    D: 0.5,
+    pi: 0.3,
+    L: 0.75,
+    C: 1,
+    m: 0.4,
+    tau: 0.532,
+    Sh: 0.205,
+    Sy: 0.25,
+    zDes: 0.423,
+    zEff: -0.992,
+    gate: -1.415,
+    desirability: 60.4,
+    index: 27.1,
+  },
+  CG: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.7,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.499,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 1.104,
+    zEff: 0.537,
+    gate: -0.567,
+    desirability: 75.1,
+    index: 63.1,
+  },
+  CK: {
+    D: 0.5,
+    pi: 0.45,
+    L: 0.3,
+    C: 0.85,
+    m: 0.4,
+    tau: 0.418,
+    Sh: 0.139,
+    Sy: 0.087,
+    zDes: 0.308,
+    zEff: -0.647,
+    gate: -0.955,
+    desirability: 57.6,
+    index: 34.4,
+  },
+  CR: {
+    D: 1.2,
+    pi: 0.85,
+    L: 0.85,
+    C: 0.7,
+    m: 0.5,
+    tau: 0.477,
+    Sh: 0.191,
+    Sy: 0.227,
+    zDes: 1.141,
+    zEff: 0.873,
+    gate: -0.268,
+    desirability: 75.8,
+    index: 70.5,
+  },
+  HR: {
+    D: 0,
+    pi: 0.8,
+    L: 0.55,
+    C: 0.5,
+    m: 0.2,
+    tau: 0.377,
+    Sh: 0.073,
+    Sy: 0.056,
+    zDes: -0.248,
+    zEff: -0.471,
+    gate: -0.223,
+    desirability: 43.8,
+    index: 38.4,
+  },
+  CU: {
+    D: 1.8,
+    pi: 0.85,
+    L: 0.85,
+    C: 0.7,
+    m: 0.5,
+    tau: 0.477,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 1.826,
+    zEff: 1.507,
+    gate: -0.319,
+    desirability: 86.1,
+    index: 81.9,
+  },
+  CW: {
+    D: 0.5,
+    pi: 0.8,
+    L: 0,
+    C: 0.35,
+    m: 0.3,
+    tau: 0.246,
+    Sh: 0.139,
+    Sy: 0.077,
+    zDes: 0.47,
+    zEff: 0.09,
+    gate: -0.38,
+    desirability: 61.5,
+    index: 52.2,
+  },
+  CY: {
+    D: -0.15,
+    pi: 0.85,
+    L: 0.6,
+    C: 0.45,
+    m: 0.1,
+    tau: 0.374,
+    Sh: 0.096,
+    Sy: 0.018,
+    zDes: -0.409,
+    zEff: -0.572,
+    gate: -0.163,
+    desirability: 39.9,
+    index: 36.1,
+  },
+  CZ: {
+    D: 0,
+    pi: 0.8,
+    L: 0.55,
+    C: 0.5,
+    m: 0.2,
+    tau: 0.377,
+    Sh: 0.096,
+    Sy: 0.041,
+    zDes: -0.239,
+    zEff: -0.463,
+    gate: -0.223,
+    desirability: 44,
+    index: 38.6,
+  },
+  DK: {
+    D: 0,
+    pi: 0.95,
+    L: 0.05,
+    C: 0.15,
+    m: 0,
+    tau: 0.207,
+    Sh: 0,
+    Sy: 0,
+    zDes: -0.207,
+    zEff: -0.258,
+    gate: -0.051,
+    desirability: 44.8,
+    index: 43.6,
+  },
+  DJ: {
+    D: 0.5,
+    pi: 0.3,
+    L: 0.75,
+    C: 1,
+    m: 0.4,
+    tau: 0.532,
+    Sh: 0.191,
+    Sy: 0.25,
+    zDes: 0.409,
+    zEff: -1.006,
+    gate: -1.415,
+    desirability: 60.1,
+    index: 26.8,
+  },
+  DM: {
+    D: 0.6,
+    pi: 0.75,
+    L: 0.05,
+    C: 0.6,
+    m: 0.4,
+    tau: 0.315,
+    Sh: 0.139,
+    Sy: 0.25,
+    zDes: 0.674,
+    zEff: 0.23,
+    gate: -0.444,
+    desirability: 66.2,
+    index: 55.7,
+  },
+  DO: {
+    D: 2.16,
+    pi: 0.85,
+    L: 0.85,
+    C: 0.7,
+    m: 0.5,
+    tau: 0.477,
+    Sh: 0.191,
+    Sy: 0.292,
+    zDes: 2.169,
+    zEff: 1.901,
+    gate: -0.268,
+    desirability: 89.7,
+    index: 87,
+  },
+  CD: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.7,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.499,
+    Sh: 0.205,
+    Sy: 0.313,
+    zDes: 1.118,
+    zEff: 0.551,
+    gate: -0.567,
+    desirability: 75.4,
+    index: 63.4,
+  },
+  EC: {
+    D: 1.4,
+    pi: 0.85,
+    L: 0.85,
+    C: 0.7,
+    m: 0.5,
+    tau: 0.477,
+    Sh: 0.191,
+    Sy: 0.305,
+    zDes: 1.418,
+    zEff: 1.15,
+    gate: -0.268,
+    desirability: 80.5,
+    index: 76,
+  },
+  EG: {
+    D: 0.3,
+    pi: 0.3,
+    L: 0.6,
+    C: 0.8,
+    m: 0.3,
+    tau: 0.458,
+    Sh: 0.175,
+    Sy: 0.188,
+    zDes: 0.204,
+    zEff: -1.446,
+    gate: -1.65,
+    desirability: 55.1,
+    index: 19.1,
+  },
+  SV: {
+    D: 1.1,
+    pi: 0.85,
+    L: 0.85,
+    C: 0.7,
+    m: 0.5,
+    tau: 0.477,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 1.126,
+    zEff: 0.858,
+    gate: -0.268,
+    desirability: 75.5,
+    index: 70.2,
+  },
+  GQ: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.35,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.439,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 1.164,
+    zEff: 0.597,
+    gate: -0.567,
+    desirability: 76.2,
+    index: 64.5,
+  },
+  ER: {
+    D: 0.5,
+    pi: 0.3,
+    L: 0.75,
+    C: 1,
+    m: 0.4,
+    tau: 0.532,
+    Sh: 0.205,
+    Sy: 0.25,
+    zDes: 0.423,
+    zEff: -0.992,
+    gate: -1.415,
+    desirability: 60.4,
+    index: 27.1,
+  },
+  EE: {
+    D: 0,
+    pi: 0.8,
+    L: 0.55,
+    C: 0.5,
+    m: 0.2,
+    tau: 0.377,
+    Sh: 0.096,
+    Sy: 0.043,
+    zDes: -0.238,
+    zEff: -0.461,
+    gate: -0.223,
+    desirability: 44.1,
+    index: 38.7,
+  },
+  SZ: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.35,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.439,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 1.164,
+    zEff: 0.597,
+    gate: -0.567,
+    desirability: 76.2,
+    index: 64.5,
+  },
+  ET: {
+    D: 0.9,
+    pi: 0.55,
+    L: 0.35,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.439,
+    Sh: 0.205,
+    Sy: 0.313,
+    zDes: 0.979,
+    zEff: 0.17,
+    gate: -0.809,
+    desirability: 72.7,
+    index: 54.2,
+  },
+  FK: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.139,
+    Sy: 0,
+    zDes: -0.054,
+    zEff: -0.265,
+    gate: -0.211,
+    desirability: 48.6,
+    index: 43.4,
+  },
+  FO: {
+    D: 0,
+    pi: 0.95,
+    L: 0.15,
+    C: 0.15,
+    m: 0,
+    tau: 0.224,
+    Sh: 0.025,
+    Sy: 0,
+    zDes: -0.199,
+    zEff: -0.25,
+    gate: -0.051,
+    desirability: 45,
+    index: 43.8,
+  },
+  FJ: {
+    D: 0.8,
+    pi: 0.45,
+    L: 0.3,
+    C: 0.85,
+    m: 0.4,
+    tau: 0.418,
+    Sh: 0.191,
+    Sy: 0.244,
+    zDes: 0.816,
+    zEff: -0.139,
+    gate: -0.955,
+    desirability: 69.3,
+    index: 46.5,
+  },
+  FI: {
+    D: 0,
+    pi: 0.95,
+    L: 0.15,
+    C: 0.15,
+    m: 0,
+    tau: 0.224,
+    Sh: 0.073,
+    Sy: 0,
+    zDes: -0.151,
+    zEff: -0.202,
+    gate: -0.051,
+    desirability: 46.2,
+    index: 45,
+  },
+  FR: {
+    D: -0.2,
+    pi: 0.85,
+    L: 0.65,
+    C: 0.45,
+    m: 0.1,
+    tau: 0.382,
+    Sh: 0.139,
+    Sy: 0.004,
+    zDes: -0.44,
+    zEff: -0.602,
+    gate: -0.163,
+    desirability: 39.2,
+    index: 35.4,
+  },
+  GF: {
+    D: 0.3,
+    pi: 0.7,
+    L: 0.6,
+    C: 0.5,
+    m: 0.1,
+    tau: 0.386,
+    Sh: 0.139,
+    Sy: 0.031,
+    zDes: 0.084,
+    zEff: -0.378,
+    gate: -0.462,
+    desirability: 52.1,
+    index: 40.7,
+  },
+  PF: {
+    D: 0.3,
+    pi: 0.7,
+    L: 0.6,
+    C: 0.5,
+    m: 0.1,
+    tau: 0.386,
+    Sh: 0.139,
+    Sy: 0.032,
+    zDes: 0.085,
+    zEff: -0.429,
+    gate: -0.513,
+    desirability: 52.1,
+    index: 39.4,
+  },
+  GA: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.7,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.499,
+    Sh: 0.191,
+    Sy: 0.292,
+    zDes: 1.083,
+    zEff: 0.516,
+    gate: -0.567,
+    desirability: 74.7,
+    index: 62.6,
+  },
+  GM: {
+    D: 1.3,
+    pi: 0.5,
+    L: 0.35,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.439,
+    Sh: 0.205,
+    Sy: 0.313,
+    zDes: 1.379,
+    zEff: 0.475,
+    gate: -0.904,
+    desirability: 79.9,
+    index: 61.6,
+  },
+  GE: {
+    D: 0.1,
+    pi: 0.3,
+    L: 0.75,
+    C: 0.7,
+    m: 0.3,
+    tau: 0.46,
+    Sh: 0.191,
+    Sy: 0.168,
+    zDes: -0.001,
+    zEff: -1.651,
+    gate: -1.65,
+    desirability: 50,
+    index: 16.1,
+  },
+  DE: {
+    D: 0,
+    pi: 0.95,
+    L: 0.15,
+    C: 0.15,
+    m: 0,
+    tau: 0.224,
+    Sh: 0.073,
+    Sy: 0,
+    zDes: -0.151,
+    zEff: -0.202,
+    gate: -0.051,
+    desirability: 46.2,
+    index: 45,
+  },
+  GH: {
+    D: 1.4,
+    pi: 0.7,
+    L: 0.2,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.413,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 1.49,
+    zEff: 0.923,
+    gate: -0.567,
+    desirability: 81.6,
+    index: 71.6,
+  },
+  GI: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.025,
+    Sy: 0,
+    zDes: -0.168,
+    zEff: -0.273,
+    gate: -0.105,
+    desirability: 45.8,
+    index: 43.2,
+  },
+  GR: {
+    D: -0.15,
+    pi: 0.85,
+    L: 0.6,
+    C: 0.45,
+    m: 0.1,
+    tau: 0.374,
+    Sh: 0.096,
+    Sy: 0.025,
+    zDes: -0.403,
+    zEff: -0.565,
+    gate: -0.163,
+    desirability: 40.1,
+    index: 36.2,
+  },
+  GL: {
+    D: 0.2,
+    pi: 0.6,
+    L: 0.5,
+    C: 0.6,
+    m: 0,
+    tau: 0.393,
+    Sh: 0.205,
+    Sy: 0,
+    zDes: 0.012,
+    zEff: -0.499,
+    gate: -0.511,
+    desirability: 50.3,
+    index: 37.8,
+  },
+  GD: {
+    D: 0.7,
+    pi: 0.75,
+    L: 0.05,
+    C: 0.6,
+    m: 0.4,
+    tau: 0.315,
+    Sh: 0.073,
+    Sy: 0.202,
+    zDes: 0.661,
+    zEff: 0.216,
+    gate: -0.444,
+    desirability: 65.9,
+    index: 55.4,
+  },
+  GP: {
+    D: 0.3,
+    pi: 0.7,
+    L: 0.6,
+    C: 0.5,
+    m: 0.1,
+    tau: 0.386,
+    Sh: 0.139,
+    Sy: 0.014,
+    zDes: 0.066,
+    zEff: -0.447,
+    gate: -0.513,
+    desirability: 51.7,
+    index: 39,
+  },
+  GU: {
+    D: 0.5,
+    pi: 0.45,
+    L: 0.3,
+    C: 0.85,
+    m: 0.4,
+    tau: 0.418,
+    Sh: 0.096,
+    Sy: 0.063,
+    zDes: 0.242,
+    zEff: -0.713,
+    gate: -0.955,
+    desirability: 56,
+    index: 32.9,
+  },
+  GT: {
+    D: 1,
+    pi: 0.85,
+    L: 0.85,
+    C: 0.7,
+    m: 0.5,
+    tau: 0.477,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 1.026,
+    zEff: 0.701,
+    gate: -0.325,
+    desirability: 73.6,
+    index: 66.8,
+  },
+  GG: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.025,
+    Sy: 0,
+    zDes: -0.168,
+    zEff: -0.273,
+    gate: -0.105,
+    desirability: 45.8,
+    index: 43.2,
+  },
+  GN: {
+    D: 0.5,
+    pi: 0.3,
+    L: 0.75,
+    C: 1,
+    m: 0.4,
+    tau: 0.532,
+    Sh: 0.205,
+    Sy: 0.25,
+    zDes: 0.423,
+    zEff: -0.992,
+    gate: -1.415,
+    desirability: 60.4,
+    index: 27.1,
+  },
+  GW: {
+    D: 0.5,
+    pi: 0.3,
+    L: 0.75,
+    C: 1,
+    m: 0.4,
+    tau: 0.532,
+    Sh: 0.205,
+    Sy: 0.25,
+    zDes: 0.423,
+    zEff: -0.992,
+    gate: -1.415,
+    desirability: 60.4,
+    index: 27.1,
+  },
+  GY: {
+    D: 0.7,
+    pi: 0.75,
+    L: 0.05,
+    C: 0.6,
+    m: 0.4,
+    tau: 0.315,
+    Sh: 0.139,
+    Sy: 0.179,
+    zDes: 0.703,
+    zEff: 0.31,
+    gate: -0.393,
+    desirability: 66.9,
+    index: 57.7,
+  },
+  HT: {
+    D: 0.3,
+    pi: 0.7,
+    L: 0.6,
+    C: 0.5,
+    m: 0.1,
+    tau: 0.386,
+    Sh: 0.139,
+    Sy: 0.063,
+    zDes: 0.115,
+    zEff: -1.668,
+    gate: -1.784,
+    desirability: 52.9,
+    index: 15.9,
+  },
+  HN: {
+    D: 1.1,
+    pi: 0.85,
+    L: 0.85,
+    C: 0.7,
+    m: 0.5,
+    tau: 0.477,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 1.126,
+    zEff: 0.801,
+    gate: -0.325,
+    desirability: 75.5,
+    index: 69,
+  },
+  HK: {
+    D: 0.3,
+    pi: 0.6,
+    L: 0.15,
+    C: 0.8,
+    m: 0.1,
+    tau: 0.38,
+    Sh: 0.205,
+    Sy: 0.007,
+    zDes: 0.132,
+    zEff: -0.482,
+    gate: -0.613,
+    desirability: 53.3,
+    index: 38.2,
+  },
+  HU: {
+    D: 0,
+    pi: 0.8,
+    L: 0.55,
+    C: 0.5,
+    m: 0.2,
+    tau: 0.377,
+    Sh: 0.096,
+    Sy: 0.051,
+    zDes: -0.23,
+    zEff: -0.453,
+    gate: -0.223,
+    desirability: 44.3,
+    index: 38.9,
+  },
+  IS: {
+    D: 0,
+    pi: 0.95,
+    L: 0.15,
+    C: 0.15,
+    m: 0,
+    tau: 0.224,
+    Sh: 0.05,
+    Sy: 0,
+    zDes: -0.175,
+    zEff: -0.226,
+    gate: -0.051,
+    desirability: 45.6,
+    index: 44.4,
+  },
+  IN: {
+    D: 0.5,
+    pi: 0.22,
+    L: 0.45,
+    C: 1,
+    m: 0.3,
+    tau: 0.48,
+    Sh: 0.238,
+    Sy: 0.188,
+    zDes: 0.446,
+    zEff: -1.266,
+    gate: -1.712,
+    desirability: 61,
+    index: 22,
+  },
+  ID: {
+    D: 1.99,
+    pi: 0.8,
+    L: 0.5,
+    C: 0.9,
+    m: 0.6,
+    tau: 0.465,
+    Sh: 0.238,
+    Sy: 0.375,
+    zDes: 2.141,
+    zEff: 1.815,
+    gate: -0.326,
+    desirability: 89.5,
+    index: 86,
+  },
+  IR: {
+    D: 0.3,
+    pi: 0.53,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.175,
+    Sy: 0.055,
+    zDes: -0.01,
+    zEff: -1.291,
+    gate: -1.281,
+    desirability: 49.7,
+    index: 21.6,
+  },
+  IQ: {
+    D: 0,
+    pi: 0.1,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.175,
+    Sy: 0.061,
+    zDes: -0.305,
+    zEff: -4.217,
+    gate: -3.912,
+    desirability: 42.4,
+    index: 1.5,
+  },
+  IE: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.073,
+    Sy: 0,
+    zDes: -0.119,
+    zEff: -0.225,
+    gate: -0.105,
+    desirability: 47,
+    index: 44.4,
+  },
+  IM: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.025,
+    Sy: 0,
+    zDes: -0.168,
+    zEff: -0.273,
+    gate: -0.105,
+    desirability: 45.8,
+    index: 43.2,
+  },
+  IL: {
+    D: 0,
+    pi: 0.4,
+    L: 0.25,
+    C: 0.6,
+    m: 0.3,
+    tau: 0.349,
+    Sh: 0.139,
+    Sy: 0.016,
+    zDes: -0.195,
+    zEff: -1.558,
+    gate: -1.363,
+    desirability: 45.1,
+    index: 17.4,
+  },
+  IT: {
+    D: -0.2,
+    pi: 0.85,
+    L: 0.6,
+    C: 0.45,
+    m: 0.1,
+    tau: 0.374,
+    Sh: 0.158,
+    Sy: 0.012,
+    zDes: -0.405,
+    zEff: -0.567,
+    gate: -0.163,
+    desirability: 40,
+    index: 36.2,
+  },
+  CI: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.7,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.499,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 1.104,
+    zEff: 0.537,
+    gate: -0.567,
+    desirability: 75.1,
+    index: 63.1,
+  },
+  JM: {
+    D: 1,
+    pi: 0.75,
+    L: 0.05,
+    C: 0.6,
+    m: 0.4,
+    tau: 0.315,
+    Sh: 0.139,
+    Sy: 0.193,
+    zDes: 1.017,
+    zEff: 0.601,
+    gate: -0.416,
+    desirability: 73.4,
+    index: 64.6,
+  },
+  JP: {
+    D: 0.2,
+    pi: 0.54,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.205,
+    Sy: 0.005,
+    zDes: -0.131,
+    zEff: -0.847,
+    gate: -0.717,
+    desirability: 46.7,
+    index: 30,
+  },
+  JE: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.025,
+    Sy: 0,
+    zDes: -0.168,
+    zEff: -0.273,
+    gate: -0.105,
+    desirability: 45.8,
+    index: 43.2,
+  },
+  JO: {
+    D: 0,
+    pi: 0.53,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.205,
+    Sy: 0.056,
+    zDes: -0.28,
+    zEff: -1.353,
+    gate: -1.073,
+    desirability: 43.1,
+    index: 20.5,
+  },
+  KZ: {
+    D: 0.2,
+    pi: 0.3,
+    L: 0.85,
+    C: 0.85,
+    m: 0.3,
+    tau: 0.513,
+    Sh: 0.175,
+    Sy: 0.136,
+    zDes: -0.002,
+    zEff: -1.42,
+    gate: -1.418,
+    desirability: 50,
+    index: 19.5,
+  },
+  KE: {
+    D: 1.5,
+    pi: 0.7,
+    L: 0.2,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.413,
+    Sh: 0.158,
+    Sy: 0.313,
+    zDes: 1.557,
+    zEff: 0.99,
+    gate: -0.567,
+    desirability: 82.6,
+    index: 72.9,
+  },
+  KI: {
+    D: 0.5,
+    pi: 0.45,
+    L: 0.3,
+    C: 0.85,
+    m: 0.4,
+    tau: 0.418,
+    Sh: 0.139,
+    Sy: 0.232,
+    zDes: 0.452,
+    zEff: -0.503,
+    gate: -0.955,
+    desirability: 61.1,
+    index: 37.7,
+  },
+  XK: {
+    D: 0.2,
+    pi: 0.6,
+    L: 0.75,
+    C: 0.6,
+    m: 0.3,
+    tau: 0.436,
+    Sh: 0.139,
+    Sy: 0.145,
+    zDes: 0.048,
+    zEff: -0.462,
+    gate: -0.511,
+    desirability: 51.2,
+    index: 38.6,
+  },
+  KW: {
+    D: 0,
+    pi: 0.53,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.205,
+    Sy: 0.011,
+    zDes: -0.325,
+    zEff: -1.399,
+    gate: -1.073,
+    desirability: 41.9,
+    index: 19.8,
+  },
+  KG: {
+    D: 0.2,
+    pi: 0.3,
+    L: 0.85,
+    C: 0.85,
+    m: 0.3,
+    tau: 0.513,
+    Sh: 0.205,
+    Sy: 0.188,
+    zDes: 0.079,
+    zEff: -1.339,
+    gate: -1.418,
+    desirability: 52,
+    index: 20.8,
+  },
+  LA: {
+    D: 1.2,
+    pi: 0.9,
+    L: 0.5,
+    C: 0.9,
+    m: 0.6,
+    tau: 0.465,
+    Sh: 0.247,
+    Sy: 0.375,
+    zDes: 1.357,
+    zEff: 1.149,
+    gate: -0.208,
+    desirability: 79.5,
+    index: 75.9,
+  },
+  LV: {
+    D: 0,
+    pi: 0.8,
+    L: 0.55,
+    C: 0.5,
+    m: 0.2,
+    tau: 0.377,
+    Sh: 0.025,
+    Sy: 0.056,
+    zDes: -0.297,
+    zEff: -0.52,
+    gate: -0.223,
+    desirability: 42.6,
+    index: 37.3,
+  },
+  LB: {
+    D: 0.5,
+    pi: 0.5,
+    L: 0.6,
+    C: 0.8,
+    m: 0.3,
+    tau: 0.458,
+    Sh: 0.191,
+    Sy: 0.183,
+    zDes: 0.415,
+    zEff: -0.724,
+    gate: -1.139,
+    desirability: 60.2,
+    index: 32.7,
+  },
+  LS: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.35,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.439,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 1.164,
+    zEff: 0.597,
+    gate: -0.567,
+    desirability: 76.2,
+    index: 64.5,
+  },
+  LR: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.35,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.439,
+    Sh: 0.205,
+    Sy: 0.313,
+    zDes: 1.179,
+    zEff: 0.611,
+    gate: -0.567,
+    desirability: 76.5,
+    index: 64.8,
+  },
+  LY: {
+    D: 0,
+    pi: 0.15,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.175,
+    Sy: 0.052,
+    zDes: -0.314,
+    zEff: -2.657,
+    gate: -2.343,
+    desirability: 42.2,
+    index: 6.6,
+  },
+  LI: {
+    D: 0,
+    pi: 0.95,
+    L: 0.15,
+    C: 0.15,
+    m: 0,
+    tau: 0.224,
+    Sh: 0.05,
+    Sy: 0,
+    zDes: -0.175,
+    zEff: -0.226,
+    gate: -0.051,
+    desirability: 45.6,
+    index: 44.4,
+  },
+  LT: {
+    D: 0,
+    pi: 0.8,
+    L: 0.55,
+    C: 0.5,
+    m: 0.2,
+    tau: 0.377,
+    Sh: 0.096,
+    Sy: 0.049,
+    zDes: -0.232,
+    zEff: -0.455,
+    gate: -0.223,
+    desirability: 44.2,
+    index: 38.8,
+  },
+  LU: {
+    D: 0,
+    pi: 0.95,
+    L: 0.15,
+    C: 0.15,
+    m: 0,
+    tau: 0.224,
+    Sh: 0.05,
+    Sy: 0,
+    zDes: -0.175,
+    zEff: -0.226,
+    gate: -0.051,
+    desirability: 45.6,
+    index: 44.4,
+  },
+  MO: {
+    D: 0.3,
+    pi: 0.6,
+    L: 0.35,
+    C: 0.8,
+    m: 0.1,
+    tau: 0.415,
+    Sh: 0.205,
+    Sy: -0.01,
+    zDes: 0.08,
+    zEff: -0.533,
+    gate: -0.613,
+    desirability: 52,
+    index: 37,
+  },
+  MG: {
+    D: 1,
+    pi: 0.7,
+    L: 0.7,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.499,
+    Sh: 0.205,
+    Sy: 0.313,
+    zDes: 1.018,
+    zEff: 0.451,
+    gate: -0.567,
+    desirability: 73.5,
+    index: 61.1,
+  },
+  MW: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.35,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.439,
+    Sh: 0.205,
+    Sy: 0.313,
+    zDes: 1.179,
+    zEff: 0.611,
+    gate: -0.567,
+    desirability: 76.5,
+    index: 64.8,
+  },
+  MY: {
+    D: 0.7,
+    pi: 0.5,
+    L: 0.2,
+    C: 0.9,
+    m: 0.4,
+    tau: 0.413,
+    Sh: 0.238,
+    Sy: 0.145,
+    zDes: 0.671,
+    zEff: -0.125,
+    gate: -0.796,
+    desirability: 66.2,
+    index: 46.9,
+  },
+  MV: {
+    D: 0.4,
+    pi: 0.1,
+    L: 0.55,
+    C: 1,
+    m: 0.3,
+    tau: 0.497,
+    Sh: 0.254,
+    Sy: 0.104,
+    zDes: 0.261,
+    zEff: -2.144,
+    gate: -2.405,
+    desirability: 56.5,
+    index: 10.5,
+  },
+  ML: {
+    D: 0.5,
+    pi: 0.3,
+    L: 0.75,
+    C: 1,
+    m: 0.4,
+    tau: 0.532,
+    Sh: 0.205,
+    Sy: 0.25,
+    zDes: 0.423,
+    zEff: -0.992,
+    gate: -1.415,
+    desirability: 60.4,
+    index: 27.1,
+  },
+  MT: {
+    D: -0.15,
+    pi: 0.85,
+    L: 0.6,
+    C: 0.45,
+    m: 0.1,
+    tau: 0.374,
+    Sh: 0.139,
+    Sy: 0.016,
+    zDes: -0.369,
+    zEff: -0.532,
+    gate: -0.163,
+    desirability: 40.9,
+    index: 37,
+  },
+  MH: {
+    D: 0.5,
+    pi: 0.45,
+    L: 0.3,
+    C: 0.85,
+    m: 0.4,
+    tau: 0.418,
+    Sh: 0.139,
+    Sy: 0.232,
+    zDes: 0.453,
+    zEff: -0.502,
+    gate: -0.955,
+    desirability: 61.1,
+    index: 37.7,
+  },
+  MQ: {
+    D: 0.3,
+    pi: 0.7,
+    L: 0.6,
+    C: 0.5,
+    m: 0.1,
+    tau: 0.386,
+    Sh: 0.139,
+    Sy: 0.01,
+    zDes: 0.063,
+    zEff: -0.45,
+    gate: -0.513,
+    desirability: 51.6,
+    index: 38.9,
+  },
+  MR: {
+    D: 0.5,
+    pi: 0.1,
+    L: 0.75,
+    C: 1,
+    m: 0.4,
+    tau: 0.532,
+    Sh: 0.191,
+    Sy: 0.25,
+    zDes: 0.409,
+    zEff: -2.105,
+    gate: -2.513,
+    desirability: 60.1,
+    index: 10.9,
+  },
+  MU: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.35,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.439,
+    Sh: 0.191,
+    Sy: 0.176,
+    zDes: 1.028,
+    zEff: 0.461,
+    gate: -0.567,
+    desirability: 73.7,
+    index: 61.3,
+  },
+  YT: {
+    D: 0.3,
+    pi: 0.7,
+    L: 0.6,
+    C: 0.5,
+    m: 0.1,
+    tau: 0.386,
+    Sh: 0.139,
+    Sy: 0.041,
+    zDes: 0.094,
+    zEff: -0.474,
+    gate: -0.567,
+    desirability: 52.3,
+    index: 38.4,
+  },
+  MX: {
+    D: 1.3,
+    pi: 0.85,
+    L: 0.85,
+    C: 0.7,
+    m: 0.5,
+    tau: 0.477,
+    Sh: 0.191,
+    Sy: 0.254,
+    zDes: 1.267,
+    zEff: 0.977,
+    gate: -0.29,
+    desirability: 78,
+    index: 72.7,
+  },
+  FM: {
+    D: 0.5,
+    pi: 0.45,
+    L: 0.3,
+    C: 0.85,
+    m: 0.4,
+    tau: 0.418,
+    Sh: 0.217,
+    Sy: 0.25,
+    zDes: 0.549,
+    zEff: -0.406,
+    gate: -0.955,
+    desirability: 63.4,
+    index: 40,
+  },
+  MD: {
+    D: 0.4,
+    pi: 0.6,
+    L: 0.75,
+    C: 0.6,
+    m: 0.3,
+    tau: 0.436,
+    Sh: 0.158,
+    Sy: 0.148,
+    zDes: 0.27,
+    zEff: -0.241,
+    gate: -0.511,
+    desirability: 56.7,
+    index: 44,
+  },
+  MC: {
+    D: -0.15,
+    pi: 0.85,
+    L: 0.6,
+    C: 0.45,
+    m: 0.1,
+    tau: 0.374,
+    Sh: 0.05,
+    Sy: -0.014,
+    zDes: -0.488,
+    zEff: -0.65,
+    gate: -0.163,
+    desirability: 38,
+    index: 34.3,
+  },
+  MN: {
+    D: 0.1,
+    pi: 0.72,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.175,
+    Sy: 0.061,
+    zDes: -0.205,
+    zEff: -0.631,
+    gate: -0.427,
+    desirability: 44.9,
+    index: 34.7,
+  },
+  ME: {
+    D: 0.2,
+    pi: 0.6,
+    L: 0.75,
+    C: 0.6,
+    m: 0.3,
+    tau: 0.436,
+    Sh: 0.096,
+    Sy: 0.114,
+    zDes: -0.025,
+    zEff: -0.536,
+    gate: -0.511,
+    desirability: 49.4,
+    index: 36.9,
+  },
+  MS: {
+    D: 0.7,
+    pi: 0.75,
+    L: 0.05,
+    C: 0.6,
+    m: 0.4,
+    tau: 0.315,
+    Sh: 0.073,
+    Sy: 0.196,
+    zDes: 0.655,
+    zEff: 0.211,
+    gate: -0.444,
+    desirability: 65.8,
+    index: 55.2,
+  },
+  MA: {
+    D: 0.4,
+    pi: 0.35,
+    L: 0.6,
+    C: 0.8,
+    m: 0.3,
+    tau: 0.458,
+    Sh: 0.158,
+    Sy: 0.175,
+    zDes: 0.275,
+    zEff: -1.221,
+    gate: -1.496,
+    desirability: 56.8,
+    index: 22.8,
+  },
+  MZ: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.75,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.508,
+    Sh: 0.205,
+    Sy: 0.313,
+    zDes: 1.109,
+    zEff: 0.542,
+    gate: -0.567,
+    desirability: 75.2,
+    index: 63.2,
+  },
+  MM: {
+    D: 0.9,
+    pi: 0.6,
+    L: 0.45,
+    C: 0.9,
+    m: 0.4,
+    tau: 0.456,
+    Sh: 0.247,
+    Sy: 0.25,
+    zDes: 0.941,
+    zEff: -0.016,
+    gate: -0.957,
+    desirability: 71.9,
+    index: 49.6,
+  },
+  NA: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.35,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.439,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 1.164,
+    zEff: 0.597,
+    gate: -0.567,
+    desirability: 76.2,
+    index: 64.5,
+  },
+  NR: {
+    D: 0.5,
+    pi: 0.45,
+    L: 0.3,
+    C: 0.85,
+    m: 0.4,
+    tau: 0.418,
+    Sh: 0.139,
+    Sy: 0.186,
+    zDes: 0.407,
+    zEff: -0.548,
+    gate: -0.955,
+    desirability: 60,
+    index: 36.6,
+  },
+  NP: {
+    D: 0.7,
+    pi: 0.35,
+    L: 0.55,
+    C: 1,
+    m: 0.3,
+    tau: 0.497,
+    Sh: 0.254,
+    Sy: 0.188,
+    zDes: 0.645,
+    zEff: -0.508,
+    gate: -1.152,
+    desirability: 65.6,
+    index: 37.6,
+  },
+  NL: {
+    D: 0,
+    pi: 1,
+    L: 0,
+    C: 0,
+    m: 0,
+    tau: 0,
+    Sh: 0,
+    Sy: 0,
+    zDes: 0,
+    zEff: 0,
+    gate: 0,
+    desirability: 50,
+    index: 50,
+  },
+  NC: {
+    D: 0.3,
+    pi: 0.7,
+    L: 0.6,
+    C: 0.5,
+    m: 0.1,
+    tau: 0.386,
+    Sh: 0.139,
+    Sy: 0.013,
+    zDes: 0.066,
+    zEff: -0.447,
+    gate: -0.513,
+    desirability: 51.7,
+    index: 39,
+  },
+  NZ: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.073,
+    Sy: 0,
+    zDes: -0.119,
+    zEff: -0.381,
+    gate: -0.262,
+    desirability: 47,
+    index: 40.6,
+  },
+  NI: {
+    D: 1,
+    pi: 0.85,
+    L: 0.85,
+    C: 0.7,
+    m: 0.5,
+    tau: 0.477,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 1.026,
+    zEff: 0.707,
+    gate: -0.319,
+    desirability: 73.6,
+    index: 67,
+  },
+  NE: {
+    D: 0.5,
+    pi: 0.3,
+    L: 0.75,
+    C: 1,
+    m: 0.4,
+    tau: 0.532,
+    Sh: 0.205,
+    Sy: 0.25,
+    zDes: 0.423,
+    zEff: -0.992,
+    gate: -1.415,
+    desirability: 60.4,
+    index: 27.1,
+  },
+  NG: {
+    D: 1.1,
+    pi: 0.6,
+    L: 0.25,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.421,
+    Sh: 0.205,
+    Sy: 0.313,
+    zDes: 1.196,
+    zEff: 0.417,
+    gate: -0.779,
+    desirability: 76.8,
+    index: 60.3,
+  },
+  NU: {
+    D: 0.5,
+    pi: 0.45,
+    L: 0.3,
+    C: 0.85,
+    m: 0.4,
+    tau: 0.418,
+    Sh: 0.073,
+    Sy: 0.171,
+    zDes: 0.326,
+    zEff: -0.629,
+    gate: -0.955,
+    desirability: 58.1,
+    index: 34.8,
+  },
+  NF: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.139,
+    Sy: 0,
+    zDes: -0.054,
+    zEff: -0.316,
+    gate: -0.262,
+    desirability: 48.6,
+    index: 42.2,
+  },
+  KP: {
+    D: 0,
+    pi: 0.03,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.247,
+    Sy: 0.063,
+    zDes: -0.231,
+    zEff: -7.244,
+    gate: -7.013,
+    desirability: 44.3,
+    index: 1,
+  },
+  MK: {
+    D: 0.2,
+    pi: 0.6,
+    L: 0.75,
+    C: 0.6,
+    m: 0.3,
+    tau: 0.436,
+    Sh: 0.139,
+    Sy: 0.139,
+    zDes: 0.042,
+    zEff: -0.469,
+    gate: -0.511,
+    desirability: 51.1,
+    index: 38.5,
+  },
+  MP: {
+    D: 0.5,
+    pi: 0.45,
+    L: 0.3,
+    C: 0.85,
+    m: 0.4,
+    tau: 0.418,
+    Sh: 0.139,
+    Sy: 0.076,
+    zDes: 0.297,
+    zEff: -0.658,
+    gate: -0.955,
+    desirability: 57.4,
+    index: 34.1,
+  },
+  NO: {
+    D: 0,
+    pi: 0.95,
+    L: 0.05,
+    C: 0.15,
+    m: 0,
+    tau: 0.207,
+    Sh: 0.025,
+    Sy: 0,
+    zDes: -0.182,
+    zEff: -0.233,
+    gate: -0.051,
+    desirability: 45.5,
+    index: 44.2,
+  },
+  OM: {
+    D: 0,
+    pi: 0.53,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.205,
+    Sy: 0.025,
+    zDes: -0.311,
+    zEff: -1.385,
+    gate: -1.073,
+    desirability: 42.3,
+    index: 20,
+  },
+  PK: {
+    D: 0.2,
+    pi: 0.44,
+    L: 0.55,
+    C: 1,
+    m: 0.3,
+    tau: 0.497,
+    Sh: 0.247,
+    Sy: 0.188,
+    zDes: 0.137,
+    zEff: -1.325,
+    gate: -1.462,
+    desirability: 53.4,
+    index: 21,
+  },
+  PW: {
+    D: 0.5,
+    pi: 0.45,
+    L: 0.3,
+    C: 0.85,
+    m: 0.4,
+    tau: 0.418,
+    Sh: 0.139,
+    Sy: 0.108,
+    zDes: 0.328,
+    zEff: -0.627,
+    gate: -0.955,
+    desirability: 58.1,
+    index: 34.8,
+  },
+  PS: {
+    D: 0,
+    pi: 0.1,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.205,
+    Sy: 0.063,
+    zDes: -0.273,
+    zEff: -3.022,
+    gate: -2.749,
+    desirability: 43.2,
+    index: 4.6,
+  },
+  PA: {
+    D: 1.3,
+    pi: 0.85,
+    L: 0.85,
+    C: 0.7,
+    m: 0.5,
+    tau: 0.477,
+    Sh: 0.191,
+    Sy: 0.254,
+    zDes: 1.267,
+    zEff: 0.999,
+    gate: -0.268,
+    desirability: 78,
+    index: 73.1,
+  },
+  PG: {
+    D: 0.3,
+    pi: 0.4,
+    L: 0.3,
+    C: 0.85,
+    m: 0.4,
+    tau: 0.418,
+    Sh: 0.205,
+    Sy: 0.25,
+    zDes: 0.337,
+    zEff: -0.736,
+    gate: -1.073,
+    desirability: 58.3,
+    index: 32.4,
+  },
+  PY: {
+    D: 0.9,
+    pi: 0.85,
+    L: 0.85,
+    C: 0.7,
+    m: 0.5,
+    tau: 0.477,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 0.926,
+    zEff: 0.658,
+    gate: -0.268,
+    desirability: 71.6,
+    index: 65.9,
+  },
+  PE: {
+    D: 1.5,
+    pi: 0.85,
+    L: 0.85,
+    C: 0.7,
+    m: 0.5,
+    tau: 0.477,
+    Sh: 0.247,
+    Sy: 0.288,
+    zDes: 1.558,
+    zEff: 1.29,
+    gate: -0.268,
+    desirability: 82.6,
+    index: 78.4,
+  },
+  PH: {
+    D: 1.92,
+    pi: 0.95,
+    L: 0.1,
+    C: 0.9,
+    m: 0.6,
+    tau: 0.395,
+    Sh: 0.247,
+    Sy: 0.375,
+    zDes: 2.146,
+    zEff: 1.992,
+    gate: -0.154,
+    desirability: 89.5,
+    index: 88,
+  },
+  PN: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.073,
+    Sy: 0,
+    zDes: -0.119,
+    zEff: -0.381,
+    gate: -0.262,
+    desirability: 47,
+    index: 40.6,
+  },
+  PL: {
+    D: -0.1,
+    pi: 0.8,
+    L: 0.55,
+    C: 0.5,
+    m: 0.2,
+    tau: 0.377,
+    Sh: 0.139,
+    Sy: 0.043,
+    zDes: -0.295,
+    zEff: -0.519,
+    gate: -0.223,
+    desirability: 42.7,
+    index: 37.3,
+  },
+  PT: {
+    D: 0,
+    pi: 0.85,
+    L: 0.45,
+    C: 0.45,
+    m: 0.1,
+    tau: 0.348,
+    Sh: 0.139,
+    Sy: 0.021,
+    zDes: -0.189,
+    zEff: -0.351,
+    gate: -0.163,
+    desirability: 45.3,
+    index: 41.3,
+  },
+  PR: {
+    D: 0.3,
+    pi: 0.7,
+    L: 0.6,
+    C: 0.5,
+    m: 0.1,
+    tau: 0.386,
+    Sh: 0.139,
+    Sy: 0.025,
+    zDes: 0.077,
+    zEff: -0.436,
+    gate: -0.513,
+    desirability: 51.9,
+    index: 39.3,
+  },
+  QA: {
+    D: 0,
+    pi: 0.53,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.191,
+    Sy: 0.003,
+    zDes: -0.347,
+    zEff: -1.42,
+    gate: -1.073,
+    desirability: 41.4,
+    index: 19.5,
+  },
+  RE: {
+    D: 0.3,
+    pi: 0.7,
+    L: 0.6,
+    C: 0.5,
+    m: 0.1,
+    tau: 0.386,
+    Sh: 0.139,
+    Sy: 0.014,
+    zDes: 0.066,
+    zEff: -0.501,
+    gate: -0.567,
+    desirability: 51.7,
+    index: 37.7,
+  },
+  RO: {
+    D: 0.1,
+    pi: 0.8,
+    L: 0.55,
+    C: 0.5,
+    m: 0.2,
+    tau: 0.377,
+    Sh: 0.139,
+    Sy: 0.058,
+    zDes: -0.08,
+    zEff: -0.304,
+    gate: -0.223,
+    desirability: 48,
+    index: 42.5,
+  },
+  RU: {
+    D: -0.2,
+    pi: 0.5,
+    L: 0.75,
+    C: 0.6,
+    m: 0.3,
+    tau: 0.436,
+    Sh: 0.073,
+    Sy: 0.12,
+    zDes: -0.443,
+    zEff: -1.934,
+    gate: -1.492,
+    desirability: 39.1,
+    index: 12.6,
+  },
+  RW: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.35,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.439,
+    Sh: 0.205,
+    Sy: 0.313,
+    zDes: 1.179,
+    zEff: 0.611,
+    gate: -0.567,
+    desirability: 76.5,
+    index: 64.8,
+  },
+  BL: {
+    D: 0.3,
+    pi: 0.7,
+    L: 0.6,
+    C: 0.5,
+    m: 0.1,
+    tau: 0.386,
+    Sh: 0.139,
+    Sy: 0.001,
+    zDes: 0.054,
+    zEff: -0.46,
+    gate: -0.513,
+    desirability: 51.3,
+    index: 38.7,
+  },
+  SH: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.073,
+    Sy: 0,
+    zDes: -0.119,
+    zEff: -0.435,
+    gate: -0.316,
+    desirability: 47,
+    index: 39.3,
+  },
+  KN: {
+    D: 0.7,
+    pi: 0.75,
+    L: 0.05,
+    C: 0.6,
+    m: 0.4,
+    tau: 0.315,
+    Sh: 0.139,
+    Sy: 0.091,
+    zDes: 0.615,
+    zEff: 0.171,
+    gate: -0.444,
+    desirability: 64.9,
+    index: 54.3,
+  },
+  LC: {
+    D: 0.7,
+    pi: 0.75,
+    L: 0.05,
+    C: 0.6,
+    m: 0.4,
+    tau: 0.315,
+    Sh: 0.139,
+    Sy: 0.116,
+    zDes: 0.64,
+    zEff: 0.195,
+    gate: -0.444,
+    desirability: 65.5,
+    index: 54.9,
+  },
+  MF: {
+    D: 0.3,
+    pi: 0.7,
+    L: 0.6,
+    C: 0.5,
+    m: 0.1,
+    tau: 0.386,
+    Sh: 0.139,
+    Sy: 0.032,
+    zDes: 0.085,
+    zEff: -0.428,
+    gate: -0.513,
+    desirability: 52.1,
+    index: 39.5,
+  },
+  PM: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.139,
+    Sy: 0,
+    zDes: -0.054,
+    zEff: -0.159,
+    gate: -0.105,
+    desirability: 48.6,
+    index: 46,
+  },
+  VC: {
+    D: 0.7,
+    pi: 0.75,
+    L: 0.05,
+    C: 0.6,
+    m: 0.4,
+    tau: 0.315,
+    Sh: 0.139,
+    Sy: 0.139,
+    zDes: 0.663,
+    zEff: 0.218,
+    gate: -0.444,
+    desirability: 66,
+    index: 55.4,
+  },
+  WS: {
+    D: 0.5,
+    pi: 0.45,
+    L: 0.3,
+    C: 0.85,
+    m: 0.4,
+    tau: 0.418,
+    Sh: 0.205,
+    Sy: 0.25,
+    zDes: 0.537,
+    zEff: -0.418,
+    gate: -0.955,
+    desirability: 63.1,
+    index: 39.7,
+  },
+  SM: {
+    D: -0.15,
+    pi: 0.85,
+    L: 0.6,
+    C: 0.45,
+    m: 0.1,
+    tau: 0.374,
+    Sh: 0.073,
+    Sy: 0,
+    zDes: -0.45,
+    zEff: -0.613,
+    gate: -0.163,
+    desirability: 38.9,
+    index: 35.1,
+  },
+  ST: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.75,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.508,
+    Sh: 0.205,
+    Sy: 0.313,
+    zDes: 1.109,
+    zEff: 0.542,
+    gate: -0.567,
+    desirability: 75.2,
+    index: 63.2,
+  },
+  SA: {
+    D: 0,
+    pi: 0.51,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.205,
+    Sy: 0.019,
+    zDes: -0.317,
+    zEff: -1.325,
+    gate: -1.008,
+    desirability: 42.1,
+    index: 21,
+  },
+  SN: {
+    D: 0.8,
+    pi: 0.4,
+    L: 0.75,
+    C: 1,
+    m: 0.4,
+    tau: 0.532,
+    Sh: 0.191,
+    Sy: 0.25,
+    zDes: 0.709,
+    zEff: -0.418,
+    gate: -1.127,
+    desirability: 67,
+    index: 39.7,
+  },
+  RS: {
+    D: 0.1,
+    pi: 0.6,
+    L: 0.75,
+    C: 0.6,
+    m: 0.3,
+    tau: 0.436,
+    Sh: 0.096,
+    Sy: 0.114,
+    zDes: -0.125,
+    zEff: -0.636,
+    gate: -0.511,
+    desirability: 46.9,
+    index: 34.6,
+  },
+  SC: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.35,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.439,
+    Sh: 0.191,
+    Sy: 0.128,
+    zDes: 0.98,
+    zEff: 0.412,
+    gate: -0.567,
+    desirability: 72.7,
+    index: 60.2,
+  },
+  SL: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.35,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.439,
+    Sh: 0.205,
+    Sy: 0.313,
+    zDes: 1.179,
+    zEff: 0.611,
+    gate: -0.567,
+    desirability: 76.5,
+    index: 64.8,
+  },
+  SG: {
+    D: 0.2,
+    pi: 0.6,
+    L: 0.05,
+    C: 0.8,
+    m: 0.1,
+    tau: 0.363,
+    Sh: 0.175,
+    Sy: 0.003,
+    zDes: 0.015,
+    zEff: -0.598,
+    gate: -0.613,
+    desirability: 50.4,
+    index: 35.5,
+  },
+  SX: {
+    D: 0.5,
+    pi: 0.8,
+    L: 0,
+    C: 0.35,
+    m: 0.3,
+    tau: 0.246,
+    Sh: 0.139,
+    Sy: 0.033,
+    zDes: 0.426,
+    zEff: 0.046,
+    gate: -0.38,
+    desirability: 60.5,
+    index: 51.1,
+  },
+  SK: {
+    D: 0,
+    pi: 0.8,
+    L: 0.55,
+    C: 0.5,
+    m: 0.2,
+    tau: 0.377,
+    Sh: 0.096,
+    Sy: 0.047,
+    zDes: -0.234,
+    zEff: -0.457,
+    gate: -0.223,
+    desirability: 44.2,
+    index: 38.8,
+  },
+  SI: {
+    D: 0,
+    pi: 0.8,
+    L: 0.55,
+    C: 0.5,
+    m: 0.2,
+    tau: 0.377,
+    Sh: 0.073,
+    Sy: 0.032,
+    zDes: -0.272,
+    zEff: -0.495,
+    gate: -0.223,
+    desirability: 43.2,
+    index: 37.9,
+  },
+  SB: {
+    D: 0.5,
+    pi: 0.45,
+    L: 0.3,
+    C: 0.85,
+    m: 0.4,
+    tau: 0.418,
+    Sh: 0.205,
+    Sy: 0.25,
+    zDes: 0.537,
+    zEff: -0.418,
+    gate: -0.955,
+    desirability: 63.1,
+    index: 39.7,
+  },
+  SO: {
+    D: 0.5,
+    pi: 0.05,
+    L: 0.75,
+    C: 1,
+    m: 0.4,
+    tau: 0.532,
+    Sh: 0.205,
+    Sy: 0.25,
+    zDes: 0.423,
+    zEff: -4.539,
+    gate: -4.962,
+    desirability: 60.4,
+    index: 1.1,
+  },
+  ZA: {
+    D: 0.7,
+    pi: 0.6,
+    L: 0.05,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.387,
+    Sh: 0.191,
+    Sy: 0.292,
+    zDes: 0.796,
+    zEff: 0.122,
+    gate: -0.673,
+    desirability: 68.9,
+    index: 53.1,
+  },
+  KR: {
+    D: -0.2,
+    pi: 0.63,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.191,
+    Sy: 0.011,
+    zDes: -0.539,
+    zEff: -1.099,
+    gate: -0.559,
+    desirability: 36.8,
+    index: 25,
+  },
+  SS: {
+    D: 0.5,
+    pi: 0.3,
+    L: 0.75,
+    C: 1,
+    m: 0.4,
+    tau: 0.532,
+    Sh: 0.205,
+    Sy: 0.25,
+    zDes: 0.423,
+    zEff: -0.992,
+    gate: -1.415,
+    desirability: 60.4,
+    index: 27.1,
+  },
+  ES: {
+    D: -0.05,
+    pi: 0.85,
+    L: 0.6,
+    C: 0.45,
+    m: 0.1,
+    tau: 0.374,
+    Sh: 0.139,
+    Sy: 0.014,
+    zDes: -0.272,
+    zEff: -0.434,
+    gate: -0.163,
+    desirability: 43.3,
+    index: 39.3,
+  },
+  LK: {
+    D: 0.6,
+    pi: 0.35,
+    L: 0.55,
+    C: 1,
+    m: 0.3,
+    tau: 0.497,
+    Sh: 0.247,
+    Sy: 0.188,
+    zDes: 0.537,
+    zEff: -0.615,
+    gate: -1.152,
+    desirability: 63.1,
+    index: 35.1,
+  },
+  SD: {
+    D: 0,
+    pi: 0.15,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.158,
+    Sy: 0.063,
+    zDes: -0.32,
+    zEff: -2.664,
+    gate: -2.343,
+    desirability: 42.1,
+    index: 6.5,
+  },
+  SR: {
+    D: 0.5,
+    pi: 0.8,
+    L: 0,
+    C: 0.35,
+    m: 0.3,
+    tau: 0.246,
+    Sh: 0.139,
+    Sy: 0.149,
+    zDes: 0.541,
+    zEff: 0.213,
+    gate: -0.329,
+    desirability: 63.2,
+    index: 55.3,
+  },
+  SJ: {
+    D: 0,
+    pi: 0.95,
+    L: 0.15,
+    C: 0.15,
+    m: 0,
+    tau: 0.224,
+    Sh: 0,
+    Sy: 0,
+    zDes: -0.224,
+    zEff: -0.275,
+    gate: -0.051,
+    desirability: 44.4,
+    index: 43.2,
+  },
+  SE: {
+    D: 0,
+    pi: 0.95,
+    L: 0.05,
+    C: 0.15,
+    m: 0,
+    tau: 0.207,
+    Sh: 0.025,
+    Sy: 0,
+    zDes: -0.182,
+    zEff: -0.233,
+    gate: -0.051,
+    desirability: 45.5,
+    index: 44.2,
+  },
+  CH: {
+    D: 0,
+    pi: 0.95,
+    L: 0.15,
+    C: 0.15,
+    m: 0,
+    tau: 0.224,
+    Sh: 0.073,
+    Sy: 0,
+    zDes: -0.151,
+    zEff: -0.202,
+    gate: -0.051,
+    desirability: 46.2,
+    index: 45,
+  },
+  SY: {
+    D: 0,
+    pi: 0.1,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.191,
+    Sy: 0.063,
+    zDes: -0.287,
+    zEff: -4.556,
+    gate: -4.269,
+    desirability: 42.9,
+    index: 1,
+  },
+  TW: {
+    D: 0.4,
+    pi: 0.6,
+    L: 0.35,
+    C: 0.8,
+    m: 0.1,
+    tau: 0.415,
+    Sh: 0.175,
+    Sy: 0.013,
+    zDes: 0.173,
+    zEff: -0.44,
+    gate: -0.613,
+    desirability: 54.3,
+    index: 39.2,
+  },
+  TJ: {
+    D: 0.2,
+    pi: 0.3,
+    L: 0.85,
+    C: 0.85,
+    m: 0.3,
+    tau: 0.513,
+    Sh: 0.205,
+    Sy: 0.188,
+    zDes: 0.079,
+    zEff: -1.339,
+    gate: -1.418,
+    desirability: 52,
+    index: 20.8,
+  },
+  TZ: {
+    D: 1.3,
+    pi: 0.7,
+    L: 0.35,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.439,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 1.364,
+    zEff: 0.797,
+    gate: -0.567,
+    desirability: 79.6,
+    index: 68.9,
+  },
+  TH: {
+    D: 2.01,
+    pi: 0.9,
+    L: 0.5,
+    C: 0.9,
+    m: 0.6,
+    tau: 0.465,
+    Sh: 0.191,
+    Sy: 0.288,
+    zDes: 2.023,
+    zEff: 1.815,
+    gate: -0.208,
+    desirability: 88.3,
+    index: 86,
+  },
+  TL: {
+    D: 0.6,
+    pi: 0.5,
+    L: 0.45,
+    C: 0.9,
+    m: 0.4,
+    tau: 0.456,
+    Sh: 0.254,
+    Sy: 0.25,
+    zDes: 0.649,
+    zEff: -0.147,
+    gate: -0.796,
+    desirability: 65.7,
+    index: 46.3,
+  },
+  TG: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.7,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.499,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 1.104,
+    zEff: 0.537,
+    gate: -0.567,
+    desirability: 75.1,
+    index: 63.1,
+  },
+  TK: {
+    D: 0.5,
+    pi: 0.45,
+    L: 0.3,
+    C: 0.85,
+    m: 0.4,
+    tau: 0.418,
+    Sh: 0.139,
+    Sy: 0.229,
+    zDes: 0.449,
+    zEff: -0.506,
+    gate: -0.955,
+    desirability: 61,
+    index: 37.6,
+  },
+  TO: {
+    D: 0.5,
+    pi: 0.45,
+    L: 0.3,
+    C: 0.85,
+    m: 0.4,
+    tau: 0.418,
+    Sh: 0.205,
+    Sy: 0.25,
+    zDes: 0.537,
+    zEff: -0.418,
+    gate: -0.955,
+    desirability: 63.1,
+    index: 39.7,
+  },
+  TT: {
+    D: 0.6,
+    pi: 0.75,
+    L: 0.05,
+    C: 0.6,
+    m: 0.4,
+    tau: 0.315,
+    Sh: 0.139,
+    Sy: 0.09,
+    zDes: 0.514,
+    zEff: 0.098,
+    gate: -0.416,
+    desirability: 62.6,
+    index: 52.5,
+  },
+  TN: {
+    D: 0.5,
+    pi: 0.4,
+    L: 0.6,
+    C: 0.8,
+    m: 0.3,
+    tau: 0.458,
+    Sh: 0.139,
+    Sy: 0.157,
+    zDes: 0.337,
+    zEff: -1.025,
+    gate: -1.363,
+    desirability: 58.4,
+    index: 26.4,
+  },
+  TR: {
+    D: 0.4,
+    pi: 0.5,
+    L: 0.6,
+    C: 0.8,
+    m: 0.3,
+    tau: 0.458,
+    Sh: 0.139,
+    Sy: 0.139,
+    zDes: 0.22,
+    zEff: -0.919,
+    gate: -1.139,
+    desirability: 55.5,
+    index: 28.5,
+  },
+  TM: {
+    D: 0.2,
+    pi: 0.3,
+    L: 0.85,
+    C: 0.85,
+    m: 0.3,
+    tau: 0.513,
+    Sh: 0.175,
+    Sy: 0.188,
+    zDes: 0.049,
+    zEff: -1.369,
+    gate: -1.418,
+    desirability: 51.2,
+    index: 20.3,
+  },
+  TC: {
+    D: 0.7,
+    pi: 0.75,
+    L: 0.05,
+    C: 0.6,
+    m: 0.4,
+    tau: 0.315,
+    Sh: 0.139,
+    Sy: 0.088,
+    zDes: 0.612,
+    zEff: 0.167,
+    gate: -0.444,
+    desirability: 64.8,
+    index: 54.2,
+  },
+  TV: {
+    D: 0.5,
+    pi: 0.45,
+    L: 0.3,
+    C: 0.85,
+    m: 0.4,
+    tau: 0.418,
+    Sh: 0.139,
+    Sy: 0.25,
+    zDes: 0.471,
+    zEff: -0.485,
+    gate: -0.955,
+    desirability: 61.6,
+    index: 38.1,
+  },
+  UG: {
+    D: 1.3,
+    pi: 0.7,
+    L: 0.3,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.43,
+    Sh: 0.205,
+    Sy: 0.313,
+    zDes: 1.387,
+    zEff: 0.82,
+    gate: -0.567,
+    desirability: 80,
+    index: 69.4,
+  },
+  UA: {
+    D: 0.5,
+    pi: 0.7,
+    L: 0.75,
+    C: 0.6,
+    m: 0.3,
+    tau: 0.436,
+    Sh: 0.139,
+    Sy: 0.152,
+    zDes: 0.355,
+    zEff: -0.215,
+    gate: -0.57,
+    desirability: 58.8,
+    index: 44.6,
+  },
+  AE: {
+    D: 0.3,
+    pi: 0.55,
+    L: 0.2,
+    C: 0.8,
+    m: 0.3,
+    tau: 0.389,
+    Sh: 0.191,
+    Sy: 0.022,
+    zDes: 0.123,
+    zEff: -0.921,
+    gate: -1.044,
+    desirability: 53.1,
+    index: 28.5,
+  },
+  GB: {
+    D: 0.1,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.073,
+    Sy: 0,
+    zDes: -0.069,
+    zEff: -0.175,
+    gate: -0.105,
+    desirability: 48.3,
+    index: 45.6,
+  },
+  US: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.096,
+    Sy: 0,
+    zDes: -0.096,
+    zEff: -0.202,
+    gate: -0.105,
+    desirability: 47.6,
+    index: 45,
+  },
+  UM: {
+    D: 0.05,
+    pi: 0.9,
+    L: 0.05,
+    C: 0.3,
+    m: 0,
+    tau: 0.243,
+    Sh: 0.096,
+    Sy: 0,
+    zDes: -0.096,
+    zEff: -0.202,
+    gate: -0.105,
+    desirability: 47.6,
+    index: 45,
+  },
+  VI: {
+    D: 0.7,
+    pi: 0.75,
+    L: 0.05,
+    C: 0.6,
+    m: 0.4,
+    tau: 0.315,
+    Sh: 0.139,
+    Sy: 0.036,
+    zDes: 0.559,
+    zEff: 0.115,
+    gate: -0.444,
+    desirability: 63.6,
+    index: 52.9,
+  },
+  UY: {
+    D: -0.15,
+    pi: 0.8,
+    L: 0.85,
+    C: 0.6,
+    m: 0.1,
+    tau: 0.453,
+    Sh: 0.191,
+    Sy: 0.035,
+    zDes: -0.377,
+    zEff: -0.706,
+    gate: -0.329,
+    desirability: 40.7,
+    index: 33.1,
+  },
+  UZ: {
+    D: 0.2,
+    pi: 0.3,
+    L: 0.85,
+    C: 0.85,
+    m: 0.3,
+    tau: 0.513,
+    Sh: 0.191,
+    Sy: 0.188,
+    zDes: 0.065,
+    zEff: -1.353,
+    gate: -1.418,
+    desirability: 51.6,
+    index: 20.5,
+  },
+  VU: {
+    D: 0.5,
+    pi: 0.45,
+    L: 0.3,
+    C: 0.85,
+    m: 0.4,
+    tau: 0.418,
+    Sh: 0.205,
+    Sy: 0.25,
+    zDes: 0.537,
+    zEff: -0.418,
+    gate: -0.955,
+    desirability: 63.1,
+    index: 39.7,
+  },
+  VA: {
+    D: -0.15,
+    pi: 0.85,
+    L: 0.6,
+    C: 0.45,
+    m: 0.1,
+    tau: 0.374,
+    Sh: 0.158,
+    Sy: 0.012,
+    zDes: -0.355,
+    zEff: -0.517,
+    gate: -0.163,
+    desirability: 41.2,
+    index: 37.4,
+  },
+  VE: {
+    D: 1.5,
+    pi: 0.85,
+    L: 0.85,
+    C: 0.7,
+    m: 0.5,
+    tau: 0.477,
+    Sh: 0.228,
+    Sy: 0.313,
+    zDes: 1.564,
+    zEff: 1.016,
+    gate: -0.548,
+    desirability: 82.7,
+    index: 73.4,
+  },
+  VN: {
+    D: 1.46,
+    pi: 0.9,
+    L: 0.5,
+    C: 0.9,
+    m: 0.6,
+    tau: 0.465,
+    Sh: 0.228,
+    Sy: 0.365,
+    zDes: 1.594,
+    zEff: 1.386,
+    gate: -0.208,
+    desirability: 83.1,
+    index: 80,
+  },
+  WF: {
+    D: 0.3,
+    pi: 0.7,
+    L: 0.6,
+    C: 0.5,
+    m: 0.1,
+    tau: 0.386,
+    Sh: 0.073,
+    Sy: 0.025,
+    zDes: 0.012,
+    zEff: -0.501,
+    gate: -0.513,
+    desirability: 50.3,
+    index: 37.7,
+  },
+  EH: {
+    D: 0,
+    pi: 0.53,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.205,
+    Sy: 0.063,
+    zDes: -0.273,
+    zEff: -1.347,
+    gate: -1.073,
+    desirability: 43.2,
+    index: 20.6,
+  },
+  YE: {
+    D: 0,
+    pi: 0.05,
+    L: 0.8,
+    C: 1,
+    m: 0.1,
+    tau: 0.54,
+    Sh: 0.205,
+    Sy: 0.063,
+    zDes: -0.273,
+    zEff: -5.389,
+    gate: -5.116,
+    desirability: 43.2,
+    index: 1,
+  },
+  ZM: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.35,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.439,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 1.164,
+    zEff: 0.597,
+    gate: -0.567,
+    desirability: 76.2,
+    index: 64.5,
+  },
+  ZW: {
+    D: 1.1,
+    pi: 0.7,
+    L: 0.35,
+    C: 0.9,
+    m: 0.5,
+    tau: 0.439,
+    Sh: 0.191,
+    Sy: 0.313,
+    zDes: 1.164,
+    zEff: 0.597,
+    gate: -0.567,
+    desirability: 76.2,
+    index: 64.5,
+  },
+};
 
 /**
- * Returns the effective White Male Perception Index score (1–99, 50 = parity with local men).
- * Accounts for access, legal, and safety obstacles.
- * Falls back to 50.0 (neutral baseline) if an unrecognized code is provided.
+ * Returns the effective White Male Perception Index score (1–99, 50 = Dutch baseline parity).
  */
 export function getWhiteMalePerception(countryCode: string): number {
   if (!countryCode) return 50.0;
@@ -294,9 +4219,7 @@ export function getWhiteMalePerception(countryCode: string): number {
 }
 
 /**
- * Returns the ungated White Male Desirability score (1–99, 50 = parity with local men).
- * Measures pure romantic preference, aesthetic status, and dimorphism before legal/safety gating.
- * Falls back to 50.0 (neutral baseline) if an unrecognized code is provided.
+ * Returns the ungated White Male Desirability score (1–99, 50 = Dutch baseline parity).
  */
 export function getWhiteMaleDesirability(countryCode: string): number {
   if (!countryCode) return 50.0;
@@ -308,7 +4231,7 @@ export function getWhiteMaleDesirability(countryCode: string): number {
 }
 
 /**
- * Returns the detailed mathematical breakdown (prior, height, income, friction, logORs) for a country.
+ * Returns the detailed mathematical components (D, pi, L, C, tau, Sh, Sy, logits) for a country.
  */
 export function getWhiteMalePerceptionDetails(countryCode: string): WmpiResult | undefined {
   if (!countryCode) return undefined;

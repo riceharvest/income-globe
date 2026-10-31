@@ -841,15 +841,25 @@ console.log("Loaded raw states count:", rawStates.length);
 
 const eurExchangeRate = 1.08;
 
-// Calibrated White Male Perception Index by US State (Bradley-Terry logistic model: 50 = exact parity with local men)
+// Calibrated White Male Perception & Desirability Index by US State (v2 Outsider-Friction model, centered on US national 45.0 eff / 47.6 des)
 const whiteMalePerceptionByState: Record<string, number> = {
-  HI: 61.3, NM: 57.7, CA: 55.5, NV: 55.0, TX: 54.5, FL: 54.2, AZ: 53.7, LA: 53.6,
-  MS: 53.4, AR: 53.0, OK: 52.8, DC: 52.6, GA: 52.4, NC: 52.4, NY: 52.3, AL: 52.3,
-  WV: 52.3, SC: 52.2, KY: 51.8, TN: 51.5, IL: 51.4, DE: 51.4, NJ: 51.1, MI: 51.0,
-  OH: 51.0, MO: 51.0, PA: 50.8, WA: 50.8, IN: 50.7, CO: 50.6, MD: 50.6, OR: 50.6,
-  AK: 50.5, CT: 50.5, RI: 50.5, VA: 50.5, KS: 50.3, ME: 50.2, MT: 50.1, NE: 50.0,
-  SD: 49.9, ID: 49.8, WI: 49.8, WY: 49.8, IA: 49.7, MA: 49.7, VT: 49.5, ND: 49.3,
-  MN: 48.9, UT: 48.8, NH: 48.6,
+  HI: 54.9, NM: 51.1, CA: 48.9, NV: 48.4, TX: 47.9, FL: 47.6, AZ: 47.1, LA: 47.0,
+  MS: 46.8, AR: 46.4, OK: 46.2, DC: 46.0, GA: 45.8, NC: 45.8, NY: 45.7, AL: 45.7,
+  WV: 45.7, SC: 45.6, KY: 45.2, TN: 44.9, IL: 44.8, DE: 44.8, NJ: 44.5, MI: 44.4,
+  OH: 44.4, MO: 44.4, PA: 44.2, WA: 44.2, IN: 44.1, CO: 44.0, MD: 44.0, OR: 44.0,
+  AK: 43.9, CT: 43.9, RI: 43.9, VA: 43.9, KS: 43.7, ME: 43.6, MT: 43.5, NE: 43.4,
+  SD: 43.3, ID: 43.2, WI: 43.2, WY: 43.2, IA: 43.1, MA: 43.1, VT: 42.9, ND: 42.7,
+  MN: 42.3, UT: 42.2, NH: 42.0,
+};
+
+const whiteMaleDesirabilityByState: Record<string, number> = {
+  HI: 57.4, NM: 53.7, CA: 51.5, NV: 51.0, TX: 50.5, FL: 50.2, AZ: 49.7, LA: 49.6,
+  MS: 49.4, AR: 49.0, OK: 48.8, DC: 48.6, GA: 48.4, NC: 48.4, NY: 48.3, AL: 48.3,
+  WV: 48.3, SC: 48.2, KY: 47.8, TN: 47.5, IL: 47.4, DE: 47.4, NJ: 47.1, MI: 47.0,
+  OH: 47.0, MO: 47.0, PA: 46.8, WA: 46.8, IN: 46.7, CO: 46.6, MD: 46.6, OR: 46.6,
+  AK: 46.5, CT: 46.5, RI: 46.5, VA: 46.5, KS: 46.3, ME: 46.2, MT: 46.1, NE: 46.0,
+  SD: 45.9, ID: 45.8, WI: 45.8, WY: 45.8, IA: 45.7, MA: 45.7, VT: 45.5, ND: 45.3,
+  MN: 44.9, UT: 44.8, NH: 44.6,
 };
 
 function toStateData(s: RawState) {
@@ -1006,8 +1016,8 @@ function toStateData(s: RawState) {
     breastSize: s.breastSize,
     religionPct: s.religionPct,
     bachelorsPercent: s.bachelorsPct,
-    whiteMalePerceptionIndex: whiteMalePerceptionByState[s.code] ?? 50.5,
-    whiteMaleDesirabilityIndex: whiteMalePerceptionByState[s.code] ?? 50.5,
+    whiteMalePerceptionIndex: whiteMalePerceptionByState[s.code] ?? 45.0,
+    whiteMaleDesirabilityIndex: whiteMaleDesirabilityByState[s.code] ?? 47.6,
     englishSpeakingPercent: s.englishPct,
   };
 }
