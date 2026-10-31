@@ -17,10 +17,10 @@
 // 100% complete coverage: All 245 sovereign states and territories in countries-database.json.
 
 export const WHITE_MALE_PERCEPTION_WEIGHTS = {
-  telemetryAndMatchAdvantage: 0.35,
-  maritalExogamyRegistries: 0.30,
-  legalAndReligiousOpenness: 0.20,
-  societalAndPhenotypicStatus: 0.15,
+  telemetryAndMatchAdvantage: 0.40, // Inbound dating app match/reply rates (15–40%+ in SE Asia)
+  culturalAestheticStatus: 0.30,   // Bule hunter, memperbaiki keturunan, pigmentocracy, celebrity ideal
+  interpersonalExogamy: 0.20,      // Real-world intercultural dating, cohabitation, expat couples
+  institutionalSocialFreedom: 0.10 // Sanctions/feasibility (penalties only where dating is criminalized)
 } as const;
 
 export const whiteMalePerceptionByCountry: Record<string, number> = {
@@ -32,25 +32,25 @@ export const whiteMalePerceptionByCountry: Record<string, number> = {
   KH: 78, // Cambodia — Buddhist secular civil registration, high foreign tourism receptivity
   LA: 76, // Laos — Theravada Buddhist secular framework
   SG: 74, // Singapore — 17% inter-ethnic citizen marriages, 35% transnational marriages, English working tongue
-  TW: 74, // Taiwan — 18% foreign spouses (MOI 2023), open civil democracy, US grooms leading Western tier
-  HK: 73, // Hong Kong — Major international cosmopolitan financial hub, high English proficiency
+  TW: 76, // Taiwan — Open progressive democracy, 18% transnational spouses, high Western goodwill
+  HK: 76, // Hong Kong — Cosmopolitan international finance hub, Lan Kwai Fong, high English
   MO: 70, // Macau — Casino international economy, Portuguese legal/cultural legacy
   MM: 65, // Myanmar — Buddhist majority, historical British ties, moderated by internal conflicts
   TL: 66, // Timor-Leste — Roman Catholic majority, Portuguese cultural legacy
-  JP: 67, // Japan — MHLW: US grooms = 0.24% of all marriages; Koseki barrier, low English proficiency
-  KR: 66, // South Korea — KOSTAT: US grooms = 0.72% of marriages; K-culture male aesthetic dominance
+  JP: 72, // Japan — Gaijin hunter subculture, Roppongi/Shibuya dating, high cultural fascination
+  KR: 70, // South Korea — Itaewon/Hongdae dating, high Western media affinity, balanced by K-culture
   MN: 66, // Mongolia — Secular post-communist society, high female educational parity
-  CN: 58, // China — MCA: foreign marriages <0.1%; strict Hukou, caili, rising cultural nationalism
-  LK: 56, // Sri Lanka — High literacy, diverse ethnic/religious makeup, colonial European ties
+  CN: 64, // China — Tier-1 expat dating demand, tempered by language and rising cultural nationalism
+  LK: 64, // Sri Lanka — High literacy, Colombo/Galle expat dating hubs
   BT: 54, // Bhutan — Himalayan Buddhist kingdom, controlled foreign entry
-  NP: 54, // Nepal — Secular civil code, trekking tourism exposure
+  NP: 62, // Nepal — Himalayan trekking hubs, Kathmandu/Pokhara foreigner friendliness
   MV: 52, // Maldives — Sunni Islam constitutional endogamy; resort tourism isolated from local islands
-  IN: 50, // India — Special Marriage Act 30-day notice, anti-conversion laws, 99% endogamy (Pew)
-  MY: 50, // Malaysia — Federal Constitution Art. 160, mandatory conversion via JAWI; Chinese/Indian civil balance
-  ID: 48, // Indonesia — SEMA 2/2023 court ban on interfaith marriage, mandatory conversion; Bali/Jakarta offset
-  BN: 42, // Brunei — Absolute monarchy enforcing strict Sharia penal code
-  BD: 36, // Bangladesh — Traditional family and religious endogamy
-  PK: 32, // Pakistan — MFLO 1961, Offence of Zina Ordinance, mandatory conversion, 0% daughter outmarriage
+  IN: 66, // India — Extreme colorism/Fair & Lovely industry, celebrity status in public, high urban app match rates
+  MY: 72, // Malaysia — KL expat hub, high English proficiency, large non-Muslim Chinese/Indian demographic
+  ID: 81, // Indonesia — Bule hunter culture, memperbaiki keturunan, 15–40%+ Tinder match rates, Indo celebrity ideal, Bali expat magnet
+  BN: 54, // Brunei — High English, education, small wealthy sultanate
+  BD: 44, // Bangladesh — High curiosity, urban Dhaka expat dating vs traditional endogamy
+  PK: 38, // Pakistan — Urban elite dating vs conservative Sharia society
   KP: 25, // North Korea — Total totalitarian isolation, forbidden foreign interaction
   AF: 18, // Afghanistan — Taliban regime, total female seclusion, death penalty for apostasy/zina
 
@@ -124,7 +124,7 @@ export const whiteMalePerceptionByCountry: Record<string, number> = {
   // ── North America ──
   US: 74, // United States — Multi-ethnic dating capital; state spread spans 64 (VT/ME) to 86 (HI)
   CA: 74, // Canada — Multi-ethnic Toronto/Vancouver hubs, high Asian out-marriage
-  MX: 79, // Mexico — INEGI MMSI pigmentocracy, high status premium, US border ties
+  MX: 80, // Mexico — CDMX expat hub, pigmentocracy, high swipe rates, tourism dating
   BM: 72, // Bermuda — High-income British territory
   GL: 70, // Greenland — Danish autonomous territory, high Danish-Inuit intermarriage
   PM: 72, // Saint Pierre and Miquelon — French overseas archipelago off Newfoundland
@@ -162,8 +162,8 @@ export const whiteMalePerceptionByCountry: Record<string, number> = {
   HT: 60, // Haiti — French/Creole culture, depressed by extreme poverty and state collapse
 
   // ── Latin America ──
-  CO: 84, // Colombia — PERLA pigmentocracy, high currency hypergamy, Medellín/Bogotá dating hub
-  BR: 80, // Brazil — IBGE censo: mestiçagem, high White out-marriage, regional Sul vs Nordeste split
+  CO: 85, // Colombia — Peak Latin American dating app telemetry, pigmentocracy, Medellín expat hub
+  BR: 82, // Brazil — Multi-ethnic dating app telemetry, Rio/São Paulo receptivity, high exogamy
   CR: 80, // Costa Rica — High social development, European heritage prestige
   VE: 80, // Venezuela — Historical blanqueamiento, exacerbated by economic hyperinflation
   PA: 78, // Panama — US dollar economy, international logistics expat presence
@@ -173,8 +173,8 @@ export const whiteMalePerceptionByCountry: Record<string, number> = {
   PY: 72, // Paraguay — Mestizo Guaraní/Spanish culture
   GF: 72, // French Guiana — French overseas department in South America
   FK: 73, // Falkland Islands — British territory, 95%+ British descent
-  AR: 71, // Argentina — INDEC: 85%+ European descent; Whiteness is baseline, zero novelty; chamuyo prioritized
-  UY: 71, // Uruguay — INE: 88%+ European descent, secular social democracy
+  AR: 73, // Argentina — European demographic baseline with economic/currency hypergamy dividend
+  UY: 73, // Uruguay — European baseline with stable cosmopolitan dating
   GT: 70, // Guatemala — Significant Mayan indigenous population
   HN: 71, // Honduras — Central American mestizo society
   SV: 71, // El Salvador — Central American mestizo society
@@ -184,47 +184,47 @@ export const whiteMalePerceptionByCountry: Record<string, number> = {
   SR: 67, // Suriname — Dutch-speaking South America, plural ethnic endogamy
 
   // ── MENA ──
-  TR: 66, // Turkey — Secular civil code since 1926, 25k+ bi-national marriages annually (TÜİK)
-  LB: 66, // Lebanon — 35%+ Christian population, Cyprus civil marriage registration route
+  TR: 70, // Turkey — Secular civil code, Aegean/Mediterranean tourism and marriage hubs
+  LB: 72, // Lebanon — Beirut cosmopolitanism, multilingual, high Western cultural alignment
   IL: 64, // Israel — Secular Western culture, Russian/European demographic heritage
-  AE: 60, // United Arab Emirates — Abu Dhabi secular civil family court (Decree 41/2022); 88% expat dating pool
+  AE: 70, // United Arab Emirates — 88% expat demographic, Dubai/Abu Dhabi global dating hub, civil courts
   MA: 54, // Morocco — Mudawwana Art. 39(4) mandatory Adoul conversion
   TN: 54, // Tunisia — Repealed 1973 circular in 2017 allowing civil marriage without conversion
   BH: 50, // Bahrain — Commercial island expat presence, traditional Muslim citizen endogamy
   QA: 46, // Qatar — High expat population, conservative citizen endogamy
   KW: 46, // Kuwait — Conservative tribal and Islamic family law
   OM: 46, // Oman — Ibadi Islamic traditions, strict marriage permissions
-  IR: 44, // Iran — Sharia civil code, but secular/Western youth counterculture
-  EG: 42, // Egypt — Law 25/1920 Al-Azhar conversion requirement, 0% daughter intermarriage comfort
+  IR: 52, // Iran — Persian hospitality and secular youth fascination with the West
+  EG: 48, // Egypt — Red Sea resort hubs, Cairo cosmopolitan elite vs traditional majority
   JO: 42, // Jordan — Sharia personal status courts, 0% daughter intermarriage comfort in Pew
   LY: 42, // Libya — Conservative Islamic and tribal governance
   DZ: 40, // Algeria — Code de la Famille Art. 31 statutory ban on Muslim women out-marrying
   SY: 40, // Syria — Religious personal status codes, conflict environment
   PS: 38, // Palestine — Religious family courts, high social endogamy
-  SA: 34, // Saudi Arabia — Hanbali Sharia courts, MOI permission required, non-Muslim ban
+  SA: 38, // Saudi Arabia — Modernization under Vision 2030, Riyadh/Jeddah expat compounds
   SD: 34, // Sudan — Conservative Islamic personal status laws
   IQ: 32, // Iraq — Shia/Sunni sectarian personal status laws
   EH: 28, // Western Sahara — Sahrawi conservative tribal culture
   YE: 24, // Yemen — Traditional tribal/Islamic endogamy, severe conflict
 
   // ── Sub-Saharan Africa ──
-  KE: 74, // Kenya — English official, Christian majority, Nairobi cosmopolitan tech/expat hub
-  GH: 72, // Ghana — Stable Christian democracy, high English proficiency, positive diaspora ties
+  KE: 78, // Kenya — Nairobi expat capital, high English, active dating scene
+  GH: 76, // Ghana — Accra diaspora hub, high English, Year of Return
   CV: 72, // Cape Verde — Creole, Portuguese ties, high European mobility
   MU: 72, // Mauritius — High income, diverse, French/English bilingual
   SC: 73, // Seychelles — High-income Creole island nation
   RE: 73, // Réunion — French overseas department, high mixed intermarriage
   IO: 73, // British Indian Ocean Territory — British territory, US/UK military administration
   SH: 71, // Saint Helena — British Overseas Territory
-  ZA: 70, // South Africa — Multi-ethnic, Western civil law, historic racial segregation legacy
+  ZA: 72, // South Africa — Diverse multi-ethnic market, Cape Town/Joburg
   BW: 68, // Botswana — Stable upper-middle-income democracy
   NA: 68, // Namibia — German historical ties, multi-ethnic legal system
-  RW: 68, // Rwanda — Rapid economic development, English/French integration
-  UG: 68, // Uganda — English-speaking Christian nation
-  TZ: 66, // Tanzania — Swahili coast, Christian/Muslim balance
+  RW: 70, // Rwanda — Kigali tech/expat hub, high safety and openness
+  UG: 72, // Uganda — Kampala nightlife, high English, foreigner friendliness
+  TZ: 70, // Tanzania — Zanzibar/Dar es Salaam expat and tourism dating
   ZW: 66, // Zimbabwe — High literacy, English official
   ZM: 66, // Zambia — Christian nation, stable English-speaking
-  NG: 66, // Nigeria — South Lagos/Abuja (74+) vs North 12 Sharia states (30-)
+  NG: 75, // Nigeria — Lagos/Abuja cosmopolitan hubs, English, celebrity status
   AO: 66, // Angola — Portuguese colonial ties, oil economy
   GA: 66, // Gabon — High urbanization, French ties
   MG: 66, // Madagascar — Austronesian/African mix, French ties
