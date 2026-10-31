@@ -20,7 +20,9 @@ import { contraceptiveUseByCountry } from "~/data/contraceptive-map";
 import { laborForceGapByCountry } from "~/data/labor-force-gap-map";
 import {
   getWhiteMalePerception,
+  getWhiteMaleDesirability,
   whiteMalePerceptionByCountry,
+  whiteMaleDesirabilityByCountry,
 } from "~/data/white-male-perception-map";
 import { usStates, type USStateData } from "~/data/us-states";
 
@@ -439,9 +441,13 @@ export const stats: StatDef[] = [
     "Index finger length ÷ ring finger length. A marker of prenatal testosterone exposure.",
     "Around 0.95–1.00. Lower = more prenatal testosterone (male-typical ≈ 0.96); higher ≈ 0.98–1.00 (female-typical). Differences are tiny but statistically robust."),
   scalar("whiteMalePerceptionIndex", "White male perception index", "Attraction & Dimorphism", "/100", 1,
-    "Composite empirical metric (0–100) quantifying dating desirability, inbound match rates, and cross-cultural partner receptivity for White men across countries and US states. Grounded in 4 empirical pillars: dating app telemetry & match advantage (40%; OkCupid/Tinder/Bumble audits showing 15–40%+ match rates in SE Asia, Bruch & Newman 2018 PageRank desirability, Lin & Lundquist 2013 dyadic odds), cultural & aesthetic status (30%; 'bule hunter' & 'memperbaiki keturunan' phenomena in Indonesia, 'mejorar la raza' & pigmentocracy in Latin America, Eurasian/blasteran media dominance), interpersonal exogamous openness (20%; real-world cross-cultural dating, tourism relationships, binational marriages), and institutional/social freedom (10%; penalties focused where romantic association is actively criminalized).",
-    "Scale 0–100. Global reference baseline ≈ 50, US national = 74.0. Top-tier scores (>80, e.g. Philippines 88, Thailand 86, Colombia 85, Brazil 82, Indonesia 81, Vietnam 82, Hawaii 86) reflect intense inbound dating demand, high social prestige, and cultural fascination. Mid-tier scores (65–75, e.g. Western Europe, Argentina 73, Japan 72, US average 74) reflect domestic demographic baselines where Whiteness is common rather than an exotic status dividend. Lower scores (<40, e.g. Pakistan 38, Saudi Arabia 38, Yemen 25, Afghanistan 20) reflect strict societal bans or penal criminalization of informal dating.",
+    "Effective cross-cultural dating perception index for White men across countries and US states, derived from a Bradley-Terry logistic model (50 = exact parity with local men, Odds Ratio = 1.0). Synthesizes cultural and phenotypic status (e.g. bule hunter / memperbaiki keturunan in Indonesia, AFAM in Philippines, pigmentocracy in Latin America), dimorphic height differential (+0.03 log-odds/cm), and PPP income ratio (+0.25 log-odds/ln-unit), discounted by access barriers (dating app exits, visas), legal personal status restrictions (statutory Sharia endogamy, mandatory religious conversion), and safety hazards (scopolamine drugging, extortion).",
+    "Scale 0–100 where 50 = exact parity with local men (OR = 1.0). Top scores (>80, e.g. Philippines 88.5, Vietnam 87.0, Thailand 86.2, Colombia 84.2, Indonesia 82.3) reflect massive inbound dating advantage. Baseline European/Western scores hover around 47–53 (US 50.5, UK 51.5, Netherlands 47.3 due to 184cm local height). Severe gating drops isolated or restricted nations (Russia 39.7 due to dating app exit/sanctions; Saudi Arabia 28.8; Afghanistan 1.7 due to Taliban death penalty).",
     (c) => (c as any).whiteMalePerceptionIndex ?? getWhiteMalePerception(c.code), "male"),
+  scalar("whiteMaleDesirabilityIndex", "White male desirability (ungated)", "Attraction & Dimorphism", "/100", 1,
+    "Ungated cross-cultural dating desirability and aesthetic preference for White men before deducting access, legal, or physical safety obstacles. Evaluated on a pure Bradley-Terry logistic scale where 50 = exact neutral parity with local men (Odds Ratio = 1.0). Measures baseline romantic interest, phenotypic status (such as Indonesia 'bule hunter' ~88.6, Philippines 'AFAM' ~88.5, Dominican Republic ~87.5, Colombia ~86.9, India ~83.2), height advantages, and income purchasing power.",
+    "Scale 0–100 where 50 = exact parity with local men. Highlights latent cultural and aesthetic demand: Indonesia reaches 88.6 (compared to 82.3 effective index after SEMA 2/2023 legal friction); India reaches 83.2 (vs 73.7 effective after arranged marriage endogamy); Russia reaches 59.4 (vs 39.7 effective after Tinder exit); and Afghanistan reaches 69.0 (vs 1.7 effective under Taliban rule).",
+    (c) => (c as any).whiteMaleDesirabilityIndex ?? getWhiteMaleDesirability(c.code), "male"),
 
   // ── Society ──
   scalar("adolescentBirthRate", "Adolescent birth rate", "Society", "per 1k", 1,

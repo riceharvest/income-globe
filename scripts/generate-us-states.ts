@@ -841,14 +841,15 @@ console.log("Loaded raw states count:", rawStates.length);
 
 const eurExchangeRate = 1.08;
 
-// Calibrated White Male Perception Index by US State (anchored to US national 74.0; Pew Research ACS IPUMS microdata)
+// Calibrated White Male Perception Index by US State (Bradley-Terry logistic model: 50 = exact parity with local men)
 const whiteMalePerceptionByState: Record<string, number> = {
-  HI: 86, CA: 82, NV: 81, NM: 81, DC: 80, AZ: 79, AK: 78, FL: 77, TX: 77, WA: 77,
-  CO: 76, NJ: 76, NY: 76, OR: 76, CT: 75, OK: 75, MA: 74, DE: 73, IL: 73, MD: 73,
-  UT: 73, VA: 73, GA: 72, KS: 72, NE: 72, RI: 72, MI: 71, NC: 71, ID: 70, MN: 70,
-  WY: 70, LA: 69, MO: 69, PA: 69, SC: 69, AR: 68, IN: 68, IA: 68, NH: 68, OH: 68,
-  TN: 68, WI: 68, AL: 67, MT: 67, ND: 67, SD: 67, KY: 66, MS: 66, WV: 65, ME: 64,
-  VT: 64,
+  HI: 61.3, NM: 57.7, CA: 55.5, NV: 55.0, TX: 54.5, FL: 54.2, AZ: 53.7, LA: 53.6,
+  MS: 53.4, AR: 53.0, OK: 52.8, DC: 52.6, GA: 52.4, NC: 52.4, NY: 52.3, AL: 52.3,
+  WV: 52.3, SC: 52.2, KY: 51.8, TN: 51.5, IL: 51.4, DE: 51.4, NJ: 51.1, MI: 51.0,
+  OH: 51.0, MO: 51.0, PA: 50.8, WA: 50.8, IN: 50.7, CO: 50.6, MD: 50.6, OR: 50.6,
+  AK: 50.5, CT: 50.5, RI: 50.5, VA: 50.5, KS: 50.3, ME: 50.2, MT: 50.1, NE: 50.0,
+  SD: 49.9, ID: 49.8, WI: 49.8, WY: 49.8, IA: 49.7, MA: 49.7, VT: 49.5, ND: 49.3,
+  MN: 48.9, UT: 48.8, NH: 48.6,
 };
 
 function toStateData(s: RawState) {
@@ -1005,7 +1006,8 @@ function toStateData(s: RawState) {
     breastSize: s.breastSize,
     religionPct: s.religionPct,
     bachelorsPercent: s.bachelorsPct,
-    whiteMalePerceptionIndex: whiteMalePerceptionByState[s.code] ?? 74,
+    whiteMalePerceptionIndex: whiteMalePerceptionByState[s.code] ?? 50.5,
+    whiteMaleDesirabilityIndex: whiteMalePerceptionByState[s.code] ?? 50.5,
     englishSpeakingPercent: s.englishPct,
   };
 }

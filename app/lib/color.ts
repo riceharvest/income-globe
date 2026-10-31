@@ -80,6 +80,7 @@ const statPalette: Record<string, string> = {
   breastSize: "violet",
   // Attraction & Dimorphism
   whiteMalePerceptionIndex: "violet",
+  whiteMaleDesirabilityIndex: "violet",
   // Society
   adolescentBirthRate: "rose",
   childMarriage: "rose",
