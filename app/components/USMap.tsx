@@ -4,7 +4,13 @@ import { feature } from "topojson-client";
 import { Plus, Minus, RotateCcw } from "lucide-react";
 import topoData from "us-atlas/states-albers-10m.json";
 import { usStates, usStateByFips, type USStateData } from "~/data/us-states";
-import { colorScaleFor, noDataFill, oceanFill, borderStroke } from "~/lib/color";
+import {
+  colorScaleFor,
+  hotspotColorScaleFor,
+  noDataFill,
+  oceanFill,
+  borderStroke,
+} from "~/lib/color";
 import {
   formatValue,
   rankCountries,
@@ -79,6 +85,7 @@ export function USMap({
   }, [stat, mode, region]);
 
   const fill = useMemo(() => colorScaleFor(stat, extent), [stat, extent]);
+  const hotspotFill = useMemo(() => hotspotColorScaleFor(stat, extent), [stat, extent]);
 
   const valueByFips = useMemo(() => {
     const m = new Map<string, number | null>();
@@ -232,8 +239,12 @@ export function USMap({
             const baseFill = isClassicOverlay
               ? "#f4f4f5"
               : v != null
-                ? fill(v)
-                : noDataFill;
+                ? isHotspotOverlay
+                  ? hotspotFill(v)
+                  : fill(v)
+                : isHotspotOverlay
+                  ? "#04060a"
+                  : noDataFill;
             return (
               <path
                 key={f.id}
@@ -243,11 +254,6 @@ export function USMap({
                 d={path(f as unknown as GeoJSON.Feature) ?? ""}
                 fill={baseFill}
                 fillOpacity={dimmed ? 0.15 : 1}
-                style={
-                  isHotspotOverlay && !dimmed
-                    ? { filter: "brightness(1.28) saturate(1.18)" }
-                    : undefined
-                }
                 stroke={isSelected ? "#38bdf8" : isClassicOverlay ? "#cbd5e1" : "#27272a"}
                 strokeWidth={isSelected ? 2.5 / view.k : 0.6 / view.k}
                 tabIndex={state ? 0 : -1}

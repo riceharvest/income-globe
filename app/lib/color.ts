@@ -128,6 +128,33 @@ export function colorScaleFor(
   return (v) => ramp(scale(v));
 }
 
+/**
+ * Non-linear power-gated color scale for Hotspot ×2 mode.
+ * Suppresses the bottom ~16% of the stat range to near-black (#04060a) so
+ * low-rate countries do not produce false color-dodge hotspots in dense cities,
+ * while mid-to-high stat countries scale up to the full vibrant stat hue.
+ */
+export function hotspotColorScaleFor(
+  stat: { id: string; group: string },
+  domain: [number, number],
+): (v: number) => string {
+  if (stat.id === "partisanLean") {
+    return colorScaleFor(stat, domain);
+  }
+  const ramp = rampFor(stat);
+  const peakColor = ramp(1.0);
+  const hotRamp = interpolateRgb("#04060a", peakColor);
+  const scale = scaleLinear().domain(domain).range([0, 1]).clamp(true);
+  return (v) => {
+    const t = scale(v);
+    const tHot =
+      t <= 0.16
+        ? 0.015 * (t / 0.16)
+        : 0.015 + 0.985 * Math.pow((t - 0.16) / 0.84, 1.35);
+    return hotRamp(tHot);
+  };
+}
+
 /** Accent color (upper-mid of the ramp) for bars, highlights, links. */
 export function accentFor(stat: { id: string; group: string }): string {
   return rampFor(stat)(0.8);

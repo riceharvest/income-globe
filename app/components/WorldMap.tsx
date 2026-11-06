@@ -4,7 +4,13 @@ import { feature } from "topojson-client";
 import { Plus, Minus, RotateCcw } from "lucide-react";
 import topoData from "world-atlas/countries-110m.json";
 import { countries, type CountryData } from "~/data/countries";
-import { colorScaleFor, noDataFill, oceanFill, borderStroke } from "~/lib/color";
+import {
+  colorScaleFor,
+  hotspotColorScaleFor,
+  noDataFill,
+  oceanFill,
+  borderStroke,
+} from "~/lib/color";
 import { formatValue, rankCountries, statValue, type Mode, type StatDef } from "~/lib/stats";
 import { getPwdDensity } from "~/data/pwd-density-map";
 import { MapLegendOverlay } from "~/components/MapLegendOverlay";
@@ -92,6 +98,7 @@ export function WorldMap({
   }, [stat, mode, region]);
 
   const fill = useMemo(() => colorScaleFor(stat, extent), [stat, extent]);
+  const hotspotFill = useMemo(() => hotspotColorScaleFor(stat, extent), [stat, extent]);
 
   const valueByNumeric = useMemo(() => {
     const m = new Map<number, number | null>();
@@ -239,8 +246,12 @@ export function WorldMap({
             const baseFill = isClassicOverlay
               ? "#f4f4f5"
               : v != null
-                ? fill(v)
-                : noDataFill;
+                ? isHotspotOverlay
+                  ? hotspotFill(v)
+                  : fill(v)
+                : isHotspotOverlay
+                  ? "#04060a"
+                  : noDataFill;
             return (
               <path
                 key={f.id ?? f.properties.name}
@@ -249,11 +260,6 @@ export function WorldMap({
                 d={path(f as unknown as GeoJSON.Feature) ?? ""}
                 fill={baseFill}
                 fillOpacity={dimmed ? 0.12 : 1}
-                style={
-                  isHotspotOverlay && !dimmed
-                    ? { filter: "brightness(1.28) saturate(1.18)" }
-                    : undefined
-                }
                 stroke={isSelected ? "#38bdf8" : isClassicOverlay ? "#cbd5e1" : borderStroke}
                 strokeWidth={isSelected ? 1.8 / view.k : 0.4 / view.k}
                 tabIndex={country ? 0 : -1}
