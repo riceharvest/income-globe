@@ -149,21 +149,21 @@ export function hotspotColorScaleFor(
   }
   const ramp = rampFor(stat);
   const peakColor = ramp(1.0);
-  const superHotColor = interpolateRgb(peakColor, "#ffffff")(0.72);
+  const superHotColor = interpolateRgb(peakColor, "#ffffff")(0.82);
   const lowToPeak = interpolateRgb("#08090c", peakColor);
   const peakToSuper = interpolateRgb(peakColor, superHotColor);
   const scale = scaleLinear().domain(domain).range([0, 1]).clamp(true);
   return (v) => {
     const t = scale(v);
-    if (t <= 0.22) {
-      return lowToPeak(0.02 * (t / 0.22));
+    if (t <= 0.225) {
+      return lowToPeak(0.015 * (t / 0.225));
     }
-    if (t <= 0.46) {
-      const u = (t - 0.22) / 0.24;
-      return lowToPeak(0.02 + 0.98 * Math.pow(u, 0.95));
+    if (t <= 0.42) {
+      const u = (t - 0.225) / 0.195;
+      return lowToPeak(0.015 + 0.985 * Math.pow(u, 0.72));
     }
-    const u = (t - 0.46) / 0.54;
-    return peakToSuper(Math.pow(u, 0.85));
+    const u = (t - 0.42) / 0.58;
+    return peakToSuper(Math.pow(u, 0.68));
   };
 }
 
