@@ -58,7 +58,7 @@ export function PopDensityOverlayControl({
   }
 
   return (
-    <div className="absolute top-3 right-3 z-10 flex flex-col gap-2 rounded-xl border border-cyan-500/40 bg-zinc-950/92 p-2.5 text-xs shadow-2xl backdrop-blur-md w-68 animate-fade-in">
+    <div className="absolute top-3 right-3 z-10 flex flex-col gap-2 rounded-xl border border-cyan-500/40 bg-zinc-950/95 p-2.5 text-xs shadow-2xl backdrop-blur-md w-68">
       <div className="flex items-center justify-between gap-2">
         <button
           type="button"
@@ -133,10 +133,10 @@ export function PopDensityOverlayControl({
       {/* Mode Explanation */}
       <div className="text-[10px] text-zinc-400 leading-tight">
         {state.style === "hotspot"
-          ? "Masks empty land & low-rate countries so only high-stat urban centers glow."
+          ? "1 km multi-zoom GHSL stencil: masks empty land & low-rate countries so high-stat cities glow."
           : state.style === "blend"
-            ? "Blends Luminocity3D 16-class density colors over country stat fills."
-            : "Original Luminocity3D light basemap with 16 GHSL density classes."}
+            ? "1 km multi-zoom GHSL 16-class density colors blended over country stat fills."
+            : "1 km multi-zoom GHSL 16-class density over light canvas (zoom in for full detail)."}
       </div>
 
       {/* Opacity / Intensity Slider */}

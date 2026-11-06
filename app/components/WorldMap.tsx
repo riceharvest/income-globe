@@ -2,7 +2,7 @@ import { useMemo, useRef, useState, useCallback, useEffect } from "react";
 import { geoEqualEarth, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 import { Plus, Minus, RotateCcw } from "lucide-react";
-import topoData from "world-atlas/countries-110m.json";
+import topoData from "world-atlas/countries-50m.json";
 import { countries, type CountryData } from "~/data/countries";
 import {
   colorScaleFor,
@@ -14,6 +14,7 @@ import {
 import { formatValue, rankCountries, statValue, type Mode, type StatDef } from "~/lib/stats";
 import { getPwdDensity } from "~/data/pwd-density-map";
 import { MapLegendOverlay } from "~/components/MapLegendOverlay";
+import { GhslTiledOverlay } from "~/components/GhslTiledOverlay";
 import {
   PopDensityOverlayControl,
   type PopDensityOverlayState,
@@ -70,10 +71,22 @@ export function WorldMap({
     style: "hotspot",
   });
   useEffect(() => {
-    const p = new URLSearchParams(window.location.search).get("overlay");
+    const params = new URLSearchParams(window.location.search);
+    const p = params.get("overlay");
     if (p === "1" || p === "hotspot") setPopOverlay((s) => ({ ...s, enabled: true, style: "hotspot" }));
     else if (p === "blend") setPopOverlay((s) => ({ ...s, enabled: true, style: "blend" }));
     else if (p === "classic") setPopOverlay((s) => ({ ...s, enabled: true, style: "classic" }));
+    const z = params.get("zoom");
+    if (z) {
+      const [ks, xs, ys] = z.split(",").map(Number);
+      if (Number.isFinite(ks) && ks >= 1) {
+        setView({
+          k: Math.min(24, ks),
+          x: Number.isFinite(xs) ? xs : 0,
+          y: Number.isFinite(ys) ? ys : 0,
+        });
+      }
+    }
   }, []);
   const svgRef = useRef<SVGSVGElement>(null);
   const drag = useRef<{ px: number; py: number; x: number; y: number; moved: boolean } | null>(null);
@@ -120,17 +133,31 @@ export function WorldMap({
   }, [rankedEntries]);
 
   const zoomIn = useCallback(() => {
-    setView((v) => ({
-      k: Math.min(12, v.k * 1.35),
-      x: v.x - (WIDTH * 0.35) / 2,
-      y: v.y - (HEIGHT * 0.35) / 2,
-    }));
+    setView((v) => {
+      const k = Math.min(24, v.k * 1.4);
+      const scale = k / v.k;
+      const cx = WIDTH / 2;
+      const cy = HEIGHT / 2;
+      return {
+        k,
+        x: cx - (cx - v.x) * scale,
+        y: cy - (cy - v.y) * scale,
+      };
+    });
   }, []);
 
   const zoomOut = useCallback(() => {
     setView((v) => {
-      const k = Math.max(1, v.k / 1.35);
-      return k === 1 ? { k: 1, x: 0, y: 0 } : { k, x: v.x + (WIDTH * 0.35) / 2, y: v.y + (HEIGHT * 0.35) / 2 };
+      const k = Math.max(1, v.k / 1.4);
+      if (k === 1) return { k: 1, x: 0, y: 0 };
+      const scale = k / v.k;
+      const cx = WIDTH / 2;
+      const cy = HEIGHT / 2;
+      return {
+        k,
+        x: cx - (cx - v.x) * scale,
+        y: cy - (cy - v.y) * scale,
+      };
     });
   }, []);
 
@@ -146,7 +173,7 @@ export function WorldMap({
     const my = ((e.clientY - rect.top) / rect.height) * HEIGHT;
     setView((v) => {
       const factor = e.deltaY < 0 ? 1.25 : 0.8;
-      const k = Math.min(12, Math.max(1, v.k * factor));
+      const k = Math.min(24, Math.max(1, v.k * factor));
       const scale = k / v.k;
       return {
         k,
@@ -291,19 +318,13 @@ export function WorldMap({
 
           {popOverlay.enabled && (
             <>
-              <image
-                href={
-                  popOverlay.style === "hotspot"
-                    ? "/overlays/luminocity-dim-world.png"
-                    : "/overlays/luminocity-pop-density-world.png"
-                }
-                x={0}
-                y={0}
+              <GhslTiledOverlay
+                scope="world"
+                styleMode={popOverlay.style}
+                opacity={popOverlay.opacity}
+                view={view}
                 width={WIDTH}
                 height={HEIGHT}
-                opacity={popOverlay.opacity}
-                preserveAspectRatio="none"
-                style={{ pointerEvents: "none" }}
               />
               {geoFeatures.map((f) => {
                 const num = f.id ? parseInt(f.id, 10) : NaN;
