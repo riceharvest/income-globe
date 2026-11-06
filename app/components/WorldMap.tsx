@@ -69,6 +69,12 @@ export function WorldMap({
     opacity: 0.95,
     style: "hotspot",
   });
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search).get("overlay");
+    if (p === "1" || p === "hotspot") setPopOverlay((s) => ({ ...s, enabled: true, style: "hotspot" }));
+    else if (p === "blend") setPopOverlay((s) => ({ ...s, enabled: true, style: "blend" }));
+    else if (p === "classic") setPopOverlay((s) => ({ ...s, enabled: true, style: "classic" }));
+  }, []);
   const svgRef = useRef<SVGSVGElement>(null);
   const drag = useRef<{ px: number; py: number; x: number; y: number; moved: boolean } | null>(null);
 
@@ -285,44 +291,20 @@ export function WorldMap({
 
           {popOverlay.enabled && (
             <>
-              {popOverlay.style === "hotspot" ? (
-                <>
-                  <image
-                    href="/overlays/luminocity-dim-world.png"
-                    x={0}
-                    y={0}
-                    width={WIDTH}
-                    height={HEIGHT}
-                    opacity={popOverlay.opacity}
-                    preserveAspectRatio="none"
-                    style={{ pointerEvents: "none" }}
-                  />
-                  <image
-                    href="/overlays/luminocity-dodge-world.png"
-                    x={0}
-                    y={0}
-                    width={WIDTH}
-                    height={HEIGHT}
-                    opacity={popOverlay.opacity}
-                    preserveAspectRatio="none"
-                    style={{
-                      pointerEvents: "none",
-                      mixBlendMode: "color-dodge",
-                    }}
-                  />
-                </>
-              ) : (
-                <image
-                  href="/overlays/luminocity-pop-density-world.png"
-                  x={0}
-                  y={0}
-                  width={WIDTH}
-                  height={HEIGHT}
-                  opacity={popOverlay.opacity}
-                  preserveAspectRatio="none"
-                  style={{ pointerEvents: "none" }}
-                />
-              )}
+              <image
+                href={
+                  popOverlay.style === "hotspot"
+                    ? "/overlays/luminocity-dim-world.png"
+                    : "/overlays/luminocity-pop-density-world.png"
+                }
+                x={0}
+                y={0}
+                width={WIDTH}
+                height={HEIGHT}
+                opacity={popOverlay.opacity}
+                preserveAspectRatio="none"
+                style={{ pointerEvents: "none" }}
+              />
               {geoFeatures.map((f) => {
                 const num = f.id ? parseInt(f.id, 10) : NaN;
                 const country = byNumeric.get(num);

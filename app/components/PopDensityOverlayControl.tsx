@@ -133,7 +133,7 @@ export function PopDensityOverlayControl({
       {/* Mode Explanation */}
       <div className="text-[10px] text-zinc-400 leading-tight">
         {state.style === "hotspot"
-          ? "Dims empty land & multiplies country stat × city density so high-stat urban centers blaze."
+          ? "Masks empty land & low-rate countries so only high-stat urban centers glow."
           : state.style === "blend"
             ? "Blends Luminocity3D 16-class density colors over country stat fills."
             : "Original Luminocity3D light basemap with 16 GHSL density classes."}
@@ -164,7 +164,7 @@ export function PopDensityOverlayControl({
           <>
             <div className="flex items-center justify-between text-[10px] text-zinc-400 mb-1">
               <span>Stat Weight × Lived Density</span>
-              <span className="font-mono text-[9px] text-amber-300/90">Color-Dodge</span>
+              <span className="font-mono text-[9px] text-amber-300/90">Density Stencil</span>
             </div>
             <div
               className="h-2.5 w-full rounded border border-zinc-800/80"

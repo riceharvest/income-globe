@@ -129,10 +129,16 @@ export function colorScaleFor(
 }
 
 /**
- * Non-linear power-gated color scale for Hotspot ×2 mode.
- * Suppresses the bottom ~16% of the stat range to near-black (#04060a) so
- * low-rate countries do not produce false color-dodge hotspots in dense cities,
- * while mid-to-high stat countries scale up to the full vibrant stat hue.
+ * High-contrast power-gated color scale for Hotspot ×2 mode.
+ * Used beneath the subtractive GHSL population-density stencil
+ * (`luminocity-dim-*.png`), where dense cities have alpha = 0 (100% open)
+ * and uninhabited land has alpha = 93% (#09090b).
+ *
+ * - Bottom ~18% of the stat range (e.g. India/China/Egypt/Saudi on Tinder Match Rate)
+ *   stays near ocean-black (#080a0e) so low-rate countries never light up, even in megacities.
+ * - Mid-range (Europe, US, LatAm, East Africa) ramps steeply to the full vibrant stat hue.
+ * - Top-range (Southeast Asia on Tinder Match Rate) pushes past the peak hue into a
+ *   luminous neon highlight so high-stat + high-density cities blaze unmistakably.
  */
 export function hotspotColorScaleFor(
   stat: { id: string; group: string },
@@ -143,15 +149,21 @@ export function hotspotColorScaleFor(
   }
   const ramp = rampFor(stat);
   const peakColor = ramp(1.0);
-  const hotRamp = interpolateRgb("#04060a", peakColor);
+  const superHotColor = interpolateRgb(peakColor, "#ffffff")(0.72);
+  const lowToPeak = interpolateRgb("#08090c", peakColor);
+  const peakToSuper = interpolateRgb(peakColor, superHotColor);
   const scale = scaleLinear().domain(domain).range([0, 1]).clamp(true);
   return (v) => {
     const t = scale(v);
-    const tHot =
-      t <= 0.16
-        ? 0.015 * (t / 0.16)
-        : 0.015 + 0.985 * Math.pow((t - 0.16) / 0.84, 1.35);
-    return hotRamp(tHot);
+    if (t <= 0.22) {
+      return lowToPeak(0.02 * (t / 0.22));
+    }
+    if (t <= 0.46) {
+      const u = (t - 0.22) / 0.24;
+      return lowToPeak(0.02 + 0.98 * Math.pow(u, 0.95));
+    }
+    const u = (t - 0.46) / 0.54;
+    return peakToSuper(Math.pow(u, 0.85));
   };
 }
 
