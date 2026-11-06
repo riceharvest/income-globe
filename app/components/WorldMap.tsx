@@ -1,6 +1,6 @@
-import { useMemo, useRef, useState, useCallback, useEffect } from "react";
+import { memo, useMemo, useRef, useState, useCallback, useEffect } from "react";
 import { geoEqualEarth, geoPath } from "d3-geo";
-import { feature } from "topojson-client";
+import { feature, mesh } from "topojson-client";
 import { Plus, Minus, RotateCcw } from "lucide-react";
 import topoData from "world-atlas/countries-50m.json";
 import { countries, type CountryData } from "~/data/countries";
@@ -14,10 +14,15 @@ import {
 import { formatValue, rankCountries, statValue, type Mode, type StatDef } from "~/lib/stats";
 import { getPwdDensity } from "~/data/pwd-density-map";
 import { MapLegendOverlay } from "~/components/MapLegendOverlay";
-import { GhslTiledOverlay } from "~/components/GhslTiledOverlay";
+import {
+  GhslTiledOverlay,
+  type GhslOverlayHandle,
+  type MapView,
+} from "~/components/GhslTiledOverlay";
 import {
   PopDensityOverlayControl,
   type PopDensityOverlayState,
+  type PopDensityStyle,
 } from "~/components/PopDensityOverlayControl";
 
 interface GeoFeature {
@@ -27,12 +32,8 @@ interface GeoFeature {
   geometry: GeoJSON.Geometry;
 }
 
-const geoFeatures = (
-  feature(
-    topoData as never,
-    (topoData as unknown as { objects: { countries: never } }).objects.countries,
-  ) as unknown as { features: GeoFeature[] }
-).features;
+const WIDTH = 1000;
+const HEIGHT = 520;
 
 const byNumeric = new Map<number, CountryData>();
 for (const c of countries) {
@@ -40,8 +41,66 @@ for (const c of countries) {
   if (Number.isFinite(n)) byNumeric.set(n, c);
 }
 
-const WIDTH = 1000;
-const HEIGHT = 520;
+// Precompute projection and ALL SVG path strings once at module load (0 ms per render!)
+const worldProjection = geoEqualEarth().fitExtent(
+  [
+    [4, 4],
+    [WIDTH - 4, HEIGHT - 4],
+  ],
+  { type: "Sphere" } as unknown as GeoJSON.Feature,
+);
+const staticPathGen = geoPath(worldProjection);
+
+const SPHERE_PATH_D =
+  staticPathGen({ type: "Sphere" } as unknown as GeoJSON.Feature) ?? "";
+
+const rawGeoFeatures = (
+  feature(
+    topoData as never,
+    (topoData as unknown as { objects: { countries: never } }).objects.countries,
+  ) as unknown as { features: GeoFeature[] }
+).features;
+
+interface PrecomputedCountryFeature {
+  key: string;
+  num: number;
+  country: CountryData | null;
+  fallbackName: string;
+  d: string;
+}
+
+const PRECOMPUTED_FEATURES: PrecomputedCountryFeature[] = rawGeoFeatures.map(
+  (f, idx) => {
+    const num = f.id ? parseInt(f.id, 10) : NaN;
+    const country = Number.isFinite(num) ? (byNumeric.get(num) ?? null) : null;
+    const key = f.id ?? f.properties.name ?? `f-${idx}`;
+    return {
+      key,
+      num,
+      country,
+      fallbackName: country?.name ?? f.properties.name ?? "Country",
+      d: staticPathGen(f as unknown as GeoJSON.Feature) ?? "",
+    };
+  },
+);
+
+const PATH_D_BY_KEY = new Map<string, string>();
+const PATH_D_BY_CODE = new Map<string, string>();
+for (const pf of PRECOMPUTED_FEATURES) {
+  PATH_D_BY_KEY.set(pf.key, pf.d);
+  if (pf.country) {
+    const existing = PATH_D_BY_CODE.get(pf.country.code);
+    PATH_D_BY_CODE.set(pf.country.code, existing ? `${existing} ${pf.d}` : pf.d);
+  }
+}
+
+const WORLD_BORDER_MESH_D =
+  staticPathGen(
+    mesh(
+      topoData as never,
+      (topoData as unknown as { objects: { countries: never } }).objects.countries,
+    ) as unknown as GeoJSON.MultiLineString,
+  ) ?? "";
 
 export interface HoverInfo {
   country: CountryData | null;
@@ -49,6 +108,88 @@ export interface HoverInfo {
   x: number;
   y: number;
 }
+
+interface HoverTarget {
+  key: string;
+  country: CountryData | null;
+  name: string;
+}
+
+const WorldPathsLayer = memo(function WorldPathsLayer({
+  stat,
+  valueByNumeric,
+  fill,
+  hotspotFill,
+  region,
+  overlayEnabled,
+  overlayStyle,
+  onSelectCountry,
+}: {
+  stat: StatDef;
+  valueByNumeric: Map<number, number | null>;
+  fill: (v: number) => string;
+  hotspotFill: (v: number) => string;
+  region: string | null;
+  overlayEnabled: boolean;
+  overlayStyle: PopDensityStyle;
+  onSelectCountry: (c: CountryData) => void;
+}) {
+  const isClassicOverlay = overlayEnabled && overlayStyle === "classic";
+  const isHotspotOverlay = overlayEnabled && overlayStyle === "hotspot";
+  const strokeColor = isClassicOverlay ? "#cbd5e1" : borderStroke;
+
+  return (
+    <>
+      <path d={SPHERE_PATH_D} fill={oceanFill} />
+      {PRECOMPUTED_FEATURES.map((pf) => {
+        const v = Number.isFinite(pf.num) ? valueByNumeric.get(pf.num) : undefined;
+        const dimmed =
+          region != null && pf.country != null && pf.country.region !== region;
+        const baseFill = isClassicOverlay
+          ? "#f4f4f5"
+          : v != null
+            ? isHotspotOverlay
+              ? hotspotFill(v)
+              : fill(v)
+            : isHotspotOverlay
+              ? "#04060a"
+              : noDataFill;
+
+        return (
+          <path
+            key={pf.key}
+            data-key={pf.key}
+            data-num={Number.isFinite(pf.num) ? pf.num : undefined}
+            data-name={pf.fallbackName}
+            d={pf.d}
+            fill={baseFill}
+            fillOpacity={dimmed ? 0.12 : 1}
+            stroke={strokeColor}
+            strokeWidth={0.5}
+            vectorEffect="non-scaling-stroke"
+            tabIndex={pf.country ? 0 : -1}
+            role={pf.country ? "button" : undefined}
+            aria-label={
+              pf.country
+                ? `${pf.country.name}: ${formatValue(stat, v ?? null)}`
+                : pf.fallbackName
+            }
+            onKeyDown={(e) => {
+              if ((e.key === "Enter" || e.key === " ") && pf.country) {
+                e.preventDefault();
+                onSelectCountry(pf.country);
+              }
+            }}
+            className="focus:outline-none"
+            onClick={() => {
+              if (pf.country) onSelectCountry(pf.country);
+            }}
+          />
+        );
+      })}
+    </>
+  );
+});
 
 export function WorldMap({
   stat,
@@ -63,44 +204,74 @@ export function WorldMap({
   selectedCode: string | null;
   onSelect: (c: CountryData) => void;
 }) {
-  const [view, setView] = useState({ k: 1, x: 0, y: 0 });
-  const [hover, setHover] = useState<HoverInfo | null>(null);
+  const viewRef = useRef<MapView>({ k: 1, x: 0, y: 0 });
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [hoverTarget, setHoverTarget] = useState<HoverTarget | null>(null);
+  const hoverKeyRef = useRef<string | null>(null);
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const lastPointerPos = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+
   const [popOverlay, setPopOverlay] = useState<PopDensityOverlayState>({
     enabled: false,
     opacity: 0.95,
     style: "hotspot",
   });
+
+  const svgRef = useRef<SVGSVGElement>(null);
+  const gRef = useRef<SVGGElement>(null);
+  const overlayRef = useRef<GhslOverlayHandle>(null);
+  const rafRef = useRef<number>(0);
+  const drag = useRef<{
+    px: number;
+    py: number;
+    x: number;
+    y: number;
+    moved: boolean;
+  } | null>(null);
+
+  const commitViewImperative = useCallback((next: MapView) => {
+    viewRef.current = next;
+    const zoomedNow = next.k > 1.001;
+    setIsZoomed((prev) => (prev === zoomedNow ? prev : zoomedNow));
+    if (rafRef.current) return;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = 0;
+      const v = viewRef.current;
+      gRef.current?.setAttribute(
+        "transform",
+        `translate(${v.x},${v.y}) scale(${v.k})`,
+      );
+      overlayRef.current?.drawView(v);
+    });
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const p = params.get("overlay");
-    if (p === "1" || p === "hotspot") setPopOverlay((s) => ({ ...s, enabled: true, style: "hotspot" }));
-    else if (p === "blend") setPopOverlay((s) => ({ ...s, enabled: true, style: "blend" }));
-    else if (p === "classic") setPopOverlay((s) => ({ ...s, enabled: true, style: "classic" }));
+    if (p === "1" || p === "hotspot")
+      setPopOverlay((s) => ({ ...s, enabled: true, style: "hotspot" }));
+    else if (p === "blend")
+      setPopOverlay((s) => ({ ...s, enabled: true, style: "blend" }));
+    else if (p === "classic")
+      setPopOverlay((s) => ({ ...s, enabled: true, style: "classic" }));
     const z = params.get("zoom");
     if (z) {
       const [ks, xs, ys] = z.split(",").map(Number);
       if (Number.isFinite(ks) && ks >= 1) {
-        setView({
+        commitViewImperative({
           k: Math.min(24, ks),
           x: Number.isFinite(xs) ? xs : 0,
           y: Number.isFinite(ys) ? ys : 0,
         });
       }
     }
-  }, []);
-  const svgRef = useRef<SVGSVGElement>(null);
-  const drag = useRef<{ px: number; py: number; x: number; y: number; moved: boolean } | null>(null);
-
-  const path = useMemo(() => {
-    const projection = geoEqualEarth().fitExtent(
-      [
-        [4, 4],
-        [WIDTH - 4, HEIGHT - 4],
-      ],
-      { type: "Sphere" } as unknown as GeoJSON.Feature,
-    );
-    return geoPath(projection);
-  }, []);
+  }, [commitViewImperative]);
 
   const extent = useMemo<[number, number]>(() => {
     let min = Infinity;
@@ -117,7 +288,10 @@ export function WorldMap({
   }, [stat, mode, region]);
 
   const fill = useMemo(() => colorScaleFor(stat, extent), [stat, extent]);
-  const hotspotFill = useMemo(() => hotspotColorScaleFor(stat, extent), [stat, extent]);
+  const hotspotFill = useMemo(
+    () => hotspotColorScaleFor(stat, extent),
+    [stat, extent],
+  );
 
   const valueByNumeric = useMemo(() => {
     const m = new Map<number, number | null>();
@@ -133,99 +307,158 @@ export function WorldMap({
   }, [rankedEntries]);
 
   const zoomIn = useCallback(() => {
-    setView((v) => {
-      const k = Math.min(24, v.k * 1.4);
-      const scale = k / v.k;
-      const cx = WIDTH / 2;
-      const cy = HEIGHT / 2;
-      return {
-        k,
-        x: cx - (cx - v.x) * scale,
-        y: cy - (cy - v.y) * scale,
-      };
+    const v = viewRef.current;
+    const k = Math.min(24, v.k * 1.4);
+    const scale = k / v.k;
+    const cx = WIDTH / 2;
+    const cy = HEIGHT / 2;
+    commitViewImperative({
+      k,
+      x: cx - (cx - v.x) * scale,
+      y: cy - (cy - v.y) * scale,
     });
-  }, []);
+  }, [commitViewImperative]);
 
   const zoomOut = useCallback(() => {
-    setView((v) => {
-      const k = Math.max(1, v.k / 1.4);
-      if (k === 1) return { k: 1, x: 0, y: 0 };
-      const scale = k / v.k;
-      const cx = WIDTH / 2;
-      const cy = HEIGHT / 2;
-      return {
-        k,
-        x: cx - (cx - v.x) * scale,
-        y: cy - (cy - v.y) * scale,
-      };
+    const v = viewRef.current;
+    const k = Math.max(1, v.k / 1.4);
+    if (k === 1) {
+      commitViewImperative({ k: 1, x: 0, y: 0 });
+      return;
+    }
+    const scale = k / v.k;
+    const cx = WIDTH / 2;
+    const cy = HEIGHT / 2;
+    commitViewImperative({
+      k,
+      x: cx - (cx - v.x) * scale,
+      y: cy - (cy - v.y) * scale,
     });
-  }, []);
+  }, [commitViewImperative]);
 
   const resetZoom = useCallback(() => {
-    setView({ k: 1, x: 0, y: 0 });
-  }, []);
+    commitViewImperative({ k: 1, x: 0, y: 0 });
+  }, [commitViewImperative]);
 
-  const onWheel = useCallback((e: React.WheelEvent<SVGSVGElement>) => {
-    e.preventDefault();
-    const rect = svgRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    const mx = ((e.clientX - rect.left) / rect.width) * WIDTH;
-    const my = ((e.clientY - rect.top) / rect.height) * HEIGHT;
-    setView((v) => {
+  const onWheel = useCallback(
+    (e: React.WheelEvent<SVGSVGElement>) => {
+      e.preventDefault();
+      const rect = svgRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      const fitScale = Math.min(rect.width / WIDTH, rect.height / HEIGHT);
+      const offsetX = (rect.width - WIDTH * fitScale) / 2;
+      const offsetY = (rect.height - HEIGHT * fitScale) / 2;
+      const mx = (e.clientX - rect.left - offsetX) / fitScale;
+      const my = (e.clientY - rect.top - offsetY) / fitScale;
+      const v = viewRef.current;
       const factor = e.deltaY < 0 ? 1.25 : 0.8;
       const k = Math.min(24, Math.max(1, v.k * factor));
+      if (k === 1) {
+        commitViewImperative({ k: 1, x: 0, y: 0 });
+        return;
+      }
       const scale = k / v.k;
-      return {
+      commitViewImperative({
         k,
         x: mx - (mx - v.x) * scale,
         y: my - (my - v.y) * scale,
-      };
-    });
-  }, []);
+      });
+    },
+    [commitViewImperative],
+  );
 
   const onPointerDown = useCallback((e: React.PointerEvent<SVGSVGElement>) => {
     (e.target as Element).setPointerCapture?.(e.pointerId);
-    setView((v) => {
-      drag.current = { px: e.clientX, py: e.clientY, x: v.x, y: v.y, moved: false };
-      return v;
-    });
+    const v = viewRef.current;
+    drag.current = {
+      px: e.clientX,
+      py: e.clientY,
+      x: v.x,
+      y: v.y,
+      moved: false,
+    };
   }, []);
 
-  const onPointerMove = useCallback((e: React.PointerEvent<SVGSVGElement>) => {
-    const d = drag.current;
-    const rect = svgRef.current?.getBoundingClientRect();
-    if (d) {
-      const dx = e.clientX - d.px;
-      const dy = e.clientY - d.py;
-      if (Math.abs(dx) + Math.abs(dy) > 3) d.moved = true;
-      if (rect) {
-        setView((v) => ({
-          ...v,
-          x: d.x + (dx / rect.width) * WIDTH,
-          y: d.y + (dy / rect.height) * HEIGHT,
-        }));
+  const updateTooltipPosition = useCallback(
+    (localX: number, localY: number, containerW: number, containerH: number) => {
+      const el = tooltipRef.current;
+      if (!el) return;
+      const tx = Math.min(Math.max(12, localX + 14), containerW - 210);
+      const ty = Math.max(12, Math.min(localY - 45, containerH - 76));
+      el.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+    },
+    [],
+  );
+
+  const onPointerMove = useCallback(
+    (e: React.PointerEvent<SVGSVGElement>) => {
+      const d = drag.current;
+      const rect = svgRef.current?.getBoundingClientRect();
+      if (!rect) return;
+
+      if (d) {
+        const dx = e.clientX - d.px;
+        const dy = e.clientY - d.py;
+        if (Math.abs(dx) + Math.abs(dy) > 3) d.moved = true;
+        const fitScale = Math.min(rect.width / WIDTH, rect.height / HEIGHT);
+        commitViewImperative({
+          k: viewRef.current.k,
+          x: d.x + dx / fitScale,
+          y: d.y + dy / fitScale,
+        });
+        return;
       }
-      return;
-    }
-    if (!rect) return;
-    const target = (e.target as SVGElement).closest("path[data-num]");
-    if (target) {
-      const num = parseInt(target.getAttribute("data-num")!, 10);
-      const c = byNumeric.get(num) ?? null;
-      setHover({
-        country: c,
-        name: target.getAttribute("data-name") ?? "",
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      });
-    } else {
-      setHover(null);
-    }
-  }, []);
+
+      const lx = e.clientX - rect.left;
+      const ly = e.clientY - rect.top;
+      lastPointerPos.current = { x: lx, y: ly };
+      updateTooltipPosition(lx, ly, rect.width, rect.height);
+
+      const target = (e.target as SVGElement).closest("path[data-key]");
+      if (target) {
+        const key = target.getAttribute("data-key")!;
+        if (hoverKeyRef.current !== key) {
+          hoverKeyRef.current = key;
+          const numAttr = target.getAttribute("data-num");
+          const c = numAttr ? (byNumeric.get(parseInt(numAttr, 10)) ?? null) : null;
+          setHoverTarget({
+            key,
+            country: c,
+            name: target.getAttribute("data-name") ?? "",
+          });
+        }
+      } else if (hoverKeyRef.current !== null) {
+        hoverKeyRef.current = null;
+        setHoverTarget(null);
+      }
+    },
+    [commitViewImperative, updateTooltipPosition],
+  );
+
+  useEffect(() => {
+    if (!hoverTarget || !svgRef.current) return;
+    const rect = svgRef.current.getBoundingClientRect();
+    updateTooltipPosition(
+      lastPointerPos.current.x,
+      lastPointerPos.current.y,
+      rect.width,
+      rect.height,
+    );
+  }, [hoverTarget, updateTooltipPosition]);
 
   const onPointerUp = useCallback(() => {
-    drag.current = null;
+    // Delay clearing drag.moved slightly so click handler sees moved=true after pan
+    setTimeout(() => {
+      drag.current = null;
+    }, 0);
   }, []);
+
+  const handleSelectCountry = useCallback(
+    (c: CountryData) => {
+      if (!drag.current?.moved) onSelect(c);
+    },
+    [onSelect],
+  );
 
   useEffect(() => {
     const el = svgRef.current;
@@ -235,14 +468,6 @@ export function WorldMap({
     return () => el.removeEventListener("wheel", handler);
   }, []);
 
-  const containerRect = svgRef.current?.getBoundingClientRect();
-  const tooltipX = hover
-    ? Math.min(Math.max(12, hover.x + 14), (containerRect?.width ?? 400) - 200)
-    : 0;
-  const tooltipY = hover
-    ? Math.max(12, Math.min(hover.y - 45, (containerRect?.height ?? 300) - 70))
-    : 0;
-
   const formatTick = useCallback(
     (v: number) =>
       Math.abs(v) >= 1000
@@ -251,8 +476,16 @@ export function WorldMap({
     [stat],
   );
 
+  const hoveredPathD = hoverTarget ? PATH_D_BY_KEY.get(hoverTarget.key) : null;
+  const selectedPathD = selectedCode
+    ? (PATH_D_BY_CODE.get(selectedCode) ?? null)
+    : null;
+
   return (
-    <div className="relative h-full w-full overflow-hidden" style={{ background: oceanFill }}>
+    <div
+      className="relative h-full w-full overflow-hidden"
+      style={{ background: oceanFill }}
+    >
       <svg
         ref={svgRef}
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
@@ -262,95 +495,63 @@ export function WorldMap({
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerLeave={() => {
-          setHover(null);
+          hoverKeyRef.current = null;
+          setHoverTarget(null);
           drag.current = null;
         }}
       >
-        <g transform={`translate(${view.x},${view.y}) scale(${view.k})`}>
-          <path d={path({ type: "Sphere" } as unknown as GeoJSON.Feature) ?? ""} fill={oceanFill} />
-          {geoFeatures.map((f) => {
-            const num = f.id ? parseInt(f.id, 10) : NaN;
-            const country = byNumeric.get(num);
-            const v = valueByNumeric.get(num);
-            const isSelected = country != null && country.code === selectedCode;
-            const dimmed = region != null && country != null && country.region !== region;
-            const isClassicOverlay = popOverlay.enabled && popOverlay.style === "classic";
-            const isHotspotOverlay = popOverlay.enabled && popOverlay.style === "hotspot";
-            const baseFill = isClassicOverlay
-              ? "#f4f4f5"
-              : v != null
-                ? isHotspotOverlay
-                  ? hotspotFill(v)
-                  : fill(v)
-                : isHotspotOverlay
-                  ? "#04060a"
-                  : noDataFill;
-            return (
-              <path
-                key={f.id ?? f.properties.name}
-                data-num={Number.isFinite(num) ? num : undefined}
-                data-name={country?.name ?? f.properties.name ?? ""}
-                d={path(f as unknown as GeoJSON.Feature) ?? ""}
-                fill={baseFill}
-                fillOpacity={dimmed ? 0.12 : 1}
-                stroke={isSelected ? "#38bdf8" : isClassicOverlay ? "#cbd5e1" : borderStroke}
-                strokeWidth={isSelected ? 1.8 / view.k : 0.4 / view.k}
-                tabIndex={country ? 0 : -1}
-                role={country ? "button" : undefined}
-                aria-label={
-                  country
-                    ? `${country.name}: ${formatValue(stat, v ?? null)}`
-                    : f.properties.name ?? "Country"
-                }
-                onKeyDown={(e) => {
-                  if ((e.key === "Enter" || e.key === " ") && country) {
-                    e.preventDefault();
-                    onSelect(country);
-                  }
-                }}
-                className="transition-[fill,opacity,stroke-width] duration-150 hover:brightness-150 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-                onClick={() => {
-                  if (!drag.current?.moved && country) onSelect(country);
-                }}
-              />
-            );
-          })}
-
-          {popOverlay.enabled && (
-            <>
-              <GhslTiledOverlay
-                scope="world"
-                styleMode={popOverlay.style}
-                opacity={popOverlay.opacity}
-                view={view}
-                width={WIDTH}
-                height={HEIGHT}
-              />
-              {geoFeatures.map((f) => {
-                const num = f.id ? parseInt(f.id, 10) : NaN;
-                const country = byNumeric.get(num);
-                const isSelected = country != null && country.code === selectedCode;
-                return (
-                  <path
-                    key={`border-${f.id ?? f.properties.name}`}
-                    d={path(f as unknown as GeoJSON.Feature) ?? ""}
-                    fill="none"
-                    stroke={
-                      isSelected
-                        ? "#38bdf8"
-                        : popOverlay.style === "classic"
-                          ? "rgba(71,85,105,0.45)"
-                          : "rgba(9,13,22,0.5)"
-                    }
-                    strokeWidth={isSelected ? 2.0 / view.k : 0.35 / view.k}
-                    style={{ pointerEvents: "none" }}
-                  />
-                );
-              })}
-            </>
+        <g
+          ref={gRef}
+          transform={`translate(${viewRef.current.x},${viewRef.current.y}) scale(${viewRef.current.k})`}
+        >
+          <WorldPathsLayer
+            stat={stat}
+            valueByNumeric={valueByNumeric}
+            fill={fill}
+            hotspotFill={hotspotFill}
+            region={region}
+            overlayEnabled={popOverlay.enabled}
+            overlayStyle={popOverlay.style}
+            onSelectCountry={handleSelectCountry}
+          />
+          {hoveredPathD && (
+            <path
+              d={hoveredPathD}
+              fill="rgba(255,255,255,0.12)"
+              stroke="rgba(255,255,255,0.45)"
+              strokeWidth={1}
+              vectorEffect="non-scaling-stroke"
+              style={{ pointerEvents: "none" }}
+            />
+          )}
+          {selectedPathD && !popOverlay.enabled && (
+            <path
+              d={selectedPathD}
+              fill="none"
+              stroke="#38bdf8"
+              strokeWidth={2}
+              vectorEffect="non-scaling-stroke"
+              style={{ pointerEvents: "none" }}
+            />
           )}
         </g>
       </svg>
+
+      {/* Hardware-accelerated Canvas GHSL Multi-Zoom Tile Layer */}
+      {popOverlay.enabled && (
+        <GhslTiledOverlay
+          ref={overlayRef}
+          scope="world"
+          styleMode={popOverlay.style}
+          opacity={popOverlay.opacity}
+          initialView={viewRef.current}
+          width={WIDTH}
+          height={HEIGHT}
+          borderPathD={WORLD_BORDER_MESH_D}
+          hoveredPathD={hoveredPathD}
+          selectedPathD={selectedPathD}
+        />
+      )}
 
       {/* Luminocity3D Population Density Overlay Control */}
       <PopDensityOverlayControl state={popOverlay} onChange={setPopOverlay} />
@@ -363,45 +564,49 @@ export function WorldMap({
         formatTick={formatTick}
       />
 
-      {/* Country Hover Tooltip */}
-      {hover && (
+      {/* Country Hover Tooltip (GPU translate3d positioned, 0 re-renders on move) */}
+      {hoverTarget && (
         <div
-          className="pointer-events-none absolute z-10 rounded-lg border border-zinc-800 bg-zinc-950/95 px-3 py-2 text-xs shadow-2xl backdrop-blur-md animate-fade-in"
-          style={{
-            left: tooltipX,
-            top: tooltipY,
-          }}
+          ref={tooltipRef}
+          className="pointer-events-none absolute left-0 top-0 z-10 rounded-lg border border-zinc-800 bg-zinc-950/95 px-3 py-2 text-xs shadow-2xl backdrop-blur-md will-change-transform"
         >
           <div className="font-semibold text-zinc-100 flex items-center gap-1.5">
-            {hover.country ? (
+            {hoverTarget.country ? (
               <>
-                <span className="text-sm leading-none">{hover.country.flag}</span>
-                <span>{hover.country.name}</span>
+                <span className="text-sm leading-none">
+                  {hoverTarget.country.flag}
+                </span>
+                <span>{hoverTarget.country.name}</span>
               </>
             ) : (
-              hover.name
+              hoverTarget.name
             )}
           </div>
           <div className="mt-0.5 flex items-baseline justify-between gap-3">
             <span className="text-cyan-300 font-semibold tabular-nums">
-              {hover.country
-                ? formatValue(stat, statValue(stat, hover.country, mode))
+              {hoverTarget.country
+                ? formatValue(stat, statValue(stat, hoverTarget.country, mode))
                 : "No data"}
             </span>
-            {hover.country && rankByCode.has(hover.country.code) && (
+            {hoverTarget.country && rankByCode.has(hoverTarget.country.code) && (
               <span className="text-[10px] text-zinc-400 font-mono">
-                Rank #{rankByCode.get(hover.country.code)}
+                Rank #{rankByCode.get(hoverTarget.country.code)}
               </span>
             )}
           </div>
-          {popOverlay.enabled && hover.country && getPwdDensity(hover.country.code) != null && (
-            <div className="mt-1 flex items-center justify-between gap-3 border-t border-zinc-800/80 pt-1 text-[10px]">
-              <span className="text-zinc-400">Lived density (GHSL):</span>
-              <span className="font-mono font-medium text-amber-300">
-                {getPwdDensity(hover.country.code)!.toLocaleString("en-US")} /km²
-              </span>
-            </div>
-          )}
+          {popOverlay.enabled &&
+            hoverTarget.country &&
+            getPwdDensity(hoverTarget.country.code) != null && (
+              <div className="mt-1 flex items-center justify-between gap-3 border-t border-zinc-800/80 pt-1 text-[10px]">
+                <span className="text-zinc-400">Lived density (GHSL):</span>
+                <span className="font-mono font-medium text-amber-300">
+                  {getPwdDensity(hoverTarget.country.code)!.toLocaleString(
+                    "en-US",
+                  )}{" "}
+                  /km²
+                </span>
+              </div>
+            )}
         </div>
       )}
 
@@ -423,7 +628,7 @@ export function WorldMap({
         >
           <Minus className="h-4 w-4" />
         </button>
-        {view.k > 1 && (
+        {isZoomed && (
           <button
             onClick={resetZoom}
             title="Reset map zoom"
