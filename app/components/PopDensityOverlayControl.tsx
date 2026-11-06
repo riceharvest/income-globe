@@ -1,6 +1,6 @@
-import { Layers, ExternalLink } from "lucide-react";
+import { Layers, ExternalLink, Flame } from "lucide-react";
 
-export type PopDensityStyle = "blend" | "classic";
+export type PopDensityStyle = "hotspot" | "blend" | "classic";
 
 export interface PopDensityOverlayState {
   enabled: boolean;
@@ -41,15 +41,15 @@ export function PopDensityOverlayControl({
           type="button"
           onClick={() => onChange({ ...state, enabled: true })}
           className="flex items-center gap-2 rounded-lg border border-zinc-800/90 bg-zinc-950/90 px-2.5 py-1.5 text-xs font-medium text-zinc-300 shadow-lg backdrop-blur hover:border-cyan-500/50 hover:bg-zinc-900 hover:text-zinc-100 transition-all"
-          title="Overlay Luminocity3D GHSL 2023 World Population Density raster"
+          title="Overlay Luminocity3D GHSL 2023 World Population Density hotspots"
         >
-          <Layers className="h-3.5 w-3.5 text-cyan-400" />
-          <span>Pop. Density Overlay</span>
+          <Flame className="h-3.5 w-3.5 text-amber-400" />
+          <span>Pop. Density Hotspots</span>
           <span
             className="h-2 w-6 rounded-full border border-zinc-700/80"
             style={{
               background:
-                "linear-gradient(to right, #a8e3e5, #428acb, #00309f, #700080, #ff0000, #ffc300)",
+                "linear-gradient(to right, #0f172a, #10b981, #34d399, #fef08a)",
             }}
           />
         </button>
@@ -58,7 +58,7 @@ export function PopDensityOverlayControl({
   }
 
   return (
-    <div className="absolute top-3 right-3 z-10 flex flex-col gap-2 rounded-xl border border-cyan-500/40 bg-zinc-950/92 p-2.5 text-xs shadow-2xl backdrop-blur-md w-64 animate-fade-in">
+    <div className="absolute top-3 right-3 z-10 flex flex-col gap-2 rounded-xl border border-cyan-500/40 bg-zinc-950/92 p-2.5 text-xs shadow-2xl backdrop-blur-md w-68 animate-fade-in">
       <div className="flex items-center justify-between gap-2">
         <button
           type="button"
@@ -90,40 +90,63 @@ export function PopDensityOverlayControl({
         </div>
       </div>
 
-      {/* Style Mode Switcher */}
-      <div className="grid grid-cols-2 gap-1 rounded-lg bg-zinc-900/90 p-0.5 border border-zinc-800/80">
+      {/* 3-Way Style Mode Switcher */}
+      <div className="grid grid-cols-3 gap-1 rounded-lg bg-zinc-900/90 p-0.5 border border-zinc-800/80">
         <button
           type="button"
-          onClick={() => onChange({ ...state, style: "blend", opacity: Math.min(state.opacity, 0.85) })}
-          className={`rounded-md py-1 text-[11px] font-medium transition-colors ${
+          onClick={() => onChange({ ...state, style: "hotspot", opacity: 0.95 })}
+          className={`rounded-md py-1 text-[10px] font-medium transition-colors ${
+            state.style === "hotspot"
+              ? "bg-zinc-800 text-amber-300 shadow-sm"
+              : "text-zinc-400 hover:text-zinc-200"
+          }`}
+          title="Double-up mode: dims uninhabited land and color-dodges dense cities so high-stat + high-density areas glow as hotspots"
+        >
+          Hotspot ×2
+        </button>
+        <button
+          type="button"
+          onClick={() => onChange({ ...state, style: "blend", opacity: 0.75 })}
+          className={`rounded-md py-1 text-[10px] font-medium transition-colors ${
             state.style === "blend"
               ? "bg-zinc-800 text-cyan-300 shadow-sm"
               : "text-zinc-400 hover:text-zinc-200"
           }`}
-          title="Overlay density heatmap directly on top of the active stat colors"
+          title="Overlay 16-class GHSL colors on top of the active stat colors"
         >
-          Stat + Density
+          GHSL Colors
         </button>
         <button
           type="button"
           onClick={() => onChange({ ...state, style: "classic", opacity: 0.95 })}
-          className={`rounded-md py-1 text-[11px] font-medium transition-colors ${
+          className={`rounded-md py-1 text-[10px] font-medium transition-colors ${
             state.style === "classic"
               ? "bg-zinc-800 text-cyan-300 shadow-sm"
               : "text-zinc-400 hover:text-zinc-200"
           }`}
-          title="Luminocity3D classic light land canvas for maximum density contrast"
+          title="Luminocity3D classic light land canvas for standalone density inspection"
         >
-          Luminocity Light
+          Classic Light
         </button>
       </div>
 
-      {/* Opacity Slider */}
+      {/* Mode Explanation */}
+      <div className="text-[10px] text-zinc-400 leading-tight">
+        {state.style === "hotspot"
+          ? "Dims empty land & multiplies country stat × city density so high-stat urban centers blaze."
+          : state.style === "blend"
+            ? "Blends Luminocity3D 16-class density colors over country stat fills."
+            : "Original Luminocity3D light basemap with 16 GHSL density classes."}
+      </div>
+
+      {/* Opacity / Intensity Slider */}
       <div className="flex items-center justify-between gap-2">
-        <span className="text-[10px] text-zinc-400">Opacity</span>
+        <span className="text-[10px] text-zinc-400">
+          {state.style === "hotspot" ? "Intensity" : "Opacity"}
+        </span>
         <input
           type="range"
-          min={0.15}
+          min={0.2}
           max={1}
           step={0.05}
           value={state.opacity}
@@ -135,30 +158,53 @@ export function PopDensityOverlayControl({
         </span>
       </div>
 
-      {/* 16-Class Luminocity3D GHSL Legend */}
+      {/* Legend */}
       <div className="border-t border-zinc-800/80 pt-1.5">
-        <div className="flex items-center justify-between text-[10px] text-zinc-400 mb-1">
-          <span>Residents / km² (2020)</span>
-          <span className="font-mono text-[9px] text-zinc-500">16 classes</span>
-        </div>
-        <div className="grid grid-cols-16 overflow-hidden rounded border border-zinc-800/80 h-2.5">
-          {LUMINOCITY_CLASSES.map((c) => (
+        {state.style === "hotspot" ? (
+          <>
+            <div className="flex items-center justify-between text-[10px] text-zinc-400 mb-1">
+              <span>Stat Weight × Lived Density</span>
+              <span className="font-mono text-[9px] text-amber-300/90">Color-Dodge</span>
+            </div>
             <div
-              key={c.label}
-              style={{ backgroundColor: c.color }}
-              title={`${c.label} residents/km²`}
-              className="h-full w-full"
+              className="h-2.5 w-full rounded border border-zinc-800/80"
+              style={{
+                background:
+                  "linear-gradient(to right, #090d16 0%, #134e4a 30%, #10b981 65%, #6ee7b7 85%, #fef9c3 100%)",
+              }}
             />
-          ))}
-        </div>
-        <div className="mt-0.5 flex items-center justify-between font-mono text-[9px] text-zinc-400">
-          <span>20</span>
-          <span>1k</span>
-          <span>5.5k</span>
-          <span>16k</span>
-          <span>50k</span>
-          <span>200k+</span>
-        </div>
+            <div className="mt-0.5 flex items-center justify-between font-mono text-[9px] text-zinc-400">
+              <span>&lt;20/km² (dim)</span>
+              <span>Rural (1× stat)</span>
+              <span>Megacity (Hotspot)</span>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="flex items-center justify-between text-[10px] text-zinc-400 mb-1">
+              <span>Residents / km² (2020)</span>
+              <span className="font-mono text-[9px] text-zinc-500">16 classes</span>
+            </div>
+            <div className="grid grid-cols-16 overflow-hidden rounded border border-zinc-800/80 h-2.5">
+              {LUMINOCITY_CLASSES.map((c) => (
+                <div
+                  key={c.label}
+                  style={{ backgroundColor: c.color }}
+                  title={`${c.label} residents/km²`}
+                  className="h-full w-full"
+                />
+              ))}
+            </div>
+            <div className="mt-0.5 flex items-center justify-between font-mono text-[9px] text-zinc-400">
+              <span>20</span>
+              <span>1k</span>
+              <span>5.5k</span>
+              <span>16k</span>
+              <span>50k</span>
+              <span>200k+</span>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

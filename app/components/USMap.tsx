@@ -66,8 +66,8 @@ export function USMap({
   const [hover, setHover] = useState<HoverInfo | null>(null);
   const [popOverlay, setPopOverlay] = useState<PopDensityOverlayState>({
     enabled: false,
-    opacity: 0.85,
-    style: "blend",
+    opacity: 0.95,
+    style: "hotspot",
   });
   const svgRef = useRef<SVGSVGElement>(null);
   const drag = useRef<{ px: number; py: number; x: number; y: number; moved: boolean } | null>(null);
@@ -228,6 +228,7 @@ export function USMap({
             const isSelected = state != null && state.code === selectedCode;
             const dimmed = region != null && state != null && state.region !== region;
             const isClassicOverlay = popOverlay.enabled && popOverlay.style === "classic";
+            const isHotspotOverlay = popOverlay.enabled && popOverlay.style === "hotspot";
             const baseFill = isClassicOverlay
               ? "#f4f4f5"
               : v != null
@@ -242,6 +243,11 @@ export function USMap({
                 d={path(f as unknown as GeoJSON.Feature) ?? ""}
                 fill={baseFill}
                 fillOpacity={dimmed ? 0.15 : 1}
+                style={
+                  isHotspotOverlay && !dimmed
+                    ? { filter: "brightness(1.28) saturate(1.18)" }
+                    : undefined
+                }
                 stroke={isSelected ? "#38bdf8" : isClassicOverlay ? "#cbd5e1" : "#27272a"}
                 strokeWidth={isSelected ? 2.5 / view.k : 0.6 / view.k}
                 tabIndex={state ? 0 : -1}
@@ -267,17 +273,47 @@ export function USMap({
 
           {popOverlay.enabled && (
             <>
-              <image
-                href="/overlays/luminocity-pop-density-us.png"
-                x={0}
-                y={0}
-                width={WIDTH}
-                height={HEIGHT}
-                opacity={popOverlay.opacity}
-                clipPath="url(#us-nation-clip)"
-                preserveAspectRatio="none"
-                style={{ pointerEvents: "none" }}
-              />
+              {popOverlay.style === "hotspot" ? (
+                <>
+                  <image
+                    href="/overlays/luminocity-dim-us.png"
+                    x={0}
+                    y={0}
+                    width={WIDTH}
+                    height={HEIGHT}
+                    opacity={popOverlay.opacity}
+                    clipPath="url(#us-nation-clip)"
+                    preserveAspectRatio="none"
+                    style={{ pointerEvents: "none" }}
+                  />
+                  <image
+                    href="/overlays/luminocity-dodge-us.png"
+                    x={0}
+                    y={0}
+                    width={WIDTH}
+                    height={HEIGHT}
+                    opacity={popOverlay.opacity}
+                    clipPath="url(#us-nation-clip)"
+                    preserveAspectRatio="none"
+                    style={{
+                      pointerEvents: "none",
+                      mixBlendMode: "color-dodge",
+                    }}
+                  />
+                </>
+              ) : (
+                <image
+                  href="/overlays/luminocity-pop-density-us.png"
+                  x={0}
+                  y={0}
+                  width={WIDTH}
+                  height={HEIGHT}
+                  opacity={popOverlay.opacity}
+                  clipPath="url(#us-nation-clip)"
+                  preserveAspectRatio="none"
+                  style={{ pointerEvents: "none" }}
+                />
+              )}
               {geoFeatures.map((f) => {
                 const fips = f.id;
                 const state = usStateByFips.get(fips);
