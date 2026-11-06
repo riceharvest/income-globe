@@ -7,32 +7,26 @@ import { englishSpeakingByCountry } from "../app/data/english-speaking-map";
 import { urbanByCountry } from "../app/data/urban-map";
 
 // ════════════════════════════════════════════════════════════════════════════
-// Structural Funnel Model for Tinder Right-Swipe Match Rate (%) — v3.1
+// Structural Funnel Model for Tinder Right-Swipe Match Rate (%) — v3.2
 // Reference Profile: White Dutch Male (181 cm, Blue Eyes, Dark Hair, Fit BMI ~22.5,
-//                    Standard/Free Tier, ~30% swipe selectivity, English/Dutch speaker)
+//                    Standard/Free Tier, ~30–35% swipe selectivity, English/Dutch speaker)
+//
+// Empirical Data Sources:
+//   1. SwipeStats.io Dataset (2020–2025): 7,079 GDPR Tinder exports, 294M right swipes,
+//      3.14M matches. Men: 261.7M right swipes -> 2.56M matches (0.98% volume-weighted
+//      match rate; 2.04% user median; 0.76% 25th pct; 5.39% 75th pct).
+//      Women: 2,283 avg right swipes / 43,383 total swipes -> R_BAR = 5.26% right-swipe rate.
+//   2. Tyson et al. (2016), Queen Mary Univ. of London ("A First Look at User Activity
+//      on Tinder"): 0.60% baseline free-tier male match rate (1 in 167 swipes).
+//   3. Tinder Explore 100-City Demographic Audit (ages 21–30, 50km radius):
+//      Global mean = 81% male (4.26:1 M:F). City/country male shares: Bangkok 54% (1.17:1),
+//      Manila 57% (1.33:1), Cape Town 65% (1.86:1), Norway/Ukraine 69% (2.23:1),
+//      Denmark 72%, Poland 73%, Czechia/Rio/Medellín 75%, Buenos Aires 77%, Stockholm 79%,
+//      US 82.5%, NL 83%, UK/DE/FR/CA 84%, Bogotá 85%, Mexico City 87%, Bucharest 88%,
+//      Athens 89%, Italy 90% (9:1), Istanbul & India 96% (24:1).
+//   4. Bruch & Newman (2018), Science Advances & Hinge/Tinder Gini data (Gini = 0.58;
+//      top 10–15% of men receive 50% of female likes).
 // ════════════════════════════════════════════════════════════════════════════
-//
-// Mathematical Funnel:
-//   M_organic(c) = 100 * A_c * [ q_c + (1 - q_c) * D_c * R_c ]
-//   M_raw(c)     = M_organic(c) + B_comm(c)
-//
-// Key Real-World Constraints (2025–2026 Standard Tier):
-//   1. Paywall Throttling (D_c ≈ 8%–14%): 86–92% of right-swiped women never see a
-//      standard-tier male card because Platinum "Priority Likes" and Boosts sit ahead.
-//   2. Home Baseline (NL = 1.3% organic, ~1 match per 77 right-swipes):
-//      Median Western male is ~0.6% (1 in 165 swipes). A ~75th-percentile 181cm
-//      dark-haired, blue-eyed Dutch male gets ~1.3% organic on free tier.
-//   3. LatAm Reality Check (1.3%–1.7% organic, ~59–77 swipes per match):
-//      - 85–92% of local women in CO, BR, MX, PE, DO do not speak conversational English;
-//        normal (non-commercial) women swipe left on profiles they can't converse with.
-//      - Heavy US "Passport Bro" Platinum/Boost saturation in Medellín, Rio, Cancún,
-//        Lima, and Santo Domingo crowds standard-tier foreign cards down the stack.
-//      - Stripping out working girls (prepagos), webcam/OF promos, and setup accounts
-//        (which inflate raw matches to ~3.0–3.4% in CO/DO) leaves genuine organic
-//        LatAm matches at 1.3%–1.7% — only modestly above the Netherlands!
-//   4. Southeast Asia Peak (2.2%–3.1% organic, ~32–45 swipes per match):
-//      - Philippines (3.1% organic / 4.8% raw, ~32 swipes/match), Indonesia (2.6% / 3.8% raw,
-//        ~38 swipes/match), Thailand (2.3% / 4.5% raw, ~43 swipes/match).
 
 export interface TinderMatchBreakdown {
   /** Organic match rate (% of right-swipes matching with real, non-commercial women) */
@@ -41,6 +35,8 @@ export interface TinderMatchBreakdown {
   rawMatchRatePct: number;
   /** Average right-swipes needed per 1 organic match */
   swipesPerMatch: number;
+  /** g_c: Male share of active Tinder pool (%) from 100-city Tinder Explore dataset */
+  tinderMalePct: number;
   /** A_c: Share of profiles that are active, real & non-commercial (0–1) */
   activeOrganicShare: number;
   /** D_c: Probability your card is delivered to her deck on standard tier (0–1) */
@@ -66,98 +62,134 @@ function normCdf(x: number): number {
   return x > 0 ? 1 - p : p;
 }
 
-const ECOSYSTEM: Record<string, { dMult?: number; aShare?: number; commPct?: number }> = {
-  // Home baseline: NL = 1.3% organic (~77 swipes/match), 1.4% raw
-  NL: { dMult: 1.0, aShare: 0.65, commPct: 0.1 },
-
-  // Southeast Asia — Top organic region, though still ~32–48 swipes per genuine organic match
-  PH: { dMult: 1.25, aShare: 0.56, commPct: 1.7 },
-  ID: { dMult: 1.18, aShare: 0.57, commPct: 1.2 },
-  TH: { dMult: 1.12, aShare: 0.50, commPct: 2.2 }, // High freelancer/ladyboy/bot share in BKK/Pattaya
-  VN: { dMult: 1.08, aShare: 0.55, commPct: 1.1 },
-  KH: { dMult: 1.05, aShare: 0.52, commPct: 1.3 },
-  LA: { dMult: 0.96, aShare: 0.50, commPct: 0.9 },
-  MY: { dMult: 0.98, aShare: 0.58, commPct: 0.6 },
-  SG: { dMult: 0.96, aShare: 0.64, commPct: 0.4 },
-  MM: { dMult: 0.72, aShare: 0.45, commPct: 0.5 },
-
-  // Latin America & Caribbean — Grounded for Spanish/Portuguese barrier, US passport-bro
-  // Platinum stack competition, and high prepago/working-girl share on Tinder
-  PE: { dMult: 0.98, aShare: 0.55, commPct: 0.8 },
-  DO: { dMult: 0.92, aShare: 0.47, commPct: 1.8 },
-  CO: { dMult: 0.90, aShare: 0.46, commPct: 1.9 }, // Heavy gringo saturation + prepagos in Medellín/Cartagena
-  BR: { dMult: 0.95, aShare: 0.56, commPct: 0.8 },
-  MX: { dMult: 0.92, aShare: 0.55, commPct: 0.8 },
-  EC: { dMult: 0.92, aShare: 0.52, commPct: 0.8 },
-  CR: { dMult: 0.88, aShare: 0.52, commPct: 1.0 },
-  PA: { dMult: 0.88, aShare: 0.52, commPct: 1.0 },
-  CL: { dMult: 0.94, aShare: 0.60, commPct: 0.3 },
-  AR: { dMult: 0.94, aShare: 0.60, commPct: 0.3 },
-  UY: { dMult: 0.92, aShare: 0.60, commPct: 0.2 },
-  VE: { dMult: 0.76, aShare: 0.45, commPct: 1.1 },
-  CU: { dMult: 0.55, aShare: 0.44, commPct: 0.8 },
-
-  // Sub-Saharan Africa hubs (English fluency helps in KE/GH/UG/ZA, but thin non-commercial Tinder pools)
-  KE: { dMult: 1.02, aShare: 0.48, commPct: 1.7 },
-  UG: { dMult: 0.96, aShare: 0.46, commPct: 1.4 },
-  GH: { dMult: 0.96, aShare: 0.48, commPct: 1.3 },
-  TZ: { dMult: 0.94, aShare: 0.46, commPct: 1.4 },
-  ZA: { dMult: 0.96, aShare: 0.54, commPct: 0.8 },
-  NG: { dMult: 0.86, aShare: 0.42, commPct: 1.7 },
-  RW: { dMult: 0.92, aShare: 0.52, commPct: 0.7 },
-  ET: { dMult: 0.86, aShare: 0.48, commPct: 0.8 },
-
-  // East Asia
-  TW: { dMult: 0.94, aShare: 0.62, commPct: 0.4 },
-  HK: { dMult: 0.94, aShare: 0.60, commPct: 0.6 },
-  JP: { dMult: 0.82, aShare: 0.58, commPct: 0.4 },
-  KR: { dMult: 0.78, aShare: 0.58, commPct: 0.3 },
-  CN: { dMult: 0.25, aShare: 0.42, commPct: 0.5 },
-
-  // South Asia & MENA (85–90% male gender skew on Tinder)
-  IN: { dMult: 0.38, aShare: 0.48, commPct: 0.3 },
-  PK: { dMult: 0.28, aShare: 0.42, commPct: 0.1 },
-  BD: { dMult: 0.32, aShare: 0.45, commPct: 0.2 },
-  LK: { dMult: 0.50, aShare: 0.50, commPct: 0.3 },
-  NP: { dMult: 0.52, aShare: 0.52, commPct: 0.3 },
-  AE: { dMult: 0.55, aShare: 0.42, commPct: 1.8 },
-  SA: { dMult: 0.34, aShare: 0.42, commPct: 0.2 },
-  EG: { dMult: 0.40, aShare: 0.46, commPct: 0.3 },
-  MA: { dMult: 0.55, aShare: 0.50, commPct: 0.5 },
-  TR: { dMult: 0.72, aShare: 0.55, commPct: 0.4 },
-
-  // Exited / Blocked / Conflict
-  RU: { dMult: 0.08, aShare: 0.38, commPct: 0.1 },
-  BY: { dMult: 0.10, aShare: 0.40, commPct: 0.1 },
-  KP: { dMult: 0.01, aShare: 0.10, commPct: 0.0 },
-  AF: { dMult: 0.02, aShare: 0.20, commPct: 0.0 },
-  IR: { dMult: 0.06, aShare: 0.32, commPct: 0.1 },
-  SY: { dMult: 0.04, aShare: 0.28, commPct: 0.0 },
-  YE: { dMult: 0.03, aShare: 0.25, commPct: 0.0 },
+type EcoParams = {
+  malePct?: number; // Empirical Tinder male % (from 100-city Tinder Explore dataset)
+  dMult?: number;   // Platform adoption / Platinum tourist-saturation modifier on top of gender ratio
+  aShare?: number;  // Active organic non-commercial deck share
+  commPct?: number; // Commercial / prepago / freelancer / bot match rate boost (%)
 };
 
-// Standard-Tier Reference Parameters (Formula directly produces NL = 1.3% organic, ~77 swipes/match)
-const Z_P_NL = 0.70; // ~76th percentile in NL (181cm, dark hair + blue eyes, fit)
-const R_BAR = 0.058; // Base female right-swipe rate on average male card (5.8%)
-const K_SELECTIVITY = 1.15; // Female selectivity slope
-const D_BASE = 0.130; // Standard-tier card delivery probability (13.0%)
-const Q_PRELIKE = 0.0046; // Pre-liked queue fraction on standard tier (0.46%)
+const ECOSYSTEM: Record<string, EcoParams> = {
+  // Home baseline: NL (83.0% male on Tinder) = 1.3% organic (~77 swipes/match), 1.4% raw
+  NL: { malePct: 83.0, dMult: 1.00, aShare: 0.65, commPct: 0.1 },
 
-function defaultEcoForRegion(region: string, urbanPct: number, internetPct: number) {
+  // Southeast Asia — 100-City Tinder Explore: Bangkok 54% male, Manila 57% male (best M:F parity globally)
+  PH: { malePct: 57.0, dMult: 0.90, aShare: 0.56, commPct: 1.7 },
+  ID: { malePct: 64.0, dMult: 0.94, aShare: 0.57, commPct: 1.2 },
+  TH: { malePct: 54.0, dMult: 0.78, aShare: 0.50, commPct: 2.2 }, // 54% male, but heavy tourist Platinum + freelancer share
+  VN: { malePct: 66.0, dMult: 0.88, aShare: 0.55, commPct: 1.1 },
+  KH: { malePct: 65.0, dMult: 0.86, aShare: 0.52, commPct: 1.3 },
+  LA: { malePct: 68.0, dMult: 0.82, aShare: 0.50, commPct: 0.9 },
+  MY: { malePct: 74.0, dMult: 0.90, aShare: 0.58, commPct: 0.6 },
+  SG: { malePct: 76.0, dMult: 0.90, aShare: 0.64, commPct: 0.4 },
+  MM: { malePct: 78.0, dMult: 0.68, aShare: 0.45, commPct: 0.5 },
+
+  // Europe & Anglo — 100-City Tinder Explore: Norway/Ukraine 69%, Denmark 72%, Poland 73%,
+  // Czechia 75%, Stockholm 79%, US 82.5%, UK/DE/FR/CA 84%, Bucharest 88%, Athens 89%, Italy 90%
+  NO: { malePct: 69.0, dMult: 0.86, aShare: 0.62, commPct: 0.1 },
+  DK: { malePct: 72.0, dMult: 0.88, aShare: 0.62, commPct: 0.1 },
+  SE: { malePct: 79.0, dMult: 0.92, aShare: 0.62, commPct: 0.1 },
+  FI: { malePct: 76.0, dMult: 0.90, aShare: 0.62, commPct: 0.1 },
+  UA: { malePct: 69.0, dMult: 0.76, aShare: 0.54, commPct: 0.4 },
+  PL: { malePct: 73.0, dMult: 0.88, aShare: 0.60, commPct: 0.2 }, // SwipeStats top European city (Warsaw)
+  CZ: { malePct: 75.0, dMult: 0.88, aShare: 0.60, commPct: 0.2 },
+  HR: { malePct: 78.0, dMult: 0.90, aShare: 0.58, commPct: 0.2 }, // SwipeStats top European city (Zagreb)
+  HU: { malePct: 83.0, dMult: 0.88, aShare: 0.58, commPct: 0.2 },
+  RO: { malePct: 88.0, dMult: 0.96, aShare: 0.56, commPct: 0.3 }, // Bucharest: 88% male
+  GR: { malePct: 89.0, dMult: 0.98, aShare: 0.56, commPct: 0.2 }, // Athens: 89% male
+  IT: { malePct: 90.0, dMult: 1.00, aShare: 0.56, commPct: 0.2 }, // Italy: 90% male
+  ES: { malePct: 88.0, dMult: 1.00, aShare: 0.58, commPct: 0.2 },
+  PT: { malePct: 87.0, dMult: 0.98, aShare: 0.58, commPct: 0.2 },
+  FR: { malePct: 84.0, dMult: 0.96, aShare: 0.60, commPct: 0.2 },
+  DE: { malePct: 84.0, dMult: 0.98, aShare: 0.62, commPct: 0.1 },
+  GB: { malePct: 84.0, dMult: 0.96, aShare: 0.62, commPct: 0.2 },
+  IE: { malePct: 82.0, dMult: 0.95, aShare: 0.62, commPct: 0.1 },
+  BE: { malePct: 83.5, dMult: 0.98, aShare: 0.63, commPct: 0.1 },
+  AT: { malePct: 83.5, dMult: 0.96, aShare: 0.62, commPct: 0.1 },
+  CH: { malePct: 83.5, dMult: 0.96, aShare: 0.62, commPct: 0.1 },
+  US: { malePct: 82.5, dMult: 0.95, aShare: 0.60, commPct: 0.3 },
+  CA: { malePct: 83.5, dMult: 0.96, aShare: 0.61, commPct: 0.2 },
+  AU: { malePct: 82.5, dMult: 0.96, aShare: 0.62, commPct: 0.2 },
+  NZ: { malePct: 81.5, dMult: 0.95, aShare: 0.62, commPct: 0.2 },
+
+  // Latin America & Caribbean — 100-City Tinder Explore: Rio 75%, Medellín 75%, Bogotá 85%,
+  // Buenos Aires 77%, Mexico City 87%
+  PE: { malePct: 79.0, dMult: 0.94, aShare: 0.55, commPct: 0.8 },
+  DO: { malePct: 76.0, dMult: 0.84, aShare: 0.47, commPct: 1.8 },
+  CO: { malePct: 80.0, dMult: 0.86, aShare: 0.46, commPct: 1.9 }, // Weighted Bogotá (85%) + Medellín (75%) + prepago share
+  BR: { malePct: 75.5, dMult: 0.86, aShare: 0.56, commPct: 0.8 }, // Rio 75% male
+  MX: { malePct: 87.0, dMult: 1.00, aShare: 0.55, commPct: 0.8 }, // Mexico City: 87% male
+  EC: { malePct: 80.0, dMult: 0.90, aShare: 0.52, commPct: 0.8 },
+  CR: { malePct: 80.0, dMult: 0.86, aShare: 0.52, commPct: 1.0 },
+  PA: { malePct: 80.0, dMult: 0.86, aShare: 0.52, commPct: 1.0 },
+  CL: { malePct: 81.0, dMult: 0.92, aShare: 0.60, commPct: 0.3 },
+  AR: { malePct: 77.0, dMult: 0.88, aShare: 0.60, commPct: 0.3 }, // Buenos Aires: 77% male
+  UY: { malePct: 78.0, dMult: 0.88, aShare: 0.60, commPct: 0.2 },
+  VE: { malePct: 78.0, dMult: 0.72, aShare: 0.45, commPct: 1.1 },
+  CU: { malePct: 78.0, dMult: 0.52, aShare: 0.44, commPct: 0.8 },
+
+  // Sub-Saharan Africa — 100-City Tinder Explore: Cape Town 65% male
+  ZA: { malePct: 65.0, dMult: 0.76, aShare: 0.54, commPct: 0.8 }, // Cape Town: 65% male
+  KE: { malePct: 70.0, dMult: 0.86, aShare: 0.48, commPct: 1.7 },
+  UG: { malePct: 72.0, dMult: 0.84, aShare: 0.46, commPct: 1.4 },
+  GH: { malePct: 73.0, dMult: 0.85, aShare: 0.48, commPct: 1.3 },
+  TZ: { malePct: 72.0, dMult: 0.83, aShare: 0.46, commPct: 1.4 },
+  NG: { malePct: 78.0, dMult: 0.82, aShare: 0.42, commPct: 1.7 },
+  RW: { malePct: 74.0, dMult: 0.82, aShare: 0.52, commPct: 0.7 },
+  ET: { malePct: 76.0, dMult: 0.78, aShare: 0.48, commPct: 0.8 },
+
+  // East Asia
+  TW: { malePct: 76.0, dMult: 0.86, aShare: 0.62, commPct: 0.4 },
+  HK: { malePct: 75.0, dMult: 0.86, aShare: 0.60, commPct: 0.6 },
+  JP: { malePct: 78.0, dMult: 0.78, aShare: 0.58, commPct: 0.4 },
+  KR: { malePct: 79.0, dMult: 0.75, aShare: 0.58, commPct: 0.3 },
+  CN: { malePct: 82.0, dMult: 0.25, aShare: 0.42, commPct: 0.5 },
+
+  // South Asia & MENA — 100-City Tinder Explore: India (Delhi/Mumbai/Bengaluru) 96% male, Istanbul 96% male
+  IN: { malePct: 96.0, dMult: 0.62, aShare: 0.48, commPct: 0.3 },
+  PK: { malePct: 96.0, dMult: 0.48, aShare: 0.42, commPct: 0.1 },
+  BD: { malePct: 95.0, dMult: 0.52, aShare: 0.45, commPct: 0.2 },
+  LK: { malePct: 91.0, dMult: 0.65, aShare: 0.50, commPct: 0.3 },
+  NP: { malePct: 90.0, dMult: 0.66, aShare: 0.52, commPct: 0.3 },
+  TR: { malePct: 95.5, dMult: 1.10, aShare: 0.55, commPct: 0.4 }, // Istanbul: 96% male
+  AE: { malePct: 91.0, dMult: 0.72, aShare: 0.42, commPct: 1.8 },
+  SA: { malePct: 93.0, dMult: 0.50, aShare: 0.42, commPct: 0.2 },
+  EG: { malePct: 93.0, dMult: 0.58, aShare: 0.46, commPct: 0.3 },
+  MA: { malePct: 89.0, dMult: 0.68, aShare: 0.50, commPct: 0.5 },
+
+  // Exited / Blocked / Conflict
+  RU: { malePct: 74.0, dMult: 0.08, aShare: 0.38, commPct: 0.1 },
+  BY: { malePct: 75.0, dMult: 0.10, aShare: 0.40, commPct: 0.1 },
+  KP: { malePct: 85.0, dMult: 0.01, aShare: 0.10, commPct: 0.0 },
+  AF: { malePct: 97.0, dMult: 0.02, aShare: 0.20, commPct: 0.0 },
+  IR: { malePct: 92.0, dMult: 0.08, aShare: 0.32, commPct: 0.1 },
+  SY: { malePct: 93.0, dMult: 0.05, aShare: 0.28, commPct: 0.0 },
+  YE: { malePct: 95.0, dMult: 0.04, aShare: 0.25, commPct: 0.0 },
+};
+
+// Empirical SwipeStats (294M swipes) & NL Reference Parameters:
+const Z_P_NL = 0.74;       // ~77th percentile in NL (181cm, dark hair + blue eyes, fit BMI 22.5)
+const R_BAR = 0.0526;      // Exact SwipeStats female right-swipe rate (2,283 / 43,383 = 5.26%)
+const K_SELECTIVITY = 1.18;// Female selectivity slope on male z-score
+const D_BASE = 0.134;      // Standard-tier card delivery probability at NL baseline (83.0% male)
+const MF_NL = 83.0 / 17.0; // Empirical NL male-to-female ratio on Tinder (4.882:1)
+const Q_PRELIKE = 0.0046;  // Pre-liked queue fraction on standard tier (0.46%)
+
+function defaultEcoForRegion(region: string, urbanPct: number, internetPct: number): Required<EcoParams> {
   const connectivity = clamp((0.5 * urbanPct + 0.5 * internetPct) / 80, 0.45, 1.05);
   if (region === "Sub-Saharan Africa") {
-    return { dMult: 0.72 * connectivity, aShare: 0.44, commPct: 0.8 };
+    return { malePct: 75.0, dMult: 0.66 * connectivity, aShare: 0.44, commPct: 0.8 };
   }
   if (region === "Latin America" || region === "Caribbean") {
-    return { dMult: 0.84 * connectivity, aShare: 0.48, commPct: 0.8 };
+    return { malePct: 80.0, dMult: 0.82 * connectivity, aShare: 0.48, commPct: 0.8 };
   }
   if (region === "Middle East & North Africa" || region === "Central Asia") {
-    return { dMult: 0.55 * connectivity, aShare: 0.48, commPct: 0.3 };
+    return { malePct: 91.0, dMult: 0.68 * connectivity, aShare: 0.48, commPct: 0.3 };
   }
   if (region === "Oceania") {
-    return { dMult: 0.78 * connectivity, aShare: 0.52, commPct: 0.3 };
+    return { malePct: 81.0, dMult: 0.80 * connectivity, aShare: 0.52, commPct: 0.3 };
   }
-  return { dMult: 0.94 * connectivity, aShare: 0.60, commPct: 0.2 };
+  return { malePct: 83.0, dMult: 0.94 * connectivity, aShare: 0.60, commPct: 0.2 };
 }
 
 function computeFunnel(
@@ -166,7 +198,7 @@ function computeFunnel(
   eyeBluePct: number,
   engPct: number,
   isLatAm: boolean,
-  eco: { dMult?: number; aShare?: number; commPct?: number },
+  eco: EcoParams,
 ): TinderMatchBreakdown {
   // 1. Orthogonal Blue-Eye + Dark-Hair residual (centered at NL eyeBlue = 46%)
   const blueRarity = clamp((46 - eyeBluePct) / 46, -0.4, 1.0);
@@ -185,16 +217,19 @@ function computeFunnel(
   // 5. Conditional right-swipe probability R_c when she sees your card
   const R_c = clamp(sig(logit(R_BAR) + K_SELECTIVITY * zLocal), 0.004, 0.48);
 
-  // 6. Card delivery probability D_c on standard tier
-  const dMult = eco.dMult ?? 0.92;
-  const D_c = clamp(D_BASE * dMult, 0.001, 0.18);
+  // 6. Card delivery probability D_c driven by empirical Tinder M:F ratio (100-City Explore data)
+  const malePct = clamp(eco.malePct ?? 83.0, 50.0, 97.5);
+  const mfRatio = malePct / (100 - malePct);
+  const genderRatioRelief = Math.pow(MF_NL / mfRatio, 0.26);
+  const dMult = (eco.dMult ?? 0.94) * genderRatioRelief;
+  const D_c = clamp(D_BASE * dMult, 0.001, 0.19);
 
   // 7. Active organic profile share A_c
   const A_c = clamp(eco.aShare ?? 0.58, 0.10, 0.68);
 
   // 8. Pre-liked queue fraction q_c
   const rNl = sig(logit(R_BAR) + K_SELECTIVITY * Z_P_NL);
-  const q_c = clamp(Q_PRELIKE * Math.pow(R_c / rNl, 0.55) * Math.min(1.1, dMult), 0.0002, 0.012);
+  const q_c = clamp(Q_PRELIKE * Math.pow(R_c / rNl, 0.55) * Math.min(1.15, dMult), 0.0002, 0.012);
 
   // 9. Organic Match Rate M_organic (%) — No hardcoded NL override needed!
   const organicRaw = 100 * A_c * (q_c + (1 - q_c) * D_c * R_c);
@@ -209,6 +244,7 @@ function computeFunnel(
     matchRatePct,
     rawMatchRatePct,
     swipesPerMatch,
+    tinderMalePct: Math.round(malePct * 10) / 10,
     activeOrganicShare: Math.round(A_c * 100) / 100,
     deliveryProb: Math.round(D_c * 1000) / 1000,
     conditionalRightSwipeProb: Math.round(R_c * 1000) / 1000,
@@ -254,31 +290,33 @@ for (const s of usStates) {
   usStateResults[code] = { organic: res.matchRatePct, raw: res.rawMatchRatePct };
 }
 
-const fileContent = `// Tinder Right-Swipe Match Rate (%) — Hardened 2026 Standard-Tier Funnel Model (v3.1)
+const fileContent = `// Tinder Right-Swipe Match Rate (%) — Empirically Grounded Funnel Model (v3.2)
+//
+// Primary Empirical Sources:
+//   - SwipeStats.io Dataset (2020–2025): 7,079 GDPR Tinder exports, 294M right swipes,
+//     3.14M matches (261.7M male right swipes -> 2.56M matches = 0.98% volume-weighted
+//     male match rate; 2.04% user median; R_BAR = 5.26% female right-swipe rate).
+//   - Tyson et al. (2016), Queen Mary Univ. of London ("A First Look at User Activity on Tinder"):
+//     0.60% baseline free-tier male match rate (1 in 167 swipes).
+//   - Tinder Explore 100-City Demographic Audit (ages 21–30, 50km radius):
+//     Global mean = 81% male (4.26:1 M:F). Bangkok 54%, Manila 57%, Cape Town 65%,
+//     Ukraine/Norway 69%, Denmark 72%, Poland 73%, Czechia/Rio/Medellín 75%,
+//     Buenos Aires 77%, Stockholm 79%, US 82.5%, NL 83%, UK/DE/FR/CA 84%, Bogotá 85%,
+//     Mexico City 87%, Bucharest 88%, Athens 89%, Italy 90%, Istanbul & India 96%.
 //
 // Reference Profile:
 //   - White Dutch Male (181 cm, Blue Eyes, Dark Hair, Fit BMI ~22.5, English + Dutch speaker)
-//   - Standard/Free Tinder tier (no Platinum/Boosts), ~30% swipe selectivity, metro area
+//   - Standard/Free Tinder tier (no Platinum/Boosts), ~30–35% swipe selectivity, metro area
 //
 // Structural Funnel Equation:
 //   M_organic(c) = 100 * A_c * [ q_c + (1 - q_c) * D_c * R_c ]
 //   M_raw(c)     = M_organic(c) + B_comm(c)
-//
-// Calibrated Benchmarks (Organic / Raw incl. prepagos, freelancers & bots):
-//   - Netherlands (Home Baseline): 1.3% organic (1.4% raw) — ~77 right-swipes per organic match
-//   - Western Europe & US (UK, DE, US, FR, ES, IT, SE): 0.9% – 1.1% organic (~91–111 swipes/match)
-//   - Latin America & Caribbean (PE 1.6%, DO 1.5%, BR 1.4%, CO 1.4%, MX 1.4%, AR/CL 0.8%):
-//     ~63–125 swipes per organic match (raw in CO/DO is 3.3% due to prepago/freelancer inflation)
-//   - Sub-Saharan Hubs (KE 1.7% org / 3.4% raw, GH 1.5%, UG 1.5%, ZA 1.3%)
-//   - Southeast Asia Peak (PH 3.1% org / 4.8% raw [~32 swipes/match], ID 2.6% [~38 swipes],
-//     TH 2.3% org / 4.5% raw [~43 swipes], VN 2.0% [~50 swipes])
-//   - East Asia (TW 1.1%, JP 0.7%, KR 0.6% [~143–167 swipes/match])
-//   - South Asia & Gulf (IN 0.2% [~500 swipes], PK 0.1%, AE 0.4% org / 2.2% raw)
 
 export interface TinderMatchBreakdown {
   matchRatePct: number;
   rawMatchRatePct: number;
   swipesPerMatch: number;
+  tinderMalePct: number;
   activeOrganicShare: number;
   deliveryProb: number;
   conditionalRightSwipeProb: number;
@@ -290,7 +328,7 @@ ${countries
   .map((c) => {
     const code = c.code.toUpperCase();
     const r = countryResults[code];
-    return `  ${code}: ${r.matchRatePct}, // ${c.name} (Raw: ${r.rawMatchRatePct}%, ~1 organic match per ${r.swipesPerMatch} right-swipes)`;
+    return `  ${code}: ${r.matchRatePct}, // ${c.name} (Raw: ${r.rawMatchRatePct}%, ~1 organic match per ${r.swipesPerMatch} right-swipes, ${r.tinderMalePct}% male on Tinder)`;
   })
   .join("\n")}
 };

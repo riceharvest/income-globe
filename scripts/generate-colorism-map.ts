@@ -136,85 +136,103 @@ const ARCHETYPES: Record<string, ArchetypeParams & { codes: string }> = {
   },
 };
 
-// Country-specific empirical calibration overrides (WHO, Euromonitor, Pan-Asian & African dermatological surveys)
+// Country-specific empirical calibration overrides from peer-reviewed literature:
+//   - Peltzer, Pengpid & James (2016), Int. J. Dermatology 55(2):165-172 (26-country survey, n=19,624;
+//     overall 24.5%: 30.0% female, 16.7% male; range 0% Turkey to 83.8% Thailand; 41.0% Tunisia;
+//     28.3% Colombia; 9.5% Namibia; 8.9% Barbados)
+//   - Sagoe et al. (2019), Int. J. Dermatology 58(3):274-285 (68-study meta-analysis, n=67,665;
+//     27.7% global lifetime prevalence, 27.1% Africa, 28.0% male pooled subgroup)
+//   - Arora & Amin (2024), Baylor Univ. Med. Cent. Proc. (PMC11018027) Google Trends RSV (0-100):
+//     "skin whitening": Pakistan (100), Nigeria (74), Ghana (71), Sri Lanka (67), India (56)
+//     "skin lightening": Nigeria (100), Zimbabwe (98), Zambia (77), Uganda (77), Ghana (73)
+//     "skin bleaching": St. Vincent (100), Jamaica (78), Ghana (54), Nigeria (53), Zimbabwe (36)
+//   - WHO Mercury in Skin Lightening Products Factsheet & Synovate/Ipsos APAC Surveys
 const OVERRIDES: Record<string, Partial<ArchetypeParams>> = {
-  // Southeast Asia — Epicenter of cultural fair-skin ideal ("khao-sai" / "putih bersih")
-  TH: { indexBase: 92.5, fRate: 68.5, mRate: 25.4, A: 0.98, M: 0.98 },
-  PH: { indexBase: 91.5, fRate: 65.2, mRate: 22.8, P: 0.95, M: 0.97 },
-  ID: { indexBase: 89.5, fRate: 58.4, mRate: 20.2, A: 0.95, P: 0.90, M: 0.95 },
-  VN: { indexBase: 88.5, fRate: 59.0, mRate: 18.5, A: 0.96, M: 0.93 },
-  KH: { indexBase: 87.5, fRate: 57.5, mRate: 18.0 },
-  LA: { indexBase: 85.0, fRate: 52.0, mRate: 16.5 },
-  MM: { indexBase: 84.5, fRate: 51.0, mRate: 16.0 },
-  MY: { indexBase: 82.0, fRate: 48.5, mRate: 17.0 },
-  SG: { indexBase: 76.5, fRate: 42.0, mRate: 15.5, T: 0.15 },
-  BN: { indexBase: 78.0, fRate: 44.0, mRate: 14.5 },
-  TL: { indexBase: 74.0, fRate: 35.0, mRate: 10.0 },
+  // Southeast Asia — Peltzer (2016) recorded 83.8% 12-mo prevalence in Thai university cohorts
+  TH: { indexBase: 93.5, fRate: 71.4, mRate: 28.5, A: 0.98, M: 0.99 },
+  PH: { indexBase: 91.5, fRate: 64.8, mRate: 24.2, P: 0.95, M: 0.97 },
+  ID: { indexBase: 89.0, fRate: 56.5, mRate: 21.0, A: 0.95, P: 0.90, M: 0.95 },
+  VN: { indexBase: 88.5, fRate: 58.0, mRate: 19.5, A: 0.96, M: 0.93 },
+  KH: { indexBase: 87.5, fRate: 57.0, mRate: 18.8 },
+  LA: { indexBase: 85.0, fRate: 52.0, mRate: 17.5 },
+  MM: { indexBase: 84.0, fRate: 49.5, mRate: 16.5 },
+  MY: { indexBase: 83.0, fRate: 50.2, mRate: 18.5 }, // Synovate 40% general / 60.6% university cohort
+  SG: { indexBase: 76.5, fRate: 41.5, mRate: 15.8, T: 0.15 },
+  BN: { indexBase: 78.0, fRate: 43.5, mRate: 15.0 },
+  TL: { indexBase: 74.0, fRate: 35.0, mRate: 11.0 },
 
-  // South Asia — Intense marriage-market & caste/colonial shade hierarchy
-  IN: { indexBase: 94.0, fRate: 61.2, mRate: 24.8, A: 0.98, P: 0.98, M: 0.98 },
-  PK: { indexBase: 91.8, fRate: 59.5, mRate: 22.5, A: 0.96, P: 0.95, M: 0.96 },
-  BD: { indexBase: 90.2, fRate: 57.8, mRate: 21.0 },
-  LK: { indexBase: 85.5, fRate: 50.4, mRate: 17.5 },
-  NP: { indexBase: 84.0, fRate: 47.0, mRate: 16.0 },
-  MV: { indexBase: 81.0, fRate: 44.0, mRate: 14.0 },
-  BT: { indexBase: 74.0, fRate: 34.0, mRate: 10.5 },
-  AF: { indexBase: 76.0, fRate: 28.0, mRate: 7.5 },
+  // South Asia — Pakistan #1 (100 RSV) & Sri Lanka #4 (67 RSV) on Google Trends (Arora & Amin 2024);
+  // India ~60% of skincare market & 54% lifetime / 38% active in Mumbai survey
+  PK: { indexBase: 94.5, fRate: 64.5, mRate: 25.8, A: 0.97, P: 0.96, M: 0.98 },
+  IN: { indexBase: 94.0, fRate: 60.8, mRate: 25.2, A: 0.98, P: 0.98, M: 0.98 },
+  BD: { indexBase: 90.2, fRate: 57.5, mRate: 21.5 },
+  LK: { indexBase: 89.0, fRate: 56.5, mRate: 20.4 }, // #4 globally on Google Trends (67/100)
+  NP: { indexBase: 84.0, fRate: 46.5, mRate: 16.5 },
+  MV: { indexBase: 81.0, fRate: 44.0, mRate: 14.5 },
+  BT: { indexBase: 74.0, fRate: 34.0, mRate: 11.0 },
+  AF: { indexBase: 76.0, fRate: 28.0, mRate: 8.0 },
 
-  // East Asia — "Baifu" / "Bihaku" / "Mibaek" aesthetic standard
-  KR: { indexBase: 86.8, fRate: 60.5, mRate: 26.8, A: 0.97, M: 0.98 },
-  CN: { indexBase: 85.2, fRate: 55.4, mRate: 18.2, A: 0.96, M: 0.94 },
-  TW: { indexBase: 82.5, fRate: 53.0, mRate: 18.5 },
-  JP: { indexBase: 80.4, fRate: 48.5, mRate: 15.2, T: 0.14 },
-  HK: { indexBase: 79.0, fRate: 47.0, mRate: 16.0, T: 0.16 },
-  MO: { indexBase: 78.5, fRate: 46.0, mRate: 15.0 },
-  MN: { indexBase: 68.0, fRate: 31.0, mRate: 8.5 },
+  // East Asia — Synovate/WHO ~40-50% regular female whitening/brightening usage
+  KR: { indexBase: 86.8, fRate: 58.5, mRate: 26.8, A: 0.97, M: 0.98 },
+  CN: { indexBase: 85.2, fRate: 53.4, mRate: 18.5, A: 0.96, M: 0.94 },
+  TW: { indexBase: 82.5, fRate: 51.0, mRate: 18.5 },
+  HK: { indexBase: 80.0, fRate: 48.5, mRate: 16.8, T: 0.16 }, // Synovate: 40-50% of HK women
+  JP: { indexBase: 80.4, fRate: 47.5, mRate: 15.5, T: 0.14 },
+  MO: { indexBase: 78.5, fRate: 46.0, mRate: 15.2 },
+  MN: { indexBase: 68.0, fRate: 30.5, mRate: 8.8 },
   KP: { indexBase: 64.0, fRate: 18.0, mRate: 3.5 },
 
-  // Sub-Saharan Africa — Highest active chemical skin-bleaching rates (WHO data)
-  NG: { indexBase: 85.5, fRate: 77.0, mRate: 28.0, P: 0.94, M: 0.94 },
-  SN: { indexBase: 83.0, fRate: 67.0, mRate: 18.5 },
-  ML: { indexBase: 80.5, fRate: 61.0, mRate: 16.5 },
-  TG: { indexBase: 81.5, fRate: 59.0, mRate: 17.5 },
-  CG: { indexBase: 82.0, fRate: 64.0, mRate: 21.0 },
-  CD: { indexBase: 81.5, fRate: 62.0, mRate: 20.5 },
-  CI: { indexBase: 82.0, fRate: 60.0, mRate: 19.0 },
-  GH: { indexBase: 80.5, fRate: 54.0, mRate: 18.0 },
-  CM: { indexBase: 79.0, fRate: 52.0, mRate: 16.5 },
-  GA: { indexBase: 78.5, fRate: 51.0, mRate: 16.0 },
-  ZA: { indexBase: 74.5, fRate: 35.0, mRate: 11.5, P: 0.92 },
-  KE: { indexBase: 75.0, fRate: 40.5, mRate: 12.5 },
-  UG: { indexBase: 74.0, fRate: 39.0, mRate: 11.5 },
-  TZ: { indexBase: 73.5, fRate: 38.0, mRate: 11.0 },
-  RW: { indexBase: 68.0, fRate: 29.0, mRate: 7.5 }, // Government bans reduced active rate
-  ET: { indexBase: 76.0, fRate: 41.0, mRate: 11.0 },
-  SO: { indexBase: 79.0, fRate: 46.0, mRate: 11.5 },
-  SD: { indexBase: 84.5, fRate: 56.0, mRate: 15.5 },
+  // Sub-Saharan Africa — WHO, Sagoe et al. (2019), Peltzer et al. (2016), Arora & Amin (2024)
+  NG: { indexBase: 86.5, fRate: 77.0, mRate: 28.5, P: 0.95, M: 0.95 }, // WHO: 77% of Nigerian women
+  SD: { indexBase: 88.5, fRate: 71.4, mRate: 21.0 }, // NIH survey: 74.4% female undergraduates
+  CG: { indexBase: 83.5, fRate: 66.0, mRate: 24.0 }, // WHO/Congo-Brazzaville: 66% prevalence
+  SN: { indexBase: 83.0, fRate: 64.0, mRate: 19.5 }, // Dakar surveys: 52%–67% of women
+  TG: { indexBase: 81.5, fRate: 59.0, mRate: 18.5 }, // WHO: 59% of Togolese women
+  CI: { indexBase: 82.0, fRate: 58.0, mRate: 19.5 },
+  CD: { indexBase: 81.5, fRate: 59.0, mRate: 21.5 },
+  GH: { indexBase: 82.5, fRate: 54.5, mRate: 20.5 }, // Top 5 globally in all 3 Google Trends categories
+  ZW: { indexBase: 81.0, fRate: 52.0, mRate: 16.5 }, // #2 globally (98/100) for "skin lightening"
+  CM: { indexBase: 79.0, fRate: 51.0, mRate: 17.0 },
+  GA: { indexBase: 78.5, fRate: 50.0, mRate: 16.5 },
+  ZM: { indexBase: 78.5, fRate: 47.5, mRate: 15.0 }, // #3 globally (77/100) for "skin lightening"
+  SO: { indexBase: 79.0, fRate: 46.0, mRate: 12.0 },
+  ET: { indexBase: 76.0, fRate: 41.0, mRate: 11.5 },
+  KE: { indexBase: 75.0, fRate: 38.5, mRate: 12.5 },
+  TZ: { indexBase: 73.5, fRate: 36.5, mRate: 11.5 },
+  ZA: { indexBase: 74.5, fRate: 35.0, mRate: 12.0, P: 0.92 }, // WHO / Dlova et al.: 32%–35%
+  ML: { indexBase: 74.0, fRate: 32.0, mRate: 10.5 }, // WHO baseline 25% (higher in Bamako urban)
+  UG: { indexBase: 73.5, fRate: 28.5, mRate: 9.5 },  // Makerere Univ & clinical studies: 25.1%–28.1%
+  RW: { indexBase: 66.0, fRate: 24.0, mRate: 6.5 },  // Strict enforcement of bleaching ban
+  NA: { indexBase: 54.0, fRate: 13.5, mRate: 4.8 },  // Peltzer (2016): 9.5% (lowest African cohort)
 
-  // MENA & West Asia
-  SA: { indexBase: 78.5, fRate: 46.5, mRate: 14.5 },
-  AE: { indexBase: 77.0, fRate: 45.0, mRate: 15.5 },
-  KW: { indexBase: 77.5, fRate: 45.5, mRate: 14.8 },
-  EG: { indexBase: 77.5, fRate: 44.0, mRate: 12.8 },
-  MA: { indexBase: 76.0, fRate: 42.5, mRate: 11.5 },
-  JO: { indexBase: 75.5, fRate: 43.0, mRate: 12.5 },
+  // MENA & West Asia — Jordan 60.7% lifetime, Saudi >50% lifetime, Tunisia 41.0% (Peltzer 2016), Turkey ~0-4%
+  JO: { indexBase: 78.5, fRate: 52.4, mRate: 14.8 }, // Pharmacy cross-sectional study: 60.7% lifetime
+  SA: { indexBase: 80.5, fRate: 53.2, mRate: 16.0 }, // Saudi studies: >50% female prevalence
+  AE: { indexBase: 78.0, fRate: 47.5, mRate: 16.5 },
+  KW: { indexBase: 78.0, fRate: 47.0, mRate: 15.5 },
+  TN: { indexBase: 76.5, fRate: 44.5, mRate: 14.5 }, // Peltzer (2016): 41.0% overall
+  EG: { indexBase: 77.5, fRate: 44.0, mRate: 13.5 },
+  MA: { indexBase: 76.0, fRate: 42.5, mRate: 12.0 },
   LB: { indexBase: 68.0, fRate: 34.0, mRate: 10.5, T: 0.30 },
   IR: { indexBase: 62.0, fRate: 26.0, mRate: 7.5 },
-  TR: { indexBase: 48.5, fRate: 14.5, mRate: 3.8, T: 0.45 },
-  IL: { indexBase: 42.0, fRate: 12.0, mRate: 3.0, T: 0.55 },
+  IL: { indexBase: 40.0, fRate: 10.5, mRate: 2.8, T: 0.58 },
+  TR: { indexBase: 34.0, fRate: 4.8, mRate: 1.4, T: 0.55 }, // Peltzer (2016): lowest in study (~0% in student sample)
 
-  // Latin America & Caribbean — Blanqueamiento / Pigmentocracy
-  DO: { indexBase: 83.5, fRate: 47.5, mRate: 16.2, P: 0.95, M: 0.88 },
-  JM: { indexBase: 79.5, fRate: 45.0, mRate: 14.8, P: 0.92, M: 0.86 },
-  HT: { indexBase: 80.0, fRate: 46.0, mRate: 14.0 },
-  CO: { indexBase: 74.5, fRate: 28.5, mRate: 8.2 },
-  BR: { indexBase: 70.5, fRate: 24.0, mRate: 7.0, T: 0.40 },
-  MX: { indexBase: 73.5, fRate: 29.0, mRate: 8.5, P: 0.92 },
-  VE: { indexBase: 73.0, fRate: 27.5, mRate: 7.8 },
-  PE: { indexBase: 74.0, fRate: 28.0, mRate: 7.5 },
-  EC: { indexBase: 72.5, fRate: 26.5, mRate: 7.2 },
-  CU: { indexBase: 68.0, fRate: 22.0, mRate: 6.0 },
-  PR: { indexBase: 67.0, fRate: 23.0, mRate: 6.5 },
+  // Latin America & Caribbean — Peltzer (2016): Colombia 28.3%, Barbados 8.9%;
+  // Arora & Amin (2024): St. Vincent #1 (100 RSV) & Jamaica #2 (78 RSV) for "skin bleaching"
+  VC: { indexBase: 84.0, fRate: 49.0, mRate: 21.0 }, // #1 globally (100/100) for "skin bleaching"
+  DO: { indexBase: 83.5, fRate: 47.5, mRate: 16.8, P: 0.95, M: 0.88 },
+  HT: { indexBase: 80.0, fRate: 46.0, mRate: 14.5 },
+  JM: { indexBase: 79.5, fRate: 27.5, mRate: 19.5, P: 0.92, M: 0.86 }, // JHLS: high male bleaching ratio
+  CO: { indexBase: 74.5, fRate: 31.2, mRate: 11.4 }, // Peltzer (2016): 28.3% overall
+  MX: { indexBase: 73.5, fRate: 29.0, mRate: 9.2, P: 0.92 },
+  VE: { indexBase: 73.0, fRate: 27.5, mRate: 8.4 },
+  PE: { indexBase: 74.0, fRate: 28.0, mRate: 8.2 },
+  EC: { indexBase: 72.5, fRate: 26.5, mRate: 7.8 },
+  BR: { indexBase: 70.5, fRate: 24.5, mRate: 7.5, T: 0.40 },
+  CU: { indexBase: 68.0, fRate: 22.0, mRate: 6.5 },
+  PR: { indexBase: 67.0, fRate: 23.0, mRate: 6.8 },
+  BB: { indexBase: 56.0, fRate: 12.5, mRate: 4.2 },  // Peltzer (2016): 8.9% overall
   CL: { indexBase: 55.0, fRate: 14.5, mRate: 3.8 },
   AR: { indexBase: 46.0, fRate: 10.2, mRate: 2.5 },
   UY: { indexBase: 43.0, fRate: 9.0, mRate: 2.2 },
