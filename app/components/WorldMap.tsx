@@ -6,7 +6,12 @@ import topoData from "world-atlas/countries-110m.json";
 import { countries, type CountryData } from "~/data/countries";
 import { colorScaleFor, noDataFill, oceanFill, borderStroke } from "~/lib/color";
 import { formatValue, rankCountries, statValue, type Mode, type StatDef } from "~/lib/stats";
+import { getPwdDensity } from "~/data/pwd-density-map";
 import { MapLegendOverlay } from "~/components/MapLegendOverlay";
+import {
+  PopDensityOverlayControl,
+  type PopDensityOverlayState,
+} from "~/components/PopDensityOverlayControl";
 
 interface GeoFeature {
   type: "Feature";
@@ -53,6 +58,11 @@ export function WorldMap({
 }) {
   const [view, setView] = useState({ k: 1, x: 0, y: 0 });
   const [hover, setHover] = useState<HoverInfo | null>(null);
+  const [popOverlay, setPopOverlay] = useState<PopDensityOverlayState>({
+    enabled: false,
+    opacity: 0.85,
+    style: "blend",
+  });
   const svgRef = useRef<SVGSVGElement>(null);
   const drag = useRef<{ px: number; py: number; x: number; y: number; moved: boolean } | null>(null);
 
@@ -224,15 +234,21 @@ export function WorldMap({
             const v = valueByNumeric.get(num);
             const isSelected = country != null && country.code === selectedCode;
             const dimmed = region != null && country != null && country.region !== region;
+            const isClassicOverlay = popOverlay.enabled && popOverlay.style === "classic";
+            const baseFill = isClassicOverlay
+              ? "#f4f4f5"
+              : v != null
+                ? fill(v)
+                : noDataFill;
             return (
               <path
                 key={f.id ?? f.properties.name}
                 data-num={Number.isFinite(num) ? num : undefined}
                 data-name={country?.name ?? f.properties.name ?? ""}
                 d={path(f as unknown as GeoJSON.Feature) ?? ""}
-                fill={v != null ? fill(v) : noDataFill}
+                fill={baseFill}
                 fillOpacity={dimmed ? 0.12 : 1}
-                stroke={isSelected ? "#38bdf8" : borderStroke}
+                stroke={isSelected ? "#38bdf8" : isClassicOverlay ? "#cbd5e1" : borderStroke}
                 strokeWidth={isSelected ? 1.8 / view.k : 0.4 / view.k}
                 tabIndex={country ? 0 : -1}
                 role={country ? "button" : undefined}
@@ -254,8 +270,47 @@ export function WorldMap({
               />
             );
           })}
+
+          {popOverlay.enabled && (
+            <>
+              <image
+                href="/overlays/luminocity-pop-density-world.png"
+                x={0}
+                y={0}
+                width={WIDTH}
+                height={HEIGHT}
+                opacity={popOverlay.opacity}
+                preserveAspectRatio="none"
+                style={{ pointerEvents: "none" }}
+              />
+              {geoFeatures.map((f) => {
+                const num = f.id ? parseInt(f.id, 10) : NaN;
+                const country = byNumeric.get(num);
+                const isSelected = country != null && country.code === selectedCode;
+                return (
+                  <path
+                    key={`border-${f.id ?? f.properties.name}`}
+                    d={path(f as unknown as GeoJSON.Feature) ?? ""}
+                    fill="none"
+                    stroke={
+                      isSelected
+                        ? "#38bdf8"
+                        : popOverlay.style === "classic"
+                          ? "rgba(71,85,105,0.45)"
+                          : "rgba(9,13,22,0.5)"
+                    }
+                    strokeWidth={isSelected ? 2.0 / view.k : 0.35 / view.k}
+                    style={{ pointerEvents: "none" }}
+                  />
+                );
+              })}
+            </>
+          )}
         </g>
       </svg>
+
+      {/* Luminocity3D Population Density Overlay Control */}
+      <PopDensityOverlayControl state={popOverlay} onChange={setPopOverlay} />
 
       {/* Floating Map Legend Overlay */}
       <MapLegendOverlay
@@ -296,6 +351,14 @@ export function WorldMap({
               </span>
             )}
           </div>
+          {popOverlay.enabled && hover.country && getPwdDensity(hover.country.code) != null && (
+            <div className="mt-1 flex items-center justify-between gap-3 border-t border-zinc-800/80 pt-1 text-[10px]">
+              <span className="text-zinc-400">Lived density (GHSL):</span>
+              <span className="font-mono font-medium text-amber-300">
+                {getPwdDensity(hover.country.code)!.toLocaleString("en-US")} /km²
+              </span>
+            </div>
+          )}
         </div>
       )}
 

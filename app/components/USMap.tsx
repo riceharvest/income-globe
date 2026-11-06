@@ -13,7 +13,12 @@ import {
   type Mode,
   type StatDef,
 } from "~/lib/stats";
+import { getPwdDensity } from "~/data/pwd-density-map";
 import { MapLegendOverlay } from "~/components/MapLegendOverlay";
+import {
+  PopDensityOverlayControl,
+  type PopDensityOverlayState,
+} from "~/components/PopDensityOverlayControl";
 
 interface GeoFeature {
   type: "Feature";
@@ -28,6 +33,11 @@ const geoFeatures = (
     (topoData as unknown as { objects: { states: never } }).objects.states,
   ) as unknown as { features: GeoFeature[] }
 ).features;
+
+const nationFeature = feature(
+  topoData as never,
+  (topoData as unknown as { objects: { nation: never } }).objects.nation,
+) as unknown as GeoJSON.Feature;
 
 const WIDTH = 960;
 const HEIGHT = 600;
@@ -54,6 +64,11 @@ export function USMap({
 }) {
   const [view, setView] = useState({ k: 1, x: 0, y: 0 });
   const [hover, setHover] = useState<HoverInfo | null>(null);
+  const [popOverlay, setPopOverlay] = useState<PopDensityOverlayState>({
+    enabled: false,
+    opacity: 0.85,
+    style: "blend",
+  });
   const svgRef = useRef<SVGSVGElement>(null);
   const drag = useRef<{ px: number; py: number; x: number; y: number; moved: boolean } | null>(null);
 
@@ -200,6 +215,11 @@ export function USMap({
           drag.current = null;
         }}
       >
+        <defs>
+          <clipPath id="us-nation-clip">
+            <path d={path(nationFeature) ?? ""} />
+          </clipPath>
+        </defs>
         <g transform={`translate(${view.x},${view.y}) scale(${view.k})`}>
           {geoFeatures.map((f) => {
             const fips = f.id;
@@ -207,6 +227,12 @@ export function USMap({
             const v = valueByFips.get(fips);
             const isSelected = state != null && state.code === selectedCode;
             const dimmed = region != null && state != null && state.region !== region;
+            const isClassicOverlay = popOverlay.enabled && popOverlay.style === "classic";
+            const baseFill = isClassicOverlay
+              ? "#f4f4f5"
+              : v != null
+                ? fill(v)
+                : noDataFill;
             return (
               <path
                 key={f.id}
@@ -214,9 +240,9 @@ export function USMap({
                 data-code={state?.code}
                 data-name={state?.name ?? f.properties.name}
                 d={path(f as unknown as GeoJSON.Feature) ?? ""}
-                fill={v != null ? fill(v) : noDataFill}
+                fill={baseFill}
                 fillOpacity={dimmed ? 0.15 : 1}
-                stroke={isSelected ? "#38bdf8" : "#27272a"}
+                stroke={isSelected ? "#38bdf8" : isClassicOverlay ? "#cbd5e1" : "#27272a"}
                 strokeWidth={isSelected ? 2.5 / view.k : 0.6 / view.k}
                 tabIndex={state ? 0 : -1}
                 role={state ? "button" : undefined}
@@ -238,8 +264,48 @@ export function USMap({
               />
             );
           })}
+
+          {popOverlay.enabled && (
+            <>
+              <image
+                href="/overlays/luminocity-pop-density-us.png"
+                x={0}
+                y={0}
+                width={WIDTH}
+                height={HEIGHT}
+                opacity={popOverlay.opacity}
+                clipPath="url(#us-nation-clip)"
+                preserveAspectRatio="none"
+                style={{ pointerEvents: "none" }}
+              />
+              {geoFeatures.map((f) => {
+                const fips = f.id;
+                const state = usStateByFips.get(fips);
+                const isSelected = state != null && state.code === selectedCode;
+                return (
+                  <path
+                    key={`border-${f.id}`}
+                    d={path(f as unknown as GeoJSON.Feature) ?? ""}
+                    fill="none"
+                    stroke={
+                      isSelected
+                        ? "#38bdf8"
+                        : popOverlay.style === "classic"
+                          ? "rgba(71,85,105,0.45)"
+                          : "rgba(9,13,22,0.55)"
+                    }
+                    strokeWidth={isSelected ? 2.5 / view.k : 0.5 / view.k}
+                    style={{ pointerEvents: "none" }}
+                  />
+                );
+              })}
+            </>
+          )}
         </g>
       </svg>
+
+      {/* Luminocity3D Population Density Overlay Control */}
+      <PopDensityOverlayControl state={popOverlay} onChange={setPopOverlay} />
 
       {/* Floating Map Legend Overlay */}
       <MapLegendOverlay
@@ -285,6 +351,15 @@ export function USMap({
               </span>
             )}
           </div>
+
+          {popOverlay.enabled && hover.state && getPwdDensity(hover.state.code, true) != null && (
+            <div className="mt-1 flex items-center justify-between gap-3 border-t border-zinc-800/80 pt-1 text-[10px]">
+              <span className="text-zinc-400">Lived density (GHSL):</span>
+              <span className="font-mono font-medium text-amber-300">
+                {getPwdDensity(hover.state.code, true)!.toLocaleString("en-US")} /km²
+              </span>
+            </div>
+          )}
 
           {/* Presidential split badge */}
           {hover.state?.politics?.presidential2024 && (

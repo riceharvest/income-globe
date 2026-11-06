@@ -32,6 +32,7 @@ import {
   getTinderMatchRate,
   getTinderRawMatchRate,
 } from "~/data/tinder-match-map";
+import { getPwdDensity } from "~/data/pwd-density-map";
 import { usStates, type USStateData } from "~/data/us-states";
 
 export type Sex = "male" | "female";
@@ -535,6 +536,10 @@ export const stats: StatDef[] = [
     "Share of the population living in urban areas (UN definition, national criteria).",
     "Percent. Above 80% = highly urbanized (Western Europe, Gulf); under 40% = predominantly rural (much of Africa, South Asia).",
     (c) => (c as any).urbanPct ?? urbanByCountry[c.code]),
+  scalar("pwdDensity", "Person-weighted density (GHSL)", "Society", "/km²", 0,
+    "Person-Weighted Population Density (residents per km²) from Luminocity3D & the European Commission JRC Global Human Settlement Layer (GHSL 2023). Measures the lived 1 km² neighborhood density experienced by the average resident rather than crude total land area density.",
+    "Residents per km². Highlights true urban concentration: Egypt (21,761/km² along the Nile), Colombia (13,538/km² in dense Andean valleys), Turkey (13,469/km²), India (9,887/km²), Philippines (9,239/km²), China (8,924/km²), and Brazil (6,239/km²) far exceed Western Europe (UK 4,111/km², Netherlands 3,367/km², Germany 2,678/km²) and the US (2,224/km²; NY leads at 8,120/km²).",
+    (c) => (c as any).pwdDensity ?? getPwdDensity(c.code, "fips" in c)),
 ];
 
 export const statsById = new Map(stats.map((s) => [s.id, s]));
