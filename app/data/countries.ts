@@ -5,6 +5,10 @@ import {
   whiteMalePerceptionByCountry,
   whiteMaleDesirabilityByCountry,
 } from "./white-male-perception-map";
+import {
+  getColorismIndex,
+  getSkinWhiteningRate,
+} from "./colorism-map";
 
 // ── Indicator & Dimension Types ──
 
@@ -391,6 +395,9 @@ export interface CountryData {
   // Demographics & Misc
   whiteMalePerceptionIndex?: number;
   whiteMaleDesirabilityIndex?: number;
+  colorismIndex?: number;
+  femaleSkinWhiteningRate?: number;
+  maleSkinWhiteningRate?: number;
   englishSpeakingPercent?: number;
   mainIndustry?: string;
 }
@@ -1259,6 +1266,22 @@ export function getSortValue(
   }
   if (metricKey === "whiteMaleDesirabilityIndex" || metricKey === "whiteMaleDesirability") {
     return getWhiteMaleDesirability(country.code);
+  }
+
+  // Colorism & Skin-Whitening Usage
+  if (metricKey === "colorismIndex" || metricKey === "fairSkinPreference") {
+    return getColorismIndex(country.code) ?? 0;
+  }
+  if (metricKey === "femaleSkinWhiteningRate") {
+    return getSkinWhiteningRate(country.code, "female") ?? 0;
+  }
+  if (metricKey === "maleSkinWhiteningRate") {
+    return getSkinWhiteningRate(country.code, "male") ?? 0;
+  }
+  if (metricKey === "skinWhiteningRate") {
+    const f = getSkinWhiteningRate(country.code, "female") ?? 0;
+    const m = getSkinWhiteningRate(country.code, "male") ?? 0;
+    return Math.round(((f + m) / 2) * 10) / 10;
   }
 
   // Fallback: check dynamic object properties

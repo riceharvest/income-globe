@@ -1,6 +1,7 @@
 // Auto-generated US State dataset
 import type { CountryData } from "./countries";
 import { usStateLaws, type StateCannabisLaw, type StateGunLaw } from "./us-laws";
+import { colorismByUSState } from "./colorism-map";
 export type { StateCannabisLaw, StateGunLaw };
 
 export interface StatePolitics {
@@ -7551,6 +7552,9 @@ export const usStatesData: USStateData[] = rawUSStatesData.map((s) => ({
   ...s,
   cannabisLaw: usStateLaws[s.code]?.cannabis,
   gunLaw: usStateLaws[s.code]?.gun,
+  colorismIndex: colorismByUSState[s.code]?.colorismIndex ?? 30.0,
+  femaleSkinWhiteningRate: colorismByUSState[s.code]?.female ?? 6.8,
+  maleSkinWhiteningRate: colorismByUSState[s.code]?.male ?? 1.9,
 }));
 
 export { usStatesData as usStates };

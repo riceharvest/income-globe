@@ -24,6 +24,10 @@ import {
   whiteMalePerceptionByCountry,
   whiteMaleDesirabilityByCountry,
 } from "~/data/white-male-perception-map";
+import {
+  getColorismIndex,
+  getSkinWhiteningRate,
+} from "~/data/colorism-map";
 import { usStates, type USStateData } from "~/data/us-states";
 
 export type Sex = "male" | "female";
@@ -448,6 +452,25 @@ export const stats: StatDef[] = [
     "Ungated cross-cultural dating desirability and aesthetic preference for a Western/Dutch male reference before deducting social endogamy (π) and institutional/safety gates. Measures latent cultural demand D, height differential Sh, and income advantage Sy net of outsider friction τ.",
     "Scale 0–100 where 50 = home baseline parity (Netherlands ≡ 50.0). Highlights latent demand: Colombia reaches 90.0 (vs 86.0 effective); Dominican Republic reaches 89.7 (vs 87.0 effective); Indonesia reaches 89.5 (vs 86.0 effective); India reaches 61.0 (vs 22.0 effective after 99% arranged marriage endogamy); and Japan reaches 46.7 (vs 30.0 effective).",
     (c) => (c as any).whiteMaleDesirabilityIndex ?? getWhiteMaleDesirability(c.code), "male"),
+  scalar("colorismIndex", "Fair-skin preference (colorism)", "Attraction & Dimorphism", "/100", 1,
+    "Cultural Colorism & Fair-Skin Preference Index (0–100). Quantifies the societal desire to have lighter or whiter skin, combining historical agrarian sun-avoidance class signaling (indoor nobility vs outdoor labor), colonial pigmentocracy (blanqueamiento / shade hierarchy), marriage-market fair-skin premiums, and media/cosmetic amplification net of Western sun-tanning counter-norms.",
+    "Scale 0–100. Extreme peaks (>85) occur across South, Southeast, and East Asia (India 94.0, Thailand 92.5, Pakistan 91.8, Philippines 91.5, Bangladesh 90.2, Indonesia 89.5, Vietnam 88.5, South Korea 86.8, China 85.2) as well as West Africa and the Caribbean (Nigeria 85.5, Dominican Republic 83.5, Senegal 83.0). Lowest (<25) in Northern/Western Europe and Australia where cultural preference reverses toward sun-tanning and bronzed skin (Sweden/Norway 13.5, Netherlands 16.0, UK 19.5, Australia 21.0, US 30.0).",
+    (c) => (c as any).colorismIndex ?? getColorismIndex(c.code, "fips" in c)),
+  {
+    id: "skinWhiteningRate",
+    label: "Skin-whitening usage",
+    group: "Attraction & Dimorphism",
+    unit: "%",
+    sexed: true,
+    decimals: 1,
+    info: "Estimated share of adults who regularly use skin-lightening, bleaching, or brightening cosmetics and treatments (glutathione, hydroquinone, kojic acid, arbutin, niacinamide whitening lotions) for the selected sex (WHO, Euromonitor & dermatological surveys).",
+    howToRead: "Percent of adults (0–100%). Female usage tops global charts in Nigeria (77.0%), Thailand (68.5%), Senegal (67.0%), Philippines (65.2%), India (61.2%), South Korea (60.5%), and Indonesia (58.4%). Male usage peaks in Nigeria (28.0%), South Korea (26.8%), Thailand (25.4%), and India (24.8%). Under 3% in Northern/Western Europe (mainly hyperpigmentation care).",
+    get: (c, sex) => {
+      const direct = sex === "male" ? (c as any).maleSkinWhiteningRate : (c as any).femaleSkinWhiteningRate;
+      if (typeof direct === "number" && Number.isFinite(direct)) return direct;
+      return getSkinWhiteningRate(c.code, sex, "fips" in c);
+    },
+  },
 
   // ── Society ──
   scalar("adolescentBirthRate", "Adolescent birth rate", "Society", "per 1k", 1,
