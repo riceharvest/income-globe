@@ -2,6 +2,7 @@
 import type { CountryData } from "./countries";
 import { usStateLaws, type StateCannabisLaw, type StateGunLaw } from "./us-laws";
 import { colorismByUSState } from "./colorism-map";
+import { tinderMatchRateByUSState, tinderRawMatchRateByUSState } from "./tinder-match-map";
 export type { StateCannabisLaw, StateGunLaw };
 
 export interface StatePolitics {
@@ -7555,6 +7556,8 @@ export const usStatesData: USStateData[] = rawUSStatesData.map((s) => ({
   colorismIndex: colorismByUSState[s.code]?.colorismIndex ?? 30.0,
   femaleSkinWhiteningRate: colorismByUSState[s.code]?.female ?? 6.8,
   maleSkinWhiteningRate: colorismByUSState[s.code]?.male ?? 1.9,
+  tinderMatchRate: tinderMatchRateByUSState[s.code] ?? 1.1,
+  tinderRawMatchRate: tinderRawMatchRateByUSState[s.code] ?? 1.3,
 }));
 
 export { usStatesData as usStates };

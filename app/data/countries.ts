@@ -9,6 +9,10 @@ import {
   getColorismIndex,
   getSkinWhiteningRate,
 } from "./colorism-map";
+import {
+  getTinderMatchRate,
+  getTinderRawMatchRate,
+} from "./tinder-match-map";
 
 // ── Indicator & Dimension Types ──
 
@@ -398,6 +402,8 @@ export interface CountryData {
   colorismIndex?: number;
   femaleSkinWhiteningRate?: number;
   maleSkinWhiteningRate?: number;
+  tinderMatchRate?: number;
+  tinderRawMatchRate?: number;
   englishSpeakingPercent?: number;
   mainIndustry?: string;
 }
@@ -1282,6 +1288,12 @@ export function getSortValue(
     const f = getSkinWhiteningRate(country.code, "female") ?? 0;
     const m = getSkinWhiteningRate(country.code, "male") ?? 0;
     return Math.round(((f + m) / 2) * 10) / 10;
+  }
+  if (metricKey === "tinderMatchRate") {
+    return getTinderMatchRate(country.code) ?? 0;
+  }
+  if (metricKey === "tinderRawMatchRate") {
+    return getTinderRawMatchRate(country.code) ?? 0;
   }
 
   // Fallback: check dynamic object properties

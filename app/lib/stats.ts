@@ -28,6 +28,10 @@ import {
   getColorismIndex,
   getSkinWhiteningRate,
 } from "~/data/colorism-map";
+import {
+  getTinderMatchRate,
+  getTinderRawMatchRate,
+} from "~/data/tinder-match-map";
 import { usStates, type USStateData } from "~/data/us-states";
 
 export type Sex = "male" | "female";
@@ -471,6 +475,28 @@ export const stats: StatDef[] = [
       return getSkinWhiteningRate(c.code, sex, "fips" in c);
     },
   },
+  scalar(
+    "tinderMatchRate",
+    "Tinder match rate · organic (Dutch · blue eyes · dark hair)",
+    "Attraction & Dimorphism",
+    "%",
+    1,
+    "Expected share of right-swipes on Tinder (2026 standard/free tier, ~30% swipe selectivity) that result in a genuine ORGANIC match with an active, non-commercial woman for a White Dutch male reference (181 cm, blue eyes + dark hair, fit BMI ~22.5, English/Dutch speaker). Uses the structural funnel equation M_organic = A_c · [q_c + (1 − q_c) · D_c · R_c], where A_c (0.38–0.65) is active organic profile share, D_c (0.01–0.16) is free-tier card delivery probability (~87% of right-swiped women never see your card due to Platinum paywall throttling & queue congestion), and R_c incorporates a Spanish/Portuguese/East-Asian language comprehension penalty and LatAm US 'passport-bro' queue saturation.",
+    "Percent of right-swipes (0.1%–3.2%). Home baseline in the Netherlands is 1.3% (~1 organic match per 77 right-swipes; median Western male is ~0.6%). Western Europe & US sit at 1.0%–1.2% (~83–100 swipes/match). Major Latin American markets (Colombia 1.4%, Brazil 1.4%, Mexico 1.4%, Peru/DR 1.7%, Argentina/Chile 0.8%, ~59–125 swipes/match) barely exceed home baseline once working girls (prepagos), US Platinum tourist saturation, and the 88% Spanish/Portuguese barrier are factored in. Global organic peaks in Southeast Asia: Philippines (3.2%, ~31 swipes/match), Indonesia (2.6%, ~38 swipes), Thailand (2.3%, ~43 swipes), Vietnam (2.0%, ~50 swipes).",
+    (c) => (c as any).tinderMatchRate ?? getTinderMatchRate(c.code, "fips" in c),
+    "male",
+  ),
+  scalar(
+    "tinderRawMatchRate",
+    "Tinder match rate · raw incl. bots/commercial",
+    "Attraction & Dimorphism",
+    "%",
+    1,
+    "Total raw right-swipe match rate on Tinder (M_raw = M_organic + B_comm) on standard tier, including working girls (prepagos / freelancers), OF/IG promo accounts, and auto-swiping bots alongside genuine organic matches for a White Dutch male (181 cm, blue eyes, dark hair).",
+    "Percent of right-swipes (0.1%–5%). In Western Europe and the US, raw rates are 1.2%–1.4% (NL 1.4% raw vs 1.3% organic). In Medellín/Cartagena (Colombia 3.3% raw vs 1.4% organic), Santo Domingo (DR 3.5% vs 1.7%), Bangkok/Pattaya (Thailand 4.5% vs 2.3%), Manila (Philippines 4.9% vs 3.2%), Nairobi (Kenya 3.3% vs 1.6%), and Dubai (UAE 2.2% vs 0.4%), over 40–60% of raw match notifications come from commercial/freelancer or bot profiles.",
+    (c) => (c as any).tinderRawMatchRate ?? getTinderRawMatchRate(c.code, "fips" in c),
+    "male",
+  ),
 
   // ── Society ──
   scalar("adolescentBirthRate", "Adolescent birth rate", "Society", "per 1k", 1,

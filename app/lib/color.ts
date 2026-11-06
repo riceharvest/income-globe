@@ -83,6 +83,8 @@ const statPalette: Record<string, string> = {
   whiteMaleDesirabilityIndex: "violet",
   colorismIndex: "skin",
   skinWhiteningRate: "violet",
+  tinderMatchRate: "emerald",
+  tinderRawMatchRate: "amber",
   // Society
   adolescentBirthRate: "rose",
   childMarriage: "rose",
